@@ -1,0 +1,12 @@
+.item{
+		color: #515151;
+	}
+.generic-list-item li {
+		margin-bottom: 0;
+		line-height: unset;
+	}
+
+    .event-title a {
+        color: #1C52A8;
+        cursor: pointer;
+    }

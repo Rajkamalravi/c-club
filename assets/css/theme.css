@@ -1,0 +1,490 @@
+
+/* Default (light theme) */
+:root {
+  --white: #ffffff;
+  --bg-color: #ffffff;
+  --text-color: #000000;
+  --link-color: #000000;
+  --active-color : #000000;
+  --section-bg : #edf0f5;
+  --svg-dark: #FF6600;
+}
+
+/* Dark theme */
+body.dark-mode {
+  --bg-color: #343a40;
+  --bg-dark: #1F2023;
+  /* --text-color: rgba(255,255,255,0.55); */
+  --text-color: #FFFBDF;
+  --sub-text-color: #FDC061;
+  --link-color: rgba(255,255,255,0.55);
+  --active-color : #000000;
+  /* --section-bg : #313236; */
+  --section-bg : #1F2023;
+}
+
+.mobile-app-dark{
+   background-color: var(--bg-dark); 
+}
+.club .mobile-app-dark, 
+.directory .mobile-app-dark,
+.groups .mobile-app-dark
+{
+   background-color: var(--bg-color); 
+}
+.mobile-app-dark .nav-tabs .nav-item {
+    margin: 0 15px;
+}
+.mobile-app-dark .nav-tabs .nav-link {
+    margin-bottom: 0;
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+    padding: 5px 0;
+    font-size: 19px;
+    color: var(--text-color) !important;
+}
+.mobile-app-dark .nav-tabs .nav-item.show .nav-link, .mobile-app-dark .nav-tabs .nav-link.active {
+    background-color: transparent;
+    border-color: transparent;
+    border-bottom: 4px solid var(--text-color);
+    font-weight: 700;
+    color: var(--text-color) !important;
+}
+/* Apply the theme */ /* container, div, ul, card, section */
+body, .navbar, .footer {
+  background-color: var(--bg-dark);
+  color: var(--text-color);
+}
+/* a , p, li, h1, h2, h3, h4, h5, h6, strong*/
+.text-black-50 {
+  color: var(--link-color);
+} 
+
+/* .nav-link.active{
+    color: var(--active-color) !important;
+} */
+
+.breadcrumb-list-dark {
+    font-size: 15px;
+}
+
+.circle-highlight .center-circle,.circle-highlight .main-circle {
+    background-color: #3396CC !important;  
+}
+
+.club-section {
+  background-color: var(--section-bg);
+}
+body.dark-mode .light-dark
+{
+  background-color:  var(--bg-dark);
+}
+body.dark-mode .light-dark *
+{
+  color:  var(--text-color);
+}
+body.dark-mode .light-dark-card, body.dark-mode .sticky.light-dark-card
+{
+  background-color:  var(--bg-color);
+}
+body.dark-mode .light-dark-card *
+{
+  color:  var(--text-color);
+}
+body.dark-mode .club .card {
+  background-color:  transparent;
+}
+body.dark-mode .slider-wrapper {
+  background-color:  var(--section-bg);
+  padding: 3rem 0;
+}
+body.dark-mode .slider-wrapper .container {
+  background-color: #f9f9f9;
+  border-radius: 12px;
+}
+body.dark-mode .main-hero .hero-list * {
+  color: var(--white);
+}
+
+body.dark-mode .club .section-title, 
+body.dark-mode .club p, 
+body.dark-mode .club h1, 
+body.dark-mode .club h2, 
+body.dark-mode .club h3, 
+body.dark-mode .club h4, 
+body.dark-mode .club h5, 
+body.dark-mode .club h6, 
+body.dark-mode .club a
+{
+  color: var(--text-color);
+}
+body.dark-mode strong
+{
+  color: var(--text-color);
+}
+body.dark-mode .club .clients-sub-title,
+body.dark-mode .club .clients-sub-title *,
+body.dark-mode .club .clients-sub-title-content
+{
+  color :#1d1c1d;
+}
+
+body.dark-mode .club .event-price svg path {
+  stroke: var(--text-color);
+}
+body.dark-mode .club .event-type svg path {
+  fill: var(--text-color);
+}
+/* save icon svg */
+body.dark-mode .jobs_like svg path, 
+body.dark-mode .events_like svg path, 
+body.dark-mode .asks_like svg path {
+    stroke: var(--text-color);
+}
+body.dark-mode .jobs_like svg.already-saved path, 
+body.dark-mode .events_like svg.already-saved path, 
+body.dark-mode .asks_like svg.already-saved path
+{
+    fill: var(--text-color);
+}
+body.dark-mode .already-saved svg path {
+    fill: var(--text-color);
+}
+
+/* directory start */
+.directory {
+    background-color: var(--bg-dark);
+}
+body.dark-mode .directory .profile-wrapper {
+  background: var(--bg-color);
+}
+body.dark-mode .directory .profile-wrapper .profile .name a {
+  color: var(--text-color) !important;
+}
+body.dark-mode .directory .profile-wrapper .profile .title, 
+body.dark-mode .directory .profile-wrapper .profile .location,
+body.dark-mode .directory .profile-wrapper .bottom-items .skills, 
+body.dark-mode .directory .profile-wrapper .bottom-items .keywords
+{
+  color: var(--sub-text-color);
+}
+body.dark-mode .directory .com-v1-strip, body.dark-mode .com-v1-strip {
+  background: var(--bg-color);
+}
+body.dark-mode .directory .com-v1-strip *, body.dark-mode .com-v1-strip * {
+  color: #ffffff;
+  fill: #ffffff;
+}
+body.dark-mode .com-v1-strip .p-type-badge {
+  color: #2557A7;
+}
+body.dark-mode .com-v1-strip .skill-con .skill-list {
+  color: #1D1C1D;
+ }
+body.dark-mode .com-v1-strip .bor-btn-con .btn.btn-sm, .com-v1-strip .btn.bor-btn  {
+  border-color: #ffffff !important;
+}
+/* directory end */
+
+/* groups */
+body.dark-mode .page-body {
+  background-color: var(--bg-dark) !important;
+}
+body.dark-mode .groups .groups-body-bg,
+body.dark-mode .groups .groups-nav {
+  background-color: var(--bg-dark);
+}
+body.dark-mode .groups .card {
+  background-color: var(--bg-color);
+}
+body.dark-mode .groups .card .card-title a * {
+  color: var(--text-color);
+}
+body.dark-mode .groups .card .card-title a svg circle {
+  fill: var(--svg-dark);
+  stroke: var(--svg-dark);
+}
+body.dark-mode .groups .card .card-text {
+  color: var(--text-color);
+}
+/* groups end */
+
+/* events */
+body.dark-mode .new-events,
+body.dark-mode .events-hall
+{
+    background-color: var(--bg-dark);
+}
+body.dark-mode .new-events .event-container,
+body.dark-mode .events-hero-bg 
+{
+    background-color: var(--bg-color);
+}
+body.dark-mode .new-events .event-title a, 
+body.dark-mode .new-events .event-location,
+body.dark-mode .new-events .event-type, 
+body.dark-mode .new-events .event-price,
+body.dark-mode .events-hero-bg .section-title 
+{
+    color: var(--text-color);
+}
+body.dark-mode .new-events .event-price svg path {
+    stroke: var(--text-color);
+}
+body.dark-mode .new-events .event-type svg path {
+    fill: var(--text-color);
+}
+
+body.dark-mode .new-event-detail {
+    background-color: var(--bg-dark);
+}
+body.dark-mode .event-new-flow .event-title,
+body.dark-mode .new-event-detail .info-container .info-card .info-title, 
+body.dark-mode .event-new-flow .event-day
+{
+  color: var(--text-color);
+}
+body.dark-mode .dark-svg path {
+  fill: var(--text-color);
+}
+body.dark-mode .event-new-flow .org-svg, body.dark-mode .event-new-flow .spon-svg {
+  border-color: var(--text-color);
+}
+body.dark-mode .event-new-flow .faq .card-header,
+body.dark-mode .event-new-flow .faq .card
+{
+  background-color: var(--bg-color);
+  border-color: #d3d3d3;
+}
+body.dark-mode .event-description * {
+  color: var(--text-color);
+}
+body.dark-mode .new-event-detail .info-container .info-card p,
+body.dark-mode .theme-blue-clr,
+body.dark-mode .theme-blue-clr *
+{
+  color: var(--sub-text-color);
+}
+
+body.dark-mode .new-event-detail .share-btn svg path
+{
+  fill: var(--text-color);
+}
+body.dark-mode .new-event-detail .info-container .info-card.happens svg path
+{
+  stroke: var(--text-color);
+}
+body.dark-mode .new-event-detail .info-container .info-card.venue svg path
+{
+  fill: var(--text-color);
+}
+body.dark-mode .new-event-detail .event-description h1,
+body.dark-mode .new-event-detail .event-description h2,
+body.dark-mode .new-event-detail .event-description h3,
+body.dark-mode .new-event-detail .event-description h4,
+body.dark-mode .new-event-detail .event-description h5,
+body.dark-mode .new-event-detail .event-description h6,
+body.dark-mode .hall-list-container .event-description h1,
+body.dark-mode .hall-list-container .event-description h2,
+body.dark-mode .hall-list-container .event-description h3,
+body.dark-mode .hall-list-container .event-description h4,
+body.dark-mode .hall-list-container .event-description h5,
+body.dark-mode .hall-list-container .event-description h6 {
+  color: var(--sub-text-color);
+}
+
+body.dark-mode .new-event-detail .event-description *,
+body.dark-mode .hall-list-container .event-description *
+{
+  color: var(--text-color);
+}
+body.dark-mode .event-new-flow .nav-tabs.new-tab-con .nav-link.active {
+  color: var(--white) !important;
+}
+
+
+body.dark-mode .new-exh-list {
+  background-image: linear-gradient(var(--bg-color), var(--bg-color)), linear-gradient(90deg, #1897C9 0%, #D3D3D3 75%, #1897C9 100%);
+}
+body.dark-mode .new-agenda-list,
+body.dark-mode .new-spk-con .new-spk-list 
+{
+    background-color: var(--bg-color);
+}
+body.dark-mode .new-agenda-list .title, 
+body.dark-mode .new-agenda-list .name-role,
+body.dark-mode .new-agenda-list .name-role span,
+body.dark-mode .new-agenda-list .desc-text,
+body.dark-mode .new-exh-list .n-exh-name,
+body.dark-mode .new-exh-list .site-link,
+body.dark-mode .divider-container .divider-text
+{
+  color: var(--text-color);
+}
+body.dark-mode .divider-container .left-line, body.dark-mode .divider-container .right-line {
+ border-color: var(--text-color);
+}
+body.dark-mode .new-spk-con .new-spk-list .bor-btn, 
+body.dark-mode .new-exh-list .bor-btn, 
+body.dark-mode .new-agenda-list .bor-btn
+{
+  color: var(--text-color);
+  border-color: var(--text-color);
+}
+body.dark-mode .new-spk-con .new-spk-list .sp-name, 
+body.dark-mode .new-spk-con .new-spk-list .sp-info 
+{
+  color: var(--text-color);
+}
+body.dark-mode .svg-fill-light-dark svg path {
+  fill: var(--text-color);
+}
+body.dark-mode .new-agenda-list .svg-opt-con, body.dark-mode .new-exh-list .svg-opt-con {
+  background-color: transparent;
+}
+body.dark-mode .new-agenda-list .svg-opt-con svg path,
+body.dark-mode .new-exh-list .svg-opt-con svg path{
+  stroke: var(--text-color);
+}
+body.dark-mode .svg-opt-con.dropdown-myagenda svg path,
+body.dark-mode .svg-opt-con.dropdown-agenda svg path{
+  stroke: none;
+  fill: var(--text-color);
+}
+body.dark-mode .event-new-flow .ticket-card .nav-tabs .nav-link.active,
+body.dark-mode .event-new-flow .nav-tabs#descriptionTabs .nav-link.active
+ {
+  background-color: transparent;
+  color: var(--text-color);
+  border-color: var(--text-color);
+}
+body.dark-mode .event-new-flow .ticket-card .nav-tabs .nav-link svg path {
+  fill: var(--text-color);
+}
+body.dark-mode .event-new-flow .ticket-card .nav-tabs .nav-link span {
+  color: var(--text-color) !important;
+}
+body.dark-mode .event-registration-banner h4 {
+  color: var(--text-color);
+}
+body.dark-mode .event-new-flow .e-v2-info, body.dark-mode .detail-hall .e-v2-info {
+   color: var(--text-color);
+}
+body.dark-mode .event-new-flow #event_info_container .nav-item a {
+   color: var(--text-color);
+}
+body.dark-mode .event-new-flow #event_info_container .nav-item svg {
+   fill: var(--text-color);
+}
+body.dark-mode .exhibitor_raffle h4, body.dark-mode .exhibitor_raffle p,
+body.dark-mode .exhibitor_raffle div, body.dark-mode .raffle-v2-winner .winner-card .w-name, body.dark-mode .raffle-v2-winner .winner-card .w-loc {
+   color: var(--text-color) !important;
+}
+
+body.dark-mode .leads-raffle .dwn-btn, body.dark-mode .detail-hall .add-comment-btn {
+    background-image: linear-gradient(var(--bg-color), var(--bg-color)), linear-gradient(90deg, #396AFC 0%, #2948FF 50%)
+}
+
+
+/* events end */
+
+/* jobs */
+.mobile-app-dark .right-detail-tab {
+    border: 2px solid #ddd;
+    border-radius: 12px;
+}
+body.dark-mode .post-text {
+    color: var(--text-color);
+}
+body.dark-mode .job-listing-block-row p, 
+body.dark-mode .job-listing-block-row a, 
+body.dark-mode .job-listing-block-row span, 
+body.dark-mode .job-listing-block-row h3 
+{
+    color: var(--text-color);
+}
+body.dark-mode .job-listing-block-row .jobing-company-name *
+{
+    color: var(--sub-text-color);
+}
+.mobile-app-dark .right-detail-tab * {
+  color: var(--text-color);
+}
+body.dark-mode .badge-detail-block ul li{
+  background-color: transparent;
+  border: 1px solid var(--sub-text-color);
+}
+body.dark-mode .skill-detail-block ul li{
+    background-color: transparent;
+    border: 1px solid var(--sub-text-color);
+}
+
+body.dark-mode .drk-lgt-svg-share path {
+    fill: var(--text-color);
+}
+
+body.dark-mode .light-dark-card .recent-job-title,
+body.dark-mode .media-card .media-body h5 a {
+    color: var(--text-color);
+}
+body.dark-mode .light-dark-card .recent-job-location,
+body.dark-mode .meta .author {
+    color: var(--sub-text-color);
+}
+body.dark-mode .meta .author:hover {
+    color: var(--text-color);
+}
+body.dark-mode .light-dark-card .text-color-8 {
+    color: var(--text-color) !important;
+}
+
+body.dark-mode .job_desc .desc * {
+  color: var(--text-color) !important;
+}
+/* jobs end */
+
+/* blogs */
+body.dark-mode .gray-dark {
+  background-color: var(--bg-dark);
+}
+body.dark-mode .td-post-small-box a {
+  background-color: var(--bg-dark);
+}
+body.dark-mode .td-post-small-box a:hover{
+  background-color: green;
+  color:#fff;
+}
+body.dark-mode .blog-listing .js-title,
+body.dark-mode .blog-listing h3 a, 
+body.dark-mode .blog-listing .meta-data, 
+body.dark-mode .blog-listing .card-body h3, 
+body.dark-mode .td-post-content *,
+body.dark-mode .breadcrumb-list a,
+body.dark-mode h3.sm-title a,
+body.dark-mode .dark-theme-text,
+body.dark-mode .h3-title a
+{
+  color: var(--text-color);
+}
+body.dark-mode .breadcrumb-list span svg
+{
+  fill: var(--text-color);
+}
+/* blogs ens */
+
+
+/* pagination */
+body.dark-mode .page-link {
+  background-color: var(--bg-dark);
+  color: var(--text-color);
+}
+/* pagination  end*/
+
+/* networking :start */
+body.dark-mode #searchFilter .form-group .form-control {
+  background-color: var(--bg-color);
+}
+/* [data-bs-theme="dark"] .dark-a {
+    color: var(--bs-light);
+} */
+/* networking :end */

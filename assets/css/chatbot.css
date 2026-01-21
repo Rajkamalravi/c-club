@@ -1,0 +1,249 @@
+.chat_bot_position{
+    position: fixed;
+    right: 20px;
+    bottom: 70px;
+    /* background-color: #fff; */
+    color: #6c727c;
+    font-size: 18px;
+    z-index: 9999;
+    /* width: 40px;
+    height: 40px; */
+    line-height: 40px;
+    -webkit-border-radius: 100%;
+    -moz-border-radius: 100%;
+    border-radius: 100%;
+    text-align: center;
+    cursor: pointer;
+    -webkit-box-shadow: 0 7px 10px rgba(0, 0, 0, 0.075);
+    -moz-box-shadow: 0 7px 10px rgba(0, 0, 0, 0.075);
+    box-shadow: 0 7px 10px rgba(0, 0, 0, 0.075);
+    -webkit-transition: all 0.3s;
+    -moz-transition: all 0.3s;
+    -ms-transition: all 0.3s;
+    -o-transition: all 0.3s;
+    transition: all 0.3s;
+}
+
+
+/* The popup form - hidden by default */
+.form-popup {
+    display: none;
+    position: fixed;
+    /* bottom: 130px; */
+	top: 45%;
+    right: 45px;
+    z-index: 100000;
+}
+
+.chatbot_btn{
+	background-color: #2d86eb;
+	color: #fff;
+	font-weight: 500;
+	padding-right: 18px;
+	padding-left: 18px;
+	/* line-height: 30px; */
+	font-size: 15px;
+	position: relative;
+	border: 1px solid #2d86eb;
+	border-radius: 5px;
+}
+
+#obvious_Form, #sidekick_Form, #support_Form{
+	/* height: 56vh; */
+	max-width: 440px;
+	margin: 0em;
+	overflow-y: auto;
+	background-color: #1E1C1C;
+}
+
+.form-popup .header-control{
+	/* position: fixed; */
+	width: 440px;
+	background-color: #333;
+	/* bottom: 555px; */
+}
+.form-popup .card-body {
+	max-height: 300px;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+.form-popup .footer-control{
+	/* position: fixed; */
+	width: 440px;
+	background-color: #333;
+	/* bottom: 130px; */
+}
+
+
+	/* Scroll New Css */
+::-webkit-scrollbar-track
+{
+	box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+	-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+	background-color: #F5F5F5;
+}
+
+::-webkit-scrollbar
+{
+	width: 12px;
+	background-color: #F5F5F5;
+}
+
+::-webkit-scrollbar-thumb
+{
+	box-shadow: inset 0 0 6px rgba(0,0,0,.3);
+	-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.3);
+	background-color: #555;
+}
+.chat-likes {
+	display: flex; 
+	padding: 0 15px; 
+	font-size: 25px;
+}
+.like-icon {
+	display: inline-block; 
+	text-align: center; 
+	width: 30px; 
+	height: 30px; 
+	border: 1px solid #fff; 
+	background: #fff; 
+	border-radius: 50%; 
+	margin-right: 10px
+}
+.like-icon:last-child{
+	margin-right: 0;
+}
+.like-icon.liked {
+	background: #24c960 !important;
+	border-color: #24c960 !important;
+	color: #fff;
+}
+.like-icon.disliked {
+	background-color: #ff745b !important;
+	border-color: #ff745b !important;
+	color: #fff;
+}
+.chat_bot_position {
+	animation: shake 150ms 60s ease 25;
+	-moz-animation: shake 150ms 60s ease 25;
+	-webkit-animation: shake 150ms 60s ease 25;
+	-o-animation: shake 150ms 60s ease 25;
+}
+
+@keyframes shake {
+	0% {
+	  transform: translate(3px, 0);
+	}
+	50% {
+	  transform: translate(-3px, 0);
+	}
+	100% {
+	  transform: translate(0, 0);
+	}
+}
+
+@-moz-keyframes shake {
+	0% {
+	  -moz-transform: translate(3px, 0);
+	}
+	50% {
+	  -moz-transform: translate(-3px, 0);
+	}
+	100% {
+	  -moz-transform: translate(0, 0);
+	}
+}
+
+@-webkit-keyframes shake {
+	0% {
+	  -webkit-transform: translate(3px, 0);
+	}
+	50% {
+	  -webkit-transform: translate(-3px, 0);
+	}
+	100% {
+	  -webkit-transform: translate(0, 0);
+	}
+}
+
+@-ms-keyframes shake {
+	0% {
+	  -ms-transform: translate(3px, 0);
+	}
+	50% {
+	  -ms-transform: translate(-3px, 0);
+	}
+	100% {
+	  -ms-transform: translate(0, 0);
+	}
+}
+
+@-o-keyframes shake {
+	0% {
+	  -o-transform: translate(3px, 0);
+	}
+	50% {
+	  -o-transform: translate(-3px, 0);
+	}
+	100% {
+	  -o-transform: translate(0, 0);
+	}
+}
+
+.chat_bot_position + .dropdown-menu.auto-opacity {
+	z-index: 10000;
+    display: block !important;
+    position: fixed;
+    right: 10px;
+    will-change: transform;
+    left: auto;
+    bottom: 125px;
+}
+.chat_bot_position + .dropdown-menu.auto-opacity {
+	animation:25s ease 2s normal forwards 1 fadein;
+	-webkit-animation:25s ease 2s normal forwards 1 fadein;
+	opacity:0
+}
+
+@keyframes fadein{
+	0% {opacity:0}
+	30% {opacity:1}
+	70% {opacity:1}
+	100% {opacity: 0}
+}
+
+@-webkit-keyframes fadein{
+	0% {opacity:0}
+	30% {opacity:1}
+	70% {opacity:1}
+	100% {opacity: 0}
+} 
+  
+
+
+@media only screen and (max-width: 767px) {
+	.form-popup .header-control, .form-popup .footer-control {
+		width: 100%;
+		padding: 10px !important;
+	}
+	#obvious_Form, #sidekick_Form, #support_Form {
+		width: 100%;
+		max-width: 300px;
+	}
+	.form-popup {
+		right: 10px;
+	}
+	.sidekick .card-body p {
+		line-height: 20px;
+	}
+}
+@media only screen and (max-height: 600px) {
+	.form-popup .card-body {
+		max-height: 130px;
+		padding: 10px;
+	}
+	/* .form-popup {
+		bottom: 122px;
+	} */
+
+}

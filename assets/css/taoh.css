@@ -1,0 +1,133 @@
+
+/* Loader */
+.taoh-loader.show {
+	display: block !important;
+}
+
+.taoh-loader:not(.show) {
+	display: none !important;
+}
+
+.taoh-loader {
+	margin:auto;
+	left:0;
+	right:0;
+	top:0;
+	bottom:0;
+}
+
+.taoh-loader.taoh-spinner {
+	width: 55px;
+	height: 55px;
+	border: 6px solid #f3f3f3;
+	border-radius: 50%;
+	border-top: 6px solid #3498db;
+	-webkit-animation: spin 2s linear infinite;
+	animation: spin 2s linear infinite;
+}
+
+.taoh-loader.taoh-logo-loader {
+	width: 55px;
+	height: 55px;
+	background: var(--theme-bg-loader) no-repeat center center;
+	background-size: contain;
+}
+
+@-webkit-keyframes spin {
+	0% { -webkit-transform: rotate(0deg); }
+	100% { -webkit-transform: rotate(360deg); }
+}
+
+@keyframes spin {
+	0% { transform: rotate(0deg); }
+	100% { transform: rotate(360deg); }
+}
+
+/* /Loader */
+
+/* Page Loader */
+.aw {
+	position: relative;
+}
+
+.aw.aw-loader {
+	-webkit-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
+}
+
+.aw.aw-loader::after {
+	content: "";
+	display: block;
+	position: absolute;
+	opacity: 1;
+	top: 0;
+	left: 0;
+	height: 100%;
+	width: 100%;
+	background: rgba(255, 255, 255, 0.7);
+	z-index: 2;
+	transition: all .2s ease;
+}
+
+.aw.aw-loader::before {
+	content: "";
+	display: inline-block;
+	position: sticky;
+	top: 50%;
+	left: 50%;
+	z-index: 10;
+}
+
+.aw.aw-logo.aw-loader::before {
+	width: 3rem;
+	height: 3rem;
+	background: var(--theme-bg-loader) no-repeat center center;
+	background-size: contain;
+	transform: translate(-50%, -50%);
+}
+
+.aw.aw-spinner.aw-loader::before {
+	width: 3rem;
+	height: 3rem;
+	border: 4px solid #e3e3e3;
+	border-top: 4px solid #134b7b;
+	border-radius: 50%;
+	-webkit-animation: spin 1s linear infinite;
+	animation: spin 1s linear infinite;
+}
+
+@-webkit-keyframes spin {
+	0% {
+		transform: rotate(0deg);
+	}
+	100% {
+		transform: rotate(360deg);
+	}
+}
+
+@keyframes spin {
+	0% {
+		transform: rotate(0deg);
+	}
+	100% {
+		transform: rotate(360deg);
+	}
+}
+/* /Page Loader */
+
+.no-rounded{
+	border-radius: unset !important;
+}
+
+#privatechat .taoh-loader{
+	border: 4px solid #f3f3f3 !important;
+	border-top: 4px solid #3498db !important;
+	width: 40px !important;
+	height: 40px !important;
+}
+
+#pc_message:focus{
+	box-shadow: none !important;
+}

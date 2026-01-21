@@ -1,0 +1,11 @@
+.htaccess
+*.sitemap
+*.xml
+*.log
+*.logs
+env.php
+env*.php
+cache/**/*.cache
+cache/*.logs
+node_modules
+.idea

@@ -1,0 +1,383 @@
+.w-50{
+		width:120px;
+	}
+
+.scout-title {
+        font-size: clamp(26px, 3vw + 1rem, 30px);
+    }
+    .scout-content {
+        font-size: clamp(16px, 2vw + 1rem, 18px);
+        line-height: 1.5;
+    }
+    .get-started-btn {
+        color: #fff; 
+        font-size: clamp(14px, 2vw + 1rem, 16px); 
+        font-weight: 400; 
+        display: flex;
+        align-items: center;
+        gap: 6px; 
+        background: #333333; 
+        width: fit-content;
+        border-radius: 12px;
+        padding: 8px 14px;
+    }
+    .get-started-btn:hover {
+        color: #fff;
+    }
+
+span.h5 {
+  font-size: 13px !important;
+}
+
+.search-btn-box {
+    margin-top: 15px;
+    text-align: right;
+}
+.search-form {
+    background: #f9f9f9;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+/*job_detail.css*/
+/* Job Details Styles */
+
+/* Main Sections */
+.scroll-show-section {
+    display: none;
+}
+
+.share-icon-section {
+    margin-bottom: 1rem;
+    margin-top: 1rem;
+}
+
+.share-widget-section {
+    margin-bottom: 1rem;
+    margin-top: 1rem;
+}
+
+/* Modal Styles */
+.modal-header-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0;
+    height: 90px;
+    width: 100%;
+}
+
+/* Form Styles */
+.apply-form-heading {
+    padding-bottom: 3rem;
+}
+
+.form-section {
+    margin-bottom: 3rem;
+}
+
+.personal-details-card {
+    padding: 1.5rem;
+}
+
+.contact-details-card {
+    padding: 1.5rem;
+}
+
+.resume-upload-card {
+    padding: 1.5rem;
+}
+
+.cover-letter-card {
+    padding: 1.5rem;
+}
+
+.links-card {
+    padding: 1.5rem;
+    width: 100%;
+}
+
+/* Form Controls */
+.file-input-container {
+    padding: 2rem 0;
+}
+
+.file-input {
+    padding: 0.5rem;
+}
+
+.link-input {
+    padding: 0.5rem;
+}
+
+.additional-info-textarea {
+    margin: 0.5rem 0;
+}
+
+.cover-letter-container {
+    padding: 2rem 0;
+}
+
+/* Labels and Text */
+.required {
+    color: #FF0000;
+}
+
+.additional-info-desc {
+    font-size: 20px;
+    line-height: 24px;
+}
+
+/* Job Detail Card */
+.job-detail-card .sticky-detail {
+    position: sticky;
+    top: 30px;
+}
+
+.company-name-badge {
+    text-transform: uppercase;
+    padding: 0.5rem 0.75rem;
+    background-color: #6DC0CB9C;
+    width: fit-content;
+    font-weight: 700;
+}
+
+.position-title {
+    text-transform: uppercase;
+    margin-top: 1rem;
+    margin-bottom: 1.5rem;
+    font-weight: 500;
+}
+
+.place-type {
+    text-transform: uppercase;
+    padding-bottom: 1rem;
+    color: #9A9999;
+    font-size: 15px;
+    font-weight: 700;
+    line-height: 18px;
+}
+
+.job-description {
+    text-align: justify;
+    font-size: 18px;
+    line-height: 21px;
+    font-weight: 400;
+    max-height: 600px;
+    overflow-y: auto;
+}
+
+.toggle-link {
+    text-transform: uppercase;
+    cursor: pointer;
+    color: #1C52A8;
+    font-weight: 500;
+    font-size: 18px;
+}
+
+/* Submit Button */
+.submit-btn {
+    text-transform: uppercase;
+    padding: 0.5rem 1rem;
+    border-radius: 12px;
+    margin: 5rem 0;
+    background-color: #1C52A8;
+    color: #FFFFFF;
+    font-size: 17px;
+    font-weight: 500;
+}
+
+/* Error Messages */
+.error-message {
+    display: none;
+    color: #FF0000;
+}
+
+.response-message {
+    display: none;
+}
+
+/* File Input Icon */
+.file-input-icon {
+    fill: #7A7979;
+}
+
+/* Utility Classes */
+.hidden {
+    display: none;
+}
+
+/*jobs - detail ended*/
+
+/*jobs - css */
+/* Jobs Page Styles */
+
+/* Header Styles */
+.jobs-header {
+    top: 0;
+}
+
+.jobs-nav-tabs {
+    border-bottom: 0;
+}
+
+.jobs-nav-link-primary {
+    color: #2479D8;
+    font-weight: bold;
+}
+
+/* Detail Tab Styles */
+.jobs-detail-tab {
+    z-index: 0;
+}
+
+.jobs-detail-tab-sticky {
+    top: 30px;
+}
+
+/* Apply Form Styles */
+.jobs-company-badge {
+    background-color: #6DC0CB9C;
+    width: fit-content;
+    font-weight: 700;
+}
+
+.jobs-position-title {
+    font-weight: 500;
+}
+
+.jobs-place-type {
+    color: #9A9999;
+    font-size: 15px;
+    font-weight: 700;
+    line-height: 18px;
+}
+
+.jobs-full-text {
+    font-size: 18px;
+    line-height: 21px;
+    font-weight: 400;
+    max-height: 600px;
+    overflow-y: auto;
+}
+
+.jobs-toggle-link {
+    cursor: pointer;
+    color: #1C52A8;
+    font-weight: 500;
+    font-size: 18px;
+}
+
+.jobs-submit-btn {
+    border-radius: 12px;
+    margin: 5rem 0;
+    background-color: #1C52A8;
+    color: #FFFFFF;
+    font-size: 17px;
+    font-weight: 500;
+}
+
+/* Job Listing Styles */
+.jobs-listing-row {
+    cursor: pointer;
+}
+
+.jobs-company-name {
+    font-weight: 500;
+}
+
+.jobs-scout-btn-orange {
+    background-color: #FF7311;
+}
+
+/* Date Range Styles */
+.jobs-date-range-flex {
+    display: flex;
+}
+
+/* Float Styles */
+.jobs-float-right {
+    float: right;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .jobs-company-badge {
+        font-size: 14px;
+    }
+    
+    .jobs-full-text {
+        font-size: 16px;
+        line-height: 19px;
+    }
+    
+    .jobs-toggle-link {
+        font-size: 16px;
+    }
+    
+    .jobs-submit-btn {
+        font-size: 15px;
+        margin: 3rem 0;
+    }
+}
+
+/* Additional utility classes for common patterns */
+.jobs-font-weight-500 {
+    font-weight: 500;
+}
+
+.jobs-font-weight-700 {
+    font-weight: 700;
+}
+
+.jobs-text-primary {
+    color: #2479D8;
+}
+
+.jobs-bg-primary {
+    background-color: #1C52A8;
+}
+
+.jobs-text-white {
+    color: #FFFFFF;
+}
+
+.jobs-cursor-pointer {
+    cursor: pointer;
+}
+/* Modal Styles */
+.jobs-modal-header-container {
+    height: 90px;
+    width: 100%;
+}
+
+/* Form Styles */
+.jobs-required-field {
+    color: red;
+}
+
+.jobs-additional-info-text {
+    font-size: 20px;
+    line-height: 24px;
+}
+
+/* Scout Logo */
+.jobs-scout-logo-margin {
+    margin-left: 5px;
+}
+
+/* Error and Response Messages */
+.jobs-error-text {
+    display: none;
+    color: #FF0000;
+}
+
+.jobs-response-message {
+    display: none;
+}
+
+/* Utility Classes */
+.jobs-hidden {
+    display: none;
+}

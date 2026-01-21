@@ -1,0 +1,10 @@
+<?php
+function blog_like_put() {
+  $values = json_encode(array($_POST['conttoken'],'blog',$_POST['ptoken'],'like',time(),TAOH_API_SECRET));
+  //print_r($values);die;
+  $data = taoh_cacheops( 'metricspush', $values );
+  //print_r($data);die;
+  echo $data;
+  die();
+}
+?>

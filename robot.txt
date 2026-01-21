@@ -1,0 +1,9 @@
+User-agent: *
+Disallow: /jobs/private/
+Allow: /jobs/
+Allow: /blogs/
+Allow: /events/
+Disallow: /asks/private/
+Disallow: /private/
+Disallow: /admin/
+Disallow: /temp/

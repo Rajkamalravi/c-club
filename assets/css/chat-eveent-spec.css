@@ -1,0 +1,30 @@
+/* Chat Events Specific Styles - Only unique to chat-events functionality */
+
+/* ===== EXHIBITOR FORM CONTROLS ===== */
+.exh-ts-control {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-wrap: wrap; /* Allows tags to move to next line */
+}
+
+.exh-ts-control .tag {
+    padding: 5px 10px;
+    border: 1px solid #888e97;
+    margin-right: 5px;
+    margin-bottom: 5px;
+    display: inline-block;
+}
+
+.exh-ts-control input {
+    flex-grow: 1; /* Allow the input to grow and take up space */
+    min-width: 100px; /* Minimum width to prevent shrinking too much */
+}
+
+/* ===== CHAT EVENTS RESPONSIVE OVERRIDES ===== */
+@media (max-width: 768px) {
+    .exh-ts-control {
+        flex-direction: column;
+        align-items: stretch;
+    }
+}
