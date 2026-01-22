@@ -111,7 +111,7 @@ if (TAO_CURRENT_APP_INNER_PAGE == 'events_lobby') {
     <div class="tab-content pt-3 px-0" id="myTabContent">
         <div class="hall-list-container mx-auto tab-pane fade show active speaker_exhibitor" id="agenda_desc" role="tabpanel" aria-labelledby="agenda-tab" style="max-height: unset;">
             <div id="agenda_default_banner" class=" mx-auto mx-xl-0" style="display:none">
-                <?php include_once('events_agenda_default_banner.php'); ?>
+                <?php include_once('includes/defaults.php'); render_agenda_default_banner(); ?>
             </div>
             <div class="agenda_block">
              <div class="dropdown show mb-3 for_agenda d-flex justify-content-end">
@@ -422,7 +422,7 @@ if (TAO_CURRENT_APP_INNER_PAGE == 'events_lobby') {
         <div class="hall-list-container mx-auto tab-pane fade pt-3" id="dashboard_desc" role="tabpanel" aria-labelledby="dashboard-tab" style="max-height: unset;">
 
             <div id="my_agenda_default_banner" class=" mx-auto mx-xl-0" style="display:none">
-                <?php include_once('events_no_saved_agenda_banner.php'); ?>
+                <?php render_no_saved_agenda_banner(); ?>
             </div>
             <div id="dashboard_loaderArea"></div>
             <div id="dashboard_list" class=" mx-auto mx-xl-0 pr-1 pr-lg-3">
