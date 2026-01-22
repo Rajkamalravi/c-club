@@ -78,21 +78,8 @@ if (taoh_user_is_logged_in()) {
     /* End Get RSVP list */
 }
 
-//echo "TEST 1234"; die;
-
 ?>
 
-
-
-<style>
-	
-	
-</style>
- <?php 
- $share_link = "ds";
- $eventtoken = "dd";
- $ptoken     = "dd";
-?>
 <div class="mobile-app">
 <?php if(!taoh_user_is_logged_in()) { ?>
 <section class="hero-area overflow-hidden section-padding events-banner-section yellow-bg">

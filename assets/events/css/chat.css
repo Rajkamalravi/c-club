@@ -1,0 +1,147 @@
+/**
+ * Event Chat/Lobby Page Styles
+ * Extracted from app/events/chat.php
+ */
+
+.org-msg-wrapper {
+    padding-top: 3rem !important;
+    border-top: 2px solid #d3d3d3;
+}
+
+.exh-ts-control {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.exh-ts-control .tag {
+    padding: 5px 10px;
+    border: 1px solid #888e97;
+    margin-right: 5px;
+    margin-bottom: 5px;
+    display: inline-block;
+}
+
+.exh-ts-control input {
+    flex-grow: 1;
+    min-width: 100px;
+}
+
+.club-event-image {
+    width: 100%;
+    height: 100%;
+    border-radius: 10px 10px 0 0;
+    object-fit: contain;
+    position: relative;
+    z-index: 1;
+    border-bottom: 1px solid #d3d3d3;
+}
+
+.club-events-bg {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    border-radius: 10px 10px 0 0;
+    z-index: 0;
+}
+
+.club-event-container {
+    width: 100%;
+    height: 150px;
+    position: relative;
+}
+
+.club-glass-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    z-index: 1;
+    border-radius: 10px 10px 0 0;
+}
+
+.aw-loader {
+    height: 1000px;
+}
+
+.joinus-btn {
+    min-width: 110px;
+    min-height: 42px;
+    font-size: 18px;
+    font-weight: 500;
+}
+
+.detail-main-image {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    max-height: 320px;
+    min-height: 136px;
+    border: 1px solid #d3d3d3;
+}
+
+#setup_speaker_slot,
+#setup_exhibitor_slot,
+#share_event_slot,
+.edit-rsvp,
+.calendar-dropdown,
+#networking_link {
+    flex: 1;
+    max-width: 100%;
+    white-space: normal !important;
+}
+
+#setup_speaker_slot:only-child,
+#networking_link:only-child,
+#setup_exhibitor_slot:only-child,
+#share_event_slot:only-child,
+.edit-rsvp:only-child,
+.calendar-dropdown:only-child {
+    flex: 0 0 100%;
+    white-space: normal !important;
+    min-width: 0;
+}
+
+.sticky-top-fixed {
+    top: -75px;
+}
+
+.modal.sponsorship-option#upgradeModal .modal-dialog .modal-body {
+    margin: auto;
+}
+
+.new-exh-list .n-info-badge {
+    color: #2557A7;
+}
+
+@media (max-width: 1399.98px) {
+    .dropdown-menu.agenda_more.show {
+        left: -130px !important;
+    }
+}
+
+#upgradeModal #upgradeCards {
+    justify-content: flex-start;
+}
+
+.main,
+.sticky-top.sticky-top-fixed {
+    padding: 0 15px;
+}
+
+@media (min-width: 992px) and (max-width: 1199.98px) {
+    .events-btns-outer-block {
+        max-width: 60%;
+    }
+}
+
+@media (max-width: 991.98px) {
+    .events-btns-outer-block {
+        max-width: 320px;
+    }
+}

@@ -1,5 +1,97 @@
 <?php
 
+/**
+ * Event Helper Functions
+ * Common utilities for event state and display
+ */
+
+/**
+ * Get event state badge HTML based on current state
+ * @param string $state The event state (live, after, before, prelive, postlive)
+ * @param string $style Style variant ('default', 'center', 'center2')
+ * @return string HTML for the state badge
+ */
+function get_event_state_badge($state, $style = 'default') {
+    $badges = [
+        'live' => [
+            'default' => '<span class="event_live_suc" style="color: #ffffff;"><span class="badge badge-md badge-success">Event Live</span></span>',
+            'center' => '<span class="event_live_suc text-dark py-0"><span class="badge badge-md badge-success">Event Live</span></span>',
+            'center2' => '<span class="badge badge-md badge-success event_live_suc text-dark py-0">Event Live</span>',
+        ],
+        'after' => [
+            'default' => '<span class="badge badge-md badge-secondary" style="color: #ffffff;">Event <strong>Ended</strong></span>',
+            'center' => '<span class="badge badge-md badge-secondary">Event <strong>Ended</strong></span>',
+            'center2' => '<span class="badge badge-md badge-secondary">Event <strong>Ended</strong></span>',
+        ],
+        'before' => [
+            'default' => '<span class="event_live_war" style="color: #000000;"><span class="badge badge-md badge-warning">Event <strong>Not Live</strong></span></span>',
+            'center' => '<span class="event_live_war py-0"><span class="badge badge-md badge-warning">Event <strong>Not Live</strong></span></span>',
+            'center2' => '<span class="badge badge-md badge-warning event_live_war py-0">Event <strong>Not Live</strong></span>',
+        ],
+        'prelive' => [
+            'default' => '<span class="badge badge-md badge-warning event_live_war" style="color: #000000;">Event <strong>Not Live</strong></span>',
+            'center' => '<span class="event_live_war py-0"><span class="badge badge-md badge-warning">Event <strong>Not Live</strong></span></span>',
+            'center2' => '<span class="badge badge-md badge-warning event_live_war py-0">Event <strong>Not Live</strong></span>',
+        ],
+        'postlive' => [
+            'default' => '<span class="badge badge-md badge-secondary" style="color: #ffffff;">Event <strong>Ended</strong></span>',
+            'center' => '<span class="badge badge-md badge-secondary text-dark py-0">Event <strong>Ended</strong></span>',
+            'center2' => '<span class="badge badge-md badge-secondary text-dark py-0">Event <strong>Ended</strong></span>',
+        ],
+    ];
+
+    $default = '<span class="badge badge-md badge-warning event_live_war" style="color: #000000;">Not Live</span>';
+
+    return $badges[$state][$style] ?? $default;
+}
+
+/**
+ * Get venue HTML based on event type
+ * @param string $event_type Event type (virtual, hybrid, in-person)
+ * @param array $events_data Event data array
+ * @param string $eventtoken Event token
+ * @param string $format Output format ('list', 'inline')
+ * @return string HTML for venue display
+ */
+function get_venue_html($event_type, $events_data, $eventtoken, $format = 'list') {
+    $lobby_link = TAOH_CURR_APP_URL . '/chat/id/events/' . $eventtoken;
+    $venue = $events_data['venue'] ?? '';
+    $map_link = $events_data['map_link'] ?? '';
+
+    $venue_link = (!empty($map_link) && filter_var($map_link, FILTER_VALIDATE_URL))
+        ? '<a href="' . htmlspecialchars($map_link) . '" target="_blank" class="cursor-pointer text-underline">' . htmlspecialchars($venue) . '</a>'
+        : htmlspecialchars($venue);
+
+    switch ($event_type) {
+        case 'in-person':
+            return ($format === 'list')
+                ? '<i class="fas fa-map-marker"></i> Venue: In-Person, ' . $venue_link
+                : 'Venue: In-Person, ' . $venue_link;
+
+        case 'hybrid':
+            $join_link = '<a href="' . $lobby_link . '" title="' . $lobby_link . '" target="_blank" class="cursor-pointer text-underline">Join here</a>';
+            return ($format === 'list')
+                ? '<i class="fas fa-map-marker"></i> Venue: Hybrid - ' . $venue_link . ' or Virtual, ' . $join_link
+                : 'Venue: Hybrid - ' . $venue_link . ' Or Virtual, ' . $join_link;
+
+        case 'virtual':
+        default:
+            $join_link = '<a href="' . $lobby_link . '" title="' . $lobby_link . '" target="_blank" class="cursor-pointer text-underline">Join here</a>';
+            return ($format === 'list')
+                ? '<i class="fas fa-map-marker"></i> Venue: Virtual, ' . $join_link
+                : 'Venue: Virtual, ' . $join_link;
+    }
+}
+
+/**
+ * Check if event is in active registration state
+ * @param string $state Event state
+ * @return bool True if registration is active
+ */
+function is_registration_active($state) {
+    return in_array($state, ['live', 'prelive', 'before'], true);
+}
+
 function event_live_status( $start_time, $end_time, $locality = 0 ){
   $my_time = tao_timestamp( );
   if ( $locality ){
@@ -814,6 +906,127 @@ function field_locations($coordinates="", $location="", $geohash="", $js="") {
     $str .='<script>locationSelect();</script>';
   }
   return $str;
+}
+}
+
+/**
+ * URL Path Manipulation Functions
+ * Moved from chat.php for reusability
+ */
+
+if (!function_exists('removePathSegment')) {
+/**
+ * Remove a path segment from URL by index
+ * @param string $url The URL to modify
+ * @param int $index The index of the segment to remove
+ * @return string Modified URL
+ */
+function removePathSegment($url, $index) {
+    $parts = parse_url($url);
+    $pathSegments = explode('/', trim($parts['path'], '/'));
+
+    if (isset($pathSegments[$index])) {
+        unset($pathSegments[$index]);
+    }
+
+    $newPath = '/' . implode('/', $pathSegments);
+    $newUrl = $parts['scheme'] . '://' . $parts['host'];
+
+    if (isset($parts['port'])) {
+        $newUrl .= ':' . $parts['port'];
+    }
+    $newUrl .= $newPath;
+
+    if (!empty($parts['query'])) {
+        $newUrl .= '?' . $parts['query'];
+    }
+
+    return $newUrl;
+}
+}
+
+if (!function_exists('addPathSegment')) {
+/**
+ * Add a path segment to URL before specified parameter
+ * @param string $url The URL to modify
+ * @param string $oldparam The parameter before which to add
+ * @param string $newParam The new parameter to add
+ * @return string Modified URL
+ */
+function addPathSegment($url, $oldparam, $newParam) {
+    $parsed = parse_url($url);
+    $path = rtrim($parsed['path'], '/');
+    $segments = explode('/', $path);
+    $found = false;
+
+    foreach ($segments as $i => $seg) {
+        if ($seg === $oldparam) {
+            array_splice($segments, $i, 0, $newParam);
+            $found = true;
+            break;
+        }
+    }
+
+    if (!$found) {
+        $segments[] = $newParam;
+        $segments[] = 'stlo';
+    }
+
+    $newPath = implode('/', $segments);
+    $newUrl = $parsed['scheme'] . "://" . $parsed['host'] . $newPath;
+
+    if (isset($parsed['query'])) {
+        $newUrl .= "?" . $parsed['query'];
+    }
+
+    return $newUrl;
+}
+}
+
+if (!function_exists('find_title_slug')) {
+/**
+ * Find a field value in ticket types by slug
+ * @param string $slug The slug to search for
+ * @param array $ticket_types Array of ticket types
+ * @param string $field The field to return (default: 'slug')
+ * @return string|null The field value or null
+ */
+function find_title_slug($slug, $ticket_types, $field = 'slug') {
+    foreach ($ticket_types as $element) {
+        if ($slug == $element['slug']) {
+            return string_to_id($element[$field]);
+        }
+    }
+    return null;
+}
+}
+
+if (!function_exists('edit_prefill')) {
+/**
+ * Get prefill value for form field
+ * @param string $tab The tab identifier
+ * @param string $field The field name
+ * @param object|null $response The response object
+ * @param array $ticket_types Array of ticket types
+ * @return string The prefill value
+ */
+function edit_prefill($tab, $field, $response, $ticket_types) {
+    $return = "";
+    if ($response) {
+        $return = $response->$field;
+    }
+    return $return;
+}
+}
+
+if (!function_exists('string_to_id')) {
+/**
+ * Convert a string to a valid ID format
+ * @param string $string The string to convert
+ * @return string Lowercase string with spaces removed
+ */
+function string_to_id($string) {
+    return strtolower(preg_replace('/\s+/', '', $string));
 }
 }
 ?>

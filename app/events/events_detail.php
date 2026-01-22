@@ -15,64 +15,6 @@ if(isset($_GET['fbclid']) && $_GET['fbclid'] != '' && !taoh_user_is_logged_in() 
     
 } */
 
-function removePathSegment($url, $index) {
-    $parts = parse_url($url);
-
-    // Split path into segments
-    $pathSegments = explode('/', trim($parts['path'], '/'));
-
-    if (isset($pathSegments[$index])) {
-        unset($pathSegments[$index]);
-    }
-
-    // Rebuild path
-    $newPath = '/' . implode('/', $pathSegments);
-
-    // Rebuild full URL
-    $newUrl = $parts['scheme'] . '://' . $parts['host'];
-    if (isset($parts['port'])) {
-        $newUrl .= ':' . $parts['port'];
-    }
-    $newUrl .= $newPath;
-
-    if (!empty($parts['query'])) {
-        $newUrl .= '?' . $parts['query'];
-    }
-
-    return $newUrl;
-}
-
-function addPathSegment($url,$oldparam,$newParam ){
-    // Parse the URL
-    $parsed = parse_url($url);
-    // Split the path into segments
-    $path = rtrim($parsed['path'], '/');
-    $segments = explode('/', $path);
-    $found = false;
-    // Insert new parameter right after 'stlo'
-    foreach ($segments as $i => $seg) {
-        if ($seg === $oldparam) {
-            array_splice($segments, $i, 0, $newParam);
-            $found = true;
-            break;
-        }
-    }
-    if (!$found) {
-        $segments[] = $newParam; // append at the end
-        $segments[] = 'stlo';
-    }
-
-    // Rebuild the path
-    $newPath = implode('/', $segments);
-    //echo '==='.$newPath;
-    // Rebuild full URL
-    $newUrl = $parsed['scheme'] . "://" . $parsed['host'] . $newPath;
-    if (isset($parsed['query'])) {
-        $newUrl .= "?" . $parsed['query'];
-    }
-    return $newUrl;
-}
-
 $encodeCurrentUrl = encrypt_url_safe(getCurrentUrl());
 
 //echo "=========".$user_location;die();
