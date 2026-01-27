@@ -1,5 +1,4 @@
 <?php
-//ini_set('display_errors',1);
 $taoh_user_is_logged_in = taoh_user_is_logged_in() ?? false;
 $user_info_obj = $taoh_user_is_logged_in ? taoh_user_all_info() : null;
 $valid_user = $taoh_user_is_logged_in && in_array($user_info_obj?->profile_complete ?? null, [1, '1'], true);
@@ -7,17 +6,7 @@ $ptoken = $taoh_user_is_logged_in ? ($user_info_obj?->ptoken ?? '') : '';
 $profile_type = ($taoh_user_is_logged_in && in_array($user_info_obj?->type ?? '', ['professional','employer','provider'], true))
     ? $user_info_obj->type : '';
 
-/* 
-if(isset($_GET['fbclid']) && $_GET['fbclid'] != '' && !taoh_user_is_logged_in() ){
-    setcookie(TAOH_ROOT_PATH_HASH.'_'.'referral_back_url',getCurrentUrl(), strtotime( '+2 days' ), '/');
-    header("Location: " . TAOH_SITE_URL_ROOT . "/login");    
-    taoh_exit();
-    
-} */
-
 $encodeCurrentUrl = encrypt_url_safe(getCurrentUrl());
-
-//echo "=========".$user_location;die();
 $parse_url_2 = taoh_parse_url(2);
 $eventtoken_expl = explode('-', $parse_url_2);
 $eventtoken = array_pop($eventtoken_expl);
@@ -28,7 +17,6 @@ if ( ! ctype_alnum( $eventtoken ) ) { taoh_redirect( TAOH_SITE_URL_ROOT.'/'.TAOH
 if(taoh_parse_url(3) ){
     $table_field = taoh_parse_url(3);
     $to_page = taoh_parse_url(4,0);
-   // echo $table_field;die();
     if(taoh_parse_url(3) == 'stlo')  {
         $table_field = taoh_parse_url(4);
         $to_page = taoh_parse_url(5,0);
@@ -48,13 +36,6 @@ $click_view = (isset($_SERVER['HTTP_REFERER']) && !empty($_SERVER['HTTP_REFERER'
 $ref_param =  taoh_parse_url(3);
 $ref_slug = taoh_parse_url(4);
 
-/* if(isset($_GET['fbclid']) && $_GET['fbclid'] != '' && !taoh_user_is_logged_in() ){
-    setcookie(TAOH_ROOT_PATH_HASH.'_'.'referral_back_url',getCurrentUrl(), strtotime( '+2 days' ), '/');
-    header("Location: " . TAOH_SITE_URL_ROOT . "/login");
-    taoh_exit();
-} */
-
-//echo $ref_param;
 if($ref_param != '' && $ref_param != 'stlo'){
     if(isset($_GET['fbclid']) && $_GET['fbclid'] != '' && !taoh_user_is_logged_in() ){
         setcookie(TAOH_ROOT_PATH_HASH.'_'.'referral_back_url',getCurrentUrl(), strtotime( '+2 days' ), '/');
@@ -68,14 +49,11 @@ if($ref_param != '' && $ref_param != 'stlo'){
 if($ref_slug != '' && $ref_slug != 'stlo'){
     $share_link = removePathSegment($share_link,4);
 }else{
-    $share_link = $share_link;
     $ref_slug = '';
 }
 $original_link = $share_link;
 
 
-
-//echo '======>'.$share_link;die;
 
 const TAO_PAGE_TYPE = 'events';
 $app_data = taoh_app_info(TAO_PAGE_TYPE);
@@ -103,8 +81,6 @@ $taoh_vals = array(
 //$taoh_vals['debug'] = 2;echo taoh_apicall_get('events.event.get', $taoh_vals);die;
 $result = taoh_apicall_get('events.event.get', $taoh_vals);
 $response = taoh_get_array($result, true);
-
-//echo '<pre>';print_r($response);echo '';die;
 if (!$response['success']) {
     
     taoh_redirect(TAOH_EVENTS_URL);
@@ -130,8 +106,6 @@ $event_description_clean = strip_tags(html_entity_decode($event_arr['conttoken']
 // Remove any remaining HTML entities and normalize whitespace
 $event_description_clean = preg_replace('/\s+/', ' ', trim($event_description_clean));
 $event_short = strlen($event_description_clean) > 157 ? substr($event_description_clean, 0, 157) . '...' : $event_description_clean;
-//echo "=====".$event_short;
-//$event_short = htmlspecialchars($event_short);
 if($event_arr['conttoken'][ 'event_image' ] != ''){
     $event_image = $event_arr['conttoken'][ 'event_image' ];
 }else{
@@ -172,10 +146,8 @@ $taoh_vals = array(
     'cfcc5h' => 1,
     'cache_name' => $cache_name,
 );
-//$taoh_vals['debug'] = 1;
-//echo taoh_apicall_get('events.content.get', $taoh_vals);die();
 $get_event_meta_info_response = taoh_apicall_get('events.content.get', $taoh_vals);
-$get_event_meta_info_arr = json_decode($get_event_meta_info_response, true);
+$get_event_meta_info_arr = taoh_get_array($get_event_meta_info_response);
 if (in_array($get_event_meta_info_arr['success'], [true, 'true']) && !empty($get_event_meta_info_arr['output'])) {
     $event_meta_info = $get_event_meta_info_arr['output'];
 
@@ -196,23 +168,7 @@ define( 'TAO_PAGE_TITLE', $event_title );
 // TAO_PAGE_ROBOT
 define( 'TAO_PAGE_ROBOT', 'index, follow' );
 if ( ! defined ( 'TAO_PAGE_KEYWORDS' ) ) { define ( 'TAO_PAGE_KEYWORDS', TAOH_SITE_NAME_SLUG." Virtual job fair, ".TAOH_SITE_NAME_SLUG." Online career fair, ".TAOH_SITE_NAME_SLUG." Job fair event, ".TAOH_SITE_NAME_SLUG." Virtual networking opportunities, ".TAOH_SITE_NAME_SLUG." Remote job opportunities, ".TAOH_SITE_NAME_SLUG." Connecting talent and employers, ".TAOH_SITE_NAME_SLUG." Career advancement fair, ".TAOH_SITE_NAME_SLUG." Industry-specific job fair, ".TAOH_SITE_NAME_SLUG." Virtual recruitment event,".TAOH_SITE_NAME_SLUG." Professional networking event, ".TAOH_SITE_NAME_SLUG." Talent showcase platform, ".TAOH_SITE_NAME_SLUG." Online hiring event, ".TAOH_SITE_NAME_SLUG." Remote job fair, ".TAOH_SITE_NAME_SLUG." Job fair for job seekers, ".TAOH_SITE_NAME_SLUG." Virtual career fair, ".TAOH_SITE_NAME_SLUG." Job fair networking, ".TAOH_SITE_NAME_SLUG." Online job search event, ".TAOH_SITE_NAME_SLUG." Talent acquisition fair, ".TAOH_SITE_NAME_SLUG." Virtual job fair platform" ); }
-//echo "<pre>";print_r($events_data);
 $additive = '';
-/* if(isset($events_data['canonical_url']) && $events_data['canonical_url'] !=''){
-    echo '==========1111111=========>';
-	$additive = '<link rel="canonical" href="'.$events_data['canonical_url'].'"/> 
-	<meta name="original-source" content="'.$events_data['canonical_url'].'"/>';
-	define ( 'TAO_PAGE_CANONICAL', $additive );
-}else{
-    
-		$additive = '<link rel="canonical" href="'.$events_data['source'].'/'.$app_data->slug.'/d/'.slugify2($event_title)."-".$eventtoken.'"/>
-		<meta name="original-source" content="'.$events_data['source'].'/'.$app_data->slug.'/d/'.slugify2($event_title)."-".$eventtoken.'"/>';
-		// TAO_PAGE_CANONICAL
-	        
-        define ( 'TAO_PAGE_CANONICAL', $additive );
-}
-
- */
 if(isset($site_info['source']) && $site_info['source'] !='' && TAOH_SITE_URL_ROOT != $site_info['source']){
     $canonical_url = $site_info['source'].'/'.$app_data->slug.'/d/'.slugify2($event_title)."-".$eventtoken;
     $additive = '<link rel="canonical" href="'.$canonical_url.'"/> 
@@ -226,15 +182,12 @@ $adopter_url = TAOH_SITE_URL_ROOT . '/' . TAOH_CURR_APP_SLUG . '/club/' . taoh_s
 
 
 define ( 'TAO_PAGE_CANONICAL', $additive );
-//echo '====333=====>'.$additive;die;
 $trackingtoken = '';
 
 if($taoh_user_is_logged_in && $ptoken != ''){
     $trackingtoken = hash('sha256',(string)$ptoken);
     
-    /* $trackingtoken = bin2hex($ptoken); */
     $share_link =  addPathSegment($share_link,'stlo',$trackingtoken);
-    //echo $share_link;
 }
 
 $social_token = '';
@@ -248,44 +201,26 @@ if (isset($ref_param) && $ref_param != '' && $ref_param != 'stlo') {
    
     
 }
-$success_discount_amt = '';
-$success_sponsor_title = '';
-$success_redirect = '';
-$discount_amt = 0;
-//echo '-----------'.$ref_slug;
-//ho "<pre>";print_r($sponsor_levels);
+$discount_info = ['amt' => '', 'title' => '', 'redirect' => ''];
 if(isset($ref_slug) && $ref_slug != '' && $ref_slug != 'stlo'){
-    $ticketarr = [];
-    foreach($ticket_types as $tkey=>$tvalue){
-        $ticketarr[$tvalue['title']]  = $tvalue['social_sharing_discount'];
-    }
-   //cho "<pre>";print_r($ticketarr);
-    foreach($sponsor_levels as $key=>$value){
-        //echo $value['slug'].'-----------'.$ref_slug;
+    $ticketarr = array_column($ticket_types, 'social_sharing_discount', 'title');
+    foreach($sponsor_levels as $value){
         if($value['slug'] == $ref_slug){
-            //echo '=============>'.$value['slug'];
-            
-            //echo '=========='.$value['award_ticket_type'];
-            if(array_key_exists($value['award_ticket_type'], $ticketarr)){
-                //echo '<=ddddddddd==========>'.$value['award_ticket_type'];
-                $discount_amt = $ticketarr[$value['award_ticket_type']];
-//echo '<=eeeeeeeee==========>'. $discount_amt;
-            }
+            $discount_amt = $ticketarr[$value['award_ticket_type']] ?? 0;
             if( $discount_amt > 0 ){
-                $success_discount_amt = $discount_amt.'%';
-                $success_sponsor_title = $value['title'];
-                $success_redirect = TAOH_SITE_URL_ROOT.'/events/event_sponsor/'.$eventtoken.'/'.$ref_slug.'/socialshare/'.$trackingtoken; 
-                //echo $success_redirect;
+                $discount_info['amt'] = $discount_amt.'%';
+                $discount_info['title'] = $value['title'];
+                $discount_info['redirect'] = TAOH_SITE_URL_ROOT.'/events/event_sponsor/'.$eventtoken.'/'.$ref_slug.'/socialshare/'.$trackingtoken;
             }
         }
     }
 }
+$success_discount_amt = $discount_info['amt'];
+$success_sponsor_title = $discount_info['title'];
+$success_redirect = $discount_info['redirect'];
 $GLOBALS['success_discount_amt'] = $success_discount_amt;
 $GLOBALS['success_sponsor_title'] = $success_sponsor_title;
 $GLOBALS['success_redirect'] = $success_redirect;
-//$GLOBALS['success_discount_amt'] = '50';
-
-//echo '========='.$GLOBALS['success_discount_amt'] ;
 
 // Check RSVP status
 $taoh_vals = [
@@ -296,9 +231,7 @@ $taoh_vals = [
     'cache_required' => 0,
     'time' => time(),
 ];
-//echo taoh_apicall_get_debug('events.rsvp.get', $taoh_vals);die;
-$res = taoh_apicall_get('events.rsvp.get', $taoh_vals);
-$response = json_decode($res, true);
+$response = taoh_get_array(taoh_apicall_get('events.rsvp.get', $taoh_vals));
 $is_user_rsvp_done = is_array($response) ? ($response['success'] ?? false) : false;
 
 if($is_user_rsvp_done){
@@ -330,8 +263,7 @@ if ($is_user_rsvp_done) {
         'cache_required' => 0,
         'time' => time(),
     ];
-//    echo taoh_apicall_get_debug('events.rsvp.get', $taoh_vals);die;
-    $response = json_decode(taoh_apicall_get('events.rsvp.get', $taoh_vals), true);
+    $response = taoh_get_array(taoh_apicall_get('events.rsvp.get', $taoh_vals));
     $rsvp_data = (array) ($response['output'] ?? []);
 
     $is_user_paid = !!($rsvp_data['success'] ?? false) && ($rsvp_data['payment_status'] ?? '0') == '1';
@@ -345,32 +277,11 @@ $taoh_vals = array(
     'slug' => TAO_PAGE_TYPE,
     'cache_name' => 'events_save_' . taoh_get_dummy_token() . '_' . $eventtoken,
 );
-//echo taoh_apicall_get_debug('system.users.metrics', $taoh_vals);die();
-$get_liked = json_decode(taoh_apicall_get('system.users.metrics', $taoh_vals), true);
-//echo '<pre>';print_r($get_liked);echo '</pre>';die();
+$get_liked = taoh_get_array(taoh_apicall_get('system.users.metrics', $taoh_vals));
 $userliked_already = '';
 if(isset($get_liked['success']) && $get_liked['success'] === true) {
     $userliked_already = $get_liked['output']['userliked'] ?? '0';
 }
-
-//echo "--------".$userliked_already;die();
-/* End check liked or not */
-
-/*$liked_arr = array();
-if ($taoh_user_is_logged_in) {
-    $taoh_call = "system.users.metrics";
-    $taoh_vals = array(
-        'mod' => 'system',
-        'token' => taoh_get_dummy_token(),
-        'slug' => TAO_PAGE_TYPE,
-    );
-    //echo taoh_apicall_get_debug('system.users.metrics', $taoh_vals);die();
-    $get_liked = json_decode(taoh_apicall_get('system.users.metrics', $taoh_vals), true);
-
-    if (isset($get_liked['conttoken_liked'])) {
-        $liked_arr = json_encode($get_liked['conttoken_liked']);
-    }
-}*/
 define('TAO_CURRENT_APP_INNER_PAGE', 'events_details');
 taoh_get_header();
 
@@ -424,11 +335,6 @@ require_once TAOH_APP_PATH . '/events/event_health_check.php';
                 </div>
 
              </div>
-        
-        
-            
-
-         
     </div>
     
 
@@ -500,7 +406,7 @@ require_once TAOH_APP_PATH . '/events/event_health_check.php';
                 </div>
 
 
-                <div class="mb-3" style="">
+                <div class="mb-3">
                     <div class="row align-items-center">
                         <div class="col-12">
                         <input type="hidden" name="is_organizer" id="is_organizer" value="0" >
@@ -972,39 +878,12 @@ if ($show_rsvp_ticket) {
                     return videoSrc; // For other video formats
                 }
 
-                /*function displayMedia(media) {
-                    if(!media) return;
-
-
-                    mainDisplay.innerHTML = "";
-                    let mediaHtml = "";
-                    //alert(media.type)
-                    if (media.type === "image") {
-                        mediaHtml = `
-                            <div class="cover-event-image">
-                                <div class="events-bg" style="background-image: url('${media.src}');"></div>
-                                <div class="glass-overlay"></div>
-                                <img src="${media.src}" class="detail-main-image" alt="Event">
-                            </div>
-                        `;
-                    } else if (media.type === "video") {
-                        let videoSrc = formatVideoSrc(media.src);
-                        mediaHtml = `<iframe src="${videoSrc}" class="main-media" allowfullscreen allow="autoplay"></iframe>`;
-                    }
-
-
-                    mainDisplay.innerHTML = mediaHtml;
-                }*/
-
-                /*style="--background-src: url('${media.src}');"*/
-
                 const noImage = _taoh_site_url_root + '/assets/images/event.jpg';
 
                 if(eventBannersArray[0]){
                         // Generate the gallery items
                         eventBannersArray.forEach((media, index) => {
                             let itemHtml = "";
-                            //alert(media.type+'------------'+index);
                             if (media.type === "image") {
                                 itemHtml = `<div class="carousel-item ${index === 0 ? 'active' : ''}">
                                     <div class="cover-event-image">
@@ -1130,10 +1009,6 @@ if ($show_rsvp_ticket) {
 
                             var classes = 'rsvp_ticket_' + ticket_type_title + 'rsvp_tickets ticket-item';
 
-                            /*if(ticket_type_title == 'Sponsor'){
-                                var classes = 'rsvp_ticket_' + ticket_type_title + 'rsvp_tickets ticket-item event_sponsor_right_header';
-                            }*/
-
                             eventTicketTypesHtml += '<li class="'+classes+'">';
                             eventTicketTypesHtml += '<input type="radio" name="ticket" id="' + ticket_type_slug + '" value="' + encodeURIComponent(ticket_type_title) + '" class="rsvp_ticket_' + ticket_type_title + ' rsvp_tickets d-none"';
 
@@ -1157,18 +1032,10 @@ if ($show_rsvp_ticket) {
                     }
 
 
-                   //  var eventStatusButton = '';
-                    if (is_event_freeze || is_event_suspended) {
+                        if (is_event_freeze || is_event_suspended) {
                             eventTicketTypesHtml += `
                              <input type="hidden" name="event_status_hidden" id="event_status_hidden" live="suspended" value="3"/>
                             <a href="${TAOH_CURR_APP_URL}" class="btn btn-secondary w-100"><i class="fa fa-calendar-times mr-2" aria-hidden="true"></i>Event Suspended</a>`;
-
-                             /*eventStatusButton += `<span class="btn event-end d-flex align-items-center cursor-pointer px-3" style="min-width:200px;gap: 12px;">
-                                        <svg width="24" height="27" viewBox="0 0 24 27" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                            <path d="M6.85714 0C7.80536 0 8.57143 0.754102 8.57143 1.6875V3.375H15.4286V1.6875C15.4286 0.754102 16.1946 0 17.1429 0C18.0911 0 18.8571 0.754102 18.8571 1.6875V3.375H21.4286C22.8482 3.375 24 4.50879 24 5.90625V8.4375H0V5.90625C0 4.50879 1.15179 3.375 2.57143 3.375H5.14286V1.6875C5.14286 0.754102 5.90893 0 6.85714 0ZM0 10.125H24V24.4688C24 25.8662 22.8482 27 21.4286 27H2.57143C1.15179 27 0 25.8662 0 24.4688V10.125ZM16.3393 16.084C16.8429 15.5883 16.8429 14.7867 16.3393 14.2963C15.8357 13.8059 15.0214 13.8006 14.5232 14.2963L12.0054 16.7748L9.4875 14.2963C8.98393 13.8006 8.16964 13.8006 7.67143 14.2963C7.17321 14.792 7.16786 15.5936 7.67143 16.084L10.1893 18.5625L7.67143 21.041C7.16786 21.5367 7.16786 22.3383 7.67143 22.8287C8.175 23.3191 8.98929 23.3244 9.4875 22.8287L12.0054 20.3502L14.5232 22.8287C15.0268 23.3244 15.8411 23.3244 16.3393 22.8287C16.8375 22.333 16.8429 21.5314 16.3393 21.041L13.8214 18.5625L16.3393 16.084Z" fill="#444444"/>
-                                        </svg>
-                                        <span>Event Suspended</span>
-                                    </span>`;*/
 
                     } else {
                         if (event_live_state === 'after') {
@@ -1176,35 +1043,15 @@ if ($show_rsvp_ticket) {
                             <input type="hidden" name="event_status_hidden" id="event_status_hidden" live="ended" value="0"/>
                             <a href="${TAOH_CURR_APP_URL}" class="btn btn-secondary w-100"><i class="fa fa-ticket mr-2" aria-hidden="true"></i>Ended</a>`;
 
-                            /*eventStatusButton += `<span class="btn event-end d-flex align-items-center cursor-pointer px-3" style="gap: 12px;">
-                                            <svg width="24" height="27" viewBox="0 0 24 27" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                <path d="M6.85714 0C7.80536 0 8.57143 0.754102 8.57143 1.6875V3.375H15.4286V1.6875C15.4286 0.754102 16.1946 0 17.1429 0C18.0911 0 18.8571 0.754102 18.8571 1.6875V3.375H21.4286C22.8482 3.375 24 4.50879 24 5.90625V8.4375H0V5.90625C0 4.50879 1.15179 3.375 2.57143 3.375H5.14286V1.6875C5.14286 0.754102 5.90893 0 6.85714 0ZM0 10.125H24V24.4688C24 25.8662 22.8482 27 21.4286 27H2.57143C1.15179 27 0 25.8662 0 24.4688V10.125ZM16.3393 16.084C16.8429 15.5883 16.8429 14.7867 16.3393 14.2963C15.8357 13.8059 15.0214 13.8006 14.5232 14.2963L12.0054 16.7748L9.4875 14.2963C8.98393 13.8006 8.16964 13.8006 7.67143 14.2963C7.17321 14.792 7.16786 15.5936 7.67143 16.084L10.1893 18.5625L7.67143 21.041C7.16786 21.5367 7.16786 22.3383 7.67143 22.8287C8.175 23.3191 8.98929 23.3244 9.4875 22.8287L12.0054 20.3502L14.5232 22.8287C15.0268 23.3244 15.8411 23.3244 16.3393 22.8287C16.8375 22.333 16.8429 21.5314 16.3393 21.041L13.8214 18.5625L16.3393 16.084Z" fill="#444444"/>
-                                            </svg> <span>Ended</span>
-                                        </span>`;*/
-
                         } else {
                             if(is_user_rsvp_done && event_live_state === 'before'){
                                 eventTicketTypesHtml +=  `<input type="hidden" name="event_status_hidden" id="event_status_hidden" live="before" value="2"/>
                                 <input type="hidden" name="rsvp_status_hidden" id="rsvp_status_hidden" live="before" value="1"/>
                                 <a href="${TAOH_CURR_APP_URL}/chat/id/events/${eventToken}" class="btn btn-warning w-100"><i class="fa fa-ticket mr-2" aria-hidden="true"></i>You have registered</a>`;
-
-
-                                /*eventStatusButton += `<span class="btn not-live d-flex align-items-center px-3" style="min-width:200px;gap: 12px;">
-                                        <svg width="17" height="23" viewBox="0 0 17 23" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                            <path d="M1.4163 0C0.632908 0 0 0.642383 0 1.4375C0 2.23262 0.632908 2.875 1.4163 2.875V3.36914C1.4163 5.27383 2.16428 7.10215 3.49206 8.44981L6.49284 11.5L3.49206 14.5502C2.16428 15.8979 1.4163 17.7262 1.4163 19.6309V20.125C0.632908 20.125 0 20.7674 0 21.5625C0 22.3576 0.632908 23 1.4163 23H2.8326H14.163H15.5793C16.3627 23 16.9956 22.3576 16.9956 21.5625C16.9956 20.7674 16.3627 20.125 15.5793 20.125V19.6309C15.5793 17.7262 14.8313 15.8979 13.5035 14.5502L10.5027 11.5L13.5079 8.44981C14.8357 7.10215 15.5837 5.27383 15.5837 3.36914V2.875C16.3671 2.875 17 2.23262 17 1.4375C17 0.642383 16.3671 0 15.5837 0H14.163H2.8326H1.4163ZM4.24889 3.36914V2.875H12.7467V3.36914C12.7467 4.22266 12.4988 5.04922 12.0385 5.75H4.95704C4.50117 5.04922 4.24889 4.22266 4.24889 3.36914ZM4.95704 17.25C5.11195 17.0119 5.29341 16.7873 5.49258 16.5807L8.49779 13.535L11.503 16.5852C11.7066 16.7918 11.8836 17.0164 12.0385 17.2545H4.95704V17.25Z" fill="#000000"/>
-                                        </svg>
-                                        <span>Event Not Live!</span>
-                                    </span>`;*/
                             } else if (!is_user_rsvp_done && event_live_state === 'before') {
                                 eventTicketTypesHtml +=  `<input type="hidden" name="event_status_hidden" id="event_status_hidden" live="before" value="2"/>
                                 <input type="hidden" name="rsvp_status_hidden" id="rsvp_status_hidden" live="before" value="0"/>
                                 `;
-                                /*eventStatusButton += `<span class="btn not-live d-flex align-items-center px-3" style="min-width:200px;gap: 12px;">
-                                        <svg width="17" height="23" viewBox="0 0 17 23" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                            <path d="M1.4163 0C0.632908 0 0 0.642383 0 1.4375C0 2.23262 0.632908 2.875 1.4163 2.875V3.36914C1.4163 5.27383 2.16428 7.10215 3.49206 8.44981L6.49284 11.5L3.49206 14.5502C2.16428 15.8979 1.4163 17.7262 1.4163 19.6309V20.125C0.632908 20.125 0 20.7674 0 21.5625C0 22.3576 0.632908 23 1.4163 23H2.8326H14.163H15.5793C16.3627 23 16.9956 22.3576 16.9956 21.5625C16.9956 20.7674 16.3627 20.125 15.5793 20.125V19.6309C15.5793 17.7262 14.8313 15.8979 13.5035 14.5502L10.5027 11.5L13.5079 8.44981C14.8357 7.10215 15.5837 5.27383 15.5837 3.36914V2.875C16.3671 2.875 17 2.23262 17 1.4375C17 0.642383 16.3671 0 15.5837 0H14.163H2.8326H1.4163ZM4.24889 3.36914V2.875H12.7467V3.36914C12.7467 4.22266 12.4988 5.04922 12.0385 5.75H4.95704C4.50117 5.04922 4.24889 4.22266 4.24889 3.36914ZM4.95704 17.25C5.11195 17.0119 5.29341 16.7873 5.49258 16.5807L8.49779 13.535L11.503 16.5852C11.7066 16.7918 11.8836 17.0164 12.0385 17.2545H4.95704V17.25Z" fill="#000000"/>
-                                        </svg>
-                                        <span>Event Not Live!</span>
-                                    </span>`;*/
                             } else if (is_user_rsvp_done && event_live_state === 'live') {
                                eventTicketTypesHtml += `
                                  <input type="hidden" name="event_status_hidden" id="event_status_hidden" live="live" value="1"/>
@@ -1212,23 +1059,11 @@ if ($show_rsvp_ticket) {
                                 <a href="${redirect_to}" class="btn live w-100">
                                 <i class="fa fa-ticket mr-2" aria-hidden="true"></i>Event Live, ${!isValidUser ? 'Complete settings to' : 'Click to'} Join</a>`;
 
-                                /*eventStatusButton += `<a href="${redirect_to}" class="btn btn-success w-100">
-                                            <i class="fa fa-ticket mr-2" aria-hidden="true"></i>Event Live, ${!isValidUser ? 'Complete settings to' : 'Click to'} Join</a>
-                                        `;*/
-
                             } else if (!is_user_rsvp_done && event_live_state === 'live') {
                                 eventTicketTypesHtml += `
                                  <input type="hidden" name="event_status_hidden" id="event_status_hidden" live="live" value="1"/>
                                  <input type="hidden" name="rsvp_status_hidden" id="rsvp_status_hidden" live="live" value="0"/>
                                `;
-
-                                /*eventStatusButton += `<span class="btn live d-flex align-items-center cursor-pointer px-3" style="min-width:200px;gap: 12px;">
-                                        <svg width="17" height="23" viewBox="0 0 17 23" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                            <path d="M1.4163 0C0.632908 0 0 0.642383 0 1.4375C0 2.23262 0.632908 2.875 1.4163 2.875V3.36914C1.4163 5.27383 2.16428 7.10215 3.49206 8.44981L6.49284 11.5L3.49206 14.5502C2.16428 15.8979 1.4163 17.7262 1.4163 19.6309V20.125C0.632908 20.125 0 20.7674 0 21.5625C0 22.3576 0.632908 23 1.4163 23H2.8326H14.163H15.5793C16.3627 23 16.9956 22.3576 16.9956 21.5625C16.9956 20.7674 16.3627 20.125 15.5793 20.125V19.6309C15.5793 17.7262 14.8313 15.8979 13.5035 14.5502L10.5027 11.5L13.5079 8.44981C14.8357 7.10215 15.5837 5.27383 15.5837 3.36914V2.875C16.3671 2.875 17 2.23262 17 1.4375C17 0.642383 16.3671 0 15.5837 0H14.163H2.8326H1.4163ZM4.24889 3.36914V2.875H12.7467V3.36914C12.7467 4.22266 12.4988 5.04922 12.0385 5.75H4.95704C4.50117 5.04922 4.24889 4.22266 4.24889 3.36914ZM4.95704 17.25C5.11195 17.0119 5.29341 16.7873 5.49258 16.5807L8.49779 13.535L11.503 16.5852C11.7066 16.7918 11.8836 17.0164 12.0385 17.2545H4.95704V17.25Z" fill="#ffffff"/>
-                                        </svg>
-                                        <span>Event Live!</span>
-                                    </span>
-                                        `;*/
 
                             } else if (is_user_rsvp_done) {
                                 eventTicketTypesHtml += `
@@ -1240,13 +1075,9 @@ if ($show_rsvp_ticket) {
                                 <input type="hidden" name="event_status_hidden" id="event_status_hidden" live="live" value="1"/>
                                 <input type="hidden" name="rsvp_status_hidden" id="rsvp_status_hidden" live="live" value="0"/>
                                 `;
-
-                                /*<button type="button" class="mt-2 btn btn-primary w-100" id="register_ticket">
-                                <i class="fa fa-ticket mr-2" aria-hidden="true"></i>Register Now</button>*/
                             }
                         }
                     }
-                    // eventTicketTypesHtml += '</div>'; //tab content end
                 } else {
                     eventTicketTypesHtml = `<button type="button" class="mt-3 mb-2 btn btn-primary w-100 create_referral" data-location="${location.href}" data-title="${btoa(unescape(encodeURIComponent(conttoken_data.title)))}" data-toggle="modal" data-target="#config-modal"><i class="fa fa-ticket mr-2" aria-hidden="true"></i>Login & Register Now</button>`;
                 }
@@ -1268,9 +1099,6 @@ if ($show_rsvp_ticket) {
                     Become a sponsor</button>
 
                     `;
-
-                //tab end div
-                // eventTicketTypesHtml += '</div>';
 
                 $('.ticket-card-div').html(eventTicketTypesHtml);
 
@@ -1309,11 +1137,6 @@ if ($show_rsvp_ticket) {
 
                 function eventJoinHere(taoh_curr_app_url, eventtoken, is_user_rsvp_done, event_live_state) {
                     return '';
-                    /*let lobbyLink = `${taoh_curr_app_url}/chat/id/events/${eventtoken}`;
-
-                    return (is_user_rsvp_done && event_live_state === 'live')
-                        ? `, <a href="${lobbyLink}" title="${lobbyLink}" target="_blank" class="cursor-pointer text-underline">Join here</a>`
-                        : ', Join here';*/
                 }
 
                 /* Event Venue Info */
@@ -1353,7 +1176,6 @@ if ($show_rsvp_ticket) {
                 let is_social_share_enabled = conttoken_data.event_social_sharing;
                 constructSponsorInfoPopup(event_output.eventtoken,eventSponsorWidgetType,user_profile_type, conttoken_data.org_email,social_share_status,eventTicketType,event_form_version,is_social_share_enabled,trackingtoken,isLoggedIn);
                 eventCheckinList(event_output.eventtoken,'',1);
-                //getEventRSVPedUsers(event_output.eventtoken,'',event_organizer_ptokens);
 
                 $("#enable_exhibitor_hall").val(conttoken_data.enable_exhibitor_hall);
                 $("#enable_speaker_hall").val(conttoken_data.enable_speaker_hall);
@@ -1463,9 +1285,6 @@ if ($show_rsvp_ticket) {
                             attendeesMsg = "Login and register to view the attendees.";
                         }
 
-                        /* $('#rsvp_users_list').html(`<div class="event-registration-banner d-flex flex-column align-items-center justify-content-center">
-                            <h4 class="my-4 text-center">${attendeesMsg}</h4>
-                            <a href="#" style="display:none;" class="btn register-now-btn">Register Now</a></div>`); */
                         $("#rsvp_default_list").show();
 
                         if($("#is_organizer").val() == 1){
@@ -1508,11 +1327,6 @@ if ($show_rsvp_ticket) {
                         <div style="width: 100%; max-width: 342px;">`;
 
                                 rsvpTicketHtml += '<button type="button" class="btn btn-success valid-badge mb-3"><i class="fa fa-check-circle mr-1" aria-hidden="true"></i><span>Valid for entry</span></button>';
-                                // if (isLoggedIn) {
-                                //     rsvpTicketHtml += `${is_user_rsvp_done
-                                //         ? '<button type="button" class="btn btn-success valid-badge mb-3"><i class="fa fa-check-circle mr-1" aria-hidden="true"></i><span>Valid for entry</span></button>'
-                                //         : '<button type="button" class="btn btn-danger mb-3"><i class="fa fa-times-circle mr-1" aria-hidden="true"></i><span>Not Valid for entry</span></button>'}`;
-                                // }
 
                                 rsvpTicketHtml += `<h3 class="ticket-title pb-3">${conttoken_data.title}</h3>`;
 
@@ -1558,9 +1372,7 @@ if ($show_rsvp_ticket) {
                                     rsvpTicketHtml += `<img class="ticket-main-image" src="${thumbnailSrc}" alt="Event">`;
                                 }
 
-                                // if (is_user_rsvp_done) {
                                 rsvpTicketHtml += `<img class="ticket-stamp" src="${_taoh_site_url_root + '/assets/images/valid-for-admission.png'}" alt="valid-for-admission">`;
-                                // }
 
                                 rsvpTicketHtml += `</div>
                             </div>`;
@@ -1568,11 +1380,7 @@ if ($show_rsvp_ticket) {
                                 $('#rsvpTicketModal .modal-body').html(rsvpTicketHtml);
 
                                 let rsvpTicketFooterHtml = '';
-                                // if (isLoggedIn) {
                                 rsvpTicketFooterHtml += `<button type="button" class="btn theme-btn-primary" data-dismiss="modal" style="width: 150px;">OK</button>`;
-                                // } else {
-                                //     rsvpTicketFooterHtml += `<a href="${_taoh_site_url_root + '/login'}" class="btn btn-primary">Login to continue</a>`;
-                                // }
                                 $('#rsvpTicketModal .modal-footer').html(rsvpTicketFooterHtml);
 
                                 $('#rsvpTicketModal').modal('show');
@@ -1652,25 +1460,6 @@ if ($show_rsvp_ticket) {
 
         });
 
-        /*$(document).on("click", "#register_ticket", function () {
-            if (isLoggedIn) {
-                // let selected_ticket = $('select[name="ticket"] option:selected').val();
-                let selected_ticket = $('input[name="ticket"]:checked').val();
-                if (selected_ticket) {
-                    window.location.href = _taoh_site_url_root + '/events/add_rsvp/' + eventToken + '/' + selected_ticket;
-                } else {
-                    alert('Please select a ticket');
-                }
-            }
-        });*/
-
-        /*function update_choose_ticket(current_elem){
-            let selected_ticket = current_elem.find('input[type="radio"]').val();
-            let selected_ticket_title = current_elem.find('label .item-title').text();
-            let selected_ticket_cost = current_elem.find('label .item-cost').text();
-            $('#choose_ticket').text(selected_ticket_title + ' (' + selected_ticket_cost + ')');
-        }*/
-
         $(document).on("click", "#ticket_list li.ticket-item", function () {
             $('.hall_tabs .nav-item').each(function() {
                 $(this).css('pointer-events', 'none');
@@ -1689,7 +1478,6 @@ if ($show_rsvp_ticket) {
                         alert('Please select a ticket');
                     }
                 }
-                // update_choose_ticket(current_elem);
             } else {
                 taoh_set_error_message(selected_ticket_title + ' ticket is not available for selection');
             }
@@ -1749,9 +1537,7 @@ if ($show_rsvp_ticket) {
 
       
          $('#event_gallery_carousel').carousel({
-                //interval: 2000
-                auto:false,
-                
+                auto:false
         });
 
         setTimeout(() => {
@@ -1785,8 +1571,6 @@ if ($show_rsvp_ticket) {
         <?php if(TAOH_DOJO_SUGGESTION_ENABLE) { ?>
              let timelimit = <?php echo (int)TAOH_DOJO_SUGGESTION_TIMELIMIT; ?>;
              let innertimelimit = Math.floor(timelimit / 2);
-            console.log(timelimit+'------timelimit----------'+innertimelimit);
-           
             // Every 5 mins: refresh all contexts
             setInterval(() => {
                 refreshDojoLobbyContexts();
@@ -1821,7 +1605,6 @@ if ($show_rsvp_ticket) {
         }
 
            let shareUrl = $(this).data("url");     
-        //alert(shareUrl)
         if(shareUrl != '' && shareUrl != undefined){
              currentShareLink = shareUrl;
         }   
@@ -1848,7 +1631,6 @@ if ($show_rsvp_ticket) {
 
         if ($sticky.length) {
             var top_sticky_pos = $sticky.offset().top;
-            //console.log('top_sticky_pos', top_sticky_pos);
             if(top_sticky_pos > 126){
                 $sticky.addClass('is-sticky');
             } else {
@@ -1865,7 +1647,6 @@ if ($show_rsvp_ticket) {
     });
 
     $(document).on('click', '.register_now', function() {
-        //alert(1)
          var dropdown = new bootstrap.Dropdown(document.getElementById('choose_ticket'));
         dropdown.show();
         $('#choose_ticket')[0].scrollIntoView({
@@ -1880,22 +1661,6 @@ if ($show_rsvp_ticket) {
         $menu.toggleClass('show');
     });
     
-
-    $(".register_now").on('click', function () {
-        alert(2)
-        var dropdown = new bootstrap.Dropdown(document.getElementById('choose_ticket'));
-        dropdown.show();
-        $('#choose_ticket')[0].scrollIntoView({
-            behavior: 'smooth',
-            block: 'center'
-        });
-
-        $('#choose_ticket').focus();
-        $('#choose_ticket').trigger('click');
-        const $btn = $('#choose_ticket');
-        const $menu = $('#ticket_list');
-        $menu.toggleClass('show');
-    });
 
     </script>
 
