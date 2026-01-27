@@ -37,7 +37,7 @@ if(taoh_parse_url(5)){
 }
 
 $sharerlink  = $_SERVER['REQUEST_SCHEME'] . "://" . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];
-$click_view = (isset($_SERVER['HTTP_REFERER']) && !empty($_SERVER['HTTP_REFERER'])) ? 'click' : 'view';
+$click_view = !empty($_SERVER['HTTP_REFERER']) ? 'click' : 'view';
 
 const TAO_PAGE_TYPE = 'events';
 $app_data = taoh_app_info(TAO_PAGE_TYPE);
@@ -45,13 +45,13 @@ $app_data = taoh_app_info(TAO_PAGE_TYPE);
 $user_timezone = taoh_user_timezone();
 if (empty($user_timezone)) $user_timezone = 'America/New_York';
 
-$taoh_vals = array(
+$taoh_vals = [
     'token' => taoh_get_api_token(1, 1),
     'ops' => 'baseinfo',
     'mod' => 'events',
     'eventtoken' => $eventtoken ?? '',
     'cache_name' => 'event_detail_' . $eventtoken,
-);
+];
 
 $result = taoh_apicall_get('events.event.get', $taoh_vals);
 $response = taoh_get_array($result, true);
@@ -80,11 +80,7 @@ $event_description_clean = strip_tags(html_entity_decode($event_arr['conttoken']
 // Remove any remaining HTML entities and normalize whitespace
 $event_description_clean = preg_replace('/\s+/', ' ', trim($event_description_clean));
 $event_short = strlen($event_description_clean) > 157 ? substr($event_description_clean, 0, 157) . '...' : $event_description_clean;
-if($event_arr['conttoken'][ 'event_image' ] != ''){
-    $event_image = $event_arr['conttoken'][ 'event_image' ];
-}else{
-    $event_image = TAOH_SITE_URL_ROOT.'/assets/images/event.jpg';
-}
+$event_image = $event_arr['conttoken']['event_image'] ?: TAOH_SITE_URL_ROOT.'/assets/images/event.jpg';
 
 /* Collecting organizer ptokens */
 $raw_organizer_ptokens = $events_data['event_organizer_ptokens'] ?? '';
@@ -108,14 +104,14 @@ if (defined('TAOH_SUPER_ORGANIZER_TOKEN') && !empty(TAOH_SUPER_ORGANIZER_TOKEN))
 }
 /* /Collecting organizer ptokens */
 
-$show_rsvp_confirmation = isset($_GET['confirmation']) && $_GET['confirmation'] === 'rsvp';
-$show_rsvp_ticket = isset($_GET['confirmation']) && $_GET['confirmation'] === 'rsvp_ticket';
-$show_upgrade = isset($_GET['upgrade']) && $_GET['upgrade'] === 'from_email';
-$rsvp_ticket_token = !empty($_GET['tickettoken']) ? $_GET['tickettoken'] : '';
+$show_rsvp_confirmation = ($_GET['confirmation'] ?? '') === 'rsvp';
+$show_rsvp_ticket = ($_GET['confirmation'] ?? '') === 'rsvp_ticket';
+$show_upgrade = ($_GET['upgrade'] ?? '') === 'from_email';
+$rsvp_ticket_token = $_GET['tickettoken'] ?? '';
 
 $event_detail_url = TAOH_EVENTS_URL.'/d/'.slugify2($event_title).'-'.$eventtoken;
 $event_detail_url_param = '';
-if((isset($_GET['confirmation']) && ($_GET['confirmation'] === 'rsvp' || $_GET['confirmation'] === 'rsvp_ticket' )) && (isset($_GET['tickettoken']) &&  $_GET['tickettoken'] != '')){
+if(in_array($_GET['confirmation'] ?? '', ['rsvp', 'rsvp_ticket']) && !empty($_GET['tickettoken'])){
     $event_detail_url_param = '?tickettoken=' . $rsvp_ticket_token . '&confirmation=rsvp_ticket';
 }
 
@@ -127,17 +123,15 @@ if (!$taoh_user_is_logged_in) {
 
 $event_organizer_banner = [];
 
-$search = $type = ''; // wrongly handled type nd search in get_event_MetaInfo fn cache_name so here used
-$cache_name = 'event_MetaInfo_' . $eventtoken . '_' . $type . '_' . $search;
-$taoh_vals = array(
+$cache_name = 'event_MetaInfo_' . $eventtoken . '__'; // type & search empty for this call
+$taoh_vals = [
     'mod' => 'events',
     'token' => taoh_get_api_token(1, 1),
     'eventtoken' => $eventtoken,
     'cfcc5h' => 1,
     'cache_name' => $cache_name,
-);
-$get_event_meta_info_response = taoh_apicall_get('events.content.get', $taoh_vals);
-$get_event_meta_info_arr = json_decode($get_event_meta_info_response, true);
+];
+$get_event_meta_info_arr = taoh_get_array(taoh_apicall_get('events.content.get', $taoh_vals));
 if (in_array($get_event_meta_info_arr['success'], [true, 'true']) && !empty($get_event_meta_info_arr['output'])) {
     $event_meta_info = $get_event_meta_info_arr['output'];
 
@@ -151,21 +145,18 @@ define('TAO_PAGE_TITLE', $event_title);
 define('TAO_PAGE_ROBOT', 'index, follow');
 if ( ! defined ( 'TAO_PAGE_KEYWORDS' ) ) { define ( 'TAO_PAGE_KEYWORDS', TAOH_SITE_NAME_SLUG." Virtual job fair, ".TAOH_SITE_NAME_SLUG." Online career fair, ".TAOH_SITE_NAME_SLUG." Job fair event, ".TAOH_SITE_NAME_SLUG." Virtual networking opportunities, ".TAOH_SITE_NAME_SLUG." Remote job opportunities, ".TAOH_SITE_NAME_SLUG." Connecting talent and employers, ".TAOH_SITE_NAME_SLUG." Career advancement fair, ".TAOH_SITE_NAME_SLUG." Industry-specific job fair, ".TAOH_SITE_NAME_SLUG." Virtual recruitment event,".TAOH_SITE_NAME_SLUG." Professional networking event, ".TAOH_SITE_NAME_SLUG." Talent showcase platform, ".TAOH_SITE_NAME_SLUG." Online hiring event, ".TAOH_SITE_NAME_SLUG." Remote job fair, ".TAOH_SITE_NAME_SLUG." Job fair for job seekers, ".TAOH_SITE_NAME_SLUG." Virtual career fair, ".TAOH_SITE_NAME_SLUG." Job fair networking, ".TAOH_SITE_NAME_SLUG." Online job search event, ".TAOH_SITE_NAME_SLUG." Talent acquisition fair, ".TAOH_SITE_NAME_SLUG." Virtual job fair platform" ); }
 $additive = '';
-if(isset($site_info['source']) && $site_info['source'] !='' && TAOH_SITE_URL_ROOT != $site_info['source']){
+if(!empty($site_info['source']) && TAOH_SITE_URL_ROOT != $site_info['source']){
     $canonical_url = $site_info['source'].'/'.$app_data->slug.'/d/'.slugify2($event_title)."-".$eventtoken;
     $additive = '<link rel="canonical" href="'.$canonical_url.'"/> 
 	<meta name="original-source" content="'.$canonical_url.'"/>';
 }
 define('TAO_PAGE_CANONICAL', $additive);
 
-// Get RSVP status
-$taoh_vals = array(
-    'ops' => 'status',
-    'mod' => 'events',
-    'token' => TAOH_API_TOKEN,
-    'eventtoken' => $eventtoken,
+$taoh_vals = [
+    'ops' => 'status', 'mod' => 'events',
+    'token' => TAOH_API_TOKEN, 'eventtoken' => $eventtoken,
     'cache_required' => 0,
-);
+];
 $rsvp_status_result = taoh_apicall_get('events.rsvp.get', $taoh_vals);
 $rsvp_status_response = taoh_get_array($rsvp_status_result);
 
@@ -205,11 +196,9 @@ if($taoh_user_is_logged_in && $ptoken != ''){
 }
 
 $social_token = '';
-if (isset($ref_param) && $ref_param != '' && $ref_param != 'stlo') {
+if(!empty($ref_param) && $ref_param != 'stlo'){
     $hashptoken = hash('sha256', (string)$ptoken);
-    if ($ptoken !== '' && $hashptoken === (string)$ref_param) {
-        $social_token = $ref_param;
-    }
+    if($ptoken !== '' && $hashptoken === (string)$ref_param) $social_token = $ref_param;
 }
 
 $success_discount_amt = '';
@@ -217,14 +206,11 @@ $success_sponsor_title = '';
 $success_redirect = '';
 $discount_amt = 0;
 
-if(isset($ref_slug) && $ref_slug != '' && $ref_slug != 'stlo'){
+if(!empty($ref_slug) && $ref_slug != 'stlo'){
     $ticketarr = array_column($ticket_types, 'social_sharing_discount', 'title');
-
     foreach($sponsor_levels as $value){
         if($value['slug'] == $ref_slug){
-            if(array_key_exists($value['award_ticket_type'], $ticketarr)){
-                $discount_amt = $ticketarr[$value['award_ticket_type']];
-            }
+            $discount_amt = $ticketarr[$value['award_ticket_type']] ?? 0;
             if($discount_amt > 0){
                 $success_discount_amt = $discount_amt.'%';
                 $success_sponsor_title = $value['title'];
@@ -241,13 +227,10 @@ $discount_info = [
     'redirect' => $success_redirect
 ];
 
-// Get RSVP data
-$taoh_vals = array(
-    'ops' => 'info',
-    'mod' => 'events',
-    'token' => taoh_get_dummy_token(),
-    'rsvptoken' => $rsvp_token,
-);
+$taoh_vals = [
+    'ops' => 'info', 'mod' => 'events',
+    'token' => taoh_get_dummy_token(), 'rsvptoken' => $rsvp_token,
+];
 $rsvp_data_result = taoh_apicall_get('events.rsvp.get', $taoh_vals);
 $rsvp_data_response = taoh_get_array($rsvp_data_result);
 
@@ -268,10 +251,7 @@ if (empty($current_ticket_types)) {
 $current_ticket_type = array_values($current_ticket_types)[0];
 $is_user_paid = $rsvp_data['success'] && ($current_ticket_type['price'] === 'paid' && ($rsvp_data['payment_status'] ?? null) === '1');
 
-if($event_arr['conttoken']['locality'] == ''){
-    $event_arr['conttoken']['locality'] = 0;
-}
-
+$event_arr['conttoken']['locality'] = $event_arr['conttoken']['locality'] ?: 0;
 $live_state = event_live_state($event_arr['utc_start_at'], $event_arr['utc_end_at'], $event_arr['status'], $event_arr['conttoken']['locality']);
 $event_type = strtolower($events_data['event_type'] ?? 'virtual');
 
@@ -279,10 +259,7 @@ $live_btn_as_link = ($event_type === 'virtual' || $event_type === 'hybrid');
 
 // Utility functions (find_title_slug, edit_prefill, string_to_id) now in functions.php
 
-$enable_chat_room = 1;
-if (isset($events_data['enable_chat_room'])) {
-    $enable_chat_room = $events_data['enable_chat_room'];
-}
+$enable_chat_room = $events_data['enable_chat_room'] ?? 1;
 
 $message_content = $events_data['message_content'] ?? '';
 $chat_room_status = (int)$events_data['chat_room_status'] ?? 1;
@@ -307,7 +284,7 @@ $localized_event_ends_data = get_localized_event_data($event_timestamp_end_data,
 $event_start_at = (!empty($localized_event_start_data) ? beautifyTime($localized_event_start_data['datetime'], $localized_event_start_data['timezone'], '{week}, {month} {day}, {year}, {time} {abbr}') : '');
 
 
-$event_locality = $event_arr['conttoken']['locality'] !='' ? $event_arr['conttoken']['locality'] : 0;
+$event_locality = $event_arr['conttoken']['locality'] ?: 0;
 $event_timezone = $event_arr['local_timezone'];
 
 $adopter_url = TAOH_SITE_URL_ROOT . '/' . TAOH_CURR_APP_SLUG . '/club/' . taoh_slugify($events_data['title']) . '-' . $event_arr['eventtoken'];
@@ -318,8 +295,8 @@ if ($live_state == 'live') {
         : $adopter_url;
 }
 
-$is_event_suspended = isset($event_arr['status']) && $event_arr['status'] == 2;
-$is_event_freeze = isset($events_data['freeze_option']) && $events_data['freeze_option'] == 1;
+$is_event_suspended = ($event_arr['status'] ?? null) == 2;
+$is_event_freeze = ($events_data['freeze_option'] ?? 0) == 1;
 define('TAO_CURRENT_APP_INNER_PAGE', 'events_lobby');
 taoh_get_header();
 $GLOBALS['show_events_css'] = true;
@@ -327,7 +304,7 @@ $GLOBALS['show_events_css'] = true;
 require_once TAOH_APP_PATH . '/events/event_health_check.php';
 ?>
 <!-- External CSS for chat/lobby page -->
-<link rel="stylesheet" href="<?php echo TAOH_SITE_URL_ROOT; ?>/assets/events/css/chat.css?v=<?php echo TAOH_CSS_JS_VERSION; ?>">
+<link rel="stylesheet" href="<?= TAOH_SITE_URL_ROOT; ?>/assets/events/css/chat.css?v=<?= TAOH_CSS_JS_VERSION; ?>">
 
     <input type="hidden" id="share_link" value="<?= $share_link ?>">
 
@@ -509,9 +486,9 @@ require_once TAOH_APP_PATH . '/events/event_health_check.php';
                                     </div>
                                     <div id="event_loaderArea"></div>
                                     <div id="events_list" class="d-flex flex-wrap justify-content-center mt-4 upcoming-events dasdasd p-0" style="margin: auto; gap: 12px;" >
-                                        <?php echo taoh_recent_events_full_display($eventtoken);?>
+                                        <?= taoh_recent_events_full_display($eventtoken); ?>
                                     </div>
-                                    <p class="text-right text-underline mt-2 pr-2"><a href="<?php echo TAOH_SITE_URL_ROOT.'/events';?>">View all Events <i class="la la-arrow-right ml-1"></i></a></p>
+                                    <p class="text-right text-underline mt-2 pr-2"><a href="<?= TAOH_SITE_URL_ROOT.'/events'; ?>">View all Events <i class="la la-arrow-right ml-1"></i></a></p>
                                 </div>
                             </div>
                         </div>
@@ -524,11 +501,11 @@ require_once TAOH_APP_PATH . '/events/event_health_check.php';
                     <ul class="nav nav-tabs justify-content-left border-0 mt-3 mb-3" role="tablist" 
                         style="background:none;line-height: 1.143;">
                         <li class="nav-item" >
-                            <a href="<?php echo TAOH_SITE_URL_ROOT.'/';?>">Home</a>
+                            <a href="<?= TAOH_SITE_URL_ROOT.'/'; ?>">Home</a>
                             <svg xmlns="http://www.w3.org/2000/svg" height="19px" viewBox="0 0 24 24" width="19px" fill="#000000"><path d="M0 0h24v24H0V0z" fill="none"></path><path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6-6-6z"></path></svg>
                         </li>
                         <li class="nav-item" >
-                            <a href="<?php echo TAOH_SITE_URL_ROOT.'/'.TAOH_SITE_CURRENT_APP_SLUG;?>">Events</a>
+                            <a href="<?= TAOH_SITE_URL_ROOT.'/'.TAOH_SITE_CURRENT_APP_SLUG; ?>">Events</a>
                             <svg xmlns="http://www.w3.org/2000/svg" height="19px" viewBox="0 0 24 24" width="19px" fill="#000000"><path d="M0 0h24v24H0V0z" fill="none"></path><path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6-6-6z"></path></svg>
                         </li>
                         <li class="nav-item event_title">
@@ -570,14 +547,14 @@ require_once TAOH_APP_PATH . '/events/event_health_check.php';
                             else $class ='event-live-before';
                                 
                                 ?>
-                            <div class="flex-shrink-lg-0 ticket-card-div d-flex flex-row flex-wrap flex-xl-column events-btns-outer-block <?php echo $class;?>" style="gap: 6px;">
+                            <div class="flex-shrink-lg-0 ticket-card-div d-flex flex-row flex-wrap flex-xl-column events-btns-outer-block <?= $class; ?>" style="gap: 6px;">
                                 
                             <?php if($live_state != 'live') { ?>
-                                <a href="<?php echo $adopter_url;?>" id="networking_link" style="display:none;"  class="btn btn-success">Go to Networking Room</a>
+                                <a href="<?= $adopter_url; ?>" id="networking_link" style="display:none;"  class="btn btn-success">Go to Networking Room</a>
                             <?php } ?>
                                 
                                 <div class="event_status_button d-flex flex-wrap flex-xl-column" style="gap: 6px;">
-                                    <input type="hidden" name="chat_room_status" id="chat_room_status" value="<?php echo $chat_room_status;?>"/>
+                                    <input type="hidden" name="chat_room_status" id="chat_room_status" value="<?= $chat_room_status; ?>"/>
                                     <?php
                                     if ($is_event_freeze || $is_event_suspended) {
                                         echo '<span class="btn event-end d-flex align-items-center cursor-pointer px-3" style="gap: 12px;">
@@ -659,7 +636,7 @@ require_once TAOH_APP_PATH . '/events/event_health_check.php';
 
                                 <input type="hidden" name="is_organizer" id="is_organizer" value="0" >
                                 <input type="hidden" name="user_profile_type" id="user_profile_type" value="" >
-                                <input type="hidden" name="rsvp_sponsor_title" id="rsvp_sponsor_title" value="<?php echo $current_ticket_type['title'] ?? ''; ?>">
+                                <input type="hidden" name="rsvp_sponsor_title" id="rsvp_sponsor_title" value="<?= $current_ticket_type['title'] ?? ''; ?>">
                                 <input type="hidden" name="exh_count" id="exh_count" value="0" >
                                 <input type="hidden" name="spk_count" id="spk_count" value="0" >
                                 <input type="hidden" name="event_live_state" id="event_live_state" value="0" >
@@ -671,7 +648,7 @@ require_once TAOH_APP_PATH . '/events/event_health_check.php';
                                 <input type="hidden" name="event_country_name" id="event_country_name" value="" >
 
 
-                                <input type="hidden" name="superorganizer_token" id="superorganizer_token" value="<?php echo TAOH_SUPER_ORGANIZER_TOKEN;?>" >
+                                <input type="hidden" name="superorganizer_token" id="superorganizer_token" value="<?= TAOH_SUPER_ORGANIZER_TOKEN; ?>" >
                                 <input id="sponsor_type" name="sponsor_type" type="hidden" value=""/>
                                 <input id="rsvp_perpage" name="rsvp_perpage" type="hidden" value="1"/>
                                 <div style="display:flex; flex-direction:column; width:100%;" class="scroll-top-hide">
@@ -720,19 +697,21 @@ require_once TAOH_APP_PATH . '/events/event_health_check.php';
                                                         $eventDetails = "To RSVP and see the complete details click here : \r\n".  TAOH_SITE_URL_ROOT . '/events/d/' . taoh_slugify($events_data['title']) . '-' . $event_arr['eventtoken'];
                                                         $eventLocation = $events_data['full_location'] ?? '';
                                                         ?>
-                                                        <li class="dropdown-item"><a target="_blank" href="<?php echo 'https://calendar.google.com/calendar/render?action=TEMPLATE&text='.str_replace("#","",$event_title).'&dates='.$calendarDate.'&details='.$eventDetails.'&location='.$eventLocation.'&sf=true&output=xml'; ?>">Google Calendar</a></li>
+                                                        <li class="dropdown-item"><a target="_blank" href="<?= 'https://calendar.google.com/calendar/render?action=TEMPLATE&text='.str_replace("#","",$event_title).'&dates='.$calendarDate.'&details='.$eventDetails.'&location='.$eventLocation.'&sf=true&output=xml'; ?>">Google Calendar</a></li>
 
-                                                        <li class="dropdown-item"><a target="_blank" href="<?php
+                                                        <?php
                                                         $eventLink = TAOH_SITE_URL_ROOT . '/events/d/' . taoh_slugify($events_data['title']) . '-' . $event_arr['eventtoken'];
                                                         $outlookBodyHtml = '<p>To RSVP and see the complete details click here:</p><p><a href="' . $eventLink . '">' . $eventLink . '</a></p>';
-                                                        echo 'https://outlook.live.com/calendar/0/deeplink/compose?subject='.urlencode(str_replace("#","",$event_title)).'&body='.urlencode($outlookBodyHtml).'&startdt='.$start_outlook.'&enddt='.$end_outlook.'&location='.urlencode($eventLocation).'&path=%2Fcalendar%2Faction%2Fcompose&rru=addevent'; ?>">Outlook Calendar</a></li>
+                                                        $outlookUrl = 'https://outlook.live.com/calendar/0/deeplink/compose?subject='.urlencode(str_replace("#","",$event_title)).'&body='.urlencode($outlookBodyHtml).'&startdt='.$start_outlook.'&enddt='.$end_outlook.'&location='.urlencode($eventLocation).'&path=%2Fcalendar%2Faction%2Fcompose&rru=addevent';
+                                                        ?>
+                                                        <li class="dropdown-item"><a target="_blank" href="<?= $outlookUrl; ?>">Outlook Calendar</a></li>
                                                     </ul>
                                                 </div>
                                             <?php } ?>
                                         <div class="edit-rsvp">
 
                                             <a title="Edit Rsvp" class="btn d-flex align-items-center text-nowrap" style="padding:8px"
-                                            href="<?php echo TAOH_SITE_URL_ROOT . '/events/edit_rsvp/' . $event_arr['eventtoken'] . '/' . $current_ticket_type['title']; ?>" >
+                                            href="<?= TAOH_SITE_URL_ROOT . '/events/edit_rsvp/' . $event_arr['eventtoken'] . '/' . $current_ticket_type['title']; ?>" >
                                                 <i class="fa-solid fa-edit" style="font-size: 24px; margin: auto;"></i>
                                             </a>
                                         </div>
@@ -816,7 +795,7 @@ require_once TAOH_APP_PATH . '/events/event_health_check.php';
                                 <input id="sponsor_type1" name="sponsor_type1" type="hidden" value=""/>
                                 <div class="sponsor_edit"></div>
                                 <div class="event_sponsor_right_header">
-                                <a href="<?php echo  TAOH_SITE_URL_ROOT.'/events/event_sponsor/'.$eventtoken;?>" 
+                                <a href="<?= TAOH_SITE_URL_ROOT.'/events/event_sponsor/'.$eventtoken; ?>" 
                                 class="btn btn-warning sponsor-btn">Become a sponsor</a>
 
                                 </div>
@@ -1031,7 +1010,7 @@ require_once('events_session_form.php');
 require_once('events_exhibitor_form_new.php');
 ?>
 
-<script src="<?php echo TAOH_SITE_URL_ROOT; ?>/assets/js/event.js?v=<?php echo TAOH_CSS_JS_VERSION; ?>"></script>
+<script src="<?= TAOH_SITE_URL_ROOT; ?>/assets/js/event.js?v=<?= TAOH_CSS_JS_VERSION; ?>"></script>
 <script>
     // ============================================
     // Chat Page Configuration (PHP-generated)
@@ -1128,9 +1107,9 @@ require_once('events_exhibitor_form_new.php');
     let event_organizer_banners = window.chatConfig.eventOrganizerBanners;
 </script>
 <!-- External chat helper functions -->
-<script src="<?php echo TAOH_SITE_URL_ROOT; ?>/assets/events/js/chat.js?v=<?php echo TAOH_CSS_JS_VERSION; ?>"></script>
+<script src="<?= TAOH_SITE_URL_ROOT; ?>/assets/events/js/chat.js?v=<?= TAOH_CSS_JS_VERSION; ?>"></script>
 <!-- External event processor -->
-<script src="<?php echo TAOH_SITE_URL_ROOT; ?>/assets/events/js/chat-event-processor.js?v=<?php echo TAOH_CSS_JS_VERSION; ?>"></script>
+<script src="<?= TAOH_SITE_URL_ROOT; ?>/assets/events/js/chat-event-processor.js?v=<?= TAOH_CSS_JS_VERSION; ?>"></script>
 <?php
 require_once('events_popup.php');
 
