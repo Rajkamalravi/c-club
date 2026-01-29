@@ -86,4 +86,3 @@ if (msg.parent_message_id) {
 
 // Continue with normal rendering...
 // (Add date separator, build message HTML, etc.)
-

@@ -1,11 +1,11 @@
 <?php taoh_get_header(); ?>
 
-    
+
 <div class="mobile-app">
-        
+
 <header class="bg-white border-bottom border-bottom-gray">
 <section class="hero-area pt-20px pb-20px bg-white shadow-sm overflow-hidden">
-    
+
 		<div class="container">
         <div class="hero-content d-flex flex-wrap align-items-center justify-content-between jobs-mobile-header">
             <div class="col-lg-12">
@@ -63,7 +63,7 @@
         </ul>
         <div class="tab-content" id="myTabContent">
         	<div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
-        		<div class="">    
+        		<div class="">
 					<div class="row d-flex">
 						<div class="col-lg-3">
 							<div class="job-listing-block-row">
@@ -113,7 +113,7 @@
 						</div>
 						<div class="col-lg-6">
 							<div class="right-detail-tab">
-								<div>  
+								<div>
 									<h4 class="fs-19" style="font-weight: 500">JOB TITLE / POSITION <a href="#" class="fs-25"><i class="las la-bookmark"></i></a> <a href="#" class="fs-25"><i class="las la-share-alt-square"></i></a> <span class="fs-14" style="float: right">Posted 6 days ago</span></h4>
 								</div>
 								<div id="jobsDetailLocation" class="jobd-detail-location">
@@ -122,7 +122,7 @@
 
 								</div>
 								<div class="mt-2">
-									<a href="https://localhost/hires-i/jobs/dash" class="btn theme-btn mb-3">Apply Now </a> 
+									<a href="https://localhost/hires-i/jobs/dash" class="btn theme-btn mb-3">Apply Now </a>
 								</div>
 								<div class="skill-detail-block">
 									<h3 class="fs-17"><i class="las la-shapes"></i> Skills</h3>
@@ -169,13 +169,13 @@
 						</div>
             		</div>
         		</div>
-      		</div> 
+      		</div>
 			  <div class="tab-pane fade" id="home2" role="tabpanel" aria-labelledby="home-tab">
 				<div class="">Testing 2</div>
-			</div> 
+			</div>
 			<div class="tab-pane fade" id="home3" role="tabpanel" aria-labelledby="home-tab">
 				<div class="">Testing 3</div>
-			</div> 
+			</div>
 		</div>
     </div>
 </section>

@@ -2,7 +2,7 @@
     $ops = 'list';
     $limit = 4;
     $offset =  0;
- 
+
     $taoh_call = "events.get";
     $taoh_vals = array(
         'mod' => 'events',
@@ -44,8 +44,8 @@
 
         //echo "=========".$event_type;
 ?>
-                    <div style="flex: 1; flex-basis: 150px; max-width: 280px;" class="dash_metrics" data-metrics="view" 
-                    conttoken="<?php echo $conttoken; ?>" data-type="events" data-conttoken="<?php echo $conttoken; ?>" 
+                    <div style="flex: 1; flex-basis: 150px; max-width: 280px;" class="dash_metrics" data-metrics="view"
+                    conttoken="<?php echo $conttoken; ?>" data-type="events" data-conttoken="<?php echo $conttoken; ?>"
                     event-url="<?php echo $share_link; ?>">
                         <div class="card event-listing-block-row p-0" style="">
 
@@ -56,7 +56,7 @@
                                 <img class="club-event-image lazy" src="<?php echo $event_image; ?>" data-src="<?php echo $event_image; ?>" alt="<?php echo $event_title; ?>"></a>
                            </div>
                             <div class="card-body p-3">
-                                
+
                                 <span class="badge-detail-block w-100 d-inline-block flex-wrap-reverse justify-content-between">
                                     <ul class="d-flex flex-wrap" style="float: left;">
                                         <li class="mt-1 d-flex align-items-center" style="color: #ffffff; background: #2557A7; border-radius: 8px;">
@@ -64,7 +64,7 @@
                                                 <path d="M2 0C2.27656 0 2.5 0.223437 2.5 0.5V1H4.5V0.5C4.5 0.223437 4.72344 0 5 0C5.27656 0 5.5 0.223437 5.5 0.5V1H6.25C6.66406 1 7 1.33594 7 1.75V2.5H0V1.75C0 1.33594 0.335938 1 0.75 1H1.5V0.5C1.5 0.223437 1.72344 0 2 0ZM0 3H7V7.25C7 7.66406 6.66406 8 6.25 8H0.75C0.335938 8 0 7.66406 0 7.25V3ZM5.14062 4.76562C5.2875 4.61875 5.2875 4.38125 5.14062 4.23594C4.99375 4.09063 4.75625 4.08906 4.61094 4.23594L3.12656 5.72031L2.39219 4.98594C2.24531 4.83906 2.00781 4.83906 1.8625 4.98594C1.71719 5.13281 1.71562 5.37031 1.8625 5.51562L2.8625 6.51562C3.00937 6.6625 3.24688 6.6625 3.39219 6.51562L5.14062 4.76562Z" fill="white"></path>
                                             </svg>
 
-                                            <span class="mx-1"><?php 
+                                            <span class="mx-1"><?php
                                                 echo event_time_display($event_utc_start,$event_locality,$event_timezone);
                                             ?></span>
                                         </li>
@@ -76,13 +76,13 @@
                                     <a href="<?php echo $share_link;?>" data-metrics="view" class="click_metrics">
                                     <?php echo $event_title; ?>
                                     </a>
-                                </h4>                             
-                                
+                                </h4>
+
                                 <div class="type_display event-type ">
-                                   
+
                                     <span>
                                         <?php
-                    
+
                                             if ($event_type === 'in-person') {
                                                 echo '<svg width="21" height="19" viewBox="0 0 19 19" fill="none" xmlns="http://www.w3.org/2000/svg">
                                                             <path d="M14.8079 3.56198C15.2836 3.56198 15.7399 3.37434 16.0762 3.04034C16.4126 2.70634 16.6016 2.25334 16.6016 1.78099C16.6016 1.30864 16.4126 0.85564 16.0762 0.52164C15.7399 0.187639 15.2836 0 14.8079 0C14.3322 0 13.876 0.187639 13.5396 0.52164C13.2033 0.85564 13.0143 1.30864 13.0143 1.78099C13.0143 2.25334 13.2033 2.70634 13.5396 3.04034C13.876 3.37434 14.3322 3.56198 14.8079 3.56198ZM11.6579 7.43934C11.6952 7.4245 11.7289 7.40966 11.7662 7.39482L11.1347 9.75091C10.9255 10.5338 11.131 11.3686 11.684 11.966L14.3259 14.8267L15.148 18.0956C15.3087 18.7301 15.9589 19.1197 16.5978 18.9601C17.2368 18.8006 17.6292 18.155 17.4685 17.5205L16.6091 14.1032C16.5381 13.8138 16.3923 13.5504 16.1905 13.3314L14.3408 11.3278L15.062 8.89752L15.4208 9.75091C15.5852 10.1442 15.8879 10.467 16.2727 10.66L17.2705 11.1534C17.8609 11.4466 18.5783 11.2091 18.8735 10.6229C19.1687 10.0366 18.9296 9.32422 18.3392 9.0311L17.5358 8.63409L16.964 7.26866C16.3213 5.74369 14.8192 4.7493 13.1526 4.7493C12.3006 4.7493 11.4598 4.9274 10.6826 5.26876L10.3836 5.39862C9.15423 5.94034 8.21257 6.97183 7.79032 8.23707L7.69316 8.52649C7.48391 9.14983 7.82395 9.82141 8.44799 10.0292C9.07202 10.237 9.75211 9.89933 9.96137 9.2797L10.0585 8.99028C10.2715 8.35581 10.7424 7.84377 11.3552 7.57291L11.6541 7.44305L11.6579 7.43934ZM10.5368 12.4521L9.60264 14.7674L7.38301 16.9713C6.91592 17.4351 6.91592 18.1884 7.38301 18.6522C7.85011 19.1159 8.60867 19.1159 9.07576 18.6522L11.3813 16.3628C11.5532 16.1922 11.6878 15.9881 11.7774 15.7655L12.3193 14.4223L10.7984 12.7749C10.705 12.6747 10.619 12.5671 10.5368 12.4558V12.4521ZM8.23126 10.1702C7.94353 10.0069 7.58106 10.1034 7.41291 10.3891L6.21715 12.4447L4.18435 11.2796C3.61263 10.9531 2.88023 11.146 2.55139 11.7137L0.159872 15.8285C-0.168962 16.3962 0.025349 17.1235 0.597072 17.45L2.66723 18.6373C3.23896 18.9638 3.97136 18.7709 4.30019 18.2032L6.69171 14.0884C6.74777 13.9919 6.78887 13.8954 6.81503 13.7915L8.45172 10.9828C8.61614 10.6971 8.51899 10.3372 8.23126 10.1702Z" fill="#2557A7"/>
@@ -97,15 +97,12 @@
                                                         </svg>';
                                             }
                                             echo ' '.(!empty($event_type) ? ucfirst($event_type) : 'Virtual') ;
-                                            
-                                            
-
                                             ?>
                                     </span>
-                                </div>	
+                                </div>
                                <div class="mt-3">
-                                    
-                                    
+
+
                                     <span id="event_badge_<?php echo $eventtoken;?>"></span>
                                 </div>
                                 <script >
@@ -116,7 +113,7 @@
                                         var  event_live_state = eventLiveState('<?php echo $event_utc_start; ?>' || '', '<?php echo $event_utc_end; ?>' || '', '<?php echo $event_locality;?>', user_timezone);
                                         if(event_live_state == 'live'){
                                             var event_badge = `<a href="<?php echo $lobby_link;?>" target="_blank" rel="noopener"
-                                                            data-metrics="rsvp" class="btn d-flex align-items-center click_metrics btn-success" 
+                                                            data-metrics="rsvp" class="btn d-flex align-items-center click_metrics btn-success"
                                                             style="width: fit-content;">
                                                             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 80" style="width: 36px">
                                                                     <!-- Play circle -->
@@ -131,7 +128,7 @@
                                                             Live, Join Now!</a>`;
                                         } else if(event_live_state == 'before'){
                                             var event_badge = `<a href="<?php echo $lobby_link;?>" target="_blank" rel="noopener"
-                                                                data-metrics="rsvp" class="btn d-flex align-items-center click_metrics btn-warning" 
+                                                                data-metrics="rsvp" class="btn d-flex align-items-center click_metrics btn-warning"
                                                                 style="width: fit-content;">
                                                                 <svg width="17" height="23" viewBox="0 0 17 23" fill="none" xmlns="http://www.w3.org/2000/svg">
                                                                     <path d="M1.4163 0C0.632908 0 0 0.642383 0 1.4375C0 2.23262 0.632908 2.875 1.4163 2.875V3.36914C1.4163 5.27383 2.16428 7.10215 3.49206 8.44981L6.49284 11.5L3.49206 14.5502C2.16428 15.8979 1.4163 17.7262 1.4163 19.6309V20.125C0.632908 20.125 0 20.7674 0 21.5625C0 22.3576 0.632908 23 1.4163 23H2.8326H14.163H15.5793C16.3627 23 16.9956 22.3576 16.9956 21.5625C16.9956 20.7674 16.3627 20.125 15.5793 20.125V19.6309C15.5793 17.7262 14.8313 15.8979 13.5035 14.5502L10.5027 11.5L13.5079 8.44981C14.8357 7.10215 15.5837 5.27383 15.5837 3.36914V2.875C16.3671 2.875 17 2.23262 17 1.4375C17 0.642383 16.3671 0 15.5837 0H14.163H2.8326H1.4163ZM4.24889 3.36914V2.875H12.7467V3.36914C12.7467 4.22266 12.4988 5.04922 12.0385 5.75H4.95704C4.50117 5.04922 4.24889 4.22266 4.24889 3.36914ZM4.95704 17.25C5.11195 17.0119 5.29341 16.7873 5.49258 16.5807L8.49779 13.535L11.503 16.5852C11.7066 16.7918 11.8836 17.0164 12.0385 17.2545H4.95704V17.25Z" fill="#000000"></path>
@@ -139,7 +136,7 @@
                                                                 Event Not live</a>`;
                                         } else {
                                             var event_badge = `<a href="<?php echo $lobby_link;?>" target="_blank" rel="noopener"
-                                                                data-metrics="rsvp" class="btn d-flex align-items-center click_metrics btn-secondary" 
+                                                                data-metrics="rsvp" class="btn d-flex align-items-center click_metrics btn-secondary"
                                                                 style="width: fit-content;"><i class="fa fa-ticket mr-2" aria-hidden="true"></i></i>Event Expired</a>`;
                                         }
                                         //alert(event_badge)
@@ -149,7 +146,6 @@
                             </div>
                         </div>
                     </div>
-			    
+
 
 <?php } } ?>
-

@@ -15,9 +15,6 @@ License: GPLv2 or later
 Text Domain: hires
 */
 
-
-
-
 /*hires.php
 This file ment to do the initial setup for the app to work
 Ex: register site, Set debug, health check, session setup, cookie setup and set global variables
@@ -29,9 +26,6 @@ Do not create functions use function.php instead
 //if ( stristr( TAOH_PLUGIN_PATH, TAOH_WERTUAL_SLUG ) ){
 //  echo time()." 1:<br />";
 //if (session_status() === PHP_SESSION_NONE) { session_reset(); }
-
-
-
 if (session_status() === PHP_SESSION_NONE) { session_start(); }
 
 //$_SESSION = array();
@@ -45,9 +39,9 @@ if ( ! defined ('TAOH_SITE_URL') ) {
   require_once('function.php'); //this file is depends on config and helper functions
   if ( file_exists( TAOH_PLUGIN_PATH.'/debug_function.php' ) ){
     require_once('debug_function.php');
-  } 
+  }
   require_once('core/ajax.php');
-  
+
   require_once('core/networkingajax.php');
   require_once('core/networkingredis_ajax.php');
 }
@@ -92,7 +86,7 @@ if ( defined( 'TAOH_API_TOKEN' ) && TAOH_API_TOKEN ){
 }
 
 require_once('core/widgets/widget_functions.php');
-  
+
 if ( ! defined ( 'TAOH_URL_PATH' ) ) {
   $temp = '/'.TAOH_PLUGIN_PATH_NAME;
   if ( defined( 'TAOH_WERTUAL_ROOT_SUBDIRECTORY' ) && strlen(TAOH_WERTUAL_ROOT_SUBDIRECTORY) >= 2 ) {$temp = '/'.trim( TAOH_WERTUAL_ROOT_SUBDIRECTORY, '/' ).'/'.TAOH_PLUGIN_PATH_NAME;}

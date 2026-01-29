@@ -4,7 +4,7 @@
     padding-top: 30px;
     padding-bottom: 30px;
 }
-.gray-dark, 
+.gray-dark,
 .gray-bg {
     background-color: #f5f5f5;
 }
@@ -14,7 +14,7 @@ img {
 }
 .title-hover{
   width: 100%;
-}         
+}
 h4.session_title>span {
  font-family: "Droid Sans";
   font-size: 12px;
@@ -136,15 +136,15 @@ h3 a{
 @media screen and (min-width: 800px) {
   .cl-image{
     width: 100%;
-    max-width:620px; 
-    height:490px; 
+    max-width:620px;
+    height:490px;
     position:relative;
     overflow:hidden;
   }
   .cl-image img{
-    position:absolute; 
-    top:0; 
-    bottom:0; 
+    position:absolute;
+    top:0;
+    bottom:0;
     margin: auto;
     width:100%;
   }
@@ -224,7 +224,7 @@ h3 a{
         height: auto;
     }
     .divider{
-        border-bottom: 1px solid #dee2e6!important; 
+        border-bottom: 1px solid #dee2e6!important;
     }
 
 .td-post-content * {
@@ -304,9 +304,9 @@ h3 a{
   margin-top: 20px;
 }
 .post-btn-v2 {
-  width: 139px; 
-  height: 40px; 
-  font-size: 17px; 
+  width: 139px;
+  height: 40px;
+  font-size: 17px;
   border-radius: 20px;
 }
 .search-title-v2 {

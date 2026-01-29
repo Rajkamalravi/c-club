@@ -244,7 +244,7 @@ function taoh_create_google_meet_link()
         "start_datetime" => $_POST['start_datetime'],
         "end_datetime" => $_POST['end_datetime'],
         "timezone" => $_POST['timezone'],
-    );   
+    );
     $headers = [
         'x-api-key' => TAOH_CREATE_GOOGLE_MEET_API_KEY,
         'Content-Type' => 'application/json'
@@ -427,15 +427,12 @@ function taoh_add_video_chat()
     $keyslug = hash('crc32', $_POST['network_title'].$_POST['parent_keyslug']);
     $room_data = array();
     if(isset($_POST['network_title'])){
-        $room_data = array( 
+        $room_data = array(
             'keyslug'=>$keyslug,
             'ptoken'=>$_POST['my_pToken'],
             'title'=>$_POST['network_title']
         );
     }
-    
-
-
     $taoh_vals = array(
         'ops'               => 'status',
         'status'            => 'updatemeets',
@@ -443,7 +440,7 @@ function taoh_add_video_chat()
         'key'               => $keyslug,
         'keyslug'           => $_POST['parent_keyslug'],
         'type'              => 'custom_room',
-        'app'                => 'networking',   
+        'app'                => 'networking',
         'ptoken'            => $_POST['my_pToken'],
         'value'             => addslashes(json_encode($room_data)),
 
@@ -893,7 +890,7 @@ function taoh_announcement_save(){
     }else{
         $taoh_vals['toenter']['files'] = 'deleted';
     }
-    
+
     $result = taoh_apicall_post( $taoh_call,  $taoh_vals);
     echo $result;die;
 }
@@ -987,7 +984,7 @@ function feed_like_put(){
   }
 
   function feed_like_get(){
-    
+
     $conttoken = $_POST['conttoken'];
     $taoh_call = "core.metrics";
     $taoh_vals = array(
@@ -1014,7 +1011,7 @@ function feed_like_put(){
   function taoh_create_update_custom_room(){
     //https://cachet4.tao.ai/taohnetworking.php?ops=status&status=updatemeets&
     //code=tc2asi3iida2&key=bbbbbbb&keyslug=111111111&type=custom_room&debug=1&app=networking&ptoken=02d7cgo61ll9
-   
+
     $keyslug = hash('crc32', $_POST['room_name'].$_POST['parent_keyslug']);
     //$keyslug = hash('crc32', $_POST['network_title'].'_room'.$_POST['parent_keyslug']);
     $room_data = array();
@@ -1023,9 +1020,6 @@ function feed_like_put(){
         'ptoken'=>$_POST['my_pToken'],
         'title'=>$_POST['room_name']);
     }
-    
-
-
     $taoh_vals = array(
         'ops'               => 'status',
         'status'            => 'updatemeets',
@@ -1033,7 +1027,7 @@ function feed_like_put(){
         'key'               => $keyslug,
         'keyslug'           => $_POST['parent_keyslug'],
         'type'              => 'custom_room',
-        'app'                => 'networking',   
+        'app'                => 'networking',
         'ptoken'            => $_POST['my_pToken'],
         'value'             => addslashes(json_encode($room_data)),
         //'debug'             => 1
@@ -1052,7 +1046,7 @@ function feed_like_put(){
         die();
     }
 
-    
+
     echo $room_data_json;
     die();
   }
@@ -1061,7 +1055,7 @@ function feed_like_put(){
 
     //https://cachet4.tao.ai/taohnetworking.php?ops=status&status=getmeets&code=tc2asi3iida2
     //&key=aaaaaaaaa&keyslug=111111111&type=custom_room&debug=1&app=networking
-    
+
     $taoh_vals = array(
         'ops'               => 'status',
         'status'            => 'getmeets',
@@ -1070,7 +1064,7 @@ function feed_like_put(){
         'ptoken'            => $_POST['my_pToken'],
         'keyslug'           => $_POST['parent_keyslug'],
         'type'              => 'custom_room',
-        'app'                => 'networking',       
+        'app'                => 'networking',
         //'debug'             => 1
     );
 
@@ -1090,9 +1084,9 @@ function feed_like_put(){
   function taoh_create_video(){
     $room_name = $_POST['video_name'];
     $room_id = $_POST['room_id'];
-    
+
      $combined = $_POST['video_name'].''.time();
-    
+
 
     // Calculate the CRC32 hash of the combined string
     $crc = crc32($combined);
@@ -1101,7 +1095,7 @@ function feed_like_put(){
 
     $result = json_encode(array(
         'my_link' => $my_link,
-        
+
     ));
     header('Content-Type: application/json; charset=utf-8');
 
@@ -1111,10 +1105,10 @@ function feed_like_put(){
 
   function taoh_add_video_chat_for_room($room_name)
 {
-    
+
     // Calculate the CRC32 hash of the combined string
     $crc = '';
-    
+
 
     $my_link = TAOH_VIDEO_CONF_LINK . urlencode($room_name). '_room' . $crc . '';
     $other_link = TAOH_VIDEO_CONF_LINK . urlencode($room_name) . '_room' . $crc . '';
@@ -1152,15 +1146,12 @@ function taoh_create_channel()
             'channel_name' => $channel_name,
             'channel_description' => $channel_description,
             'channel_passcode' => $_POST['channelpasscode'] ?? '',
-            'channel_ticket_type' => $_POST['channel_ticket_type'] ?? '', 
-            'channel_created_by' => 'user',    
+            'channel_ticket_type' => $_POST['channel_ticket_type'] ?? '',
+            'channel_created_by' => 'user',
             'channel_data' => [],
             'type' => TAOH_CHAT_FORUM ?? 3,
             'token' => taoh_get_api_token(1)
         );
-
-        
-        
         if(isset($_POST['channel_video_url']) && $_POST['channel_video_url'] != ''){
             $taoh_vals['channel_video_url'] = $_POST['channel_video_url'];
         }
@@ -1185,7 +1176,7 @@ function taoh_create_channel()
 
 function taoh_channel_send_message()
 {
-    $channel_type = TAOH_CHANNEL_DISSCUSSION ?? 1;    
+    $channel_type = TAOH_CHANNEL_DISSCUSSION ?? 1;
 
     $taoh_vals = array(
         "ops" => 'channel_message',
@@ -1198,7 +1189,7 @@ function taoh_channel_send_message()
         'parent_id' => $_POST['parent_id'] ?? 0,
         'channel_id' => $_POST['channel_id'] ?? '',
         'channel_type' => $channel_type,
-        'event_token' => $_POST['event_token'] ?? '', 
+        'event_token' => $_POST['event_token'] ?? '',
         'type' => TAOH_CHAT_FORUM ?? 3,
         'code' => TAOH_OPS_CODE,
         'sent_time' => $_POST['sent_time'],
@@ -1233,7 +1224,7 @@ function taoh_direct_send_message()
     $channel_type = TAOH_CHANNEL_DIRECT_MESSAGE ?? 2;
 
     $other_ptoken  = $_POST['other_ptoken'];
-      
+
 
     $taoh_vals = array(
         "ops" => 'channel_message',
@@ -1242,7 +1233,7 @@ function taoh_direct_send_message()
         'keyslug' => $_POST['key'],
         'with' => $other_ptoken,
         'message' => urlencode($_POST['message']),
-        'user_type' => $_POST['user_type'] ?? 'user',       
+        'user_type' => $_POST['user_type'] ?? 'user',
         'channel_id' => $_POST['channel_id'] ?? '',
         'channel_type' => $channel_type,
         'type' => TAOH_CHAT_NETWORK ?? 0,
@@ -1299,7 +1290,7 @@ function taoh_channel_like_message()
         'message_key' => $taoh_vals['message_key'],
         'message_id' => $taoh_vals['message_id'],
         'channel_type' => $taoh_vals['channel_type'],
-    ]];   
+    ]];
 
     $result = taoh_post(TAOH_CACHE_CHAT_URL, $taoh_vals);
     $return = json_decode($result, true);
@@ -1327,7 +1318,7 @@ function taoh_channel_pin_message()
         'sent_time' => $_POST['sent_time'],
         'token' => taoh_get_api_token(1),
         'pin' => $_POST['pin'],
-        'pin_from' => $_POST['pinFrom'], 
+        'pin_from' => $_POST['pinFrom'],
         'chat_with' => $_POST['chatWith'],
         'unpin_old' => $_POST['unpinOld'],
         //'debug' => 1
@@ -1341,10 +1332,10 @@ function taoh_channel_pin_message()
         'message_key' => $taoh_vals['message_key'],
         'message_id' => $taoh_vals['message_id'],
         'channel_type' => $taoh_vals['channel_type'],
-        'pin_from' => $taoh_vals['pin_from'], 
-        'chat_from' => $taoh_vals['key'], 
-        'chat_with' => $taoh_vals['chat_with'], 
-    ]];   
+        'pin_from' => $taoh_vals['pin_from'],
+        'chat_from' => $taoh_vals['key'],
+        'chat_with' => $taoh_vals['chat_with'],
+    ]];
 
     $result = taoh_post(TAOH_CACHE_CHAT_URL, $taoh_vals);
     $return = json_decode($result, true);
@@ -1380,7 +1371,7 @@ function taoh_speed_networking_add_user()
         'keyslug' => $_POST['keyslug'],
         'code' => TAOH_OPS_CODE,
         //'debug' => 1
-    ); 
+    );
 
     $taoh_vals['redis_action'] = 'speed_networking_add_user';
     $taoh_vals['redis_store'] = 'taoh_intaodb_NTW';
@@ -1406,7 +1397,7 @@ function taoh_speed_networking_block_user()
         'keyslug' => $_POST['keyslug'],
         'code' => TAOH_OPS_CODE
     );
-    
+
     $taoh_vals['redis_action'] = 'speed_networking_block_user';
     $taoh_vals['redis_store'] = 'taoh_intaodb_NTW';
     $taoh_vals['speed_networking'] = ['data' => [
@@ -1432,14 +1423,14 @@ function taoh_speed_networking_connect_user()
         'keyslug' => $_POST['keyslug'],
         'code' => TAOH_OPS_CODE,
         //'debug' => 1
-    ); 
+    );
     $taoh_vals['redis_action'] = 'speed_networking_connect';
     $taoh_vals['redis_store'] = 'taoh_intaodb_NTW';
     $taoh_vals['speed_networking'] = ['data' => [
         'room' => $taoh_vals['keyslug'],
         'chat_from' => $taoh_vals['key'],
         'chat_with' => $taoh_vals['chatWith'],
-    ]];    
+    ]];
 
     $result = taoh_post(TAOH_CACHE_CHAT_URL, $taoh_vals);
     $return = json_decode($result, true);
@@ -1460,8 +1451,8 @@ function taoh_speed_networking_connect_user_update()
         'channel_type' => $_POST['channel_type'],
         'keyword' => $_POST['keyword'] ?? 'club',
         //'debug' => 1
-    ); 
-    
+    );
+
     $result = taoh_post(TAOH_CHAT_NET_URL, $taoh_vals);
     $return = json_decode($result, true);
     echo json_encode($return);
@@ -1478,7 +1469,7 @@ function taoh_speed_networking_get_user()
         'direction' => $_POST['direction'],
         'keyslug' => $_POST['keyslug'],
         'code' => TAOH_OPS_CODE
-    ); 
+    );
 
     $result = taoh_post(TAOH_CACHE_CHAT_URL, $taoh_vals);
     $return = json_decode($result, true);
@@ -1493,23 +1484,23 @@ function taoh_speed_networking_connect_user_get()
         'key' => $_POST['key'],
         'keyslug' => $_POST['keyslug'],
         'code' => TAOH_OPS_CODE
-    ); 
-    
+    );
+
     $result = taoh_post(TAOH_CACHE_CHAT_URL, $taoh_vals);
     $return = json_decode($result, true);
     echo json_encode($return);
 }
 
 function taoh_create_channel_from_ticket()
-{    
+{
 
     if($_POST['streaming_link'] != '') {
             $channel_name = 'Presentation Room';
             $channel_description = 'Presentation Room';
-            
+
             $channel_type =  1; // 1 = discussion channel, 2 = 1-1 channel, 3 = ticket channel
             $channel_id = generateSecureSlug($_POST['room_id'].'watch-party'.$channel_name, 16);
-            
+
             $taoh_vals = array(
                 "ops" => 'channel',
                 'action' => 'create',
@@ -1527,24 +1518,24 @@ function taoh_create_channel_from_ticket()
                 'token' => taoh_get_api_token(1),
                //'debug' =>1,
             );
-                
+
             $result = taoh_post(TAOH_CACHE_CHAT_URL, $taoh_vals);
             $return = json_decode($result, true);
-             
+
     }
     //die();
     if ($_POST['livenow_channels'] != '') {
 
         $livenow_channels = $_POST['livenow_channels'];
         $livenow_channels_array = json_decode($livenow_channels, true);
-        
+
         foreach($livenow_channels_array as $key => $value) {
 
             $channel_name = $value;
             $channel_description = $value;
             $channel_type =  1; // 1 = discussion channel, 2 = 1-1 channel, 3 = ticket channel
             $channel_id = generateSecureSlug($_POST['room_id'].$channel_name, 16);
-            
+
             $taoh_vals = array(
                 "ops" => 'channel',
                 'action' => 'create',
@@ -1562,10 +1553,10 @@ function taoh_create_channel_from_ticket()
                 'token' => taoh_get_api_token(1),
             // 'debug' =>1,
             );
-                
+
             $result = taoh_post(TAOH_CACHE_CHAT_URL, $taoh_vals);
             $return = json_decode($result, true);
-            
+
         }
 
     } else {
@@ -1619,7 +1610,7 @@ function taoh_create_channel_from_ticket()
                 $is_event_channel = 1;
                 $channel_name = $value['channel_name'];
                 $channel_description = $value['channel_desc'];
-            
+
                 $channel_type = TAOH_CHANNEL_TICKET_TYPE ?? 3; // 1 = discussion channel, 2 = 1-1 channel, 3 = ticket channel
                 $channel_id = generateSecureSlug($_POST['room_id'] . $channel_name, 16);
                 $channel_video = $value['video_channel'];
@@ -1651,15 +1642,15 @@ function taoh_create_channel_from_ticket()
             }
         }
         if ($is_event_channel == 0) {
-            
+
             $basic_channel_array = array(
-                
+
                 array('title'=>'#general', 'description'=>'📢 Announcements, updates, and all-community chatter.'),
                 array('title'=>'#intros', 'description'=>'🎤 Name, role, and what you\'re exploring.'),
                 array('title'=>'#coffee-chats', 'description'=>'💬 Spark a convo. Ask, share, or riff.'),
                 array('title'=>'#help-wanted', 'description'=>'🙋 Need a job, collab, or support? Post it here.'),
                 array('title'=>'#industry-room-tech', 'description'=>'💻 Tech talks, trends, and connections.'),
-                
+
 
             );
             //error_reporting(E_ALL);
@@ -1668,7 +1659,7 @@ function taoh_create_channel_from_ticket()
                 $channel_description = $value['description'];
                 $channel_type =  1; // 1 = discussion channel, 2 = 1-1 channel, 3 = ticket channel
                 $channel_id = generateSecureSlug($_POST['room_id'].$channel_name, 16);
-                
+
                 $taoh_vals = array(
                     "ops" => 'channel',
                     'action' => 'create',
@@ -1688,9 +1679,9 @@ function taoh_create_channel_from_ticket()
                 );
 
                 $result = taoh_post(TAOH_CACHE_CHAT_URL, $taoh_vals);
-                $return = json_decode($result, true);                
+                $return = json_decode($result, true);
             }
-        }       
+        }
 
         //default channel
        /* if(ORGANIZER_CHANNEL_ENABLE){
@@ -1711,12 +1702,12 @@ function taoh_create_channel_from_ticket()
                 'token' => taoh_get_api_token(1),
             // 'debug' =>1,
             );
-                
+
             $result = taoh_post(TAOH_CACHE_CHAT_URL, $taoh_vals);
             $return = json_decode($result, true);
         }*/
 
-    }    
+    }
 
     echo json_encode($return);
 }
@@ -1726,9 +1717,9 @@ function taoh_create_channel_with_organizer(){
     $target = $_POST['chatwith'];
     $room_id = $_POST['room_id'];
 
-    
+
     if (!empty($sender) && !empty($target)) {
-       
+
         $channel_name = $_POST['ptoken'] . ' - organizer';
         $channel_description = 'Chat with the organizer of this event.';
         $channel_slug_data = [$room_id, $sender, $target];
@@ -1833,7 +1824,7 @@ function taoh_track_activities(){
         "action" => 'saveActivity',
         'room_id' => $_POST['room_id'],
         'key' => $_POST['ptoken'],
-        'track_data' => json_encode($_POST['track_data']), 
+        'track_data' => json_encode($_POST['track_data']),
         'code' => TAOH_OPS_CODE,
         //'debug' => 1,
     );
@@ -1855,9 +1846,6 @@ function taoh_get_activities(){
     echo $result;
     taoh_exit();
 }
-
-
-
 
 /*============================================= /New Networking ================================================================*/
 
@@ -2009,7 +1997,7 @@ function taoh_ntw_get_channels()
 
 //    $taoh_vals['debug'] = 1;
 //    echo taoh_post(TAOH_CHAT_NET_URL, $taoh_vals);exit();
-    
+
     $result = taoh_post(TAOH_CHAT_NET_URL, $taoh_vals);
     echo $result;
 }
@@ -2066,7 +2054,7 @@ function taoh_ntw_join_channel()
 
 //    $taoh_vals['debug'] = 1;
 //    echo taoh_post(TAOH_CHAT_NET_URL, $taoh_vals);exit();
-    
+
     $result = taoh_post(TAOH_CHAT_NET_URL, $taoh_vals);
     echo $result;
 }
@@ -2198,7 +2186,7 @@ function taoh_ntw_send_message()
         'message': message_text,
         'key': my_pToken,
         'taoh_secret': taoh_secret,
-        'room_title': room_title,                    
+        'room_title': room_title,
         'source': roomslug,
         'channel_name': channel_name
     */
@@ -2219,8 +2207,8 @@ function taoh_ntw_send_message()
         'source' => $_POST['source'],
         'channel_name' => $_POST['channel_name'] ?? '',
         //'debug' => 1
-    ); 
-    
+    );
+
     $result = taoh_post(TAOH_CHAT_NET_URL, $taoh_vals);
     $return = json_decode($result, true);
     echo json_encode($return);
@@ -2238,8 +2226,8 @@ function taoh_ntw_get_channel_type()
         'key' => $_POST['key'],
         'channelId' => $_POST['channel_id'],
         //'debug' => 1
-    ); 
-    
+    );
+
     $result = taoh_post(TAOH_CHAT_NET_URL, $taoh_vals);
     $return = json_decode($result, true);
     echo json_encode($return);
@@ -2259,8 +2247,8 @@ function taoh_ntw_get_channel_info()
         'eventtoken' => $_POST['keyword'] ?? 'club',
         'type' => $_POST['channel_type'],
         //'debug' => 1
-    ); 
-    
+    );
+
     $result = taoh_post(TAOH_CHAT_NET_URL, $taoh_vals);
     $return = json_decode($result, true);
     echo json_encode($return);
@@ -2270,7 +2258,7 @@ function taoh_ntw_add_reply_message()
 {
     $message_data = array(
         "text" => isset($_POST['message']) ? $_POST['message'] : "",
-        "ptoken" => $_POST['key'],        
+        "ptoken" => $_POST['key'],
         "parent_message_id" => isset($_POST['parent_message_id']) ?  $_POST['parent_message_id'] : "",
         "timestamp" => time()
     );
@@ -2290,8 +2278,8 @@ function taoh_ntw_add_reply_message()
         'source' => $_POST['source'],
         'channel_name' => $_POST['channel_name'] ?? '',
         //'debug' => 1
-    ); 
-    
+    );
+
     $result = taoh_post(TAOH_CHAT_NET_URL, $taoh_vals);
     $return = json_decode($result, true);
     echo json_encode($return);
@@ -2313,7 +2301,7 @@ function taoh_pin_message()
         'keyword' => $_POST['keyword'] ?? 'club',
         //'debug' => 1
     );
-    
+
     $result = taoh_post(TAOH_CHAT_NET_URL, $taoh_vals);
     $return = json_decode($result, true);
     echo json_encode($return);
@@ -2333,8 +2321,8 @@ function taoh_ntw_get_messages()
         'lastTimestamp' => $_POST['last_timestamp'],
         'keyword' => $_POST['keyword'] ?? 'club',
         //'debug' => 1
-    ); 
-    
+    );
+
     $result = taoh_post(TAOH_CHAT_NET_URL, $taoh_vals);
     $return = json_decode($result, true);
     echo json_encode($return);
@@ -2409,7 +2397,7 @@ function taoh_ntw_speed_networking_add_user_old()
         'keyword' => $_POST['keyword'] ?? 'club',
         'channel_type' => $_POST['channel_type'],
         'debug' => 1
-    ); 
+    );
 
     $result = taoh_post(TAOH_CACHE_CHAT_URL, $taoh_vals);
     $return = json_decode($result, true);
@@ -2417,7 +2405,7 @@ function taoh_ntw_speed_networking_add_user_old()
 }
 
 function taoh_ntw_speed_networking_add_user()
-{    
+{
     $taoh_vals = array(
         "ops" => 'speed_networking',
         'action' => 'speed_networking_add_user',
@@ -2428,7 +2416,7 @@ function taoh_ntw_speed_networking_add_user()
         'channel_type' => $_POST['channel_type'],
         'code' => TAOH_OPS_CODE,
         //'debug' => 1
-    ); 
+    );
 
     $result = taoh_post(TAOH_CHAT_NET_URL, $taoh_vals);
     $return = json_decode($result, true);
@@ -2436,7 +2424,7 @@ function taoh_ntw_speed_networking_add_user()
 }
 
 function taoh_ntw_add_activity_channel()
-{    
+{
     $taoh_vals = array(
         "ops" => 'channel_message',
         'action' => 'add_activity_message',
@@ -2456,7 +2444,7 @@ function taoh_ntw_add_activity_channel()
 }
 
 function taoh_ntw_get_activity_channel()
-{    
+{
     $taoh_vals = array(
         "ops" => 'channel_message',
         'action' => 'get_activity_message',
@@ -2487,7 +2475,7 @@ function taoh_ntw_speed_networking_block_user()
         'keyword' => $_POST['keyword'],
         'code' => TAOH_OPS_CODE
     );
-    
+
     $taoh_vals['redis_action'] = 'speed_networking_block_user';
     $taoh_vals['redis_store'] = 'taoh_intaodb_NTW';
     $taoh_vals['speed_networking'] = ['data' => [
@@ -2516,7 +2504,7 @@ function taoh_ntw_speed_networking_connect_user()
         'keyslug' => $_POST['keyslug'],
         'code' => TAOH_OPS_CODE,
         //'debug' => 1
-    ); 
+    );
 
     $result = taoh_post(TAOH_CHAT_NET_URL, $taoh_vals);
     $return = json_decode($result, true);
@@ -2535,11 +2523,11 @@ function taoh_ntw_speed_networking_connect_user_update()
         'status' => $_POST['status'],
         'channel_id' => $_POST['channel_id'],
         'channel_type' => $_POST['channel_type'],
-        'keyword' => $_POST['keyword'] ?? 'club',        
+        'keyword' => $_POST['keyword'] ?? 'club',
         'videolink' => $_POST['videolink'],
         //'debug' => 1
-    ); 
-    
+    );
+
     $result = taoh_post(TAOH_CHAT_NET_URL, $taoh_vals);
     $return = json_decode($result, true);
     echo json_encode($return);
@@ -2557,11 +2545,11 @@ function taoh_ntw_speed_networking_connect_user_revoke()
         'status' => $_POST['status'],
         'channel_id' => $_POST['channel_id'],
         'channel_type' => $_POST['channel_type'],
-        'keyword' => $_POST['keyword'] ?? 'club',        
+        'keyword' => $_POST['keyword'] ?? 'club',
         'videolink' => $_POST['videolink'],
         //'debug' => 1
-    ); 
-    
+    );
+
     $result = taoh_post(TAOH_CHAT_NET_URL, $taoh_vals);
     $return = json_decode($result, true);
     echo json_encode($return);
@@ -2578,7 +2566,7 @@ function taoh_ntw_speed_networking_get_user()
         'direction' => $_POST['direction'],
         'keyslug' => $_POST['keyslug'],
         'code' => TAOH_OPS_CODE
-    ); 
+    );
 
     $result = taoh_post(TAOH_CHAT_NET_URL, $taoh_vals);
     $return = json_decode($result, true);
@@ -2593,8 +2581,8 @@ function taoh_ntw_speed_networking_connect_user_get()
         'key' => $_POST['key'],
         'keyslug' => $_POST['keyslug'],
         'code' => TAOH_OPS_CODE
-    ); 
-    
+    );
+
     $result = taoh_post(TAOH_CHAT_NET_URL, $taoh_vals);
     $return = json_decode($result, true);
     echo json_encode($return);
@@ -2630,7 +2618,7 @@ function taoh_ntw_init_speed_networking() {
         "ops"       => 'speed_networking',
         "action"    => 'init_speed_networking',
         "roomSlug"  => $_POST['keyslug'],
-        "key"       => $_POST['key'],        
+        "key"       => $_POST['key'],
         'channelType' => $_POST['channel_type'] ?? 6,
         "code"      => TAOH_OPS_CODE,
         'keyword' => $_POST['keyword'] ?? 'club',

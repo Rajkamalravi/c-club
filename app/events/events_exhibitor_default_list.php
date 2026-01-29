@@ -73,9 +73,6 @@
         <a class="btn bor-btn">More Info</a>
     </li>
 </ul>
-
-
-
 <ul class="exh-v2-con lblur">
 
     <li class="exh-v2-list p-3 px-lg-5 light-dark-card d-flex align-items-center justify-content-between flex-wrap" style="gap: 12px;">
@@ -96,7 +93,3 @@
 
 
 <!-- new exh list end -->
-
-
-
-

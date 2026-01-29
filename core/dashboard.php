@@ -2,7 +2,7 @@
 $user_data = taoh_user_all_info();
 //print_r($user_data);exit();
 if ( ! isset( $user_data->fname ) && defined( 'TAOH_API_TOKEN' ) && defined('TAOH_SETTINGS_URL') && TAOH_API_TOKEN ) {
-    taoh_redirect(TAOH_SITE_URL_ROOT.'/createacc'); 
+    taoh_redirect(TAOH_SITE_URL_ROOT.'/createacc');
     taoh_exit();
 }
 
@@ -43,7 +43,7 @@ $taoh_vals = array(
     'limit' => 10,
     'page' => $_GET['page'],
     // 'cfcc5h' => 1 //cfcache newly added
-   
+
 );
 $cache_name = $taoh_call.'_' . $type. '_' . hash('sha256', $taoh_call . serialize($taoh_vals));
 //$taoh_vals[ 'cfcache' ] = $cache_name;
@@ -123,7 +123,7 @@ if ( ! taoh_user_is_logged_in() || $showall ){
                     <div class="">
                         <div class="question-main-bar">
                              <div class="questions-snippet">
-                                <div id="loaderArea"></div> 
+                                <div id="loaderArea"></div>
                                 <div id="activityArea">Loading ...</div>
                                 <div id="pagination"></div>
                                 <!-- <div class="media-card media--card align-items-center">
@@ -133,12 +133,12 @@ if ( ! taoh_user_is_logged_in() || $showall ){
                                                 <img width="51px" src="./assets/images/avatar1.png" alt="">
                                             </div>
                                             <div><p class="user-name-title">Editorsdesk<span style="display: block">2 mins ago</span></p></div>
-                                        </div>                                        
+                                        </div>
                                         <div class="dec-expand">
                                             <p>How to Write a Compelling Resume <br>What People are talking about resume writing <br>“How can I tailor my resume to align better with the specific job I'm applying for and ensure it resonates with potential employers?” <br>“Could you provide guidance on the most effective ways to highlight my achievements and skills on my resume without it seeming too verbose or cluttered?” <br>“What's the best way to handle gaps in employment history or other potential red flags on my resume? ”... <a href="#">See more</a></p>
                                         </div>
                                     </div>
-                                    
+
                                     <div class="act-content-img">
                                         <img src="./assets/images/activity1.png" alt="">
                                         <h2>How to Write a Compelling Resume</h2>
@@ -149,12 +149,12 @@ if ( ! taoh_user_is_logged_in() || $showall ){
                                                 <div class="col-lg-4 text-center"><a href="#"><i class="la la-comment mr-1 text-black"></i><span>7</span> Comment(S)</a></div>
                                                 <div class="col-lg-4 text-center"><a href="#"><i class="la la-share mr-1 text-black"></i><span>5</span> Share(s)</a></div>
                                             </div>
-                                    </div>  
+                                    </div>
                                 </div> -->
                             </div>
                         </div>
                     </div>
-                    
+
             </div><!-- end col-lg-7 -->
 
 			<div class="col-lg-3">
@@ -171,11 +171,11 @@ if ( ! taoh_user_is_logged_in() || $showall ){
                                                 <div class="divider"><span></span></div>
                                                 <?php
                                                 //if (isset($_GET[ 'we_status' ]) && $_GET[ 'we_status' ] == 'success' ){?>
-                                                   
+
                                                     <div class="alert alert-success" role="alert" id="success-alert">
                                                         Thank you for contacting us. We will get in touch within 24-48hours.
                                                     </div>
-                                                    
+
                                                     <?php //} ?>
                                         </div>
                                         <div class="form-group">
@@ -212,7 +212,7 @@ if ( ! taoh_user_is_logged_in() || $showall ){
                         </div>
                     </div> -->
                 <?php //} ?>
-            
+
             </div><!-- end col-lg-3 -->
         </div><!-- end row -->
     </div><!-- end container -->
@@ -424,7 +424,7 @@ if ( ! taoh_user_is_logged_in() || $showall){
 ?>
 
 <script>
-    
+
 	let itemsPerPage = 10;
 	let currentPage = 1;
     let totalItems = 0; //this will be rewriiten on response of jobs on line 363
@@ -488,12 +488,12 @@ function render_activity_template(data, slot) {
                             <img width="51px" src="${(v.user.avatar)}" alt="avatar">
                         </div>
                         <div><p class="user-name-title">${(v.activity.title)}<span style="display: block">2 mins ago</span></p></div>
-                    </div>                                        
+                    </div>
                     <div class="dec-expand">
                         <p>How to Write a Compelling Resume <br>What People are talking about resume writing <br>“How can I tailor my resume to align better with the specific job I'm applying for and ensure it resonates with potential employers?” <br>“Could you provide guidance on the most effective ways to highlight my achievements and skills on my resume without it seeming too verbose or cluttered?” <br>“What's the best way to handle gaps in employment history or other potential red flags on my resume? ”... <a href="#">See more</a></p>
                     </div>
                 </div>
-                
+
                 <div class="act-content-img">
                     <img src="./assets/images/activity1.png" alt="">
                     <h2>How to Write a Compelling Resume</h2>
@@ -504,7 +504,7 @@ function render_activity_template(data, slot) {
                             <div class="col-lg-4 text-center"><a href="#"><i class="la la-comment mr-1 text-black"></i><span>7</span> Comment(S)</a></div>
                             <div class="col-lg-4 text-center"><a href="#"><i class="la la-share mr-1 text-black"></i><span>5</span> Share(s)</a></div>
                         </div>
-                </div>   
+                </div>
         </div>`);
     });
     if(totalItems > 20) {
@@ -521,50 +521,50 @@ function render_activity_template(data, slot) {
     }
     // Open the database
     const request = indexedDB.open('DB_name', 1);
-    
-    request.onerror = function(event) {  
-        console.log(" The function shows error! ");  
+
+    request.onerror = function(event) {
+        console.log(" The function shows error! ");
     };
 
-    request.onsuccess = function(event) {  
-        console.log(" The function shows success! ");  
+    request.onsuccess = function(event) {
+        console.log(" The function shows success! ");
     };
 
-      
-    // create the Names object store and indexes  
-     request.onupgradeneeded = (event) => {  
-        let db_variable = event.target.result;  
-        // create the Names object store  
-        // with auto-increment id  
-        let store_variable = db_variable.createObjectStore('Names', {  
-            autoIncrement: true  
-        });  
-        // create an index on the email property,  
-        let index_data = store_variable.createIndex('email', 'email', {  
-            unique: true  
-        });  
+
+    // create the Names object store and indexes
+     request.onupgradeneeded = (event) => {
+        let db_variable = event.target.result;
+        // create the Names object store
+        // with auto-increment id
+        let store_variable = db_variable.createObjectStore('Names', {
+            autoIncrement: true
+        });
+        // create an index on the email property,
+        let index_data = store_variable.createIndex('email', 'email', {
+            unique: true
+        });
     };
 
-    function insertContact(db_variable, name) {  
-        // create a new transaction for the database  
-        const text_data = db_variable.transaction('Names', 'readwrite');  
-        // get the Names object store_variable  
-        const store_variable = text_data.objectStore('Names');  
-        let db_que = store_variable.put(name);  
-        // handle success of the transaction  
-        db_que.onsuccess = function (event) {  
-            console.log(event);  
-        };  
-        // handle the error of the transaction  
-        db_que.onerror = function (event) {  
-            console.log(event.target.errorCode);  
-        }  
-        // close the database when the transaction completes  
-        text_data.oncomplete = function () {  
-            db_variable.close();  
-        };  
+    function insertContact(db_variable, name) {
+        // create a new transaction for the database
+        const text_data = db_variable.transaction('Names', 'readwrite');
+        // get the Names object store_variable
+        const store_variable = text_data.objectStore('Names');
+        let db_que = store_variable.put(name);
+        // handle success of the transaction
+        db_que.onsuccess = function (event) {
+            console.log(event);
+        };
+        // handle the error of the transaction
+        db_que.onerror = function (event) {
+            console.log(event.target.errorCode);
+        }
+        // close the database when the transaction completes
+        text_data.oncomplete = function () {
+            db_variable.close();
+        };
     }
-    
+
     function getAllContacts(db) {
         const txn = db.transaction('Names', "readonly");
         const objectStore = txn.objectStore('Names');
@@ -603,7 +603,7 @@ function render_activity_template(data, slot) {
             console.log(event.target.errorCode);
         }
 
-        // close the database once the 
+        // close the database once the
         // transaction completes
         txn.oncomplete = function () {
             db.close();
@@ -611,8 +611,8 @@ function render_activity_template(data, slot) {
 
     }
 
-    request.onsuccess = (event) => {  
-        const db_variable = event.target.result;  
+    request.onsuccess = (event) => {
+        const db_variable = event.target.result;
         insertContact(db_variable, {
             email: 'john.doe@outlook.com',
             firstName: 'John',
@@ -624,12 +624,12 @@ function render_activity_template(data, slot) {
             firstName: 'Jane',
             lastName: 'Doe'
         });
-        
+
         // get all contacts
         getAllContacts(db_variable);
         //deleteContact(db_variable, 1);
     };
-})();  */ 
+})();  */
 
 </script>
 

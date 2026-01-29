@@ -5,17 +5,17 @@
             padding-left: 10px;
             color: yellow;
         }
-  
+
         @keyframes animate {
-  
+
             0% {
                 content: "Recruiters";
             }
-  
+
             50% {
                 content: "Seekers";
             }
-  
+
             75% {
                 content: "Professionals";
             }
@@ -24,6 +24,6 @@
                 content: "Communities";
             }
         }
-    </style>  
+    </style>
 
 : <span> </span>

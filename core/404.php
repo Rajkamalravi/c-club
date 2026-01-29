@@ -1,5 +1,5 @@
-<?php  
-taoh_get_header(); 
+<?php
+taoh_get_header();
 ?>
 <style>
     .color{
@@ -10,7 +10,7 @@ taoh_get_header();
     text-align: center;
     font-size: 20pt;
     margin: 0;
-    
+
   }
   .sub-text{
     color: white;
@@ -36,8 +36,8 @@ taoh_get_header();
     <p class="main-text">In this moment of serendipity, let us ponder the wisdom of Obvious Baba:</p>
     <p class="sub-text">
       Ah, dear wanderer, the path you seek appears to be veiled in mystery. Obvious Baba
-      reminds you that, much like life itself, <br />the digital realm too holds unexpected 
-      twists and turns. Take a deep breath, and let your inner compass guide you back to the 
+      reminds you that, much like life itself, <br />the digital realm too holds unexpected
+      twists and turns. Take a deep breath, and let your inner compass guide you back to the
       <br />known shores.<br /><br />
       Now, gently close your eyes, count to three, and click the button below to retrace your steps. <br />May clarity and wisdom accompany you on your digital pilgrimage."</span>
     <div class="text-center p-0 mt-4 mb-4 rounded-0 bg-transparent">

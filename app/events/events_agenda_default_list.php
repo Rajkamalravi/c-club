@@ -1,19 +1,19 @@
 <!-- new agenda template -->
 <!-- blur content -->
 <ul class="spk-v2-con lblur">
-    
+
     <li class="spk-v2-list p-3 px-lg-5 light-dark-card">
         <div class="d-flex flex-wrap-reverse align-items-center justify-content-between mb-3" style="gap: 12px;">
             <div class="d-flex flex-wrap align-items-center" style="gap: 6px;">
                 <p class="spk-info-badge mr-1">07 Apr 25, 01:00pm to 02:00pm</p>
                 <p class="spk-info-badge">Work Culture Hall</p>
             </div>
-            <div class="d-flex ml-auto" style="gap: 12px;">  
+            <div class="d-flex ml-auto" style="gap: 12px;">
                 <a class="svg-opt-con btn">
                     <svg style="min-width: fit-content;" width="12" height="18" viewBox="0 0 12 18" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path d="M5.53682 13.4304L0.767828 17.175C0.758399 17.1566 0.75 17.1296 0.75 17.0942V1.68243C0.75 1.08455 1.16471 0.75 1.5 0.75H10.5C10.8353 0.75 11.25 1.08455 11.25 1.68243V17.0942C11.25 17.1296 11.2416 17.1565 11.2322 17.175L6.46318 13.4304L6 13.0667L5.53682 13.4304Z" stroke="black" stroke-width="1.5"></path>
                     </svg>
-                </a>        
+                </a>
                 <a class="svg-opt-con btn">
                     <svg style="min-width: fit-content;" width="14" height="10" viewBox="0 0 14 10" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path d="M6.29399 9.17178C6.68448 9.60983 7.31864 9.60983 7.70914 9.17178L13.7071 2.44337C14.0976 2.00532 14.0976 1.29393 13.7071 0.85588C13.3166 0.417832 12.6825 0.417832 12.292 0.85588L7 6.7923L1.70802 0.859384C1.31753 0.421336 0.683365 0.421336 0.292871 0.859384C-0.0976236 1.29743 -0.0976236 2.00882 0.292871 2.44687L6.29086 9.17529L6.29399 9.17178Z" fill="black"></path>
@@ -40,12 +40,12 @@
                 <p class="spk-info-badge mr-1">07 Apr 25, 01:00pm to 02:00pm</p>
                 <p class="spk-info-badge">Work Culture Hall</p>
             </div>
-            <div class="d-flex ml-auto" style="gap: 12px;">  
+            <div class="d-flex ml-auto" style="gap: 12px;">
                 <a class="svg-opt-con btn">
                     <svg style="min-width: fit-content;" width="12" height="18" viewBox="0 0 12 18" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path d="M5.53682 13.4304L0.767828 17.175C0.758399 17.1566 0.75 17.1296 0.75 17.0942V1.68243C0.75 1.08455 1.16471 0.75 1.5 0.75H10.5C10.8353 0.75 11.25 1.08455 11.25 1.68243V17.0942C11.25 17.1296 11.2416 17.1565 11.2322 17.175L6.46318 13.4304L6 13.0667L5.53682 13.4304Z" stroke="black" stroke-width="1.5"></path>
                     </svg>
-                </a>        
+                </a>
                 <a class="svg-opt-con btn">
                     <svg style="min-width: fit-content;" width="14" height="10" viewBox="0 0 14 10" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path d="M6.29399 9.17178C6.68448 9.60983 7.31864 9.60983 7.70914 9.17178L13.7071 2.44337C14.0976 2.00532 14.0976 1.29393 13.7071 0.85588C13.3166 0.417832 12.6825 0.417832 12.292 0.85588L7 6.7923L1.70802 0.859384C1.31753 0.421336 0.683365 0.421336 0.292871 0.859384C-0.0976236 1.29743 -0.0976236 2.00882 0.292871 2.44687L6.29086 9.17529L6.29399 9.17178Z" fill="black"></path>
@@ -72,12 +72,12 @@
                 <p class="spk-info-badge mr-1">07 Apr 25, 01:00pm to 02:00pm</p>
                 <p class="spk-info-badge">Work Culture Hall</p>
             </div>
-            <div class="d-flex ml-auto" style="gap: 12px;">  
+            <div class="d-flex ml-auto" style="gap: 12px;">
                 <a class="svg-opt-con btn">
                     <svg style="min-width: fit-content;" width="12" height="18" viewBox="0 0 12 18" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path d="M5.53682 13.4304L0.767828 17.175C0.758399 17.1566 0.75 17.1296 0.75 17.0942V1.68243C0.75 1.08455 1.16471 0.75 1.5 0.75H10.5C10.8353 0.75 11.25 1.08455 11.25 1.68243V17.0942C11.25 17.1296 11.2416 17.1565 11.2322 17.175L6.46318 13.4304L6 13.0667L5.53682 13.4304Z" stroke="black" stroke-width="1.5"></path>
                     </svg>
-                </a>        
+                </a>
                 <a class="svg-opt-con btn">
                     <svg style="min-width: fit-content;" width="14" height="10" viewBox="0 0 14 10" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path d="M6.29399 9.17178C6.68448 9.60983 7.31864 9.60983 7.70914 9.17178L13.7071 2.44337C14.0976 2.00532 14.0976 1.29393 13.7071 0.85588C13.3166 0.417832 12.6825 0.417832 12.292 0.85588L7 6.7923L1.70802 0.859384C1.31753 0.421336 0.683365 0.421336 0.292871 0.859384C-0.0976236 1.29743 -0.0976236 2.00882 0.292871 2.44687L6.29086 9.17529L6.29399 9.17178Z" fill="black"></path>
@@ -110,7 +110,7 @@
         <h6 class="mb-2">We are Setting things up for you !</h6>
         <p class="mb-2">You can see speaker sessions and exhibitor halls soon !</p>
         <div class="d-flex align-items-center flex-wrap" style="gap: 6px;">
-            <button type="button" class="btn banner-v2-btn mt-0 mr-1" 
+            <button type="button" class="btn banner-v2-btn mt-0 mr-1"
             >Become a Sponsor !</button>
 
             <button type="button" class="btn banner-v2-btn mt-0 mr-1">More Info !</button>
@@ -121,19 +121,19 @@
 
 <!-- blur content -->
 <ul class="spk-v2-con lblur">
-    
+
     <li class="spk-v2-list p-3 px-lg-5 light-dark-card">
         <div class="d-flex flex-wrap-reverse align-items-center justify-content-between mb-3" style="gap: 12px;">
             <div class="d-flex flex-wrap align-items-center" style="gap: 6px;">
                 <p class="spk-info-badge mr-1">07 Apr 25, 01:00pm to 02:00pm</p>
                 <p class="spk-info-badge">Work Culture Hall</p>
             </div>
-            <div class="d-flex ml-auto" style="gap: 12px;">  
+            <div class="d-flex ml-auto" style="gap: 12px;">
                 <a class="svg-opt-con btn">
                     <svg style="min-width: fit-content;" width="12" height="18" viewBox="0 0 12 18" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path d="M5.53682 13.4304L0.767828 17.175C0.758399 17.1566 0.75 17.1296 0.75 17.0942V1.68243C0.75 1.08455 1.16471 0.75 1.5 0.75H10.5C10.8353 0.75 11.25 1.08455 11.25 1.68243V17.0942C11.25 17.1296 11.2416 17.1565 11.2322 17.175L6.46318 13.4304L6 13.0667L5.53682 13.4304Z" stroke="black" stroke-width="1.5"></path>
                     </svg>
-                </a>        
+                </a>
                 <a class="svg-opt-con btn">
                     <svg style="min-width: fit-content;" width="14" height="10" viewBox="0 0 14 10" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path d="M6.29399 9.17178C6.68448 9.60983 7.31864 9.60983 7.70914 9.17178L13.7071 2.44337C14.0976 2.00532 14.0976 1.29393 13.7071 0.85588C13.3166 0.417832 12.6825 0.417832 12.292 0.85588L7 6.7923L1.70802 0.859384C1.31753 0.421336 0.683365 0.421336 0.292871 0.859384C-0.0976236 1.29743 -0.0976236 2.00882 0.292871 2.44687L6.29086 9.17529L6.29399 9.17178Z" fill="black"></path>

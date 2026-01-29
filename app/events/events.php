@@ -463,7 +463,7 @@ if (taoh_user_is_logged_in()) {
                         <!--
                     <div class="col-lg-7 mb-2 mb-lg-0 px-0">
                             <h2 class="section-title fs-24 mb-1"><?php //echo $app_data->name_slug; ?></h2>
-                            
+
                             <p class="section-desc"><?php //echo $app_data->short; ?></p>
                         </div>-->
 
@@ -477,8 +477,8 @@ if (taoh_user_is_logged_in()) {
                                     echo '</div>';
                                 }
                             } else {
-                                echo '<a 
-                                 href="javascript:void(0);" 
+                                echo '<a
+                                 href="javascript:void(0);"
                                  class="btn theme-btn login-button " aria-pressed="true" data-toggle="modal" data-target="#config-modal"
                                 ><i class="la la-sign-in mr-1"></i> Login / Signup</a>';
                             }
@@ -488,7 +488,7 @@ if (taoh_user_is_logged_in()) {
                     </div><!-- end hero-content -->
                 </div><!-- end container -->
             </section>
-    
+
 
             <?php
            // if (taoh_user_is_logged_in()) {
@@ -517,7 +517,7 @@ if (taoh_user_is_logged_in()) {
                         </div>
 
                         <div class="row d-flex justify-content-between">
-                            
+
                             <div class="row col-lg-12 no_result_div ">
                                 <div class="no_result">
                                     <img style="width:20%" src="<?php echo TAOH_SITE_URL_ROOT.'/assets/images/no_jobs_found.png';?>" alt="No Results Illustration">
@@ -578,20 +578,17 @@ if (taoh_user_is_logged_in()) {
                             </svg>
                         </div>
                     </div>
-
-
-                    
                     <button type="button" class="btn e-sh-close" data-dismiss="modal">
                         <svg width="14" height="14" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path d="M19.4172 3.41719C20.1984 2.63594 20.1984 1.36719 19.4172 0.585938C18.6359 -0.195312 17.3672 -0.195312 16.5859 0.585938L10.0047 7.17344L3.41719 0.592187C2.63594 -0.189063 1.36719 -0.189063 0.585938 0.592187C-0.195312 1.37344 -0.195312 2.64219 0.585938 3.42344L7.17344 10.0047L0.592188 16.5922C-0.189062 17.3734 -0.189062 18.6422 0.592188 19.4234C1.37344 20.2047 2.64219 20.2047 3.42344 19.4234L10.0047 12.8359L16.5922 19.4172C17.3734 20.1984 18.6422 20.1984 19.4234 19.4172C20.2047 18.6359 20.2047 17.3672 19.4234 16.5859L12.8359 10.0047L19.4172 3.41719Z" fill="white"/>
                         </svg>
                     </button>
-                    
+
 
                 </div>
                 <div class="modal-body">
                     <section class="mb-3 mt-3">
-                        
+
                         <?php taoh_share_widget(array('share_data' => $share_link, 'conttoken' => $eventtoken, 'conttype' => 'events', 'ptoken' => $ptoken, 'widget_id'=> 'social_widget')); ?>
                     </section>
                     <input type="hidden" id="share_link" value="">
@@ -602,11 +599,11 @@ if (taoh_user_is_logged_in()) {
                     <input type="hidden" id="social_conttoken" value="">
                     <input type="hidden" id="social_title" value="">
                     <input type="hidden" id="social_desc" value="">
-                    
+
 
                     <p class="text-xs"><b>* Share this with your network. Together, we’re creating a future where every career journey is supported.</b>
                 </div>
-               
+
             </div>
         </div>
     </div>
@@ -614,12 +611,12 @@ if (taoh_user_is_logged_in()) {
 
 </div>
 
-<script src="<?php echo TAOH_SITE_URL_ROOT; ?>/assets/js/event.js?v=<?php echo TAOH_CSS_JS_VERSION; ?>"></script> 
+<script src="<?php echo TAOH_SITE_URL_ROOT; ?>/assets/js/event.js?v=<?php echo TAOH_CSS_JS_VERSION; ?>"></script>
     <script>
         const isLoggedIn = <?= json_encode($taoh_user_is_logged_in); ?>;
         const isValidUser = <?= json_encode($valid_user); ?>;
         const is_rsvp = 0;
-        const dojoeventrules = <?php echo json_encode(DOJO_EVENT_LIST_MESSAGE); ?>;               
+        const dojoeventrules = <?php echo json_encode(DOJO_EVENT_LIST_MESSAGE); ?>;
         let loaderArea = $('#listloaderArea');
         let detailloaderArea = $('#detailloaderArea');
         let searchQuery = $('#searchQuery');
@@ -668,7 +665,7 @@ if (taoh_user_is_logged_in()) {
         //Initial run
 
         $(document).ready(function () {
-            
+
             $('[data-toggle="tooltip"]').tooltip();
             // Check if there's saved search state
             const savedState = sessionStorage.getItem('events_search_state');
@@ -727,7 +724,7 @@ if (taoh_user_is_logged_in()) {
                 });
                 const locationText = curUserData.full_location;       // Replace with your actual label
                 const locationValue = curUserData.full_location;       // Replace with your actual coordinates
-                if (locationText && locationText !== 'Unknown Location' && locationValue && locationValue !== 'Unknown Location') {       
+                if (locationText && locationText !== 'Unknown Location' && locationValue && locationValue !== 'Unknown Location') {
                     locationSelect.addOption({
                         location: locationText,
                         coordinates: locationValue
@@ -741,7 +738,7 @@ if (taoh_user_is_logged_in()) {
                 $('#coordinateLocation').val(locationText);
                 $("#geohash").val(curUserData.geohash);
 
-            }, 500); 
+            }, 500);
             });
 
             /*var data = {
@@ -771,7 +768,7 @@ if (taoh_user_is_logged_in()) {
         });
 
         let currentShareLink = "";
-        
+
 
         async function getUserInfo(pToken_to, ops = 'public', serverFetch = false) {
             if (!pToken_to?.trim()) return null;
@@ -809,8 +806,8 @@ if (taoh_user_is_logged_in()) {
                     console.log('getUserInfo error:', e);
                 }
             }
-			
-			
+
+
             // If userInfo not found, set default values
             if (!userInfo.ptoken) {
                 console.log('===========unknow location===')
@@ -827,7 +824,7 @@ if (taoh_user_is_logged_in()) {
 
             return userInfo;
         }
-        
+
         function delete_events_into() {
             getIntaoDb(dbName).then((db) => {
                 let dataStoreName = EVENTStore;
@@ -943,7 +940,7 @@ if (taoh_user_is_logged_in()) {
             getIntaoDb(dbName).then((db) => {
                 var currpage = currentPage - 1;
                 event_type = event_type_get;
-                
+
                 var event_list_hash = 'events'+search + geohash + queryString + currpage + itemsPerPage + postDate + from_date + to_date + event_type;
                 event_list_name = 'events_' + crc32(event_list_hash);
                 console.log(event_list_name);
@@ -1237,7 +1234,7 @@ if (taoh_user_is_logged_in()) {
                 /* if(loc_search != ''){
                     v.title = loc_search +"<br>"+ ucfirst(v.title);
                 } */
-                              
+
                 // var company_name_get = v.company.length && v.company[0] ? v.company[0].name : '';
 
                 var liked_check = get_liked_check(v.eventtoken, v.conttoken);
@@ -1261,7 +1258,7 @@ if (taoh_user_is_logged_in()) {
                     if (isLoggedIn) {
                         event_live_state = eventLiveState(v.utc_start_at || '', v.utc_end_at || '', v.locality, user_timezone);
                         is_rsvp_done = jQuery.inArray(rsvped_token, rsvp_find) !== -1 || isEventTokenPresent(v.eventtoken);
-                        
+
                         console.log(v.eventtoken+'===========>'+is_rsvp_done)
                         const setButton = (text, cls, icon, url = '') => {
                             btn_text = text;
@@ -1280,11 +1277,11 @@ if (taoh_user_is_logged_in()) {
                                 ? (isValidUser ? `<?php echo TAOH_SITE_URL_ROOT . "/" . ($app_data?->slug ?? '') . "/chat/id/events/"; ?>${v.eventtoken}` : '<?php echo TAOH_SITE_URL_ROOT . "/settings"; ?>')
                                 : '';
                             setButton(liveText, 'btn-success', `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 80" style="width: 36px"><circle cx="40" cy="40" r="28" fill="#fff"></circle>
-                                                                    
+
                                                                     <polygon points="34,28 34,52 54,40" fill="#28A745"></polygon>
-                                                                    
+
                                                                     <path d="M78 26 C84 35, 84 46, 78 54" fill="none" stroke="#fff" stroke-width="5" stroke-linecap="round"></path>
-                                                                    
+
                                                                     <path d="M88 10 C104 28, 104 54, 88 70" fill="none" stroke="#fff" stroke-width="5" stroke-linecap="round"></path>
                                                             </svg>`, liveUrl);
                         } else {
@@ -1305,7 +1302,7 @@ if (taoh_user_is_logged_in()) {
                 let event_detail_url = event_url;
                 <?php if(TAOH_LINK_CANONICAL_URL_ENABLE) { ?>
                      canonical_link = additive + '/'+`<?php echo ($app_data?->slug ?? '') . "/d/"?>${convertToSlug(taoh_title_desc_decode(v.title))}-${v.eventtoken}?con=${v.conttoken}`;
-                    event_detail_url = canonical_link; 
+                    event_detail_url = canonical_link;
                 <?php } ?>
                 // console.log('--->'+loc_query);
                 // console.log('event_detail_url : '+event_detail_url);
@@ -1317,7 +1314,7 @@ if (taoh_user_is_logged_in()) {
                 } else {
                     rsvp_link = `<button type="button" class="btn create_referral ${btn_class}" id="register_ticket" data-location="${event_detail_url}" data-title="${btoa(unescape(encodeURIComponent(v.title)))}" data-toggle="modal" data-target="#config-modal">${btn_icon} ${btn_text}</button>`;
                 }
-             
+
                 var no_image = '<?php echo TAOH_SITE_URL_ROOT . "/assets/images/event.jpg" ?>';
                 var img = newavatardisplay(v.user_avatar, v.avatar_image, '<?php echo TAOH_OPS_PREFIX;?>');
 
@@ -1327,13 +1324,13 @@ if (taoh_user_is_logged_in()) {
                 const minCost = Math.min(...costArray);
 
                 if(event_type_get == '' && (is_expired == true || (typeof v.freeze_option != 'undefined' && v.freeze_option == 1))){
-                    return true; 
+                    return true;
                 }
                 //alert('---search--'+search+'----event_url-----'+event_url)
                /*  if (data.output.total == 1 && search =='') {
                     // After:
                     saveSearchState();
-                    window.location.href = event_url; 
+                    window.location.href = event_url;
                 } else { */
 
                  //${loc_search != '' ? '<p class="event-location py-2">'+loc_search+'</p>' : '' }  commented due to hide                 var single_event = '';
@@ -1373,7 +1370,7 @@ if (taoh_user_is_logged_in()) {
 
                                     <h4 class="event-title"><a href="${event_detail_url}" data-metrics="view" class="click_metrics">${taoh_title_desc_decode(v.title)}
                                      </a></h4>
-                                    ${loc_query != '' ? '<p class="event-location event-location-border py-2">'+loc_query+'</p>' : '' }                                   
+                                    ${loc_query != '' ? '<p class="event-location event-location-border py-2">'+loc_query+'</p>' : '' }
                                     <p class="event-location py-2">${event_type != 'virtual' && v.full_location ? newgenerateLocationHTML(v.full_location) : 'Attend Online'}</p>
 
                                     <div class="event-price mb-2">
@@ -1405,7 +1402,7 @@ if (taoh_user_is_logged_in()) {
 
             });
 
-            
+
             if (data.output.total > itemsPerPage) {
                 $('#pagination').show();
                 show_pagination('#pagination');
@@ -1642,7 +1639,7 @@ if (taoh_user_is_logged_in()) {
              let timelimit = <?php echo (int)TAOH_DOJO_SUGGESTION_TIMELIMIT; ?>;
              let innertimelimit = Math.floor(timelimit / 2);
             console.log(timelimit+'------timelimit----------'+innertimelimit);
-           
+
             // Every 5 mins: refresh all contexts
             setInterval(() => {
                 refreshDojoEventContexts();
@@ -1656,7 +1653,7 @@ if (taoh_user_is_logged_in()) {
             // Initial trigger
             refreshDojoEventContexts();
             checkNextDojoEventScenario();
- 
+
 
         <?php } ?>
 
@@ -1689,9 +1686,9 @@ if (taoh_user_is_logged_in()) {
             $('#social_conttoken').val(dataptoken)
             $('#social_title').val(pagetitle)
             $('#social_desc').val(pagedesc)
-            $('#social_contype').val('events'); 
+            $('#social_contype').val('events');
             $('#social_from').val('1');
-            
+
         });
 
 

@@ -1,6 +1,6 @@
 <section>
 	<div > <!--  class="row justify-content-center mx-0 mb-3 px-3" style="gap: 12px;" -->
-		
+
 
 			<div class="text-center px-3">
 				<div class="horizontal-scroll">
@@ -33,16 +33,16 @@
 						<?php
 							if (taoh_user_is_logged_in()) {
 								if (isset($_GET['creator']) && $_GET['creator']) {
-									
+
 									echo '<li class="mr-3"><a href="' . TAOH_SITE_URL_ROOT . '/' . ($app_data?->slug ?? '') . '/post" class="btn theme-btn">Post Events</a></li>';
 									echo '<li><a href="' . TAOH_SITE_URL_ROOT . '/' . ($app_data?->slug ?? '') . '/dash" class="btn theme-btn" style="background-color: #38B653;">My Events</a></li>';
-									
+
 								}
 							} else {
 								echo '<a  aria-pressed="true" data-toggle="modal" data-target="#config-modal" class="login-button btn theme-btn mr-3"><i class="la la-sign-in mr-1"></i> Login / Signup</a>';
 							}
 						?>
-						
+
 					</ul>
 				</div>
 			</div>
@@ -60,9 +60,6 @@
 				//	}
 				?>
 			</div> -->
-
-		
-
 	</div>
 
 		<div class="search-filter-section px-3" style="max-width: 900px; margin: 0 auto;">
@@ -124,7 +121,4 @@
 				</div>
 			</form>
 		</div>
-
-		
-	
 </section>

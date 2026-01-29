@@ -1,4 +1,4 @@
-<?php 
+<?php
 if ( ! defined ( 'TAO_PAGE_TITLE' ) ) { define ( 'TAO_PAGE_TITLE', "Jobs Resources at ".TAOH_SITE_NAME_SLUG.": Gain Insights and Expertise for Successful Career Transitions and Job Searches" ); }
 if ( ! defined ( 'TAO_PAGE_DESCRIPTION' ) ) { define ( 'TAO_PAGE_DESCRIPTION', "Explore our collection of Jobs resources offering valuable insights, tips, and expertise to navigate successful career transitions and job searches at ".TAOH_SITE_NAME_SLUG.". Stay updated with the latest job market trends, uncover effective job search strategies, and master essential skills for career advancement. Elevate your job search journey with our comprehensive learning platform." ); }
 if ( ! defined ( 'TAO_PAGE_KEYWORDS' ) ) { define ( 'TAO_PAGE_KEYWORDS', "Jobs blogs at ".TAOH_SITE_NAME_SLUG.", Job search resources at ".TAOH_SITE_NAME_SLUG.", Career transition insights at ".TAOH_SITE_NAME_SLUG.", Job market trends at ".TAOH_SITE_NAME_SLUG.", Job search strategies at ".TAOH_SITE_NAME_SLUG.", Resume writing tips at ".TAOH_SITE_NAME_SLUG.", Interview preparation advice at ".TAOH_SITE_NAME_SLUG.", Networking guidance at ".TAOH_SITE_NAME_SLUG.", Job application tips at ".TAOH_SITE_NAME_SLUG.", Job interview techniques at ".TAOH_SITE_NAME_SLUG.", Industry-specific job insights at ".TAOH_SITE_NAME_SLUG.", Workplace success strategies at ".TAOH_SITE_NAME_SLUG.", Personal branding for job seekers at ".TAOH_SITE_NAME_SLUG.", LinkedIn for job search at ".TAOH_SITE_NAME_SLUG.", Cover letter tips at ".TAOH_SITE_NAME_SLUG.", Job search platforms at ".TAOH_SITE_NAME_SLUG.", Negotiating job offers at ".TAOH_SITE_NAME_SLUG.", Job search mistakes to avoid at ".TAOH_SITE_NAME_SLUG.", Remote job opportunities at ".TAOH_SITE_NAME_SLUG.", Skill-building for job seekers" ); }
@@ -37,12 +37,12 @@ $hero_arr = [];
   }
   }
   .sqs-block-content .sqs-html-content p,  .sqs-block-content .sqs-html-content h1,
-  .sqs-block-content .sqs-html-content h2,  .sqs-block-content .sqs-html-content h3,  .sqs-block-content .sqs-html-content h4, 
+  .sqs-block-content .sqs-html-content h2,  .sqs-block-content .sqs-html-content h3,  .sqs-block-content .sqs-html-content h4,
   .sqs-block-content .sqs-html-content h5,  .sqs-block-content .sqs-html-content h6 {
-    display: -webkit-box;        
-    -webkit-box-orient: vertical; 
-    overflow: hidden;           
-    -webkit-line-clamp: 1;   
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    -webkit-line-clamp: 1;
   }
 </style>
 <section class="blog-listing gray-dark">
@@ -72,25 +72,25 @@ $hero_arr = [];
                     </div>
                 </a>
             </div>
-            <?php } 
+            <?php }
             $wed1 = json_encode($hero_arr);?>
-            </div>        
+            </div>
         </div><!-- end hero-content -->
-        <div class="row bg-white"> 
-            <div class="col-lg-8 m-15px-tb"> 
+        <div class="row bg-white">
+            <div class="col-lg-8 m-15px-tb">
                 <div class="mt-3 sticky-top light-dark">
                     <?php taoh_reads_search_widget(); ?>
-                </div>  
+                </div>
                 <div class="">
-                    <?php taoh_all_reads_widget( $get_widget[ 'center1' ], 'center1' ); //echo'helllo'; print_r($first_arr);die(); ?> 
-                    <?php taoh_all_reads_widget( $get_widget[ 'center2' ], 'center2' ); ?> 
+                    <?php taoh_all_reads_widget( $get_widget[ 'center1' ], 'center1' ); //echo'helllo'; print_r($first_arr);die(); ?>
+                    <?php taoh_all_reads_widget( $get_widget[ 'center2' ], 'center2' ); ?>
                     <?php taoh_all_reads_widget( $get_widget[ 'center3' ], 'center3' ); ?>
-                    <div class="blured"> 
-                    
+                    <div class="blured">
+
                         <div>
                             <h4 class="session_title ml-3"><span>LATEST ARTICLES</span></h4>
                             <div id='loaderArea'></div>
-                            <div id="eventArea">Loading ...</div> 
+                            <div id="eventArea">Loading ...</div>
                         </div>
                         <div class="mb-4" id="pagination"></div>
                     </div>
@@ -114,7 +114,7 @@ $hero_arr = [];
                 </div>
                 <!-- <div class="border-bottom">
                     <?php //taoh_all_reads_widget( $get_widget[ 'right2' ], 'right2' ); ?>
-                </div> -->           
+                </div> -->
                 <section id="sticky">
                     <div class="border-bottom">
                         <?php taoh_all_reads_widget( $get_widget[ 'right_ad3' ], 'right_ad3' ); ?>
@@ -166,7 +166,7 @@ $hero_arr = [];
             var currpage = currentPage-1;
             var readsjob_list_hash = queryString+currpage+itemsPerPage;
             readsjob_list_name = 'readsjob_'+crc32(readsjob_list_hash);
-            console.log(readsjob_list_name);     
+            console.log(readsjob_list_name);
             const datareadsjobrequest = db.transaction(store_name).objectStore(store_name).get(readsjob_list_name); // get main data
             datareadsjobrequest.onsuccess = ()=> {
                 console.log(datareadsjobrequest);
@@ -174,7 +174,7 @@ $hero_arr = [];
                 if(readsjobstoredatares !== undefined && readsjobstoredatares !== null && readsjobstoredatares !== "" && readsjobstoredatares !== "undefined" && readsjobstoredatares !== "null"){
                     const readsjobstoredata = datareadsjobrequest.result.values;
                     already_rendered = true;
-                    
+
                     render_blog_template(readsjobstoredata, eventArea);
                     //taoh_blogs_init(queryString);
                 }else{
@@ -185,7 +185,7 @@ $hero_arr = [];
 		}).catch((error) => {
            console.log('Getreadsjobslistdata Error:', error);
        	});
-	} 
+	}
 
   $("div").removeClass("card card-item");
   //show_pagination('#pagination')
@@ -224,7 +224,7 @@ $hero_arr = [];
         'offset': currentPage,
         'limit': itemsPerPage,
 		'filters': queryString,
-        
+
     };console.log(data);
     jQuery.post("<?php echo taoh_site_ajax_url(); ?>", data, function(response) {
         console.log('blog resp',response);
@@ -296,13 +296,13 @@ function render_blog_template(data, slot) {
                         </div>`;
       }
       console.log('descp ---------- ',v.blurb.description);
-      let Str = decode(v.blurb.description); 
+      let Str = decode(v.blurb.description);
       let decodedStr = decodeURIComponent(Str).replace(/\+/g, ' ');
       console.log('decode descp ---------- ',decodedStr);
       slot.append(`
 
                   <div class="td_module_12 mt-3 row align-items-start dash_metrics"
-                    data-metrics="view" 
+                    data-metrics="view"
                     conttoken="${v.conttoken}" data-type="reads"
                   >
 
@@ -341,7 +341,7 @@ function render_blog_template(data, slot) {
   }else{
         $('#pagination').hide();
   }
-  
+
 }
 
 
@@ -349,8 +349,8 @@ function taoh_metrix_widjet() {
     var newArray = '<?php print_r($wed1);?>';
     $.each(JSON.parse(newArray), function(i, v){
         save_metrics('reads','view',v);
-        
-    });	
+
+    });
 }
   //Trending Bar Start
   var text = <?php echo $getjstitle ?>;console.log(text);
@@ -368,7 +368,7 @@ function taoh_metrix_widjet() {
     }
   }
   //Trending Bar End
-  
+
 $('.claimedRight').each(function (f) {
 
     var newstr = $(this).text().substring(0,250)+'....';

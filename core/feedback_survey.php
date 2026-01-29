@@ -1,7 +1,7 @@
 <?php
 $form = 1;
 if ( isset( $_POST[ 'ptoken' ] ) ){
-        
+
     $taoh_call = 'core.content.post';
     $taoh_call_type = 'POST';
     $taoh_vals = array(
@@ -52,15 +52,15 @@ if ($notvalid) {
 }
 
 $taoh_home_url = ( defined( 'TAOH_PAGE_URL' ) && TAOH_PAGE_URL ) ? TAOH_PAGE_URL:TAOH_SITE_URL_ROOT;
-//if ( taoh_user_is_logged_in() ){ 
+//if ( taoh_user_is_logged_in() ){
     // check app name
-    $conttoken = '';$detail_name=''; $app_name=''; $title=''; 
+    $conttoken = '';$detail_name=''; $app_name=''; $title='';
     if (strpos(TAOH_REDIRECT_URL, "/app/") !== false) {
         $parts = explode("/app/", TAOH_REDIRECT_URL);
         if (isset($parts[1])) {
             $app_name = explode("/", $parts[1])[0];
-        } 
-    }     
+        }
+    }
     // check conttoken
     if (strpos(TAOH_REDIRECT_URL, "/conttoken/") !== false) {
         $parts = explode("/conttoken/", TAOH_REDIRECT_URL);
@@ -80,19 +80,19 @@ $taoh_home_url = ( defined( 'TAOH_PAGE_URL' ) && TAOH_PAGE_URL ) ? TAOH_PAGE_URL
             //$taoh_vals[ 'cfcache' ] = $cache_name;
             $taoh_vals[ 'cache_name' ] = $cache_name;
             ksort($taoh_vals);
-            
+
             //echo taoh_apicall_get_debug( $taoh_call, $taoh_vals );die();
             $response = json_decode(taoh_apicall_get( $taoh_call, $taoh_vals ), true);
             $result_arr = $response['output'][0];
-        } 
-    } 
+        }
+    }
 //}else{
     // check pt name
     /*if (strpos(TAOH_REDIRECT_URL, "/pt/") !== false) {
         $parts = explode("/pt/", TAOH_REDIRECT_URL);
         if (isset($parts[1])) {
             $utoken = explode("/", $parts[1])[0];
-        } 
+        }
     }else{
         if($conttoken){
             if($app_name == 'events'){
@@ -213,7 +213,7 @@ if($result_arr['title']){
                 <div class="hero-content">
 					<div class="media media-card align-items-center shadow-none p-0 mb-0 rounded-0">
 						<div class="media-body">
-							<div class="pb-3"> 
+							<div class="pb-3">
 								<h4><?php echo $title; ?></h4>
                                 <?php  if($result_arr['title']){ ?>
                                     <span class="fs-10">Posted Date: <?php echo $event_start; ?></span>
@@ -238,7 +238,7 @@ if($result_arr['title']){
             </div><!-- end col-lg-9 -->
         </div><!-- end row -->
     </div><!-- end container -->
-<?php 
+<?php
 
 } else { ?>
 
@@ -270,7 +270,7 @@ if($result_arr['title']){
                                         <input class="form-control form--control" value="<?php echo $ptoken; ?>" type="hidden" id="ptoken" name="ptoken">
                                         <input class="form-control form--control" value="<?php echo $conttoken; ?>" type="hidden" id="eventtoken" name="eventtoken">
                                         <input class="form-control form--control" value="<?php echo $app_name; ?>" placeholder="App Name" type="hidden" id="app_name" name="app_name">
-                                        <div class="settings-item"> 
+                                        <div class="settings-item">
                                             <h2 class="section-title fs-18 mb-2">Feedback Questions</h2>
                                             <div class="row">
                                             <!-- end col-6 -->
@@ -284,8 +284,8 @@ if($result_arr['title']){
                                                                 for ($i=1; $i <= 5 ; $i++) {
                                                                     echo '<div>
                                                                     <input type="radio" id="expectations_'.$i.'" class="expectations_met" name="expectations_met" data-error_id="#expectations_met_error"  value="'.$i.'" '.($i == 1 ? 'required':'').'>
-                                                                    <label style="margin-bottom:0px;" for="expectations_'.$i.'"> 
-                                                                        <span><img id="smiley'.$i.'" width="40" src="'.TAOH_SITE_URL_ROOT.'/assets/images/'.$i.'.png" alt="smiley '.$i.'" /></span> 
+                                                                    <label style="margin-bottom:0px;" for="expectations_'.$i.'">
+                                                                        <span><img id="smiley'.$i.'" width="40" src="'.TAOH_SITE_URL_ROOT.'/assets/images/'.$i.'.png" alt="smiley '.$i.'" /></span>
                                                                     </label>
                                                                 </div>';
 
@@ -345,8 +345,8 @@ if($result_arr['title']){
                                             </div>
                                             </div>
                                             <!-- end col-lg-12 -->
-                                        </div> 
-                                        <div class="settings-item"> 
+                                        </div>
+                                        <div class="settings-item">
                                             <h2 class="section-title fs-18 mb-2">Interest in Supporting our Mission</h2>
                                             <div class="row">
                                             <div class="col-lg-12">
@@ -370,7 +370,7 @@ if($result_arr['title']){
                                             <div class="input-box">
                                                 <label class="fs-13 text-black lh-20 fw-medium">Best time to contact (if interested)?</label>
                                                 <div class="form-group">
-                                                    <input  class="form-control form--control" name="contact_time" placeholder="Best time to contact"/> 
+                                                    <input  class="form-control form--control" name="contact_time" placeholder="Best time to contact"/>
                                                 </div>
                                             </div>
                                             </div>
@@ -392,7 +392,7 @@ if($result_arr['title']){
                                                 </div>
                                             </div>
                                             <!-- end col-12 -->
-                                        </div> 
+                                        </div>
                                         <hr>
                                         <div class="row col-lg-12">
                                             <div class="submit-btn-box pt-2 pb-3">
@@ -414,7 +414,7 @@ if($result_arr['title']){
 <?php } ?>
 <script type="text/javascript">
 
-    
+
 	let $ = jQuery;
     var type = '<?php echo $type; ?>';
 
@@ -440,7 +440,7 @@ if($result_arr['title']){
     <?php } ?>
     //$('.contact_time').hide();
     if(app_name == 'events'){
-        $('.edit-form-settings').show(); 
+        $('.edit-form-settings').show();
     }
 
     // $('.expectations_met input[type=radio]:checked').change(function(){

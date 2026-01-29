@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 if ( ! defined ( 'TAO_PAGE_TITLE' ) ) { define ( 'TAO_PAGE_TITLE', "Comprehensive Open Jobs List at ".TAOH_SITE_NAME_SLUG.": Explore and Apply to a Wide Range of Job Opportunities" ); }
 if ( ! defined ( 'TAO_PAGE_DESCRIPTION' ) ) { define ( 'TAO_PAGE_DESCRIPTION', "Browse our comprehensive jobs list featuring a diverse range of job opportunities across industries. Find the perfect job that matches your skills and interests, chat with recruiters and easily apply through our user-friendly platform at ".TAOH_SITE_NAME_SLUG.". Start your job search today and take the next step in your career." ); }
@@ -31,7 +31,7 @@ $taoh_vals = array(
     //'cache' => array ( "name" => $cache_name,  "ttl" => 7200),
     'conttoken' => $conttoken,
     //'cfcc1d'=> 1,//cfcache newly added
-    
+
 );
 //$taoh_vals[ 'cfcache' ] = $cache_name;
 ksort($taoh_vals);
@@ -143,16 +143,16 @@ if(isset($_GET['apply_by_form']) && $_GET['apply_by_form']){
 }
 //taoh_get_header( $additive );
 ?>
-    
+
 <div class="mobile-app">
-        
+
 <header class="sticky-top bg-white border-bottom border-bottom-gray">
     <section class="hero-area pt-20px pb-20px bg-white shadow-sm overflow-hidden">
         <div class="container">
             <div class="mobileapp-search">
               <?php
             if(taoh_user_is_logged_in()) {
-                include('search.php'); 
+                include('search.php');
               }
             ?>
             </div>
@@ -169,16 +169,16 @@ if(isset($_GET['apply_by_form']) && $_GET['apply_by_form']){
         </ul>
         <div class="tab-content" id="myTabContent">
         <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
-        <div class="">    
+        <div class="">
             <div class="row d-flex">
                 <div class="col-lg-6">
                     <p class="p-3">Jobs based on your activity on Indeed</p>
-                    <div id='loaderArea'></div> 
+                    <div id='loaderArea'></div>
                     <div id="eventArea">Loading ...</div>
                 </div>
                 <div class="col-lg-6">
                     <div class="right-detail-tab">
-                      <div style="display: flex; white-space: nowrap;">  
+                      <div style="display: flex; white-space: nowrap;">
                         <h4>Testing</h4>
                       </div>
                       <div id="jobsDetailLocation" class="jobd-detail-location">
@@ -190,7 +190,7 @@ if(isset($_GET['apply_by_form']) && $_GET['apply_by_form']){
                       <div class="row">
                           <div class="col">
                             <a onclick="job_apply();" class="btn theme-btn mb-3"><i class="icon-line-awesome-wechat"></i> Apply Now <i class="icon-material-outline-arrow-right-alt"></i></a>
-                          </div>  
+                          </div>
                       </div>
                       <div class="job-details-panel mt-30px mb-30px job_apply_form" style="display:none;" id="job-apply">
                             <form id="fileUploadForm" method="POST" enctype="multipart/form-data" class="career-form MultiFile-intercepted">
@@ -221,7 +221,7 @@ if(isset($_GET['apply_by_form']) && $_GET['apply_by_form']){
                                   <label class="fs-14 text-black fw-medium">Place of residence <span style="color:red;">*</span></label>
                                   <?php echo field_location($data->coordinates,$data->full_location, $data->geohash); ?>
                                 </div><!-- end form-group -->
-                                <div class="form-group"> 
+                                <div class="form-group">
                                   <label class="fs-14 text-black fw-medium">Current Company</label>
                                   <?php echo field_company( ( isset( $data->company ) && $data->company ) ? $data->company: '' ); ?>
                                 </div><!-- end form-group -->
@@ -434,7 +434,7 @@ if(isset($_GET['apply_by_form']) && $_GET['apply_by_form']){
                 </div>
             </div>
         </div>
-      </div>  
+      </div>
     </div>
 </section>
 
@@ -532,9 +532,6 @@ function taoh_taoh_room_get_member_active_chat_init() {
     })
   }
 }
-
-
-
 function clearBtn(type) {
   if(type == "search") {
     search = "";
@@ -609,7 +606,7 @@ function render_jobs_template(data, slot) {
 
   totalItems = data.output.total
   jobCount.append(totalItems + ' jobs Found');
-  
+
   var result = format_object(data);
 console.log('----joblisting-------',result.items)
   $.each(result.items, function(i, v){
@@ -647,21 +644,18 @@ console.log('----joblisting-------',result.items)
         <h5 class="pb-1">
           <a target='_blank' href="<?php echo TAOH_SITE_URL_ROOT."/".$app_data->slug."/d/"; ?>${convertToSlug(v.title)}-${v.conttoken}">${v.title}</a>
           &nbsp;&nbsp;
-          <?php 
-          
+          <?php
+
           if ( taoh_user_is_logged_in()) { ?>
             ${apply_email_link}
             <div class="tags float-right">
               ${liked_check}
               <a class=""><i title="Share" style="cursor:pointer;font-size:20px;" data-conttoken="${(v.conttoken)}" data-title="${(v.title)}" data-ptoken = "<?php echo $ptoken; ?>" data-share = "<?php echo $share_link; ?>" class="la la-share share_box"></i> <span id="shareCount" class="badge text-dark fs-14 p-0">&nbsp;&nbsp; ${shares_count}</span></a>
             </div>
-          <?php } 
-          
+          <?php }
+
           ?>
         </h5>
-
-        
-
         ${v.rolechat ? `<p class="rolechattags"><span class="badge text-success fs-14 cursor-pointer role_directory" data-roleid="${v.rolechat.id}" data-roleslug="${v.rolechat.slug}">${v.rolechat.name}</span></p>`: ''}
 
         ${v.company ? `<p class="companytags"><span class="company_directory cursor-pointer underline-on-hover" data-companyid="${v.company.id}" data-companyslug="${v.company.slug}">${v.company.name}</span></p>`: ''}

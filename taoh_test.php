@@ -12,7 +12,7 @@ $urls = [
     TAOH_SITE_URL_ROOT."/learning/wellness",
     TAOH_SITE_URL_ROOT."/learning/flashcard",
     TAOH_SITE_URL_ROOT."/404",
-    
+
     // Add more URLs as needed
 ];
 

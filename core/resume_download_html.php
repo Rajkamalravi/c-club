@@ -1,4 +1,4 @@
-<?php 
+<?php
 $ptoken = taoh_parse_url(1);
 
 $indx_db_settings = 1;
@@ -130,11 +130,11 @@ $htmldata = '<!DOCTYPE html>
 <body>
     <div>
         <table cellpadding="0" cellspacing="0" border="0" style="border-bottom: 1px solid #d3d3d3; width: 100%;">
-        
+
             <tr>
                 <td style="width: 100px; text-align: center; padding-bottom: 5px;">';
                     $htmldata .= '<img style="width: 80px; height: 80px; border-radius: 100%; object-fit: cover;" src="'.$localImagePath.'" alt="Profileimage">';
-            if($pfdata['output']['user']['mylink'] != ''){ 
+            if($pfdata['output']['user']['mylink'] != ''){
                 $htmldata .= '
                     <div style="">
                         <img style="width: 12px; height: 12px; margin-top: 5px;" src="'.TAOH_SITE_URL_ROOT.'/assets/images/linkedin.jpg" alt="">
@@ -168,7 +168,7 @@ $htmldata = '<!DOCTYPE html>
                 </td>
             </tr>
         </table>
-    
+
         <!-- about me start  -->
         <table style="padding-top: 15px; width: 100%;" cellpadding="0" cellspacing="0" border="0">
             <tr>
@@ -180,8 +180,8 @@ $htmldata = '<!DOCTYPE html>
                             </td>
                             <td style="border-bottom: 1px solid #d3d3d3; padding-bottom: 6px; width: 100%;"><span style="font-size: 16px; font-weight: 500; color: #000000;">About me</span>
                             </td>
-                        </tr> 
-                        
+                        </tr>
+
                         <tr>
                             <td colspan="2" style="padding-top: 6px;">
                                 <p style="font-size: 16px; color: #000000; text-align: left; line-height: 13px;">'.taoh_title_desc_decode($about_me).'</p>
@@ -191,7 +191,7 @@ $htmldata = '<!DOCTYPE html>
                     <!-- skills -->
                     <table style="padding-top: 6px;" cellpadding="0" cellspacing="0">
                         <tr>
-                           
+
                             <td style="width: 40px; padding-right: 6px;">
                                 <span style="font-size: 16px; font-weight: 500; color: #000000; line-height: 17px;">Skills:</span>
                             </td>
@@ -200,10 +200,10 @@ $htmldata = '<!DOCTYPE html>
                                                 foreach($get_skill as $keys => $vals){
                                                     if(!empty($vals['value'])){
                                                         $htmldata .= ' <span style="font-size: 13px; line-height: 21px; font-weight: 400; color: #000000; background-color: #008799; border-radius: 12px;">&nbsp; &nbsp; '.$vals['value'].' &nbsp; &nbsp;</span>&nbsp;';
-                                                } 
+                                                }
                                             }
                                     $htmldata .= '
-                                
+
                             </td>
                         </tr>
                     </table>
@@ -211,7 +211,7 @@ $htmldata = '<!DOCTYPE html>
             </tr>
         </table>
         <!-- about me end  -->
-        
+
 
         <!-- intersts start  -->
         <!-- <table cellpadding="0" cellspacing="0">
@@ -222,14 +222,14 @@ $htmldata = '<!DOCTYPE html>
                 </td>
                 <td style="border-bottom: 1px solid #d3d3d3; padding-bottom: 10px; width: 100%;"><span style="font-size: 12px; font-weight: 500; color: #000000;">&nbsp; Interests</span>
                 <div style="line-height: 2px;">&nbsp;</div></td>
-            </tr> 
-            
+            </tr>
+
             <tr>
                 <td style="width: 20px;">&nbsp;</td>
                 <td style="width: 100%;">
                     <div style="line-height: 9px;">&nbsp;</div>
                     <span style="font-size: 10px; line-height: 30px; font-weight: 400; color: #ffffff; background-color: #B55B55; border-radius: 12px;">&nbsp; &nbsp; Open to Work &nbsp; &nbsp;</span>
-               
+
                     &nbsp;
 
                     <span style="font-size: 10px; line-height: 30px; font-weight: 400; color: #ffffff; background-color: #4F4F4F; border-radius: 12px;">&nbsp; &nbsp; Bartering &nbsp; &nbsp;</span>
@@ -241,7 +241,7 @@ $htmldata = '<!DOCTYPE html>
                      &nbsp;
 
                     <span style="font-size: 10px; line-height: 30px; font-weight: 400; color: #ffffff; background-color: #4F4F4F; border-radius: 12px;">&nbsp; &nbsp; Career Switch &nbsp; &nbsp;</span>
-                
+
                      &nbsp;
 
                     <span style="font-size: 10px; line-height: 30px; font-weight: 400; color: #ffffff; background-color: #4F4F4F; border-radius: 12px;">&nbsp; &nbsp; Interview Preparation &nbsp; &nbsp;</span>
@@ -261,13 +261,13 @@ $htmldata = '<!DOCTYPE html>
                         <tr>
                             <td style="width: 16px; border-bottom: 1px solid #d3d3d3; padding-bottom: 6px; padding-right: 6px;">
                                 <img style="width: 14px;" src="'.TAOH_SITE_URL_ROOT.'/assets/images/edu.jpg" alt="">
-                                
+
                             </td>
                             <td style="border-bottom: 1px solid #d3d3d3; padding-bottom: 6px; width: 100%;"><span style="font-size: 16px; font-weight: 500; color: #000000;">Educational Qualifications</span>
                             </td>
-                        </tr> 
+                        </tr>
                     </table>';
-                        
+
                         foreach($edu_list as $edu_keys => $edu_vals){
                             $ed_name = $edu_vals['company'];
                             foreach ( $ed_name as $ed_key => $ed_value ){
@@ -279,7 +279,7 @@ $htmldata = '<!DOCTYPE html>
                                     }
                                 }
                             }
-                        
+
                     $htmldata .=  '
 
                     <!-- list 1 -->
@@ -292,9 +292,9 @@ $htmldata = '<!DOCTYPE html>
                                             <table cellpadding="0" cellspacing="0">
                                                 <tr>
                                                     <td style="width: 35px; padding-right: 10px;">
-                                                      
+
                                                         <img style="width: 30px;" src="'.TAOH_SITE_URL_ROOT.'/assets/images/grd.jpg" alt="">
-                                                        
+
                                                     </td>
                                                     <td style="width: 100%;">
                                                         <div>
@@ -359,9 +359,9 @@ $htmldata = '<!DOCTYPE html>
                                             foreach ($d_vals as $ed_keys => $ed_vals){
                                                 list ( $skill_pre, $skill_name ) = explode(':>',$ed_vals);
                                                 $htmldata .= ' <span style="font-size: 14px; line-height: 18px; font-weight: 400; color: #000000; background-color: #EFEFEF; border-radius: 12px;">&nbsp; &nbsp; '.$skill_name.' &nbsp; &nbsp;</span> &nbsp;';
-                            
+
                                 }
-                                    }    
+                                    }
                                 }
                             $htmldata .= '</td>
                         </tr>
@@ -378,7 +378,7 @@ $htmldata = '<!DOCTYPE html>
                     </table>';
                     }
 
-                    
+
                     if(trim($edu_vals['edu_activities']) != ''){
                     $htmldata .= '
                     <table style="padding-top: 6px; width: 100%;" cellpadding="0" cellspacing="0">
@@ -392,7 +392,7 @@ $htmldata = '<!DOCTYPE html>
                                 <span style="font-size: 14px; color: #000000; text-align: left; line-height: 13px;">'.$edu_vals['edu_description'].'</span>
                             </td>
                         </tr>
-                    </table>'; 
+                    </table>';
                     }
                 }
                 $htmldata .= '
@@ -417,10 +417,10 @@ $htmldata = '<!DOCTYPE html>
                             </td>
                             <td style="border-bottom: 1px solid #d3d3d3; padding-bottom: 6px; width: 100%;"><span style="font-size: 16px; font-weight: 500; color: #000000;">Experience Details</span>
                             </td>
-                        </tr> 
+                        </tr>
                     </table>';
 
-                    
+
                     foreach($emp_list as $emp_keys => $emp_vals){
                         // echo "<pre>"; print_r($emp_vals); echo "</br>";
                         $em_title = (isset($emp_vals['emp_title']))? $emp_vals['emp_title'] : $emp_vals['title'];
@@ -446,16 +446,16 @@ $htmldata = '<!DOCTYPE html>
                                     list ( $em_cmp_pre, $em_cmp_post ) = explode( ':>', $emp_cmp_value );
                                 }
                             }
-                            
+
                         }
 
                         $get_present_not = ($emp_vals['current_role'] == 'on')?' Present':get_month_from_number($emp_vals['emp_end_month']).' '.$emp_vals['emp_year_end'];
                                $current_year = date('Y');   // Outputs: 2025 (Current Year)
                                $current_month = date('n');  // Outputs: 3 (Current Month - Without leading zero)
-   
+
                                $end_month = !empty($emp_vals['emp_end_month']) ?$emp_vals['emp_end_month'] : $current_month;
                                $end_year = !empty($emp_vals['emp_year_end']) ? $emp_vals['emp_year_end'] : $current_year;
-   
+
                                $emp_placeType = $emp_vals['emp_placeType'];
                                if($emp_placeType == 'rem'){
                                    $emp_placeType = 'Remote';
@@ -466,7 +466,7 @@ $htmldata = '<!DOCTYPE html>
                                }else{
                                    $emp_placeType = '';
                                }
-   
+
                                $roletype_arr = array(
                                    "remo" => "Remote Work",
                                    "full" => "Full Time",
@@ -483,7 +483,7 @@ $htmldata = '<!DOCTYPE html>
                                foreach ($roletype as $key => $value){
                                    $role_items = $roletype_arr[$value];
                                }
-   
+
                                $industry_arr = array(
                                    "agri" => "Agriculture & Forestry",
                                    "arts" => "Arts & Entertainment",
@@ -524,7 +524,7 @@ $htmldata = '<!DOCTYPE html>
                     $htmldata .= '<!-- list 1 -->
                     <table style="padding-top: 15px; width: 100%;" cellpadding="0" cellspacing="0">
                         <tr>
-                            
+
                             <td style="width: 100%;">
                                 <table style="width: 100%;" cellpadding="0" cellspacing="0">
                                     <tr>
@@ -610,7 +610,7 @@ $htmldata = '<!DOCTYPE html>
                                     }
                                 }
                             }
-                                         
+
                         $htmldata .= '
                             </td>
                         </tr>
@@ -636,7 +636,7 @@ $htmldata = '<!DOCTYPE html>
                     <!-- list 1 end -->';
                 }
 
-                $htmldata .= '        
+                $htmldata .= '
                 </td>
             </tr>
         </table>
@@ -660,12 +660,12 @@ $htmldata = '<!DOCTYPE html>
                     </table>
                 </td>
             </tr>
-                
+
             <tr>
                 <td  style="padding-top: 6px;">
                     <div>';
                     $htmldata .= '  <span style="font-size: 16px; line-height: 18px; font-weight: 400; color: #000000; border-radius: 12px;"> '.taoh_title_desc_decode($fun_fact).' </span>';
-                    $htmldata .= ' 
+                    $htmldata .= '
                         <!-- <br><br> -->
                     </div>
                 </td>
@@ -673,7 +673,7 @@ $htmldata = '<!DOCTYPE html>
         </table>';
     }
 
-    
+
     if($hobbies != '' && count($hobbies) > 0){
         $htmldata .= '
         <table style="padding-top: 15px; width: 100%;" cellpadding="0" cellspacing="0">
@@ -691,14 +691,14 @@ $htmldata = '<!DOCTYPE html>
                     </table>
                 </td>
             </tr>
-                
+
             <tr>
                 <td style="padding-top: 6px;">
                     <div>';
                     foreach ($hobbies as $f_keys => $f_vals){
                         $htmldata .= '  <span style="font-size: 14px; line-height: 18px; font-weight: 400; color: #000000; background-color: #AFE7EF; border-radius: 12px;">&nbsp; &nbsp; '.(PROFESSIONAL_HOBBIES[$f_vals] ?? "").' &nbsp; &nbsp;</span>&nbsp;';
                     }
-                    $htmldata .= ' 
+                    $htmldata .= '
                         <!-- <br><br> -->
                     </div>
                 </td>
@@ -723,17 +723,17 @@ $htmldata = '<!DOCTYPE html>
                     </table>
                 </td>
             </tr>
-                
+
             <tr>
                 <td style="padding-top: 6px;">
                     <div>';
 
                     foreach ($data_keywords as $k => $keyword) {
-                        if(!empty($keyword)){ 
+                        if(!empty($keyword)){
                             $htmldata .= ' <span style="font-size: 14px; line-height: 30px; font-weight: 400; color: #ffffff; background-color: #000000; border-radius: 12px;">&nbsp; &nbsp; '.$keyword.' &nbsp; &nbsp;</span> &nbsp;';
                         }
                     }
-             $htmldata .= '        
+             $htmldata .= '
                         <br><br>
                     </div>
                 </td>
@@ -741,7 +741,7 @@ $htmldata = '<!DOCTYPE html>
         </table>';
     }
 
-$htmldata .= ' 
+$htmldata .= '
     </div>
 </body>
 </html>';

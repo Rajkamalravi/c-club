@@ -12,12 +12,12 @@ $valid_dir_viewer = $taoh_user_is_logged_in && $user_info_obj->profile_complete 
 <style>
     .the-start-club .title {
         font-size: clamp(16px, 4vw + 1rem, 29px);
-        font-weight: 500; 
+        font-weight: 500;
         color: #000000;
     }
 
     .the-start-club .post-btn {
-        background: #2557A7; 
+        background: #2557A7;
         border-radius: 12px;
     }
     .the-start-club .post-btn a {
@@ -31,16 +31,16 @@ $valid_dir_viewer = $taoh_user_is_logged_in && $user_info_obj->profile_complete 
     }
 
     .the-start-club .input-container input {
-        height: 55px; 
-        border: 2px solid #2557A7 !important; 
-        border-radius: 24px 0 0 24px; 
+        height: 55px;
+        border: 2px solid #2557A7 !important;
+        border-radius: 24px 0 0 24px;
         padding-left: 40px;
     }
 
     .the-start-club .input-container svg {
-        position: absolute; 
-        left: 15px; 
-        top: 50%; 
+        position: absolute;
+        left: 15px;
+        top: 50%;
         transform: translateY(-50%);
     }
 
@@ -54,27 +54,24 @@ $valid_dir_viewer = $taoh_user_is_logged_in && $user_info_obj->profile_complete 
         color: #000000;
 
         /* Limit to 3 lines */
-        display: -webkit-box;        
-        -webkit-box-orient: vertical; 
-        overflow: hidden;           
-        -webkit-line-clamp: 4;      
+        display: -webkit-box;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+        -webkit-line-clamp: 4;
     }
 
     .club-card-img img {
         width: 100%;
-        height: 150px; 
+        height: 150px;
         object-fit: cover;
     }
 
-    @media (min-width: 1200px) { 
+    @media (min-width: 1200px) {
         .club-card-img img {
             width: 140px;
             height: 140px;
         }
     }
-
-    
-
 </style>
 
 <div class="bg-white the-start-club">
@@ -92,12 +89,12 @@ $valid_dir_viewer = $taoh_user_is_logged_in && $user_info_obj->profile_complete 
 
     <section class="pb-4" style="">
         <div class="container row mx-auto pt-5" style="min-height: 300px;">
-            
-        
+
+
             <div class="col-lg-6 col-xl-5 py-2 d-flex align-items-center">
                 <div class="ml-lg-5">
                     <h1 class="pb-4" style="color: #2557A7; font-weight: 600; font-size: clamp(21px, 2vw + 1rem, 30px);">Find Where you Belong !</h1>
-                
+
                     <p class="pb-4" style="font-size: clamp(17px, 1.5vw + 0.5rem, 19px); font-weight: 400; color: #444444; text-align: justify; line-height: 1.5;">Join communities that share your interests, passions, and values. Connect with like-minded individuals and start building meaningful relationships.</p>
 
                     <div class="mt-1">
@@ -115,7 +112,7 @@ $valid_dir_viewer = $taoh_user_is_logged_in && $user_info_obj->profile_complete 
                 </div>
             </div>
 
-        
+
         </div>
     </section>
 
@@ -182,7 +179,7 @@ $valid_dir_viewer = $taoh_user_is_logged_in && $user_info_obj->profile_complete 
                     </div>
                 </div>
             </div>
-            
+
             <!-- card 3 -->
             <div class="col-md-6 col-xl-4" style="">
                 <div class="pb-3 mx-auto mx-xl-0 mt-3" style=" border: 1px solid #D3D3D3;">
@@ -226,14 +223,11 @@ $valid_dir_viewer = $taoh_user_is_logged_in && $user_info_obj->profile_complete 
                 </div>
             </div>
         </div>
-    
+
     </div>
 
 
 </div>
 
 <?php
-
-
-
 taoh_get_footer();

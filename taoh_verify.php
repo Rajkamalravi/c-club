@@ -1,7 +1,4 @@
 <?php
-
-
- 
 require_once __DIR__.'/vendor/autoload.php';
 use Google\Calendar\CalendarClient;
 use Google\Calendar\Event;
@@ -11,8 +8,8 @@ if(isset($_GET['code'])) {
 	try {
     echo $_GET['code'].'<br>';
 		$capi = new GoogleCalendarApi();
-		
-		// Get the access token 
+
+		// Get the access token
 		$data = $capi->GetAccessToken('524701707248-h7tdc062dbuhbbf19uiqnp1098tsdpaa.apps.googleusercontent.com', 'http://localhost/hires-i/taoh_verify.php', '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', $_GET['code']);
 
 		// Access Token
@@ -26,11 +23,11 @@ if(isset($_GET['code'])) {
     $event_title = 'Testing event';
 
     // Event starting & finishing at a specific time
-    $full_day_event = 0; 
+    $full_day_event = 0;
     $event_time = [ 'start_time' => '2023-08-28T15:00:00', 'end_time' => '2023-08-28T20:00:00' ];
 
     // Full day event
-    $full_day_event = 1; 
+    $full_day_event = 1;
     $event_time = [ 'event_date' => '2023-08-28' ];
 
     // Create event on primary calendar
@@ -74,7 +71,7 @@ if($acess == ''){
   $refresh_token = $client->getRefreshToken();
   echo "<pre>Access Token";print_r($access_token);echo "</pre>";
   echo "<pre>Refresh Token";print_r($refresh_token);echo "</pre>";
- 
+
 }else{
   $access_token = $acess;
   $refresh_token  = $refres;
@@ -123,7 +120,7 @@ $event = new Google_Service_Calendar_Event(array(
         'autoJoin' => true,
         'quickAccess' => true,
         'conferenceSolutionKey' => ['type' => 'hangoutsMeet'],
-        
+
     )
   ),
 ));
@@ -135,7 +132,7 @@ $event = $service->events->insert($calendarId, $event, $conference );
 //echo "<pre>";print_r($event);echo "</pre>";
 $eventID = $event->id;
 echo "<br>Meeting ling -:  ".$eventID;
-echo "<br>Meeting ling -:  ".$event->hangoutLink; 
+echo "<br>Meeting ling -:  ".$event->hangoutLink;
 
 
 //die;
@@ -163,7 +160,7 @@ $meetingLink = $response->getBody()->getContents()->getConferenceData()->getMeet
 
 // Print the meeting link.
 echo $meetingLink;
- 
+
 // Delete the event.
 $client->delete($endpoint . 'events/' . $response->getBody()->getId());
 

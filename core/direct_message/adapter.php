@@ -28,14 +28,14 @@ if (taoh_user_is_logged_in()) {
         'country_locked' => 0,
     ]);
     if (in_array($create_room_response['success'], [true, 'true']) && !empty($create_room_response['output'])) {
-        $room_info = $create_room_response['output'];                    
+        $room_info = $create_room_response['output'];
         if(isset($room_info['room'])) {
             $room_info['room']['keyword'] = "dm";
         }
         //$dmNtwAdapter->createBulkRoomInfoChannels($room_info, $dm_header_user_info_obj->ptoken);
 
         $roomslug = $room_info['room']['keyslug'] ?? '';
-    }        
+    }
 }
 
 //echo "test"; die;

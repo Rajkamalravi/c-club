@@ -801,9 +801,6 @@ final class NtwAdapterEvents
         }
         $event_arr = $event_detail_response['output'];
         $events_data = $event_arr['conttoken'] ?? [];
-
-        
-
         if (!empty($events_data['country_locked'])) {
             $geo_enable = 1;
         }

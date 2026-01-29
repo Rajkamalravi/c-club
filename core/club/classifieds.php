@@ -31,7 +31,7 @@ taoh_get_header();
                 </div>
 
                 <div class="classifieds-card-container recruiters d-flex justify-content-center flex-wrap" style="gap: 40px; max-width: 1200px; margin: auto;">
-                   
+
                     <div class="classifieds-card d-flex flex-column justify-content-between">
                         <div>
                             <div class="classifieds-bg-banner"></div>
@@ -67,15 +67,15 @@ taoh_get_header();
                                     <span class="classifieds-card-text py-2">Admin Manager</span>
                                 </div>
                                 <div class=" d-flex align-items-center flex-wrap py-2" style="gap: 6px;">
-                                
+
                                     <div class="svg-circle" style="margin-right: 6px;">
                                         <?= icon('grid', '#ffffff', 11) ?>
-                                    </div>   
-                                    
+                                    </div>
+
                                     <a href="#" class="btn skill-b">Budgeting</a>
                                     <a href="#" class="btn skill-b">Maintenance</a>
                                     <a href="#" class="btn skill-b">Book Keeping</a>
-                                    
+
                                 </div>
                             </div>
                         </div>
@@ -84,12 +84,12 @@ taoh_get_header();
                             <a href="#" class="btn connect-dark-btn">Connect</a>
                         </div>
 
-                   
+
                         <p class="hiring">
                             Hiring
                         </p>
                     </div>
-                   
+
                     <div class="classifieds-card d-flex flex-column justify-content-between">
                         <div>
                             <div class="classifieds-bg-banner"></div>
@@ -124,7 +124,7 @@ taoh_get_header();
                                     </div>
                                     <span class="classifieds-card-text py-2">Admin Manager</span>
                                 </div>
-                                
+
                             </div>
                         </div>
 
@@ -136,7 +136,7 @@ taoh_get_header();
                             Hiring
                         </p>
                     </div>
-                  
+
                     <div class="classifieds-card d-flex flex-column justify-content-between">
                         <div>
                             <div class="classifieds-bg-banner"></div>
@@ -171,7 +171,7 @@ taoh_get_header();
                                     </div>
                                     <span class="classifieds-card-text py-2">Admin Manager</span>
                                 </div>
-                                
+
                             </div>
                         </div>
 
@@ -183,7 +183,7 @@ taoh_get_header();
                             Hiring
                         </p>
                     </div>
-                   
+
                     <div class="classifieds-card d-flex flex-column justify-content-between">
                         <div>
                             <div class="classifieds-bg-banner"></div>
@@ -219,17 +219,17 @@ taoh_get_header();
                                     <span class="classifieds-card-text py-2">Admin Manager</span>
                                 </div>
                                 <div class=" d-flex align-items-center flex-wrap py-2" style="gap: 6px;">
-                                
+
                                     <div class="svg-circle" style="margin-right: 6px;">
                                         <?= icon('grid', '#ffffff', 11) ?>
-                                    </div>   
-                                    
+                                    </div>
+
                                     <a href="#" class="btn skill-b">Budgeting</a>
                                     <a href="#" class="btn skill-b">Maintenance</a>
                                     <a href="#" class="btn skill-b">Book Keeping</a>
-                                    
+
                                 </div>
-                                
+
                             </div>
                         </div>
 
@@ -237,7 +237,7 @@ taoh_get_header();
                             <a href="#" class="btn connect-dark-btn">Connect</a>
                         </div>
 
-                      
+
                         <p class="hiring">
                             Hiring
                         </p>
@@ -252,7 +252,7 @@ taoh_get_header();
                 </div>
 
                 <div class="classifieds-card-container professionals d-flex justify-content-center flex-wrap" style="gap: 40px; max-width: 1200px; margin: auto;">
-                    
+
                     <div class="classifieds-card d-flex flex-column justify-content-between">
                         <div>
                             <div class="classifieds-bg-banner"></div>
@@ -288,15 +288,15 @@ taoh_get_header();
                                     <span class="classifieds-card-text py-2">Admin Manager</span>
                                 </div>
                                 <div class=" d-flex align-items-center flex-wrap py-2" style="gap: 6px;">
-                                
+
                                     <div class="svg-circle" style="margin-right: 6px;">
                                         <?= icon('grid', '#ffffff', 11) ?>
-                                    </div>   
-                                    
+                                    </div>
+
                                     <a href="#" class="btn skill-b">Budgeting</a>
                                     <a href="#" class="btn skill-b">Maintenance</a>
                                     <a href="#" class="btn skill-b">Book Keeping</a>
-                                    
+
                                 </div>
                             </div>
                         </div>
@@ -305,12 +305,12 @@ taoh_get_header();
                             <a href="#" class="btn connect-dark-btn">Connect</a>
                         </div>
 
-                        
+
                         <p class="hiring">
                             Hiring
                         </p>
                     </div>
-                    
+
                     <div class="classifieds-card d-flex flex-column justify-content-between">
                         <div>
                             <div class="classifieds-bg-banner"></div>
@@ -345,7 +345,7 @@ taoh_get_header();
                                     </div>
                                     <span class="classifieds-card-text py-2">Admin Manager</span>
                                 </div>
-                                
+
                             </div>
                         </div>
 
@@ -353,12 +353,12 @@ taoh_get_header();
                             <a href="#" class="btn connect-dark-btn">Connect</a>
                         </div>
 
-                     
+
                         <p class="hiring">
                             Hiring
                         </p>
                     </div>
-                    
+
                     <div class="classifieds-card d-flex flex-column justify-content-between">
                         <div>
                             <div class="classifieds-bg-banner"></div>
@@ -393,7 +393,7 @@ taoh_get_header();
                                     </div>
                                     <span class="classifieds-card-text py-2">Admin Manager</span>
                                 </div>
-                                
+
                             </div>
                         </div>
 
@@ -401,12 +401,12 @@ taoh_get_header();
                             <a href="#" class="btn connect-dark-btn">Connect</a>
                         </div>
 
-                    
+
                         <p class="hiring">
                             Hiring
                         </p>
                     </div>
-                    
+
                     <div class="classifieds-card d-flex flex-column justify-content-between">
                         <div>
                             <div class="classifieds-bg-banner"></div>
@@ -442,17 +442,17 @@ taoh_get_header();
                                     <span class="classifieds-card-text py-2">Admin Manager</span>
                                 </div>
                                 <div class=" d-flex align-items-center flex-wrap py-2" style="gap: 6px;">
-                                
+
                                     <div class="svg-circle" style="margin-right: 6px;">
                                         <?= icon('grid', '#ffffff', 11) ?>
-                                    </div>   
-                                    
+                                    </div>
+
                                     <a href="#" class="btn skill-b">Budgeting</a>
                                     <a href="#" class="btn skill-b">Maintenance</a>
                                     <a href="#" class="btn skill-b">Book Keeping</a>
-                                    
+
                                 </div>
-                                
+
                             </div>
                         </div>
 
@@ -460,7 +460,7 @@ taoh_get_header();
                             <a href="#" class="btn connect-dark-btn">Connect</a>
                         </div>
 
-                       
+
                         <p class="hiring">
                             Hiring
                         </p>
@@ -475,7 +475,7 @@ taoh_get_header();
                 </div>
 
                 <div class="classifieds-card-container service d-flex justify-content-center flex-wrap" style="gap: 40px; max-width: 1200px; margin: auto;">
-                    
+
                     <div class="classifieds-card d-flex flex-column justify-content-between">
                         <div>
                             <div class="classifieds-bg-banner"></div>
@@ -511,15 +511,15 @@ taoh_get_header();
                                     <span class="classifieds-card-text py-2">Admin Manager</span>
                                 </div>
                                 <div class=" d-flex align-items-center flex-wrap py-2" style="gap: 6px;">
-                                
+
                                     <div class="svg-circle" style="margin-right: 6px;">
                                         <?= icon('grid', '#ffffff', 11) ?>
-                                    </div>   
-                                    
+                                    </div>
+
                                     <a href="#" class="btn skill-b">Budgeting</a>
                                     <a href="#" class="btn skill-b">Maintenance</a>
                                     <a href="#" class="btn skill-b">Book Keeping</a>
-                                    
+
                                 </div>
                             </div>
                         </div>
@@ -528,12 +528,12 @@ taoh_get_header();
                             <a href="#" class="btn connect-dark-btn">Connect</a>
                         </div>
 
-                       
+
                         <p class="hiring">
                             Hiring
                         </p>
                     </div>
-                    
+
                     <div class="classifieds-card d-flex flex-column justify-content-between">
                         <div>
                             <div class="classifieds-bg-banner"></div>
@@ -568,7 +568,7 @@ taoh_get_header();
                                     </div>
                                     <span class="classifieds-card-text py-2">Admin Manager</span>
                                 </div>
-                                
+
                             </div>
                         </div>
 
@@ -576,12 +576,12 @@ taoh_get_header();
                             <a href="#" class="btn connect-dark-btn">Connect</a>
                         </div>
 
-                     
+
                         <p class="hiring">
                             Hiring
                         </p>
                     </div>
-                    
+
                     <div class="classifieds-card d-flex flex-column justify-content-between">
                         <div>
                             <div class="classifieds-bg-banner"></div>
@@ -616,7 +616,7 @@ taoh_get_header();
                                     </div>
                                     <span class="classifieds-card-text py-2">Admin Manager</span>
                                 </div>
-                                
+
                             </div>
                         </div>
 
@@ -624,12 +624,12 @@ taoh_get_header();
                             <a href="#" class="btn connect-dark-btn">Connect</a>
                         </div>
 
-                      
+
                         <p class="hiring">
                             Hiring
                         </p>
                     </div>
-                    
+
                     <div class="classifieds-card d-flex flex-column justify-content-between">
                         <div>
                             <div class="classifieds-bg-banner"></div>
@@ -665,17 +665,17 @@ taoh_get_header();
                                     <span class="classifieds-card-text py-2">Admin Manager</span>
                                 </div>
                                 <div class=" d-flex align-items-center flex-wrap py-2" style="gap: 6px;">
-                                
+
                                     <div class="svg-circle" style="margin-right: 6px;">
                                         <?= icon('grid', '#ffffff', 11) ?>
-                                    </div>   
-                                    
+                                    </div>
+
                                     <a href="#" class="btn skill-b">Budgeting</a>
                                     <a href="#" class="btn skill-b">Maintenance</a>
                                     <a href="#" class="btn skill-b">Book Keeping</a>
-                                    
+
                                 </div>
-                                
+
                             </div>
                         </div>
 
@@ -683,7 +683,7 @@ taoh_get_header();
                             <a href="#" class="btn connect-dark-btn">Connect</a>
                         </div>
 
-                      
+
                         <p class="hiring">
                             Hiring
                         </p>
@@ -773,7 +773,7 @@ taoh_get_header();
                 </div>
             </div>
         </div>
-        <div class="classifieds-card-container d-flex justify-content-center flex-wrap pb-5" style="gap: 20px;">     
+        <div class="classifieds-card-container d-flex justify-content-center flex-wrap pb-5" style="gap: 20px;">
             <!-- professional -->
             <div class="classifieds-card d-flex flex-column justify-content-between">
                 <div>
@@ -820,17 +820,17 @@ taoh_get_header();
                             <span class="classifieds-card-text py-2">Admin Manager</span>
                         </div>
                         <div class=" d-flex align-items-center flex-wrap py-2" style="gap: 6px;">
-                        
+
                             <div class="svg-circle" style="margin-right: 6px;">
                                 <svg width="11" height="11" viewBox="0 0 11 11" fill="none" xmlns="http://www.w3.org/2000/svg">
                                     <path d="M6.77617 0.333008C6.65371 0.126758 6.42812 0 6.1875 0C5.94688 0 5.72129 0.126758 5.59883 0.333008L3.53633 3.77051C3.40957 3.9832 3.40527 4.24746 3.52773 4.4623C3.6502 4.67715 3.87793 4.81035 4.125 4.81035H8.25C8.49707 4.81035 8.72695 4.67715 8.84727 4.4623C8.96758 4.24746 8.96543 3.9832 8.83867 3.77051L6.77617 0.333008ZM6.1875 6.70312V9.79688C6.1875 10.2717 6.57207 10.6562 7.04688 10.6562H10.1406C10.6154 10.6562 11 10.2717 11 9.79688V6.70312C11 6.22832 10.6154 5.84375 10.1406 5.84375H7.04688C6.57207 5.84375 6.1875 6.22832 6.1875 6.70312ZM2.75 11C3.47935 11 4.17882 10.7103 4.69454 10.1945C5.21027 9.67882 5.5 8.97935 5.5 8.25C5.5 7.52065 5.21027 6.82118 4.69454 6.30546C4.17882 5.78973 3.47935 5.5 2.75 5.5C2.02065 5.5 1.32118 5.78973 0.805456 6.30546C0.289731 6.82118 0 7.52065 0 8.25C0 8.97935 0.289731 9.67882 0.805456 10.1945C1.32118 10.7103 2.02065 11 2.75 11Z" fill="white"/>
                                 </svg>
-                            </div>   
-                            
+                            </div>
+
                             <a href="#" class="btn skill-b">Budgeting</a>
                             <a href="#" class="btn skill-b">Maintenance</a>
                             <a href="#" class="btn skill-b">Book Keeping</a>
-                            
+
                         </div>
                     </div>
                 </div>
@@ -839,7 +839,7 @@ taoh_get_header();
                     <a href="#" class="btn connect-dark-btn">Message</a>
                 </div>
 
-                
+
                 <!-- <p class="hiring">
                     Hiring
                 </p> -->
@@ -891,17 +891,17 @@ taoh_get_header();
                             <span class="classifieds-card-text py-2">Admin Manager</span>
                         </div>
                         <div class=" d-flex align-items-center flex-wrap py-2" style="gap: 6px;">
-                        
+
                             <div class="svg-circle" style="margin-right: 6px;">
                                 <svg width="11" height="11" viewBox="0 0 11 11" fill="none" xmlns="http://www.w3.org/2000/svg">
                                     <path d="M6.77617 0.333008C6.65371 0.126758 6.42812 0 6.1875 0C5.94688 0 5.72129 0.126758 5.59883 0.333008L3.53633 3.77051C3.40957 3.9832 3.40527 4.24746 3.52773 4.4623C3.6502 4.67715 3.87793 4.81035 4.125 4.81035H8.25C8.49707 4.81035 8.72695 4.67715 8.84727 4.4623C8.96758 4.24746 8.96543 3.9832 8.83867 3.77051L6.77617 0.333008ZM6.1875 6.70312V9.79688C6.1875 10.2717 6.57207 10.6562 7.04688 10.6562H10.1406C10.6154 10.6562 11 10.2717 11 9.79688V6.70312C11 6.22832 10.6154 5.84375 10.1406 5.84375H7.04688C6.57207 5.84375 6.1875 6.22832 6.1875 6.70312ZM2.75 11C3.47935 11 4.17882 10.7103 4.69454 10.1945C5.21027 9.67882 5.5 8.97935 5.5 8.25C5.5 7.52065 5.21027 6.82118 4.69454 6.30546C4.17882 5.78973 3.47935 5.5 2.75 5.5C2.02065 5.5 1.32118 5.78973 0.805456 6.30546C0.289731 6.82118 0 7.52065 0 8.25C0 8.97935 0.289731 9.67882 0.805456 10.1945C1.32118 10.7103 2.02065 11 2.75 11Z" fill="white"/>
                                 </svg>
-                            </div>   
-                            
+                            </div>
+
                             <a href="#" class="btn skill-b">Budgeting</a>
                             <a href="#" class="btn skill-b">Maintenance</a>
                             <a href="#" class="btn skill-b">Book Keeping</a>
-                            
+
                         </div>
                     </div>
                 </div>
@@ -910,7 +910,7 @@ taoh_get_header();
                     <a href="#" class="btn connect-dark-btn">Message</a>
                 </div>
 
-                
+
                 <!-- <p class="hiring">
                     Hiring
                 </p> -->
@@ -962,17 +962,17 @@ taoh_get_header();
                             <span class="classifieds-card-text py-2">Admin Manager</span>
                         </div>
                         <div class=" d-flex align-items-center flex-wrap py-2" style="gap: 6px;">
-                        
+
                             <div class="svg-circle" style="margin-right: 6px;">
                                 <svg width="11" height="11" viewBox="0 0 11 11" fill="none" xmlns="http://www.w3.org/2000/svg">
                                     <path d="M6.77617 0.333008C6.65371 0.126758 6.42812 0 6.1875 0C5.94688 0 5.72129 0.126758 5.59883 0.333008L3.53633 3.77051C3.40957 3.9832 3.40527 4.24746 3.52773 4.4623C3.6502 4.67715 3.87793 4.81035 4.125 4.81035H8.25C8.49707 4.81035 8.72695 4.67715 8.84727 4.4623C8.96758 4.24746 8.96543 3.9832 8.83867 3.77051L6.77617 0.333008ZM6.1875 6.70312V9.79688C6.1875 10.2717 6.57207 10.6562 7.04688 10.6562H10.1406C10.6154 10.6562 11 10.2717 11 9.79688V6.70312C11 6.22832 10.6154 5.84375 10.1406 5.84375H7.04688C6.57207 5.84375 6.1875 6.22832 6.1875 6.70312ZM2.75 11C3.47935 11 4.17882 10.7103 4.69454 10.1945C5.21027 9.67882 5.5 8.97935 5.5 8.25C5.5 7.52065 5.21027 6.82118 4.69454 6.30546C4.17882 5.78973 3.47935 5.5 2.75 5.5C2.02065 5.5 1.32118 5.78973 0.805456 6.30546C0.289731 6.82118 0 7.52065 0 8.25C0 8.97935 0.289731 9.67882 0.805456 10.1945C1.32118 10.7103 2.02065 11 2.75 11Z" fill="white"/>
                                 </svg>
-                            </div>   
-                            
+                            </div>
+
                             <a href="#" class="btn skill-b">Budgeting</a>
                             <a href="#" class="btn skill-b">Maintenance</a>
                             <a href="#" class="btn skill-b">Book Keeping</a>
-                            
+
                         </div>
                     </div>
                 </div>
@@ -981,14 +981,14 @@ taoh_get_header();
                     <a href="#" class="btn connect-dark-btn">Message</a>
                 </div>
 
-                
+
                 <!-- <p class="hiring">
                     Hiring
                 </p> -->
 
                 <p class="professional-badge">Professional</p>
             </div>
-            
+
             <!-- employer -->
             <div class="classifieds-card d-flex flex-column justify-content-between">
                 <div>
@@ -1034,7 +1034,7 @@ taoh_get_header();
                             </div>
                             <span class="classifieds-card-text py-2">Admin Manager</span>
                         </div>
-                        
+
                     </div>
                 </div>
 
@@ -1042,14 +1042,14 @@ taoh_get_header();
                     <a href="#" class="btn connect-dark-btn">Message</a>
                 </div>
 
-                
+
                 <!-- <p class="hiring">
                     Hiring
                 </p> -->
                 <p class="employer-badge">
                     Employer
                 </p>
-                
+
             </div>
             <div class="classifieds-card d-flex flex-column justify-content-between">
                 <div>
@@ -1095,7 +1095,7 @@ taoh_get_header();
                             </div>
                             <span class="classifieds-card-text py-2">Admin Manager</span>
                         </div>
-                        
+
                     </div>
                 </div>
 
@@ -1103,14 +1103,14 @@ taoh_get_header();
                     <a href="#" class="btn connect-dark-btn">Message</a>
                 </div>
 
-                
+
                 <!-- <p class="hiring">
                     Hiring
                 </p> -->
                 <p class="employer-badge">
                     Employer
                 </p>
-                
+
             </div>
             <div class="classifieds-card d-flex flex-column justify-content-between">
                 <div>
@@ -1156,7 +1156,7 @@ taoh_get_header();
                             </div>
                             <span class="classifieds-card-text py-2">Admin Manager</span>
                         </div>
-                        
+
                     </div>
                 </div>
 
@@ -1164,16 +1164,16 @@ taoh_get_header();
                     <a href="#" class="btn connect-dark-btn">Message</a>
                 </div>
 
-                
+
                 <!-- <p class="hiring">
                     Hiring
                 </p> -->
                 <p class="employer-badge">
                     Employer
                 </p>
-                
+
             </div>
-            
+
             <!-- service provider -->
             <div class="classifieds-card d-flex flex-column justify-content-between">
                 <div>
@@ -1219,7 +1219,7 @@ taoh_get_header();
                             </div>
                             <span class="classifieds-card-text py-2">Admin Manager</span>
                         </div>
-                        
+
                     </div>
                 </div>
 
@@ -1227,7 +1227,7 @@ taoh_get_header();
                     <a href="#" class="btn connect-dark-btn">Message</a>
                 </div>
 
-            
+
                 <!-- <p class="hiring">
                     Hiring
                 </p> -->
@@ -1279,7 +1279,7 @@ taoh_get_header();
                             </div>
                             <span class="classifieds-card-text py-2">Admin Manager</span>
                         </div>
-                        
+
                     </div>
                 </div>
 
@@ -1287,7 +1287,7 @@ taoh_get_header();
                     <a href="#" class="btn connect-dark-btn">Message</a>
                 </div>
 
-            
+
                 <!-- <p class="hiring">
                     Hiring
                 </p> -->
@@ -1339,7 +1339,7 @@ taoh_get_header();
                             </div>
                             <span class="classifieds-card-text py-2">Admin Manager</span>
                         </div>
-                        
+
                     </div>
                 </div>
 
@@ -1347,7 +1347,7 @@ taoh_get_header();
                     <a href="#" class="btn connect-dark-btn">Message</a>
                 </div>
 
-            
+
                 <!-- <p class="hiring">
                     Hiring
                 </p> -->
@@ -1355,9 +1355,9 @@ taoh_get_header();
                     Service Provider
                 </p>
             </div>
-            
+
         </div>
-        
+
     </div>
 </div>
 

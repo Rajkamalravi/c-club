@@ -83,7 +83,7 @@ if (!TAOH_SIMPLE_LOGIN && $app_url != 'createacc' && $app_url != 'actions' && $a
 //echo "app_url = $app_url; app_name = $app_name; detail_name = $detail_name";taoh_exit();
 
 /*if(TAOH_REFER_ENABLE){
-  if( $app_url!='refer' && $app_url!='actions' && $app_url!='ajax' && $app_url!='social' && $app_url!='login' && 
+  if( $app_url!='refer' && $app_url!='actions' && $app_url!='ajax' && $app_url!='social' && $app_url!='login' &&
   $app_url!='login_fwd'  && $app_url!='logout' && $app_url!='settings' && $app_url!='fwd' && $app_url!='createacc'){
    //i am die
     //die('----i am dead------');
@@ -348,7 +348,7 @@ switch ($app_url) {
         }
         break;
     case 'club':
-        
+
         if (EVENT_DEMO_SITE)
             include_once(TAOH_PLUGIN_PATH . "/app/events/main.php");
         else

@@ -54,7 +54,7 @@ if (taoh_user_is_logged_in() && !empty($live_now_data)) {
                     'country_locked' => 0,
                 ]);
                 if (in_array($create_room_response['success'], [true, 'true']) && !empty($create_room_response['output'])) {
-                    $room_info = $create_room_response['output'];                    
+                    $room_info = $create_room_response['output'];
                     if(isset($room_info['room'])) {
                         $room_info['room']['keyword'] = "live";
                     }

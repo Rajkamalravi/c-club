@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 /*
 Configure for Google Search Console
@@ -16,10 +16,10 @@ define('TAO_PAGE_TITLE', 'ObviousBaba');
 define('TAO_PAGE_ROBOT', 'index, follow');
 // TAO_PAGE_CANONICAL
 
-taoh_get_header();  
+taoh_get_header();
 ?>
 <style>
-  
+
 .toped{
   position: absolute;
   top: 50%;
@@ -96,8 +96,8 @@ taoh_get_header();
 				slot.append(`
                 <div class="item">
                   <p>${data.category}</p>
-								  <h4 class="m-2" style="color:${data.color}">${data.quote}</h4>  
-                </div>    
+								  <h4 class="m-2" style="color:${data.color}">${data.quote}</h4>
+                </div>
 				`);
 		}
 	}
@@ -105,20 +105,20 @@ taoh_get_header();
   var owl = $('.owl-carousel');
 
   $(document).ready(function() {
- 
+
     $("#owl-demo").owlCarousel({
-      
+
       navigation : true, // Show next and prev buttons
-        
+
       slideSpeed : 300,
       paginationSpeed : 400,
-        
-      items : 1, 
+
+      items : 1,
       itemsDesktop : false,
       itemsDesktopSmall : false,
       itemsTablet: false,
       itemsMobile : false
-      
+
     });
 
     // Listen to owl events:
@@ -126,7 +126,7 @@ taoh_get_header();
       get_nxt_qoute();
       get_nxt_qoute();
     })
-      
+
   });
 
 </script>

@@ -1,7 +1,4 @@
 <?php taoh_get_header(); ?>
-
-
-
 <div class="new-events t-events bg-white">
     <div class="events-banner">
         <h4 class="text-center px-3">Discover Live & Upcoming Events Near You</h4>
@@ -785,7 +782,4 @@
 
 
 </div>
-
-
-
 <?php taoh_get_footer(); ?>

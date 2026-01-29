@@ -324,7 +324,7 @@ if ($user_is_logged_in && !$is_my_profile_view) {
                 <div class="p-v1-content">
                     <?php
                     // Roles
-                    if (!empty($user_company_roles)) {                        
+                    if (!empty($user_company_roles)) {
                         foreach ($user_company_roles as $k => $role) {
                             echo '<span class="role_directory cursor-pointer underline-on-hover" data-roleid="' . $k . '" data-roleslug="' . $role['slug'] . '">' . htmlspecialchars($role['value']) . '</span>';
                             if ($k < count($user_company_roles) - 1) echo ', ';
@@ -337,7 +337,7 @@ if ($user_is_logged_in && !$is_my_profile_view) {
                             echo '<span class="company_directory cursor-pointer underline-on-hover" data-companyid="' . $k . '" data-companyslug="' . $company['slug'] . '">' . htmlspecialchars($company['value']) . '</span>';
                             if ($k < count($user_company_names) - 1) echo ', ';
                         }
-                    }                    
+                    }
                     ?>
                 </div>
             </div>
@@ -692,6 +692,6 @@ if ($user_is_logged_in && !$is_my_profile_view) {
             View <?= $isViewMore ? 'Less' : 'More' ?>
         </button> -->
         <?php endif; ?>
-       
+
     </div>
 </div>

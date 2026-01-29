@@ -45,4 +45,3 @@ define('COOKIE_DOMAIN', '.unmeta.net');
 define('SSO_USER_KEY_COOKIE', 'user_key');  // Match server cookie name
 define('SSO_EMAIL_COOKIE', 'email');         // Match server cookie name
 define('SSO_LOGIN_COOKIE', 'login_vars');    // Main login cookie from server
-

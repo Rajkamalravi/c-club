@@ -3399,9 +3399,6 @@ blockquote p {
 .entry #related_posts .post-inner p.post-meta {
 	padding: 0;
 }
-
-
-
 /**
  * Check Also Box
  * -----------------------------------------------------------------------------
@@ -4343,9 +4340,6 @@ p.welcome-text {
 	border-color: #F88C00;
 }
 
-
-
-
 /* Counter Widget */
 
 .arqam-lite-widget-counter {
@@ -4895,9 +4889,6 @@ p.welcome-text {
 	margin-top: 5px;
 	padding-right: 4px;
 }
-
-
-
 /**
  * Images
  * -----------------------------------------------------------------------------
@@ -4985,7 +4976,7 @@ img.alignleft {
 
 .bg-primary{
     background-color: #007bff !important;
-} 
+}
 
 .text-white{
     color: #fff;
@@ -6369,9 +6360,6 @@ ul.timeline li.timeline-post:before {
 		 -o-transition-duration: 0s;
 			transition-duration: 0s;
 }
-
-
-
 /**
  * Footer
  * -----------------------------------------------------------------------------
@@ -7321,9 +7309,6 @@ a.shortc-button.big {
 .wide-layout .full-width .tie-full-width-img img {
 	width: 1010px;
 }
-
-
-
 /**
  * Lightbox
  * -----------------------------------------------------------------------------
@@ -8006,9 +7991,6 @@ a.shortc-button.big {
 .review-final-score {
 	width: 110px;
 }
-
-
-
 /**
  * Dark Skin
  * -----------------------------------------------------------------------------
@@ -8741,9 +8723,6 @@ body.dark-skin #review-box h2.review-box-header {
 	}
 
 }
-
-
-
 /* 670px */
 
 @media only screen and (max-width: 670px){
@@ -8992,9 +8971,6 @@ body.dark-skin #review-box h2.review-box-header {
 	}
 
 }
-
-
-
 /* 350px */
 
 @media only screen and (max-width: 350px){
@@ -9111,9 +9087,6 @@ body.dark-skin #review-box h2.review-box-header {
 		height: 200px;
 	}
 }
-
-
-
 @media print {
 
 	body{
@@ -9240,4 +9213,3 @@ body.dark-skin #review-box h2.review-box-header {
     z-index: 5;
     background-color:#fff;
 }
-

@@ -56,7 +56,7 @@ function taoh_ads_general( $ads_count = 0 ){
     case 1:
       $taoh_type = 'seeker';
       if ( isset( $taoh_user_vars[ 'tao' ]->type ) ){ $taoh_type = $taoh_user_vars[ 'tao' ]->type;}
-      
+
       $ads = taoh_url_get_content( TAOH_SITE_ADS."/$taoh_type");
         if ($ads) { ?>
             <div class="card card-item text-center">
@@ -64,8 +64,8 @@ function taoh_ads_general( $ads_count = 0 ){
                 <?php echo $ads; ?>
               </div>
             </div>
-        <?php 
-        } 
+        <?php
+        }
       break;
     case 2:
       $ads_class = 'col-md-6';
@@ -79,7 +79,7 @@ function taoh_ads_general( $ads_count = 0 ){
     default:
       $taoh_type = 'seeker';
       if ( isset( $taoh_user_vars[ 'tao' ]->type ) ){ $taoh_type = $taoh_user_vars[ 'tao' ]->type;}
-      
+
       $ads = taoh_url_get_content( TAOH_SITE_ADS."/$taoh_type");
         if ($ads) { ?>
             <div class="card card-item text-center">
@@ -87,14 +87,14 @@ function taoh_ads_general( $ads_count = 0 ){
                 <?php echo $ads; ?>
               </div>
             </div>
-        <?php 
-        } 
-  
+        <?php
+        }
+
       break;
   }
   */
-  return 1;  
+  return 1;
 }
 
-  
+
 ?>

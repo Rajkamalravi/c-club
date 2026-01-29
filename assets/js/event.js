@@ -1,9 +1,9 @@
 
 
 async function getDynamicEvents() {
-    return new Promise((resolve, reject) => {        
+    return new Promise((resolve, reject) => {
 
-                let cur_time = Date.now();               
+                let cur_time = Date.now();
                 let dynamicContexts = [
                     {
                         user_logged_in: isLoggedIn,
@@ -25,15 +25,15 @@ async function getDynamicEvents() {
                 console.log('-------resolve--------');
                 console.log(dynamicContexts);
                 resolve(dynamicContexts); // 🔑 now we resolve it
-            } 
+            }
         );
-    
-}
-       
-async function getDynamicLobby() {
-    return new Promise((resolve, reject) => {        
 
-                let cur_time = Date.now();               
+}
+
+async function getDynamicLobby() {
+    return new Promise((resolve, reject) => {
+
+                let cur_time = Date.now();
                 let dynamicContexts = [
                     {
                         user_logged_in: isLoggedIn,
@@ -70,17 +70,17 @@ async function getDynamicLobby() {
                 console.log('-------resolve--------');
                 console.log(dynamicContexts);
                 resolve(dynamicContexts); // 🔑 now we resolve it
-            } 
+            }
         );
-    
+
 }
-     
+
 
 function evaluateEventCondition(key, expected, context) {
     const current_time = Date.now();
 
     switch (key) {
-   
+
     case 'user_logged_in':
         return context.user_logged_in === expected;
 
@@ -89,10 +89,10 @@ function evaluateEventCondition(key, expected, context) {
 
     case 'is_rsvp':
         return context.is_rsvp === expected;
-    
+
     case 'is_event_live':
          return context.is_event_live === expected;
-    
+
     case 'is_sponsor_enabled':
          return context.is_sponsor_enabled === expected;
 
@@ -101,7 +101,7 @@ function evaluateEventCondition(key, expected, context) {
 
     case 'is_speaker_enabled':
          return context.is_speaker_enabled === expected;
-    
+
     default:
         return false;
     }

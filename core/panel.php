@@ -4,7 +4,7 @@ $user_data = taoh_user_all_info();
 //print_r($_SESSION[TAOH_ROOT_PATH_HASH]);exit();
 //if ( ! isset( $user_data->fname ) && ! isset( $user_data->type )  && ! isset( $user_data->chat_name ) && defined( 'TAOH_API_TOKEN' ) && defined('TAOH_SETTINGS_URL') && TAOH_API_TOKEN ) {
 if (!TAOH_SIMPLE_LOGIN &&  ! isset( $user_data->type )  && ! isset( $user_data->chat_name ) && defined( 'TAOH_API_TOKEN' ) && defined('TAOH_SETTINGS_URL') && TAOH_API_TOKEN ) {
-    taoh_redirect(TAOH_SITE_URL_ROOT.'/createacc'); 
+    taoh_redirect(TAOH_SITE_URL_ROOT.'/createacc');
     taoh_exit();
 }
 
@@ -60,7 +60,7 @@ if(isset($activity['output']['items']))
 $activity_items = array_filter($activity['output']['items']);
 $response_timestamp = time();
 //echo "<pre>========";print_r($activity);exit();
-/*if(TAOH_PERFORMANCE_TEST){ 
+/*if(TAOH_PERFORMANCE_TEST){
     $result = testfile( $_SERVER['REQUEST_URI'], $current_timestamp, $response_timestamp);
     //echo'<pre>';print_r($result);exit();
 }*/
@@ -137,7 +137,7 @@ if ( ! taoh_user_is_logged_in() || $showall ){
                         we're not just about job listings—we're about fostering a vibrant,<br />inclusive network where career growth thrives.
                         ";
                         ?>
-                
+
                     </p>
                     <div class="hero-btn-box py-4">
                         <?php if (! taoh_user_is_logged_in()){ ?>
@@ -169,9 +169,9 @@ if ( ! taoh_user_is_logged_in() || $showall ){
                 </div>
             </div>
             <div class="col-lg-3 yo-video">
-                <?php 
+                <?php
                     //$video_link = 'https://www.youtube.com/embed/o9qbgV0Aotk?rel=0';
-                    //taoh_video_widget($video_link); 
+                    //taoh_video_widget($video_link);
                 ?>
                 <iframe id="video" class="y-video" src="https://www.youtube.com/embed/o9qbgV0Aotk?rel=0" frameborder="0" allowfullscreen loading="lazy"></iframe>
             </div>
@@ -277,12 +277,12 @@ if ( ! taoh_user_is_logged_in() || $showall ){
                                                 <img width="51px" src="<?php //echo $data['user']['avatar']; ?>" alt="">
                                             </div>
                                             <div><p class="user-name-title"><?php //echo $data['activity']['title']; ?><span style="display: block">2 mins ago</span></p></div>
-                                        </div>                                        
+                                        </div>
                                         <div class="dec-expand">
                                             <p><?php //echo $data['activity']['title']; ?><a href="<?php //echo TAOH_SITE_URL_ROOT.$data['activity']['url']; ?>">See more</a></p>
                                         </div>
                                     </div>
-                                    
+
                                     <div class="act-content-img">
                                         <img src="./assets/images/activity1.png" alt="">
                                     </div>
@@ -293,7 +293,7 @@ if ( ! taoh_user_is_logged_in() || $showall ){
                                                 <div class="col-lg-4 text-center"><a href="#"><i class="la la-share mr-1 text-black"></i><span>5</span> Share(s)</a></div>
                                             </div>
                                     </div>
-                                    
+
                                 </div> -->
 
                                         <div class="media media-card media--card align-items-center">
@@ -555,14 +555,14 @@ if ( ! taoh_user_is_logged_in() || $showall){
 <script>
     // Example usage:
     const url = '<?php echo TAOH_CACHE_CHAT_PROC_URL; ?>';
-    const taohVals = { 
+    const taohVals = {
         "ops"         : 'group_message',
         'status'      : 'post',
         'key'         : 'zbwri79o4bed',
         'with'        : '6yixa4x25f4z',
         'message'     : 'check',
         'code'        : '<?php echo TAOH_OPS_CODE ?>',
-        'sent_time'   : Date.now(), 
+        'sent_time'   : Date.now(),
         'keyslug'     : 'a958b570',
     };
     const debug = true;

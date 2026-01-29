@@ -1,4 +1,4 @@
-<?php taoh_get_header(); 
+<?php taoh_get_header();
 if (taoh_user_is_logged_in() ){
 	$title_text = "Welcome ".taoh_user_nice_name().", apps for you";
 } else {
@@ -32,9 +32,9 @@ if (taoh_user_is_logged_in() ){
 <section class="get-started-area pt-80px pb-50px pattern-bg">
     <div class="container">
         <div class="row pt-50px">
-		
-			<?php 
-		
+
+			<?php
+
 			foreach (taoh_available_apps() as $app) {
               $app_config = json_decode( taoh_url_get_content( TAOH_CDN_PREFIX."/app/$app/config" ) );
 			?>

@@ -76,9 +76,9 @@ $valid_dir_viewer = $taoh_user_is_logged_in && $user_info_obj->profile_complete 
 
     /* for removing default dropdown icon */
     /* .employer-branding-form form select {
-        appearance: none; 
-        -webkit-appearance: none; 
-        -moz-appearance: none; 
+        appearance: none;
+        -webkit-appearance: none;
+        -moz-appearance: none;
     } */
 
     /* .employer-branding-form form .select-icon {
@@ -270,7 +270,7 @@ $valid_dir_viewer = $taoh_user_is_logged_in && $user_info_obj->profile_complete 
                             </div>
                         </div>
                     </div>
-                   
+
                     <div class="row mt-2">
                         <div class="col-lg-6">
                             <div class="form-group">
@@ -367,7 +367,7 @@ $valid_dir_viewer = $taoh_user_is_logged_in && $user_info_obj->profile_complete 
                             </div>
                         </div>
                     </div>
-                   
+
                  </div>
 
                   <!-- Setup Location Section -->
@@ -401,18 +401,12 @@ $valid_dir_viewer = $taoh_user_is_logged_in && $user_info_obj->profile_complete 
 
                 <button type="button" class="btn setup-btn my-5">Set up Organization Page !</button>
 
-                
+
             </form>
         </div>
     </div>
 
 </div>
 
-
-
-
 <?php
-
-
-
 taoh_get_footer();

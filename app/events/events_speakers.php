@@ -3,7 +3,7 @@ include_once $_SERVER['DOCUMENT_ROOT'].'/raj/assets/icons/icons.php';
 // Session Slot Modal
 require_once('events_session_form.php');
 ?>
-<div class="modal speaker-detail-modal fade" id="speakerDetailModal" tabindex="-1" role="dialog" 
+<div class="modal speaker-detail-modal fade" id="speakerDetailModal" tabindex="-1" role="dialog"
         aria-labelledby="mySpeakerModalLabel" aria-hidden="true">
     <div class="modal-dialog bg-white" role="document">
         <div class="modal-content">
@@ -15,15 +15,15 @@ require_once('events_session_form.php');
                     </svg>
                     <span>Speaker details</span>
                 </h4>
-                
+
                 <button type="button" class="btn" data-dismiss="modal" aria-label="Close">
                     <?= icon('close', '#D3D3D3', 13) ?>
                 </button>
-                
+
             </div>
             <div id="speakerdet_loaderArea" style="text-align: center;"></div>
             <div class="modal-body p-3 px-lg-5 pb-lg-5 pt-lg-4" id="speaker_info">
-                
+
             </div>
         </div>
     </div>
@@ -146,7 +146,7 @@ require_once('events_session_form.php');
                                         </div>
 
                                         <div class="mr-lg-5 d-flex align-items-center" style="gap: 6px;">
-                                            
+
                                             ${(v.ptoken == my_ptoken && opt == 'chat') || is_organizer == 1 ? `
                                             <a title="Edit Speaker" style="min-width: unset;" class="svg-opt-con btn edit_speaker metrics_action" id="edit_speaker_${v.ID}" data_id="${v.ID}" data-metrics="edit_speaker">
                                                 <i class="fa-solid fa-edit"></i>
@@ -160,7 +160,7 @@ require_once('events_session_form.php');
                                                 <path d="M5.25 0C2.3543 0 0 2.3543 0 5.25V31.5C0 34.3957 2.3543 36.75 5.25 36.75H36.75C39.6457 36.75 42 34.3957 42 31.5V5.25C42 2.3543 39.6457 0 36.75 0H5.25ZM14.3555 11.7305C15.1266 10.9594 16.3734 10.9594 17.1363 11.7305L20.9918 15.5859L24.8473 11.7305C25.6184 10.9594 26.8652 10.9594 27.6281 11.7305C28.391 12.5016 28.3992 13.7484 27.6281 14.5113L23.7727 18.3668L27.6281 22.2223C28.3992 22.9934 28.3992 24.2402 27.6281 25.0031C26.857 25.766 25.6102 25.7742 24.8473 25.0031L20.9918 21.1477L17.1363 25.0031C16.3652 25.7742 15.1184 25.7742 14.3555 25.0031C13.5926 24.232 13.5844 22.9852 14.3555 22.2223L18.2109 18.3668L14.3555 14.5113C13.5844 13.7402 13.5844 12.4934 14.3555 11.7305Z" fill="#FF0000"></path>
                                             </svg>
                                             </a>` : ''}
-                                        </div> 
+                                        </div>
                                     </div>
                                 </div>
                              </div>`;
@@ -338,14 +338,14 @@ require_once('events_session_form.php');
         //
         // // $('#timeslotHelp').text(helperText);
     }
-   
+
     $(document).on('click', '.edit_speaker', async function () {
         let spk_id = $(this).attr('data_id');
         loader(true, $("#speakerdet_loaderArea"));
         if (parseInt(spk_id)) {
             var eventHallAccess = [];
             var eventHallAccessKey = `event_hall_access_${eventToken}`;
-            const data = await IntaoDB.getItem(objStores.event_store.name, eventHallAccessKey); // await 
+            const data = await IntaoDB.getItem(objStores.event_store.name, eventHallAccessKey); // await
             if (data?.values) {
                 eventHallAccess = data?.values.output;
             }
@@ -388,7 +388,7 @@ require_once('events_session_form.php');
                     data: tagsArr,
                     width: '100%'
                 });
-                
+
                 // let speaker_halls = conttoken_data.speaker_halls;
                 // let allowed_speaker_halls = Array.isArray(speaker_halls)
                 //     ? speaker_halls.filter(hall => (event_organizer_ptokens.includes(my_pToken)) || hall.status === '2')
@@ -459,7 +459,7 @@ require_once('events_session_form.php');
                     }
                 }
                     /* End: check for count */
-                    
+
                         if(showhall == 1){
                             let hall_option = `<option value="${hall_token}">${hall_name}</option>`;
                             $('#spk_hall').append(hall_option);
@@ -555,7 +555,7 @@ require_once('events_session_form.php');
                                 });
                             }
                              skillSelect();
-                       
+
                         });
                          */
 

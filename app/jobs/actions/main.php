@@ -11,9 +11,9 @@ if($_POST['action'] == "addcomments") {
 
 function add_comments() {
 	$error = 0;
-	
+
 	//print_r($_POST);die();
-  
+
 	if ( taoh_user_is_logged_in() ){
 
 		$taoh_call = 'jobs.job.post';
@@ -24,7 +24,7 @@ function add_comments() {
             'toenter' => $_POST,
             'ops' => 'answer',
         );
-		
+
 		$result = taoh_apicall_post($taoh_call, $taoh_vals);
 
         taoh_set_success_message("Comments been successfully recevied!");
@@ -51,10 +51,10 @@ function apply_job() {
 		unset($_POST['enable_scout_apply']);
 	}
 	//$taoh_vals['debug'] = 1;
-	
-	if ( taoh_user_is_logged_in() ){	
-		
-		
+
+	if ( taoh_user_is_logged_in() ){
+
+
 		//echo taoh_apicall_post_debug( $taoh_call, $taoh_vals );die;
 		$data = taoh_apicall_post($taoh_call, $taoh_vals);
 		//	print_r($data);die();

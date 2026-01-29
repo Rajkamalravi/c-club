@@ -34,9 +34,6 @@ if (isset($_REQUEST['taoh_action'])) {
         echo "No method defined";
     }
 }
-
-
-
 function check_captcha() {
   // Build the URL for captcha verification
  // $captchaVerifyUrl = strtolower(TAOH_SITE_CAPTCHA_VERIFY . "/" . ($_POST['we_code'] - strlen(TAOH_SITE_TITLE)) . "/" . $_POST['we_word']);
@@ -121,9 +118,6 @@ function update_lock_status() {
 function check_access_code() {
   // Determine if lock code is required
   $lock_code_required = TAOH_LOGIC_LOCK_CODE != 0 && TAOH_LOGIC_LOCK_CODE != 'no' ? 1 : 0;
-
-  
-
   // Prepare API call parameters
   $taoh_vals = [
       'secret' => TAOH_API_SECRET,
@@ -151,21 +145,21 @@ function check_access_code() {
       if(TAOH_SIMPLE_LOGIN && isset($res['is_new_user']) && $res['is_new_user']){
         setcookie( TAOH_ROOT_PATH_HASH.'_anonymous', 1, strtotime( '+1 days' ),'/');
       }
-  
+
       setcookie( TAOH_ROOT_PATH_HASH.'_taoh_api_token', $token, strtotime( '+30 days' ),'/');
       setcookie( TAOH_ROOT_PATH_HASH.'_temp_api_token', $token, strtotime( '+1 days' ),'/');
 
         if(
-  
+
           (
-            isset($res['is_new_user']) && $res['is_new_user'] == 1 
-          ) || 
+            isset($res['is_new_user']) && $res['is_new_user'] == 1
+          ) ||
           (
-            isset($res['site_locked']) && $res['site_locked'] == 1 && 
-            isset($res['is_new_user']) && $res['is_new_user'] == 0 && 
+            isset($res['site_locked']) && $res['site_locked'] == 1 &&
+            isset($res['is_new_user']) && $res['is_new_user'] == 0 &&
             isset($res['user_locked']) && $res['user_locked'] == 0
           )
-  
+
         ){
           //TAOH_LOGIC_LOCK_CODE
           if($lock_code_required){
@@ -252,10 +246,7 @@ function check_sso_login() {
         $response = 1;
       }  else {
           $response = 0;
-      }     
-
-
-
+      }
 
 
       echo $response;
@@ -263,7 +254,7 @@ function check_sso_login() {
  }
 
 function check_social_login() {
-  
+
      setcookie( TAOH_ROOT_PATH_HASH.'_'."tao_api_email", $_POST[ 'email' ], strtotime( '+30 days' ), '/'  );
      $taoh_call = 'account.temps';
      $taoh_call_type = 'get';
@@ -300,7 +291,7 @@ function check_settings_filled() {
   $taoh_vals = array(
     'mod'=>'tao_tao',
     'token'=>TAOH_API_TOKEN,
-    
+
   );
   $taoh_call_type = "get";
   $user_data = json_decode(taoh_apicall_get( $taoh_call, $taoh_vals ));
@@ -411,7 +402,7 @@ function taoh_resend_code() {
  } else {
    echo "0";
  }
- taoh_exit(); 
+ taoh_exit();
 }
 
 function taoh_get_ops_token() {
@@ -545,7 +536,7 @@ function taoh_get_roles() {
     }
     //print_r($res);die();
   }
-    
+
   header('Content-Type: application/json; charset=utf-8');
   //print_r($res);die();
   //print_r($response);die();
@@ -560,10 +551,10 @@ function taoh_get_companies() {
   $taoh_call = 'scripts/find.php';
   $taoh_call_type = 'get';
   $taoh_vals = array(
-     'mod' => 'tao_je', 
-     'code' => taoh_get_dummy_token(true), 
-     'type' => 'company', 
-     'ctype' => 'token', 
+     'mod' => 'tao_je',
+     'code' => taoh_get_dummy_token(true),
+     'type' => 'company',
+     'ctype' => 'token',
      'term' => $_POST['query'],
 
     );
@@ -584,7 +575,7 @@ function taoh_get_companies() {
     }
     //print_r($res);die();
   }
-    
+
   header('Content-Type: application/json; charset=utf-8');
   //print_r($res);die();
   //print_r($response);die();
@@ -599,11 +590,11 @@ function taoh_get_skills() {
   $taoh_call = 'scripts/find.php';
   $taoh_call_type = 'get';
   $taoh_vals = array(
-     'mod' => 'tao_je', 
-     'code' => taoh_get_dummy_token(true), 
-     'type' => 'skill', 
-     'ctype' => 'token', 
-     'term' => $_POST['query'], 
+     'mod' => 'tao_je',
+     'code' => taoh_get_dummy_token(true),
+     'type' => 'skill',
+     'ctype' => 'token',
+     'term' => $_POST['query'],
     );
   $response = taoh_apicall_get( $taoh_call, $taoh_vals );
   $result = json_decode($response, true);
@@ -621,7 +612,7 @@ function taoh_get_skills() {
     }
     //print_r($res);die();
   }
-    
+
   header('Content-Type: application/json; charset=utf-8');
   //print_r($res);die();
   //print_r($response);die();
@@ -645,7 +636,7 @@ function taoh_add_skills() {
 	$cmd = "users.add.title";
   //echo taoh_apicall_post_debug($cmd,  $postdata);die();
   $data = taoh_apicall_post( $cmd,  $postdata);
-  
+
   echo $data;
   die();
 }
@@ -700,7 +691,7 @@ function taoh_delete_account() {
   $taoh_call_type = 'get';
   $taoh_vals = array(
     // 'mod' => 'hires',  //kalpana deleted this in order to remove all 'hires' text
-     'token'=>TAOH_API_TOKEN, 
+     'token'=>TAOH_API_TOKEN,
   );
   $response = taoh_apicall_get( $taoh_call, $taoh_vals );
   header('Content-Type: application/json; charset=utf-8');
@@ -726,7 +717,7 @@ function contains($str, array $arr){
 }
 
 function taoh_ntw_post_message()
-{  
+{
 
     $taoh_vals = array(
         "ops" => 'dm_message',
@@ -823,7 +814,7 @@ function upvote_tips() {
         'conttoken' => $_POST['conttoken'],
     );
   $response = taoh_apicall_get( $taoh_call, $taoh_vals );
-  
+
   header('Content-Type: application/json; charset=utf-8');
   echo $response;
   taoh_exit();
@@ -984,7 +975,7 @@ function taoh_all_chatbot_get(){
         'bot' => $_POST['bot'],
         'bot_description' => $_POST['bot_desc'],
         'send_to_support' => $_POST['send_to_support'],
-        
+
         'secret' => TAOH_API_SECRET,
         'cache_required'=>0,
         'current_page'=> $_POST['current_page'],
@@ -1052,11 +1043,11 @@ function taoh_get_notification_counter(){
     $taoh_call = 'core.content.get';
     $taoh_call_type = 'get';
     $taoh_vals = array(
-      'mod' => ( isset($_POST['mod']) && $_POST['mod'] ) ? $_POST['mod']:TAOH_WERTUAL_SLUG, 
+      'mod' => ( isset($_POST['mod']) && $_POST['mod'] ) ? $_POST['mod']:TAOH_WERTUAL_SLUG,
       'ops' => $_POST['ops'],
       'token' => $_POST['token'],
       'type' => $_POST['type']
-    
+
     );
     if(isset($_POST['ptoken']) && $_POST['ptoken']!=''){
       $taoh_vals['ptoken'] = $_POST['ptoken'];
@@ -1068,21 +1059,21 @@ function taoh_get_notification_counter(){
    //echo taoh_apicall_get_debug( $taoh_call, $taoh_vals );die();
     $result = taoh_apicall_get( $taoh_call, $taoh_vals );
     $response_decode = json_decode($result);
-    
+
     setcookie(TAOH_ROOT_PATH_HASH.'_'."taoh_last_notification_seen",time(), strtotime( '+2 days' ), '/');
     $_COOKIE[TAOH_ROOT_PATH_HASH.'_'."taoh_last_notification_seen"] = time();
 
     $response = array();
     if(isset($response_decode->success)){
       $response['status'] = 1;
-      
+
       $response['total_num'] = $response_decode->total;
     }
     else{
       $response['status'] = 1;
-      
+
       $response['total_num'] = 0;
-      
+
     }
   }
   //print_r($result);die();
@@ -1101,17 +1092,17 @@ function taoh_get_notification(){
   //$_COOKIE["LASTPULLEDTIMESTAMP"] = 0;
 
   //(!isset($_COOKIE["LASTPULLEDTIMESTAMP"]))?(setcookie("LASTPULLEDTIMESTAMP", $value)):($_COOKIE["LASTPULLEDTIMESTAMP"]);
-  
+
   /*$taoh_call = 'core.content.get';*/
   $taoh_call = 'notify.get';
   $taoh_call_type = 'get';
   $taoh_vals = array(
-    'mod' => ( isset($_POST['mod']) && $_POST['mod'] ) ? $_POST['mod']:TAOH_WERTUAL_SLUG, 
+    'mod' => ( isset($_POST['mod']) && $_POST['mod'] ) ? $_POST['mod']:TAOH_WERTUAL_SLUG,
     'ops' => $_POST['ops'],
     'token' => $_POST['token'],
     /*'type' => $_POST['type']
      'perpage'=>10,
-    'offset'=>0 */  
+    'offset'=>0 */
   );
   if(isset($_POST['ptoken']) && $_POST['ptoken']!=''){
     $taoh_vals['ptoken'] = $_POST['ptoken'];
@@ -1134,15 +1125,15 @@ function taoh_get_notification(){
   //https://papi s.tao.ai/notify.get?mod=notify&ops=webnotify&token=XQ7iOGl4&ptoken=6ofz578vo9be&perpage=10&offset=0
   //echo TAOH_API_PREFIX . '/' .$taoh_call.'?'.http_build_query($taoh_vals);
   //taoh_apicall_get_debug_log($taoh_call,  $taoh_vals);
-  
- // echo taoh_apicall_get_debug( $taoh_call, $taoh_vals ); 
+
+ // echo taoh_apicall_get_debug( $taoh_call, $taoh_vals );
   $result = taoh_apicall_get( $taoh_call, $taoh_vals );
   //print_r($result);
   $response_decode = json_decode($result);
-  
+
   $response = array();
   if($response_decode->success){
-    
+
     $response['status'] = 1;
     foreach($response_decode->output as $key=>$val){
        $time = taoh_readable_stamp_short($val->timestamp);
@@ -1156,13 +1147,13 @@ function taoh_get_notification(){
 
     $response['output'] = $response_decode->output;
     $response['total_num'] = $response_decode->total;
-      
+
   }
   else{
     $response['status'] = 0;
     $response['output'] = [];
     $response['total_num'] = 0;
-    
+
   }
   //print_r($result);die();
 
@@ -1170,7 +1161,7 @@ function taoh_get_notification(){
     $data = json_encode($response);
     echo $data;
     taoh_exit();
- 
+
 }
 
 function taoh_get_notification_list(){
@@ -1180,13 +1171,13 @@ function taoh_get_notification_list(){
   $limit_default = 9;
   $limit = ( isset( $_POST['limit'] ) && $_POST['limit'] )? $_POST['limit']:$limit_default;
   $offset =  ( isset( $_POST['offset'] ) && $_POST['offset'] )? ($_POST['offset'] * $limit_default):($offset_default * $limit_default);
-  
+
   /*$taoh_call = 'core.content.get';*/
   $taoh_call = 'notify.get';
   $taoh_call_type = 'get';
   $taoh_vals = array(
-    'mod' => ( isset($_POST['mod']) && $_POST['mod'] ) ? $_POST['mod']:TAOH_WERTUAL_SLUG, 
-    'ops' => $_POST['ops'], 
+    'mod' => ( isset($_POST['mod']) && $_POST['mod'] ) ? $_POST['mod']:TAOH_WERTUAL_SLUG,
+    'ops' => $_POST['ops'],
     //'token' => 'L2Fix175',//taoh_get_dummy_token(1),
     'token' => $_POST['token'],
     'type' => $_POST['type'],
@@ -1212,7 +1203,7 @@ function taoh_get_notification_list(){
   //echo'<pre>';print_r($result);echo'<pre>';
   //echo"==========".$response_decode->success;
   if($response_decode->success){
-    
+
     $response['status'] = 1;
     foreach($response_decode->output as $key=>$val){
        $time = taoh_readable_stamp_short($val->timestamp);
@@ -1224,13 +1215,13 @@ function taoh_get_notification_list(){
 
     $response['output'] = $response_decode->output;
     $response['total_num'] = $response_decode->total;
-      
+
   }
   else{
     $response['status'] = 0;
     $response['output'] = [];
     $response['total_num'] = 0;;
-    
+
   }
   //print_r($result);die();
 
@@ -1238,7 +1229,7 @@ function taoh_get_notification_list(){
     $data = json_encode($response);
     echo $data;
     taoh_exit();
- 
+
 }
 
 function taoh_post_notification(){
@@ -1247,11 +1238,11 @@ function taoh_post_notification(){
   $taoh_call = 'core.content.post';
   $taoh_call_type = 'post';
   $taoh_vals = array(
-    'mod' => 'core', 
-    'ops' => 'post', 
+    'mod' => 'core',
+    'ops' => 'post',
     'token' => taoh_get_dummy_token(1),
     'type' => $_POST['type'],
-    
+
   );
   if(isset($_POST['ptoken']) && $_POST['ptoken']!=''){
     $taoh_vals['ptoken'] = $_POST['ptoken'];
@@ -1281,13 +1272,13 @@ function taoh_post_notification(){
   $result = taoh_apicall_post( $taoh_call, $taoh_vals );
   $response_decode = json_decode($result);
   $response = array();
-  
+
 
     header('Content-Type: application/json; charset=utf-8');
     $data = json_encode($result);
     echo $data;
     taoh_exit();
- 
+
 }
 
 function taoh_central_get(){
@@ -1302,8 +1293,8 @@ function taoh_central_get(){
   $taoh_call = 'core.content.get';
   $taoh_vals = array(
     "mod" => 'core',
-    "conttype"=> "blog", 
-    "type"=> "reads", 
+    "conttype"=> "blog",
+    "type"=> "reads",
     "ops"=> $ops,
     'key' => defined('TAOH_EVENTS_GET_LOCAL') && TAOH_EVENTS_GET_LOCAL ? TAOH_API_SECRET : TAOH_API_DUMMY_SECRET,
     'token'=>taoh_get_dummy_token(1),
@@ -1317,7 +1308,7 @@ function taoh_central_get(){
     //'debug'=>1,
     //'cfcc5h' => 1 //cfcache newly added
   );
- 
+
 
   $cache_name = 'reads_blog_reads_' . hash('sha256', $taoh_call . serialize($taoh_vals));
   //$taoh_vals[ 'cfcache' ] = $cache_name;
@@ -1342,8 +1333,8 @@ function taoh_central_newsletter_get(){
   $taoh_call = 'core.content.get';
   $taoh_vals = array(
     "mod" => 'core',
-    "conttype"=> "blog", 
-    "type"=> "newsletter", 
+    "conttype"=> "blog",
+    "type"=> "newsletter",
     "ops"=> $ops,
     'key' => defined('TAOH_EVENTS_GET_LOCAL') && TAOH_EVENTS_GET_LOCAL ? TAOH_API_SECRET : TAOH_API_DUMMY_SECRET,
     'token'=>taoh_get_dummy_token(1),
@@ -1381,7 +1372,7 @@ function taoh_central_tag_get(){
   $taoh_call = 'core.content.get';
   $taoh_vals = array(
     "mod" => 'core',
-    "type"=> "reads", 
+    "type"=> "reads",
     "ops"=> $ops,
     'token'=>TAOH_API_TOKEN_DUMMY,
     'local'=>TAOH_READS_GET_LOCAL,
@@ -1412,12 +1403,12 @@ function taoh_central_tag_get(){
 function get_support() {
   $offset_default = 0;
   $limit_default = 10;
-  $ops = ( isset( $_POST['ops'] ) && $_POST['ops'] )? $_POST['ops']:'get';  
-  $app = ( isset( $_POST['app'] ) && $_POST['app'] )? $_POST['app']:'';  
+  $ops = ( isset( $_POST['ops'] ) && $_POST['ops'] )? $_POST['ops']:'get';
+  $app = ( isset( $_POST['app'] ) && $_POST['app'] )? $_POST['app']:'';
   $limit = ( isset( $_POST['limit'] ) && $_POST['limit'] )? $_POST['limit']:$limit_default;
   $offset =  ( isset( $_POST['offset'] ) && $_POST['offset'] )? ($_POST['offset'] * $limit_default):($offset_default * $limit_default);
-  $url = ( isset( $_POST['url'] ) && $_POST['url'] )? $_POST['url']:'';  
-  $contoken = ( isset( $_POST['contoken'] ) && $_POST['contoken'] )? $_POST['contoken']:'';  
+  $url = ( isset( $_POST['url'] ) && $_POST['url'] )? $_POST['url']:'';
+  $contoken = ( isset( $_POST['contoken'] ) && $_POST['contoken'] )? $_POST['contoken']:'';
   if ( stristr( $contoken, '?' ) ){
     list( $contoken, $temp ) = explode('?', $contoken);
   }
@@ -1443,7 +1434,7 @@ function get_support() {
         //'cfcc1h' => 1 //cfcache newly added
     );
   //print_r($taoh_vals);die;
-  
+
   //echo taoh_apicall_get_debug( $taoh_call, $taoh_vals );
   //echo TAOH_API_PREFIX."/$taoh_call?".http_build_query($taoh_vals);
   $data = taoh_apicall_get( $taoh_call, $taoh_vals );
@@ -1478,7 +1469,7 @@ function taoh_update_status(){
 function taoh_metrics_get(){
   $app = $_POST['app'];
   $conttoken = $_POST['conttoken'];
-  
+
   $vars = array(
     'ops' => 'metricsget',
     'code' => TAOH_OPS_CODE,
@@ -1531,7 +1522,7 @@ function articles_get() {
   //$taoh_vals[ 'cache_name' ] = $cache_name;
   //$taoh_vals[ 'cache' ] = array ( "name" => $cache_name );
   ksort($taoh_vals);
-  
+
   //echo TAOH_API_PREFIX."/$taoh_call?".http_build_query($taoh_vals);die();
   $taoh_call_type = "get";
   //echo taoh_apicall_get_debug( $taoh_call, $taoh_vals);die;
@@ -1540,8 +1531,8 @@ function articles_get() {
     $data = json_decode($data,true);
     $data = $data['output']['list'];
     $newArray = array_map(fn($key) => $data[$key], array_rand($data, 4)); // get first 4 items
-    $newArraysend['success'] = true; 
-    $newArraysend['output'] = $newArray; 
+    $newArraysend['success'] = true;
+    $newArraysend['output'] = $newArray;
     $data = json_encode($newArraysend);
   }
   echo $data;
@@ -1569,7 +1560,7 @@ function activity_get(){
     ////$taoh_vals[ 'cache_name' ] = $cache_name;
    // $taoh_vals[ 'cache' ] = array ( "name" => $cache_name );
     ksort($taoh_vals);
-        
+
   //echo taoh_apicall_get_debug( $taoh_call, $taoh_vals );die;
   $data = taoh_apicall_get($taoh_call, $taoh_vals, '', 1);
   echo $data;
@@ -2146,12 +2137,12 @@ function taoh_invite_friend(){
         'token' => taoh_get_dummy_token(),
         'toenter' => $toenter,
     );
-  
+
 
 // echo taoh_apicall_post_debug( $taoh_call, $taoh_vals );
 
 $result = json_decode(taoh_apicall_post($taoh_call, $taoh_vals));
-//print_r($result);  
+//print_r($result);
 if($result->success==1){
  // $referral_id = $result->referral_id[0];
   //echo "---".$referral_id."---";
@@ -2172,8 +2163,8 @@ function taoh_indb_session(){
 
   taoh_session_save(TAOH_ROOT_PATH_HASH, ['USER_INFO' => (object) $_POST]);
   // echo "<pre>";
-  // print_r(taoh_session_get(TAOH_ROOT_PATH_HASH)['USER_INFO']);die;  
-  // print_r($_POST);  
+  // print_r(taoh_session_get(TAOH_ROOT_PATH_HASH)['USER_INFO']);die;
+  // print_r($_POST);
   // echo "</pre>";
   exit;
 }
@@ -2200,7 +2191,7 @@ function recipe_get(){
   //$taoh_vals[ 'cache_name' ] = $cache_name;
   //$taoh_vals[ 'cache' ] = array ( "name" => $cache_name );
   ksort($taoh_vals);
-  
+
   $data = taoh_apicall_get($taoh_call, $taoh_vals, '', 1);
   echo $data;
   die();
@@ -2225,8 +2216,8 @@ function taoh_check_referral_status(){
                $status =3;
           }
       }
-      
-     
+
+
     }
 
 
@@ -2276,17 +2267,17 @@ function remove_cache_files()
         foreach($fileNamesToRemove as $file_name){
             if(strpos($file_name, 'event') || strpos($file_name, 'rsvp')) {
                 taoh_delete_local_cache('events',$file_name);
-            } 
+            }
             else if(strpos($file_name, 'job')) {
                 taoh_delete_local_cache('jobs',$file_name);
             }
             else if(strpos($file_name, 'ask')) {
                 taoh_delete_local_cache('asks',$file_name);
-            } 
+            }
         }
     }
 
-    
+
     //taoh_delete_local_cache($mods,$fileNamesToRemove);
 
     echo json_encode(['success' => true]);
@@ -2391,7 +2382,7 @@ function taoh_add_keyword_opt()
 
     echo json_encode($response);
 }
- 
+
 function update_unsub()
 {
 
@@ -2419,17 +2410,17 @@ function update_unsub()
   //echo taoh_apicall_post_debug($taoh_call, $taoh_vals);die; // Unsub API Call
   //$result = taoh_apicall_post($taoh_call, $taoh_vals);
   $result = taoh_apicall_post($taoh_call, $taoh_vals);
-  
+
   unset(taoh_session_get(TAOH_ROOT_PATH_HASH)['USER_INFO']);
   echo $result;exit();
 
 }
 
 function taoh_report_bug(){
- 
+
   $userAgent = $_SERVER['HTTP_USER_AGENT'] ?? 'Unknown';
   $userAgentArr =getBrowserAndOS($userAgent);
-  
+
   /* $file_upload_url = TAOH_CDN_PREFIX . '/cache/upload/now';
     if (!empty($_FILES['screenshot']['name'])) {
         $screenshot_res = taoh_remote_file_upload($_FILES['screenshot'], $file_upload_url);
@@ -2446,7 +2437,7 @@ function taoh_report_bug(){
     $_POST['metadata']['browser'] = $userAgentArr['browser'];
     $_POST['metadata']['version'] = $userAgentArr['version'];
     $_POST['metadata']['OS']      = $userAgentArr['OS'];
-    
+
     $user_is_logged_in = taoh_user_is_logged_in() ?? false;
     $_POST['email'] = (!$user_is_logged_in) ? $_POST['bugemail'] : '';
     $taoh_call = 'core.send.bugreport';
@@ -2463,7 +2454,7 @@ function taoh_report_bug(){
 function taoh_report_js_error(){
   $userAgent = $_SERVER['HTTP_USER_AGENT'] ?? 'Unknown';
   $userAgentArr =getBrowserAndOS($userAgent);
-  
+
   /* $file_upload_url = TAOH_CDN_PREFIX . '/cache/upload/now';
     if (!empty($_FILES['screenshot']['name'])) {
         $screenshot_res = taoh_remote_file_upload($_FILES['screenshot'], $file_upload_url);
@@ -2480,9 +2471,9 @@ function taoh_report_js_error(){
     $_POST['metadata']['browser'] = $userAgentArr['browser'];
     $_POST['metadata']['version'] = $userAgentArr['version'];
     $_POST['metadata']['OS']      = $userAgentArr['OS'];
-    
+
     $user_is_logged_in = taoh_user_is_logged_in() ?? false;
-    
+
     $taoh_call = 'core.send.bugreport';
     $taoh_vals = [
         'mod' => 'report_bug',
@@ -2497,10 +2488,10 @@ function taoh_report_js_error(){
 
 function taoh_contact_host(){
   $toenter = array();
-  
+
   $toenter['description'] = taoh_title_desc_encode($_POST['description']);
   $toenter['title'] = taoh_title_desc_encode($_POST['title']);
-    
+
     $taoh_call = 'events.contact.host';
     $taoh_vals = [
         'mod' => 'events',
@@ -2517,11 +2508,11 @@ function taoh_contact_host(){
 
 function taoh_contact_us(){
   $toenter = array();
-  
+
   $toenter['description'] = taoh_title_desc_encode($_POST['description']);
   $toenter['title'] = taoh_title_desc_encode($_POST['title']);
   $toenter['addtitle'] = taoh_title_desc_encode($_POST['contact_addtitle']);
-    
+
     $taoh_call = 'events.contact.host';
     $taoh_vals = [
         'mod' => 'events',
@@ -2557,7 +2548,7 @@ function update_dojo_tracker_status() {
   //print_r($result);die();
   $decodedResult = json_decode($result, true);
   //print_r($decodedResult);die;
-  
+
   // Set response header and return response
   header('Content-Type: application/json; charset=utf-8');
 
@@ -2703,11 +2694,8 @@ function taoh_followup_users_list()
     echo taoh_apicall_get('core.followup.get.list', $taoh_vals);
     exit();
 }
-
-
-
 function social_login_success() {
-  
+
   /* if (isset($_POST['success']) && $_POST['success'] == 1) {
       $token = $_POST['output'];
       setcookie(TAOH_ROOT_PATH_HASH . '_taoh_api_token', $token, strtotime('+30 days'), '/');
@@ -2734,7 +2722,7 @@ function social_login_success() {
         $response = 1;
     }  else {
         $response = 0;
-    }     
+    }
 
   echo json_encode(['status' => $response]);
   taoh_exit();

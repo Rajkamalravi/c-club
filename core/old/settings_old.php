@@ -1178,9 +1178,6 @@ function deleteAccount() {
         //comments.append("<p>Server Error!</p>");
     })
 }
-
-
-
     /*function checkProfessionalScoutBox() {
         if ($('#is_scout_professional_check').is(":checked")){
             $('.scout_professional_check_val').val(1);

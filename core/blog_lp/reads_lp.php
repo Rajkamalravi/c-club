@@ -1,4 +1,4 @@
-<?php 
+<?php
    taoh_lp_get_header();
    $ajax_url = TAOH_TEMP_SITE_FILE_PARSE.TAOH_TEMP_SITE_URL.'/ajax';
    $response_tags = get_tags_list_lp();
@@ -20,9 +20,9 @@
    $int_rand = blog_lp_related_post($response_tags[4],10);
    $brandrand = blog_lp_related_post($response_tags[5],5);
    $res_rand = blog_lp_related_post($response_tags[6],12);
-   
 
-?> 
+
+?>
 <!-- <div id="breaking-news" class="breaking-news container">
    <span class="breaking-news-title"><i class="fa fa-bolt"></i> <span>Breaking News</span></span>
    <ul class="innerFade" style="position: relative; height: 31.2px;">
@@ -31,13 +31,13 @@
 </div> -->
 <!-- .breaking-news -->
 <div id="main-content" class="container">
-   <?php 
+   <?php
       if($hero){
-         taoh_lp_blog_satart($hero); 
+         taoh_lp_blog_satart($hero);
       }
    ?>
    <div class="content">
-      <?php 
+      <?php
          if($cent1_rand['success'] && $cent1_rand['output']['list']) { ?>
          <section class="cat-box list-box tie-cat-76">
             <div class="cat-box-title">
@@ -46,7 +46,7 @@
             </div>
             <div class="cat-box-content">
                <ul>
-                  <?php 
+                  <?php
                      taoh_all_lp_central_widget1($cent1_rand['output']['list']);
                   ?>
                </ul>
@@ -54,7 +54,7 @@
          </section>
          <?php } ?>
       <!-- List Box -->
-       <?php 
+       <?php
          if($cent2_rand['success'] && $cent2_rand['output']['list']) { ?>
             <section class="cat-box column2 tie-cat-52" style="width: 100%;">
                <div class="cat-box-title">
@@ -63,7 +63,7 @@
                </div>
                <div class="cat-box-content">
                   <ul>
-                     <?php 
+                     <?php
                         taoh_all_lp_central_widget2($cent2_rand['output']['list']);
                      ?>
                   </ul>
@@ -72,7 +72,7 @@
             </section>
          <?php } ?>
       <!-- Two Columns -->
-       <?php 
+       <?php
          if($cent3_rand['success'] && $cent3_rand['output']['list']) { ?>
             <section class="cat-box column2 tie-cat-50 last-column" style="width: 100%;">
                <div class="cat-box-title">
@@ -81,7 +81,7 @@
                </div>
                <div class="cat-box-content">
                   <ul>
-                     <?php 
+                     <?php
                         taoh_all_lp_central_widget2($cent3_rand['output']['list']);
                      ?>
                   </ul>
@@ -90,7 +90,7 @@
             </section>
          <?php } ?>
       <!-- Two Columns -->
-       <?php 
+       <?php
          if($cent4_rand['success'] && $cent4_rand['output']['list']) { ?>
             <section class="cat-box scroll-box tie-cat-49">
                <div class="cat-box-title">
@@ -100,7 +100,7 @@
                <div class="cat-box-content">
                   <div id="slideshow49" class="group_items-box" style="position: relative; width: 620px; height: 200px; overflow: hidden;">
                      <div class="group_items" style="background-color: rgb(0, 0, 0); position: absolute; top: 0px; left: 0px; z-index: 3; opacity: 1; display: block;">
-                        <?php 
+                        <?php
                            taoh_all_lp_central_widget3($cent4_rand['output']['list']);
                         ?>
                      </div>
@@ -110,7 +110,7 @@
                </div>
                <!-- .cat-box-content /-->
             </section>
-         <?php } ?>  
+         <?php } ?>
       <div class="clear"></div>
       <?php if($int_rand['success'] && $int_rand['output']['list']) { ?>
          <section class="cat-box pic-box tie-cat-41 clear">
@@ -120,7 +120,7 @@
             </div>
             <div class="cat-box-content">
                <ul>
-                  <?php 
+                  <?php
                      taoh_int_releated($int_rand['output']['list']);
                   ?>
                </ul>
@@ -137,7 +137,7 @@
             </div>
             <div class="cat-box-content">
                <ul>
-                  <?php 
+                  <?php
                      taoh_brand_releated($brandrand['output']['list']);
                   ?>
                </ul>
@@ -155,7 +155,7 @@
             </div>
             <div class="cat-box-content">
                <ul>
-                  <?php 
+                  <?php
                      taoh_resume_releated($res_rand['output']['list']);
                   ?>
                </ul>
@@ -164,7 +164,7 @@
             <!-- .cat-box-content /-->
          </section>
       <?php } ?>
-      
+
       <div class="cat-box-content clear cat-box">
          <div class="cat-tabs-header">
             <ul>
@@ -181,7 +181,7 @@
                 $learn_rand = blog_lp_related_post($response_tags[7],5);
                   if($learn_rand['success'] && $learn_rand['output']['list']) {
                      taoh_learn_releated($learn_rand['output']['list']);
-                  } 
+                  }
                ?>
             </ul>
             <div class="clear"></div>
@@ -192,7 +192,7 @@
                 $mind_rand = blog_lp_related_post($response_tags[8],5);
                   if($mind_rand['success'] && $mind_rand['output']['list']) {
                      taoh_mind_releated($mind_rand['output']['list']);
-                  } 
+                  }
                ?>
             </ul>
             <div class="clear"></div>
@@ -203,7 +203,7 @@
                   $prod_rand = blog_lp_related_post($response_tags[9],5);
                   if($prod_rand['success'] && $prod_rand['output']['list']) {
                      taoh_prod_releated($prod_rand['output']['list']);
-                  } 
+                  }
                ?>
             </ul>
             <div class="clear"></div>
@@ -214,22 +214,22 @@
                   $net_rand = blog_lp_related_post($response_tags[10],5);
                   if($net_rand['success'] && $net_rand['output']['list']) {
                      taoh_net_releated($net_rand['output']['list']);
-                  } 
+                  }
                ?>
             </ul>
             <div class="clear"></div>
-         </div> 
+         </div>
          <div id="catab03" class="cat-tabs-wrap cat-tabs-wrap3" style="display: none;">
             <ul>
                <?php
                   $stress_rand = blog_lp_related_post($response_tags[11],5);
                   if($stress_rand['success'] && $stress_rand['output']['list']) {
                      taoh_stress_releated($stress_rand['output']['list']);
-                  } 
+                  }
                ?>
             </ul>
             <div class="clear"></div>
-         </div> 
+         </div>
       </div>
       <!-- #cats-tabs-box /-->
       <section class="cat-box recent-box recent-blog">
@@ -253,7 +253,7 @@
       <?php taoh_side_bar(); ?>
       <!-- .theiaStickySidebar /-->
    </aside>
-   <!-- #sidebar /-->	
+   <!-- #sidebar /-->
    <div class="clear"></div>
 </div>
 <!-- .container /-->
@@ -269,7 +269,7 @@
    let category = 'uncategorized';
 
    $(document).ready(function(){
-      <?php if(TAOH_INTAODB_ENABLE) { ?>			
+      <?php if(TAOH_INTAODB_ENABLE) { ?>
          get_lp_bloglistdata();
       <?php }else{ ?>
          taoh_blogs_init();
@@ -366,7 +366,7 @@
          'ops': 'list',
          'offset': currentPage,
          'limit': itemsPerPage,
-         'category': category,   
+         'category': category,
       };
       jQuery.post("<?php echo $ajax_url; ?>", data, function(response) {
          console.log('data',response);
@@ -401,7 +401,7 @@
          }else{
                v.blurb.image = prefix+"/images/igcache/"+encodeURIComponent(v.title)+"/900_600/blog.jpg";
          }
-         let decodedStr = htmlDecode(v.blurb.description); 
+         let decodedStr = htmlDecode(v.blurb.description);
          slot.append(`
                   <article class="item-list">
                      <h2 class="post-box-title" style="margin-bottom: 10px;"><a href="<?php echo TAOH_READS_LP_URL;?>/blog/${convertToSlug(v.title)}-${v.conttoken}" rel="bookmark">${v.title}</a></h2>
@@ -417,7 +417,7 @@
                      </div>
                      <div class="clear"></div>
                   </article>
-                  `         
+                  `
                );
       });
       if(totalItems >= 11){
@@ -444,6 +444,6 @@
         <?php } ?>
     },10000);
 </script>
-<?php 
+<?php
    taoh_lp_get_footer();
-?>             
+?>

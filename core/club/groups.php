@@ -95,10 +95,10 @@ $keywords = (array) ($user_info_obj?->keywords ?? []);
                 </div>
             </section>
         </header>
-        
+
         <div class="mobile-app groups-nav py-3">
             <ul class="nav nav-tabs justify-content-center border-0" id="room_tabs" role="tablist">
-                    <?php 
+                    <?php
                     $active = 'active';
                     $show = '';
                     if(!empty($keywords)) {
@@ -115,13 +115,13 @@ $keywords = (array) ($user_info_obj?->keywords ?? []);
                             <a class="nav-link rooms <?php echo  $active ;?> " id="custom_rooms_tab" onclick="loadRoom('custom_rooms');">General Groups</a>
                         </li>
                     <?php } ?>
-                    
 
-            </ul>  
+
+            </ul>
         </div>
         <section class="question-area pb-40px groups-body-bg">
             <div class="container pt-5">
-                 
+
                 <div class="row" id="loaderArea"></div>
                 <div class="row" id="CustomRoomArea" style="display:<?php echo $show;?>;"></div>
                 <div class="row justify-content-center" id="ProfileRoomArea" >
@@ -377,7 +377,7 @@ $keywords = (array) ($user_info_obj?->keywords ?? []);
             loader(true, loaderArea);
             $('#CustomRoomArea').show();
             $('#ProfileRoomArea').hide();
-            
+
             let data = {
                 'taoh_action': 'taoh_rooms_get',
                 'ops': 'list',
@@ -476,9 +476,6 @@ $keywords = (array) ($user_info_obj?->keywords ?? []);
                 let title = l.club.title ? l.club.title : '';
                 let desc = l.club.description ? new DOMParser().parseFromString(htmlDecode(l.club.description), 'text/html').body.textContent : '';
                 desc = desc.charAt(0).toUpperCase() + desc.slice(1);
-
-
-
                 // Generate the poster or use the club image
                 checkImageExists(l.club.image).then(async (isValid) => {
                     let imageSrc = isValid ? l.club.image : await generateEventPoster(title);

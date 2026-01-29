@@ -1,8 +1,5 @@
 <?php
-taoh_get_header(); 
-
-
-
+taoh_get_header();
 // https://opslogy.com/scripts/code.php
 //$url = TAOH_OPS_PREFIX."/scripts/code.php";
 //$response = json_decode(taoh_url_get( $url ), true);

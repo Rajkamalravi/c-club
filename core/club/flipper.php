@@ -27,11 +27,11 @@ $valid_dir_viewer = $taoh_user_is_logged_in && $user_info_obj->profile_complete 
 
 
 .word {
-    display: none; 
+    display: none;
 }
 
 .word.active {
-    display: block; 
+    display: block;
     /* background: #2557A7; */
     color: #2557A7;
     /* padding: 0.5rem; */
@@ -53,20 +53,17 @@ $valid_dir_viewer = $taoh_user_is_logged_in && $user_info_obj->profile_complete 
 <div class="bg-white the-start-club">
     <div class="header container py-4 row">
         <h1 class="col-lg-11 d-flex flex-wrap big-title">
-            <span>Where</span> 
+            <span>Where</span>
             <span class="flipper" style="">
                 <span class="word" id="word1">careers</span>
                 <span class="word" id="word2">communities</span>
                 <span class="word" id="word3">collaborations</span>
-            </span> 
+            </span>
             <span>Happens for
-            HR Specialists</span> 
+            HR Specialists</span>
         </h1>
     </div>
 </div>
-
-
-
 <script>
     let currentIndex = 0;
     const words = document.querySelectorAll('.flipper .word');
@@ -81,14 +78,5 @@ $valid_dir_viewer = $taoh_user_is_logged_in && $user_info_obj->profile_complete 
 
     words[currentIndex].classList.add('active');
 </script>
-
-
-
-
-
-
 <?php
-
-
-
 taoh_get_footer();

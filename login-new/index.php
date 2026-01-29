@@ -50,12 +50,12 @@ function set_user_cookies($email, $user_key, $domain,$profile_info) {
         'httponly' => true,  // Prevent XSS attacks
         'samesite' => 'Lax'  // Allow cookies across same-site redirects
     ];
-   
+
     // Set both legacy (tao_*) and new (aligned with server) cookie names
     $result1 = setcookie('tao_email', $email, $cookie_options);
     $result2 = setcookie('tao_user_key', $user_key, $cookie_options);
     $result3 = setcookie('tao_logged_in', '1', $cookie_options);
- 
+
     // Also set aligned cookie names (matching SSO server)
     $result4 = setcookie('email', $email, $cookie_options);
     $result5 = setcookie('user_key', $user_key, $cookie_options);
@@ -64,7 +64,7 @@ function set_user_cookies($email, $user_key, $domain,$profile_info) {
         $result6 = setcookie('tao_profile_info', $profile_info, $cookie_options);
           $_COOKIE['tao_profile_info'] = $profile_info;
     }
-    
+
 
     // Also set in $_COOKIE for immediate availability
     $_COOKIE['tao_email'] = $email;
@@ -72,9 +72,6 @@ function set_user_cookies($email, $user_key, $domain,$profile_info) {
     $_COOKIE['tao_logged_in'] = '1';
     $_COOKIE['email'] = $email;
     $_COOKIE['user_key'] = $user_key;
-  
-
-
     error_log('[login/index.php] Cookies set - Results: tao_email=' . ($result1?'OK':'FAIL') . ', tao_key=' . ($result2?'OK':'FAIL') . ', logged_in=' . ($result3?'OK':'FAIL') . ', email=' . ($result4?'OK':'FAIL') . ', user_key=' . ($result5?'OK':'FAIL'));
 }
 
@@ -122,7 +119,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if($last_name != ''){
         $profile_info['last_name'] = $last_name;
     }
-    
+
     $payload = isset($_POST['payload']) ? $_POST['payload'] : null;
 
     if (!$email || !$user_key) {

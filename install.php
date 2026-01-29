@@ -14,7 +14,7 @@ if ( stristr( $_SERVER[ 'SERVER_SOFTWARE' ], 'nginx' ) ){
     echo "
     <h4>Using NGINX?</h4>
     <h5>add the following to your nginx configuration file associated with ".$_SERVER[ 'HTTP_HOST' ]." configuration</h5>
-    <h5>    
+    <h5>
     location /hires/ {<br />
         root ".dirname( $_SERVER[ 'SCRIPT_FILENAME' ] ).";<br />
         try_files \$uri \$uri/ ".dirname( $_SERVER[ 'SCRIPT_NAME' ] )."/index.php?\$args;<br />

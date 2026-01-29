@@ -53,9 +53,9 @@ function requestFile( $filePath ) {
 
 
   $val_json = file_get_contents($api_config_generation);
-  
+
   //echo  $api_config_generation;
-  
+
   if ( ! $val_json ) return 0;
 
 
@@ -77,10 +77,10 @@ function requestFile( $filePath ) {
 
   $config_array_data = $config_data['output'];
   $config_array = json_decode($config_array_data, true);
-  
- 
+
+
   //echo'<pre>';print_r($config_array_data);die();
-  
+
 
   $output = "defined('TAOH_SITE_URL_ROOT') || define('TAOH_SITE_URL_ROOT', '" . TAOH_SITE_URL_ROOT . "');\n";
   if ( is_array( $config_array ) || is_object( $config_array ) ){
@@ -89,8 +89,8 @@ function requestFile( $filePath ) {
           $value = $value === false ? 0 : $value;
           $output .= "defined('" . strtoupper($key) . "') || define('" . strtoupper($key) . "', " . (is_string($value) ? "'$value'" : $value) . ");\n";
       }
-  
-      file_put_contents($filePath, "<?php\n\n" . $output . "\n\n?>");    
+
+      file_put_contents($filePath, "<?php\n\n" . $output . "\n\n?>");
   }
   return 1;
 }
@@ -100,20 +100,20 @@ if ( defined( 'TAOH_MULTISITE' ) && TAOH_MULTISITE===true ){
   $filePath = TAOH_PLUGIN_PATH . '/cache/configs/env_' . TAOH_SITE_ROOT_HASH . '.cache';
   if(isset($_GET['clear']) && $_GET['clear'] == 'config'){
 
-    if (file_exists($filePath)) 
+    if (file_exists($filePath))
         unlink($filePath);
 
     $purge_url = ' https://api.tao.ai/scripts/cfpurge.php?platform='.$_SERVER['HTTP_HOST'].'&y='.rand(10,100);
     //echo $purge_url;
     file_get_contents($purge_url);
     //die();
-    
+
   }
-  
-  
+
+
   if ( file_exists($filePath) && TAOH_MULTISITE ) {
     $fileAgeHours = (time() - filemtime($filePath)) / 3600;
-  
+
       // Check if the file is 12 hours old or fresher
       if ($fileAgeHours <= 12) {
           require_once $filePath;
@@ -124,7 +124,7 @@ if ( defined( 'TAOH_MULTISITE' ) && TAOH_MULTISITE===true ){
   } else {
       requestFile($filePath);
   }
-  
+
 }
 
 if (file_exists('env_post.php')) require_once 'env_post.php';
@@ -141,7 +141,7 @@ if (0){
     if ( defined('TAOH_SITE_ENVIRONMENT') && TAOH_SITE_ENVIRONMENT === 'production' && ! file_get_contents('https://tao.ai/health/', false, stream_context_create(['ssl' => ['verify_peer' => false, 'verify_peer_name' => false]]))) {
         header('Location: ' . TAOH_SITE_URL_ROOT . '/busy.php');
         exit();
-    }    
+    }
 }
 defined('TAOH_INDEXEDDB_VERSION') || define('TAOH_INDEXEDDB_VERSION', 54);
 defined('TAOH_CSS_JS_VERSION') || define('TAOH_CSS_JS_VERSION', '6.5.8');
@@ -279,9 +279,6 @@ defined('TAOH_SITE_MAIN_OPTION_3') || define('TAOH_SITE_MAIN_OPTION_3','<strong>
 defined('TAOH_SITE_MAIN_HERO_COLOR') || define('TAOH_SITE_MAIN_HERO_COLOR','rgba(37,67,187, 0.7)');// #2557A7
 defined('TAOH_SITE_MAIN_HERO_IMAGE') || define('TAOH_SITE_MAIN_HERO_IMAGE','https://cdn.tao.ai/upload/files/tao_splash.jpg');
 defined('TAOH_BANNER_VIDEO') || define('TAOH_BANNER_VIDEO','https://www.youtube.com/embed/o9qbgV0Aotk?rel=0');
-
-
-
 defined('TAOH_MENU_HEADER_1') || define('TAOH_MENU_HEADER_1', json_encode(array(
 '#Club' => '/'.TAOH_WERTUAL_SLUG.'/',
 'TheWorkTimes' => 'https://TheWorkTimes.com',
@@ -615,9 +612,6 @@ defined('TAOH_AJAX_SECRET') || define('TAOH_AJAX_SECRET', TAOH_API_SECRET);
 defined('EVENT_DEMO_SITE') || define('EVENT_DEMO_SITE', 0);
 
 defined('NETWORKING_VERSION') || define('NETWORKING_VERSION', 'mini');//5
-
-
-
 defined('SIDEKICK_CHANNEL_ENABLE') || define('SIDEKICK_CHANNEL_ENABLE', false);
 
 defined('TAOH_FOOTER_BANNER_AD') || define('TAOH_FOOTER_BANNER_AD', true);
@@ -711,7 +705,7 @@ defined('TAOH_DEV_SITE') || define('TAOH_DEV_SITE', 0);
 defined('TAOH_LINK_CANONICAL_URL_ENABLE') || define('TAOH_LINK_CANONICAL_URL_ENABLE', 0);
 
 
-defined('TAOH_SPEEDNETWORKING_ENABLE') || define('TAOH_SPEEDNETWORKING_ENABLE', 1); 
+defined('TAOH_SPEEDNETWORKING_ENABLE') || define('TAOH_SPEEDNETWORKING_ENABLE', 1);
 define('DOJO_NETWORKING_MESSAGE1',[
         [
         'id' => 'no_message_in_15_min',
@@ -790,21 +784,21 @@ defined('TAOH_DOJO_SUGGESTION_ENABLE') || define('TAOH_DOJO_SUGGESTION_ENABLE', 
 defined('TAOH_DOJO_SUGGESTION_TIMELIMIT') || define('TAOH_DOJO_SUGGESTION_TIMELIMIT', 30000);
 defined('TAOH_DOJO_TRACKER_ENABLE') || define('TAOH_DOJO_TRACKER_ENABLE', 0);
  defined('NETWORKING_DOJO_SUGGESTION') || define('NETWORKING_DOJO_SUGGESTION', false);
- 
+
 
 defined('TAOH_CHAT_NET_URL') || define('TAOH_CHAT_NET_URL', TAOH_CACHE_CHAT_PREFIX . '/taoh_net.php');
 
 defined('NETWORKING_2_0') || define('NETWORKING_2_0', true);
 defined('NETWORKING_3_0') || define('NETWORKING_3_0', false);
-defined('HIDE_REORT_AN_ISSUE') || define('HIDE_REORT_AN_ISSUE' , 1); 
+defined('HIDE_REORT_AN_ISSUE') || define('HIDE_REORT_AN_ISSUE' , 1);
 
 
 define( 'TAOH_CACHE_CHAT_PREFIX_MOD', TAOH_CACHE_CHAT_PREFIX);
 
 
 defined('TAO_TABLES_NAME') || define('TAO_TABLES_NAME' , 'tables.im');
-defined('TAO_TABLES_URL') || define('TAO_TABLES_URL' , 'https://tables.im'); 
-defined('TAO_TABLES_KEYWORD') || define('TAO_TABLES_KEYWORD' , TAOH_SITE_NAME_SLUG); 
+defined('TAO_TABLES_URL') || define('TAO_TABLES_URL' , 'https://tables.im');
+defined('TAO_TABLES_KEYWORD') || define('TAO_TABLES_KEYWORD' , TAOH_SITE_NAME_SLUG);
 defined('TAOH_TABLE_REDIS_URL') || define('TAOH_TABLE_REDIS_URL' , TAOH_CACHE_CHAT_PREFIX_MOD . '/mos_red_apps.php');
 defined('TAOH_TABLE_VERSION') || define('TAOH_TABLE_VERSION' , 'tao');
 defined('TAOH_COMMENTS_VERSION') || define('TAOH_COMMENTS_VERSION' , 'prod');

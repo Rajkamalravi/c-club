@@ -11,7 +11,7 @@ switch (taoh_parse_url(2)) {
             include_once('flashcard_post.php');
         } else {
             return taoh_redirect();
-        }        
+        }
       break;
 
     case 'edit':

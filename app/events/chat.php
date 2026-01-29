@@ -148,7 +148,7 @@ if ( ! defined ( 'TAO_PAGE_KEYWORDS' ) ) { define ( 'TAO_PAGE_KEYWORDS', TAOH_SI
 $additive = '';
 if(!empty($site_info['source']) && TAOH_SITE_URL_ROOT != $site_info['source']){
     $canonical_url = $site_info['source'].'/'.$app_data->slug.'/d/'.slugify2($event_title)."-".$eventtoken;
-    $additive = '<link rel="canonical" href="'.$canonical_url.'"/> 
+    $additive = '<link rel="canonical" href="'.$canonical_url.'"/>
 	<meta name="original-source" content="'.$canonical_url.'"/>';
 }
 define('TAO_PAGE_CANONICAL', $additive);
@@ -317,7 +317,7 @@ require_once TAOH_APP_PATH . '/events/event_health_check.php';
             <!-- status-->
 
             <?php
-            
+
             if( $show_rsvp_confirmation){
                 if (strlen($rsvp_token) >= 5 || $current_ticket_type['price'] === 'free' || ($current_ticket_type['price'] === 'paid' && $is_user_paid)) { ?>
                     <div class="pb-3" style="border-bottom : 2px solid #D3D3D3; min-height: 71px; gap: 12px;">
@@ -405,7 +405,7 @@ require_once TAOH_APP_PATH . '/events/event_health_check.php';
 
             <div class="sticky-top sticky-top-fixed light-dark" style="z-index: 10;">
                 <div class="max-w container pl-0 pr-0 pt-3 pb-2 border-bottom" id="event_info_container">
-                    <ul class="nav nav-tabs justify-content-left border-0 mt-3 mb-3" role="tablist" 
+                    <ul class="nav nav-tabs justify-content-left border-0 mt-3 mb-3" role="tablist"
                         style="background:none;line-height: 1.143;">
                         <li class="nav-item" >
                             <a href="<?= TAOH_SITE_URL_ROOT.'/'; ?>">Home</a>
@@ -442,20 +442,20 @@ require_once TAOH_APP_PATH . '/events/event_health_check.php';
                                     <p class="e-v2-info" id="event_venue_info"></p>
                                 </div>
                             </div>
-                            <?php 
+                            <?php
                             $class = '';
                             if($is_event_freeze || $is_event_suspended) $class ='event-live-end';
                             else if($live_state == 'live')   $class ='event-live-on';
                             else if($live_state == 'after')   $class ='event-live-end';
                             else $class ='event-live-before';
-                                
+
                                 ?>
                             <div class="flex-shrink-lg-0 ticket-card-div d-flex flex-row flex-wrap flex-xl-column events-btns-outer-block <?= $class; ?>" style="gap: 6px;">
-                                
+
                             <?php if($live_state != 'live') { ?>
                                 <a href="<?= $adopter_url; ?>" id="networking_link" style="display:none;"  class="btn btn-success">Go to Networking Room</a>
                             <?php } ?>
-                                
+
                                 <div class="event_status_button d-flex flex-wrap flex-xl-column" style="gap: 6px;">
                                     <input type="hidden" name="chat_room_status" id="chat_room_status" value="<?= $chat_room_status; ?>"/>
                                     <?php
@@ -465,8 +465,8 @@ require_once TAOH_APP_PATH . '/events/event_health_check.php';
                                                 <path d="M6.85714 0C7.80536 0 8.57143 0.754102 8.57143 1.6875V3.375H15.4286V1.6875C15.4286 0.754102 16.1946 0 17.1429 0C18.0911 0 18.8571 0.754102 18.8571 1.6875V3.375H21.4286C22.8482 3.375 24 4.50879 24 5.90625V8.4375H0V5.90625C0 4.50879 1.15179 3.375 2.57143 3.375H5.14286V1.6875C5.14286 0.754102 5.90893 0 6.85714 0ZM0 10.125H24V24.4688C24 25.8662 22.8482 27 21.4286 27H2.57143C1.15179 27 0 25.8662 0 24.4688V10.125ZM16.3393 16.084C16.8429 15.5883 16.8429 14.7867 16.3393 14.2963C15.8357 13.8059 15.0214 13.8006 14.5232 14.2963L12.0054 16.7748L9.4875 14.2963C8.98393 13.8006 8.16964 13.8006 7.67143 14.2963C7.17321 14.792 7.16786 15.5936 7.67143 16.084L10.1893 18.5625L7.67143 21.041C7.16786 21.5367 7.16786 22.3383 7.67143 22.8287C8.175 23.3191 8.98929 23.3244 9.4875 22.8287L12.0054 20.3502L14.5232 22.8287C15.0268 23.3244 15.8411 23.3244 16.3393 22.8287C16.8375 22.333 16.8429 21.5314 16.3393 21.041L13.8214 18.5625L16.3393 16.084Z" fill="#444444"/>
                                             </svg>
                                             <input type="hidden" name="event_status_hidden" id="event_status_hidden" live="suspended" value="3"/>
-                                            <input type="hidden" name="rsvp_status_hidden" id="rsvp_status_hidden" live="live" value="0"/>        
-                            
+                                            <input type="hidden" name="rsvp_status_hidden" id="rsvp_status_hidden" live="live" value="0"/>
+
                                             <span>Event Suspended</span>
                                         </span>';
                                     } else {
@@ -485,7 +485,7 @@ require_once TAOH_APP_PATH . '/events/event_health_check.php';
                                                     <!-- Sound wave 2 -->
                                                     <path d="M88 10 C104 28, 104 54, 88 70" fill="none" stroke="#fff" stroke-width="5" stroke-linecap="round"></path>
                                                 </svg>
-                                                <input type="hidden" name="rsvp_status_hidden" id="rsvp_status_hidden" live="live" value="1"/>                               
+                                                <input type="hidden" name="rsvp_status_hidden" id="rsvp_status_hidden" live="live" value="1"/>
                                                 <input type="hidden" name="event_status_hidden" id="event_status_hidden" live="live"  value="1"/>';
                                             if ($chat_room_status) {
                                                 echo '<span>Event Live, ' . ((!$valid_user) ? 'Complete settings to' : 'Click to') . ' Join</span>';
@@ -498,8 +498,8 @@ require_once TAOH_APP_PATH . '/events/event_health_check.php';
                                             <svg width="24" height="27" viewBox="0 0 24 27" fill="none" xmlns="http://www.w3.org/2000/svg">
                                                 <path d="M6.85714 0C7.80536 0 8.57143 0.754102 8.57143 1.6875V3.375H15.4286V1.6875C15.4286 0.754102 16.1946 0 17.1429 0C18.0911 0 18.8571 0.754102 18.8571 1.6875V3.375H21.4286C22.8482 3.375 24 4.50879 24 5.90625V8.4375H0V5.90625C0 4.50879 1.15179 3.375 2.57143 3.375H5.14286V1.6875C5.14286 0.754102 5.90893 0 6.85714 0ZM0 10.125H24V24.4688C24 25.8662 22.8482 27 21.4286 27H2.57143C1.15179 27 0 25.8662 0 24.4688V10.125ZM16.3393 16.084C16.8429 15.5883 16.8429 14.7867 16.3393 14.2963C15.8357 13.8059 15.0214 13.8006 14.5232 14.2963L12.0054 16.7748L9.4875 14.2963C8.98393 13.8006 8.16964 13.8006 7.67143 14.2963C7.17321 14.792 7.16786 15.5936 7.67143 16.084L10.1893 18.5625L7.67143 21.041C7.16786 21.5367 7.16786 22.3383 7.67143 22.8287C8.175 23.3191 8.98929 23.3244 9.4875 22.8287L12.0054 20.3502L14.5232 22.8287C15.0268 23.3244 15.8411 23.3244 16.3393 22.8287C16.8375 22.333 16.8429 21.5314 16.3393 21.041L13.8214 18.5625L16.3393 16.084Z" fill="#444444"/>
                                             </svg>
-                                            <input type="hidden" name="rsvp_status_hidden" id="rsvp_status_hidden" live="live" value="1"/>        
-                            
+                                            <input type="hidden" name="rsvp_status_hidden" id="rsvp_status_hidden" live="live" value="1"/>
+
                                             <input type="hidden" name="event_status_hidden" id="event_status_hidden" live="ended" value="0"/>
                                             <span>Ended</span>
                                         </span>';
@@ -508,8 +508,8 @@ require_once TAOH_APP_PATH . '/events/event_health_check.php';
                                             <svg width="17" height="23" viewBox="0 0 17 23" fill="none" xmlns="http://www.w3.org/2000/svg">
                                                 <path d="M1.4163 0C0.632908 0 0 0.642383 0 1.4375C0 2.23262 0.632908 2.875 1.4163 2.875V3.36914C1.4163 5.27383 2.16428 7.10215 3.49206 8.44981L6.49284 11.5L3.49206 14.5502C2.16428 15.8979 1.4163 17.7262 1.4163 19.6309V20.125C0.632908 20.125 0 20.7674 0 21.5625C0 22.3576 0.632908 23 1.4163 23H2.8326H14.163H15.5793C16.3627 23 16.9956 22.3576 16.9956 21.5625C16.9956 20.7674 16.3627 20.125 15.5793 20.125V19.6309C15.5793 17.7262 14.8313 15.8979 13.5035 14.5502L10.5027 11.5L13.5079 8.44981C14.8357 7.10215 15.5837 5.27383 15.5837 3.36914V2.875C16.3671 2.875 17 2.23262 17 1.4375C17 0.642383 16.3671 0 15.5837 0H14.163H2.8326H1.4163ZM4.24889 3.36914V2.875H12.7467V3.36914C12.7467 4.22266 12.4988 5.04922 12.0385 5.75H4.95704C4.50117 5.04922 4.24889 4.22266 4.24889 3.36914ZM4.95704 17.25C5.11195 17.0119 5.29341 16.7873 5.49258 16.5807L8.49779 13.535L11.503 16.5852C11.7066 16.7918 11.8836 17.0164 12.0385 17.2545H4.95704V17.25Z" fill="#000000"/>
                                             </svg>
-                                            <input type="hidden" name="rsvp_status_hidden" id="rsvp_status_hidden" live="live" value="1"/>        
-                            
+                                            <input type="hidden" name="rsvp_status_hidden" id="rsvp_status_hidden" live="live" value="1"/>
+
                                             <input type="hidden" name="event_status_hidden" id="event_status_hidden" live="not_live" value="2"/>
                                             <span>Event Not Live!</span>
                                         </span>';
@@ -533,9 +533,6 @@ require_once TAOH_APP_PATH . '/events/event_health_check.php';
 
                                     </button>
                                 </div>
-                                
-                                    
-
 
                                 <input type="hidden" name="is_organizer" id="is_organizer" value="0" >
                                 <input type="hidden" name="user_profile_type" id="user_profile_type" value="" >
@@ -577,15 +574,15 @@ require_once TAOH_APP_PATH . '/events/event_health_check.php';
                                         </div>
                                     </div>
                                      <div class="d-flex pt-1 resp-left-align" style="gap:8px; margin: 0 auto; align-items: center; width: 100%;">
-                                        
+
                                             <?php if($live_state == 'before') { ?>
                                                 <div class="dropdown calendar-dropdown">
-                                                    
-                                                    
+
+
                                                     <button title="Add to Calendar" style="padding:8px;" class="btn dropdown-toggle v1-calendar w-100" type="button" id="addToCalenderButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 		                                                <i class="fa-solid fa-calendar-check" style="font-size: 24px; margin: auto;"></i>
 		                                            </button>
-                                                    
+
                                                     <ul class="dropdown-menu w-100" aria-labelledby="addToCalenderButton">
                                                         <?php
                                                         $event_start_date = $event_arr['local_start_at'];
@@ -619,7 +616,7 @@ require_once TAOH_APP_PATH . '/events/event_health_check.php';
                                             </a>
                                         </div>
                                         <div id="share_event_slot">
-                                            
+
                                             <a title="Share Event" data-toggle="modal" data-target="#shareModal" href="javascript:void(0);"
                                             class="btn d-flex align-items-center text-nowrap" style="padding:8px" >
                                                 <i class="fa-solid fa-share-nodes" style="font-size: 24px; margin: auto;"></i>
@@ -627,9 +624,6 @@ require_once TAOH_APP_PATH . '/events/event_health_check.php';
                                         </div>
 
                                     </div>
-                                    
-
-                                   
 
                                 </div>
                             </div>
@@ -696,7 +690,7 @@ require_once TAOH_APP_PATH . '/events/event_health_check.php';
                                 <input id="sponsor_type1" name="sponsor_type1" type="hidden" value=""/>
                                 <div class="sponsor_edit"></div>
                                 <div class="event_sponsor_right_header">
-                                <a href="<?= TAOH_SITE_URL_ROOT.'/events/event_sponsor/'.$eventtoken; ?>" 
+                                <a href="<?= TAOH_SITE_URL_ROOT.'/events/event_sponsor/'.$eventtoken; ?>"
                                 class="btn btn-warning sponsor-btn">Become a sponsor</a>
 
                                 </div>
@@ -735,7 +729,7 @@ require_once TAOH_APP_PATH . '/events/event_health_check.php';
 <div class="modal fade dark-head-v1-modal" id="addCoAttendessModal" tabindex="-1" role="dialog" aria-labelledby="addCoAttendessModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
-    
+
       <div class="modal-header p-4 px-lg-5">
         <div class="modal-title">
             <div class="d-flex align-items-center" style="gap: 21px;">
@@ -755,7 +749,7 @@ require_once TAOH_APP_PATH . '/events/event_health_check.php';
             </svg>
         </button>
       </div>
-      
+
       <div class="modal-body px-4 px-lg-5">
         <!-- Form or content goes here -->
         <form>

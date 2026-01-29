@@ -141,15 +141,15 @@ function blog_search_widget() { ?>
               </div>
           </form>
 <?php }
-function side_widget4(){ 
+function side_widget4(){
   $widget1 = array_slice(taoh_central_widget_get(), 0, 5, true);
   $first_get = array_slice($widget1, 0, 1, true);
-  $second_get = array_slice($widget1, 1, 4, true); ?> 
+  $second_get = array_slice($widget1, 1, 4, true); ?>
     <div class="border-bottom card card-item">
       <div class="card-body">
       <h4 class="session_title"><span>FEATURED</span></h4>
         <div class="mt-3 mb-3">
-            <?php foreach ($first_get as $first ){ 
+            <?php foreach ($first_get as $first ){
             if ( ! isset( $first['blurb']['image'][0] ) || ! $first['blurb']['image'][0] || stristr( $first['blurb']['image'][0], 'images.unsplash.com' ) ) $first['blurb']['image'][0] = TAOH_CDN_PREFIX."/images/igcache/".urlencode( taoh_title_desc_decode($first['title']) )."/900_600/blog.jpg";
             ?>
           <div class="mb-3">
@@ -173,7 +173,7 @@ function side_widget4(){
         </div>
       </div>
     </div>
-<?php }  
+<?php }
 function taoh_central_widget_get(){
   $url = 'core.content.get';
     $taoh_vals = array(
@@ -194,7 +194,7 @@ function taoh_central_widget_get(){
   // $taoh_vals[ 'cache_name' ] = $cache_name;
   // $taoh_vals[ 'cache' ] = array ( "name" => $cache_name );
   ksort($taoh_vals);
-  
+
   // taoh_apicall_get_debug($url, $taoh_vals); taoh_exit();
   $req = taoh_apicall_get($url, $taoh_vals);
   $res = json_decode($req, true);

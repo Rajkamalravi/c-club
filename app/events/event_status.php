@@ -1,8 +1,8 @@
-<?php  
-taoh_get_header(); 
+<?php
+taoh_get_header();
 ?>
 <style>
-    
+
   .main-text{
     text-align: center;
     font-size: 15pt;

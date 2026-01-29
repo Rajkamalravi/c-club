@@ -1,6 +1,6 @@
-<?php  
+<?php
 header("Location: https://tao.ai");
-taoh_get_header(); 
+taoh_get_header();
 ?>
 <!--======================================
         START HERO AREA
@@ -37,7 +37,7 @@ taoh_get_header();
                 <?php if ( taoh_user_is_logged_in() ){ ?>
                     <div class="sidebar">
                         <div class="card card-item">
-                        
+
                             <form action="<?php echo TAOH_ACTION_URL."/contact"; ?>" method="post">
                                 <div class="card-body">
                                         <div class="form-group">
@@ -103,7 +103,7 @@ taoh_get_header();
                                 </div>
                         </div><!-- end card -->
                     </div><!-- end sidebar -->
-            <?php } ?>                    
+            <?php } ?>
                 </div><!-- end col-lg-7 -->
                 <div class="col-lg-5">
                     <div class="contact-information-wrap pl-4 border-left border-left-gray h-100">

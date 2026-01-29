@@ -1,5 +1,5 @@
-<?php 
-//include_once('head.php'); 
+<?php
+//include_once('head.php');
 
 $current_app = TAOH_SITE_CURRENT_APP_SLUG;
 
@@ -13,7 +13,7 @@ $tokenname = '';
 $detail_name = '';
 if($conttokenvar != ''){
     @$conttoken = array_pop( explode( '-', $conttokenvar) );
-   
+
     if($app_name == 'events'){
       $detail_name = '/next/'.$conttoken;
     }else{
@@ -26,7 +26,7 @@ if($conttokenvar != ''){
 $about_url = $taoh_home_url."/about";
 if ( $current_app != TAOH_PLUGIN_PATH_NAME ) $about_url = $taoh_home_url."/".$current_app."/about";
 
-include_once('head.php'); 
+include_once('head.php');
 
 //echo $current_app;
 $about_url = $taoh_home_url."/about";
@@ -92,9 +92,9 @@ if($out['success']){
                                 <a class="dropdown-item" href="<?php echo  $taoh_home_url."/referral"; ?>"><i class="la la-user-plus mr-2"></i>Referral</a>
                                 <!--<a class="dropdown-item status-list" href="#">
                                 <p style="position: relative"><input type="text" maxlength="140" value="<?php echo $my_status; ?>" name="my_status" id="my_status" placeholder="Update your status">
-                                    
+
                                     <button class="btn btn-success" id="status_save" onclick="updateStatus(1)"><i class="la la-check mr-2"></i></button>
-                                    
+
                                     <button class="btn btn-danger" id="status_remove" style="display: none" onclick="updateStatus(0)"><i class="la la-close mr-2"></i></button>
                                 </p>
                                 </a>-->
@@ -147,7 +147,7 @@ if($out['success']){
             <i class="la la-bars"></i>
         </div>
     </div>
-      <?php 
+      <?php
       $class = '';
       if(stristr( $_SERVER[ 'REQUEST_URI' ], TAOH_PLUGIN_PATH_NAME.'/apps' )){
         $class = 'active';
@@ -159,14 +159,14 @@ if($out['success']){
               <path d="M23 9v2h-2v7a3 3 0 01-3 3h-4v-6h-4v6H6a3 3 0 01-3-3v-7H1V9l11-7z"></path>
               </svg><span class="small">Home</span></a>
           </li>-->
-          <li class="nav-item <?php echo (( 
-           stristr( $_SERVER[ 'REQUEST_URI' ], TAOH_PLUGIN_PATH_NAME.'/stlo') || 
-           stristr( $_SERVER[ 'REQUEST_URI' ], TAOH_PLUGIN_PATH_NAME.'/') || 
+          <li class="nav-item <?php echo ((
+           stristr( $_SERVER[ 'REQUEST_URI' ], TAOH_PLUGIN_PATH_NAME.'/stlo') ||
+           stristr( $_SERVER[ 'REQUEST_URI' ], TAOH_PLUGIN_PATH_NAME.'/') ||
             stristr( $_SERVER[ 'REQUEST_URI' ], TAOH_PLUGIN_PATH_NAME.'/club' ) ||
             stristr( $_SERVER[ 'REQUEST_URI' ], TAOH_PLUGIN_PATH_NAME.'/directory' ) ||
             stristr( $_SERVER[ 'REQUEST_URI' ], TAOH_PLUGIN_PATH_NAME.'/networking' ) ||
-            stristr( $_SERVER[ 'REQUEST_URI' ], TAOH_PLUGIN_PATH_NAME.'/room' ) 
-            
+            stristr( $_SERVER[ 'REQUEST_URI' ], TAOH_PLUGIN_PATH_NAME.'/room' )
+
             ) ? "active":"") ?>">
             <a class="nav-link d-flex flex-column text-center" aria-current="page" href="<?php echo $taoh_home_url."/club"; ?>"><svg xmlns="http://www.w3.org/2000/svg" width="27.712" height="27.555" viewBox="0 0 27.712 27.555">
               <g id="Layer_2" data-name="Layer 2" transform="translate(-0.032 0.003)">
@@ -212,23 +212,23 @@ if($out['success']){
               </g>
             </svg><span class="small">Asks</span></a>
           </li>
-          
+
           <?php
             if ( taoh_user_is_logged_in() && TAOH_NOTIFICATION_ENABLED ) {
           ?>
            <li class="dropdown notification-dropdown ">
              <a class="nav-link dropdown-toggle dropdown--toggle pl-2 text-center" href="#" id="notificationDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 
-                <div class="notifier new" 
+                <div class="notifier new"
                 onclick="
                 <?php  if ( taoh_user_is_logged_in() && TAOH_NOTIFICATION_ENABLED && TAOH_NOTIFICATION_STATUS == 1) {  ?>
                     taoh_notification_init(1);
-                <?php } else { ?> 
+                <?php } else { ?>
                   taoh_notification_init(0); taoh_counter_init(0);
                 <?php } ?>
                 ">
                   <i style="font-size:30px;" class="fas fa-bell"></i>
-                  
+
                   <div style="display:none" id="badge_count" class="badges"></div>
 
                 </div>
@@ -242,10 +242,10 @@ if($out['success']){
                   <div class="dropdown-item-list " >
                         <ul id="notifications-list" style="overflow-y:auto">
                           <li class="no-result">No Result Found</li>
-                          
+
                         </ul>
-                      
-       
+
+
                     </div>
                     <div class="dropdown-divider border-top-gray mb-0"></div>
                     <h6 class="dropdown-footer" >
@@ -253,10 +253,10 @@ if($out['success']){
                         See all Notifications
                       </a>
                     </h6>
-                    
+
                 </div>
 
-         </li> 
+         </li>
          <?php } ?>
           <?php
             if ( taoh_user_is_logged_in() ) {
@@ -276,9 +276,9 @@ if($out['success']){
                                 <a class="dropdown-item" href="<?php echo  $taoh_home_url."/referral"; ?>"><i class="la la-user-plus mr-2"></i>Referral</a>
                                 <!--<a class="dropdown-item status-list" href="#">
                                 <p style="position: relative"><input type="text" maxlength="140" value="<?php echo $my_status; ?>" name="my_status" id="my_status" placeholder="Update your status">
-                                    
+
                                     <button class="btn btn-success" id="status_save" onclick="updateStatus(1)"><i class="la la-check mr-2"></i></button>
-                                    
+
                                     <button class="btn btn-danger" id="status_remove" style="display: none" onclick="updateStatus(0)"><i class="la la-close mr-2"></i></button>
                                 </p>
                                 </a>-->
@@ -347,7 +347,7 @@ if($out['success']){
             <span class="small" style="color: #9d0f54;font-weight:bold;">Employers</span></a>
           </li>
           <?php } ?>
-          <?php 
+          <?php
           if ( taoh_user_is_logged_in() && isset( $_SESSION[ TAOH_ROOT_PATH_HASH ][ 'USER_INFO' ]->type ) && $_SESSION[ TAOH_ROOT_PATH_HASH ][ 'USER_INFO' ]->type == 'employer' ){ ?>
           <li style="color:#2d86eb;font-weight:bold;" class="nav-item <?php echo (( stristr( $_SERVER[ 'REQUEST_URI' ], TAOH_PLUGIN_PATH_NAME.'/employers' ) ) ? "active":"") ?>">
             <a class="nav-link d-flex flex-column text-center" aria-current="page" href="<?php echo TAOH_SITE_URL_ROOT.'/jobs/dash'; ?>">
@@ -381,14 +381,14 @@ if($out['success']){
                     <li><a href="ask-question.html">ask question</a></li>
                 </ul>
             </li> -->
-            <li class="nav-item <?php echo (( 
-           stristr( $_SERVER[ 'REQUEST_URI' ], TAOH_PLUGIN_PATH_NAME.'/stlo') || 
-           stristr( $_SERVER[ 'REQUEST_URI' ], TAOH_PLUGIN_PATH_NAME.'/') || 
+            <li class="nav-item <?php echo ((
+           stristr( $_SERVER[ 'REQUEST_URI' ], TAOH_PLUGIN_PATH_NAME.'/stlo') ||
+           stristr( $_SERVER[ 'REQUEST_URI' ], TAOH_PLUGIN_PATH_NAME.'/') ||
             stristr( $_SERVER[ 'REQUEST_URI' ], TAOH_PLUGIN_PATH_NAME.'/club' ) ||
             stristr( $_SERVER[ 'REQUEST_URI' ], TAOH_PLUGIN_PATH_NAME.'/directory' ) ||
             stristr( $_SERVER[ 'REQUEST_URI' ], TAOH_PLUGIN_PATH_NAME.'/networking' ) ||
-            stristr( $_SERVER[ 'REQUEST_URI' ], TAOH_PLUGIN_PATH_NAME.'/room' ) 
-            
+            stristr( $_SERVER[ 'REQUEST_URI' ], TAOH_PLUGIN_PATH_NAME.'/room' )
+
             ) ? "active":"") ?>">
             <a class="nav-link text-center" aria-current="page" href="<?php echo $taoh_home_url."/club"; ?>"><svg xmlns="http://www.w3.org/2000/svg" width="27.712" height="27.555" viewBox="0 0 27.712 27.555">
               <g id="Layer_2" data-name="Layer 2" transform="translate(-0.032 0.003)">
@@ -434,7 +434,7 @@ if($out['success']){
               </g>
             </svg><span class="small">Asks</span></a>
           </li>
-          
+
           <?php
           if ( 0 && taoh_user_is_logged_in() )  {
           ?>
@@ -477,10 +477,10 @@ if($out['success']){
       </div>
       <div class="modal-body">
         <div class="main-box">
-          <div class="learn-title"><h3>Jobs</h3></div>  
+          <div class="learn-title"><h3>Jobs</h3></div>
           <div class="row">
             <div class="col-6">
-              <div class="borders mr-2 mt-2">  
+              <div class="borders mr-2 mt-2">
                 <div class="inline-box">
                   <a href="<?php echo  $taoh_home_url."/learning/job"; ?>"><svg xmlns="http://www.w3.org/2000/svg" version="1.0" width="45pt" height="30pt" viewBox="0 0 512.000000 561.000000" preserveAspectRatio="xMidYMid meet">
 
@@ -497,7 +497,7 @@ if($out['success']){
               <div class="mod-title">Reads</div>
             </div>
             <div class="col-6">
-              <div class="borders mr-2 mt-2">  
+              <div class="borders mr-2 mt-2">
                 <div class="inline-box">
                     <a href="<?php echo  $taoh_home_url."/learning/flashcard/networking/"; ?>"><svg xmlns="http://www.w3.org/2000/svg" width="45pt" height="30pt" viewBox="0 0 406.273 511.79">
                       <g id="Group_56" data-name="Group 56" transform="translate(-16213.347 -13784.855)">
@@ -525,7 +525,7 @@ if($out['success']){
           <div class="learn-title"><h3>Work</h3></div>
           <div class="row">
             <div class="col-6">
-              <div class="borders mr-2 mt-2">  
+              <div class="borders mr-2 mt-2">
                 <div class="inline-box">
                   <a href="<?php echo  $taoh_home_url."/learning/work"; ?>"><svg xmlns="http://www.w3.org/2000/svg" version="1.0" width="45pt" height="30pt" viewBox="0 0 517.000000 561.000000" preserveAspectRatio="xMidYMid meet">
 
@@ -542,7 +542,7 @@ if($out['success']){
               <div class="mod-title">Reads</div>
             </div>
             <div class="col-6">
-              <div class="borders mr-2 mt-2">  
+              <div class="borders mr-2 mt-2">
                 <div class="inline-box">
                   <a href="<?php echo $taoh_home_url."/learning/flashcard/career-development/"; ?>"><svg xmlns="http://www.w3.org/2000/svg" width="45pt" height="30pt" viewBox="0 0 406.273 511.79">
                     <g id="Group_59" data-name="Group 59" transform="translate(-16379.347 -14880.605)">
@@ -569,7 +569,7 @@ if($out['success']){
           <div class="learn-title"><h3>Wellness</h3></div>
           <div class="row">
             <div class="col-6">
-              <div class="borders mr-2 mt-2">  
+              <div class="borders mr-2 mt-2">
                 <div class="inline-box">
                   <a href="<?php echo $taoh_home_url."/learning/wellness"; ?>"><svg xmlns="http://www.w3.org/2000/svg" version="1.0" width="45pt" height="30pt" viewBox="0 0 512.000000 533.000000" preserveAspectRatio="xMidYMid meet">
 
@@ -582,11 +582,11 @@ if($out['success']){
                   </g>
                   </svg></a>
                 </div>
-              </div> 
+              </div>
               <div class="mod-title">Reads</div>
             </div>
             <div class="col-6">
-              <div class="borders mr-2 mt-2">  
+              <div class="borders mr-2 mt-2">
                 <div class="inline-box">
                   <a href="<?php echo $taoh_home_url."/learning/flashcard/mindfulness/"; ?>"><svg xmlns="http://www.w3.org/2000/svg" width="45pt" height="30pt" viewBox="0 0 406.273 511.789">
                     <g id="Group_63" data-name="Group 63" transform="translate(-16085.354 -16644.105)">
@@ -619,7 +619,7 @@ if($out['success']){
           <div class="learn-title"><h3>Coach</h3></div>
           <div class="row">
             <div class="col-6">
-              <div class="borders mr-2 mt-2">  
+              <div class="borders mr-2 mt-2">
                 <div class="inline-box">
                   <a href="<?php echo $taoh_home_url."/learning/askobviousbaba"; ?>"><svg version="1.0" xmlns="http://www.w3.org/2000/svg"
                   width="45pt" height="30pt" viewBox="0 0 300.000000 300.000000"
@@ -742,11 +742,11 @@ if($out['success']){
                     </g>
                   </svg></a>
                 </div>
-              </div> 
+              </div>
               <div class="mod-title">Mindfullness Coach</div>
             </div>
             <div class="col-6">
-              <div class="borders mr-2 mt-2">  
+              <div class="borders mr-2 mt-2">
                 <div class="inline-box">
                   <a href="<?php echo $taoh_home_url."/learning/jusask"; ?>"><svg version="1.0" xmlns="http://www.w3.org/2000/svg"
                   width="45pt" height="30pt" viewBox="0 0 256.000000 256.000000"
@@ -813,7 +813,7 @@ if($out['success']){
               <a href="<?php echo TAOH_DASH_URL."?app=reads&from=dash&to=reads/post"; ?>" target="_blank" class="btn btn-outline-primary" style="border-radius: 15px;">Post Blog</a>
             </div>
             <?php }?>
-          </div>    
+          </div>
         </div>
       </div>
       <div class="modal-footer">
@@ -914,7 +914,7 @@ if($out['success']){
   55% {
     transform: scale3d(1, 1, 1);
   }
-  
+
   60% {
     transform: scale3d(1.3, 1.3, 1.3);
   }
@@ -939,12 +939,12 @@ function closeNav() {
 $(document).on('click', '.support-page', function () {
   var url = '<?php echo $taoh_home_url."/support/".$app_name.$detail_name; ?>';
   window.location = url;
-   
+
 });
 $(document).on('click', '.feedback-page', function () {
   var url = '<?php echo $taoh_home_url."/feedback/".$app_name.$detail_name; ?>';
   window.location = url;
-   
+
 });
 window.onscroll = function() {myFunction()};
 

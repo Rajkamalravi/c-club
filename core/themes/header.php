@@ -32,7 +32,7 @@ if($conttokenvar != ''){
     if($conttoken){
       $cont = '/conttoken/'.$conttoken;
     }
-    
+
 }
 
 $data_api = '';
@@ -56,7 +56,7 @@ if(taoh_user_is_logged_in()){
 $about_url = $taoh_home_url."/about";
 if ( $current_app != TAOH_PLUGIN_PATH_NAME ) $about_url = $taoh_home_url."/".$current_app."/about";
 
-include_once('head.php');   
+include_once('head.php');
 
 $current_app = TAOH_SITE_CURRENT_APP_SLUG;
 
@@ -85,24 +85,24 @@ if($out['success']){
 ?>
 <!-- Navbar -->
 <?php
-  if(taoh_user_is_logged_in() && isset(taoh_session_get(TAOH_ROOT_PATH_HASH)['USER_INFO']->is_super_admin) && 
+  if(taoh_user_is_logged_in() && isset(taoh_session_get(TAOH_ROOT_PATH_HASH)['USER_INFO']->is_super_admin) &&
         taoh_session_get(TAOH_ROOT_PATH_HASH)['USER_INFO']->is_super_admin == 1  ) {
           $super_array = array(
             "token" =>taoh_get_api_token(),
             //'secret'=> TAOH_API_SECRET,
             'email'=>taoh_session_get(TAOH_ROOT_PATH_HASH)['USER_INFO']->email,
-            'domain'=>TAOH_SITE_URL_ROOT 
+            'domain'=>TAOH_SITE_URL_ROOT
           );
-          $super_token = base64_encode(json_encode($super_array)); 
+          $super_token = base64_encode(json_encode($super_array));
 
-         
+
         if(taoh_session_get(TAOH_ROOT_PATH_HASH)['USER_INFO']->site_status == 'init'){ ?>
 <div class="mainerror" style="background-color:#df2100;height:60px;padding:5px;text-align:center;color:#fff;" >
- 
+
 <img width="50" src="<?php echo TAOH_SITE_URL_ROOT.'/assets/images/admin_setting.png'; ?>"/>
 <span>Let's Get Things in Place! Complete your Setup and Optimize the experience of your Community</span>
   <a target="bank" href="<?php echo TAOH_DASH_PREFIX.'/tao/superadmin/super_admin_form.php'.
-            '?data='.$super_token;?>">&nbsp;&nbsp; 
+            '?data='.$super_token;?>">&nbsp;&nbsp;
             <button class="btn" style="background-color:#fff;font-weight:bold;" id="finish_site" >Finish Setup</button>
   </a>
 </div>
@@ -137,13 +137,13 @@ if($out['success']){
         </div>
       </div>
       <?php
-        /*if(taoh_user_is_logged_in() && isset(taoh_session_get(TAOH_ROOT_PATH_HASH)['USER_INFO']->is_super_admin) && 
+        /*if(taoh_user_is_logged_in() && isset(taoh_session_get(TAOH_ROOT_PATH_HASH)['USER_INFO']->is_super_admin) &&
         taoh_session_get(TAOH_ROOT_PATH_HASH)['USER_INFO']->is_super_admin == 1  ) {
           $super_array = array(
             "token" =>taoh_get_api_token(),
             'secret'=> TAOH_API_SECRET,
             'email'=>taoh_session_get(TAOH_ROOT_PATH_HASH)['USER_INFO']->email,
-            'domain'=>TAOH_SITE_URL_ROOT 
+            'domain'=>TAOH_SITE_URL_ROOT
           );
           $super_token = base64_encode(json_encode($super_array));
           ?>
@@ -160,16 +160,16 @@ if($out['success']){
 
       if (!isset($_GET['temp_api_token']) && (taoh_parse_url(0) != 'login-success') && (taoh_parse_url(0) != 'createacc') && (taoh_parse_url(0) != 'createsettings')) { ?>
         <ul class="navbar-nav ms-auto mb-lg-0 flex-row align-items-center">
-          
-          
+
+
         <?php
           if ( TAOH_CLUBS_ENABLE ) {
         ?>
-          <li  class="nav-item <?php echo  (    
+          <li  class="nav-item <?php echo  (
             (((
             (taoh_parse_url(0) == 'stlo' || taoh_parse_url(0) == '' )  ||
             (taoh_parse_url(0) == 'club') || (taoh_parse_url(0) == 'directory' && taoh_parse_url(1) != 'profile')
-            /*stristr( $_SERVER[ 'REQUEST_URI' ], TAOH_PLUGIN_PATH_NAME.'/stlo') || stristr( $_SERVER[ 'REQUEST_URI' ], TAOH_PLUGIN_PATH_NAME.'/') || 
+            /*stristr( $_SERVER[ 'REQUEST_URI' ], TAOH_PLUGIN_PATH_NAME.'/stlo') || stristr( $_SERVER[ 'REQUEST_URI' ], TAOH_PLUGIN_PATH_NAME.'/') ||
             stristr( $_SERVER[ 'REQUEST_URI' ], TAOH_PLUGIN_PATH_NAME.'/club' ) ||
             stristr( $_SERVER[ 'REQUEST_URI' ], TAOH_PLUGIN_PATH_NAME.'/networking' ) ||
             stristr( $_SERVER[ 'REQUEST_URI' ], TAOH_PLUGIN_PATH_NAME.'/room' ) */
@@ -212,13 +212,13 @@ if($out['success']){
               </g>
           </svg><span class="small">Jobs</span></a>
           </li>-->
-           
-          <li class="nav-item dropdown job-dropdown 
+
+          <li class="nav-item dropdown job-dropdown
           <?php echo (( stristr( $_SERVER[ 'REQUEST_URI' ], TAOH_PLUGIN_PATH_NAME.'/jobs' ) ) ? "active":"") ?>"
           style="color:#2d86eb;font-weight:bold;">
-                <?php if(1 ||  isset(taoh_session_get(TAOH_ROOT_PATH_HASH)['USER_INFO']->profile_complete)	&& taoh_session_get(TAOH_ROOT_PATH_HASH)['USER_INFO']->profile_complete == 0){  
-                  
-                  ?> 
+                <?php if(1 ||  isset(taoh_session_get(TAOH_ROOT_PATH_HASH)['USER_INFO']->profile_complete)	&& taoh_session_get(TAOH_ROOT_PATH_HASH)['USER_INFO']->profile_complete == 0){
+
+                  ?>
                   <a class="nav-link d-flex flex-column text-center" aria-current="page" href="<?php echo $taoh_home_url."/jobs"; ?>">
                   <svg xmlns="http://www.w3.org/2000/svg" width="31.051" height="27" viewBox="0 0 31.051 27.691">
                     <g id="Layer_2" data-name="Layer 2" transform="translate(0 -0.005)">
@@ -230,7 +230,7 @@ if($out['success']){
                 </svg>
                 <span class="small">Jobs</span></a>
                 <?php } else { ?>
-                <a class="nav-link dropdown-toggle dropdown--toggle d-flex flex-column text-center" 
+                <a class="nav-link dropdown-toggle dropdown--toggle d-flex flex-column text-center"
                 aria-current="page" href="<?php echo $taoh_home_url."/jobs"; ?>"
                 style="padding-left: 20px;"
                 id="jobMenuDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
@@ -242,13 +242,13 @@ if($out['success']){
                       </g>
                     </g>
                 </svg>
-                
+
                 <span class="small dropdown-toggle" style="font-size:14px;" >Jobs</span>
                 </a>
-                
-                    <div class="dropdown-menu dropdown--menu dropdown-menu-right mt-3 shadow" id="jobMenuDropdown" 
+
+                    <div class="dropdown-menu dropdown--menu dropdown-menu-right mt-3 shadow" id="jobMenuDropdown"
                     aria-labelledby="jobMenuDropdown">
-                        
+
                             <div class="dropdown-item-list">
                                     <a class="dropdown-item" href="<?php echo TAOH_SITE_URL_ROOT."/jobs"; ?>">Jobs</a>
                                     <?php /*if(!taoh_user_is_logged_in()) { ?>
@@ -257,16 +257,16 @@ if($out['success']){
                                     <?php /*if(isset(taoh_session_get(TAOH_ROOT_PATH_HASH)['USER_INFO']->type) && taoh_session_get(TAOH_ROOT_PATH_HASH)['USER_INFO']->type == 'recruiter'){?>
                                           <?php if(isset(taoh_session_get(TAOH_ROOT_PATH_HASH)['USER_INFO']->status_scout_employer) && taoh_session_get(TAOH_ROOT_PATH_HASH)['USER_INFO']->status_scout_employer >=1){ ?>
                                             <a class="dropdown-item"style="border-bottom:0"  href="<?php echo TAOH_SITE_URL_ROOT."/jobs/scouts-signup-employer"; ?>">Employer[Scout]</a>
-                                        
+
                                           <?php }else {  ?>
                                             <a class="dropdown-item"style="border-bottom:0"  href="<?php echo TAOH_SITE_URL_ROOT."/jobs/scouts-signup-employer"; ?>"> Join Employer[Scout]</a>
-                                        
+
                                           <?php } ?>
                                     <?php } else { ?>
                                         <?php if(taoh_user_is_logged_in()) { ?>
                                               <?php if(isset(taoh_session_get(TAOH_ROOT_PATH_HASH)['USER_INFO']->status_scout_professional) && taoh_session_get(TAOH_ROOT_PATH_HASH)['USER_INFO']->status_scout_professional == 2){ ?>
                                                 <a class="dropdown-item" href="<?php echo TAOH_SITE_URL_ROOT."/jobs/scouts-signup-professional"; ?>">Professional[Scout]</a>
-                                              
+
                                               <?php }else {  ?>
                                                 <a class="dropdown-item"  href="<?php echo TAOH_SITE_URL_ROOT."/jobs/scouts-signup-professional"; ?>"> Join Professional[Scout]
                                                   </a>
@@ -274,13 +274,13 @@ if($out['success']){
 
                                               <?php if(isset(taoh_session_get(TAOH_ROOT_PATH_HASH)['USER_INFO']->status_scout) && taoh_session_get(TAOH_ROOT_PATH_HASH)['USER_INFO']->status_scout == 2){ ?>
                                                 <a class="dropdown-item" style="border-bottom:0" href="<?php echo TAOH_SITE_URL_ROOT."/jobs/scouts-signup"; ?>">Scout[Scout]</a>
-                                        
+
                                               <?php }else {  ?>
                                                 <a class="dropdown-item"style="border-bottom:0"  href="<?php echo TAOH_SITE_URL_ROOT."/jobs/scouts-signup"; ?>"> Join Scout[Scout]
                                                   </a>
                                               <?php } ?>
                                           <?php } ?>
-                                    <?php } */?>  
+                                    <?php } */?>
                                   </div>
                           </div>
                   <?php } ?>
@@ -305,7 +305,7 @@ if($out['success']){
             </svg><span class="small">Asks</span></a>
           </li>
           <?php } ?>
-         
+
           <?php
 
             if (taoh_user_is_logged_in() && TAOH_MESSAGE_ENABLE) {
@@ -342,16 +342,16 @@ if($out['success']){
            <li class="dropdown notification-dropdown ">
              <a class="nav-link dropdown-toggle dropdown--toggle pl-2 text-center" href="#" id="notificationDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 
-                <div class="notifier new" 
+                <div class="notifier new"
                 onclick="
                 <?php  if ( taoh_user_is_logged_in() && TAOH_NOTIFICATION_ENABLED && TAOH_NOTIFICATION_STATUS == 0) {  ?>
                     taoh_notification_init(1);
-                <?php } else { ?> 
+                <?php } else { ?>
                   taoh_notification_init(0); taoh_counter_init(0);
                 <?php } ?>
                 ">
                   <i style="font-size:30px;" class="fas fa-bell"></i>
-                  
+
                   <div style="display:none" id="badge_count" class="badges"></div>
 
                 </div>
@@ -365,10 +365,10 @@ if($out['success']){
                   <div class="dropdown-item-list " >
                         <ul id="notifications-list" style="overflow-y:auto">
                           <li class="no-result">No Result Found</li>
-                          
+
                         </ul>
-                      
-       
+
+
                     </div>
                     <div class="dropdown-divider border-top-gray mb-0"></div>
                     <h6 class="dropdown-footer" >
@@ -376,10 +376,10 @@ if($out['success']){
                         See all Notifications
                       </a>
                     </h6>
-                    
+
                 </div>
 
-         </li> 
+         </li>
          <?php } ?>
           <?php
             if ( taoh_user_is_logged_in() ) {
@@ -408,7 +408,7 @@ if($out['success']){
 
                             echo '<a class="dropdown-item" href="' . TAOH_SETTINGS_URL . '"><i class="la la-gear mr-2"></i>Settings</a>';
                             ?>
-                            
+
                              <div class="dropdown-item d-flex justify-content-between align-items-center cursor-pointer" id="toggleNetworkDropdown">
                                 <div><i class="la la-users mr-2"></i>Directory</div>
                                 <i class="la la-angle-down"></i>
@@ -443,7 +443,7 @@ if($out['success']){
 
                             if (TAOH_MESSAGE_ENABLE) {
                               //echo '<a class="dropdown-item" href="' . $taoh_home_url . '/connections/club"><i class="la la-user mr-2"></i>Connections</a>';
-                            }                            
+                            }
 
                             if (taoh_user_is_logged_in() && isset(taoh_session_get(TAOH_ROOT_PATH_HASH)['USER_INFO']->is_super_admin) &&
                                 taoh_session_get(TAOH_ROOT_PATH_HASH)['USER_INFO']->is_super_admin == 1) {
@@ -516,8 +516,8 @@ if($out['success']){
                           <a onclick="localStorage.removeItem('isCodeSent')" href="javascript:void(0);"
                          class="login-button dropdown-item hover-y " aria-pressed="true" data-toggle="modal" data-target="#config-modal">
                          <i class="la la-power-off mr-2"></i>Log In</a>
-                          
-                          <!--<a onclick="localStorage.removeItem('isCodeSent')" 
+
+                          <!--<a onclick="localStorage.removeItem('isCodeSent')"
                           class="dropdown-item" href="<?php //echo  $taoh_home_url."/login"; ?>">
                           <i class="la la-power-off mr-2"></i>Log In</a> -->
                     </div>
@@ -590,8 +590,8 @@ if($out['success']){
              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-circle-half" viewBox="0 0 16 16">
                 <path d="M8 15A7 7 0 1 1 8 1v14z"/>
               </svg>  <span class="small">Theme</span></a>
-            
-          
+
+
           </li> -->
 
 
@@ -629,10 +629,10 @@ if($out['success']){
               <path d="M23 9v2h-2v7a3 3 0 01-3 3h-4v-6h-4v6H6a3 3 0 01-3-3v-7H1V9l11-7z"></path>
               </svg><span class="small">Home</span></a>
           </li>-->
-           
+
           <li class="nav-item <?php echo (((
-              stristr($_SERVER['REQUEST_URI'], TAOH_PLUGIN_PATH_NAME.'/stlo') || 
-              stristr($_SERVER['REQUEST_URI'], TAOH_PLUGIN_PATH_NAME.'/') || 
+              stristr($_SERVER['REQUEST_URI'], TAOH_PLUGIN_PATH_NAME.'/stlo') ||
+              stristr($_SERVER['REQUEST_URI'], TAOH_PLUGIN_PATH_NAME.'/') ||
               stristr($_SERVER['REQUEST_URI'], TAOH_PLUGIN_PATH_NAME.'/club') ||
               stristr($_SERVER['REQUEST_URI'], TAOH_PLUGIN_PATH_NAME.'/directory') ||
               stristr($_SERVER['REQUEST_URI'], TAOH_PLUGIN_PATH_NAME.'/networking') ||
@@ -681,26 +681,26 @@ if($out['success']){
               </g>
             </svg>
             <span class="small dropdown-toggle" href="<?php echo TAOH_SITE_URL_ROOT."/jobs"; ?>">Jobs</span></a>
-            <div class="dropdown-menu dropdown--menu dropdown-menu-right" aria-labelledby="jobMenuDropdown" style="display:none;top:-15px !important;"> 
+            <div class="dropdown-menu dropdown--menu dropdown-menu-right" aria-labelledby="jobMenuDropdown" style="display:none;top:-15px !important;">
               <div class="dropdown-item-list" aria-labelledby="jobMenuDropdown">
                   <a class="dropdown-item" href="<?php echo TAOH_SITE_URL_ROOT."/jobs"; ?>">Jobs</a>
                   <?php  if (!taoh_user_is_logged_in()) { ?>
                     <a class="dropdown-item" style="border-bottom:0"  href="<?php echo TAOH_SITE_URL_ROOT."/jobs/scout"; ?>">Scout</a>
                   <?php } ?>
-                  
+
                   <?php if(isset(taoh_session_get(TAOH_ROOT_PATH_HASH)['USER_INFO']->type) && taoh_session_get(TAOH_ROOT_PATH_HASH)['USER_INFO']->type == 'employer'){?>
                         <?php if(isset(taoh_session_get(TAOH_ROOT_PATH_HASH)['USER_INFO']->status_scout_employer) && taoh_session_get(TAOH_ROOT_PATH_HASH)['USER_INFO']->status_scout_employer >=1){ ?>
                           <a class="dropdown-item" style="border-bottom:0"  href="<?php echo TAOH_SITE_URL_ROOT."/jobs/scouts-signup-employer"; ?>">Employer[Scout]</a>
-                      
+
                         <?php }else {  ?>
                           <a class="dropdown-item" style="border-bottom:0"  href="<?php echo TAOH_SITE_URL_ROOT."/jobs/scouts-signup-employer"; ?>"> Join Employer[Scout]</a>
-                      
+
                         <?php } ?>
                   <?php } else { ?>
                       <?php if(taoh_user_is_logged_in()) { ?>
                             <?php if(isset(taoh_session_get(TAOH_ROOT_PATH_HASH)['USER_INFO']->status_scout_professional) && taoh_session_get(TAOH_ROOT_PATH_HASH)['USER_INFO']->status_scout_professional == 2){ ?>
                               <a class="dropdown-item" href="<?php echo TAOH_SITE_URL_ROOT."/jobs/scouts-signup-professional"; ?>">Professional[Scout]</a>
-                            
+
                             <?php }else {  ?>
                               <a class="dropdown-item"  href="<?php echo TAOH_SITE_URL_ROOT."/jobs/scouts-signup-professional"; ?>"> Join Professional[Scout]
                                 </a>
@@ -708,13 +708,13 @@ if($out['success']){
 
                             <?php if(isset(taoh_session_get(TAOH_ROOT_PATH_HASH)['USER_INFO']->status_scout) && taoh_session_get(TAOH_ROOT_PATH_HASH)['USER_INFO']->status_scout == 2){ ?>
                               <a class="dropdown-item" style="border-bottom:0" href="<?php echo TAOH_SITE_URL_ROOT."/jobs/scouts-signup"; ?>">Scout[Scout]</a>
-                      
+
                             <?php }else {  ?>
                               <a class="dropdown-item"style="border-bottom:0"  href="<?php echo TAOH_SITE_URL_ROOT."/jobs/scouts-signup"; ?>"> Join Scout[Scout]
                                 </a>
                             <?php } ?>
                         <?php } ?>
-                  <?php } ?> 
+                  <?php } ?>
                 </div>
             </div>
           </li> -->
@@ -733,8 +733,8 @@ if($out['success']){
               </g>
             </svg><span class="small">Asks</span></a>
           </li>
-          
-          
+
+
           <?php
 
           if ( taoh_user_is_logged_in() && TAOH_MESSAGE_ENABLE )  {
@@ -770,16 +770,16 @@ if($out['success']){
            <li class="dropdown notification-dropdown ">
              <a class="nav-link dropdown-toggle dropdown--toggle pl-2 text-center" href="#" id="notificationDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 
-                <div class="notifier new" 
+                <div class="notifier new"
                 onclick="
                 <?php  if ( taoh_user_is_logged_in() && TAOH_NOTIFICATION_ENABLED && TAOH_NOTIFICATION_STATUS == 1) {  ?>
                     taoh_notification_init(1);
-                <?php } else { ?> 
+                <?php } else { ?>
                   taoh_notification_init(0); taoh_counter_init(0);
                 <?php } ?>
                 ">
                   <i style="font-size:30px;" class="fas fa-bell"></i>
-                  
+
                   <div style="display:none" id="badge_count" class="badges"></div>
 
                 </div>
@@ -793,10 +793,10 @@ if($out['success']){
                   <div class="dropdown-item-list " >
                         <ul id="notifications-list" style="overflow-y:auto">
                           <li class="no-result">No Result Found</li>
-                          
+
                         </ul>
-                      
-       
+
+
                     </div>
                     <div class="dropdown-divider border-top-gray mb-0"></div>
                     <h6 class="dropdown-footer" >
@@ -804,10 +804,10 @@ if($out['success']){
                         See all Notifications
                       </a>
                     </h6>
-                    
+
                 </div>
 
-         </li> 
+         </li>
          <?php } ?>
          <li class="nav-item <?php echo (( stristr( $_SERVER[ 'REQUEST_URI' ], TAOH_PLUGIN_PATH_NAME.'/support' ) ) ? "active":"") ?>">
             <a class="nav-link text-center support-page cursor-pointer" aria-current="page" >
@@ -824,9 +824,9 @@ if($out['success']){
                 <path d="M3 3h4v4H3zm7 4h4V3h-4zm7-4v4h4V3zM3 14h4v-4H3zm7 0h4v-4h-4zm7 0h4v-4h-4zM3 21h4v-4H3zm7 0h4v-4h-4zm7 0h4v-4h-4z"></path>
                 </svg><span class="small dropdown-toggle">Learning</span></a>
             </li>
-          <?php } 
+          <?php }
           if ( taoh_user_is_logged_in() && defined( 'TAOH_SITE_DONATE_ENABLE' ) && TAOH_SITE_DONATE_ENABLE ) { ?>
-                <li style="color:#2d86eb;font-weight:bold;" class="nav-item 
+                <li style="color:#2d86eb;font-weight:bold;" class="nav-item
                 <?php echo (( stristr( $_SERVER[ 'REQUEST_URI' ], TAOH_PLUGIN_PATH_NAME.'/network' ) ) ? "active":"") ?>">
                 <a class="nav-link cursor-pointer text-center" aria-current="page" href="<?php echo TAOH_SITE_URL_ROOT."/donate"; ?>">
                 <img width="26.107" height="26.107" src="<?php echo TAOH_SITE_URL_ROOT."/assets/images/donate_menu.png"; ?>">
@@ -834,7 +834,7 @@ if($out['success']){
                 </li>
                 <?php
           }
-          ?>          
+          ?>
           <?php if (! taoh_user_is_logged_in()){ ?>
           <li style="color:#2d86eb;font-weight:bold;" class="nav-item <?php echo (( stristr( $_SERVER[ 'REQUEST_URI' ], TAOH_PLUGIN_PATH_NAME.'/employers' ) ) ? "active":"") ?>">
             <a class="nav-link cursor-pointer text-center" aria-current="page" href="<?php echo TAOH_SITE_URL_ROOT."/employers"; ?>">
@@ -862,7 +862,7 @@ if($out['success']){
             </a>
           </li>
           <?php } ?>
-         
+
 
         </ul>
     </div>
@@ -879,13 +879,13 @@ if($out['success']){
       </div>
       <div class="modal-body">
         <div class="main-box">
-          <div class="learn-title"><h3>Jobs</h3></div>  
+          <div class="learn-title"><h3>Jobs</h3></div>
           <div class="row">
           <?php
             if ( TAOH_READS_ENABLE ) {
           ?>
             <div class="col-6">
-              <div class="borders mr-2 mt-2">  
+              <div class="borders mr-2 mt-2">
                 <div class="inline-box">
                   <a href="<?php echo  $taoh_home_url."/learning/job-search"; ?>"><svg xmlns="http://www.w3.org/2000/svg" version="1.0" width="45pt" height="30pt" viewBox="0 0 512.000000 561.000000" preserveAspectRatio="xMidYMid meet">
 
@@ -903,7 +903,7 @@ if($out['success']){
             </div>
             <?php } ?>
             <div class="col-6">
-              <div class="borders mr-2 mt-2">  
+              <div class="borders mr-2 mt-2">
                 <div class="inline-box">
                     <a href="<?php echo  $taoh_home_url."/learning/flashcard/jobs/"; ?>"><svg xmlns="http://www.w3.org/2000/svg" width="45pt" height="30pt" viewBox="0 0 406.273 511.79">
                       <g id="Group_56" data-name="Group 56" transform="translate(-16213.347 -13784.855)">
@@ -934,7 +934,7 @@ if($out['success']){
             if ( TAOH_READS_ENABLE ) {
           ?>
             <div class="col-6">
-              <div class="borders mr-2 mt-2">  
+              <div class="borders mr-2 mt-2">
                 <div class="inline-box">
                   <a href="<?php echo  $taoh_home_url."/learning/work"; ?>"><svg xmlns="http://www.w3.org/2000/svg" version="1.0" width="45pt" height="30pt" viewBox="0 0 517.000000 561.000000" preserveAspectRatio="xMidYMid meet">
 
@@ -952,7 +952,7 @@ if($out['success']){
             </div>
             <?php } ?>
             <div class="col-6">
-              <div class="borders mr-2 mt-2">  
+              <div class="borders mr-2 mt-2">
                 <div class="inline-box">
                   <a href="<?php echo $taoh_home_url."/learning/flashcard/career-development/"; ?>"><svg xmlns="http://www.w3.org/2000/svg" width="45pt" height="30pt" viewBox="0 0 406.273 511.79">
                     <g id="Group_59" data-name="Group 59" transform="translate(-16379.347 -14880.605)">
@@ -982,7 +982,7 @@ if($out['success']){
             if ( TAOH_READS_ENABLE ) {
           ?>
             <div class="col-6">
-              <div class="borders mr-2 mt-2">  
+              <div class="borders mr-2 mt-2">
                 <div class="inline-box">
                   <a href="<?php echo $taoh_home_url."/learning/wellness"; ?>"><svg xmlns="http://www.w3.org/2000/svg" version="1.0" width="45pt" height="30pt" viewBox="0 0 512.000000 533.000000" preserveAspectRatio="xMidYMid meet">
 
@@ -995,12 +995,12 @@ if($out['success']){
                   </g>
                   </svg></a>
                 </div>
-              </div> 
+              </div>
               <div class="mod-title">Reads</div>
             </div>
             <?php } ?>
             <div class="col-6">
-              <div class="borders mr-2 mt-2">  
+              <div class="borders mr-2 mt-2">
                 <div class="inline-box">
                   <a href="<?php echo $taoh_home_url."/learning/flashcard/mindfulness/"; ?>"><svg xmlns="http://www.w3.org/2000/svg" width="45pt" height="30pt" viewBox="0 0 406.273 511.789">
                     <g id="Group_63" data-name="Group 63" transform="translate(-16085.354 -16644.105)">
@@ -1033,7 +1033,7 @@ if($out['success']){
           <div class="learn-title"><h3>Coach</h3></div>
           <div class="row">
             <div class="col-6">
-              <div class="borders mr-2 mt-2">  
+              <div class="borders mr-2 mt-2">
                 <div class="inline-box">
                   <a href="<?php echo $taoh_home_url."/learning/askobviousbaba"; ?>"><svg version="1.0" xmlns="http://www.w3.org/2000/svg"
                   width="45pt" height="30pt" viewBox="0 0 300.000000 300.000000"
@@ -1156,11 +1156,11 @@ if($out['success']){
                     </g>
                   </svg></a>
                 </div>
-              </div> 
+              </div>
               <div class="mod-title">Mindfullness Coach</div>
             </div>
             <div class="col-6">
-              <div class="borders mr-2 mt-2">  
+              <div class="borders mr-2 mt-2">
                 <div class="inline-box">
                   <a href="<?php echo $taoh_home_url."/learning/jusask"; ?>"><svg version="1.0" xmlns="http://www.w3.org/2000/svg"
                   width="45pt" height="30pt" viewBox="0 0 256.000000 256.000000"
@@ -1227,7 +1227,7 @@ if($out['success']){
               <a href="<?php echo TAOH_DASH_URL."?app=reads&from=dash&to=reads/post"; ?>" target="_blank" class="btn btn-outline-primary" style="border-radius: 15px;">Post Blog</a>
             </div>
             <?php }?>
-          </div>    
+          </div>
         </div>
       </div>
       <div class="modal-footer">
@@ -1404,7 +1404,7 @@ if($out['success']){
             /* Toggle the visibility of the my network dropdown */
             let toggleLink = document.getElementById('toggleNetworkDropdown');
             let submenu = document.getElementById('myNetworkMenu');
-            
+
 
             if(toggleLink){
                 toggleLink.addEventListener('click', function (e) {
@@ -1419,10 +1419,10 @@ if($out['success']){
                     icon.classList.toggle('la-angle-up');
                     icon.classList.toggle('la-angle-down');
                   }
-                  
+
               });
             }
-            
+
             if(submenu){
                  // prevent submenu clicks from closing the main dropdown
                 submenu.addEventListener('click', function (e) {
@@ -1430,19 +1430,19 @@ if($out['success']){
                 });
             }
 
-           
+
             /* /Toggle the visibility of the my network dropdown */
 
         });
 
-      $(document).ready(function () {  
+      $(document).ready(function () {
         addActiveUserPtoken();
         checkLiveNowButtonVisibility();
         livenowbuttonInterval = setInterval(() => checkLiveNowButtonVisibility(), 60000);
         activeuserInterval = setInterval(() => addActiveUserPtoken(), 240000);
       });
-      
-        const logged_user_data = '<?php echo $data_api; ?>';        
+
+        const logged_user_data = '<?php echo $data_api; ?>';
 
         function getCookieData(cname) {
             let name = cname + "=";
@@ -1492,7 +1492,7 @@ if($out['success']){
         $(document).on('click', '.support-page', function () {
             window.location = '<?php echo $taoh_home_url . "/support/" . $app_name . $detail_name; ?>';
         });
-        
+
         $(document).on('click', '#live_join_now_btn', function () {
             $('#liveNowModal').modal('hide');
         });
@@ -1649,12 +1649,9 @@ if($out['success']){
             }
         }
 
-       
-
-
         if(document.getElementById("myHeader")){
 
-          
+
            var header = document.getElementById("myHeader");
            var sticky = header.offsetTop;
 
@@ -1666,7 +1663,7 @@ if($out['success']){
               myFunction();
           };
         }
-       
+
 
         function myFunction() {
             if (window.pageYOffset > sticky) {
@@ -1755,14 +1752,14 @@ if($out['success']){
         function deleteEventsCache() {
         }
 
-        function addActiveUserPtoken() {          
+        function addActiveUserPtoken() {
             let data = {
                 ops: 'livenow',
                 action: 'add_user',
                 code: _taoh_ops_code,
                 key: "<?php echo (taoh_session_get(TAOH_ROOT_PATH_HASH)['USER_INFO'] ?? null)?->ptoken ?? ''; ?>",
             };
-                        
+
             $.ajax({
                 url: _taoh_cache_chat_url,
                 type: 'GET',
@@ -1770,7 +1767,7 @@ if($out['success']){
                 data: data,
                 success: function (response, textStatus, jqXHR) {
                     if (response.success) {
-                        console.log("User add response", response);                    
+                        console.log("User add response", response);
                     }
                 },
                 error: function (xhr, status, err) {
@@ -1779,14 +1776,14 @@ if($out['success']){
             });
         }
 
-        function checkLiveNowButtonVisibility() {            
+        function checkLiveNowButtonVisibility() {
             let data = {
                 ops: 'livenow',
                 action: 'show_live_button',
                 code: _taoh_ops_code,
                 key: "<?php echo (taoh_session_get(TAOH_ROOT_PATH_HASH)['USER_INFO'] ?? null)?->ptoken ?? ''; ?>",
             };
-                        
+
             $.ajax({
                 url: _taoh_cache_chat_url,
                 type: 'GET',
@@ -1816,7 +1813,7 @@ if($out['success']){
         window.history.replaceState({}, document.title, newUrl.href);
         */
 
-        
+
     function checkTTL(index_name, store_name = dataStore) {
         const TTLStoreName = objStores.ttl_store.name;
         getIntaoDb(dbName).then((db) => {
@@ -1845,7 +1842,6 @@ if($out['success']){
             }
         });
     }
-    
+
 
     </script>
-

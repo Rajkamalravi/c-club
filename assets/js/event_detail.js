@@ -15,14 +15,14 @@ class EventsDetailPage {
             userLikedAlready: '0',
             ...config
         };
-        
+
         this.state = {
             eventData: null,
             isUserRSVPDone: false,
             showRSVPTicket: false,
             eventLiveState: 'before'
         };
-        
+
         this.init();
     }
 
@@ -30,24 +30,24 @@ class EventsDetailPage {
         this.bindEvents();
         this.initializeCarousel();
         this.loadEventData();
-        
+
         if (this.config.isLoggedIn) {
             this.saveMetrics();
         }
-        
+
         this.handleURLParameters();
     }
 
     bindEvents() {
         // Ticket selection
         $(document).on('click', '#ticket_list li.ticket-item', this.handleTicketSelection.bind(this));
-        
+
         // Event save/like functionality
         $(document).on('click', '.event_save', this.handleEventSave.bind(this));
-        
+
         // Share modal events
         $(document).on('click', "[data-target='#shareModal']", this.handleShareModal.bind(this));
-        
+
         // Modal events
         this.bindModalEvents();
     }
@@ -57,7 +57,7 @@ class EventsDetailPage {
         $('#unlockDiscount, #upgradeExplorerPlus').on('show.bs.modal', () => {
             this.trackModalView('upgrade');
         });
-        
+
         // Share modal events
         $('#share').on('show.bs.modal', () => {
             this.trackModalView('share');
@@ -83,11 +83,11 @@ class EventsDetailPage {
     async loadEventData() {
         try {
             $('.aw').awloader('show');
-            
+
             const response = await this.getEventBaseInfo({
                 eventtoken: this.config.eventToken
             });
-            
+
             if (response.success) {
                 this.processEventBaseInfo(response);
             } else {
@@ -116,11 +116,11 @@ class EventsDetailPage {
     processEventBaseInfo(response) {
         const eventOutput = response.output;
         const conttokenData = eventOutput.conttoken;
-        
+
         if (!conttokenData) return;
 
         this.state.eventData = conttokenData;
-        
+
         // Update page elements
         this.updateEventTitle(conttokenData.title);
         this.updateEventImages(conttokenData);
@@ -129,16 +129,16 @@ class EventsDetailPage {
         this.updateEventDescription(conttokenData);
         this.updateTicketTypes(conttokenData);
         this.updateEventLikeButton(conttokenData);
-        
+
         // Load additional data
         this.loadEventSponsor(eventOutput.eventtoken);
         this.loadEventMetaInfo(eventOutput.eventtoken);
         this.loadEventsHall(eventOutput.eventtoken);
-        
+
         // Handle special features
         this.handleOrganizerFeatures(conttokenData);
         this.handleSponsorFeatures(conttokenData);
-        
+
         setTimeout(() => {
             this.handleEventStatusUpdates();
         }, 2000);
@@ -155,7 +155,7 @@ class EventsDetailPage {
             conttokenData.event_image,
             ...(conttokenData.more_banner || [])
         ];
-        
+
         const validBanners = allBanners
             .filter(url => url && url.trim() !== "" && this.isValidURL(url))
             .map(url => ({
@@ -168,7 +168,7 @@ class EventsDetailPage {
 
     renderEventGallery(banners) {
         const galleryContainer = document.getElementById("event_banner_container");
-        
+
         if (banners.length === 0) {
             // Default image
             const defaultImage = `${this.config.siteUrl}/assets/images/event.jpg`;
@@ -179,13 +179,13 @@ class EventsDetailPage {
         banners.forEach((media, index) => {
             const isActive = index === 0;
             let itemHtml = '';
-            
+
             if (media.type === "image") {
                 itemHtml = this.createImageCarouselItem(media.src, index, isActive);
             } else if (media.type === "video") {
                 itemHtml = this.createVideoCarouselItem(media.src, index, isActive);
             }
-            
+
             galleryContainer.innerHTML += itemHtml;
         });
     }
@@ -196,7 +196,7 @@ class EventsDetailPage {
                 <div class="cover-event-image">
                     <div class="events-bg" style="background-image: url('${src}');"></div>
                     <div class="glass-overlay"></div>
-                    <img src="${src}" class="detail-main-image" alt="Event">                                
+                    <img src="${src}" class="detail-main-image" alt="Event">
                 </div>
             </div>
         `;
@@ -229,14 +229,14 @@ class EventsDetailPage {
 
     updateEventDateTime(eventOutput) {
         const userTimezone = this.getUserTimezone();
-        
+
         const startData = {
             utc_datetime: eventOutput.utc_start_at,
             local_datetime: eventOutput.local_start_at,
             timezone: eventOutput.local_timezone,
             locality: eventOutput.locality
         };
-        
+
         const endData = {
             utc_datetime: eventOutput.utc_end_at,
             local_datetime: eventOutput.local_end_at,
@@ -246,10 +246,10 @@ class EventsDetailPage {
 
         const localizedStart = this.getLocalizedEventData(startData, userTimezone);
         const localizedEnd = this.getLocalizedEventData(endData, userTimezone);
-        
+
         const formattedDateTime = this.formatEventDateTime(localizedStart, localizedEnd);
         $('#event_start_end_datetime').text(formattedDateTime);
-        
+
         // Update event live state
         this.state.eventLiveState = this.getEventLiveState(
             eventOutput.utc_start_at,
@@ -262,7 +262,7 @@ class EventsDetailPage {
     updateEventVenue(conttokenData) {
         const eventType = (conttokenData?.event_type || 'virtual').toLowerCase();
         let venueHtml = '';
-        
+
         switch (eventType) {
             case 'in-person':
                 venueHtml = this.createInPersonVenueHtml(conttokenData);
@@ -273,23 +273,23 @@ class EventsDetailPage {
             default:
                 venueHtml = this.createVirtualVenueHtml();
         }
-        
+
         $('#event_venue_info').html(venueHtml);
     }
 
     createInPersonVenueHtml(conttokenData) {
-        const venueLink = conttokenData.map_link 
+        const venueLink = conttokenData.map_link
             ? `<a href="${conttokenData.map_link}" target="_blank" class="cursor-pointer text-underline">${conttokenData.venue}</a>`
             : conttokenData.venue;
-            
+
         return `<span class="theme-blue-clr">In-Person, <span>${venueLink}</span></span>`;
     }
 
     createHybridVenueHtml(conttokenData) {
-        const venueLink = conttokenData.map_link 
+        const venueLink = conttokenData.map_link
             ? `<a href="${conttokenData.map_link}" target="_blank" class="cursor-pointer text-underline">${conttokenData.venue}</a>`
             : conttokenData.venue;
-            
+
         return `<span class="theme-blue-clr">Hybrid - <span>${venueLink}</span> or Virtual</span>`;
     }
 
@@ -299,17 +299,17 @@ class EventsDetailPage {
 
     updateEventDescription(conttokenData) {
         let descriptionHtml = '';
-        
+
         if (conttokenData.description && conttokenData.description.trim()) {
             descriptionHtml += '<h3>About this Event</h3>';
             descriptionHtml += `<div>${this.decodeDescription(conttokenData.description)}</div>`;
         }
-        
+
         if (conttokenData.about_you && conttokenData.about_you.trim()) {
             descriptionHtml += '<h3>About the Host</h3>';
             descriptionHtml += `<div>${this.decodeDescription(conttokenData.about_you)}</div>`;
         }
-        
+
         $('.event_description').html(descriptionHtml);
     }
 
@@ -321,7 +321,7 @@ class EventsDetailPage {
 
         const isEventFreeze = conttokenData.freeze_option === 1;
         const ticketTypes = conttokenData.ticket_types || [];
-        
+
         if (isEventFreeze) {
             this.renderEventSuspended();
             return;
@@ -332,7 +332,7 @@ class EventsDetailPage {
             return;
         }
 
-        if (!this.state.isUserRSVPDone && 
+        if (!this.state.isUserRSVPDone &&
             (this.state.eventLiveState === 'before' || this.state.eventLiveState === 'live')) {
             this.renderTicketDropdown(ticketTypes);
         } else {
@@ -348,19 +348,19 @@ class EventsDetailPage {
 
         ticketTypes.forEach(ticketType => {
             if (ticketType.visibility === 'hidden') return;
-            
+
             html += this.createTicketListItem(ticketType);
         });
 
         html += '</ul></div>';
-        
+
         $('.ticket-card-div').html(html);
     }
 
     createTicketListItem(ticketType) {
         const classes = `rsvp_ticket_${ticketType.title} rsvp_tickets ticket-item`;
-        const costText = ticketType.price === 'paid' 
-            ? `Costs you $${ticketType.cost}` 
+        const costText = ticketType.price === 'paid'
+            ? `Costs you $${ticketType.cost}`
             : 'Free';
 
         return `
@@ -377,10 +377,10 @@ class EventsDetailPage {
     renderLoginPrompt(eventTitle) {
         const encodedTitle = btoa(unescape(encodeURIComponent(eventTitle)));
         const html = `
-            <button type="button" class="mt-3 mb-2 btn btn-primary w-100 create_referral" 
-                    data-location="${location.href}" 
-                    data-title="${encodedTitle}" 
-                    data-toggle="modal" 
+            <button type="button" class="mt-3 mb-2 btn btn-primary w-100 create_referral"
+                    data-location="${location.href}"
+                    data-title="${encodedTitle}"
+                    data-toggle="modal"
                     data-target="#config-modal">
                 <i class="fa fa-ticket mr-2" aria-hidden="true"></i>Login & Register Now
             </button>
@@ -410,8 +410,8 @@ class EventsDetailPage {
 
     renderEventStatus() {
         let html = '';
-        const redirectTo = !this.config.isValidUser 
-            ? `${this.config.siteUrl}/settings` 
+        const redirectTo = !this.config.isValidUser
+            ? `${this.config.siteUrl}/settings`
             : `${this.config.currAppUrl}/chat/id/events/${this.config.eventToken}`;
 
         if (this.state.isUserRSVPDone && this.state.eventLiveState === 'live') {
@@ -436,18 +436,18 @@ class EventsDetailPage {
 
     updateEventLikeButton(conttokenData) {
         const isLiked = this.config.userLikedAlready === '1';
-        const iconHtml = isLiked 
+        const iconHtml = isLiked
             ? this.createLikedButtonHtml(conttokenData.conttoken)
             : this.createUnlikedButtonHtml(conttokenData.conttoken);
-            
+
         $('#event_like_btn').html(iconHtml);
     }
 
     createLikedButtonHtml(conttoken) {
         return `
-            <svg width="20" height="20" viewBox="0 0 20 27" fill="none" xmlns="http://www.w3.org/2000/svg" 
+            <svg width="20" height="20" viewBox="0 0 20 27" fill="none" xmlns="http://www.w3.org/2000/svg"
                  data-event="${this.config.eventToken}" data-cont="${conttoken}" class="event_saved" title="Save Event">
-                <path d="M2.5 0.5H17.5C18.6041 0.5 19.5 1.39593 19.5 2.5V25.4014C19.4998 25.823 19.156 26.167 18.7344 26.167C18.5737 26.167 18.4201 26.1185 18.2939 26.0293L18.292 26.0283L10.2871 20.4238L10 20.2227L9.71289 20.4238L1.70801 26.0283L1.70605 26.0293C1.57991 26.1185 1.4263 26.167 1.26562 26.167C0.843959 26.167 0.500177 25.823 0.5 25.4014V2.5C0.5 1.39593 1.39593 0.5 2.5 0.5Z" 
+                <path d="M2.5 0.5H17.5C18.6041 0.5 19.5 1.39593 19.5 2.5V25.4014C19.4998 25.823 19.156 26.167 18.7344 26.167C18.5737 26.167 18.4201 26.1185 18.2939 26.0293L18.292 26.0283L10.2871 20.4238L10 20.2227L9.71289 20.4238L1.70801 26.0283L1.70605 26.0293C1.57991 26.1185 1.4263 26.167 1.26562 26.167C0.843959 26.167 0.500177 25.823 0.5 25.4014V2.5C0.5 1.39593 1.39593 0.5 2.5 0.5Z"
                       fill="#000000" stroke="white"/>
             </svg>
         `;
@@ -455,9 +455,9 @@ class EventsDetailPage {
 
     createUnlikedButtonHtml(conttoken) {
         return `
-            <svg width="20" height="20" viewBox="0 0 20 27" fill="none" xmlns="http://www.w3.org/2000/svg" 
+            <svg width="20" height="20" viewBox="0 0 20 27" fill="none" xmlns="http://www.w3.org/2000/svg"
                  data-event="${this.config.eventToken}" data-cont="${conttoken}" class="event_save" title="Save Event">
-                <path d="M2.5 0.5H17.5C18.6041 0.5 19.5 1.39593 19.5 2.5V25.4014C19.4998 25.823 19.156 26.167 18.7344 26.167C18.5737 26.167 18.4201 26.1185 18.2939 26.0293L18.292 26.0283L10.2871 20.4238L10 20.2227L9.71289 20.4238L1.70801 26.0283L1.70605 26.0293C1.57991 26.1185 1.4263 26.167 1.26562 26.167C0.843959 26.167 0.500177 25.823 0.5 25.4014V2.5C0.5 1.39593 1.39593 0.5 2.5 0.5Z" 
+                <path d="M2.5 0.5H17.5C18.6041 0.5 19.5 1.39593 19.5 2.5V25.4014C19.4998 25.823 19.156 26.167 18.7344 26.167C18.5737 26.167 18.4201 26.1185 18.2939 26.0293L18.292 26.0283L10.2871 20.4238L10 20.2227L9.71289 20.4238L1.70801 26.0283L1.70605 26.0293C1.57991 26.1185 1.4263 26.167 1.26562 26.167C0.843959 26.167 0.500177 25.823 0.5 25.4014V2.5C0.5 1.39593 1.39593 0.5 2.5 0.5Z"
                       fill="" stroke="white"/>
             </svg>
         `;
@@ -465,34 +465,34 @@ class EventsDetailPage {
 
     handleTicketSelection(event) {
         event.preventDefault();
-        
+
         $('.hall_tabs .nav-item').css('pointer-events', 'none');
-        
+
         const currentElem = $(event.currentTarget);
         const inputElem = currentElem.find('input[type="radio"]');
         const ticketTitle = currentElem.find('label .item-title').text();
-        
+
         if (inputElem.prop('disabled')) {
             this.showErrorMessage(`${ticketTitle} ticket is not available for selection`);
             return;
         }
-        
+
         if (!this.config.isLoggedIn) {
             this.showErrorMessage('Please log in to select a ticket');
             return;
         }
-        
+
         const selectedTicket = inputElem.val();
         if (!selectedTicket) {
             this.showErrorMessage('Please select a ticket');
             return;
         }
-        
+
         // Show loading state
         $('#choose_ticket')
             .removeClass('dropdown-toggle')
             .html('<i class="fa fa-spinner fa-spin"></i> Loading...');
-        
+
         // Redirect to RSVP page
         const rsvpUrl = `${this.config.siteUrl}/events/add_rsvp/${this.config.eventToken}/${selectedTicket}/${this.config.encodeCurrentUrl}`;
         window.location.href = rsvpUrl;
@@ -500,24 +500,24 @@ class EventsDetailPage {
 
     handleEventSave(event) {
         event.stopPropagation();
-        
+
         if (!this.config.isLoggedIn) {
             this.showErrorMessage('Login to perform the action.');
             return;
         }
-        
+
         const saveToken = $(event.currentTarget).attr('data-event');
         const contToken = $(event.currentTarget).attr('data-cont');
-        
+
         // Update UI immediately
         this.updateSaveButtonState(contToken, true);
-        
+
         // Save to localStorage
         localStorage.setItem(`events_${saveToken}_${contToken}_liked`, '1');
-        
+
         // Delete cache
         this.deleteEventsCache(`event_detail_${saveToken}`);
-        
+
         // Send API request
         this.saveEventToServer(saveToken, contToken);
     }
@@ -525,7 +525,7 @@ class EventsDetailPage {
     updateSaveButtonState(contToken, isSaved) {
         const selector = `[data-cont='${contToken}']`;
         const button = $(selector);
-        
+
         if (isSaved) {
             button.removeClass('event_save').addClass('event_saved already-saved');
             button.parent().addClass('already-saved');
@@ -543,9 +543,9 @@ class EventsDetailPage {
                 contttoken: contToken,
                 ptoken: this.config.userPToken
             };
-            
+
             const response = await $.post(this.config.ajaxUrl, data);
-            
+
             if (response.success) {
                 this.showSuccessMessage('Event Saved Successfully.');
             } else {
@@ -562,7 +562,7 @@ class EventsDetailPage {
 
     handleShareModal(event) {
         const $this = $(event.currentTarget);
-        
+
         if ($this.hasClass('sponsor-share-click')) {
             $('.sponsor-share-title').show();
             $('.normal-share-title').hide();
@@ -576,7 +576,7 @@ class EventsDetailPage {
             $('.email-btn').show();
             $('.copys-btns').show();
         }
-        
+
         const shareUrl = $this.data('url');
         if (shareUrl) {
             this.currentShareLink = shareUrl;
@@ -588,21 +588,21 @@ class EventsDetailPage {
             .split(',')
             .map(token => token.trim())
             .filter(token => token);
-            
+
         eventOrganizerPtokens.push(conttokenData.ptoken);
         eventOrganizerPtokens.push(this.config.superOrganizerToken);
-        
+
         const isOrganizer = eventOrganizerPtokens.includes(this.config.userPToken);
-        
+
         $('#is_organizer').val(isOrganizer ? 1 : 0);
-        
+
         if (isOrganizer) {
             $('#download_rsvp, #email_rsvp').show();
-            
+
             if (conttokenData.enable_exhibitor_hall === "1") {
                 $('#setup_exhibitor_slot').show();
             }
-            
+
             if (conttokenData.enable_speaker_hall === "1") {
                 $('#setup_speaker_slot').show();
             }
@@ -616,7 +616,7 @@ class EventsDetailPage {
         const eventTicketTypes = conttokenData.ticket_types || {};
         const eventFormVersion = conttokenData.event_form_version ?? 1;
         const isSocialShareEnabled = conttokenData.event_social_sharing;
-        
+
         // Construct sponsor popup
         this.constructSponsorInfoPopup(
             this.config.eventToken,
@@ -635,7 +635,7 @@ class EventsDetailPage {
     handleEventStatusUpdates() {
         const eventStatus = $('#event_status_hidden').val();
         const eventSponsorStatusList = this.getEventSponsorStatusList();
-        
+
         if ((!this.config.isLoggedIn || eventStatus == 2) && eventSponsorStatusList.includes(1)) {
             $('.event_sponsor_right_header').show();
             $('#sponsor_card').show();
@@ -647,7 +647,7 @@ class EventsDetailPage {
             $("#choose_ticket").show();
             $('#continuePurchase').modal('hide');
         }
-        
+
         this.handleEventAccess(eventStatus);
     }
 
@@ -657,13 +657,13 @@ class EventsDetailPage {
         } else {
             $('.speaker-banner, .exhibitor-banner').show();
             $('.rsvp_actions').css('display', 'none');
-            
+
             $("#rsvp_default_list").show();
-            
+
             if ($("#is_organizer").val() == 1) {
                 $('.rsvp_actions').show();
             }
-            
+
             if (this.state.isUserRSVPDone) {
                 $("#register_now").hide();
             }
@@ -672,11 +672,11 @@ class EventsDetailPage {
 
     handleURLParameters() {
         const url = new URL(window.location.href);
-        
+
         if (url.searchParams.has('confirmation')) {
             this.handleConfirmationParams(url);
         }
-        
+
         // Handle special sharing parameters
         if (this.config.refSlug && this.config.successDiscountAmt && this.config.trackingToken) {
             this.handleSharingDiscount();
@@ -686,10 +686,10 @@ class EventsDetailPage {
     handleConfirmationParams(url) {
         const confirmation = url.searchParams.get('confirmation');
         const status = url.searchParams.get('status');
-        
+
         if (confirmation === 'sponsor') {
             this.clearSponsorCache();
-            
+
             if (status === 'success') {
                 this.showSuccessMessage('Thank you for sponsoring this event.');
             } else if (url.searchParams.get('delete') === 'success') {
@@ -702,7 +702,7 @@ class EventsDetailPage {
                 this.showErrorMessage('There was an error processing your request. Please try again later.');
             }
         }
-        
+
         // Clean URL
         this.cleanURLParameters(url);
     }
@@ -725,7 +725,7 @@ class EventsDetailPage {
                     // Handle error
                 });
         }
-        
+
         // Update URL to remove tracking parameters
         const newUrl = this.config.originalLink;
         history.replaceState(null, "", newUrl);
@@ -742,10 +742,10 @@ class EventsDetailPage {
         if (this.config.isLoggedIn && this.config.userTimezone) {
             return this.config.userTimezone;
         }
-        
-        const clientTimezone = this.getCookie('client_time_zone') || 
+
+        const clientTimezone = this.getCookie('client_time_zone') ||
                               Intl.DateTimeFormat().resolvedOptions().timeZone;
-        
+
         return this.convertDeprecatedTimeZone(clientTimezone) || 'UTC';
     }
 
@@ -767,7 +767,7 @@ class EventsDetailPage {
             /\.mov$/i,
             /\.avi$/i
         ];
-        
+
         return videoPatterns.some(pattern => pattern.test(url)) ? 'video' : 'image';
     }
 
@@ -796,7 +796,7 @@ class EventsDetailPage {
         const now = new Date();
         const start = new Date(startTime);
         const end = new Date(endTime);
-        
+
         if (now < start) return 'before';
         if (now > end) return 'after';
         return 'live';
@@ -898,7 +898,7 @@ class EventsDetailPage {
 $(document).ready(function() {
     // This will be populated by the PHP page with actual configuration
     const eventPageConfig = window.eventPageConfig || {};
-    
+
     // Initialize the events detail page
     window.eventsDetailPage = new EventsDetailPage(eventPageConfig);
 });

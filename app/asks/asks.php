@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 if ( ! defined ( 'TAO_PAGE_TITLE' ) ) { define ( 'TAO_PAGE_TITLE', "Comprehensive Open Jobs List at ".TAOH_SITE_NAME_SLUG.": Explore and Apply to a Wide Range of Job Opportunities" ); }
 if ( ! defined ( 'TAO_PAGE_DESCRIPTION' ) ) { define ( 'TAO_PAGE_DESCRIPTION', "Browse our comprehensive asks list featuring a diverse range of ask opportunities across industries. Find the perfect ask that matches your skills and interests, chat with recruiters and easily apply through our user-friendly platform at ".TAOH_SITE_NAME_SLUG.". Start your ask search today and take the next step in your career." ); }
@@ -34,7 +34,7 @@ $taoh_vals = array(
     //'debug' => 1,
 );
 //echo taoh_apicall_get_debug($taoh_call, $taoh_vals);exit();
-$get_liked = json_decode( taoh_apicall_get($taoh_call, $taoh_vals), true );	
+$get_liked = json_decode( taoh_apicall_get($taoh_call, $taoh_vals), true );
 $liked_arr = '';
 if(isset($get_liked['conttoken_liked'])){
 	$liked_arr = json_encode($get_liked['conttoken_liked']);
@@ -93,7 +93,7 @@ if(isset($get_liked['conttoken_liked'])){
 		width:130px;
 	}
 </style>
-    
+
 <div class="mobile-app">
 
 <?php if(!taoh_user_is_logged_in()) { ?>
@@ -106,7 +106,7 @@ if(isset($get_liked['conttoken_liked'])){
                     <h2 class="section-title wordSlider  pb-3 lh-55 text-white">Welcome to Asks app, Where Questions Ignite Progress</h2>
                     <p class="section-desc pb-4 text-white">Get answers to the most pressing questions and join the askers' community to build success, network, reputation, and growth.</p>
                     <div class="dark-btn gray-btn">
-                        <!-- <a href="<?php // echo TAOH_SITE_URL_ROOT.'/login'; ?>" class="btn theme-btn">Join the community <i class="la la-arrow-right icon ml-1"></i></a> 
+                        <!-- <a href="<?php // echo TAOH_SITE_URL_ROOT.'/login'; ?>" class="btn theme-btn">Join the community <i class="la la-arrow-right icon ml-1"></i></a>
                         <a href="<?php // echo TAOH_SITE_URL_ROOT.'/login'; ?>" class="btn theme-btn">Ask a question <i class="la la-arrow-right icon ml-1"></i></a> -->
                         <a onclick="localStorage.removeItem('isCodeSent')" href="javascript:void(0);"
                          class="btn theme-btn login-button mb-2 " aria-pressed="true" data-toggle="modal" data-target="#config-modal">Join the community <i class="la la-arrow-right icon ml-1"></i></a>
@@ -312,16 +312,16 @@ if(isset($get_liked['conttoken_liked'])){
     </div><!-- end container -->
 </section>
 <?php } ?>
-        
+
 <header class="bg-white bg-white shadow-sm sticky-top" style="top: 0;">
 	<section class="hero-area py-3 overflow-hidden">
 		<div class="container">
 			<div class="hero-content asks-mobile-header">
 				<!--<div class="col-lg-7">
 					<h2 class="section-title fs-24 mb-1"><?php echo $app_data->name_slug; ?></h2>
-					
+
 					 <p class="section-desc"><?php echo $app_data->short; ?></p>
-					
+
 				</div>-->
 				<div class="col-lg-12 text-center">
 					<div class="horizontal-scroll">
@@ -334,10 +334,7 @@ if(isset($get_liked['conttoken_liked'])){
 								<a class="nav-link" id="home-tab3" data-toggle="tab" href="#saved" role="tab" aria-controls="saved" onclick="get_ask_type('saved')" aria-selected="false">Saved Asks</a>
 							</li>
 							<?php }  ?>
-							
-						
-					
-					
+
 						<?php
 							if(taoh_user_is_logged_in()) {
 								echo "
@@ -359,7 +356,7 @@ if(isset($get_liked['conttoken_liked'])){
 
 <?php
 	//if(taoh_user_is_logged_in()) {
-		include('search_new.php'); 
+		include('search_new.php');
 	////}
 ?>
 </header>
@@ -371,8 +368,8 @@ if(isset($get_liked['conttoken_liked'])){
         		<div class="" >
 					<div class="row justify-content-center">
 						<div class="loaderArea" id='listloaderArea'></div>
-					</div>    
-					<div class="row d-flex justify-content-between" > 
+					</div>
+					<div class="row d-flex justify-content-between" >
 						<div class="col-lg-3 mb-3 result_div">
 							<div id="asklistArea"></div>
 							<div id="pagination"></div>
@@ -389,22 +386,22 @@ if(isset($get_liked['conttoken_liked'])){
 						</div>
 						<div class="col-lg-3 mb-3">
 							<?php if (function_exists('taoh_get_recent_jobs')) { taoh_get_recent_jobs('new');  } ?>
-							
+
 							<?php if(TAOH_ENABLE_JUSASK) { ?>
 								<div class="light-dark-card right-side-block">
 									<?php if (function_exists('taoh_jusask_widget')) { taoh_jusask_widget('new');  } ?>
 								</div>
 							<?php } ?>
-							
+
 							<?php if(taoh_user_is_logged_in()) { ?>
 							<div class="light-dark-card right-side-block">
 								<?php if (function_exists('taoh_invite_friends_widget')) { taoh_invite_friends_widget('','asks');  } ?>
 							</div>
 							<?php } ?>
-							
+
 							<?php if (function_exists('taoh_tao_widget')) { taoh_tao_widget();  } ?>
 							<?php if (TAOH_JOBS_ENABLE && function_exists('taoh_jobs_widget')) { taoh_jobs_widget();  } ?>
-							
+
 							<?php if(TAOH_LEARNING_WIDGET_ENABLE) { ?>
 								<div class="right-side-block mob-hide">
 								<?php if (function_exists('taoh_readables_widget')) { taoh_readables_widget('new');  } ?>
@@ -416,11 +413,11 @@ if(isset($get_liked['conttoken_liked'])){
 								</div>
 							<?php } ?>
 
-							
+
 						</div>
             		</div>
         		</div>
-      		</div>  
+      		</div>
 		</div>
     </div>
 </section>
@@ -433,7 +430,7 @@ if(isset($get_liked['conttoken_liked'])){
       </div>
       <div class="modal-body">
 	  	<section class="mb-3 mt-3" id="share_icon">
-			
+
 		</section>
       </div>
       <div class="modal-footer">
@@ -454,7 +451,7 @@ if(isset($get_liked['conttoken_liked'])){
 	let locationSelectInput = $('#locationSelect');
 	let geohashInput = $('#geohash');
     let currentMod = '<?php echo $app->slug ?? ""; ?>';
-	  
+
 	let geohash = "";
 	let search = "";
   	let locationClear = $('#locationClear');
@@ -462,7 +459,7 @@ if(isset($get_liked['conttoken_liked'])){
 	let postDate = $('#postdate').val();
 	let from_date = $('#from_date').val();
 	let to_date = $('#to_date').val();
-	let activeListloaderArea = $('#activeListloaderArea'); 
+	let activeListloaderArea = $('#activeListloaderArea');
 	let listUpdatedAt = 0;
 	let activeChatList = $('#activeChatList');
 	let askCount = $('#askCount');
@@ -483,7 +480,7 @@ if(isset($get_liked['conttoken_liked'])){
 	var det_slot = $('.detail_tab');
 	var ask_type = '';
 	var conttoken = '';
-	
+
 
 	loader(true, loaderArea);
 	$('#dateRangeInputs').hide();
@@ -518,7 +515,7 @@ if(isset($get_liked['conttoken_liked'])){
 			const cursor = event.target.result;
 			if (cursor) {
 				const index_key = cursor.primaryKey;
-				if(index_key.includes('ask')) 
+				if(index_key.includes('ask'))
 				{
 				objectStore.delete(index_key);
 				}
@@ -537,21 +534,21 @@ if(isset($get_liked['conttoken_liked'])){
 		}else{
 			ask_type = '';
 		}
-		/*for clearing search and paging data */ 
+		/*for clearing search and paging data */
 		currentPage = 1;
 		$('#postdate').val('');
 		$('#from_date').val('');
 		$('#to_date').val('');
 		$('#query').val('');
-		
+
 		$('#locationClear').hide();
         $('#coordinateLocation').val("");
         $('#geohash').val("");
         geohash = "";
         $('.ts-control div.item').html('');
 		$('.ts-wrapper').removeClass('full has-items input-hidden');
-		/*for clearing search and paging data */ 
-		
+		/*for clearing search and paging data */
+
 		<?php if(TAOH_INTAODB_ENABLE) { ?>
 			getasklistdata('', ask_type);
 		<?php }else{ ?>
@@ -593,9 +590,6 @@ if(isset($get_liked['conttoken_liked'])){
         }
     });
 	}
-    
-
-	
 
 	function searchFilter() {
 		currentPage = 1;
@@ -671,9 +665,9 @@ if(isset($get_liked['conttoken_liked'])){
 					ask_type = ask_type;
 					taoh_asks_init(queryString, ask_type);
 					console.log('else');
-				}				
+				}
 			}
-			
+
 		}).catch((error) => {
            console.log('Getasklistdata Error:', error);
        	});
@@ -788,11 +782,11 @@ if(isset($get_liked['conttoken_liked'])){
   	}
 
 	function updateUrl(ask_url){
-		
+
 			let homeurl = "<?php echo TAOH_SITE_URL_ROOT.'/'.(($app_data?->slug ?? '')).'/'; ?>";
 			let url = homeurl+'d/'+ask_url+'/?q=main';
 			window.history.pushState("","", url);
-		
+
 	}
 
   	function render_asks_template(data, slot, ask_type_get) {
@@ -808,7 +802,7 @@ if(isset($get_liked['conttoken_liked'])){
 									<li>2. Explore Other Asks that might suit you</li>
 									<li>3. Refine Your Search Criteria</li>
 								</ul>`;
-			
+
 			$('.noresult_html').html(noresult);
 			$('.no_result_div').show();
 			return false;
@@ -816,7 +810,7 @@ if(isset($get_liked['conttoken_liked'])){
 		$('.no_result_div').hide();
 
 		totalItems = data.output.total
-		if(!get_slug){	
+		if(!get_slug){
 			var result = format_object(data);
 		}else{
 			var result = data;
@@ -830,7 +824,7 @@ if(isset($get_liked['conttoken_liked'])){
 				var ask_url = convertToSlug(taoh_title_desc_decode(v.title))+'-'+v.conttoken;
 
 				if(i == 0){
-				
+
 					ask_detail_execute(v.conttoken);
 					updateUrl(ask_url);
 				}
@@ -838,20 +832,20 @@ if(isset($get_liked['conttoken_liked'])){
 
 				v.title = ucfirst(v.title);
 
-				
+
 				var liked_check = get_liked_check(v.conttoken);
 
 				var answer_link = '';
-				
-				
+
+
 				//console.log('----kalpana--------',eligible_scouted_asks);
 				//console.log('---kalpana---------',v.conttoken);
 				if(isLoggedIn){
 					answer_link = `<a class="btn theme-btn button-width mb-3 post_answer" >Answer</a>`;
-					
+
 				}else{
-					answer_link = `<a class="btn theme-btn button-width mb-3 create_referral" 
-					data-title="${taoh_title_desc_decode(v.title)}" 
+					answer_link = `<a class="btn theme-btn button-width mb-3 create_referral"
+					data-title="${taoh_title_desc_decode(v.title)}"
 					data-sharelink="<?php echo $share_link; ?>">Answer</a>`;
 				}
 				var skill = `<div class="skill-detail-block"> <ul class=""><li><a target="_blank" href="https://localhost/hires-i/asks/chat/Skill/SQL, WEB/17932">
@@ -861,18 +855,18 @@ if(isset($get_liked['conttoken_liked'])){
 				</a></li><li><a target="_blank" href="https://localhost/hires-i/asks/chat/Skill/SQL Databases/16465">
 					<span title="Join the skill chat for SQL Databases">SQL Databases</span>
 				</a></li></ul></div>`;
-				
+
 				var img = newavatardisplay(v.user_avatar,v.avatar_image,'<?php echo TAOH_OPS_PREFIX;?>');
 				slot.append(
 				`<div class="light-dark-card ask-listing-block-row ${i == 0 ? 'active':''}" style="cursor: pointer;"
-				data-conttoken="${v.conttoken}"  
+				data-conttoken="${v.conttoken}"
 				data-canonical = "${additive}"
 				ask-url="${ask_url}" >
 					<div class="">
 						<div><b onclick="event.stopPropagation();" class="asking-company-name">
-								Posted by, ${v.user_fname} 
+								Posted by, ${v.user_fname}
 								${img}
-								</b>  
+								</b>
 							<span class="bookmark-icon-right">${liked_check}</span></div>
 							<a href="${_taoh_site_url_root}/asks/d/${ask_url}" class="mobile-ask-list">
 								<h3 class="fs-17 mt-2 b-2" style="font-weight: 500;">${taoh_title_desc_decode(v.title)}</h3>
@@ -896,14 +890,11 @@ if(isset($get_liked['conttoken_liked'])){
 			}else{
 				$('#pagination').hide();
 			}
-			
+
 			if(search){
-				taoh_metrix_ajax('asks',arr_cont);				
+				taoh_metrix_ajax('asks',arr_cont);
 			}
 	}
-
-	
-
 	$(document).on("click", ".ask-listing-block-row", function() {
         var conttoken = $(this).attr("data-conttoken");
 		var ask_url = $(this).attr("ask-url");
@@ -929,7 +920,7 @@ if(isset($get_liked['conttoken_liked'])){
             'ptoken': '<?php echo $ptoken; ?>',
         };
         jQuery.post("<?php echo taoh_site_ajax_url(); ?>", data, function(response) {
-			
+
 			loader(false, loaderArea);
 			det_slot.html(response);
 			var detail_like = get_liked_check(conttoken);
@@ -939,9 +930,6 @@ if(isset($get_liked['conttoken_liked'])){
             console.log( "Network issue on response!" );
         })
 	}
-
-	
-
 	function indx_asks_list(asklistdata){
 		var ask_taoh_data = { taoh_data:ask_list_name,values : asklistdata };
 		let ask_setting_time = new Date();

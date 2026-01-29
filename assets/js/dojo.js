@@ -8,14 +8,14 @@
  * @returns {Array} Array of contextual messages
  */
   var dojoRestartTimer = null;  // Add this new variable at the top
-  let lastDojoRun = null; 
+  let lastDojoRun = null;
 
 function getMessageArray() {
     var message_array = [];
 
     /*console.log('---CURRENT_BLOCK_VISITING-------------'+CURRENT_BLOCK_VISITING)
-    console.log('---PARTICIPANT_MEMBERS_COUNT-------------'+PARTICIPANT_MEMBERS_COUNT)    
-    console.log('---CHANNEL_MEMBERS_COUNT-------------'+CHANNEL_MEMBERS_COUNT)    
+    console.log('---PARTICIPANT_MEMBERS_COUNT-------------'+PARTICIPANT_MEMBERS_COUNT)
+    console.log('---CHANNEL_MEMBERS_COUNT-------------'+CHANNEL_MEMBERS_COUNT)
     console.log('---PARTICIPANT_VISITING_COUNT-------------'+PARTICIPANT_VISITING_COUNT)
     console.log('---VIDEO_POSTED_RECENTLY-------------'+VIDEO_POSTED_RECENTLY)
     console.log('---NO_MESSAGE_POSTED_IN_CHANNEL_FOR_5MIN-------------'+NO_MESSAGE_POSTED_IN_CHANNEL_FOR_5MIN)*/
@@ -75,10 +75,10 @@ function getMessageArray() {
             "One minute to go - pick your ticket and complete registration " + EVENTREGISTERLINK
         ];
     }
-	else if(0 && CURRENT_INNER_PAGE =='networking' && CURRENT_BLOCK_VISITING =='CHANNEL' && 
+	else if(0 && CURRENT_INNER_PAGE =='networking' && CURRENT_BLOCK_VISITING =='CHANNEL' &&
         CHANNEL_MEMBERS_COUNT > 1 && NO_MESSAGE_POSTED_IN_CHANNEL_FOR_5MIN){
             //3 User in a any channel for 5min and did not post any message yet
-        message_array = [ 
+        message_array = [
                 "Hey there 👋<br>You've been here a bit — want to say hi or share what brought you in? A short hello can spark good chats",
 
                 "Still getting the feel of the place? 🌿<br>Feel free to jump in anytime — maybe introduce yourself or share a thought to get things rolling",
@@ -114,8 +114,8 @@ function getMessageArray() {
 
             "Video alert 🎬<br>Someone started a group video not long ago — join and keep the energy going"
         ];
-    } 
-    else if(0 && CURRENT_INNER_PAGE =='networking' && CURRENT_BLOCK_VISITING =='CHANNEL' && 
+    }
+    else if(0 && CURRENT_INNER_PAGE =='networking' && CURRENT_BLOCK_VISITING =='CHANNEL' &&
         CHANNEL_MEMBERS_COUNT == 1 && PARTICIPANT_MEMBERS_COUNT == 1
     ){
         //5 User is 1st in any channel and 1st in room participant
@@ -127,7 +127,7 @@ function getMessageArray() {
                 "Nice and peaceful in here ☕<br> You've got the place to yourself for a bit — want to share what brings you here?"
         ];
     }
-    else if(0 && CURRENT_INNER_PAGE =='networking' && CURRENT_BLOCK_VISITING =='CHANNEL' && 
+    else if(0 && CURRENT_INNER_PAGE =='networking' && CURRENT_BLOCK_VISITING =='CHANNEL' &&
         CHANNEL_MEMBERS_COUNT == 1 && PARTICIPANT_MEMBERS_COUNT > 1
     ){
         //6 User is 1st in any channel and not 1st in room participants
@@ -140,13 +140,13 @@ function getMessageArray() {
             "Welcome to this space 👋<br>You're first to open this channel — others are active elsewhere in the room. Want to drop the first note here?",
             "Psst… nice move 👀<br>You're first in this channel — others will see it soon. Say hello or share a quick thought to set the vibe",
             "You've got a head start 🚀<br>The room's filling up, but this channel's fresh — a perfect place to kick off a new convo",
-            "Welcome, pathfinder 🌿<br>You're the first one here, but others are nearby — want to plant the first message so they can join in?"     
-        
+            "Welcome, pathfinder 🌿<br>You're the first one here, but others are nearby — want to plant the first message so they can join in?"
+
         ];
-    }   
+    }
     else if(0 && CURRENT_INNER_PAGE =='networking' && CURRENT_BLOCK_VISITING =='CHANNEL'
          && CHANNEL_MEMBERS_COUNT > 1){
-        //8. I am in a channel, and 2nd or more participants joined, 
+        //8. I am in a channel, and 2nd or more participants joined,
         message_array = [
             "Looks like you've got company 👋<br>Others are here now — perfect moment to start a quick video or say hello",
 
@@ -163,7 +163,7 @@ function getMessageArray() {
             "Not alone anymore 🙌<br>A few others just joined — hit that video button and make it a real chat!"
 
             ];
-    }	 
+    }
     else if(0 && CURRENT_INNER_PAGE =='networking' && CURRENT_BLOCK_VISITING =='PARTICIPANT' &&
          PARTICIPANT_VISITING_COUNT == 1 && PARTICIPANT_MEMBERS_COUNT > 1)
     {
@@ -202,9 +202,6 @@ function getMessageArray() {
             "Welcome, early explorer 🌍<br>You're in first — great chance to get a feel for the space. Watch the quick event overview while the room warms up"
         ];
     }
-    
-
-
     return message_array;
 }
 //alert(d_is_session_allowed)
@@ -430,7 +427,7 @@ if (typeof document !== 'undefined') {
                 setTimeout(function() {
                     startDojoMessages();
                 }, 2000); // Slight delay to ensure visibility
-                
+
             }
         });
     } else {
@@ -442,9 +439,6 @@ if (typeof document !== 'undefined') {
         }
     }
 }
-
-
-
 /* else if (d_user_profile_completed && d_user_profile_type != 'professional' && CURRENT_INNER_PAGE =='events_details' && d_is_sponsorship_available) {
         message_array = [
             "Explore sponsorship options - your best seat might come with extra perks " + EVENTREGISTERLINK,
@@ -491,8 +485,8 @@ if (typeof document !== 'undefined') {
         message_array = [
             "All set for this event — explore other upcoming ones while you wait " + EVENTSLINK,
             "You're ready! Discover more events that match your interests " + EVENTSLINK,
-             "You're good to go — why not register for another event while you wait? " + EVENTSLINK,           
-            "You're all prepped — explore similar events to expand your network " + EVENTSLINK,           
+             "You're good to go — why not register for another event while you wait? " + EVENTSLINK,
+            "You're all prepped — explore similar events to expand your network " + EVENTSLINK,
             "Great job completing setup — now check out what's next on the calendar " + EVENTSLINK,
            // "Event countdown started — engage with others in comments today " + COMMENTLINK,
            // "While you wait, drop a comment to meet fellow attendees " + COMMENTLINK,

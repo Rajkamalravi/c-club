@@ -32,7 +32,7 @@ if(file_exists($localPath)){
 }
 //die;
 foreach($event_list['output']['list'] as $eventdata){
-	$url =  $base . slugify($eventdata['title']).'-'.$eventdata['eventtoken'];	
+	$url =  $base . slugify($eventdata['title']).'-'.$eventdata['eventtoken'];
 	$events['loc'] = $url;
 	$events['conttoken'] = $eventdata['eventtoken'];
 	$events['name'] =  $eventdata['title'];
@@ -41,7 +41,7 @@ foreach($event_list['output']['list'] as $eventdata){
 	$events['status'] = 'scheduled';
 	$events['location'] = $eventdata['event_type'];
 	$events['performer'] = 'NWLB';
-	
+
 	$vars['url'] = $url;
 	$ops = 'smupdate';
 	$type = 'event';
@@ -92,9 +92,6 @@ if (!file_exists($sitemap_file)) {
 
 $xpath = new DOMXPath($sitemap);
 $xpath->registerNamespace('sm', 'http://www.sitemaps.org/schemas/sitemap/0.9');
-
-
-
 if (json_last_error() !== JSON_ERROR_NONE) {
     echo json_encode(['error' => 'Invalid JSON input']);
     exit;
@@ -147,29 +144,25 @@ function buildUrlNode($doc, $valueData, $type) {
 
     $urlNode->appendChild($doc->createElement('loc', $locWithToken));
     $urlNode->appendChild($doc->createElement('lastmod', date('Y-m-d')));
-
-    
-
     return $urlNode;
 }
 
 function slugify(string $text): string {
         // Replace non-alphanumeric characters with hyphen
         $text = preg_replace('~[^\pL\d]+~u', '-', $text);
-        
+
         // Transliterate to ASCII
         $text = iconv('utf-8', 'us-ascii//TRANSLIT', $text);
-        
+
         // Remove remaining non-word characters
         $text = preg_replace('~[^-\w]+~', '', $text);
-        
+
         // Trim hyphens from start and end
         $text = trim($text, '-');
-        
+
         // Replace multiple hyphens with single hyphen
         $text = preg_replace('~-+~', '-', $text);
-        
+
         // Return lowercase result or default
         return strtolower($text ?: 'event');
     }
-

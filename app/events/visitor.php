@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 if ( ! defined ( 'TAO_PAGE_TITLE' ) ) { define ( 'TAO_PAGE_TITLE', "Comprehensive Open Events List at ".TAOH_SITE_NAME_SLUG.": Explore and Apply to a Wide Range of Job Opportunities" ); }
 if ( ! defined ( 'TAO_PAGE_DESCRIPTION' ) ) { define ( 'TAO_PAGE_DESCRIPTION', "Browse our comprehensive jobs list featuring a diverse range of job opportunities across industries. Find the perfect job that matches your skills and interests, chat with recruiters and easily apply through our user-friendly platform at ".TAOH_SITE_NAME_SLUG.". Start your job search today and take the next step in your career." ); }
@@ -387,7 +387,7 @@ span.h5 {
             </div><!-- end row -->
         </div><!-- end counter-box -->
     </div><!-- end container -->
-    
+
 </section>
 
 <section class="get-started-area section--padding event-works">
@@ -750,13 +750,13 @@ span.h5 {
         <div class="row events-list-menu">
             <div class="col-md-6"><h2 class="section-title mb-20px fs-30">Upcoming events</h2></div>
             <!-- <div class="col-md-6 text-right"><p>
-                <a onclick="localStorage.removeItem('isCodeSent')" 
+                <a onclick="localStorage.removeItem('isCodeSent')"
                 href="javascript:void(0);" class="orange-text login-button " aria-pressed="true" data-toggle="modal" data-target="#config-modal">Explore more events</a>
             </div> -->
         </div>
         <div class="col-lg-12">
-            <div class="row events_list">                
-            </div>            
+            <div class="row events_list">
+            </div>
         </div><!-- end row -->
         <div class="text-center orange-btn">
             <!-- <a href="<?php echo  TAOH_LOGIN_URL; ?>" class="btn theme-btn">Explore more events</a> -->
@@ -776,7 +776,7 @@ span.h5 {
         <div class="text-center pb-70px"><h3>Take a deeper look into new ways to grow your career</h3></div>
         <div class="col-lg-12">
             <div class="row articles_list">
-            
+
             </div>
         </div><!-- end row -->
     </div><!-- end container -->
@@ -918,7 +918,7 @@ span.h5 {
 	let totalItems = 0; //this will be rewriiten on response of events on line 207
 	let itemsPerPage = 4;
 	let currentPage = 0;
-    
+
     $(".scroll-div").css("bottom", "0px");
 
 	$(document).ready(function(){
@@ -1048,14 +1048,14 @@ span.h5 {
             /*slot.append(
 				`<a target='_blank' href="<?php //echo TAOH_SITE_URL_ROOT."/".$app_data->slug."/d/"; ?>${convertToSlug(v.title)}-${v.eventtoken}" class="media media-card align-items-center hover-s">
                     <div class="icon-element mr-3 flex-shrink-0">
-                        
+
                         <img class="lazy" height="60px" width="50px" src="${v.chat_image ? ( (v.chat_image == "https://work2.org/wp-content/uploads/2022/10/networking_nwlb_app_sq-1.png") ? "https://cdn.tao.ai/app/events/images/events_tao_ai_sq_256.png" : v.chat_image) : "" }" data-src="${v.chat_image}" alt="${v.title}">
                     </div>
                     <div class="media-body">
                         <h5 class="pb-1 fs-20">${v.title}</h5>
                     </div>
                     //old backup
-                        <span style="display:flex" class="text-underline fs-18 text-black fw-medium" href="<?php //echo TAOH_EVENTS_URL."/rsvp/"; ?>${v.eventtoken}" w-100 mt-3">RSVP Now 
+                        <span style="display:flex" class="text-underline fs-18 text-black fw-medium" href="<?php //echo TAOH_EVENTS_URL."/rsvp/"; ?>${v.eventtoken}" w-100 mt-3">RSVP Now
                     </span><i class="la la-arrow-right ml-1"></i>
                 </a>`);*/
 		});

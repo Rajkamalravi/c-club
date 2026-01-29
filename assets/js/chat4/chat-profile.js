@@ -631,5 +631,3 @@ function taoh_pc_post_metrics(metrics, con_token) {
         save_metrics('profile', metrics, con_token);
     }
 }
-
-

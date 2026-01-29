@@ -11,7 +11,7 @@ if (TAOH_JUSASK_ENABLE) {
 </main>
 
  <!-- Footer Banner  -->
-<?php if(defined('TAOH_FOOTER_BANNER_AD') && TAOH_FOOTER_BANNER_AD) { 
+<?php if(defined('TAOH_FOOTER_BANNER_AD') && TAOH_FOOTER_BANNER_AD) {
     // file_get_contents(TAOH_OPS_PREFIX.'/images/calendar', false, stream_context_create(array( "ssl"=>array( "verify_peer"=>false, "verify_peer_name"=>false,),)))
     if(!isset($_SESSION['footer_banner'])){
         $get_banner = file_get_contents(TAOH_CDN_ADS);
@@ -20,9 +20,9 @@ if (TAOH_JUSASK_ENABLE) {
         $_SESSION['footer_banner'] = $footer_banner;
     }
     if(isset($_SESSION['footer_banner']) && count($_SESSION['footer_banner']) > 0){
-    foreach($_SESSION['footer_banner'] as $key=>$val){ 
+    foreach($_SESSION['footer_banner'] as $key=>$val){
         $link = str_ireplace('[TAOH_HOME_URL]',TAOH_SITE_URL_ROOT,$val['link']);
-    
+
     ?>
     <div class="cover-workcongress-image">
     <div class="bg-image" style="background-image: url('<?php echo $val['image'];?>');"></div>
@@ -41,11 +41,11 @@ if (TAOH_JUSASK_ENABLE) {
       <div class="container">
         <div class="row align-items-center pb-4 copyright-wrap">
           <div class="col-lg-12">
-            <?php if(TAOH_FOOTER_MENU_ARRAY !='')  { 
-                     $footer_array = json_decode(TAOH_FOOTER_MENU_ARRAY,1);  
-                
+            <?php if(TAOH_FOOTER_MENU_ARRAY !='')  {
+                     $footer_array = json_decode(TAOH_FOOTER_MENU_ARRAY,1);
+
                 ?>
-           
+
                 <div class="col-xl-5 mx-auto px-0">
                     <ul class="nav justify-content-center" style="margin-bottom: -10px;">
                         <?php foreach($footer_array as $key=>$val){ ?>
@@ -54,11 +54,11 @@ if (TAOH_JUSASK_ENABLE) {
                     </ul>
 
                 </div>
-                
+
             <?php } else { ?>
 
                 <div class="col-xl-5 mx-auto px-0">
-                   
+
                 </div>
            <?php } ?>
 
@@ -90,7 +90,7 @@ if (TAOH_JUSASK_ENABLE) {
                 </div>-->
 
                 <div class="dropdown terms-menu">
-                   
+
                     <a class="footer-menu-item mx-lg-5 dropdown-toggle removecaret text-wrap" id="termsLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" classss="" id="termsLink" style="cursor: pointer;">
                         <div class="svg-container">
                             <svg width="16" height="16" viewBox="0 0 10 9" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -105,7 +105,7 @@ if (TAOH_JUSASK_ENABLE) {
                         <li class="dropdown-item"><a href="https://tao.ai/conduct.php" target="_BLANK" class="term-item">Code of Conduct</a></li>
                     </ul>
                 </div>
-                
+
                 <a  href="https://tao.ai" target="_blank" class="footer-menu-item mx-lg-5">
                     <svg width="30" height="30" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path fill-rule="evenodd" clip-rule="evenodd" d="M10.5341 4.42451L8.4495 4.39261C8.24982 5.34678 7.3313 10.9602 8.343 11.5608C9.20029 12.0685 9.89517 11.1648 10.4383 11.1303C11.1944 13.3868 6.82811 14.7556 6.5033 11.7788C6.30362 9.93955 7.55228 5.18199 7.34461 4.32882C5.92823 4.29161 4.07788 4.02849 4.06723 5.7242C4.0619 6.44447 4.46392 6.69697 3.72644 6.76873C2.77331 5.31489 3.48949 3.36934 4.76743 2.82448C5.75784 2.40454 9.26152 2.68627 10.7258 2.68627C11.2157 2.68627 12.2274 2.51882 12.5496 2.65438C13.1805 4.26769 11.7748 4.42451 10.5341 4.42451ZM16 8.02855C16 6.8777 15.6645 5.62851 15.3051 4.79129C14.9271 3.90888 14.3067 3.01319 13.6757 2.38859C11.4473 0.174598 7.80254 -0.73173 4.81269 0.668958C3.48949 1.28824 2.31272 2.17862 1.5007 3.40123C0.896336 4.31022 0.47568 5.04113 0.249378 6.17869C-0.0567951 7.71759 -0.0967307 8.04716 0.21743 9.62061C0.459706 10.8352 0.773867 11.4492 1.40485 12.4645C2.69344 14.535 5.45699 15.9436 7.94897 15.9995C8.31372 16.0101 9.29081 15.8613 9.65023 15.7815C12.1369 15.2446 14.1789 13.6021 15.2465 11.3057C15.4276 10.9176 15.6486 10.317 15.7684 9.81198C15.8616 9.40267 16 8.44052 16 8.02855Z" fill="white"/>
@@ -133,7 +133,7 @@ if (TAOH_JUSASK_ENABLE) {
                 </a>
                 <?php } ?>
             </div>
-           
+
             <p class="text-center text-muted" style="color: #999999;">
               <strong style="color: #6C757D;">&copy; <?php echo date('Y'). "</strong> | <strong>".TAOH_SITE_NAME_SLUG."</strong> | "."<a href='https://theworkcompany.com' target='_blank' class='twc-logo' style='color: #fff;'>The<b>W</b><img src='https://theworkcompany.com/assets/images/theworkcompany_sq.png' alt='O' height='14'><b style='color: #fff;'>RK</b>Company</a>"; ?> | <strong style="color: #6C757D;">All Rights Reserved</strong>
               <br>
@@ -199,7 +199,7 @@ if (TAOH_JUSASK_ENABLE) {
     .modal-content {
     /* Bootstrap sets the size of the modal in the modal-dialog class, we need to inherit it */
     width:inherit;
-    max-width:inherit; /* For Bootstrap 4 - to avoid the modal window stretching 
+    max-width:inherit; /* For Bootstrap 4 - to avoid the modal window stretching
     full width */
     height:inherit;
     /* To center horizontally */
@@ -288,9 +288,6 @@ if (!@$_COOKIE['client_time_zone']) { ?>
         //if(loadTime >= loadTimeThreshold){
         //window.location.href = '<?php //echo TAOH_SITE_URL_ROOT."/down.php";  ?>';
         //}
-        
-        
-
         if (localStorage.getItem('indexedDBFailed') === 'true') {
             if (parseInt(localStorage.getItem('indexedDBFailRetry')) < 3) {
                 let indexedDBFailRetry = parseInt(localStorage.getItem('indexedDBFailRetry')) + 1;
@@ -324,12 +321,12 @@ if (!@$_COOKIE['client_time_zone']) { ?>
     }
 
     function checksuperadminInit(){
-        <?php if(isset(taoh_session_get(TAOH_ROOT_PATH_HASH)['USER_INFO']->is_super_admin) && 
-        taoh_session_get(TAOH_ROOT_PATH_HASH)['USER_INFO']->is_super_admin == 1 && 
+        <?php if(isset(taoh_session_get(TAOH_ROOT_PATH_HASH)['USER_INFO']->is_super_admin) &&
+        taoh_session_get(TAOH_ROOT_PATH_HASH)['USER_INFO']->is_super_admin == 1 &&
         taoh_session_get(TAOH_ROOT_PATH_HASH)['USER_INFO']->site_status == 'init'){ ?>
             var msg = 'Please complete your site settings. Click Manage Button on the header menu and proceed to fill the site data.';
             taoh_set_error_message(msg,8000);
-        <?php } ?>       
+        <?php } ?>
     }
 
 
@@ -413,7 +410,7 @@ if (!@$_COOKIE['client_time_zone']) { ?>
                         var data = {
                             'taoh_action': 'toah_metrics_push',
                             'metrics_data': JSON.stringify(metricsPush),
-                            
+
                         };
                         jQuery.post("<?php echo taoh_site_ajax_url(); ?>", data, function (response) {
                             //success
@@ -478,7 +475,7 @@ if (!@$_COOKIE['client_time_zone']) { ?>
 
 
     <?php if(isset($_GET['clear']) && $_GET['clear'] == 'config') { ?>
-        
+
         const newUrl = new URL(location.href);
         newUrl.searchParams.delete('clear');
         window.history.replaceState({}, document.title, newUrl.href);

@@ -346,27 +346,27 @@
     .e-v2-title {
         font-size: 1.25rem;
     }
-    
+
     .info-container {
         padding: 1rem !important;
     }
-    
+
     .info-card {
         flex-direction: column;
         text-align: center;
         gap: 8px;
     }
-    
+
     .action-btns {
         position: static;
         justify-content: flex-end;
         margin-top: 1rem;
     }
-    
+
     .cover-event-image {
         height: 250px;
     }
-    
+
     .main-media {
         height: 250px;
     }

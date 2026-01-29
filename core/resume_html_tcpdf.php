@@ -86,7 +86,7 @@
                         </tr>
                     </table>
 
-                    
+
                     <table style="border-collapse: collapse; margin-bottom: 24px;">
                         <tr style="">
                             <td style="border-bottom: 2px solid #d3d3d3; padding-bottom: 10px; padding-right: 12px;"><img src="../assets/images/abt-prs.jpg" alt=""></td>
@@ -155,7 +155,7 @@
                     <table>
                         <tr>
                             <td>
-                               
+
                                 <table style="border-collapse: collapse; margin-bottom: 24px;">
                                     <tr style="">
                                         <td style="border-bottom: 2px solid #d3d3d3; padding-bottom: 10px; padding-right: 12px;"><img src="../assets/images/edu.jpg" alt=""></td>
@@ -345,7 +345,7 @@
                                         </tr>
                                 </table>
                                 <!-- 2nd end -->
-                            
+
                             </td>
                         </tr>
                     </table>
@@ -355,7 +355,7 @@
                     <table>
                         <tr>
                             <td>
-                                
+
                                 <table style="border-collapse: collapse; margin-bottom: 24px;">
                                     <tr style="">
                                         <td style="border-bottom: 2px solid #d3d3d3; padding-bottom: 10px; padding-right: 12px;"><img src="../assets/images/exp.jpg" alt=""></td>
@@ -436,7 +436,7 @@
                                             </td>
                                         </tr>
                                 </table>
-                                
+
                                 <table>
                                         <tr>
                                             <td style="padding-left: 24px;">&nbsp;</td>
@@ -529,7 +529,7 @@
                                             </td>
                                         </tr>
                                 </table>
-                                
+
                                 <table>
                                         <tr>
                                             <td style="padding-left: 24px;">&nbsp;</td>
@@ -560,7 +560,7 @@
                     <table style="margin-left: 24px; border: 1px solid #d3d3d3; border-radius: 12px;">
                         <tr>
                             <td style="border-bottom: 2px solid #d3d3d3;">
-                                <table>    
+                                <table>
                                     <thead>
                                         <tr>
                                             <th style="padding-left: 6px; padding-right: 6px; padding-top: 10px; padding-bottom: 10px;">
@@ -601,7 +601,7 @@
                     <table style="margin-left: 24px; border: 1px solid #d3d3d3; border-radius: 12px;">
                         <tr>
                             <td style="border-bottom: 2px solid #d3d3d3;">
-                                <table>    
+                                <table>
                                     <thead>
                                         <tr>
                                             <th style="padding-left: 6px; padding-right: 6px; padding-top: 10px; padding-bottom: 10px;">
@@ -641,7 +641,7 @@
             </tr>
         </table>
 
-                    
+
                 </td>
             </tr>
         </table>

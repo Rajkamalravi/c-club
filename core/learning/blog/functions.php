@@ -48,7 +48,7 @@ function blog_related_post($category = "") {
   // $taoh_vals[ 'cache_name' ] = $cache_name;
   // $taoh_vals[ 'cache' ] = array ( "name" => $cache_name, 'ttl' => 3600);
   ksort($taoh_vals);
-  
+
   //echo TAOH_API_PREFIX . '/' .$url.'?'.http_build_query($taoh_vals); taoh_exit();
   $content = taoh_apicall_get($url, $taoh_vals);
 
@@ -105,7 +105,7 @@ function blog_related_side_widget($category = "") {
               <div class="d-flex mb-3">
                 <a class="mt-2 dash_metrics" data-metrics="view" data-type="reads" conttoken="<?php echo $post->conttoken; ?>" href="<?php echo taoh_blog_link(slugify2(taoh_title_desc_decode($post->title))."-".$post->conttoken); ?>">
                 <?php if($post->media_type == 'youtube'){ ?>
-                    <img width="100%" src="http://img.youtube.com/vi/<?php echo taoh_get_youtubeId($post->media_url); ?>/maxresdefault.jpg" data-src="http://img.youtube.com/vi/<?php echo taoh_get_youtubeId($post->media_url); ?>/maxresdefault.jpg" alt="Card image">  
+                    <img width="100%" src="http://img.youtube.com/vi/<?php echo taoh_get_youtubeId($post->media_url); ?>/maxresdefault.jpg" data-src="http://img.youtube.com/vi/<?php echo taoh_get_youtubeId($post->media_url); ?>/maxresdefault.jpg" alt="Card image">
                   <?php }else{ ?>
                       <img width="100%" src="<?php echo $post->image[0]; ?>" data-src="<?php echo $post->image[0]; ?>" alt="Card image">
                   <?php } ?>
@@ -144,15 +144,15 @@ function blog_search_widget() { ?>
               </div>
           </form>
 <?php }
-function side_widget4(){ 
+function side_widget4(){
   $widget1 = array_slice(taoh_central_widget_get(), 0, 5, true);
   $first_get = array_slice($widget1, 0, 1, true);
-  $second_get = array_slice($widget1, 1, 4, true); ?> 
+  $second_get = array_slice($widget1, 1, 4, true); ?>
     <div class="border-bottom card card-item">
       <div class="card-body">
       <h4 class="session_title"><span>FEATURED</span></h4>
         <div class="mt-3 mb-3">
-            <?php foreach ($first_get as $first ){ 
+            <?php foreach ($first_get as $first ){
             if ( ! isset( $first['blurb']['image'][0] ) || ! $first['blurb']['image'][0] || stristr( $first['blurb']['image'][0], 'images.unsplash.com' ) ) $first['blurb']['image'][0] = TAOH_CDN_PREFIX."/images/igcache/".urlencode( taoh_title_desc_decode($first['title']) )."/900_600/blog.jpg";
             ?>
           <div class="mb-3">
@@ -188,13 +188,13 @@ function side_widget4(){
         </div>
       </div>
     </div>
-<?php }  
+<?php }
 function taoh_central_widget_get(){
   $url = 'core.content.get';
   $taoh_vals = array(
     "mod" => 'core',
-    "conttype"=> "blog", 
-    "type"=> "reads", 
+    "conttype"=> "blog",
+    "type"=> "reads",
     "ops"=> "list",
     'token'=>taoh_get_dummy_token(1),
     "q"=> '',
@@ -212,7 +212,7 @@ function taoh_central_widget_get(){
   $res = json_decode($req, true);
   shuffle($res['output']['list']);
   return $res['output']['list'];
-} 
+}
 function field_tags($options = "") {
   $str = '<select id="tagsSelect" multiple name="tags[]" placeholder="Type to select">';
   if(@$options) {

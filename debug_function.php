@@ -10,7 +10,7 @@ function taoh_apicall_get_debug_1( $taoh_call, $taoh_vals, $prefix = TAOH_API_PR
     }else{
         $cache_file_name = $file_mod.'_'.hash('crc32',$cache_file_build);
     }
-    
+
     if($file_mod != 'rooms' && $file_mod != ''){
         //$taoh_vals['cache'] = $cache_file_name;
         //$taoh_vals['caching'] = $cache_file_name;
@@ -18,7 +18,7 @@ function taoh_apicall_get_debug_1( $taoh_call, $taoh_vals, $prefix = TAOH_API_PR
             $taoh_vals['cache'] = array("name" => $cache_file_name);
         }
       }
-    
+
     $source = TAOH_SITE_URL_ROOT;
     $taoh_vals['source'] = $source;
     if(isset($taoh_vals['sub_secret'])){
@@ -30,18 +30,18 @@ function taoh_apicall_get_debug_1( $taoh_call, $taoh_vals, $prefix = TAOH_API_PR
     $postdata = http_build_query( $taoh_vals );
     $url = $prefix.'/'.$taoh_call;
     $url_print = str_replace('&amp;', '&', $url . '?' .html_entity_decode( $postdata ));
-    
+
     if(isset($_GET['debug']) && $_GET['debug'] == 1){
         $filename = TAOH_PLUGIN_PATH.'/cache/log/'.date("y-m-d").'_logs.cache';
-        
-       
+
+
        if ( file_exists( $filename ) ){
             $fp = fopen ($filename, 'a');
             fwrite($fp, "\n". time().'-'.$url_print);
             fclose($fp);
        }
        else{
-        $fp = fopen ($filename, 'w');       
+        $fp = fopen ($filename, 'w');
         fputcsv($fp, $data);
         fclose($fp);
        }
@@ -49,34 +49,28 @@ function taoh_apicall_get_debug_1( $taoh_call, $taoh_vals, $prefix = TAOH_API_PR
 
     return $url_print;
 }
-
-
-
 function taoh_apicall_get_debug_log( $taoh_call, $taoh_vals){
-    
-    
+
+
     $postdata = http_build_query( $taoh_vals );
     $url = TAOH_API_PREFIX.'/'.$taoh_call;
     $url_print = str_replace('&amp;', '&', $url . '?' .html_entity_decode( $postdata ));
-   
+
     $data[0] = $url_print;
-    
+
     $filename = TAOH_PLUGIN_PATH.'/cache/logs/'.date("y-m-d").'_logs.cache';
-        
-       
+
+
        if ( file_exists( $filename ) ){
             $fp = fopen ($filename, 'a');
             fwrite($fp, "\n". time().'-'.$url_print);
             fclose($fp);
        }
        else{
-        $fp = fopen ($filename, 'w');       
+        $fp = fopen ($filename, 'w');
         fputcsv($fp, $data);
         fclose($fp);
        }
-
-    
-
     return $url_print;
 }
 
@@ -105,7 +99,7 @@ function taoh_apicall_post_debug_1( $taoh_call, $taoh_vals, $prefix = TAOH_API_P
     echo "URL: [$url]; PostData: [$postdata];";
     return 0;
 }
-  
+
 function tao_debug( $endpoint, $title="null" ) {
 	if ( @$_GET[ 'debug' ] ) {
     $data = json_decode( taoh_url_get_content( $endpoint ) );
@@ -136,7 +130,7 @@ function taoh_apicall_get_debug($taoh_call, $taoh_vals, $prefix = TAOH_API_PREFI
 
 function taoh_apicall_post_debug( $taoh_call, $taoh_vals, $prefix = TAOH_API_PREFIX ){
 
-    
+
     $taoh_vals['debug_api'] = 1;
     $data = taoh_api_request($taoh_call, $taoh_vals, 'POST', $prefix);
     return $data['response'] ?? '';

@@ -80,7 +80,7 @@ if($return['success'] &&  isset( $return['output'] ) ) {
                 if(TAOH_SIMPLE_LOGIN && $return['is_new_user']){
                     setcookie( TAOH_ROOT_PATH_HASH.'_anonymous', 1, strtotime( '+1 days' ),'/');
                 }
-                
+
                 setcookie( TAOH_ROOT_PATH_HASH."_temp_api_token", $return['output'], strtotime( '+1 days' ), '/'  );
 
                 if(
@@ -112,7 +112,7 @@ if($return['success'] &&  isset( $return['output'] ) ) {
                         localStorage.removeItem('email');
                         localStorage.removeItem('isCodeSent');
                         </script>
-                        <?php 
+                        <?php
                         $_SESSION['referral_redirect'] = 'referral_redirect';
                         call_login_referral_action($return['output'],1);
                        // taoh_redirect( TAOH_SITE_URL_ROOT ); taoh_exit();
@@ -120,7 +120,7 @@ if($return['success'] &&  isset( $return['output'] ) ) {
 
                   }
 
-                  
+
                     ?>
                   <script>
                     localStorage.removeItem('email');
@@ -141,7 +141,7 @@ if($return['success'] &&  isset( $return['output'] ) ) {
                 taoh_redirect(TAOH_SITE_URL_ROOT);
                 taoh_exit();
             }
-/* 
+/*
 echo "<pre>Email: $email</pre>";
 echo "<pre>User Key: $user_key</pre>"; */
 

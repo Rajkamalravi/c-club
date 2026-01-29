@@ -19,14 +19,14 @@ function live_now_room($input_array) {
     $channels = $input_array['output']['channels'];
 
     //$title = $title."abc";
-    
+
     $sess_user_info = taoh_session_get(TAOH_ROOT_PATH_HASH)['USER_INFO'];
     $full_loc_expl = explode(', ', $sess_user_info->full_location);
     $country = array_pop($full_loc_expl);
 
-    $geo_enable = 0;   
+    $geo_enable = 0;
     $dateHour = gmdate("YmdH");
-    
+
     if($geo_enable)
         $keyslug = hash( 'crc32',$title.$country.$dateHour );
     else
@@ -58,7 +58,7 @@ function live_now_room($input_array) {
                                     array(
                                         'slug' => 'employer',
                                         'title' => 'Employer',
-                                    ),    
+                                    ),
                                     array(
                                         'slug' => 'professional',
                                         'title' => 'Professional',
@@ -135,8 +135,8 @@ function live_now_room($input_array) {
         taoh_networking_postcell( $return[ 'cell_info' ] );
     }
 
-    return $return;    
-    
+    return $return;
+
 }
 
 // $url_data = file_get_contents(TAOH_LIVE_NOW_URL.'?y='.gmdate("Ymd"));

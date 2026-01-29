@@ -15,19 +15,19 @@ $ref_slug = taoh_parse_url(4);
 $trackingtoken = '';
 
 if($taoh_user_is_logged_in && $ptoken != ''){
-    
+
     $trackingtoken = hash('sha256',(string)$ptoken);
-    
+
 }
 
 $social_token = '';
 if (isset($ref_param) && $ref_param != '' && $ref_param != 'stlo') {
-    
-    $hashptoken =  hash('sha256',(string)$ptoken); 
+
+    $hashptoken =  hash('sha256',(string)$ptoken);
     if ( $ptoken !== '' && $hashptoken === (string)$ref_param) {
         $social_token = $ref_param;
     }
-    
+
 }
 
 $success_discount_amt   = (string)($GLOBALS['success_discount_amt']   ?? '');
@@ -54,9 +54,6 @@ $user_country_name = trim(end($user_country_array));
             color: #2557a7;
             font-size: 14px;
         }
-
-       
-
 </style>
 <div class="modal fade" id="sponsorDetailModal" tabindex="-1" role="dialog" aria-labelledby="sponsorDetailModal" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered" role="document">
@@ -86,13 +83,13 @@ $user_country_name = trim(end($user_country_array));
                             </p>
                             <a class="visit-link btn" href="#" id="sponsorDetailWebsite" target="_blank">Visit Website</a>
                         </div>
-                    </div>  
+                    </div>
                 </div>
 
             </div>
         </div>
     </div>
-    
+
 <script>
     var my_ptoken = "<?php echo (taoh_session_get(TAOH_ROOT_PATH_HASH)['USER_INFO'] ?? null)?->ptoken ?? ''; ?>";
     var eve = "<?php echo $event_token ?? ''; ?>";
@@ -103,7 +100,7 @@ $user_country_name = trim(end($user_country_array));
     $(document).on('click', '.open_sponsor_detail', function () {
         var sponsor_id = $(this).attr('data_id');
         var sponsor_name = $(this).attr('data_name');
-        
+
         var spondesc = $('#exhi_description_'+sponsor_id).text();
         var spon_logo = $('#exhi_logo_'+sponsor_id).attr('src');
 
@@ -218,7 +215,7 @@ $user_country_name = trim(end($user_country_array));
                             <div>We are Settings up things for you</div>
                             <div style="font-size: 20px;">Unlock your Exhibiting Slot</div>
                             <div>
-                                <a class="btn speaker-default-btn event_sponsor_right_header" 
+                                <a class="btn speaker-default-btn event_sponsor_right_header"
                                 href="javascript:void(0)" data-toggle="modal" data-target="#sponsorInfo">Become a Sponsor !</a>
                                 <button type="button" class="btn speaker-default-btn get-started" data-toggle="modal" data-target="#sponsorInfo">
                                 More Info !</button>
@@ -231,7 +228,7 @@ $user_country_name = trim(end($user_country_array));
         }
 
         var exh_count = 0;
-       
+
         if(sortedExhList !=undefined && sortedExhList.length > 0){
             var sponsor_type = $('#sponsor_type').val();
 
@@ -254,7 +251,7 @@ $user_country_name = trim(end($user_country_array));
                     if (userInfo.full_location != '' && userInfo.full_location != undefined && userInfo.full_location != null) {
                         var exh_country_array = userInfo.full_location.split(',');
                         var exh_country_name = exh_country_array[exh_country_array.length - 1].trim();
-                    
+
                         if(exh_country_name != user_country_name){
                             continue;
                         }
@@ -365,12 +362,12 @@ $user_country_name = trim(end($user_country_array));
                                     </div>
 
                                     <div class="d-flex align-items-center justify-content-between flex-wrap my-2" style="flex: 1; gap: 12px;">
-                                        <div class="d-flex flex-column" style="gap:3px;">    
+                                        <div class="d-flex flex-column" style="gap:3px;">
                                             <div class="d-flex align-items-center mb-1" style="gap: 10px;">
                                                 <a target="_blank" title="View exhibitor" data-metrics="view_exhibitor" href="${_taoh_site_url_root}/events/exhibitors/${v.ID}/${eventtoken}" class="metrics_action">
                                                     <h6 class="n-exh-name mr-2">${taoh_desc_decode_new(v.exh_session_title)}</h6>
                                                 </a>`;
-                                                
+
                                                 if(v.exh_raffles == '1') {
                                                     raffle_start = new Date(v.exh_raffle_start_time);
                                                     raffle_end = new Date(v.exh_raffle_stop_time);
@@ -392,17 +389,17 @@ $user_country_name = trim(end($user_country_array));
 
                 content += ` </div>
                                         </div>
-                                    
+
                                         <div class="mr-lg-5 d-flex align-items-center" style="gap: 6px;">
                                         <!--  v.ptoken == my_ptoken-->
                                             ${((v.ptoken == my_ptoken  && opt == 'chat') || is_organizer == 1) ? `
-                                                <a title="Edit Exhibitor" style="width:30px;" class="svg-opt-con btn edit-exhibitor metrics_action" id="edit_exh_${v.ID}" data-id="${v.ID}" data-type="exhibitor" 
+                                                <a title="Edit Exhibitor" style="width:30px;" class="svg-opt-con btn edit-exhibitor metrics_action" id="edit_exh_${v.ID}" data-id="${v.ID}" data-type="exhibitor"
                                             data-metrics="edit_exhibitor"><i class="fa-solid fa-edit"></i> </a> `:''}
 
                                             <p class="exhi-sponsor-type" page="events_exh1" id="exhi_sponsor_type_${v.ID}" style="display:none">${sponsor_badge_name}</p>
                                             <p class="exhi-sponsor-owner" id="exhi_owner_${v.ID}" style="display:none">${v.ptoken}</p>
-                                                        
-                                            <a target="_blank" title="View exhibitor" data-metrics="view_exhibitor" href="${_taoh_site_url_root}/events/exhibitors/${v.ID}/${eventtoken}" 
+
+                                            <a target="_blank" title="View exhibitor" data-metrics="view_exhibitor" href="${_taoh_site_url_root}/events/exhibitors/${v.ID}/${eventtoken}"
                                             class="svg-opt-con btn metrics_action"><i class="fa-solid fa-eye"></i></a>
 
                                              ${is_organizer == 1 ? `
@@ -460,7 +457,7 @@ $user_country_name = trim(end($user_country_array));
                     if (userInfo.full_location != '' && userInfo.full_location != undefined && userInfo.full_location != null) {
                         var exh_country_array = userInfo.full_location.split(',');
                         var exh_country_name = exh_country_array[exh_country_array.length - 1].trim();
-                    
+
                         if(exh_country_name != user_country_name){
                             continue;
                         }
@@ -472,7 +469,7 @@ $user_country_name = trim(end($user_country_array));
                         sponsor_count++;
                         is_content =1;
                         sponsorPtokenArray[v.ptoken] =  v.sponsor_type;
-                        
+
 
                         var site_link_data = `<div class="d-flex align-items-center" style="gap: 6px;">
                         <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -494,11 +491,11 @@ $user_country_name = trim(end($user_country_array));
                             var badge = '';
                         /* if(v.display_type == 'full')
                                 badge= `<img class="lazy sponsor-badge mb-3" src="<?php echo TAOH_SITE_URL_ROOT;?>/assets/images/gold.svg" alt="avatar" style="margin-top: -10px;">`;
-                            else if(v.display_type == 'semi')   
+                            else if(v.display_type == 'semi')
                                 badge= `<img class="lazy sponsor-badge mb-3" src="<?php echo TAOH_SITE_URL_ROOT;?>/assets/images/silver.svg" alt="avatar" style="margin-top: -10px;">`;
                             else if(v.display_type == 'logos')
                                 badge= `<img class="lazy sponsor-badge mb-3" src="<?php echo TAOH_SITE_URL_ROOT;?>/assets/images/bronze.svg" alt="avatar" style="margin-top: -10px;">`;
-                            */  
+                            */
                         content += ` <!-- new exh list -->
                             <div class="new-exh-list mb-3  ${v.ptoken == my_ptoken ? 'enable_btn sponsor-highlight' : 'disable_btn'}">
                                 <!-- gray_bg -->
@@ -525,7 +522,7 @@ $user_country_name = trim(end($user_country_array));
                                                     <div class="d-flex flex-column" style="gap:3px;">
                                                     <div class="d-flex ml-auto" style="gap: 10px;">
                                                         <h6 class="n-exh-name mr-2" id="exhi_title_${v.ID}">${taoh_desc_decode(v.title)}</h6>
-                                                        
+
                                                         <p class="exhi-description" id="exhi_description_${v.ID}" style="display:none">${ taoh_desc_decode(v.description)}</p>
                                                         <p class="exhi-sponsor-type" page="events_exh2" id="exhi_sponsor_type_${v.ID}" style="display:none">${v.sponsor_type}</p>
                                                         <p class="exhi-sponsor-owner" id="exhi_owner_${v.ID}" style="display:none">${v.ptoken}</p>
@@ -540,20 +537,20 @@ $user_country_name = trim(end($user_country_array));
                                                                 </defs>
                                                             </svg>
                                                         </div>
-                                                </div>                                                  
+                                                </div>
                                             </div> `;
 
-                                    content += ` 
-                                                    
+                                    content += `
+
                                                 <div class="mr-lg-5 d-flex align-items-center" style="gap: 6px;">
 
-                                                    
+
                                                     ${((v.ptoken == my_ptoken && opt == 'chat') || is_organizer == 1) ? `
-                                                            <a title="Configure Sponsor to Exhibitor" style="width:30px" 
-                                                            class="svg-opt-con btn edit-exhibitor metrics_action" id="edit_exh_${v.ID}" data-id="${v.ID}" data-type="sponsor" 
+                                                            <a title="Configure Sponsor to Exhibitor" style="width:30px"
+                                                            class="svg-opt-con btn edit-exhibitor metrics_action" id="edit_exh_${v.ID}" data-id="${v.ID}" data-type="sponsor"
                                                             data-metrics="configure_exhibitor"> <i class="fa fa-cog" aria-hidden="true"></i></a>
                                                         `:''}
-                                                   <a target="_blank" title="View exhibitor"  data-metrics="view_exhibitor" href="${_taoh_site_url_root}/events/sponsor/${v.ID}/${eventtoken}" 
+                                                   <a target="_blank" title="View exhibitor"  data-metrics="view_exhibitor" href="${_taoh_site_url_root}/events/sponsor/${v.ID}/${eventtoken}"
                                                    class="svg-opt-con  btn  metrics_action">
                                                   <i class="fa-solid fa-eye"></i></a>
 
@@ -564,7 +561,7 @@ $user_country_name = trim(end($user_country_array));
                                                                 <path d="M5.25 0C2.3543 0 0 2.3543 0 5.25V31.5C0 34.3957 2.3543 36.75 5.25 36.75H36.75C39.6457 36.75 42 34.3957 42 31.5V5.25C42 2.3543 39.6457 0 36.75 0H5.25ZM14.3555 11.7305C15.1266 10.9594 16.3734 10.9594 17.1363 11.7305L20.9918 15.5859L24.8473 11.7305C25.6184 10.9594 26.8652 10.9594 27.6281 11.7305C28.391 12.5016 28.3992 13.7484 27.6281 14.5113L23.7727 18.3668L27.6281 22.2223C28.3992 22.9934 28.3992 24.2402 27.6281 25.0031C26.857 25.766 25.6102 25.7742 24.8473 25.0031L20.9918 21.1477L17.1363 25.0031C16.3652 25.7742 15.1184 25.7742 14.3555 25.0031C13.5926 24.232 13.5844 22.9852 14.3555 22.2223L18.2109 18.3668L14.3555 14.5113C13.5844 13.7402 13.5844 12.4934 14.3555 11.7305Z" fill="#FF0000"></path>
                                                             </svg>
                                                         </a>`:''}
-                                                
+
                                                </div>
                                         </div>
                                     </div>
@@ -574,12 +571,12 @@ $user_country_name = trim(end($user_country_array));
                             </div>
                             <!-- new exh list end --> `;
                             // ${v.link}
-                            
+
                                 /* content += `
-                                
+
                                         <div id="sponsor_exh_${v.ID}" class="hall-list d-flex flex-column flex-md-row mb-3" style="position: relative;">
-                                            
-                                            <div class="exhibitor-main-logo d-flex align-items-center 
+
+                                            <div class="exhibitor-main-logo d-flex align-items-center
                                             justify-content-center" style="background-color: #fff;border:1px solid #d3d3d3; ">
                                                 <div class="exhibitor-bg" style="background-image: url(${v.image})"></div>
                                                 <div class="glass-overlay"></div>
@@ -594,24 +591,21 @@ $user_country_name = trim(end($user_country_array));
                                                 </div>
                                                 ${v.ptoken == my_ptoken ? `
                                                 <a id="edit_exh_${v.ID}" data-id="${v.ID}" class="btn more-info edit-exhibitor">
-                                                
+
                                                     <i class="fas fa-edit"></i>
                                                     <span>Edit</span>
                                                 </a>`:''}
                                             </div>
                                             ${badge}
-
-
-                                        
                                             </div>
-                            
+
                                     `; */
-                        
+
                 }
-                
+
             // });
             }
-             
+
             if(sponsor_count > 0){
                 $('#exhibitors_list').html(content);
                 $('.sponsor_main_title_strip').css('display','block');
@@ -699,9 +693,9 @@ $user_country_name = trim(end($user_country_array));
                 });
             }
         }
-       
 
-        // console.log('Raffle Array',raffle_array);   
+
+        // console.log('Raffle Array',raffle_array);
         loader(false, $("#exhibitors_loaderArea"));
         if(raffle_array.length > 0){
             // console.log('----raffle_array-------',raffle_array)
@@ -711,8 +705,8 @@ $user_country_name = trim(end($user_country_array));
 
     function getRaffles(raffle_array){
         if(raffle_array !=undefined && raffle_array.length > 0){
-            var raffles_slide = ''; 
-            var raffle_carousel = ''; 
+            var raffles_slide = '';
+            var raffle_carousel = '';
             //raffles_slide //raffle_carousel
             /*exh_raffle_title : v.exh_raffle_title,
                         exh_raffle_description : v.exh_raffle_description,
@@ -751,7 +745,7 @@ $user_country_name = trim(end($user_country_array));
                                             </div>
                                      </div> `;
                 }
-    
+
             });
             //console.log('------------raffles_slide--------',raffles_slide);
             //console.log('------------raffle_carousel--------',raffle_carousel);
@@ -761,12 +755,9 @@ $user_country_name = trim(end($user_country_array));
             $('#raffle_carousel').carousel({
                 interval: 2000
             });
-       
+
         }
     }
-
-
-
     $(document).on('click', '.edit-exhibitor', async function () {
         let exh_id = $(this).data('id');
         let exh_type = $(this).data('type');
@@ -778,7 +769,7 @@ $user_country_name = trim(end($user_country_array));
     setTimeout(async () => {
             var eventHallAccess = [];
             var eventHallAccessKey = `event_hall_access_${eventToken}`;
-            const data = await IntaoDB.getItem(objStores.event_store.name, eventHallAccessKey); // await 
+            const data = await IntaoDB.getItem(objStores.event_store.name, eventHallAccessKey); // await
             if (data?.values) {
                 eventHallAccess = data?.values.output;
             }
@@ -1069,7 +1060,7 @@ $user_country_name = trim(end($user_country_array));
                             loadSponsorTypeDropdown(exh_id,conttoken_data,event_organizer_ptokens);
 
                             console.log('exhibitor_data', exhibitor_data);
-                            
+
                         });
 
                     } else {
@@ -1149,7 +1140,7 @@ $user_country_name = trim(end($user_country_array));
                             taoh_set_error_message('No Exhibitor Hall available for setup');
                             return;
                         }
-                    
+
                         // if (exh_ptoken) {
                         //     const exh_contact_info = await ft_getUserInfo(exh_ptoken, 'full');
                         //     if (exh_contact_info?.email?.trim()) {
@@ -1158,9 +1149,6 @@ $user_country_name = trim(end($user_country_array));
                         // }
                     }
                     $('label[for="exh_contact_email"] .text-danger').css('display', ((is_organizer == 1) ? 'none' : 'inline-block'));
-
-                       
-
                     $('#exhibitorSlotModal').modal('show');
                 }).catch(error => console.error("Error fetching event info:", error));
         }
@@ -1182,7 +1170,7 @@ $user_country_name = trim(end($user_country_array));
                     sponsor_levels.forEach(level => {
                         var spo_title = taoh_desc_decode(level.title);
                         if(exh_sponsor_type == level.title || exh_sponsor_type == spo_title){
-                            
+
                             exh_sponsor_levels.append(new Option(spo_title, spo_title, true, true));
                         }else{
                             exh_sponsor_levels.append(new Option(spo_title,spo_title, false, false));
@@ -1193,7 +1181,7 @@ $user_country_name = trim(end($user_country_array));
                 } else {
                     exh_sponsor_levels.empty();
                     $('.exh_sponsor_levels_wrapper').hide();
-                    
+
                 }
             } else {
                 exh_sponsor_levels.empty();

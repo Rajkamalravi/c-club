@@ -206,7 +206,7 @@ function get_my_rsvp()
         'limit' => $limit,
         'offset' => $offset,
         //'cfcc15m'=> 1 //cfcache newly added
-        
+
     );
     if ($offset && $limit) {
         $taoh_vals['cache'] = array("name" => taoh_p2us($taoh_call) . TAOH_API_SECRET . '_rsvpactive', 'ttl' => 3600);
@@ -1354,15 +1354,12 @@ function get_event_tables(){
     // &ops=list&key=&key_timestamp=0&owner_id=596b0db1b957b4bb6427e178f7d4ba58&data={%22content%22:%22upcoming%22,%22status%22:%22ended%22,%22location%22:%22%22,%22limit%22:15,%22offset%22:0,%22start%22:0,%22owner_id%22:%22596b0db1b957b4bb6427e178f7d4ba58%22}
         $taoh_vals = array(
         'ops' => 'list',
-        'app' => TAOH_TABLE_VERSION.'_'.$eventtoken.'_tables',                
+        'app' => TAOH_TABLE_VERSION.'_'.$eventtoken.'_tables',
         'code' => TAOH_OPS_CODE,
         'key' => '',
         'data' => '{"limit":15,"offset":0}',
         // 'debug' => 1
     );
-
-               
-                
 
     $room_data_json = taoh_post(TAOH_TABLE_REDIS_URL, $taoh_vals);
     echo $room_data_json;die();

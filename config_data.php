@@ -742,7 +742,7 @@ define('DOJO_EVENT_DETAIL_MESSAGE',[
             "user_logged_in" => false,
             "is_rsvp" => 0,
             "is_event_live" => 0,
-            "is_sponsor_enabled"=>1        
+            "is_sponsor_enabled"=>1
         ]
     ],
     [
@@ -750,22 +750,22 @@ define('DOJO_EVENT_DETAIL_MESSAGE',[
         "expectations" => [
             "user_logged_in" => false,
             "is_rsvp" => 0,
-            "is_exhibitor_enabled"=>1,            
+            "is_exhibitor_enabled"=>1,
         ]
     ],
     [
         "name" => "This event contains speaker, Login and register to explore more about speaker",
         "expectations" => [
             "user_logged_in" => false,
-            "is_rsvp" => 0,           
-            "is_speaker_enabled"=>1,            
+            "is_rsvp" => 0,
+            "is_speaker_enabled"=>1,
         ]
     ],
     [
         "name" => "Complete the profile to Join the event and explore more",
         "expectations" => [
             "user_logged_in" => true,
-            "is_rsvp" => 1, 
+            "is_rsvp" => 1,
             "profile_complete" => 0
         ]
     ],
@@ -783,7 +783,7 @@ define('DOJO_EVENT_DETAIL_MESSAGE',[
             "user_logged_in" => true,
             "is_rsvp" => 0,
             "is_event_live" => 0,
-            "is_sponsor_enabled"=>1        
+            "is_sponsor_enabled"=>1
         ]
     ],
     [
@@ -792,15 +792,15 @@ define('DOJO_EVENT_DETAIL_MESSAGE',[
             "user_logged_in" => true,
             "is_rsvp" => 0,
             "is_event_live" => 0,
-            "is_exhibitor_enabled"=>1,            
+            "is_exhibitor_enabled"=>1,
         ]
     ],
     [
         "name" => "This event contains speaker, Register to the event and explore more about speaker",
         "expectations" => [
             "user_logged_in" => true,
-            "is_rsvp" => 0,           
-            "is_speaker_enabled"=>1,            
+            "is_rsvp" => 0,
+            "is_speaker_enabled"=>1,
         ]
     ],
 ]);

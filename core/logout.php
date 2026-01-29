@@ -34,7 +34,7 @@
     taoh_set_success_message('You have successfully logged out!');
 
     //delete_refer_token();
-    
+
     if (isset($_COOKIE[TAOH_ROOT_PATH_HASH . '_' . 'refer_token']) && $_COOKIE[TAOH_ROOT_PATH_HASH . '_' . 'refer_token'] != '') {
         $refer_token = $_COOKIE[TAOH_ROOT_PATH_HASH . '_' . 'refer_token'];
         $taoh_call = "core.refer.update";

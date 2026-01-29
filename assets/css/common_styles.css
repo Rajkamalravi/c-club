@@ -390,16 +390,16 @@
     }
 
     .dateRangeInputs-img-size{
-        width: 14px; 
-        position: absolute; 
-        left: 10px; 
-        top: 12px; 
+        width: 14px;
+        position: absolute;
+        left: 10px;
+        top: 12px;
         z-index: 2;
     }
 
     .dateRangeInputs-img-pos{
-        width: 14px; 
-        position: absolute; 
-        left: 10px; 
-        top: 12px;       
+        width: 14px;
+        position: absolute;
+        left: 10px;
+        top: 12px;
     }

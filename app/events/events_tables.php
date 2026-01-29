@@ -12,7 +12,7 @@
         border-radius: 10px;
     }
 </style>
-<?php 
+<?php
 
 //echo TAO_CURRENT_APP_INNER_PAGE;die();
 //if(TAO_CURRENT_APP_INNER_PAGE != 'events_lobby'){
@@ -31,18 +31,18 @@
                             <h6 class="mb-2" >Start a discussion.</h6>
                             <p class="mb-2"> Spark the community with your thoughts.</p>
                             <div class="d-flex align-items-center flex-wrap" style="gap: 6px;">
-                            <?php 
+                            <?php
                             if(!taoh_user_is_logged_in() ) { ?>
-                                <button type="button" class="mt-3 mb-2 btn btn-primary " style="width:250px;" data-location="" data-toggle="modal" 
+                                <button type="button" class="mt-3 mb-2 btn btn-primary " style="width:250px;" data-location="" data-toggle="modal"
                     data-target="#config-modal"><i class="fa fa-ticket mr-2" aria-hidden="true"></i>Login to create table</button>
 
-                            <?php 
+                            <?php
                             } else if(TAO_CURRENT_APP_INNER_PAGE == 'events_lobby'){  ?>
                                 <a target="_blank" class="btn banner-v2-btn mt-0 mr-1" id='' href="<?php echo TAOH_SITE_URL_ROOT.'/events/d/event-'.$eventtoken.'/tables/create';?>">Create table</a>
                                 <a target="_blank" class="btn banner-v2-btn mt-0 mr-1" id='' href="<?php echo TAOH_SITE_URL_ROOT.'/events/d/event-'.$eventtoken.'/tables';?>">More Info</a>
                             <?php }  else{ ?>
                                  <span class="info" style="color:#007bff;">Register to create table</span>
-                                
+
                             <?php } ?>
                             </div>
                         </div>
@@ -64,15 +64,9 @@
                             </div>
                         </div>
                     </div>`;
-       
-
-
 
 
     async function getEventTables(eventtoken,response,hallColorArray,search='',tab_name='') {
-
-    
-        
     var eventTableKey = `event_tables_${eventtoken}`;
     // alert(eventTableKey);
 
@@ -98,11 +92,11 @@
                         getEventLobbyTables(eventtoken, tables);
                     } else {
                         //var content = 'No Result Found';
-                     
+
                       //  $('#tables_top').remove();
                         $('#tables_list').html(no_banner_table);
-                      
-                       
+
+
                     }
                 };
 
@@ -139,7 +133,7 @@
 
                 tables.slice(0, maxVisible).forEach((table, index) => {
                     var table_color = colorArray[index % colorArray.length];
-                   
+
                     tables_html += generateTableCardHTML(eventtoken, table, table_color);
                      if(index == 0)
                         tables_html +=banner_table;
@@ -153,7 +147,7 @@
                         </div>
                     `;
                 }
-                
+
 
                  $('#tables_list').html(tables_html);
 
@@ -165,8 +159,8 @@
                     $('#tables_list').hide();
                 }
     }
-    
-    
+
+
     function generateTableCardHTML(eventtoken, table, color) {
         let user_timezone;
         if (isLoggedIn) {
@@ -185,7 +179,7 @@
         //const table_link = table_url + "/k/" + eventtoken + "/" + table.key+'/tables';
         const table_link = table_url_index + "tables/"+ table.key;
 
-        
+
         const fullDescription = table.description ? table.description.trim() : 'No description available';
         var location_type = table.location_type || 'Location';
 
@@ -211,7 +205,7 @@
         if(durationMap[table.span]) {
             duration = durationMap[table.span];
         }
-        
+
         var startTime = table.date + table.time;
         var inputStartTime = startTime.replace(/[T:-]/g, '') + '00';
 
@@ -224,7 +218,7 @@
         let date = new Date(year, month, day, hour, minute, second);
         date.setMinutes(date.getMinutes() + parseInt(duration));
 
-        console.log("added date", inputStartTime, date);        
+        console.log("added date", inputStartTime, date);
 
         let y = date.getFullYear();
         let m = String(date.getMonth() + 1).padStart(2, '0');
@@ -248,7 +242,7 @@
 
         const descId = `desc_${table.key}`;
 
-        
+
         var locality = "";
 
         let event_timestamp_start_data = {
@@ -276,41 +270,38 @@
         let endtime = format_event_timestamp(event_timestamp_end_data, user_timezone, 'date', 'hh:mm A', 1);
 
         console.log("start end", startdate, enddate);
-        
+
 
         let display_datetime;
         if(startdate === enddate) {
             display_datetime = startdate +", "+ starttime +" - "+ endtime;
         } else {
             display_datetime = startdate +", "+ starttime +" - "+ enddate +", "+ endtime;
-        }        
+        }
 
-        const image_src = `${cdn_prefix}/images/igcache/${encodeURIComponent(table.title)}____${encodeURIComponent(startdate +", "+ starttime)}____${encodeURIComponent(table.location)}/480_480/event.jpg`;     
+        const image_src = `${cdn_prefix}/images/igcache/${encodeURIComponent(table.title)}____${encodeURIComponent(startdate +", "+ starttime)}____${encodeURIComponent(table.location)}/480_480/event.jpg`;
 
         return `
             <div class="tables_div new-exh-list mb-3 discussion-tab-inner">
                 <div class="p-2 d-flex" style="gap: 12px; flex: 1;">
-                    
+
                         <div class="d-flex flex-column flex-md-row align-items-md-center" style="gap: 12px;flex: 1;">
-                            
+
                             <div class="g-overlay-con">
                                 <div class="n-hall-list-bg d-md-none" style="background-image: url(${image_src})"></div>
                                 <div class="glass-overlay d-md-none"></div>
                                 <img class="n-hall-list-pic" src="${image_src}" alt="">
                             </div>
-                            
-                            
-
                             <div style="flex: 1;">
                                 <div class="d-flex align-items-center justify-content-between flex-wrap" style="flex: 1; gap: 12px;">
-                                    
-                                    <div class="d-flex align-items-center justify-content-between flex-wrap flex-xl-nowrap" style="flex: 1; gap: 12px;">    
+
+                                    <div class="d-flex align-items-center justify-content-between flex-wrap flex-xl-nowrap" style="flex: 1; gap: 12px;">
                                         <div class="d-flex flex-column" style="gap:3px;">
                                                 <div class="d-flex align-items-center flex-wrap">
                                                     <p class="n-info-badge mr-2" style="background: #5170ff; color: #fff;">${display_datetime}</p>
                                                     ${skillBadge}
                                                     <p class="n-info-badge mr-2" style="background-color:#9d0854; color: #fff">Type: ${location_type}</p>
-                                                
+
                                                 </div>
                                                 <h6 class="n-exh-name text-capitalize mb-0">${table.title}</h6>
                                                 <div class="d-flex align-items-center justify-content-between mb-1" style="gap: 10px;">
@@ -326,19 +317,19 @@
                                                     <a target="_blank" data-metrics="view_exhibitor" href="${table_link}" class="btn bor-btn metrics_action">Visit Us</a>
                                         </div>` :
                                         `<div class="flex-shrink-lg-0 d-flex align-items-center " style="gap: 6px;">
-                                                    <a target="_blank" disabled data-metrics="view_exhibitor" href="javascript:void(0)" 
+                                                    <a target="_blank" disabled data-metrics="view_exhibitor" href="javascript:void(0)"
                                                     class="btn bor-btn joinus-btn join_networking disabled"
                                                     style="border:1px solid #d3d3d3;background-color:#d3d3d3;color:#656565 !important">Register to visit</a>
                                         </div>`}
                                         <a href="#" style="padding-top: 5px;margin-left: 10px;margin-right: 10px;color: #040404 !important; "><i class="fa fa-chevron-right" style="font-size: 25px;"></i></a>
                                     </div>
-                                
+
                                 </div>
-                            
+
                             </div>
-                           
+
                         </div>
-                    
+
                 </div>
             </div>
         `;

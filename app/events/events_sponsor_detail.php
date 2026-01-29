@@ -85,7 +85,7 @@ if(defined('TAOH_API_TOKEN')){
             background-origin: border-box;
             background-clip: content-box, border-box; */
             border-radius: 6px;
-        } 
+        }
         .exh-d-right button {
             font-size: 14px;
         }
@@ -95,7 +95,7 @@ if(defined('TAOH_API_TOKEN')){
             }
             .winner_profile.card {
                 max-width: 361px;
-            } 
+            }
         }
         @media (min-width: 1024px) {
             .exh-d-right-rbtn-blk {
@@ -106,15 +106,6 @@ if(defined('TAOH_API_TOKEN')){
             display: none;
         }
     </style>
-
-
-
-
- 
-
-
-
-
 <div class="detail-hall aw aw-logo aw-loader">
 
     <div class="light-dark">
@@ -132,7 +123,7 @@ if(defined('TAOH_API_TOKEN')){
                         </li>
                         <li class="nav-item">
                             First Friday Fair Virtual Job Fair Career Expo Event
-                        </li>   -->                              
+                        </li>   -->
                     </ul>
 
                     <div class="d-flex align-items-start flex-column flex-lg-row py-3" style="gap: 9px;">
@@ -150,7 +141,7 @@ if(defined('TAOH_API_TOKEN')){
                         <!-- <button type="button" class="e-d-v2-btn btn btn-success lh-1 py-2">
                             LIVE NOW! Click to Join
                         </button> -->
-                        
+
                     </div>
 
                 </div>
@@ -213,7 +204,7 @@ if(defined('TAOH_API_TOKEN')){
                 <div class="exh-d-v2-left flex-grow-1 py-5 pr-md-3">
                     <div class="d-flex align-items-start" style="gap: 12px;">
                         <img class="c-v2-img" id="exhibitor_logo" src="<?php echo TAOH_SITE_URL_ROOT;?>/assets/images/exh-v2-3.png" alt="Exhibitor logo">
-                        <div> 
+                        <div>
                             <h6 class="c-v2-name mb-1" id="exhibitor_title"></h6>
                             <p class="c-v2-tag mb-2" id="exhibitor_subtitle"></p>
                             <input type="hidden" id="raffle_question" name="raffle_question" value="">
@@ -259,13 +250,13 @@ require_once('events_exhibitor_form_new.php');
     let is_user_rsvp_done = <?= json_encode($is_user_rsvp_done); ?>;
     let rsvp_slug = '<?php echo $rsvp_slug; ?>';
     const isValidUser = <?= json_encode($valid_user); ?>;
-    
+
     $(document).ready(function() {
         function getEventExhibitorInfo(requestData, serverFetch = false, callback = null) {
             // console.log(requestData);
             if (!requestData.eventtoken || !requestData.sponsor_id) return;
 
-            //$cache_name = 'event_MetaInfo_'. $event_token.'_exhibitor_'.$exhibitor_id; 
+            //$cache_name = 'event_MetaInfo_'. $event_token.'_exhibitor_'.$exhibitor_id;
             const event_exhibitor_key = `event_MetaInfo_${requestData.eventtoken}_exhibitor_${requestData.sponsor_id}`;
 
             const handleResponse = (response, saveToDB = true) => {
@@ -369,7 +360,7 @@ require_once('events_exhibitor_form_new.php');
                             </div>
                         </div>`;
                     $('#exhibitor_banner_image').html(mediaHtml);
-                
+
                 if (event_exhibitor_info.exh_hero_button_text && isValidURL(event_exhibitor_info.exh_hero_button_url)) {
                     $('#exhibitor_banner_image').append(`<a href="${event_exhibitor_info.exh_hero_button_url}" target="_blank" class="btn hero-button">${event_exhibitor_info.exh_hero_button_text}</a>`);
                 }
@@ -434,7 +425,7 @@ require_once('events_exhibitor_form_new.php');
                                             <span>Event Not Live!</span>
                                         </span>
                                          </div>`;
-                        
+
                     }else if (event_live_state == 'after') {
                         liveLink = ` <div class="d-flex align-items-center" style="gap: 6px;">
                                             <a href="${TAOH_CURR_APP_URL}" class="mr-lg-5 btn btn-secondary w-100"><i class="fa fa-ticket mr-2" aria-hidden="true"></i>Ended</a>
@@ -447,11 +438,11 @@ require_once('events_exhibitor_form_new.php');
                         if (chat_room_status) {
                             liveLink = ` <div class="d-flex align-items-center" style="gap: 6px;">
                                             <a target="_blank" href="${event_live_link}" class="mr-lg-5 btn btn-success w-100">\<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 80" style="width: 36px"><circle cx="40" cy="40" r="28" fill="#fff"></circle>
-                                                                    
+
                                                                     <polygon points="34,28 34,52 54,40" fill="#28A745"></polygon>
-                                                                    
+
                                                                     <path d="M78 26 C84 35, 84 46, 78 54" fill="none" stroke="#fff" stroke-width="5" stroke-linecap="round"></path>
-                                                                    
+
                                                                     <path d="M88 10 C104 28, 104 54, 88 70" fill="none" stroke="#fff" stroke-width="5" stroke-linecap="round"></path>
                                                             </svg>
                                                              ${chatroom_text}</a>
@@ -460,11 +451,11 @@ require_once('events_exhibitor_form_new.php');
                             liveLink = ` <div class="d-flex align-items-center" style="gap: 6px;">
                                             <a href="javascript:void(0)" class="mr-lg-5 btn btn-success w-100">
                                             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 80" style="width: 36px"><circle cx="40" cy="40" r="28" fill="#fff"></circle>
-                                                                    
+
                                                                     <polygon points="34,28 34,52 54,40" fill="#28A745"></polygon>
-                                                                    
+
                                                                     <path d="M78 26 C84 35, 84 46, 78 54" fill="none" stroke="#fff" stroke-width="5" stroke-linecap="round"></path>
-                                                                    
+
                                                                     <path d="M88 10 C104 28, 104 54, 88 70" fill="none" stroke="#fff" stroke-width="5" stroke-linecap="round"></path>
                                                             </svg>
                                              ${chatroom_text}</a>
@@ -473,7 +464,7 @@ require_once('events_exhibitor_form_new.php');
                     }
                     // console.log('liveLink : '+liveLink);
                     $("#liveLink").html(liveLink);
-                        
+
                         let exhibitorBreadcrumbHTML = `<li class="nav-item"><a href="${_taoh_site_url_root}/events">Events</a><svg xmlns="http://www.w3.org/2000/svg" height="19px" viewBox="0 0 24 24" width="19px" fill="#000000"><path d="M0 0h24v24H0V0z" fill="none"></path><path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6-6-6z"></path></svg></li>
                             <li class="nav-item"><a href="${_taoh_site_url_root}/events/chat/id/events/${eventtoken}">${event_title}</a><svg xmlns="http://www.w3.org/2000/svg" height="19px" viewBox="0 0 24 24" width="19px" fill="#000000"><path d="M0 0h24v24H0V0z" fill="none"></path><path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6-6-6z"></path></svg></li>
                             ${event_exhibitor_info.title ? `<li class="nav-item">${taoh_desc_decode(event_exhibitor_info.title)}</li>` : ''}
@@ -528,11 +519,11 @@ require_once('events_exhibitor_form_new.php');
             let exh_id = $(this).data('id');
             let exh_type = $(this).data('type');
             let rsvp_sponsor_title =  '';
-            
+
             setTimeout(async () => {
                 var eventHallAccess = [];
                 var eventHallAccessKey = `event_hall_access_${eventToken}`;
-                const data = await IntaoDB.getItem(objStores.event_store.name, eventHallAccessKey); // await 
+                const data = await IntaoDB.getItem(objStores.event_store.name, eventHallAccessKey); // await
                 if (data?.values) {
                     eventHallAccess = data?.values.output;
                 }
@@ -578,7 +569,7 @@ require_once('events_exhibitor_form_new.php');
                     });
 
                     var is_organizer = event_organizer_ptokens.includes(my_pToken) ? 1 : 0;
-                    
+
                     tagsArr = [];
                     if(conttoken_data.event_tags != undefined){
                         tagsArr = conttoken_data.event_tags.split(",");
@@ -588,7 +579,7 @@ require_once('events_exhibitor_form_new.php');
                         width: '100%'
                     } );
 
-                    
+
                     $(document).on('click', '.list-group-item', function() {
                         var contentToPrepend  = "<div class='item active last-active'>"+$(this).text()+"</div>";
                         $('.exh_tags_ts_control').prepend(contentToPrepend);
@@ -610,7 +601,7 @@ require_once('events_exhibitor_form_new.php');
                         room_keywords_count = 3;
                     }
                     const exhibitorslotmodal_elem = $('#exhibitorSlotModal');
-                    
+
                     //     let exh_title = $('#exhi_title_' + exh_id).html();
                     //     let exh_description = $('#exhi_description_' + exh_id).html();
                     //     let exh_link = $('#exhi_link_' + exh_id).html();
@@ -709,18 +700,18 @@ require_once('events_exhibitor_form_new.php');
 
         $(document).on('change', '#exh_logo_upload', function(e) {
             let file = e.target.files[0];
-            
+
             let reader = new FileReader();
             reader.onload = function(e) {
                 $('#exh_logo_preview').html(`<img src="${e.target.result}" class="img-fluid" alt="Exhibitor Logo" />`);
             }
             reader.readAsDataURL(file);
-            
+
         });
 
         $(document).on('change', '#exh_banner_upload', function(e) {
             let file = e.target.files[0];
-            
+
             let reader = new FileReader();
             reader.onload = function(e) {
                 $('#exh_banner_preview').html(`<img src="${e.target.result}" class="img-fluid" alt="Exhibitor Banner" />`);
@@ -768,7 +759,7 @@ require_once('events_exhibitor_form_new.php');
             console.log('Error in deleting data store');
         });
     }
-    
+
     function delete_events_into(find_key) {
             getIntaoDb(dbName).then((db) => {
                 let dataStoreName = EVENTStore;

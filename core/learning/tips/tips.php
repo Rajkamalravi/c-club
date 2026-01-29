@@ -201,7 +201,7 @@
 			 'offset': offset,
 			 'limit': limit,
 		 };
-		 
+
 		jQuery.post("<?php echo taoh_site_ajax_url(); ?>", data, function(response) {
 			console.log(response);
 			render_tips_template(response, listTips);

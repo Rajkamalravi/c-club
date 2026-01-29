@@ -317,8 +317,8 @@ if ($get_result['success'] && isset($get_result['output']['club'])) {
         $endTime = strtotime($club_info['utc_end']);
 
         /*
-        
-        $timezone = taoh_user_timezone(); 
+
+        $timezone = taoh_user_timezone();
         $local_tz = new DateTimeZone( $timezone);//user's tiemzone - india
         $currentTime = new DateTime('now', $local_tz);
 

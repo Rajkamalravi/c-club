@@ -50,7 +50,7 @@ if($response['output']['media_type'] == 'youtube'){
   $video_link = isset($response['output']['media_url']) ? $response['output']['media_url'] : "";
   //$video_link = "http://www.youtube.com/embed/lalOy8Mbfdc";
   if($video_link != ''){
-    $video_id =  taoh_get_youtubeId($video_link); //taoh_get_youtubeId('http://www.youtube.com/v/dQw4w9WgXcQ');  
+    $video_id =  taoh_get_youtubeId($video_link); //taoh_get_youtubeId('http://www.youtube.com/v/dQw4w9WgXcQ');
     $thumbnail = "http://img.youtube.com/vi/".$video_id."/maxresdefault.jpg";
   }
 }else{
@@ -121,7 +121,7 @@ $userliked_already = isset($get_liked['userliked'])?$get_liked['userliked']:'0';
 /* End check liked or not */
 
 
-taoh_get_header($additive); 
+taoh_get_header($additive);
 include 'reads_css.php';
 
 ?>
@@ -147,8 +147,8 @@ include 'reads_css.php';
     display: inline-block;
     position: relative;
     cursor: pointer;
-    
-	
+
+
   }
   .menu--main>li:hover {
       background-color: #218838;
@@ -156,14 +156,14 @@ include 'reads_css.php';
     }
 
 
-    .menu--main li:hover .sub-menu {      
+    .menu--main li:hover .sub-menu {
       max-height: 300px;
       visibility: visible;
       bottom: 100%;  /* align to top of parent element*/
       transition: all 0.4s linear;
     }
-	
-  
+
+
   .sub-menu {
     display: block;
     visibility: hidden;
@@ -177,7 +177,7 @@ include 'reads_css.php';
 	background-color: whitesmoke;
 	white-space: nowrap;
   }
-  
+
 .sub-menu li {
 	display: block;
 	padding: 10px 0px;
@@ -220,7 +220,7 @@ label.error {
         <div class="hero-content">
 					<div class="media media-card align-items-center shadow-none p-1 pt-3 pb-3 mb-0 rounded-0 light-dark-card">
 						<div class="media-body">
-              <div style="display: flex;">    
+              <div style="display: flex;">
                 <h4> <?php echo $title; ?></h4>
               </div>
               <?php if ( taoh_user_is_logged_in()) { ?>
@@ -230,7 +230,7 @@ label.error {
                   <a class="text-center" data-toggle="modal" data-target="#exampleModal1" style="font-size: 20px;margin: 0 10px;"><i title="Share" class="la la-share ml-1 text-primary" style="cursor:pointer;"></i>&nbsp;<?php if (TAOH_METRICS_COUNT_SHOW) { ?><span id="shareCount" class="badge text-dark fs-14 p-0"></span><?php } ?></a>
                   <?php if ( TAOH_METRICS_EYE_SHOW) { ?><a class="text-center" style="font-size: 20px;margin: 0 10px;"><i title="View" class="la la-eye text-primary"></i>&nbsp;<?php if (TAOH_METRICS_COUNT_SHOW) { ?><span id="viewCount" class="badge text-dark fs-14 p-0"></span><?php } ?></a><?php } ?>
                 </div>
-              <?php } ?>			
+              <?php } ?>
 						</div>
 					</div>
         </div><!-- end hero-content -->
@@ -317,12 +317,12 @@ label.error {
 
           <!--Section: Text-->
           <section class="td-post-content">
-            
+
             <p>
               <?php echo html_content($description); ?>
             </p>
 
-            
+
           </section>
 
           <section class="border-bottom mb-4 pb-4 mt-t pt-4">
@@ -370,9 +370,9 @@ label.error {
                   //print_r($related->output);die();
           ?>
           <section>
-          <h2 class="section-title fs-30 dark-theme-text">Related posts</h2> 
+          <h2 class="section-title fs-30 dark-theme-text">Related posts</h2>
             <div class="row">
-              <?php foreach ($related->output as $post ){ 
+              <?php foreach ($related->output as $post ){
                 //echo $post->media_type;die();
                 if ( ! isset( $post->image[0] ) || ! $post->image[0] || stristr( $post->image[0], 'images.unsplash.com' ) ) $post->image[0] = TAOH_CDN_PREFIX."/images/igcache/".urlencode( taoh_title_desc_decode($post->title) )."/900_600/blog.jpg";
                 ?>
@@ -380,8 +380,8 @@ label.error {
                 <div class="p-3">
                   <a class="mt-2 " href="<?php echo taoh_blog_link(slugify2($post->title)."-".$post->conttoken); ?>">
                   <?php if($post->media_type == 'youtube'){ ?>
-                    
-                    <img width="100%" src="http://img.youtube.com/vi/<?php echo taoh_get_youtubeId($post->media_url); ?>/maxresdefault.jpg" data-src="http://img.youtube.com/vi/<?php echo taoh_get_youtubeId($post->media_url); ?>/maxresdefault.jpg" alt="Card image">  
+
+                    <img width="100%" src="http://img.youtube.com/vi/<?php echo taoh_get_youtubeId($post->media_url); ?>/maxresdefault.jpg" data-src="http://img.youtube.com/vi/<?php echo taoh_get_youtubeId($post->media_url); ?>/maxresdefault.jpg" alt="Card image">
                     <svg width="24" height="24" version="1.1" xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" viewBox="0 0 58.752 58.752" xml:space="preserve" style=" width: -webkit-fill-available; margin-top: -8em;">
                             <path fill="#ffffff" d="M52.524,23.925L12.507,0.824c-1.907-1.1-4.376-1.097-6.276,0C4.293,1.94,3.088,4.025,3.088,6.264v46.205
                             c0,2.24,1.204,4.325,3.131,5.435c0.953,0.555,2.042,0.848,3.149,0.848c1.104,0,2.192-0.292,3.141-0.843l40.017-23.103
@@ -390,7 +390,7 @@ label.error {
                             c0.042-0.025,0.09-0.038,0.139-0.038c0.051,0,0.099,0.013,0.142,0.038l40.01,23.098c0.089,0.052,0.145,0.147,0.145,0.249
                             C49.663,29.47,49.611,29.561,49.524,29.612z"></path>
                         </svg>
-                    
+
                   <?php }else{ ?>
                       <img width="100%" src="<?php echo $post->image[0]; ?>" data-src="<?php echo $post->image[0]; ?>" alt="Card image">
                   <?php } ?>
@@ -416,7 +416,7 @@ label.error {
         <div class="col-md-4 mb-4 border-left">
           <!--Section: Sidebar-->
           <section class="sticky-top" style="top: 80px;">
-          <?php if(taoh_user_is_logged_in() ) { 
+          <?php if(taoh_user_is_logged_in() ) {
             if($taoh_user_vars->ptoken == $ptoken){ ?>
             <section class="border-bottom pb-4 mb-4">
               <div class="card-body">
@@ -458,7 +458,7 @@ label.error {
         <button type="button" style="padding:0" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
-		
+
       </div>
       <div class="modal-body">
         Are you sure, Do you want to delete?
@@ -497,11 +497,8 @@ label.error {
 
   $(document).ready(function(){
 		save_metrics('reads','<?php echo $click_view ?>',conttoken);
-		
+
 	});
-
-	
-
   if((<?php echo $userliked_already ?>) || (is_local)){
 		var like_html = `<i title="Like" class="la la-heart text-danger ml-1"></i>&nbsp;<?php if (TAOH_METRICS_COUNT_SHOW) { ?><span id="likeCount" class="badge text-dark fs-14 p-0"></span><?php } ?>`;
 	}else{
@@ -533,10 +530,10 @@ label.error {
       if(response.success){
         $('#deleteAlert').modal('hide');
         location.href = '<?php echo TAOH_READS_URL; ?>';
-        
+
       }
       else{console.log('false');
-        $('#deleteAlert').modal('hide');      
+        $('#deleteAlert').modal('hide');
       }
     }).fail(function() {
         console.log( "Network issue!" );
@@ -544,7 +541,7 @@ label.error {
   }
 
   $(document).on('click','.blogs_like', function(event) {
-		
+
     var likes = $('#likeCount').html();
 		var count_like = (likes==''?0:parseInt(likes)) + parseInt(1);
     $('#likeCount').html(count_like > like_min ? (count_like):'');
@@ -554,13 +551,13 @@ label.error {
     //setCookie('blog_'+conttoken+'_liked',1,1);
     localStorage.setItem(app_slug+'_'+conttoken+'_liked',1);
     save_metrics('reads','like',conttoken);
-    
-   
+
+
 	});
 
   $(document).on('click','.click_action', function(event) {
         var metrics = $(this).attr("data-metrics");
-        save_metrics('reads',metrics,conttoken);  
+        save_metrics('reads',metrics,conttoken);
 
         if(metrics == 'comment_click'){
             $('.command_form').attr('action','<?php echo TAOH_ACTION_URL .'/comments'; ?>');
@@ -576,6 +573,6 @@ label.error {
 		}, 2000);
 	});
 
-  
+
 </script>
 <?php taoh_get_footer(); ?>

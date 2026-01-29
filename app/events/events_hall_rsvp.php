@@ -22,7 +22,7 @@
                             <img class="lazy n-participants-img" src="<?php echo TAOH_SITE_URL_ROOT;?>/assets/images/nprofileplaceholder.png" alt="avatar">
                         </a>
                         <div class="d-flex flex-column align-items-md-center">
-                            
+
                             <p class="n-participants-name">Attendee</p>
                             <div class="icons">
                                 <a href="#">
@@ -39,7 +39,7 @@
                         </div>
                     </div>
                     <div class="center-box">
-                   
+
                             <p class="pro-badge px-2 py-1 mb-3">
                                 Professional
                             </p>
@@ -71,11 +71,11 @@
                                 </svg>
                                 <span>Skills</span>
                             </div>
-                            
+
                             <a href="#" class="btn skill-b">Budgeting</a>
                             <a href="#" class="btn skill-b">Maintenance</a>
                             <a href="#" class="btn skill-b">Book Keeping</a>
-                            
+
                         </div>
                         <div class="n-participants-text d-flex align-items-center" style="gap: 6px;">
                             <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -94,9 +94,9 @@
                 <div class="right-box d-flex align-items-center" style="min-width: 125px;">
                     <a href="#" class="btn main-chat-btn btn-success px-4">Chat Now</a>
                 </div>
-                
+
                 <img class="lazy sponsor-badge mb-3" src="<?php echo TAOH_SITE_URL_ROOT;?>/assets/images/silver.svg" alt="avatar" style="margin-top: -10px;">
-                
+
                 <p class="hiring">
                     Hiring
                 </p>
@@ -118,7 +118,7 @@
                             <!-- <p class="recruiter-badge px-2 py-1">
                                 Recruiter
                             </p> -->
-                            
+
                             <div class="icons">
                                 <a href="#">
                                     <svg width="15" height="15" viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -162,11 +162,11 @@
                                 </svg>
                                 <span>Skills</span>
                             </div>
-                            
+
                             <a href="#" class="btn skill-b">Budgeting</a>
                             <a href="#" class="btn skill-b">Maintenance</a>
                             <a href="#" class="btn skill-b">Book Keeping</a>
-                            
+
                         </div>
                         <div class="n-participants-text d-flex align-items-center" style="gap: 6px;">
                             <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -185,9 +185,9 @@
                 <div class="right-box d-flex align-items-center" style="min-width: 125px;">
                     <a href="#" class="btn main-chat-btn btn-success px-4">Chat Now</a>
                 </div>
-                
+
                 <img class="lazy sponsor-badge mb-3" src="<?php echo TAOH_SITE_URL_ROOT;?>/assets/images/silver.svg" alt="avatar" style="margin-top: -10px;">
-                
+
                 <p class="hiring">
                     Hiring
                 </p>
@@ -209,7 +209,7 @@
                             <p class="recruiter-badge px-2 py-1">
                                 Recruiter
                             </p>
-                            
+
                             <div class="icons">
                                 <a href="#">
                                     <svg width="15" height="15" viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -253,11 +253,11 @@
                                 </svg>
                                 <span>Skills</span>
                             </div>
-                            
+
                             <a href="#" class="btn skill-b">Budgeting</a>
                             <a href="#" class="btn skill-b">Maintenance</a>
                             <a href="#" class="btn skill-b">Book Keeping</a>
-                            
+
                         </div>
                         <div class="n-participants-text d-flex align-items-center" style="gap: 6px;">
                             <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -276,9 +276,9 @@
                 <div class="right-box d-flex align-items-center" style="min-width: 125px;">
                     <a href="#" class="btn main-chat-btn btn-success px-4">Chat Now</a>
                 </div>
-                
+
                 <!-- <img class="lazy sponsor-badge mb-3" src="<?php echo TAOH_SITE_URL_ROOT;?>/assets/images/silver.svg" alt="avatar" style="margin-top: -10px;">
-                
+
                 <p class="hiring">
                     Hiring
                 </p> -->
@@ -300,7 +300,7 @@
                             <p class="pro-badge px-2 py-1">
                                 Professional
                             </p>
-                            
+
                             <div class="icons">
                                 <a href="#">
                                     <svg width="15" height="15" viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -344,11 +344,11 @@
                                 </svg>
                                 <span>Skills</span>
                             </div>
-                            
+
                             <a href="#" class="btn skill-b">Budgeting</a>
                             <a href="#" class="btn skill-b">Maintenance</a>
                             <a href="#" class="btn skill-b">Book Keeping</a>
-                            
+
                         </div>
                         <div class="n-participants-text d-flex align-items-center" style="gap: 6px;">
                             <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -367,15 +367,15 @@
                 <div class="right-box d-flex align-items-center" style="min-width: 125px;">
                     <a href="#" class="btn main-chat-btn btn-success px-4">Chat Now</a>
                 </div>
-                
+
                 <!-- <img class="lazy sponsor-badge mb-3" src="<?php echo TAOH_SITE_URL_ROOT;?>/assets/images/silver.svg" alt="avatar" style="margin-top: -10px;">
-                
+
                 <p class="hiring">
                     Hiring
                 </p> -->
             </div>
-            
-            
+
+
         </div>
 
         <div class="hall-side-list-con d-flex flex-wrap justify-content-center justify-content-xl-start align-items-start">
@@ -424,7 +424,7 @@
                             </div>
                         </div>
                     </div>
-                    
+
                     <div class="d-flex justify-content-end my-1">
                         <a href="<?php echo TAOH_SITE_URL_ROOT.'/events/eventshall'; ?>" class="all-link">View all Speakers</a>
                     </div>
@@ -470,7 +470,7 @@
                             </p>
                         </div>
                     </div>
-                   
+
                     <div class="d-flex justify-content-end my-1">
                         <a href="<?php echo TAOH_SITE_URL_ROOT.'/events/eventshallexhibitors'; ?>" class="all-link">View all Exhibitors</a>
                     </div>
@@ -489,7 +489,7 @@
                         <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
                         <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
                         </ol>
-                        
+
                         <!-- Carousel Inner -->
                         <div class="offer-carousel carousel-inner pt-3 pb-5">
                             <div class="carousel-item active">

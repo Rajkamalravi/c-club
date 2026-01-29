@@ -1,7 +1,7 @@
 <?php
 //Getting a list of rooms
 function asks_get_rooms() {
-  
+
   $title = "skill";
   if( $_POST['type'] == "rolechat") {
     $title = "title";
@@ -38,11 +38,11 @@ function asks_get_rooms() {
 /* function asks_detail_options() {
   $conttoken = ( isset( $_POST['conttoken'] ) && $_POST['conttoken'] )? $_POST['conttoken']:'';
   $taoh_call = "asks.ask.get";
-  $taoh_vals = array(    
+  $taoh_vals = array(
       'mod'=>'asks',
       'token'=>taoh_get_dummy_token(),
-      'conttoken'=>$conttoken, 
-      'ops'=>'info',	
+      'conttoken'=>$conttoken,
+      'ops'=>'info',
     );
   if(isset( $conttoken ) ){
     $taoh_vals['cache'] = array ( "name" => taoh_p2us('asks.ask').'_'.$conttoken.'_info', "ttl" => 3600);
@@ -88,7 +88,7 @@ function asks_get() {
   //$taoh_vals[ 'cfcache' ] = hash('sha256', $taoh_call . serialize($taoh_vals));
   if($filter_type == 'saved'){
     $taoh_vals['cache_required'] = 0;
-   
+
     unset($taoh_vals['cache_time']);
     unset($taoh_vals['cache']);
     unset($taoh_vals['cfcc5h']);
@@ -98,16 +98,13 @@ function asks_get() {
   /* if ( $offset == $offset_default && $limit == $limit_default ) {
     $taoh_vals['cache'] = array ( "name" => taoh_p2us($taoh_call).'_'.TAOH_ROOT_PATH_HASH.'_list_'.hash('crc32',$search.$offset.$geohash.$limit), "ttl" => 3600);
   } */
-  
+
   //echo TAOH_API_PREFIX."/$taoh_call?".http_build_query($taoh_vals);
   //echo taoh_apicall_get_debug( $taoh_call, $taoh_vals );die;
   $data = taoh_apicall_get($taoh_call, $taoh_vals, TAOH_API_PREFIX, 1);
   echo $data;
   die();
 }
-
-
-
 function ask_like_put(){
   //https://ppapi.tao.ai/asks.save?mod=asks&token=C3kONdHX&conttoken=hcr9759qtuir
   $taoh_call = "content.save";
@@ -159,7 +156,7 @@ function taoh_apply_job_ask(){
                       'action_link' => $_POST['from_link'],
                       'site_name'=>TAOH_SITE_NAME_SLUG,
                     ),
-                  
+
                   );
   $toenter['refer_data'] = json_encode(array(
           'requested_by_ptoken' => taoh_get_dummy_token(),
@@ -176,10 +173,10 @@ function taoh_apply_job_ask(){
       'token' => taoh_get_dummy_token(),
       'toenter' => $toenter,
   );
- 
+
   //echo taoh_apicall_post_debug( $taoh_call, $taoh_vals );
   // $result = taoh_post( TAOH_CACHE_CHAT_PROC_URL, $taoh_vals );
-  $result = json_decode(taoh_apicall_post($taoh_call, $taoh_vals)); 
+  $result = json_decode(taoh_apicall_post($taoh_call, $taoh_vals));
   //print_r($result);die();
   $res = array('success'=> 1,'refer_token' => $result->refer_token[0]);
   setcookie(TAOH_ROOT_PATH_HASH.'_'.'refer_token', $result->refer_token[0], strtotime( '+1 days' ), '/');

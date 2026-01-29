@@ -1,10 +1,10 @@
-<?php  taoh_get_header(); 
+<?php  taoh_get_header();
 $current_status = "<a itemprop=\"".TAOH_SITE_URL_ROOT."/settings\" style=\"font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 14px; color: #ffffff; text-decoration: none; line-height: 2em; font-weight: bold; text-align: center; cursor: pointer; display: block; border-radius: 5px; text-transform: capitalize; background-color: #32A250; margin: 0; border-color: #32A250; border-style: solid; border-width: 10px 20px;\"> Checkout Settings!</a>";
 
 if( ! taoh_user_is_logged_in() ) {
   $current_status = "<a href=\"".TAOH_SITE_URL_ROOT."/login\" itemprop=\"url\" style=\"font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 14px; color: #eaf0f7; text-decoration: none; line-height: 2em; font-weight: bold; text-align: center; cursor: pointer; display: block; border-radius: 5px; text-transform: capitalize; background-color: #0a80ff; margin: 0; border-color: #0a80ff; border-style: solid; border-width: 10px 20px;\" target=\"_BLANK\">Login/Sign Up *</a><right>* Link opens in new tab</right>";
-} 
-$current_app = TAOH_SITE_CURRENT_APP_SLUG;  
+}
+$current_app = TAOH_SITE_CURRENT_APP_SLUG;
 $app_data = taoh_app_info($current_app);
 $array_json =  taoh_url_get_content( TAOH_CDN_PREFIX."/app/$current_app/faq.php" );
 $array = json_decode($array_json);
@@ -250,7 +250,7 @@ if ( $current_app != TAOH_PLUGIN_PATH_NAME ) $about_url = TAOH_SITE_URL_ROOT."/"
 											</div>
 									</div><!-- end card -->
 									<div class="card card-item">
-                                   
+
 										<form action="<?php echo TAOH_ACTION_URL."/contact"; ?>" method="post">
 											<div class="card-body">
 													<div class="form-group">

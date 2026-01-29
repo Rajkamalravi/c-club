@@ -1,17 +1,17 @@
-<?php 
+<?php
 if ( function_exists( 'taoh_user_all_info' ) ){
   $user_data = taoh_user_all_info();
   if ( !empty( $user_data->chat_name ) && !empty( $user_data->fname ) && !empty( $user_data->lname ) && !empty( $user_data->ptoken ) && !empty( $user_data->type ) ) {
     $url = TAOH_SITE_URL_ROOT;
     taoh_set_error_message( 'Account already exists. Re-directing you to home page.' );
-    taoh_redirect($url); 
+    taoh_redirect($url);
     taoh_exit();
-  }    
+  }
 }
 
 taoh_get_header(); //die();
 ?>
-<style>  
+<style>
 
 body {
     color: #000;
@@ -247,7 +247,7 @@ span.h5 {
 span.highlight{
     color: #fff;
 }
- 
+
 </style>
 <?php
 $email = '';
@@ -315,13 +315,13 @@ $email = '';
                             <h5 class="sub-heading mb-4">Let's start with the basics. What's your name?</h5>
                             <label class="text-danger mb-3">* Required</label>
                             <?php echo field_fname(); ?>
-                            <?php echo field_lname(); ?> 
+                            <?php echo field_lname(); ?>
                             <button id="next2" class="btn-block btn-primary mt-3 mb-1 next mt-4" data-next = "3" onclick="validate1(0)">NEXT<span class="fa fa-long-arrow-right"></span></button> <button class="btn-block btn-secondary mt-3 mb-1 prev" data-prev = "2"><span class="fa fa-long-arrow-left"></span>PREVIOUS</button>
                         </div>
                     </fieldset>
                     <fieldset>
                         <div class="form-card">
-                            <h5 class="sub-heading mb-4">Share your public information</h5> 
+                            <h5 class="sub-heading mb-4">Share your public information</h5>
                             <label class="text-danger mb-3">* Required</label>
                             <div class="form-group"> <label class="form-control-label">My Avatar : <span class="text-danger"> * </span></label> <span class="text-danger" id="avatar-error"></span><?php echo avatar_select(); ?></div>
                             <?php echo field_cname(); ?>
@@ -332,10 +332,10 @@ $email = '';
                     </fieldset>
                     <fieldset>
                         <div class="form-card">
-                            <h5 class="sub-heading mb-4">Tell Me About Yourself?</h5> 
+                            <h5 class="sub-heading mb-4">Tell Me About Yourself?</h5>
                             <label class="text-danger mb-3">* Required</label>
                             <?php echo field_about_me(); ?>
-                            <?php echo field_funfact(); ?> 
+                            <?php echo field_funfact(); ?>
                             <button id="next4" class="btn-block btn-primary mt-3 mb-1 next mt-4" data-next = "5" onclick="validate3(0)">NEXT<span class="fa fa-long-arrow-right"></span></button> <button class="btn-block btn-secondary mt-3 mb-1 prev" data-prev = "4"><span class="fa fa-long-arrow-left"></span>PREVIOUS</button>
                         </div>
                     </fieldset>
@@ -397,7 +397,7 @@ function validate0() {
 
     $(current_fs1).removeClass("show");
     $(next_fs1).addClass("show");
-    
+
     $('#step2').addClass("active");
     //$("#progressbar li").eq($("fieldset").index(next_fs1)).addClass("active");
 
@@ -444,9 +444,6 @@ v2.style.borderColor = "green";
 flag2 = true;
 }
 }
-
-
-
 flag = flag1 && flag2;
 
 return flag;
@@ -530,9 +527,6 @@ v2.style.borderColor = "green";
 flag2 = true;
 }
 }
-
-
-
 flag = flag1 && flag2;
 
 return flag;
@@ -630,6 +624,6 @@ $(this).toggleClass('selected');
 });
 </script>
 
-<?php 
+<?php
 //die('----------------');
 taoh_get_footer(); ?>

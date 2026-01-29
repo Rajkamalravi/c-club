@@ -30,7 +30,7 @@ if ($sess_user_info) {
 }
 
 $eventlivelink = TAOH_SITE_URL_ROOT . '/' . TAOH_SITE_CURRENT_APP_SLUG . '/club/' . slugify2(TAO_PAGE_TITLE) . '-' . $eventtoken;
- 
+
 ?>
 
 <style>
@@ -430,15 +430,12 @@ $eventlivelink = TAOH_SITE_URL_ROOT . '/' . TAOH_SITE_CURRENT_APP_SLUG . '/club/
                     <div id="attendees_card${v.ptoken}" class="attendees_card relative-card card card-item d-flex flex-column flex-xl-row justify-content-xl-between py-xl-3 p-3 mb-4 mx-3 light-dark-card svg-fill-light-dark" style="gap: 12px;">
                                     <div class="d-flex flex-column flex-md-row align-items-md-center" style="gap: 12px; flex: 1;">
                                         <div class="left-box d-flex flex-md-column align-items-center pt-md-3 pb-2" style="gap: 6px;">
-                                            
+
                                             <span data-profile_token="${v.ptoken}" class="cursor-pointer openProfileModal">
                                                 <img width="40" class="lazy n-participants-img" src="${avatarSrc}" alt="avatar">
                                             </span>
                                             <div class="d-flex flex-column align-items-md-center">
-                                                
-                                               
-                                            
-                                                
+
                                                 <div class="icons" style="display:none">
                                                     <a href="#">
                                                         <svg width="15" height="15" viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -456,17 +453,17 @@ $eventlivelink = TAOH_SITE_URL_ROOT . '/' . TAOH_SITE_CURRENT_APP_SLUG . '/club/
                                         <div class="center-box flex-grow-1 d-flex align-items-center flex-wrap flex-md-nowrap" style="gap: 6px;">
                                             <div class="flex-grow-1">
                                                 <p class="n-participants-name mb-2 cursor-pointer openProfileModal" data-profile_token="${v.ptoken}">
-                                                    ${v.chat_name}  
+                                                    ${v.chat_name}
                                                     <span class="emp-badge px-2 py-1" style="text-transform: capitalize;">
                                                     ${profileTitle}
                                                     </span>
-                                                </p> 
+                                                </p>
                                                 <div class="d-flex algn-items-center flex-wrap" style="gap: 6px;">
                                                     <div class="n-participants-text d-flex align-items-center mb-2" style="gap: 3px;">
                                                         <svg width="21" height="14" viewBox="0 0 19 13" fill="none" xmlns="http://www.w3.org/2000/svg">
                                                             <path d="M2.11111 0C0.946701 0 0 0.946701 0 2.11111V4.22222C0 4.5125 0.244097 4.7401 0.517882 4.83576C1.13802 5.05017 1.58333 5.64062 1.58333 6.33333C1.58333 7.02604 1.13802 7.61649 0.517882 7.8309C0.244097 7.92656 0 8.15417 0 8.44444V10.5556C0 11.72 0.946701 12.6667 2.11111 12.6667H16.8889C18.0533 12.6667 19 11.72 19 10.5556V8.44444C19 8.15417 18.7559 7.92656 18.4821 7.8309C17.862 7.61649 17.4167 7.02604 17.4167 6.33333C17.4167 5.64062 17.862 5.05017 18.4821 4.83576C18.7559 4.7401 19 4.5125 19 4.22222V2.11111C19 0.946701 18.0533 0 16.8889 0H2.11111ZM4.22222 3.69444V8.97222C4.22222 9.2625 4.45972 9.5 4.75 9.5H14.25C14.5403 9.5 14.7778 9.2625 14.7778 8.97222V3.69444C14.7778 3.40417 14.5403 3.16667 14.25 3.16667H4.75C4.45972 3.16667 4.22222 3.40417 4.22222 3.69444ZM3.16667 3.16667C3.16667 2.58281 3.63837 2.11111 4.22222 2.11111H14.7778C15.3616 2.11111 15.8333 2.58281 15.8333 3.16667V9.5C15.8333 10.0839 15.3616 10.5556 14.7778 10.5556H4.22222C3.63837 10.5556 3.16667 10.0839 3.16667 9.5V3.16667Z" fill="#b4b4b4"></path>
                                                         </svg>
-                                                        ${ticket_badge} 
+                                                        ${ticket_badge}
                                                     </div>
                                                     <div class="n-participants-text d-flex align-items-center mb-2" style="gap: 3px;">
                                                         <svg width="20" height="17" viewBox="0 0 15 12" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -480,7 +477,7 @@ $eventlivelink = TAOH_SITE_URL_ROOT . '/' . TAOH_SITE_CURRENT_APP_SLUG . '/club/
                                                     </div>
                                                 </div>
 
-                                               
+
                                                 <div class=" d-flex align-items-center flex-wrap mb-2" style="gap: 6px;">
                                                 ${(companies && companies.length) ?
                         `<div class="n-participants-text d-flex align-items-center" style="gap: 6px;">
@@ -491,7 +488,7 @@ $eventlivelink = TAOH_SITE_URL_ROOT . '/' . TAOH_SITE_CURRENT_APP_SLUG . '/club/
                                                     </div>` : ''}
                                                     ${(roles && roles.length) ?
                         `<div class="n-participants-text d-flex align-items-center" style="gap: 6px;">
-                                                        <i class="fa-solid fa-briefcase"></i> 
+                                                        <i class="fa-solid fa-briefcase"></i>
                                                         <span>${(roles && roles.length) ? generateRoleHTML(roles) : ''}</span>
                                                     </div>` : ''}
                                                      ${v.full_location != '' ?
@@ -510,9 +507,9 @@ $eventlivelink = TAOH_SITE_URL_ROOT . '/' . TAOH_SITE_CURRENT_APP_SLUG . '/club/
                                                         </svg>
                                                         <span>Skills</span>
                                                     </div>
-                                                    
+
                                                     ${skillContent}
-                                                    
+
                                                 </div>` : ''}
                                                 <div style="display:none;gap: 6px;" class="n-participants-text align-items-center" >
                                                     <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -614,7 +611,7 @@ $eventlivelink = TAOH_SITE_URL_ROOT . '/' . TAOH_SITE_CURRENT_APP_SLUG . '/club/
             $('.rsvp_actions').css('display', 'flex');
             $('.rsvp_actions.rsvp_search').css('display', 'flex');
             $("#rsvp_default_list").hide();
-            //console.log("listAppend", listAppend);            
+            //console.log("listAppend", listAppend);
             if (listAppend == 1) {
                 $('#rsvp_users_list').append(content);
             } else {
@@ -656,9 +653,9 @@ $eventlivelink = TAOH_SITE_URL_ROOT . '/' . TAOH_SITE_CURRENT_APP_SLUG . '/club/
 
     function reloadPage(){
         const url = new URL(window.location.href);
-            url.searchParams.set('tab', 'rsvp_desc');    // add or update param     
+            url.searchParams.set('tab', 'rsvp_desc');    // add or update param
 
-            window.location.href = url.toString(); 
+            window.location.href = url.toString();
     }
 
     $(document).ready(function () {
@@ -687,7 +684,7 @@ $eventlivelink = TAOH_SITE_URL_ROOT . '/' . TAOH_SITE_CURRENT_APP_SLUG . '/club/
 
 
         /*var url = '<?php echo TAOH_SITE_URL_ROOT . '/events/export_rsvp/?eventtoken=';?>' + eventtoken;
-            
+
             const win = window.open(url);
 
             if (win) {
@@ -848,7 +845,4 @@ $eventlivelink = TAOH_SITE_URL_ROOT . '/' . TAOH_SITE_CURRENT_APP_SLUG . '/club/
         // console.log(threeDaysAgo,eventDate,now);
         return now >= threeDaysAgo;
     }
-
-
-
 </script>

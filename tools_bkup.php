@@ -26,11 +26,11 @@ if ( ! function_exists( 'taoh_sitemapops' ) ) {
                 return $response;
             }
         }
-    
+
         switch ($vars['ops']) {
             case 'addsitemap':
                 $urlFound = false;
-    
+
                 // Check if the URL already exists
                 foreach ($xml->url as $urlElement) {
                     if ((string)$urlElement->loc === $vars['url']) {
@@ -39,7 +39,7 @@ if ( ! function_exists( 'taoh_sitemapops' ) ) {
                         break;
                     }
                 }
-    
+
                 // Add the new URL if it was not found
                 if (!$urlFound) {
                     $urlElement = $xml->addChild('url');
@@ -74,7 +74,7 @@ if ( ! function_exists( 'taoh_sitemapops' ) ) {
                             break;
                         }
                     }
-                }   
+                }
                 //echo '<pre>';print_r($all_xml);echo '</pre>';
                 if ($found) {
                     $xml = new SimpleXMLElement('<?xml version="1.0" encoding="UTF-8"?>' . "\n" . '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"></urlset>');

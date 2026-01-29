@@ -68,8 +68,8 @@ function buildSponsorCarousel(s_eventtoken,response){
                                                 </div>
                                             ${exhibitor.exh_hero_button_url ? '</a>' : ''}
                                             <div class="pt-2">
-                                                ${exhibitor.exh_hero_button_url 
-                                                    ? `<a target="_blank" href="${exhibitor.exh_hero_button_url}"><h3 class="sponsor-name">${exhibitor.exh_subtitle}</h3></a>` 
+                                                ${exhibitor.exh_hero_button_url
+                                                    ? `<a target="_blank" href="${exhibitor.exh_hero_button_url}"><h3 class="sponsor-name">${exhibitor.exh_subtitle}</h3></a>`
                                                     : `<h3 class="sponsor-name">${exhibitor.exh_subtitle}</h3>`}
                                                 <p class="event-org-desc">${exhibitor.exh_description}</p>
                                             </div>

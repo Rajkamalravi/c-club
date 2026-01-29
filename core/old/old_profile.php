@@ -1,4 +1,4 @@
-<?php 
+<?php
 taoh_get_header();
 $ptoken = taoh_parse_url(1);
 //$api = 'https://preapi.tao.ai/users.user.get?mod=taoai&token=hT93oaWC&ops=info&ptoken=oyeuyy9vnx1u';
@@ -111,7 +111,7 @@ if (!taoh_user_is_logged_in()) {
             <div class="user-panel-main-bar">
                <div class="user-panel">
                   <div class="delete-account-info Message-area card card-item border border-danger">
-                  
+
                      <div id="deleteAccountBody" class="card-body">
                         <h3 class="fs-22 text-danger fw-bold">Type your message</h3>
                         <div class="row fs-15 mt-4 mb-4">
@@ -135,7 +135,7 @@ if (!taoh_user_is_logged_in()) {
     <div class="container">
         <div class="media media-card p-0">
             <div class="media-body">
-                <div class="colored"></div>    
+                <div class="colored"></div>
                 <div class="media-card mb-0">
                     <div class="profile">
                         <img width="48" height="48" src="<?php echo TAOH_OPS_PREFIX.'/avatar/PNG/128/'.$data['output']['user']['avatar'].'.png';?>" alt="">
@@ -155,7 +155,7 @@ if (!taoh_user_is_logged_in()) {
                                 </button>
                                 </div>
                             </div>
-                            <?php }else{ 
+                            <?php }else{
                                 if (!taoh_user_is_logged_in()) {?>
                                     <div>
                                         <div class="hero-btn-box text-right py-3">
@@ -164,7 +164,7 @@ if (!taoh_user_is_logged_in()) {
                                             </a>
                                         </div>
                                     </div>
-                                <?php } 
+                                <?php }
                             }?>
                         </div>
                     </div>
@@ -173,7 +173,7 @@ if (!taoh_user_is_logged_in()) {
                         <!-- <div class="mt-1"><?php //echo $data['output']['user']['timezone'];?></div> -->
                         <!-- <div class="mt-2"><a href="" class="btn btn-primary btn-sm" style="border-radius: 15px;"><i class="fa-solid fa-message fa-sm"></i> Message</a></div> -->
                     </div>
-                </div>    
+                </div>
             </div>
         </div>
         <?php if(!empty($about_me)){ ?>
@@ -259,11 +259,11 @@ if (!taoh_user_is_logged_in()) {
             <?php foreach($emp_list as $emp_keys => $emp_vals){
             $em_title = $emp_vals['title'];
             foreach ( $em_title as $em_key => $em_value ){
-                list ( $em_pre, $em_post ) = explode( ':>', $em_value );    
+                list ( $em_pre, $em_post ) = explode( ':>', $em_value );
             }
             $em_company = $emp_vals['company'];
             foreach ( $em_company as $em_cmp_key => $em_cmp_value ){
-                list ( $em_cmp_pre, $em_cmp_post ) = explode( ':>', $em_cmp_value );    
+                list ( $em_cmp_pre, $em_cmp_post ) = explode( ':>', $em_cmp_value );
             }
             $get_present_not = ($emp_vals['current_role'] == 'on')?' Present':get_month_from_number($emp_vals['emp_end_month']).' '.$emp_vals['emp_year_end'];
             //print_r($get_present_not);
@@ -298,9 +298,9 @@ if (!taoh_user_is_logged_in()) {
                         </div>
                     </div>
                 </div>
-            <?php } ?>           
-            <?php } ?>           
-        </div> 
+            <?php } ?>
+            <?php } ?>
+        </div>
         <?php } ?>
 
         <?php if(is_array($edu_list)){ ?>
@@ -309,7 +309,7 @@ if (!taoh_user_is_logged_in()) {
             <?php foreach($edu_list as $edu_keys => $edu_vals){
             $ed_name = $edu_vals['company'];
             foreach ( $ed_name as $ed_key => $ed_value ){
-                list ( $ed_pre, $ed_post ) = explode( ':>', $ed_value );    
+                list ( $ed_pre, $ed_post ) = explode( ':>', $ed_value );
             }
             ?>
             <?php if (!taoh_user_is_logged_in()) { ?>
@@ -342,10 +342,10 @@ if (!taoh_user_is_logged_in()) {
                         </div>
                     </div>
                 </div>
-            <?php } ?>            
-            <?php } ?>           
-        </div> 
-        <?php } ?>     
+            <?php } ?>
+            <?php } ?>
+        </div>
+        <?php } ?>
     </div>
 </section>
 <script type="text/javascript">
@@ -366,9 +366,6 @@ function postMessage() {
             $('#message-modal').modal('hide')
 
 	},1500);
-      
-
-     
      jQuery.post("<?php echo taoh_site_ajax_url(); ?>", data, function(response) {
 
      }).fail(function() {

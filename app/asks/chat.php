@@ -20,10 +20,10 @@ function asks_skill_room($app_temp,$contslug){
     $sess_user_info = taoh_session_get(TAOH_ROOT_PATH_HASH)['USER_INFO'];
     $full_loc_expl = explode(', ', $sess_user_info->full_location);
     $country = array_pop($full_loc_expl);
-    
+
     $geo_enable = 0;
-    
-    
+
+
     if($geo_enable)
         $keyslug = hash( 'crc32',$title.$id.$app_temp.$country );
     else
@@ -52,7 +52,7 @@ function asks_skill_room($app_temp,$contslug){
                                         array(
                                             'slug' => 'employer',
                                             'title' => 'Employer',
-                                        ),    
+                                        ),
                                         array(
                                             'slug' => 'professional',
                                             'title' => 'Professional',
@@ -122,7 +122,7 @@ function asks_skill_room($app_temp,$contslug){
     unset( $return );
     $return[ 'club_info' ] = $temp_arr;
     unset( $temp_arr );
-    if ( isset( $value_arr[ 'output' ] ) && $value_arr[ 'output' ] ){    
+    if ( isset( $value_arr[ 'output' ] ) && $value_arr[ 'output' ] ){
         $return[ 'cell_info' ] = $value_arr[ 'output' ];
     } else {
         $return[ 'cell_info' ] = array(

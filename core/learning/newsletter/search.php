@@ -1,6 +1,6 @@
 <?php
 include 'reads_css.php';
-taoh_get_header(); 
+taoh_get_header();
 $reads_type = 'hires';
 $search = ( isset( $_GET[ 'q' ] ) ) ? $_GET[ 'q' ]:'';
 
@@ -31,7 +31,7 @@ $get_widget = taoh_wellness_widget_get($reads_type);
         <!-- <h1 class="mb-0 text-left"><?php //echo TAO_PAGE_TITLE ?></h1> -->
     </div>
     <div class="row bg-white">
-        <div class="col-lg-8 m-15px-tb"> 
+        <div class="col-lg-8 m-15px-tb">
           <div class="mt-3 sticky-top light-dark">
               <?php taoh_newsletter_search_widget(); ?>
           </div>
@@ -83,7 +83,7 @@ $get_widget = taoh_wellness_widget_get($reads_type);
 				var currpage = currentPage-1;
 				var reads_list_hash = queryString+search+currpage+itemsPerPage;
 				reads_list_name = 'readsearch_'+crc32(reads_list_hash);
-				console.log(reads_list_name);     
+				console.log(reads_list_name);
 				const datareadsrequest = db.transaction(store_name).objectStore(store_name).get(reads_list_name); // get main data
 				datareadsrequest.onsuccess = ()=> {
 					console.log(datareadsrequest);
@@ -134,7 +134,7 @@ $get_widget = taoh_wellness_widget_get($reads_type);
   }
 
   function taoh_newsletter_init(queryString="") {
-    
+
     var data = {
         'taoh_action': 'taoh_central_newsletter_get',
         'ops': 'list',
@@ -142,7 +142,7 @@ $get_widget = taoh_wellness_widget_get($reads_type);
         'limit': itemsPerPage,
 		    'filters': queryString,
         'search': '<?php echo $search; ?>',
-        
+
     };
     jQuery.post("<?php echo taoh_site_ajax_url(); ?>", data, function(response) {
         console.log('data',response);
@@ -174,7 +174,7 @@ $get_widget = taoh_wellness_widget_get($reads_type);
   $.each(data.output.list, function(i, v){
      arr_cont.push(v.conttoken.toString());
       var prefix = '<?php echo TAOH_CDN_PREFIX ?>';
-      v.blurb.image = prefix+"/images/igcache/"+encodeURIComponent(taoh_title_desc_decode(v.title))+"/900_600/blog.jpg"; 
+      v.blurb.image = prefix+"/images/igcache/"+encodeURIComponent(taoh_title_desc_decode(v.title))+"/900_600/blog.jpg";
       slot.append(`
               <div class="col-lg-6">
                 <div class="p-3">
@@ -192,7 +192,7 @@ $get_widget = taoh_wellness_widget_get($reads_type);
                     </h3>
                 </div>
               </div>`
-                  
+
       );
   });
   if(totalItems >= 11) {
@@ -203,7 +203,7 @@ $get_widget = taoh_wellness_widget_get($reads_type);
   }
   //alert(searchText);
   if(searchText){
-    taoh_metrix_ajax('reads',arr_cont);	
+    taoh_metrix_ajax('reads',arr_cont);
   }
 }
 
@@ -225,9 +225,6 @@ setInterval(function(){
 				checkTTL(reads_list_name,store_name);
 			<?php } ?>
 },30000);
-
-
-
 $('.claimedRight').each(function (f) {
   var newstr = $(this).text().substring(0,250)+'....';
   $(this).text(newstr);

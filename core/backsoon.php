@@ -1,5 +1,5 @@
-<?php  
-taoh_get_header(); 
+<?php
+taoh_get_header();
 ?>
 
 <!-- ================================

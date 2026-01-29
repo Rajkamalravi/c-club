@@ -85,9 +85,6 @@ taoh_get_header();
         #query:focus{
             box-shadow: none !important;
         }
-
-
-
         #comments {
             min-height: 350px;
             max-height: 500px;
@@ -1399,9 +1396,6 @@ taoh_get_header();
             //     doAfterMMMsgRender(response);
             //     return;
             // }
-
-
-
             let chat_temp_messages_key = 'cm_temp_' + mm_room_key + '_' + my_pToken;
             IntaoDB.getItem(objStores.ntw_store.name, chat_temp_messages_key)
                 .then(intao_data => intao_data?.values || {})
@@ -1691,8 +1685,8 @@ taoh_get_header();
         function taoh_mm_post_metrics(metrics) {
             if (mm_room_key.trim() !== '' && my_pToken.trim() !== '') {
 
-                save_metrics('central_networking',metrics,mm_room_key);	
-                
+                save_metrics('central_networking',metrics,mm_room_key);
+
             }
         }
 

@@ -80,7 +80,7 @@ $valid_dir_viewer = $taoh_user_is_logged_in && $user_info_obj->profile_complete 
     top: 50%;
     transform: translateY(-50%);
   }
-   
+
    .carousel-control-next {
         right: 10px;
   }
@@ -93,12 +93,12 @@ $valid_dir_viewer = $taoh_user_is_logged_in && $user_info_obj->profile_complete 
     }
 
     .company-info-tabs .company-info:hover {
-       color: #333ABF; 
+       color: #333ABF;
        font-weight: 500;
        border-bottom: 2px solid #333ABF;
     }
 
-    
+
     .company-info-tabs .company-info.active {
         border-bottom: 2px solid #333ABF;
     }
@@ -119,7 +119,7 @@ $valid_dir_viewer = $taoh_user_is_logged_in && $user_info_obj->profile_complete 
         border: 2px solid #D3D3D3;
         border-radius: 12px;
     }
-   
+
     .left-job-list .card .company {
         font-size: 12px;
         font-weight: 700;
@@ -199,9 +199,6 @@ $valid_dir_viewer = $taoh_user_is_logged_in && $user_info_obj->profile_complete 
         border-radius: 8px;
         padding: 3px 12px;
     }
-
-    
-
     .main-job-detail .divider {
         background-color: #D3D3D3;
         height: 2px;
@@ -238,7 +235,7 @@ $valid_dir_viewer = $taoh_user_is_logged_in && $user_info_obj->profile_complete 
     .scroll-container::-webkit-scrollbar {
         display: none;
     }
-  
+
     .scroll-container {
         scrollbar-width: none;
     }
@@ -270,7 +267,7 @@ $valid_dir_viewer = $taoh_user_is_logged_in && $user_info_obj->profile_complete 
         font-size: 19px;
         color: #444444;
         font-weight: 400;
-    } 
+    }
 
 </style>
 
@@ -327,9 +324,6 @@ $valid_dir_viewer = $taoh_user_is_logged_in && $user_info_obj->profile_complete 
                         <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path d="M11.9062 4.3L14.0813 8H14H9.5C8.11875 8 7 6.88125 7 5.5C7 4.11875 8.11875 3 9.5 3H9.6375C10.5687 3 11.4375 3.49375 11.9062 4.3ZM4 5.5C4 6.4 4.21875 7.25 4.6 8H2C0.89375 8 0 8.89375 0 10V14C0 15.1062 0.89375 16 2 16H30C31.1063 16 32 15.1062 32 14V10C32 8.89375 31.1063 8 30 8H27.4C27.7812 7.25 28 6.4 28 5.5C28 2.4625 25.5375 0 22.5 0H22.3625C20.3687 0 18.5188 1.05625 17.5063 2.775L16 5.34375L14.4937 2.78125C13.4812 1.05625 11.6312 0 9.6375 0H9.5C6.4625 0 4 2.4625 4 5.5ZM25 5.5C25 6.88125 23.8813 8 22.5 8H18H17.9188L20.0938 4.3C20.5688 3.49375 21.4312 3 22.3625 3H22.5C23.8813 3 25 4.11875 25 5.5ZM2 18V29C2 30.6562 3.34375 32 5 32H14V18H2ZM18 32H27C28.6562 32 30 30.6562 30 29V18H18V32Z" fill="#444444"/>
                         </svg>
-
-
-
                         <div class="d-flex flex-column" style="gap: 4px;">
                             <span class="intro">Perks & Benefits</span>
                             <span class="intro-content">Internet Reimbursement and more</span>
@@ -367,9 +361,6 @@ $valid_dir_viewer = $taoh_user_is_logged_in && $user_info_obj->profile_complete 
             </a>
         </div>
     </div>
-
-
-
     <div class="container pt-5 px-lg-5">
         <div class="row">
             <div class="col-lg-6 pt-3">
@@ -414,7 +405,7 @@ $valid_dir_viewer = $taoh_user_is_logged_in && $user_info_obj->profile_complete 
         </div>
 
         <!-- company info tabs -->
-        <div id="" class="row mt-3" style="overflow-x: hidden;">  
+        <div id="" class="row mt-3" style="overflow-x: hidden;">
             <!-- Nav Tabs -->
             <ul class="nav nav-tabs col-12 mx-auto d-flex flex-nowrap justify-content-between company-info-tabs scroll-container" role="tablist" style="gap: 12px; overflow-x: auto; border-bottom: 1px solid #D3D3D3">
                 <li class="nav-item">
@@ -442,7 +433,7 @@ $valid_dir_viewer = $taoh_user_is_logged_in && $user_info_obj->profile_complete 
         <!--  about page -->
         <div class="container pb-5 px-lg-5 tab-pane fade show active" id="about" role="tabpanel" aria-labelledby="about-tab">
             <div class="py-5 row mx-0">
-            
+
                 <h2 class="headline">Headline or Mission of the Company</h2>
                 <p class="content-detail mt-3">
                     Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna 1 aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
@@ -452,7 +443,7 @@ $valid_dir_viewer = $taoh_user_is_logged_in && $user_info_obj->profile_complete 
                     <br>
                 </p>
                 <a href="#" class="content-detail read-more mt-3">Read More ...</a>
-            
+
             </div>
 
             <div class="row d-flex align-items-center justify-content-between">
@@ -600,7 +591,7 @@ $valid_dir_viewer = $taoh_user_is_logged_in && $user_info_obj->profile_complete 
                             <span class="info px-3">Remote | Full Time</span>
                             <span class="info">Company Location</span>
                         </div>
-                        
+
                         <p class="pay">₹40,000 - 50,0000</p>
                         <button type="button" class="btn apply-job my-3"><a href="#">Apply</a></button>
 
@@ -664,7 +655,7 @@ $valid_dir_viewer = $taoh_user_is_logged_in && $user_info_obj->profile_complete 
                                     <div class="d-flex align-items-center">
                                         <svg width="18" height="20" viewBox="0 0 18 20" fill="none" xmlns="http://www.w3.org/2000/svg">
                                             <path d="M5.14286 0C5.85402 0 6.42857 0.558594 6.42857 1.25V2.5H11.5714V1.25C11.5714 0.558594 12.146 0 12.8571 0C13.5683 0 14.1429 0.558594 14.1429 1.25V2.5H16.0714C17.1362 2.5 18 3.33984 18 4.375V6.25H0V4.375C0 3.33984 0.863839 2.5 1.92857 2.5H3.85714V1.25C3.85714 0.558594 4.4317 0 5.14286 0ZM0 7.5H18V18.125C18 19.1602 17.1362 20 16.0714 20H1.92857C0.863839 20 0 19.1602 0 18.125V7.5ZM3.21429 10C2.86071 10 2.57143 10.2812 2.57143 10.625V14.375C2.57143 14.7188 2.86071 15 3.21429 15H7.07143C7.425 15 7.71429 14.7188 7.71429 14.375V10.625C7.71429 10.2812 7.425 10 7.07143 10H3.21429Z" fill="#1C52A8"/>
-                                        </svg> 
+                                        </svg>
                                         <span class="label-title ml-3">Application Deadline</span>
                                     </div>
                                     <div class="divider d-flex"><span></span><span></span></div>
@@ -731,7 +722,7 @@ $valid_dir_viewer = $taoh_user_is_logged_in && $user_info_obj->profile_complete 
 
         <div class="container pb-5 px-lg-5 tab-pane fade" id="culture" role="tabpanel" aria-labelledby="culture-tab">
             <div class="py-5 row mx-0">
-            
+
             <h2 class="headline">Highlight of the Culture</h2>
             <p class="content-detail mt-3">
                 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna 1 aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
@@ -741,7 +732,7 @@ $valid_dir_viewer = $taoh_user_is_logged_in && $user_info_obj->profile_complete 
                 <br>
             </p>
             <a href="#" class="content-detail read-more mt-3">Read More ...</a>
-            
+
             </div>
 
             <div class="row d-flex align-items-center justify-content-between">
@@ -876,11 +867,8 @@ $valid_dir_viewer = $taoh_user_is_logged_in && $user_info_obj->profile_complete 
             </div>
         </div>
      </div>
-    
+
 </div>
 
 <?php
-
-
-
 taoh_get_footer();

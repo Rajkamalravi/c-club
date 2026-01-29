@@ -2,10 +2,10 @@
     $user_data = taoh_user_all_info();
     //print_r($user_data);exit();
     if ( ! isset( $user_data->fname ) && defined( 'TAOH_API_TOKEN' ) && defined('TAOH_SETTINGS_URL') && TAOH_API_TOKEN ) {
-        taoh_redirect(TAOH_SITE_URL_ROOT.'/createacc'); 
+        taoh_redirect(TAOH_SITE_URL_ROOT.'/createacc');
         taoh_exit();
     }
-    
+
     // TAO_PAGE_DESCRIPTION
     define( 'TAO_PAGE_DESCRIPTION', taoh_site_description() );
     // TAO_PAGE_IMAGE
@@ -17,12 +17,12 @@
     taoh_get_header();
     $showall = 0;
     $app_temp = @taoh_parse_url(0) ? taoh_parse_url(0):TAOH_PLUGIN_PATH_NAME;
-    
+
     // Get the current app
     $current_app = TAOH_SITE_CURRENT_APP_SLUG;
-    
+
     $app_data = taoh_app_info($current_app);
-    
+
     $about_url = TAOH_SITE_URL_ROOT."/about";
     if ( $current_app != TAOH_PLUGIN_PATH_NAME ) $about_url = TAOH_SITE_URL_ROOT."/".$current_app."/about";
 
@@ -41,12 +41,12 @@
     //$taoh_vals[ 'cfcache' ] = $cache_name;
     $taoh_vals[ 'cache_name' ] = $cache_name;
     ksort($taoh_vals);
-    
+
     //echo taoh_apicall_get_debug($url, $taoh_vals);taoh_exit();
     $response_recipe = json_decode(taoh_apicall_get($url, $taoh_vals,'',1), true);
     $response_recipe_api = $response_recipe['output'];
     //print_r($response_recipe_api);die;
-  
+
 ?>
 <style>
   .yo-video .y-video{
@@ -123,7 +123,7 @@
                         we're not just about job listings—we're about fostering a vibrant,<br />inclusive network where career growth thrives.
                         ";
                         ?>
-                
+
                     </p>
                     <div class="hero-btn-box py-4">
                         <?php if (! taoh_user_is_logged_in()){ ?>
@@ -155,9 +155,9 @@
                 </div>
             </div>
             <div class="col-lg-3 yo-video">
-                <?php 
+                <?php
                     //$video_link = 'https://www.youtube.com/embed/o9qbgV0Aotk?rel=0';
-                    //taoh_video_widget($video_link); 
+                    //taoh_video_widget($video_link);
                 ?>
                 <iframe id="video" class="y-video" src="https://www.youtube.com/embed/o9qbgV0Aotk?rel=0" frameborder="0" allowfullscreen loading="lazy"></iframe>
             </div>
@@ -239,7 +239,7 @@
                         <div class="large-12 columns">
                             <h4 class="heading"><?php echo ucwords($response_recipe_api[0]['name']); ?></h4>
                             <div class="owl-carousel owl-theme">
-                                <?php 
+                                <?php
                                     $get_recipe_one = taoh_blog_recipe_get('',5,$response_recipe_api[0]['ID']);
                                     if($get_recipe_one['success']) {
                                     foreach($get_recipe_one['output'] as $get_recipe_one) {
@@ -264,7 +264,7 @@
                                     </div>
                                     </a>
                                 </div>
-                                <?php    
+                                <?php
                                     } }
                                 ?>
                                 <div class="owl-nav d-block">
@@ -281,7 +281,7 @@
                         <div class="large-12 columns">
                             <h4 class="heading"><?php echo ucwords($response_recipe_api[1]['name']); ?></h4>
                             <div class="owl-carousel owl-theme">
-                                <?php 
+                                <?php
                                     $get_recipe_two = taoh_blog_recipe_get('',5,$response_recipe_api[1]['ID']);
                                     if($get_recipe_two['success']) {
                                     foreach($get_recipe_two['output'] as $get_recipe_two) {
@@ -306,7 +306,7 @@
                                     </div>
                                     </a>
                                 </div>
-                                <?php    
+                                <?php
                                     } }
                                 ?>
                                 <div class="owl-nav d-block">
@@ -323,7 +323,7 @@
                         <div class="large-12 columns">
                             <h4 class="heading"><?php echo ucwords($response_recipe_api[2]['name']); ?></h4>
                             <div class="owl-carousel owl-theme">
-                                <?php 
+                                <?php
                                     $get_recipe_three = taoh_blog_recipe_get('',5,$response_recipe_api[2]['ID']);
                                     if($get_recipe_three['success']) {
                                     foreach($get_recipe_three['output'] as $get_recipe_three) {
@@ -348,7 +348,7 @@
                                     </div>
                                     </a>
                                 </div>
-                                <?php    
+                                <?php
                                     } }
                                 ?>
                                 <div class="owl-nav d-block">
@@ -365,7 +365,7 @@
                         <div class="large-12 columns">
                             <h4 class="heading"><?php echo ucwords($response_recipe_api[3]['name']); ?></h4>
                             <div class="owl-carousel owl-theme">
-                                <?php 
+                                <?php
                                     $get_recipe_four = taoh_blog_recipe_get('',5,$response_recipe_api[3]['ID']);
                                     if($get_recipe_four['success']) {
                                     foreach($get_recipe_four['output'] as $get_recipe_four) {
@@ -390,7 +390,7 @@
                                     </div>
                                     </a>
                                 </div>
-                                <?php    
+                                <?php
                                     } }
                                 ?>
                                 <div class="owl-nav d-block">
@@ -407,7 +407,7 @@
                         <div class="large-12 columns">
                             <h4 class="heading"><?php echo ucwords($response_recipe_api[4]['name']); ?></h4>
                             <div class="owl-carousel owl-theme">
-                                <?php 
+                                <?php
                                     $get_recipe_five = taoh_blog_recipe_get('',5,$response_recipe_api[4]['ID']);
                                     if($get_recipe_five['success']) {
                                     foreach($get_recipe_five['output'] as $get_recipe_five) {
@@ -432,7 +432,7 @@
                                     </div>
                                     </a>
                                 </div>
-                                <?php    
+                                <?php
                                     } }
                                 ?>
                                 <div class="owl-nav d-block">
@@ -449,7 +449,7 @@
                         <div class="large-12 columns" style="height:300px;">
                             <h4 class="heading"><?php echo ucwords($response_recipe_api[5]['name']); ?></h4>
                             <div class="owl-carousel owl-theme">
-                                <?php 
+                                <?php
                                     $get_recipe_six = taoh_blog_recipe_get('',5,$response_recipe_api[5]['ID']);
                                     if($get_recipe_six['success']) {
                                     foreach($get_recipe_six['output'] as $get_recipe_six) {
@@ -474,7 +474,7 @@
                                     </div>
                                     </a>
                                 </div>
-                                <?php    
+                                <?php
                                     } }
                                 ?>
                                 <div class="owl-nav d-block">
@@ -719,29 +719,23 @@
      let activityArea = $('#activityArea');
   let loaderArea = $("#loaderArea");
   let intRecipe = $("#intRecipe");
-  
+
   //Initial run
   $(document).ready(function(){
          $("#flash-msg").delay(3000).fadeOut("slow");
      	//taoh_activity_init();
          //taoh_recipe_init();
   })
-  
-     
 
-  
   $('.owl-carousel').owlCarousel({
      margin:10,
      loop:true,
      autoWidth:true,
      items:5
   })
-  
-  
-  
   /* $('#myCarousel').carousel({
    interval: 5000
   }) */
-  
+
 </script>
 <?php taoh_get_footer();  ?>

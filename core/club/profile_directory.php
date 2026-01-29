@@ -7,9 +7,6 @@ $taoh_user_is_logged_in = taoh_user_is_logged_in() ?? false;
 $user_info_obj = $taoh_user_is_logged_in ? taoh_user_all_info() : null;
 
 $valid_dir_viewer = $taoh_user_is_logged_in && ($user_info_obj?->profile_complete ?? 0) >= 1 && ($user_info_obj?->unlist_me_dir ?? '') !== 'yes';
-
-
-
 $tag_category = defined('TAOH_TAG_CATEGORY') ? TAOH_TAG_CATEGORY : [];
 
 $page_heading = 'Directory';
@@ -53,9 +50,6 @@ if($type === 'flag') {
 
     $page_heading = 'Role Directory';
 }
-
-
-
 $my_following_list = [];
 $my_following_ptoken_list = [];
 if ($taoh_user_is_logged_in) {

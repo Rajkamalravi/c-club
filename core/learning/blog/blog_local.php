@@ -53,24 +53,24 @@ taoh_metrics_call_for_reads($trending_bar);
                 </a>
               </div>
             <?php } ?>
-          </div>        
-        </div><!-- end hero-content --> 
-          <div class="col-lg-8 m-15px-tb"> 
+          </div>
+        </div><!-- end hero-content -->
+          <div class="col-lg-8 m-15px-tb">
           <div class="mt-3 sticky-top light-dark">
             <?php taoh_reads_search_widget(); ?>
-          </div>  
+          </div>
             <div class="">
-              <?php taoh_all_reads_widget( $get_widget[ 'center1' ], 'center1' ); ?> 
-              <?php taoh_all_reads_widget( $get_widget[ 'center2' ], 'center2' ); ?> 
-              <?php taoh_all_reads_widget( $get_widget[ 'center3' ], 'center3' ); ?> 
+              <?php taoh_all_reads_widget( $get_widget[ 'center1' ], 'center1' ); ?>
+              <?php taoh_all_reads_widget( $get_widget[ 'center2' ], 'center2' ); ?>
+              <?php taoh_all_reads_widget( $get_widget[ 'center3' ], 'center3' ); ?>
               <?php //central_widget3(); ?>
-              
+
               <?php
                   if($total < 1 ) { ?>
                       <p>No results found!</p>
                   <?php	} else { ?>
                     <h4 class="session_title ml-3"><span>LATEST ARTICLES</span></h4>
-                      <?php 
+                      <?php
                           foreach ($list as $blog ){
                             if ( ! isset( $blog['blurb']['image'][0] ) || ! $blog['blurb']['image'][0] || stristr( $blog['blurb']['image'][0], 'images.unsplash.com' ) ) $blog['blurb']['image'][0] = TAOH_CDN_PREFIX."/images/igcache/".urlencode( taoh_title_desc_decode($blog['title']) )."/900_600/blog.jpg";
                       ?>
@@ -85,7 +85,7 @@ taoh_metrics_call_for_reads($trending_bar);
                             <a href="<?php echo taoh_blog_link(slugify2($blog['title'])."-".$blog['conttoken']); ?>" rel="bookmark">
                               <img class="title-hover" src="<?php echo $blog['blurb']['image'][0]; ?>" alt="<?php echo $blog['blurb']['image'][0]; ?>">
                             </a>
-                          </div>                
+                          </div>
                           <div class="mt-2 descrip claimedRight">
                             <?php echo html_entity_decode($blog['blurb']['description']); ?>
                           </div>
@@ -97,9 +97,9 @@ taoh_metrics_call_for_reads($trending_bar);
                       <div>
                           <hr class="hr hr-blurry" />
                       </div>
-                      <?php } ?> 
-            </div> 
-                  <?php } ?>   
+                      <?php } ?>
+            </div>
+                  <?php } ?>
             <div class="col-lg-12 m-4" id="pagination"></div>
           </div>
           <div class="col-lg-4 m-15px-tb border-left">
@@ -117,7 +117,7 @@ taoh_metrics_call_for_reads($trending_bar);
             </div>
             <div class="border-bottom">
                 <?php taoh_all_reads_widget( $get_widget[ 'right2' ], 'right2' ); ?>
-            </div>           
+            </div>
             <section id="sticky">
                 <div class="border-bottom">
                     <?php taoh_all_reads_widget( $get_widget[ 'right_ad3' ], 'right_ad3' ); ?>
@@ -172,7 +172,7 @@ taoh_metrics_call_for_reads($trending_bar);
     }
   }
   //Trending Bar End
-  
+
 $('.claimedRight').each(function (f) {
 
     var newstr = $(this).text().substring(0,250)+'....';

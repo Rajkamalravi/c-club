@@ -260,8 +260,8 @@ function get_networking_local_room_data($data)
         'club' => array(
             'title' => $title,
             'description' => 'Welcome to the Global ' . TAOH_SITE_NAME_SLUG . ' Connex, a social group for professionals from all over the world! This is a place where you can connect with other professionals to advance your career, learn about new opportunities, and share your own insights and expertise.<br /><br />
-                Whether you are just starting out in your career or you are a seasoned veteran, you are welcome here. We are a friendly and inclusive community of professionals from all areas and backgrounds.<br /><br />                
-                <strong>In our group, you can</strong>:<br /><br />                
+                Whether you are just starting out in your career or you are a seasoned veteran, you are welcome here. We are a friendly and inclusive community of professionals from all areas and backgrounds.<br /><br />
+                <strong>In our group, you can</strong>:<br /><br />
                 Ask questions about career development, job search strategies, and networking.<br />
                 Share your own career journey, advice, and insights.<br />
                 Connect with other professionals who are interested in the same industries and roles as you.<br />

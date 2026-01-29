@@ -10,9 +10,6 @@ $valid_dir_viewer = $taoh_user_is_logged_in && $user_info_obj->profile_complete 
 ?>
 
 <style>
-
-
-
 </style>
 
 <div class="bg-white">
@@ -32,7 +29,4 @@ $valid_dir_viewer = $taoh_user_is_logged_in && $user_info_obj->profile_complete 
 </div>
 
 <?php
-
-
-
 taoh_get_footer();

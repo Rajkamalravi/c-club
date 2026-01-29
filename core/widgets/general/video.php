@@ -1,11 +1,11 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.css">
-<?php if($data){ 
+<?php if($data){
 
 $image_id = taoh_get_youtubeId($data);
 
-//$image = explode('https://youtu.be/',$data)[1]; 
+//$image = explode('https://youtu.be/',$data)[1];
 //$image_id = explode('?',$image)[0];
-//$image_id = 'DAl3dbTnAgw';   
+//$image_id = 'DAl3dbTnAgw';
 ?>
 <div class="company-details-panel mb-30px" id="company-videos">
     <div class="pt-3 video-box">

@@ -1,5 +1,5 @@
 <?php
-taoh_get_header(); 
+taoh_get_header();
 
 
 $today = date('Y-m-d');
@@ -24,13 +24,13 @@ if(isset( $conttoken ) && $conttoken != 'stlo'){
     // $taoh_vals[ 'cache_name' ] = $cache_name;
     // $taoh_vals[ 'cache' ][ 'name' ] = $cache_name;
     ksort($taoh_vals);
-    
+
     //echo $taoh_vals['cache']['name'];exit();
     //print_r($taoh_vals);taoh_exit();
     // echo taoh_apicall_get_debug($url, $taoh_vals);taoh_exit();
     $response = json_decode(taoh_apicall_get($url, $taoh_vals), true);
     $nl_response = $response['output'];
-    // echo "<pre>"; print_r($nl_response); echo "</pre>"; 
+    // echo "<pre>"; print_r($nl_response); echo "</pre>";
     $title = (isset($nl_response['title']))?taoh_title_desc_decode($nl_response['title']):'';
     $subtitle = (isset($nl_response['subtitle']))?taoh_title_desc_decode($nl_response['subtitle']):'';
     $description = (isset($nl_response['description']))?taoh_title_desc_decode($nl_response['description']):'';

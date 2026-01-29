@@ -15,7 +15,7 @@
     <meta name="item-name" content="<?php echo ( defined( 'TAO_PAGE_TITLE' ) ) ?  TAO_PAGE_TITLE:TAOH_SITE_TITLE;  ?>"/>
     <?php echo ( defined( 'TAO_PAGE_KEYWORDS' )  && TAO_PAGE_KEYWORDS ) ? '<meta name="keywords" content="'.TAO_PAGE_KEYWORDS.'"/>':''; ?>
     <meta name="msapplication-config" content="none" />
-    <?php echo ( defined( 'TAO_PAGE_CANONICAL' ) ) ? TAO_PAGE_CANONICAL:''; ?>    
+    <?php echo ( defined( 'TAO_PAGE_CANONICAL' ) ) ? TAO_PAGE_CANONICAL:''; ?>
     <?php echo ( defined( 'TAO_PAGE_TYPE' ) ) ? '<meta name="page-type" content="'.TAO_PAGE_TYPE.'"/>':''; ?>
     <?php echo ( defined( 'TAO_PAGE_CATEGORY' ) ) ? '<meta name="page-category-name" content="'.TAO_PAGE_CATEGORY.'"/>':''; ?>
     <meta name="parsely-title" content="<?php echo ( defined( 'TAO_PAGE_TITLE' ) ) ?  TAO_PAGE_TITLE:TAOH_SITE_TITLE;  ?>" />
@@ -83,7 +83,7 @@
       var _taoh_plugin_name = '<?php echo TAOH_TEMP_SITE_URL; ?>';
     </script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"></script>  
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"></script>
 	  <script src="https://cdn.jsdelivr.net/npm/tom-select@2.0.2/dist/js/tom-select.complete.min.js"></script>
     <script type="text/javascript" src="<?php echo TAOH_CDN_JS_PREFIX; ?>/taoh.js"></script>
     <script type="text/javascript" src="<?php echo TAOH_CDN_JS_PREFIX; ?>/hires.js"></script>

@@ -1,4 +1,4 @@
-<?php 
+<?php
 $taoh_user_is_logged_in = taoh_user_is_logged_in() ?? false;
 $user_info_obj = taoh_user_all_info();
 $valid_user = isset($user_info_obj->profile_complete) ? (bool) $user_info_obj->profile_complete : false;
@@ -60,7 +60,7 @@ $current_ticket_type = array_values($current_ticket_types)[0];
 // echo "Current Ticket Type : <pre>"; print_r($current_ticket_type); echo "</pre>";
 
 // echo 'eventtoken : '.$eventtoken."===#".urldecode($eventhall).'#==='.$hall_id.'==='.crc32($eventhall);
-taoh_get_header(); 
+taoh_get_header();
 ?>
 <style>
     #search_halls {
@@ -83,7 +83,7 @@ taoh_get_header();
                         <li class="nav-item">
                             <a href="<?php echo TAOH_SITE_URL_ROOT; ?>">Home</a>
                             <svg xmlns="http://www.w3.org/2000/svg" height="19px" viewBox="0 0 24 24" width="19px" fill="#000000"><path d="M0 0h24v24H0V0z" fill="none"></path><path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6-6-6z"></path></svg>
-                        </li>                            
+                        </li>
                     </ul>
 
                     <div class="d-flex align-items-start flex-column flex-lg-row py-3" style="gap: 9px;">
@@ -101,7 +101,7 @@ taoh_get_header();
                         <!-- <button type="button" class="e-d-v2-btn btn btn-success lh-1 py-2">
                             LIVE NOW! Click to Join
                         </button> -->
-                        
+
                     </div>
 
                 </div>
@@ -110,19 +110,19 @@ taoh_get_header();
             <!-- carousel start -->
             <div class="container exhibitor-carousel-con pt-4" id="exhibitor_banner_container">
                 <div id="hall_banner_image" class="carousel slide exhibitor-carousel" data-ride="carousel">
-                    
+
                 </div>
             </div>
             <!-- carousel end -->
 
             <div class="container">
                 <div class="exh-d-v2-left flex-grow-1 py-5 px-md-3">
-                  
+
                     <div class="flex-grow-1 d-flex align-items-center" style="gap: 12px;">
                         <!-- logo  -->
                         <img class="c-v2-img d-none" src="<?php echo TAOH_SITE_URL_ROOT;?>/assets/images/exh-v2-3.png" alt="speaker logo">
 
-                        <div class="flex-grow-1 d-flex align-items-start flex-column flex-lg-row py-3" style="gap: 9px;"> 
+                        <div class="flex-grow-1 d-flex align-items-start flex-column flex-lg-row py-3" style="gap: 9px;">
                             <div class="flex-grow-1">
                                 <h6 class="c-v2-name" id="hall_title"></h6>
                             </div>
@@ -141,10 +141,10 @@ taoh_get_header();
                     <br>
 
                     <div class="hall-list-container mx-auto tab-pane " id="hall_details_list" style="max-height: unset;">
-                        
+
                     </div>
 
-                   
+
                 </div>
             </div>
 
@@ -444,7 +444,7 @@ taoh_get_header();
                             content += `<div class="g-overlay-con">
                                         <div class="n-hall-list-bg d-md-none" style="background-image: url('${spk_img}');"></div>
                                         <div class="glass-overlay d-md-none"></div>
-                                        <img class="n-hall-list-pic" 
+                                        <img class="n-hall-list-pic"
                                         src="${spk_img}" alt="">
                                     </div>`;
 
@@ -596,7 +596,7 @@ taoh_get_header();
 
                             <div class="p-3 px-lg-5 d-flex" style="gap: 12px; flex: 1;">
                                 <div class="d-flex flex-column flex-md-row" style="gap: 16px; flex: 1;">
-                                    
+
 
                                     <div class="g-overlay-con">
                                             <div class="n-hall-list-bg d-md-none" style="background-image: url(${v.exh_logo})"></div>
@@ -622,7 +622,7 @@ taoh_get_header();
                                         </div>
 
                                         <div class="d-flex align-items-center justify-content-between flex-wrap my-2" style="flex: 1; gap: 12px;">
-                                            <div class="d-flex flex-column" style="gap:3px;">    
+                                            <div class="d-flex flex-column" style="gap:3px;">
                                                 <div class="d-flex align-items-center mb-1" style="gap: 10px;">
                                                     <h6 class="n-exh-name mr-2">${taoh_desc_decode_new(v.exh_session_title)}</h6>`;
 
@@ -648,10 +648,10 @@ taoh_get_header();
                             content += ` </div>
                                                 <!-- <a href="#" class="site-link">${exhibitorWebsiteUrl != '' ? exhibitorWebsiteUrl : 'javascript:void(0)'}</a> -->
                                             </div>
-                                        
+
                                             <div class="mr-lg-5 d-flex align-items-center" style="gap: 6px;">
                                                 <a target="_blank" data-metrics="view_exhibitor" href="${_taoh_site_url_root}/events/exhibitors/${v.ID}/${eventtoken}" class="btn bor-btn metrics_action">More Info</a>
-                                            </div> 
+                                            </div>
                                         </div>
                                     </div>
                                 </div>

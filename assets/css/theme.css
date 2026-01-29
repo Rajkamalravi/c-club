@@ -24,13 +24,13 @@ body.dark-mode {
 }
 
 .mobile-app-dark{
-   background-color: var(--bg-dark); 
+   background-color: var(--bg-dark);
 }
-.club .mobile-app-dark, 
+.club .mobile-app-dark,
 .directory .mobile-app-dark,
 .groups .mobile-app-dark
 {
-   background-color: var(--bg-color); 
+   background-color: var(--bg-color);
 }
 .mobile-app-dark .nav-tabs .nav-item {
     margin: 0 15px;
@@ -58,7 +58,7 @@ body, .navbar, .footer {
 /* a , p, li, h1, h2, h3, h4, h5, h6, strong*/
 .text-black-50 {
   color: var(--link-color);
-} 
+}
 
 /* .nav-link.active{
     color: var(--active-color) !important;
@@ -69,7 +69,7 @@ body, .navbar, .footer {
 }
 
 .circle-highlight .center-circle,.circle-highlight .main-circle {
-    background-color: #3396CC !important;  
+    background-color: #3396CC !important;
 }
 
 .club-section {
@@ -106,14 +106,14 @@ body.dark-mode .main-hero .hero-list * {
   color: var(--white);
 }
 
-body.dark-mode .club .section-title, 
-body.dark-mode .club p, 
-body.dark-mode .club h1, 
-body.dark-mode .club h2, 
-body.dark-mode .club h3, 
-body.dark-mode .club h4, 
-body.dark-mode .club h5, 
-body.dark-mode .club h6, 
+body.dark-mode .club .section-title,
+body.dark-mode .club p,
+body.dark-mode .club h1,
+body.dark-mode .club h2,
+body.dark-mode .club h3,
+body.dark-mode .club h4,
+body.dark-mode .club h5,
+body.dark-mode .club h6,
 body.dark-mode .club a
 {
   color: var(--text-color);
@@ -136,13 +136,13 @@ body.dark-mode .club .event-type svg path {
   fill: var(--text-color);
 }
 /* save icon svg */
-body.dark-mode .jobs_like svg path, 
-body.dark-mode .events_like svg path, 
+body.dark-mode .jobs_like svg path,
+body.dark-mode .events_like svg path,
 body.dark-mode .asks_like svg path {
     stroke: var(--text-color);
 }
-body.dark-mode .jobs_like svg.already-saved path, 
-body.dark-mode .events_like svg.already-saved path, 
+body.dark-mode .jobs_like svg.already-saved path,
+body.dark-mode .events_like svg.already-saved path,
 body.dark-mode .asks_like svg.already-saved path
 {
     fill: var(--text-color);
@@ -161,9 +161,9 @@ body.dark-mode .directory .profile-wrapper {
 body.dark-mode .directory .profile-wrapper .profile .name a {
   color: var(--text-color) !important;
 }
-body.dark-mode .directory .profile-wrapper .profile .title, 
+body.dark-mode .directory .profile-wrapper .profile .title,
 body.dark-mode .directory .profile-wrapper .profile .location,
-body.dark-mode .directory .profile-wrapper .bottom-items .skills, 
+body.dark-mode .directory .profile-wrapper .bottom-items .skills,
 body.dark-mode .directory .profile-wrapper .bottom-items .keywords
 {
   color: var(--sub-text-color);
@@ -216,15 +216,15 @@ body.dark-mode .events-hall
     background-color: var(--bg-dark);
 }
 body.dark-mode .new-events .event-container,
-body.dark-mode .events-hero-bg 
+body.dark-mode .events-hero-bg
 {
     background-color: var(--bg-color);
 }
-body.dark-mode .new-events .event-title a, 
+body.dark-mode .new-events .event-title a,
 body.dark-mode .new-events .event-location,
-body.dark-mode .new-events .event-type, 
+body.dark-mode .new-events .event-type,
 body.dark-mode .new-events .event-price,
-body.dark-mode .events-hero-bg .section-title 
+body.dark-mode .events-hero-bg .section-title
 {
     color: var(--text-color);
 }
@@ -239,7 +239,7 @@ body.dark-mode .new-event-detail {
     background-color: var(--bg-dark);
 }
 body.dark-mode .event-new-flow .event-title,
-body.dark-mode .new-event-detail .info-container .info-card .info-title, 
+body.dark-mode .new-event-detail .info-container .info-card .info-title,
 body.dark-mode .event-new-flow .event-day
 {
   color: var(--text-color);
@@ -307,11 +307,11 @@ body.dark-mode .new-exh-list {
   background-image: linear-gradient(var(--bg-color), var(--bg-color)), linear-gradient(90deg, #1897C9 0%, #D3D3D3 75%, #1897C9 100%);
 }
 body.dark-mode .new-agenda-list,
-body.dark-mode .new-spk-con .new-spk-list 
+body.dark-mode .new-spk-con .new-spk-list
 {
     background-color: var(--bg-color);
 }
-body.dark-mode .new-agenda-list .title, 
+body.dark-mode .new-agenda-list .title,
 body.dark-mode .new-agenda-list .name-role,
 body.dark-mode .new-agenda-list .name-role span,
 body.dark-mode .new-agenda-list .desc-text,
@@ -324,15 +324,15 @@ body.dark-mode .divider-container .divider-text
 body.dark-mode .divider-container .left-line, body.dark-mode .divider-container .right-line {
  border-color: var(--text-color);
 }
-body.dark-mode .new-spk-con .new-spk-list .bor-btn, 
-body.dark-mode .new-exh-list .bor-btn, 
+body.dark-mode .new-spk-con .new-spk-list .bor-btn,
+body.dark-mode .new-exh-list .bor-btn,
 body.dark-mode .new-agenda-list .bor-btn
 {
   color: var(--text-color);
   border-color: var(--text-color);
 }
-body.dark-mode .new-spk-con .new-spk-list .sp-name, 
-body.dark-mode .new-spk-con .new-spk-list .sp-info 
+body.dark-mode .new-spk-con .new-spk-list .sp-name,
+body.dark-mode .new-spk-con .new-spk-list .sp-info
 {
   color: var(--text-color);
 }
@@ -396,10 +396,10 @@ body.dark-mode .leads-raffle .dwn-btn, body.dark-mode .detail-hall .add-comment-
 body.dark-mode .post-text {
     color: var(--text-color);
 }
-body.dark-mode .job-listing-block-row p, 
-body.dark-mode .job-listing-block-row a, 
-body.dark-mode .job-listing-block-row span, 
-body.dark-mode .job-listing-block-row h3 
+body.dark-mode .job-listing-block-row p,
+body.dark-mode .job-listing-block-row a,
+body.dark-mode .job-listing-block-row span,
+body.dark-mode .job-listing-block-row h3
 {
     color: var(--text-color);
 }
@@ -455,9 +455,9 @@ body.dark-mode .td-post-small-box a:hover{
   color:#fff;
 }
 body.dark-mode .blog-listing .js-title,
-body.dark-mode .blog-listing h3 a, 
-body.dark-mode .blog-listing .meta-data, 
-body.dark-mode .blog-listing .card-body h3, 
+body.dark-mode .blog-listing h3 a,
+body.dark-mode .blog-listing .meta-data,
+body.dark-mode .blog-listing .card-body h3,
 body.dark-mode .td-post-content *,
 body.dark-mode .breadcrumb-list a,
 body.dark-mode h3.sm-title a,

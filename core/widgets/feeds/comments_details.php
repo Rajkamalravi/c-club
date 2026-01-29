@@ -3,7 +3,7 @@ $conttoken = $data['conttoken'];
 if ( taoh_user_is_logged_in() ){
   //$api = TAOH_SITE_CONTENT_GET."?mod=core&token=".taoh_get_dummy_token(1)."&conttoken=".$conttoken."&conttype=blog&type=comment&ops=get&cacheo=0&cache_remove=1";
   //$req = file_get_contents($api);
-  $taoh_call = 'core.content.get';  
+  $taoh_call = 'core.content.get';
   $taoh_vals = array(
     'mod' => 'core',
     'token'=>taoh_get_dummy_token(1),
@@ -16,7 +16,7 @@ if ( taoh_user_is_logged_in() ){
   // $taoh_vals[ 'cfcache' ] = $cache_name;
   // $taoh_vals[ 'cache_name' ] = $cache_name;
   ksort($taoh_vals);
-  
+
 
   //echo taoh_apicall_get_debug($taoh_call, $taoh_vals);die;
   $comments = json_decode(taoh_apicall_get($taoh_call, $taoh_vals,'',1),true);
@@ -38,7 +38,7 @@ if ( taoh_user_is_logged_in() ){
             <div class="">
               <div class="card-header" id="headingOne">
                 <!-- <button style="box-shadow: none !important;" class="btn btn-link fs-15" data-toggle="collapse" data-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
-                  
+
                   <i class="la la-angle-down collapse-icon"></i>
                 </button> -->
                 <h4 class="pb-3 fs-20" style="display:none;"><span class="get_comment<?php echo $conttoken; ?>"><?php echo $total; ?></span> <?php echo $data['label'].'(s)'; ?></h4>
@@ -47,7 +47,7 @@ if ( taoh_user_is_logged_in() ){
                 <div class="card-body scrollable-div" id="comments<?php echo $conttoken; ?>">
                 <?php
                     if (isset($comment_array) && is_array($comment_array)) {
-                    foreach ($comment_array as $comment) { 
+                    foreach ($comment_array as $comment) {
 
                     if (isset($comment['avatar_image']) && $comment['avatar_image']) {
                       $avatar_image = $comment['avatar_image'];

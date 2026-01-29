@@ -3,16 +3,16 @@
    if (!defined('TAO_PAGE_DESCRIPTION')) {define('TAO_PAGE_DESCRIPTION', "Browse our comprehensive events list featuring a diverse range of event opportunities across industries. Find the perfect event that matches your skills and interests, chat with recruiters and easily apply through our user-friendly platform at " . TAOH_SITE_NAME_SLUG . ". Start your event search today and take the next step in your career.");}
    if (!defined('TAO_PAGE_KEYWORDS')) {define('TAO_PAGE_KEYWORDS', "Event openings at " . TAOH_SITE_NAME_SLUG . ", Employment opportunities at " . TAOH_SITE_NAME_SLUG . ", Event listings at " . TAOH_SITE_NAME_SLUG . ", Event board at " . TAOH_SITE_NAME_SLUG . ", Event search platform at " . TAOH_SITE_NAME_SLUG . ", Event finder at " . TAOH_SITE_NAME_SLUG . ", Event database at " . TAOH_SITE_NAME_SLUG . ", Event search engine at " . TAOH_SITE_NAME_SLUG . ", Event match at " . TAOH_SITE_NAME_SLUG . ", Event applications at " . TAOH_SITE_NAME_SLUG . ", Apply for events at " . TAOH_SITE_NAME_SLUG . ", Event search website at " . TAOH_SITE_NAME_SLUG . ", Find a event at " . TAOH_SITE_NAME_SLUG . ", Event seekers at " . TAOH_SITE_NAME_SLUG . ", Event alerts at " . TAOH_SITE_NAME_SLUG . ", Explore event opportunities at " . TAOH_SITE_NAME_SLUG);}
    define('TAO_PAGE_ROBOT', 'noindex, nofollow');
-   
+
    taoh_get_header_for_events_landing();
-   
-   
+
+
    $taoh_user_is_logged_in = taoh_user_is_logged_in() ?? false;
    $user_info_obj = $taoh_user_is_logged_in ? taoh_user_all_info() : null;
-   
+
    $valid_user = $taoh_user_is_logged_in && $user_info_obj->profile_complete;
-   
-   
+
+
    if(EVENT_DEMO_SITE)
    $current_app ='events';
    else
@@ -20,18 +20,18 @@
    $app_data = taoh_app_info($current_app);
    $taoh_user_vars = $data = taoh_user_all_info();
    $profile_complete = (isset($data->profile_complete) && $data->profile_complete) ? $data->profile_complete : 0;
-   
+
    $empty = 0;
    $ptoken = TAOH_API_TOKEN_DUMMY;
    if (taoh_user_is_logged_in()) {
        $ptoken = $user_ptoken = $data->ptoken;
    }
-   
+
    $share_link = $_SERVER['REQUEST_SCHEME'] . "://" . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];
    define('TAO_PAGE_TYPE', ($app_data?->slug ?? ''));
    $log_nolog_token = (taoh_user_is_logged_in()) ? $ptoken : TAOH_API_TOKEN_DUMMY;
    /* check liked or not */
-   
+
    $liked_arr = array();
    $rsvped_data = array();
    if (taoh_user_is_logged_in()) {
@@ -43,12 +43,12 @@
        );
        //echo taoh_apicall_get_debug($taoh_call, $taoh_vals);exit();
        $get_liked = json_decode(taoh_apicall_get($taoh_call, $taoh_vals), true);
-   
+
        if (isset($get_liked['conttoken_liked'])) {
            $liked_arr = $get_liked['conttoken_liked'];
        }
        /* End check liked or not */
-   
+
        /* Get RSVP list */
        //https://ppapi.tao.ai/events.user.rsvp?mod=core&token=C3kONdHX&ops=events
        $taoh_call = "events.user.rsvp";
@@ -68,7 +68,7 @@
        }
        /* End Get RSVP list */
    }
-   
+
    ?>
 <style>
    /* .ts-control{
@@ -134,7 +134,7 @@
    height: 92px !important;
    }
    .form-row {
- 
+
   box-shadow: 0px 5px 16px 1px rgba(0, 0, 0, .1);
   display: flex;
     flex-wrap: wrap;
@@ -152,9 +152,9 @@
       <h4 class="text-center px-3">Discover Live & Upcoming Events Near You</h4>
    </div>
    <?php
-    
+
         include('events_tao_search.php');
-    
+
     ?>
       <!----END ROW--->
       <div class="container pb-5">
@@ -165,7 +165,7 @@
       <div class="col-sm-3"></div>
       <div class="col-sm-3"></div>
         </div>
-    
+
       </form>
    </div>
 </div>
@@ -186,7 +186,7 @@
       <div class="d-flex justify-content-end mt-2" >
          <a id="recent_all" href="<?php echo TAOH_SITE_URL_ROOT . "/all/near"; ?>" class="v-events mt-3">View all Events</a>
       </div>
-           
+
    </div>
    <!-----------------------------------------POPULAR EVENTS----------------------------->
    <div class="bg-even py-5">
@@ -198,11 +198,11 @@
          <div class="d-flex justify-content-end mt-2" >
             <a id="popular_all" href="<?php echo TAOH_SITE_URL_ROOT . "/all/popular"; ?>" class="v-events mt-3">View all Events</a>
          </div>
-           
+
       </div>
    </div>
    <!-----------------------------------------FREE EVENTS----------------------------->
-   
+
    <div class="container pb-5 mt-4">
       <div class="d-flex justify-content-between align-items-end flex-wrap mb-4" style="gap: 12px;">
          <p class="event-info">Top Free Events</p>
@@ -246,7 +246,7 @@
 <script>
    const isLoggedIn = <?= json_encode($taoh_user_is_logged_in); ?>;
    const isValidUser = <?= json_encode($valid_user); ?>;
-   
+
    let loaderArea = $('.listloaderArea');
    let detailloaderArea = $('#detailloaderArea');
    let searchQuery = $('#searchQuery');
@@ -287,21 +287,21 @@
    var user_ptoken = '<?php echo $ptoken; ?>';
    const rsvped_data = <?php echo json_encode($rsvped_data); ?>;
    const rsvp_find = new Array();
-   
+
    let _taoh_static_ajax_token = '<?php echo taoh_get_dummy_token(1); ?>';
-   
+
    loader(true, loaderArea);
    $('#dateRangeInputs').hide();
    $('.no_result_div').hide();
    //Initial run
-   
+
    $(document).ready(function () {
-   
+
        $('[data-toggle="tooltip"]').tooltip();
-   
+
        rsvped_get();
        $('.ts-control').css('height', '37px');
-   
+
        <?php if(TAOH_INTAODB_ENABLE) { ?>
        console.log('list ajax start time:', new Date().getTime());
        geteventlistdata();
@@ -309,11 +309,11 @@
        taoh_events_init();
        <?php } ?>
    })
-   
+
    $('body').tooltip({
        selector: '[data-toggle="tooltip"]'
    });
-   
+
    function delete_events_into() {
        getIntaoDb(dbName).then((db) => {
            let dataStoreName = EVENTStore;
@@ -334,11 +334,11 @@
            console.log('Error in deleting data store');
        });
    }
-  
+
    document.addEventListener("DOMContentLoaded", function () {
        const fromDateInput = document.getElementById('from_date');
        const toDateInput = document.getElementById('to_date');
-   
+
        if (fromDateInput && toDateInput) {
            fromDateInput.addEventListener('change', function () {
                // Get the selected from date
@@ -346,7 +346,7 @@
                // Set the minimum selectable date for the 'To' date
                toDateInput.min = fromDate.toISOString().split("T")[0];
            });
-   
+
            toDateInput.addEventListener('change', function () {
                // Get the selected to date
                const toDate = new Date(toDateInput.value);
@@ -355,8 +355,8 @@
            });
        }
    });
-   
-   
+
+
    const postdateSelect = document.getElementById('postdate');
    if (postdateSelect) {
        postdateSelect.addEventListener('change', function () {
@@ -369,8 +369,8 @@
            }
        });
    }
-   
-   
+
+
    function searchFilter() {
        currentPage = 1;
        var queryString = $('#searchFilter').serialize();
@@ -396,13 +396,13 @@
        taoh_events_init('', event_type);
        <?php } ?>
    }
-   
+
    function geteventlistdata(queryString, event_type_get = '') {
        // Open or create a database
        getIntaoDb(dbName).then((db) => {
            var currpage = currentPage - 1;
            event_type = event_type_get;
-   
+
            var event_list_hash = search + geohash + queryString + currpage + itemsPerPage + postDate + from_date + to_date + event_type;
            event_list_name = 'events_' + crc32(event_list_hash);
            console.log(event_list_name);
@@ -422,7 +422,7 @@
                    render_events_template(eventstoredata, eventlistAreaFree, 'free');
                    render_events_template(eventstoredata, eventlistAreaSoon, 'soon');
 
-                  
+
                    console.log('ifff');
                } else {
                    get_slug = false;
@@ -433,12 +433,12 @@
                    console.log('else');
                }
            }
-   
+
        }).catch((error) => {
            console.log('Geteventlistdata Error:', error);
        });
    }
-   
+
    function show_pagination(holder) {
        return $(holder).pagination({
            items: totalItems,
@@ -467,7 +467,7 @@
            }
        });
    }
-   
+
    function clearBtn(type) {
        loader(true, loaderArea);
        if (type == "search") {
@@ -491,7 +491,7 @@
        taoh_events_init('', event_type);
        <?php } ?>
    }
-   
+
    function taoh_events_init(queryString = "", event_type_get = "") {
         loader(true, loaderArea);
        search = $('#query').val();
@@ -514,7 +514,7 @@
        postDate = $('#postdate').val();
        from_date = $('#from_date').val();
        to_date = $('#to_date').val();
-    
+
        var data = {
            'taoh_action': 'events_get_tao',
            'ops': 'list',
@@ -528,7 +528,7 @@
            'filter_type': '',
            'filters': queryString,
        };
-   
+
        jQuery.get(_taoh_site_ajax_url, data, function (listresponse) {
            listresponse = parseJSONSafely(listresponse);
            console.log('listEvents :' , listresponse);
@@ -556,7 +556,7 @@
            console.log("Network issue!");
        })
    }
-   
+
    function rsvped_get() {
        getIntaoDb(dbName).then((db) => {
            const dataStoreName = store_name;
@@ -577,7 +577,7 @@
            };
        });
    }
-   
+
    function date_read(date, locality, timezone) {
        let options = {
            weekday: 'short',
@@ -586,28 +586,28 @@
            hour: 'numeric',
            minute: "numeric"
        };
-   
+
        if (locality === 0) {
-   
+
        } else {
            // Use a fallback mechanism for timezone
            timezone = timezone || getCookie('client_time_zone') || Intl.DateTimeFormat().resolvedOptions().timeZone;
        }
-   
+
        if (!isValidTimezone(timezone)) timezone = 'UTC';
-   
+
        options.timeZone = timezone;
-   
+
        let output = new Date(date);
        return output.toLocaleDateString('en-US', options).toUpperCase();
    }
-   
+
    function convertToSlug(Text) {
        return Text.toLowerCase()
            .replace(/[^\w ]+/g, '')
            .replace(/ +/g, '-');
    }
-   
+
    function isEventTokenPresent(eventToken) {
        return rsvped_data.some(item => item.eventtoken === eventToken);
    }
@@ -615,11 +615,8 @@
    function render_events_template(data, slot, type) {
        slot.empty();
        //$('.v-events').hide();
-       
+
        $('.no_result_div').hide();
-   
-            
-        
             var res = {};
            if(type == 'recent'){
                var res = data.output.list.near;
@@ -630,7 +627,7 @@
            }else if(type == 'soon'){
                var res = data.output.list.soon;
            }
-           
+
            if (!get_slug) {
                var result = format_object_event(res);
                var final = result.output.list;
@@ -641,8 +638,8 @@
 
            if (data.output === false || data.success === false || final.length === 0) {
                 slot.append("");
-                
-        
+
+
                 var noresult = `<h1>We couldn't find exactly what you were looking for</h1>
                 <p>It seems your search didn't yield any results.<br> Don't worry, we can help you find what you need.</p>
                 <ul class="options">
@@ -657,19 +654,16 @@
                                     <div class="noresult_html">${noresult}</div>
                                 </div>
                             </div>`
-                
+
                 //console.log('---eventNodata---------',noresult)
                 slot.html(htmll);
                 $('.no_result_div').show();
                 //alert('#'+type+'_all')
                 $('#'+type+'_all').hide();
 
-                
+
                 return false;
             }
-
-
-       
        //  isLoggedIn = false;
 
       //  console.log('---result---------',final)
@@ -686,7 +680,7 @@
            } else {
                additive = v.source;
            }
-   
+
            let user_timezone;
            if (isLoggedIn) {
                user_timezone = '<?= taoh_user_timezone(); ?>';
@@ -696,27 +690,27 @@
                user_timezone = convertDeprecatedTimeZone(clientTimeZone || Intl.DateTimeFormat().resolvedOptions().timeZone);
            }
            if (!isValidTimezone(user_timezone)) user_timezone = 'UTC';
-   
+
            arr_cont.push(v.eventtoken.toString());
-   
+
            v.title = ucfirst(v.title);
 
-   
+
            // var company_name_get = v.company.length && v.company[0] ? v.company[0].name : '';
-   
+
            var liked_check = get_liked_check(v.eventtoken, v.conttoken);
            var source = v.source;
-   
+
            let is_rsvp_done = false;
            let event_live_state;
-   
+
            let btn_text = 'Register Now';
            let btn_class = 'btn-primary';
            let btn_icon = '<i class="fa fa-ticket mr-2" aria-hidden="true"></i>';
            let event_url = `${source}<?php echo  "/" . ($app_data?->slug ?? '') . "/d/"; ?>${convertToSlug(taoh_title_desc_decode(v.title))}-${v.eventtoken}?con=${v.conttoken}`;
-   
+
            let rsvped_token = 'rsvp_status_' + user_ptoken + '_' + v.eventtoken;
-           
+
            if (isLoggedIn) {
                if (jQuery.inArray(rsvped_token, rsvp_find) !== -1 || isEventTokenPresent(v.eventtoken)) {
                    is_rsvp_done = true;
@@ -745,7 +739,7 @@
                btn_class = 'btn-primary';
                btn_icon = '<i class="fa fa-ticket mr-2" aria-hidden="true"></i>';
            }
-   
+
            /*let rsvp_link;
            if (isLoggedIn) {
                rsvp_link = `<a href="${event_url}" data-metrics="rsvp" class="btn d-flex align-items-center click_metrics ${btn_class}"
@@ -755,15 +749,15 @@
            }*/
            rsvp_link = `<a href="${event_url}" data-metrics="rsvp" class="btn d-flex align-items-center click_metrics ${btn_class}"
                            style="width: fit-content;">${btn_icon} <span>${btn_text}</span></a>`;
-        
+
            var no_image = '<?php echo TAOH_SITE_URL_ROOT . "/assets/images/event.jpg" ?>';
            var img = newavatardisplay(v.user_avatar, v.avatar_image, '<?php echo TAOH_OPS_PREFIX;?>');
-   
+
            let event_type = v.event_type ? (v.event_type).toLowerCase() : 'virtual';
-   
+
            const costArray = v.ticket_types.map(ti => ti.price === 'paid' ? ti.cost : 0);
            const minCost = Math.min(...costArray);
-   
+
            let event_timestamp_start_data = {
                utc_datetime: v.utc_start_at,
                local_datetime: v.local_start_at,
@@ -771,9 +765,9 @@
                locality: v.locality
            };
            let event_start_at = format_event_timestamp(event_timestamp_start_data, user_timezone);
-   
+
            if (data.output.total == 1 && search =='') {
-               window.location.href = event_url; 
+               window.location.href = event_url;
            } else {
            var single_event = '';
            if(data.output.total == 1 && search !='')
@@ -799,20 +793,20 @@
                                </svg>
                                <span>${event_start_at} </span>
                            </div>
-                           
+
                        </div>
-   
+
                       <h4 class="event-title"><a href="${event_url}" data-metrics="view" class="click_metrics">${taoh_title_desc_decode(v.title)}</a></h4>
-   
+
                       <p class="event-location py-2">${event_type != 'virtual' && v.full_location ? newgenerateLocationHTML(v.full_location) : 'Attend Online'}</p>
-   
+
                        <div class="event-price mb-2">
                            <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
                                <path d="M16.0268 0.500011L16.0268 0.500014H16.0249H9.87747C9.30941 0.500014 8.76623 0.72384 8.36704 1.12303L1.12507 8.365C0.291641 9.19842 0.291643 10.5483 1.12507 11.3817L6.61827 16.8749C7.4517 17.7084 8.80159 17.7084 9.63502 16.8749L16.877 9.63297C17.2762 9.23379 17.5 8.6906 17.5 8.12254V1.97098C17.5 1.15635 16.8392 0.496945 16.0268 0.500011ZM12.1069 3.31981C12.4476 2.97911 12.9096 2.7877 13.3915 2.7877C13.8733 2.7877 14.3354 2.97911 14.6761 3.31981C15.0168 3.66051 15.2082 4.1226 15.2082 4.60443C15.2082 5.08625 15.0168 5.54834 14.6761 5.88904C14.3354 6.22974 13.8733 6.42115 13.3915 6.42115C12.9096 6.42115 12.4476 6.22974 12.1069 5.88904C11.7662 5.54834 11.5748 5.08625 11.5748 4.60443C11.5748 4.1226 11.7662 3.66051 12.1069 3.31981Z" stroke="#212121"></path>
                            </svg>
                         <span>From ${minCost == 0 ? '$0 (free)' : '$' + minCost}</span>
                        </div>
-   
+
                    <div class="type_display event-type mb-2">
                                    ${(event_type == 'in-person') ? `<svg width="19" height="19" viewBox="0 0 19 19" fill="none" xmlns="http://www.w3.org/2000/svg">
                                        <path d="M14.8079 3.56198C15.2836 3.56198 15.7399 3.37434 16.0762 3.04034C16.4126 2.70634 16.6016 2.25334 16.6016 1.78099C16.6016 1.30864 16.4126 0.85564 16.0762 0.52164C15.7399 0.187639 15.2836 0 14.8079 0C14.3322 0 13.876 0.187639 13.5396 0.52164C13.2033 0.85564 13.0143 1.30864 13.0143 1.78099C13.0143 2.25334 13.2033 2.70634 13.5396 3.04034C13.876 3.37434 14.3322 3.56198 14.8079 3.56198ZM11.6579 7.43934C11.6952 7.4245 11.7289 7.40966 11.7662 7.39482L11.1347 9.75091C10.9255 10.5338 11.131 11.3686 11.684 11.966L14.3259 14.8267L15.148 18.0956C15.3087 18.7301 15.9589 19.1197 16.5978 18.9601C17.2368 18.8006 17.6292 18.155 17.4685 17.5205L16.6091 14.1032C16.5381 13.8138 16.3923 13.5504 16.1905 13.3314L14.3408 11.3278L15.062 8.89752L15.4208 9.75091C15.5852 10.1442 15.8879 10.467 16.2727 10.66L17.2705 11.1534C17.8609 11.4466 18.5783 11.2091 18.8735 10.6229C19.1687 10.0366 18.9296 9.32422 18.3392 9.0311L17.5358 8.63409L16.964 7.26866C16.3213 5.74369 14.8192 4.7493 13.1526 4.7493C12.3006 4.7493 11.4598 4.9274 10.6826 5.26876L10.3836 5.39862C9.15423 5.94034 8.21257 6.97183 7.79032 8.23707L7.69316 8.52649C7.48391 9.14983 7.82395 9.82141 8.44799 10.0292C9.07202 10.237 9.75211 9.89933 9.96137 9.2797L10.0585 8.99028C10.2715 8.35581 10.7424 7.84377 11.3552 7.57291L11.6541 7.44305L11.6579 7.43934ZM10.5368 12.4521L9.60264 14.7674L7.38301 16.9713C6.91592 17.4351 6.91592 18.1884 7.38301 18.6522C7.85011 19.1159 8.60867 19.1159 9.07576 18.6522L11.3813 16.3628C11.5532 16.1922 11.6878 15.9881 11.7774 15.7655L12.3193 14.4223L10.7984 12.7749C10.705 12.6747 10.619 12.5671 10.5368 12.4558V12.4521ZM8.23126 10.1702C7.94353 10.0069 7.58106 10.1034 7.41291 10.3891L6.21715 12.4447L4.18435 11.2796C3.61263 10.9531 2.88023 11.146 2.55139 11.7137L0.159872 15.8285C-0.168962 16.3962 0.025349 17.1235 0.597072 17.45L2.66723 18.6373C3.23896 18.9638 3.97136 18.7709 4.30019 18.2032L6.69171 14.0884C6.74777 13.9919 6.78887 13.8954 6.81503 13.7915L8.45172 10.9828C8.61614 10.6971 8.51899 10.3372 8.23126 10.1702Z" fill="#2557A7"/>
@@ -830,20 +824,20 @@
                </div>
            </div>
        </div>
-      
+
        </div>
-   
+
            `);
            }
-   
-       }); 
+
+       });
        if (search) {
                 taoh_metrix_ajax('events', arr_cont);
         }
-   
+
    }
-    
-   
+
+
    function get_liked_check(eventtoken, contstoken = '') {
        if (jQuery.inArray(eventtoken, liked_arr) !== -1) {
            var get_liked = 1;
@@ -853,7 +847,7 @@
        let is_local = localStorage.getItem(app_slug + '_' + eventtoken + '_' + contstoken + '_liked');
        if ((get_liked) || (is_local)) {
            var liked_checks = `<a class="fs-25 mr-2 ml-2 already-saved" style="vertical-align: text-bottom;">
-   
+
    <img src="<?php echo TAOH_SITE_URL_ROOT;?>/assets/images/bookmark-fill.svg" alt="bookmark-saved" class="bookmark-saved" style="width: 18px">
    </a>`;
        } else {
@@ -863,36 +857,36 @@
        }
        //return liked_checks; //RK commented
    }
-   
-   
+
+
    function indx_events_list(eventlistdata) {
        var event_taoh_data = {taoh_data: event_list_name, values: eventlistdata};
        let event_setting_time = new Date();
        event_setting_time = event_setting_time.setMinutes(event_setting_time.getMinutes() + 30);
        var event_setting_timedata = {taoh_ttl: event_list_name, time: event_setting_time};
        obj_data = {[store_name]: event_taoh_data, [TTLStore]: event_setting_timedata};
-       
+
        Object.keys(obj_data).forEach(key => {
            // console.log(key, obj_data[key]);
            IntaoDB.setItem(key, obj_data[key]).catch((err) => console.log('Storage failed', err));
        });
        return false;
    }
-   
-   
+
+
    $(document).on("click", ".event-listing-block-row", function () {
        var eventtoken = $(this).attr("data-conttoken");
        // var event_url = $(this).attr("event-url");
        // var newCanonicalUrl = $(this).attr("data-canonical");
-   
+
        // $(this).addClass('active').siblings().removeClass('active');
-   
+
        save_metrics('events', 'click', eventtoken);
        // window.location.href = event_url;
        //event_detail_execute(eventtoken);
        //updateCanonical(newCanonicalUrl,event_url);
    });
-   
+
    $(document).on("click", ".event_save", function (event) {
        event.stopPropagation();
        if(!isLoggedIn){
@@ -924,7 +918,7 @@
            console.log("Network issue!");
        })
    });
-   
+
    $(document).on("click", ".event_save", function (event) {
        event.stopPropagation(); // Stop the event from propagating to the parent
        if(!isLoggedIn){
@@ -938,9 +932,9 @@
        $('.events_like').find(`[data-cont='${savetoken}']`).parent().addClass("already-saved").removeAttr("style");
        localStorage.setItem(app_slug + '_' + savetoken + '_' + contttoken + '_liked', 1);
        delete_events_into();
-   
+
        save_metrics('events', 'like', contttoken);
-   
+
        var data = {
            'taoh_action': 'event_like_put',
            'eventtoken': savetoken,
@@ -958,7 +952,7 @@
            console.log("Network issue!");
        })
    });
-   
+
    $(document).on("click", ".toggle-link", function (event) {
        event.preventDefault();
        var $this = $(this);
@@ -971,7 +965,7 @@
            $this.text("Show More");
        }
    });
-   
+
    $(document).on('click', '.share_box', function (event) {
        var datatitle = $(this).attr("data-title");
        console.log(datatitle);
@@ -987,10 +981,10 @@
        var tw_share = "https://twitter.com/intent/tweet?text=" + title + "&url=" + share_link;
        var link_share = "https://www.linkedin.com/shareArticle?mini=true&url=" + share_link + "&title=" + title + "&summary=" + desc + "&images=" + image;
        var email_share = "mailto:?subject=I wanted you to see this site&amp;body=Check out this site " + title + share_link;
-   
+
        $("#share_icon").html(`
-   
-   
+
+
    <div class="social-icon-box d-flex text-center" data-ajax="${(dat_ajax)}" data-conttype="<?php echo ($app_data?->slug ?? ''); ?>">
    <a data-gtitle="${(datatitle)}" data-gptoken="${(dataptoken)}" data-gshare="${(datashare)}" data-gconntoken="${(dataconttoken)}" data-social="${(fb_share)}" class="ml-3 icon-element icon-element-sm shadow-sm text-gray hover-y media_share share_count" data-click="facebook" style="background-color:#365899; margin-bottom:10px;cursor:pointer;" target="_blank" title="Share on Facebook">
    <svg focusable="false" class="svg-inline--fa fa-facebook-f fa-w-10" style="color: white;" width="16px" height="16px" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><path fill="currentColor" d="M279.14 288l14.22-92.66h-88.91v-60.13c0-25.35 12.42-50.06 52.24-50.06h40.42V6.26S260.43 0 225.36 0c-73.22 0-121.08 44.38-121.08 124.72v70.62H22.89V288h81.39v224h100.17V288z"></path></svg>
@@ -1010,10 +1004,10 @@
    <input type="text" style="display:none;" class="form-control form--control form--control-bg-gray copys-input" id="copys-input" value="${(share_link)}">
    <div class="copys-btn text-center media_share" data-gptoken="${(dataptoken)}" data-gshare="${(datashare)}" data-gconntoken="${(dataconttoken)}" style="cursor: pointer;"> <i class="fas fa-copy"></i> Copy URL</div>
    `);
-   
+
        $("#exampleModal1").modal('show');
    });
-   
+
    setInterval(function () {
        <?php if(TAOH_INTAODB_ENABLE) { ?>
        checkTTL(event_list_name, store_name);

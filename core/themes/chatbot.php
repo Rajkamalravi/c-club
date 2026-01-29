@@ -1,4 +1,4 @@
-<?php 
+<?php
 $share_link  = $_SERVER['REQUEST_SCHEME']."://".$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'];
 
 $taoh_home_url = ( defined( 'TAOH_PAGE_URL' ) && TAOH_PAGE_URL ) ? TAOH_PAGE_URL:TAOH_SITE_URL_ROOT;
@@ -31,7 +31,7 @@ $ptoken = $data->ptoken; */
                         <!-- <p class="bot-description mb-0">AI-Powered Career Coach assists you with everything around career !</p> -->
                     </div>
                 </div>
-      
+
                 <div class="d-flex align-items-center justify-content-end" style="flex: 1; gap: 2px;">
                     <div class="dropdown text-right">
                         <button class="btn dropdown-toggle text-white py-0" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -79,7 +79,7 @@ $ptoken = $data->ptoken; */
                             </svg>
                         </button>
                     </div>
-                </div> 
+                </div>
             </div>
 
             <div id="sidekick_Form" class="collapse" aria-labelledby="headingOne" data-parent="#accordionExample" style="background-color: transparent;">
@@ -109,7 +109,7 @@ $ptoken = $data->ptoken; */
                             </svg>
                         </button>
                     </div>
-                </div> 
+                </div>
             </div>
 
             <div id="obvious_baba_Form" class="collapse" aria-labelledby="headingOne" data-parent="#accordionExample">
@@ -139,7 +139,7 @@ $ptoken = $data->ptoken; */
                             </svg>
                         </button>
                     </div>
-                </div> 
+                </div>
             </div>
         </div>
     </div>
@@ -262,8 +262,8 @@ $ptoken = $data->ptoken; */
         document.getElementById("dojo_bot_show").style.display = "none";
     }
 
-    
-function taoh_jusask_chat_init(chat_ask,bot_name,bot_desc,ask_bot,chatarea,chaticon,contact_support=0,bot_btn='') {  
+
+function taoh_jusask_chat_init(chat_ask,bot_name,bot_desc,ask_bot,chatarea,chaticon,contact_support=0,bot_btn='') {
     $('.chatbot_load').show();
     $("."+bot_btn).addClass('disabled');
     let submit_btn_icon = $("."+bot_btn).find('i');
@@ -315,7 +315,7 @@ function render_jusask_chat_template(data, slot, bot_name,chaticon) {
               $('#send_ticket_block').hide();
               $('.input_block').hide();
 
-              
+
             }
             $('.support_btn').css('margin-top','35px');
         }
@@ -342,13 +342,13 @@ function render_jusask_chat_template(data, slot, bot_name,chaticon) {
                   <?php // echo taoh_get_profile_image(); ?>
                   <p class="chat-message mt-2">${v.message}</p>
               </div>
-        `); 
+        `);
         }
         })
         //$("#card-body").animate({ scrollTop: 20000000 }, "slow");
         $('.obvious_ask').val('');
-        $('.side_ask').val('');  
-        $('.support_ask').val(''); 
+        $('.side_ask').val('');
+        $('.support_ask').val('');
         console.log(bot_name)
         if(bot_name == '<?php echo TAOH_JUSASK_BOT_2_NAME; ?>'){
             var element_bot = $('.obviousChatbot');

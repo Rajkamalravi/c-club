@@ -1,4 +1,4 @@
-<?php 
+<?php
 $user_is_logged_in = taoh_user_is_logged_in() ?? false;
 if (!$user_is_logged_in) {
     header("Location: " . TAOH_SITE_URL_ROOT . '/login');
@@ -7,7 +7,7 @@ if (!$user_is_logged_in) {
 taoh_add_var_to_url('noca', TAOH_MY_NOW_CODE);
 $taoh_home_url = ( defined( 'TAOH_PAGE_URL' ) && TAOH_PAGE_URL ) ? TAOH_PAGE_URL:TAOH_SITE_URL_ROOT;
 
-taoh_get_header(); 
+taoh_get_header();
 $indx_db_settings = 1;
 
 $data = taoh_session_get(TAOH_ROOT_PATH_HASH)['USER_INFO'];
@@ -177,7 +177,7 @@ $tag_category_form = TAOH_TAG_CATEGORY_FORM;
                 <span>Your Events</span>
             </a>
 
-        </div> --> 
+        </div> -->
         <div class="profile-right">
             <div class="p-banner mb-5">
                 <?php if(@$data->avatar_image != '' || $avatar_image != ''){ ?>
@@ -194,11 +194,11 @@ $tag_category_form = TAOH_TAG_CATEGORY_FORM;
                     <div>
                         <div class="d-flex align-items-center flex-wrap mb-4" style="gap: 12px;">
                             <h6 class="p-banner-name mr-lg-3"><?php echo ucfirst(@$data->fname);?></h6>
-                            <?php if(isset($data->profile_complete) && $data->profile_complete ==1 ) { ?> 
+                            <?php if(isset($data->profile_complete) && $data->profile_complete ==1 ) { ?>
                             <p class="p-batch text-capitalize"><?php echo !empty($data->type) ? ucfirst($data->type) : 'Professional'; ?></p>
                             <?php } ?>
                         </div>
-                        <?php if(isset($data->profile_complete) && $data->profile_complete ==1 ) { ?> 
+                        <?php if(isset($data->profile_complete) && $data->profile_complete ==1 ) { ?>
                         <div class="your-nje" style="gap: 12px;">
                             <svg width="21" height="20" viewBox="0 0 21 20" fill="none" xmlns="http://www.w3.org/2000/svg">
                                 <path d="M7.54688 2H13.4531C13.6336 2 13.7812 2.15 13.7812 2.33333V4H7.21875V2.33333C7.21875 2.15 7.36641 2 7.54688 2ZM5.25 2.33333V4H2.625C1.17715 4 0 5.19583 0 6.66667V10.6667H7.875H13.125H21V6.66667C21 5.19583 19.8229 4 18.375 4H15.75V2.33333C15.75 1.04583 14.7205 0 13.4531 0H7.54688C6.27949 0 5.25 1.04583 5.25 2.33333ZM21 12H13.125V13.3333C13.125 14.0708 12.5385 14.6667 11.8125 14.6667H9.1875C8.46152 14.6667 7.875 14.0708 7.875 13.3333V12H0V17.3333C0 18.8042 1.17715 20 2.625 20H18.375C19.8229 20 21 18.8042 21 17.3333V12Z" fill="#2557A7"/>
@@ -206,7 +206,7 @@ $tag_category_form = TAOH_TAG_CATEGORY_FORM;
                             <span><?php
                                 $company = get_explode_names(@$data->company);
                                 $company = $company[0] ?? '';
-                                
+
                                 if((array)$data->title ) {
                                     $roleArr = (array)$data->title;
                                     $role = explode(':>', reset($roleArr))[1];
@@ -229,13 +229,13 @@ $tag_category_form = TAOH_TAG_CATEGORY_FORM;
                                 </svg>
                                 <span>My Jobs</span>
                             </a>
-            
+
                             <!-- <svg width="21" height="20" viewBox="0 0 21 20" fill="none" xmlns="http://www.w3.org/2000/svg">
                                 <path d="M7.54688 2H13.4531C13.6336 2 13.7812 2.15 13.7812 2.33333V4H7.21875V2.33333C7.21875 2.15 7.36641 2 7.54688 2ZM5.25 2.33333V4H2.625C1.17715 4 0 5.19583 0 6.66667V10.6667H7.875H13.125H21V6.66667C21 5.19583 19.8229 4 18.375 4H15.75V2.33333C15.75 1.04583 14.7205 0 13.4531 0H7.54688C6.27949 0 5.25 1.04583 5.25 2.33333ZM21 12H13.125V13.3333C13.125 14.0708 12.5385 14.6667 11.8125 14.6667H9.1875C8.46152 14.6667 7.875 14.0708 7.875 13.3333V12H0V17.3333C0 18.8042 1.17715 20 2.625 20H18.375C19.8229 20 21 18.8042 21 17.3333V12Z" fill="#2557A7"/>
                             </svg>
                             <span><?php
                             /* $company = get_explode_names(@$data->company);
-                            
+
                             $company = $company[0] ?? '';
                             echo $company; */?></span> -->
                         </p>
@@ -276,13 +276,13 @@ $tag_category_form = TAOH_TAG_CATEGORY_FORM;
                             </div>
                             <div>
                                 <!-- <p class="pc-content pt-1">Essential settings required to access the site.</p> -->
-                                <?php if((isset($data->profile_complete) && $data->profile_complete ==1 ) || 
+                                <?php if((isset($data->profile_complete) && $data->profile_complete ==1 ) ||
                                 (isset($data->step1) && $data->step1 == 1)) { ?>
                                 <div class="pt-2">
                                     <p class="d-flex align-items-center justify-content-end" style="gap: 6px;">
                                         <span class="pc-content">Completed</span>
                                         <svg style="min-width: fit-content;" width="14" height="14" viewBox="0 0 10 10" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                            <path d="M5 10C6.32608 10 7.59785 9.47322 8.53553 8.53553C9.47322 7.59785 10 6.32608 10 5C10 3.67392 9.47322 2.40215 8.53553 1.46447C7.59785 0.526784 6.32608 0 5 0C3.67392 0 2.40215 0.526784 1.46447 1.46447C0.526784 2.40215 0 3.67392 0 5C0 6.32608 0.526784 7.59785 1.46447 8.53553C2.40215 9.47322 3.67392 10 5 10ZM7.20703 4.08203L4.70703 6.58203C4.52344 6.76562 4.22656 6.76562 4.04492 6.58203L2.79492 5.33203C2.61133 5.14844 2.61133 4.85156 2.79492 4.66992C2.97852 4.48828 3.27539 4.48633 3.45703 4.66992L4.375 5.58789L6.54297 3.41797C6.72656 3.23438 7.02344 3.23438 7.20508 3.41797C7.38672 3.60156 7.38867 3.89844 7.20508 4.08008L7.20703 4.08203Z" 
+                                            <path d="M5 10C6.32608 10 7.59785 9.47322 8.53553 8.53553C9.47322 7.59785 10 6.32608 10 5C10 3.67392 9.47322 2.40215 8.53553 1.46447C7.59785 0.526784 6.32608 0 5 0C3.67392 0 2.40215 0.526784 1.46447 1.46447C0.526784 2.40215 0 3.67392 0 5C0 6.32608 0.526784 7.59785 1.46447 8.53553C2.40215 9.47322 3.67392 10 5 10ZM7.20703 4.08203L4.70703 6.58203C4.52344 6.76562 4.22656 6.76562 4.04492 6.58203L2.79492 5.33203C2.61133 5.14844 2.61133 4.85156 2.79492 4.66992C2.97852 4.48828 3.27539 4.48633 3.45703 4.66992L4.375 5.58789L6.54297 3.41797C6.72656 3.23438 7.02344 3.23438 7.20508 3.41797C7.38672 3.60156 7.38867 3.89844 7.20508 4.08008L7.20703 4.08203Z"
                                             fill="#379D0B"/>
                                         </svg>
                                     </p>
@@ -297,7 +297,7 @@ $tag_category_form = TAOH_TAG_CATEGORY_FORM;
                                     </p>
                                 </div>
                                 <?php } ?>
-                            </div> 
+                            </div>
                         </a>
                     </li>
                     <li class="nav-item">
@@ -311,7 +311,7 @@ $tag_category_form = TAOH_TAG_CATEGORY_FORM;
                             </div>
                             <div>
                                 <!-- <p class="pc-content pt-1">Setup your current status to spark better connections</p> -->
-                                <?php // if(isset($data->step2) && $data->step2 == 2) { 
+                                <?php // if(isset($data->step2) && $data->step2 == 2) {
                                 if( isset( $data->skill ) && $data->skill){
                                 ?>
                                     <div class="pt-2">
@@ -333,8 +333,8 @@ $tag_category_form = TAOH_TAG_CATEGORY_FORM;
                                         </p>
                                     </div>
                                 <?php } ?>
-                            </div> 
-                        </a> 
+                            </div>
+                        </a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link progress-card py-2 d-flex flex-column justify-content-between" data-toggle="tab" href="#form-block-3" role="tab" aria-controls="block3" aria-selected="true">
@@ -347,7 +347,7 @@ $tag_category_form = TAOH_TAG_CATEGORY_FORM;
                             </div>
                             <div>
                                 <!-- <p class="pc-content pt-1">Showcase your career journey and expertise.</p> -->
-                                <?php // if(isset($data->step3) && $data->step3 == 3) { 
+                                <?php // if(isset($data->step3) && $data->step3 == 3) {
                                 if(is_array($emp_list) && count($emp_list) > 0 ){ ?>
                                     <div class="pt-2">
                                         <p class="d-flex align-items-center justify-content-end" style="gap: 6px;">
@@ -368,7 +368,7 @@ $tag_category_form = TAOH_TAG_CATEGORY_FORM;
                                         </p>
                                     </div>
                                 <?php } ?>
-                            </div> 
+                            </div>
                         </a>
                     </li>
                     <li class="nav-item">
@@ -403,7 +403,7 @@ $tag_category_form = TAOH_TAG_CATEGORY_FORM;
                                     </p>
                                 </div>
                                 <?php } ?>
-                            </div> 
+                            </div>
                         </a>
                     </li>
                     <li class="nav-item">
@@ -417,8 +417,8 @@ $tag_category_form = TAOH_TAG_CATEGORY_FORM;
                             </div>
                             <div>
                                 <!-- <p class="pc-content pt-1" style="max-width: 133px;">You have the control, Control What others see about you !</p> -->
-                                <?php // if(isset($data->step5) && $data->step5 == 5) { 
-                                if($about_me != '' || $fun_fact != ''){    
+                                <?php // if(isset($data->step5) && $data->step5 == 5) {
+                                if($about_me != '' || $fun_fact != ''){
                                 ?>
                                 <div class="pt-2">
                                     <p class="d-flex align-items-center justify-content-end pr-1" style="gap: 6px;">
@@ -439,7 +439,7 @@ $tag_category_form = TAOH_TAG_CATEGORY_FORM;
                                     </p>
                                 </div>
                                 <?php } ?>
-                            </div> 
+                            </div>
                         </a>
                     </li>
                     <li class="nav-item">
@@ -453,7 +453,7 @@ $tag_category_form = TAOH_TAG_CATEGORY_FORM;
                             </div>
                             <div>
                                 <!-- <p class="pc-content pt-1" style="max-width: 133px;">You have the control, Control What others see about you !</p> -->
-                                <?php // if(isset($data->step6) && $data->step6 == 6) { 
+                                <?php // if(isset($data->step6) && $data->step6 == 6) {
                                 // if((isset($data->tao_unsubscribe_emails) && $data->tao_unsubscribe_emails == 1) ){ // || (isset($data->unlist_me_dir) || $data->unlist_me_dir == 1)
                                 ?>
                                 <div class="pt-2">
@@ -475,7 +475,7 @@ $tag_category_form = TAOH_TAG_CATEGORY_FORM;
                                     </p>
                                 </div> -->
                                 <?php // } ?>
-                            </div> 
+                            </div>
                         </a>
                     </li>
                 </ul>
@@ -490,7 +490,7 @@ $tag_category_form = TAOH_TAG_CATEGORY_FORM;
                 <svg width="39" height="39" viewBox="0 0 39 39" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path d="M5.57143 0C2.49844 0 0 2.49844 0 5.57143V33.4286C0 36.5016 2.49844 39 5.57143 39H33.4286C36.5016 39 39 36.5016 39 33.4286V5.57143C39 2.49844 36.5016 0 33.4286 0H5.57143ZM29.3371 15.4085L18.1942 26.5513C17.3759 27.3696 16.0527 27.3696 15.2431 26.5513L9.67165 20.9799C8.85335 20.1616 8.85335 18.8384 9.67165 18.0288C10.49 17.2192 11.8132 17.2105 12.6228 18.0288L16.7143 22.1203L26.3772 12.4487C27.1955 11.6304 28.5188 11.6304 29.3283 12.4487C30.1379 13.267 30.1467 14.5902 29.3283 15.3998L29.3371 15.4085Z" fill="#379D0B"/>
                 </svg>
-                You're all set! Join the event or Explore the site - finish the rest of your setup anytime !! 
+                You're all set! Join the event or Explore the site - finish the rest of your setup anytime !!
             </div>
         </div>
     <?php } ?>
@@ -507,10 +507,10 @@ $tag_category_form = TAOH_TAG_CATEGORY_FORM;
                             <path d="M12.964 4.55636C13.0502 4.7943 12.9774 5.05958 12.7916 5.22915L11.6251 6.3067C11.6547 6.5337 11.6709 6.76617 11.6709 7.00137C11.6709 7.23657 11.6547 7.46904 11.6251 7.69603L12.7916 8.77359C12.9774 8.94315 13.0502 9.20844 12.964 9.44638C12.8454 9.77183 12.7027 10.0836 12.5383 10.3845L12.4117 10.606C12.2339 10.9068 12.0346 11.1912 11.8164 11.4593C11.6574 11.6562 11.3934 11.7218 11.1564 11.6452L9.65588 11.1612C9.2949 11.4429 8.89621 11.6781 8.47057 11.8558L8.13384 13.4175C8.07996 13.6663 7.89139 13.8633 7.64355 13.9043C7.2718 13.9672 6.88927 14 6.49865 14C6.10804 14 5.72551 13.9672 5.35375 13.9043C5.10592 13.8633 4.91735 13.6663 4.86347 13.4175L4.52673 11.8558C4.1011 11.6781 3.70241 11.4429 3.34143 11.1612L1.84363 11.648C1.60657 11.7246 1.34257 11.6562 1.18363 11.462C0.965426 11.194 0.766079 10.9096 0.588283 10.6087L0.46167 10.3872C0.297344 10.0863 0.154568 9.77457 0.0360376 9.44911C-0.0501666 9.21117 0.0225681 8.94589 0.208446 8.77632L1.3749 7.69877C1.34526 7.46904 1.3291 7.23657 1.3291 7.00137C1.3291 6.76617 1.34526 6.5337 1.3749 6.3067L0.208446 5.22915C0.0225681 5.05958 -0.0501666 4.7943 0.0360376 4.55636C0.154568 4.2309 0.297344 3.91913 0.46167 3.61828L0.588283 3.39676C0.766079 3.09592 0.965426 2.81149 1.18363 2.54347C1.34257 2.34655 1.60657 2.28091 1.84363 2.35749L3.34412 2.84157C3.7051 2.55988 4.1038 2.32467 4.52943 2.1469L4.86616 0.585271C4.92004 0.336394 5.10861 0.13948 5.35645 0.0984567C5.7282 0.0328189 6.11073 0 6.50135 0C6.89196 0 7.27449 0.0328189 7.64625 0.0957218C7.89408 0.136745 8.08265 0.333659 8.13653 0.582536L8.47327 2.14417C8.8989 2.32194 9.29759 2.55714 9.65857 2.83884L11.1591 2.35476C11.3961 2.27818 11.6601 2.34655 11.8191 2.54073C12.0373 2.80875 12.2366 3.09318 12.4144 3.39402L12.541 3.61555C12.7054 3.91639 12.8481 4.22817 12.9667 4.55362L12.964 4.55636ZM6.50135 9.18929C7.07292 9.18929 7.62108 8.95878 8.02524 8.54847C8.4294 8.13815 8.65645 7.58164 8.65645 7.00137C8.65645 6.42109 8.4294 5.86459 8.02524 5.45427C7.62108 5.04395 7.07292 4.81344 6.50135 4.81344C5.92978 4.81344 5.38162 5.04395 4.97746 5.45427C4.5733 5.86459 4.34624 6.42109 4.34624 7.00137C4.34624 7.58164 4.5733 8.13815 4.97746 8.54847C5.38162 8.95878 5.92978 9.18929 6.50135 9.18929Z"/>
                         </svg>
                         <h6 class="pc-title pt-0">General Settings</h6>
-                        <?php if((isset($data->profile_complete) && $data->profile_complete ==1 ) || 
+                        <?php if((isset($data->profile_complete) && $data->profile_complete ==1 ) ||
                         (isset($data->step1) && $data->step1 == 1)) { ?>
                             <svg style="min-width: fit-content;" width="14" height="14" viewBox="0 0 10 10" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M5 10C6.32608 10 7.59785 9.47322 8.53553 8.53553C9.47322 7.59785 10 6.32608 10 5C10 3.67392 9.47322 2.40215 8.53553 1.46447C7.59785 0.526784 6.32608 0 5 0C3.67392 0 2.40215 0.526784 1.46447 1.46447C0.526784 2.40215 0 3.67392 0 5C0 6.32608 0.526784 7.59785 1.46447 8.53553C2.40215 9.47322 3.67392 10 5 10ZM7.20703 4.08203L4.70703 6.58203C4.52344 6.76562 4.22656 6.76562 4.04492 6.58203L2.79492 5.33203C2.61133 5.14844 2.61133 4.85156 2.79492 4.66992C2.97852 4.48828 3.27539 4.48633 3.45703 4.66992L4.375 5.58789L6.54297 3.41797C6.72656 3.23438 7.02344 3.23438 7.20508 3.41797C7.38672 3.60156 7.38867 3.89844 7.20508 4.08008L7.20703 4.08203Z" 
+                                <path d="M5 10C6.32608 10 7.59785 9.47322 8.53553 8.53553C9.47322 7.59785 10 6.32608 10 5C10 3.67392 9.47322 2.40215 8.53553 1.46447C7.59785 0.526784 6.32608 0 5 0C3.67392 0 2.40215 0.526784 1.46447 1.46447C0.526784 2.40215 0 3.67392 0 5C0 6.32608 0.526784 7.59785 1.46447 8.53553C2.40215 9.47322 3.67392 10 5 10ZM7.20703 4.08203L4.70703 6.58203C4.52344 6.76562 4.22656 6.76562 4.04492 6.58203L2.79492 5.33203C2.61133 5.14844 2.61133 4.85156 2.79492 4.66992C2.97852 4.48828 3.27539 4.48633 3.45703 4.66992L4.375 5.58789L6.54297 3.41797C6.72656 3.23438 7.02344 3.23438 7.20508 3.41797C7.38672 3.60156 7.38867 3.89844 7.20508 4.08008L7.20703 4.08203Z"
                                 fill="#379D0B"/>
                             </svg>
                         <?php }else{ ?>
@@ -528,7 +528,7 @@ $tag_category_form = TAOH_TAG_CATEGORY_FORM;
                             <path d="M7.5 0C8.81773 4.60086 10.4843 6.29889 15 7.64148C10.4843 8.98407 8.81773 10.6821 7.5 15.283C6.18227 10.6828 4.51568 8.98407 0 7.64148C4.51568 6.29889 6.18227 4.6016 7.5 0Z" />
                         </svg>
                         <h6 class="pc-title pt-0">Status</h6>
-                        <?php // if(isset($data->step2) && $data->step2 == 2) { 
+                        <?php // if(isset($data->step2) && $data->step2 == 2) {
                         if( isset( $data->skill ) && $data->skill){
                         ?>
                             <svg style="min-width: fit-content;" width="14" height="14" viewBox="0 0 10 10" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -541,7 +541,7 @@ $tag_category_form = TAOH_TAG_CATEGORY_FORM;
                             </svg>
                         <?php } ?>
                     </div>
-                </a> 
+                </a>
             </li>
             <li class="nav-item">
                 <a class="nav-link py-2" data-toggle="tab" href="#form-block-3" role="tab" aria-controls="block3" aria-selected="true">
@@ -550,7 +550,7 @@ $tag_category_form = TAOH_TAG_CATEGORY_FORM;
                             <path d="M4.67188 1.4H8.32812C8.43984 1.4 8.53125 1.505 8.53125 1.63333V2.8H4.46875V1.63333C4.46875 1.505 4.56016 1.4 4.67188 1.4ZM3.25 1.63333V2.8H1.625C0.728711 2.8 0 3.63708 0 4.66667V7.46667H4.875H8.125H13V4.66667C13 3.63708 12.2713 2.8 11.375 2.8H9.75V1.63333C9.75 0.732083 9.1127 0 8.32812 0H4.67188C3.8873 0 3.25 0.732083 3.25 1.63333ZM13 8.4H8.125V9.33333C8.125 9.84958 7.76191 10.2667 7.3125 10.2667H5.6875C5.23809 10.2667 4.875 9.84958 4.875 9.33333V8.4H0V12.1333C0 13.1629 0.728711 14 1.625 14H11.375C12.2713 14 13 13.1629 13 12.1333V8.4Z"/>
                         </svg>
                         <h6 class="pc-title pt-0">Experience Details</h6> <!-- Setup  -->
-                        <?php // if(isset($data->step3) && $data->step3 == 3) { 
+                        <?php // if(isset($data->step3) && $data->step3 == 3) {
                         if(is_array($emp_list) && count($emp_list) > 0 ){ ?>
                             <svg style="min-width: fit-content;" width="14" height="14" viewBox="0 0 10 10" fill="none" xmlns="http://www.w3.org/2000/svg">
                                 <path d="M5 10C6.32608 10 7.59785 9.47322 8.53553 8.53553C9.47322 7.59785 10 6.32608 10 5C10 3.67392 9.47322 2.40215 8.53553 1.46447C7.59785 0.526784 6.32608 0 5 0C3.67392 0 2.40215 0.526784 1.46447 1.46447C0.526784 2.40215 0 3.67392 0 5C0 6.32608 0.526784 7.59785 1.46447 8.53553C2.40215 9.47322 3.67392 10 5 10ZM7.20703 4.08203L4.70703 6.58203C4.52344 6.76562 4.22656 6.76562 4.04492 6.58203L2.79492 5.33203C2.61133 5.14844 2.61133 4.85156 2.79492 4.66992C2.97852 4.48828 3.27539 4.48633 3.45703 4.66992L4.375 5.58789L6.54297 3.41797C6.72656 3.23438 7.02344 3.23438 7.20508 3.41797C7.38672 3.60156 7.38867 3.89844 7.20508 4.08008L7.20703 4.08203Z" fill="#379D0B"/>
@@ -583,7 +583,7 @@ $tag_category_form = TAOH_TAG_CATEGORY_FORM;
                                 <path d="M5 10C6.32608 10 7.59785 9.47322 8.53553 8.53553C9.47322 7.59785 10 6.32608 10 5C10 3.67392 9.47322 2.40215 8.53553 1.46447C7.59785 0.526784 6.32608 0 5 0C3.67392 0 2.40215 0.526784 1.46447 1.46447C0.526784 2.40215 0 3.67392 0 5C0 6.32608 0.526784 7.59785 1.46447 8.53553C2.40215 9.47322 3.67392 10 5 10ZM7.20703 4.08203L4.70703 6.58203C4.52344 6.76562 4.22656 6.76562 4.04492 6.58203L2.79492 5.33203C2.61133 5.14844 2.61133 4.85156 2.79492 4.66992C2.97852 4.48828 3.27539 4.48633 3.45703 4.66992L4.375 5.58789L6.54297 3.41797C6.72656 3.23438 7.02344 3.23438 7.20508 3.41797C7.38672 3.60156 7.38867 3.89844 7.20508 4.08008L7.20703 4.08203Z" fill="#A7A7A7"/>
                             </svg>
                         <?php } ?>
-                        
+
                     </div>
                 </a>
             </li>
@@ -594,8 +594,8 @@ $tag_category_form = TAOH_TAG_CATEGORY_FORM;
                             <path d="M5.25082 6C6.04659 6 6.80978 5.68393 7.37247 5.12132C7.93517 4.55871 8.25129 3.79565 8.25129 3C8.25129 2.20435 7.93517 1.44129 7.37247 0.87868C6.80978 0.316071 6.04659 0 5.25082 0C4.45505 0 3.69187 0.316071 3.12917 0.87868C2.56647 1.44129 2.25035 2.20435 2.25035 3C2.25035 3.79565 2.56647 4.55871 3.12917 5.12132C3.69187 5.68393 4.45505 6 5.25082 6ZM4.17956 7.125C1.8706 7.125 0 8.99531 0 11.3039C0 11.6883 0.311767 12 0.696203 12H7.56681C7.49414 11.7937 7.48007 11.5688 7.53399 11.3484L7.88561 9.93984C7.95124 9.675 8.0872 9.43594 8.27942 9.24375L9.2241 8.29922C8.47164 7.57266 7.4496 7.125 6.31974 7.125H4.17956ZM14.3882 5.52422C14.0225 5.15859 13.4294 5.15859 13.0614 5.52422L12.3722 6.21328L14.0366 7.87734L14.7257 7.18828C15.0914 6.82266 15.0914 6.22969 14.7257 5.86172L14.3882 5.52422ZM8.81153 9.77344C8.71542 9.86953 8.64744 9.98906 8.61463 10.1227L8.26301 11.5312C8.23019 11.6602 8.2677 11.7938 8.36146 11.8875C8.45523 11.9813 8.58884 12.0188 8.71777 11.9859L10.1266 11.6344C10.2579 11.6016 10.3797 11.5336 10.4759 11.4375L13.5045 8.40703L11.8401 6.74297L8.81153 9.77344Z"/>
                         </svg>
                         <h6 class="pc-title pt-0">About, Hobbies & Interests</h6>
-                        <?php // if(isset($data->step5) && $data->step5 == 5) { 
-                        if($about_me != '' || $fun_fact != ''){    
+                        <?php // if(isset($data->step5) && $data->step5 == 5) {
+                        if($about_me != '' || $fun_fact != ''){
                         ?>
                             <svg style="min-width: fit-content;" width="14" height="14" viewBox="0 0 10 10" fill="none" xmlns="http://www.w3.org/2000/svg">
                                 <path d="M5 10C6.32608 10 7.59785 9.47322 8.53553 8.53553C9.47322 7.59785 10 6.32608 10 5C10 3.67392 9.47322 2.40215 8.53553 1.46447C7.59785 0.526784 6.32608 0 5 0C3.67392 0 2.40215 0.526784 1.46447 1.46447C0.526784 2.40215 0 3.67392 0 5C0 6.32608 0.526784 7.59785 1.46447 8.53553C2.40215 9.47322 3.67392 10 5 10ZM7.20703 4.08203L4.70703 6.58203C4.52344 6.76562 4.22656 6.76562 4.04492 6.58203L2.79492 5.33203C2.61133 5.14844 2.61133 4.85156 2.79492 4.66992C2.97852 4.48828 3.27539 4.48633 3.45703 4.66992L4.375 5.58789L6.54297 3.41797C6.72656 3.23438 7.02344 3.23438 7.20508 3.41797C7.38672 3.60156 7.38867 3.89844 7.20508 4.08008L7.20703 4.08203Z" fill="#379D0B"/>
@@ -616,11 +616,11 @@ $tag_category_form = TAOH_TAG_CATEGORY_FORM;
                             <path d="M4.82143 5.0625C4.82143 3.50859 6.02009 2.25 7.5 2.25C8.56808 2.25 9.48884 2.90391 9.92076 3.85664C10.1752 4.41914 10.8147 4.6582 11.3471 4.39102C11.8795 4.12383 12.1105 3.45234 11.856 2.89336C11.0826 1.18477 9.42522 0 7.5 0C4.83817 0 2.67857 2.26758 2.67857 5.0625V6.75H2.14286C0.960938 6.75 0 7.75898 0 9V15.75C0 16.991 0.960938 18 2.14286 18H12.8571C14.0391 18 15 16.991 15 15.75V9C15 7.75898 14.0391 6.75 12.8571 6.75H4.82143V5.0625Z"/>
                         </svg>
                         <h6 class="pc-title pt-0">Privacy</h6> <!-- Setup your  -->
-                       
+
                         <svg style="min-width: fit-content;" width="14" height="14" viewBox="0 0 10 10" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path d="M5 10C6.32608 10 7.59785 9.47322 8.53553 8.53553C9.47322 7.59785 10 6.32608 10 5C10 3.67392 9.47322 2.40215 8.53553 1.46447C7.59785 0.526784 6.32608 0 5 0C3.67392 0 2.40215 0.526784 1.46447 1.46447C0.526784 2.40215 0 3.67392 0 5C0 6.32608 0.526784 7.59785 1.46447 8.53553C2.40215 9.47322 3.67392 10 5 10ZM7.20703 4.08203L4.70703 6.58203C4.52344 6.76562 4.22656 6.76562 4.04492 6.58203L2.79492 5.33203C2.61133 5.14844 2.61133 4.85156 2.79492 4.66992C2.97852 4.48828 3.27539 4.48633 3.45703 4.66992L4.375 5.58789L6.54297 3.41797C6.72656 3.23438 7.02344 3.23438 7.20508 3.41797C7.38672 3.60156 7.38867 3.89844 7.20508 4.08008L7.20703 4.08203Z" fill="#379D0B"/>
                         </svg>
-                       
+
                     </div>
                 </a>
             </li>
@@ -645,7 +645,7 @@ $tag_category_form = TAOH_TAG_CATEGORY_FORM;
                         <svg width="13" height="17" viewBox="0 0 13 17" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path d="M1.625 0.5H11.375C12.0052 0.5 12.5 0.999118 12.5 1.59375V16.1934C12.4999 16.3528 12.3642 16.4998 12.1777 16.5C12.1419 16.5 12.107 16.4951 12.0752 16.4854L11.9883 16.4434L11.9863 16.4414L6.7832 12.8691L6.5 12.6748L6.2168 12.8691L1.01367 16.4414L1.01172 16.4434C0.960114 16.4791 0.893976 16.5 0.822266 16.5C0.635841 16.4998 0.50011 16.3528 0.5 16.1934V1.59375C0.5 0.999118 0.99481 0.5 1.625 0.5Z" fill="black" stroke="black"/>
                         </svg>
-                        <h6 class="pc-title pt-0">My Jobs</h6> 
+                        <h6 class="pc-title pt-0">My Jobs</h6>
                     </div>
                 </a>
             </li>
@@ -655,36 +655,27 @@ $tag_category_form = TAOH_TAG_CATEGORY_FORM;
                         <svg style="min-width: fit-content;" width="15" height="17" viewBox="0 0 15 17" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path d="M14.9688 6.40625V15.4062C14.9688 16.2686 14.2628 16.9688 13.3926 16.9688H1.60742C0.737157 16.9688 0.03125 16.2686 0.03125 15.4062V6.40625H14.9688ZM11.0371 8.97949C10.731 8.67916 10.2479 8.65642 9.92188 8.92188L9.8584 8.97949L6.69922 12.1113L5.14844 10.5732C4.84213 10.2695 4.35819 10.2498 4.03223 10.5156L3.96875 10.5732C3.66571 10.8772 3.6437 11.3572 3.91211 11.6807L3.96875 11.7432L6.1123 13.8682C6.41882 14.1718 6.90266 14.191 7.22852 13.9248L7.29102 13.8682L11.0381 10.1494C11.3445 9.84544 11.3631 9.36537 11.0947 9.04199L11.0371 8.97949ZM10.7139 0.03125C11.2895 0.03125 11.7549 0.49231 11.7549 1.0625V2.15625H13.3926C14.2628 2.15625 14.9688 2.85637 14.9688 3.71875V5.28125H0.03125V3.71875C0.03125 2.85637 0.737157 2.15625 1.60742 2.15625H3.24512V1.0625C3.24512 0.49231 3.71051 0.03125 4.28613 0.03125C4.86156 0.0314735 5.32617 0.492448 5.32617 1.0625V2.15625H9.67383V1.0625C9.67383 0.492448 10.1384 0.031473 10.7139 0.03125Z" fill="black" stroke="black" stroke-width="0.0625"/>
                         </svg>
-                        <h6 class="pc-title pt-0">My Events</h6> 
+                        <h6 class="pc-title pt-0">My Events</h6>
                     </div>
                 </a>
             </li>
-            
-            
+
+
         </ul>
-
-
-
-
-
-       
         <div class="profile-right px-4" style="max-width: 1032px;  border: 1px solid #d3d3d3;">
-             
-
-
                 <!-- Tab Content -->
                 <div class="tab-content px-0" id="myTabContent">
                     <div class="tab-pane fade show active fb-1" id="form-block-1" role="tabpanel" aria-labelledby="block-1-tab" style="max-width: 953px;">
                         <?php
                         if($indx_db_settings==1){ ?>
-                            <form id="setting_form" method="post" action="#" class="">     
-                            <input type="hidden" name="taoh_session" id="taoh_session" value="settings">          
+                            <form id="setting_form" method="post" action="#" class="">
+                            <input type="hidden" name="taoh_session" id="taoh_session" value="settings">
                         <?php }else{ ?>
-                            <form id="setting_form" method="post" action="<?php echo TAOH_ACTION_URL.'/settings' ?>" class="">           
+                            <form id="setting_form" method="post" action="<?php echo TAOH_ACTION_URL.'/settings' ?>" class="">
                             <input type="hidden" name="taoh_session" id="taoh_session" value="old">
                         <?php
                         }
-                        ?> 
+                        ?>
                         <input type="hidden" value="<?php echo TAOH_OPS_CODE; ?>" name="opscode">
 
 
@@ -695,10 +686,10 @@ $tag_category_form = TAOH_TAG_CATEGORY_FORM;
                                     <path d="M12.964 4.55636C13.0502 4.7943 12.9774 5.05958 12.7916 5.22915L11.6251 6.3067C11.6547 6.5337 11.6709 6.76617 11.6709 7.00137C11.6709 7.23657 11.6547 7.46904 11.6251 7.69603L12.7916 8.77359C12.9774 8.94315 13.0502 9.20844 12.964 9.44638C12.8454 9.77183 12.7027 10.0836 12.5383 10.3845L12.4117 10.606C12.2339 10.9068 12.0346 11.1912 11.8164 11.4593C11.6574 11.6562 11.3934 11.7218 11.1564 11.6452L9.65588 11.1612C9.2949 11.4429 8.89621 11.6781 8.47057 11.8558L8.13384 13.4175C8.07996 13.6663 7.89139 13.8633 7.64355 13.9043C7.2718 13.9672 6.88927 14 6.49865 14C6.10804 14 5.72551 13.9672 5.35375 13.9043C5.10592 13.8633 4.91735 13.6663 4.86347 13.4175L4.52673 11.8558C4.1011 11.6781 3.70241 11.4429 3.34143 11.1612L1.84363 11.648C1.60657 11.7246 1.34257 11.6562 1.18363 11.462C0.965426 11.194 0.766079 10.9096 0.588283 10.6087L0.46167 10.3872C0.297344 10.0863 0.154568 9.77457 0.0360376 9.44911C-0.0501666 9.21117 0.0225681 8.94589 0.208446 8.77632L1.3749 7.69877C1.34526 7.46904 1.3291 7.23657 1.3291 7.00137C1.3291 6.76617 1.34526 6.5337 1.3749 6.3067L0.208446 5.22915C0.0225681 5.05958 -0.0501666 4.7943 0.0360376 4.55636C0.154568 4.2309 0.297344 3.91913 0.46167 3.61828L0.588283 3.39676C0.766079 3.09592 0.965426 2.81149 1.18363 2.54347C1.34257 2.34655 1.60657 2.28091 1.84363 2.35749L3.34412 2.84157C3.7051 2.55988 4.1038 2.32467 4.52943 2.1469L4.86616 0.585271C4.92004 0.336394 5.10861 0.13948 5.35645 0.0984567C5.7282 0.0328189 6.11073 0 6.50135 0C6.89196 0 7.27449 0.0328189 7.64625 0.0957218C7.89408 0.136745 8.08265 0.333659 8.13653 0.582536L8.47327 2.14417C8.8989 2.32194 9.29759 2.55714 9.65857 2.83884L11.1591 2.35476C11.3961 2.27818 11.6601 2.34655 11.8191 2.54073C12.0373 2.80875 12.2366 3.09318 12.4144 3.39402L12.541 3.61555C12.7054 3.91639 12.8481 4.22817 12.9667 4.55362L12.964 4.55636ZM6.50135 9.18929C7.07292 9.18929 7.62108 8.95878 8.02524 8.54847C8.4294 8.13815 8.65645 7.58164 8.65645 7.00137C8.65645 6.42109 8.4294 5.86459 8.02524 5.45427C7.62108 5.04395 7.07292 4.81344 6.50135 4.81344C5.92978 4.81344 5.38162 5.04395 4.97746 5.45427C4.5733 5.86459 4.34624 6.42109 4.34624 7.00137C4.34624 7.58164 4.5733 8.13815 4.97746 8.54847C5.38162 8.95878 5.92978 9.18929 6.50135 9.18929Z" fill="#ffffff"/>
                                 </svg>
                                 <h6 class="p-field-title text-white">General Settings</h6>
-                                <?php if((isset($data->profile_complete) && $data->profile_complete ==1 ) || 
+                                <?php if((isset($data->profile_complete) && $data->profile_complete ==1 ) ||
                                 (isset($data->step1) && $data->step1 == 1)) { ?>
                                     <svg style="min-width: fit-content;" width="18" height="18" viewBox="0 0 10 10" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                        <path d="M5 10C6.32608 10 7.59785 9.47322 8.53553 8.53553C9.47322 7.59785 10 6.32608 10 5C10 3.67392 9.47322 2.40215 8.53553 1.46447C7.59785 0.526784 6.32608 0 5 0C3.67392 0 2.40215 0.526784 1.46447 1.46447C0.526784 2.40215 0 3.67392 0 5C0 6.32608 0.526784 7.59785 1.46447 8.53553C2.40215 9.47322 3.67392 10 5 10ZM7.20703 4.08203L4.70703 6.58203C4.52344 6.76562 4.22656 6.76562 4.04492 6.58203L2.79492 5.33203C2.61133 5.14844 2.61133 4.85156 2.79492 4.66992C2.97852 4.48828 3.27539 4.48633 3.45703 4.66992L4.375 5.58789L6.54297 3.41797C6.72656 3.23438 7.02344 3.23438 7.20508 3.41797C7.38672 3.60156 7.38867 3.89844 7.20508 4.08008L7.20703 4.08203Z" 
+                                        <path d="M5 10C6.32608 10 7.59785 9.47322 8.53553 8.53553C9.47322 7.59785 10 6.32608 10 5C10 3.67392 9.47322 2.40215 8.53553 1.46447C7.59785 0.526784 6.32608 0 5 0C3.67392 0 2.40215 0.526784 1.46447 1.46447C0.526784 2.40215 0 3.67392 0 5C0 6.32608 0.526784 7.59785 1.46447 8.53553C2.40215 9.47322 3.67392 10 5 10ZM7.20703 4.08203L4.70703 6.58203C4.52344 6.76562 4.22656 6.76562 4.04492 6.58203L2.79492 5.33203C2.61133 5.14844 2.61133 4.85156 2.79492 4.66992C2.97852 4.48828 3.27539 4.48633 3.45703 4.66992L4.375 5.58789L6.54297 3.41797C6.72656 3.23438 7.02344 3.23438 7.20508 3.41797C7.38672 3.60156 7.38867 3.89844 7.20508 4.08008L7.20703 4.08203Z"
                                         fill="#ffffff"/>
                                     </svg>
                                 <?php }else{ ?>
@@ -751,13 +742,13 @@ $tag_category_form = TAOH_TAG_CATEGORY_FORM;
                                         <div class="avatar-container" style="<?php if(!isset($data->avatar_image) || $data->avatar_image ==''){ echo "display:none"; }?>">
                                             <div class="avatar_settings" >
                                                 <?php if(isset($data->avatar_image) && $data->avatar_image !=''){
-                                                    
+
                                                         ?>
                                                     <img src="<?php echo $data->avatar_image; ?>" alt="Avatar">
                                                     <div id="removeImage"  class="delete-icon"></div>
                                                 <?php } ?>
-                                            </div> 
-                                        </div>                                          
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                                 <?php if(TAOH_PROFILE_PICTURE_UPLOAD){ ?>
@@ -774,19 +765,19 @@ $tag_category_form = TAOH_TAG_CATEGORY_FORM;
                                         <input type="hidden" value="<?php echo (isset($data->avatar_image) && $data->avatar_image !='')?$data->avatar_image:'' ?>" class="avatar_image" name="avatar_image">
                                         <input type="hidden" id="avt_img_delete" name="avt_img_delete">
                                     </div>
-                                    
+
                                 </div>
                                 <?php } ?>
                                 <div class="row">
                                     <div class="form-group col-lg-5">
                                         <label for="" class="text-label">My Public Chat Name <span class="text-req">*</span></label>
-                                        <input  class="form-control form--control" required type="text"  pattern=".*[A-Za-z0-9].*" 
+                                        <input  class="form-control form--control" required type="text"  pattern=".*[A-Za-z0-9].*"
                                         value="<?php
                                         echo @$data->chat_name; ?>" name="chat_name" id="chat_name">
                                     </div>
                                     <div class="form-group col-lg-6">
                                     <?php
-                                                            if(isset($data->profile_complete) 
+                                                            if(isset($data->profile_complete)
                                                             && $data->profile_complete == 0 && isset($data->fname) && $data->fname == TAOH_SITE_NAME_SLUG){
                                                                 $data->type = '';
                                                             }
@@ -803,7 +794,7 @@ $tag_category_form = TAOH_TAG_CATEGORY_FORM;
                                         <label class="btn">
                                             <input onclick="copyProfileType('provider');" <?php echo (@$data->type == "provider") ?'checked': '';?> type="radio"  name="type" value="provider"  required> Service Provider
                                         </label>
-                                          
+
                                         </div>
                                     </div>
                                 </div>
@@ -832,23 +823,17 @@ $tag_category_form = TAOH_TAG_CATEGORY_FORM;
                                     </div>
                                 </div>
                             </div>
-                            
+
                         </div>
 
                         <input type="hidden" name="taoh_ptoken" id="taoh_ptoken" value="<?php echo $data->ptoken; ?>">
                         <input type="hidden" name="profile_complete" id="profile_complete" value="1"/>
                         <input type="hidden" name="step1" id="step1" value="1"/>
                         <input type="hidden" name="login_type" id="login_type" value="<?php echo $login_type; ?>"/>
-
-
-
-                        
-
-
                         <div style="text-align: right;">
                             <button id="save_changes" name="save_changes"  type="submit" class="btn s-btn px-3 mb-4 mt-3">Save</button> <!--  and Continue -->
                         </div>
-                    
+
                         </form>
 
                          <!-- for mobile screen -->
@@ -867,11 +852,11 @@ $tag_category_form = TAOH_TAG_CATEGORY_FORM;
                                 <path d="M7.5 0C8.81773 4.60086 10.4843 6.29889 15 7.64148C10.4843 8.98407 8.81773 10.6821 7.5 15.283C6.18227 10.6828 4.51568 8.98407 0 7.64148C4.51568 6.29889 6.18227 4.6016 7.5 0Z" fill="#ffffff" />
                             </svg>
                             <h6 class="p-field-title text-white">Status</h6>
-                            <?php // if(isset($data->step2) && $data->step2 == 2) { 
+                            <?php // if(isset($data->step2) && $data->step2 == 2) {
                                 if( isset( $data->skill ) && $data->skill){
                             ?>
                                 <svg style="min-width: fit-content;" width="18" height="18" viewBox="0 0 10 10" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                    <path d="M5 10C6.32608 10 7.59785 9.47322 8.53553 8.53553C9.47322 7.59785 10 6.32608 10 5C10 3.67392 9.47322 2.40215 8.53553 1.46447C7.59785 0.526784 6.32608 0 5 0C3.67392 0 2.40215 0.526784 1.46447 1.46447C0.526784 2.40215 0 3.67392 0 5C0 6.32608 0.526784 7.59785 1.46447 8.53553C2.40215 9.47322 3.67392 10 5 10ZM7.20703 4.08203L4.70703 6.58203C4.52344 6.76562 4.22656 6.76562 4.04492 6.58203L2.79492 5.33203C2.61133 5.14844 2.61133 4.85156 2.79492 4.66992C2.97852 4.48828 3.27539 4.48633 3.45703 4.66992L4.375 5.58789L6.54297 3.41797C6.72656 3.23438 7.02344 3.23438 7.20508 3.41797C7.38672 3.60156 7.38867 3.89844 7.20508 4.08008L7.20703 4.08203Z" 
+                                    <path d="M5 10C6.32608 10 7.59785 9.47322 8.53553 8.53553C9.47322 7.59785 10 6.32608 10 5C10 3.67392 9.47322 2.40215 8.53553 1.46447C7.59785 0.526784 6.32608 0 5 0C3.67392 0 2.40215 0.526784 1.46447 1.46447C0.526784 2.40215 0 3.67392 0 5C0 6.32608 0.526784 7.59785 1.46447 8.53553C2.40215 9.47322 3.67392 10 5 10ZM7.20703 4.08203L4.70703 6.58203C4.52344 6.76562 4.22656 6.76562 4.04492 6.58203L2.79492 5.33203C2.61133 5.14844 2.61133 4.85156 2.79492 4.66992C2.97852 4.48828 3.27539 4.48633 3.45703 4.66992L4.375 5.58789L6.54297 3.41797C6.72656 3.23438 7.02344 3.23438 7.20508 3.41797C7.38672 3.60156 7.38867 3.89844 7.20508 4.08008L7.20703 4.08203Z"
                                     fill="#ffffff"/>
                                 </svg>
                             <?php }else{ ?>
@@ -883,7 +868,7 @@ $tag_category_form = TAOH_TAG_CATEGORY_FORM;
 
 
                         <form name="step2_form" id="step2_form" action="" style="max-width: 953px;">
-                            
+
                             <div class="form-group">
                                 <h4 class="p-field-title py-3">What are your Core Skills <span class="text-req">&nbsp; * &nbsp;</span> (Choose from the suggested list for better results)</h4>
                                 <hr class="mt-0" style="border-top: 1px solid #D3D3D3;">
@@ -892,7 +877,7 @@ $tag_category_form = TAOH_TAG_CATEGORY_FORM;
                                         <?php echo field_skill( ( isset( $data->skill ) && $data->skill ) ? $data->skill:'' , 1); ?>
                                     </div>
                                 </div>
-                                                    
+
                             </div>
                         <!-- <hr class="my-4" style="border-top: 1px solid #d3d3d3;"> -->
 
@@ -906,7 +891,7 @@ $tag_category_form = TAOH_TAG_CATEGORY_FORM;
                             <hr style="border-top: 1px solid #D3D3D3;">
 
                             <div class="row rm-p-b">
-                                
+
                                 <?php
                                     foreach ($taoh_user_keywords as $key => $value) {
                                         if (isset($value['enable']) && $value['enable'] == 'true') {
@@ -928,7 +913,7 @@ $tag_category_form = TAOH_TAG_CATEGORY_FORM;
                                         }
                                     }
 
-                                   
+
                                     ?>
                             </div>
                         </div>
@@ -939,10 +924,10 @@ $tag_category_form = TAOH_TAG_CATEGORY_FORM;
                                     <?php echo (defined('TAOH_WERTUAL_NAME_SLUG') ? ucfirst(TAOH_WERTUAL_NAME_SLUG) . ' ' : '') . 'Information' ?>
                                 </h5>
                             </div>
-                            
+
 
                             <div class="row mx-0 pt-5 pb-4 px-lg-4 rm-p-b">
-                                
+
                                 <?php
                                     foreach ($taoh_user_keywords as $key => $value) {
                                         if (isset($value['enable']) && $value['enable'] == 'true') {
@@ -964,20 +949,17 @@ $tag_category_form = TAOH_TAG_CATEGORY_FORM;
                                         }
                                     }
 
-                                   
+
                                     ?>
                             </div>
                         </div> -->
-                            
-                        
-                                
                             <?php
                             }
                             ?>
 
                         <h2 class="p-field-title mt-4">Select the tags that suits you in each category <!-- <span class="req">*</span> --></h2>
                         <hr style="border-top: 1px solid #D3D3D3;">
-                     
+
                         <ul class="nav nav-tabs my-4 category-tabs" id="myTab" role="tablist" style="gap: 12px;">
                             <!-- Tab Links -->
                             <li class="nav-item">
@@ -988,7 +970,7 @@ $tag_category_form = TAOH_TAG_CATEGORY_FORM;
                             <li class="nav-item">
                                 <a class="nav-link category-tab" data-toggle="tab" href="#career-navigation" role="tab" aria-controls="career-navigation" aria-selected="true">
                                     Career Navigation
-                                </a> 
+                                </a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link category-tab" data-toggle="tab" href="#growth-exchange" role="tab" aria-controls="growth-exchange" aria-selected="true">
@@ -1026,13 +1008,13 @@ $tag_category_form = TAOH_TAG_CATEGORY_FORM;
                         <div class="tab-content px-0" id="myTabForm">
                             <?php foreach($tag_category_form as $category_key=>$category_form){
                                 // echo "<br> category_key:  ". $category_key; ?>
-                                
+
                                 <div class="tab-pane fade" id="<?php echo 'frm_'.str_replace(" ","",$category_key); ?>" role="tabpanel" aria-labelledby="<?php echo $category_key; ?>">
 
                                 <fieldset class="form-group field-set" style="max-width: 986px; border: 2px solid #d3d3d3; padding: 20px; border-radius: 5px;">
                                     <legend class="text-label px-2" style="color: #2557A7; width: fit-content;"><?php echo $category_key; ?></legend>
 
-                                    
+
                                     <div class="form-group mb-0" style="max-width: 986px;">
                                         <?php foreach($category_form as $ckey=>$cform){
                                             // echo "<br> Ckey : ".$ckey;
@@ -1053,11 +1035,11 @@ $tag_category_form = TAOH_TAG_CATEGORY_FORM;
                                                         <option value="">--Select--</option>
                                                         <?php foreach($cform['dropdown_value'] as $dkey=>$dval){ ?>
                                                             <option value="<?php echo $dval; ?>" <?php echo ((isset($data->{$cform['field_name']})) && $data->{$cform['field_name']} == $dval) ? 'selected' : ''; ?>  ><?php echo $dval; ?></option>
-                                                        <?php } ?>            
+                                                        <?php } ?>
                                                     </select>
                                                 </div>
                                             <?php } ?>
-                                            
+
                                             <?php if($ckey %2 != 0 || $ckey == count($category_form)-1){ ?>
                                                 </div>
                                             <?php }
@@ -1068,9 +1050,6 @@ $tag_category_form = TAOH_TAG_CATEGORY_FORM;
                                 </div>
                             <?php } ?>
                         </div>
-
-
-
                         <!-- <div class="tags" style="max-width: 986px;">
                             <input type="checkbox" id="act-hiring" name="tags" value="Actively Hiring">
                             <label for="act-hiring">Actively Hiring</label>
@@ -1104,14 +1083,14 @@ $tag_category_form = TAOH_TAG_CATEGORY_FORM;
 
                         </div> -->
                         <!-- <hr style="border-top: 2px solid #d3d3d3;"> -->
-                        
+
                         <input type="hidden" name="taoh_ptoken" value="<?php echo $data->ptoken; ?>">
                         <div style="text-align: right;">
                             <button name="step2" id="step2" class="btn s-btn mt-3" value="2">Save</button> <!--  and Continue -->
                         </div>
                         </form>
-                        
-                        
+
+
                           <!-- for mobile screen -->
                         <!-- Mobile Navigation Buttons -->
                         <div class="d-flex justify-content-between d-xl-none mt-4">
@@ -1129,11 +1108,11 @@ $tag_category_form = TAOH_TAG_CATEGORY_FORM;
                                 <path d="M4.67188 1.4H8.32812C8.43984 1.4 8.53125 1.505 8.53125 1.63333V2.8H4.46875V1.63333C4.46875 1.505 4.56016 1.4 4.67188 1.4ZM3.25 1.63333V2.8H1.625C0.728711 2.8 0 3.63708 0 4.66667V7.46667H4.875H8.125H13V4.66667C13 3.63708 12.2713 2.8 11.375 2.8H9.75V1.63333C9.75 0.732083 9.1127 0 8.32812 0H4.67188C3.8873 0 3.25 0.732083 3.25 1.63333ZM13 8.4H8.125V9.33333C8.125 9.84958 7.76191 10.2667 7.3125 10.2667H5.6875C5.23809 10.2667 4.875 9.84958 4.875 9.33333V8.4H0V12.1333C0 13.1629 0.728711 14 1.625 14H11.375C12.2713 14 13 13.1629 13 12.1333V8.4Z" fill="#ffffff" />
                             </svg>
                             <h6 class="p-field-title text-white">Experience Details</h6>
-                            <?php // if(isset($data->step3) && $data->step3 == 3) { 
+                            <?php // if(isset($data->step3) && $data->step3 == 3) {
                                 if(is_array($emp_list) && count($emp_list) > 0 ){ ?>
 
                                 <svg style="min-width: fit-content;" width="18" height="18" viewBox="0 0 10 10" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                    <path d="M5 10C6.32608 10 7.59785 9.47322 8.53553 8.53553C9.47322 7.59785 10 6.32608 10 5C10 3.67392 9.47322 2.40215 8.53553 1.46447C7.59785 0.526784 6.32608 0 5 0C3.67392 0 2.40215 0.526784 1.46447 1.46447C0.526784 2.40215 0 3.67392 0 5C0 6.32608 0.526784 7.59785 1.46447 8.53553C2.40215 9.47322 3.67392 10 5 10ZM7.20703 4.08203L4.70703 6.58203C4.52344 6.76562 4.22656 6.76562 4.04492 6.58203L2.79492 5.33203C2.61133 5.14844 2.61133 4.85156 2.79492 4.66992C2.97852 4.48828 3.27539 4.48633 3.45703 4.66992L4.375 5.58789L6.54297 3.41797C6.72656 3.23438 7.02344 3.23438 7.20508 3.41797C7.38672 3.60156 7.38867 3.89844 7.20508 4.08008L7.20703 4.08203Z" 
+                                    <path d="M5 10C6.32608 10 7.59785 9.47322 8.53553 8.53553C9.47322 7.59785 10 6.32608 10 5C10 3.67392 9.47322 2.40215 8.53553 1.46447C7.59785 0.526784 6.32608 0 5 0C3.67392 0 2.40215 0.526784 1.46447 1.46447C0.526784 2.40215 0 3.67392 0 5C0 6.32608 0.526784 7.59785 1.46447 8.53553C2.40215 9.47322 3.67392 10 5 10ZM7.20703 4.08203L4.70703 6.58203C4.52344 6.76562 4.22656 6.76562 4.04492 6.58203L2.79492 5.33203C2.61133 5.14844 2.61133 4.85156 2.79492 4.66992C2.97852 4.48828 3.27539 4.48633 3.45703 4.66992L4.375 5.58789L6.54297 3.41797C6.72656 3.23438 7.02344 3.23438 7.20508 3.41797C7.38672 3.60156 7.38867 3.89844 7.20508 4.08008L7.20703 4.08203Z"
                                     fill="#ffffff"/>
                                 </svg>
                             <?php }else{ ?>
@@ -1142,7 +1121,7 @@ $tag_category_form = TAOH_TAG_CATEGORY_FORM;
                                 </svg> -->
                             <?php } ?>
                         </div>
-                        
+
                     <?php if(is_array($emp_list)){
                             if(count($emp_list) > 0 && is_array($emp_list[$emp_last_key]['title'])){ ?>
                     <?php
@@ -1179,7 +1158,7 @@ $tag_category_form = TAOH_TAG_CATEGORY_FORM;
                         list ( $em_cmp_pre, $em_cmp_post ) = explode( ':>', $emp_cmp_value );
                     }
                 }
-                
+
             }
             $get_present_not = ($emp_vals['current_role'] == 'on')?' Present':get_month_from_number($emp_vals['emp_end_month']).' '.$emp_vals['emp_year_end'];
             $current_year = date('Y');   // Outputs: 2025 (Current Year)
@@ -1288,8 +1267,8 @@ $end_year = !empty($emp_vals['emp_year_end']) ? $emp_vals['emp_year_end'] : $cur
                         </div>
                     </div>
                 </div>
-                
-                
+
+
             <?php }else{ ?>
                 <div class="profile-card-list mb-5">
                     <div class="heading px-4 px-lg-5">
@@ -1363,7 +1342,7 @@ $end_year = !empty($emp_vals['emp_year_end']) ? $emp_vals['emp_year_end'] : $cur
                                     <?php }
                                     }
                                     } ?>
-                                    
+
                                 </div>
                             <?php } ?>
                             <?php if(trim($emp_vals['emp_responsibilities']) != ''){ ?>
@@ -1375,7 +1354,7 @@ $end_year = !empty($emp_vals['emp_year_end']) ? $emp_vals['emp_year_end'] : $cur
                 </div>
             <?php } ?>
             <?php } ?>
-                        
+
                     <?php }
                             } ?>
                         <!-- <h5 class="p-field-title mb-4">Can you tell us more about your Career journey !</h5> -->
@@ -1457,7 +1436,7 @@ $end_year = !empty($emp_vals['emp_year_end']) ? $emp_vals['emp_year_end'] : $cur
                                 </svg>
                                 <h5 class="text-center list-text-md my-3"  style="max-width: 522px;">"Showcase your journey! Add your education to unlock better opportunities."</h5>
                                 <button class="btn continue-btn add_edit_emp" type="button" data-add-edit="Add" data-employee="<?php echo $emp_tot_count ?? '0'; ?>">
-                                    <span>Add Experience Details</span> 
+                                    <span>Add Experience Details</span>
                                 </button>
                             </div>
                         </div>
@@ -1483,7 +1462,7 @@ $end_year = !empty($emp_vals['emp_year_end']) ? $emp_vals['emp_year_end'] : $cur
                             <?php if(is_array($edu_list) && count($edu_list) > 0 ){ ?>
 
                                 <svg style="min-width: fit-content;" width="18" height="18" viewBox="0 0 10 10" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                    <path d="M5 10C6.32608 10 7.59785 9.47322 8.53553 8.53553C9.47322 7.59785 10 6.32608 10 5C10 3.67392 9.47322 2.40215 8.53553 1.46447C7.59785 0.526784 6.32608 0 5 0C3.67392 0 2.40215 0.526784 1.46447 1.46447C0.526784 2.40215 0 3.67392 0 5C0 6.32608 0.526784 7.59785 1.46447 8.53553C2.40215 9.47322 3.67392 10 5 10ZM7.20703 4.08203L4.70703 6.58203C4.52344 6.76562 4.22656 6.76562 4.04492 6.58203L2.79492 5.33203C2.61133 5.14844 2.61133 4.85156 2.79492 4.66992C2.97852 4.48828 3.27539 4.48633 3.45703 4.66992L4.375 5.58789L6.54297 3.41797C6.72656 3.23438 7.02344 3.23438 7.20508 3.41797C7.38672 3.60156 7.38867 3.89844 7.20508 4.08008L7.20703 4.08203Z" 
+                                    <path d="M5 10C6.32608 10 7.59785 9.47322 8.53553 8.53553C9.47322 7.59785 10 6.32608 10 5C10 3.67392 9.47322 2.40215 8.53553 1.46447C7.59785 0.526784 6.32608 0 5 0C3.67392 0 2.40215 0.526784 1.46447 1.46447C0.526784 2.40215 0 3.67392 0 5C0 6.32608 0.526784 7.59785 1.46447 8.53553C2.40215 9.47322 3.67392 10 5 10ZM7.20703 4.08203L4.70703 6.58203C4.52344 6.76562 4.22656 6.76562 4.04492 6.58203L2.79492 5.33203C2.61133 5.14844 2.61133 4.85156 2.79492 4.66992C2.97852 4.48828 3.27539 4.48633 3.45703 4.66992L4.375 5.58789L6.54297 3.41797C6.72656 3.23438 7.02344 3.23438 7.20508 3.41797C7.38672 3.60156 7.38867 3.89844 7.20508 4.08008L7.20703 4.08203Z"
                                     fill="#ffffff"/>
                                 </svg>
                             <?php }else{ ?>
@@ -1492,7 +1471,7 @@ $end_year = !empty($emp_vals['emp_year_end']) ? $emp_vals['emp_year_end'] : $cur
                                 </svg> -->
                             <?php } ?>
                         </div>
-                        
+
                     <?php if(is_array($edu_list)){
                         if(is_array($edu_list[$edu_last_key]['company'])){?>
                         <div>
@@ -1648,7 +1627,7 @@ $end_year = !empty($emp_vals['emp_year_end']) ? $emp_vals['emp_year_end'] : $cur
                                         ?>
                                             <div class="d-flex flex-wrap align-items-center mb-2" style="gap: 8px;">
                                                 <p class="list-text-xs mr-1">Skills:</p>
-                                                <?php 
+                                                <?php
                                                 foreach ($d_skills as $d_keys => $d_vals){
                                                     if(!is_array($ed_value)){
                                                         list ( $skill_pre, $skill_name ) = explode(':>',$d_vals);
@@ -1659,12 +1638,12 @@ $end_year = !empty($emp_vals['emp_year_end']) ? $emp_vals['emp_year_end'] : $cur
                                                 list ( $skill_pre, $skill_name ) = explode(':>',$ed_vals); ?>
                                                 <span class="skill-badge "><?php echo $skill_name; ?></span>
                                             <?php }
-                                            }    
+                                            }
                                             } ?>
                                             </div>
                                         <?php  }?>
                                         <?php if(taoh_title_desc_decode($edu_vals['edu_activities']) != ''){?>
-                                            <h6 class="list-text-xs mb-2">Activities: 
+                                            <h6 class="list-text-xs mb-2">Activities:
                                             <span><?php echo taoh_title_desc_decode($edu_vals['edu_activities']); ?></span></h6>
                                         <?php }?>
                                         <?php if(taoh_title_desc_decode($edu_vals['edu_description']) != ''){?>
@@ -1770,7 +1749,7 @@ $end_year = !empty($emp_vals['emp_year_end']) ? $emp_vals['emp_year_end'] : $cur
 
                                 <h5 class="text-center list-text-md my-3"  style="max-width: 522px;">Adding your academic journey can help you connect with the right opportunities—add it now!</h5>
                                 <button class="btn continue-btn add_edit_edu" type="button" data-add-edit="Add" data-education="<?php echo $edu_tot_count ?? '0'; ?>">
-                                    <span>Add Education Details</span> 
+                                    <span>Add Education Details</span>
                                 </button>
                             </div>
                         </div>
@@ -1791,12 +1770,12 @@ $end_year = !empty($emp_vals['emp_year_end']) ? $emp_vals['emp_year_end'] : $cur
                                 <path d="M5.25082 6C6.04659 6 6.80978 5.68393 7.37247 5.12132C7.93517 4.55871 8.25129 3.79565 8.25129 3C8.25129 2.20435 7.93517 1.44129 7.37247 0.87868C6.80978 0.316071 6.04659 0 5.25082 0C4.45505 0 3.69187 0.316071 3.12917 0.87868C2.56647 1.44129 2.25035 2.20435 2.25035 3C2.25035 3.79565 2.56647 4.55871 3.12917 5.12132C3.69187 5.68393 4.45505 6 5.25082 6ZM4.17956 7.125C1.8706 7.125 0 8.99531 0 11.3039C0 11.6883 0.311767 12 0.696203 12H7.56681C7.49414 11.7937 7.48007 11.5688 7.53399 11.3484L7.88561 9.93984C7.95124 9.675 8.0872 9.43594 8.27942 9.24375L9.2241 8.29922C8.47164 7.57266 7.4496 7.125 6.31974 7.125H4.17956ZM14.3882 5.52422C14.0225 5.15859 13.4294 5.15859 13.0614 5.52422L12.3722 6.21328L14.0366 7.87734L14.7257 7.18828C15.0914 6.82266 15.0914 6.22969 14.7257 5.86172L14.3882 5.52422ZM8.81153 9.77344C8.71542 9.86953 8.64744 9.98906 8.61463 10.1227L8.26301 11.5312C8.23019 11.6602 8.2677 11.7938 8.36146 11.8875C8.45523 11.9813 8.58884 12.0188 8.71777 11.9859L10.1266 11.6344C10.2579 11.6016 10.3797 11.5336 10.4759 11.4375L13.5045 8.40703L11.8401 6.74297L8.81153 9.77344Z" fill="#ffffff" />
                             </svg>
                             <h6 class="p-field-title text-white">About, Hobbies & Interests</h6>
-                            <?php // if(isset($data->step5) && $data->step5 == 5) { 
-                                if($about_me != '' || $fun_fact != ''){    
+                            <?php // if(isset($data->step5) && $data->step5 == 5) {
+                                if($about_me != '' || $fun_fact != ''){
                             ?>
 
                                 <svg style="min-width: fit-content;" width="18" height="18" viewBox="0 0 10 10" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                    <path d="M5 10C6.32608 10 7.59785 9.47322 8.53553 8.53553C9.47322 7.59785 10 6.32608 10 5C10 3.67392 9.47322 2.40215 8.53553 1.46447C7.59785 0.526784 6.32608 0 5 0C3.67392 0 2.40215 0.526784 1.46447 1.46447C0.526784 2.40215 0 3.67392 0 5C0 6.32608 0.526784 7.59785 1.46447 8.53553C2.40215 9.47322 3.67392 10 5 10ZM7.20703 4.08203L4.70703 6.58203C4.52344 6.76562 4.22656 6.76562 4.04492 6.58203L2.79492 5.33203C2.61133 5.14844 2.61133 4.85156 2.79492 4.66992C2.97852 4.48828 3.27539 4.48633 3.45703 4.66992L4.375 5.58789L6.54297 3.41797C6.72656 3.23438 7.02344 3.23438 7.20508 3.41797C7.38672 3.60156 7.38867 3.89844 7.20508 4.08008L7.20703 4.08203Z" 
+                                    <path d="M5 10C6.32608 10 7.59785 9.47322 8.53553 8.53553C9.47322 7.59785 10 6.32608 10 5C10 3.67392 9.47322 2.40215 8.53553 1.46447C7.59785 0.526784 6.32608 0 5 0C3.67392 0 2.40215 0.526784 1.46447 1.46447C0.526784 2.40215 0 3.67392 0 5C0 6.32608 0.526784 7.59785 1.46447 8.53553C2.40215 9.47322 3.67392 10 5 10ZM7.20703 4.08203L4.70703 6.58203C4.52344 6.76562 4.22656 6.76562 4.04492 6.58203L2.79492 5.33203C2.61133 5.14844 2.61133 4.85156 2.79492 4.66992C2.97852 4.48828 3.27539 4.48633 3.45703 4.66992L4.375 5.58789L6.54297 3.41797C6.72656 3.23438 7.02344 3.23438 7.20508 3.41797C7.38672 3.60156 7.38867 3.89844 7.20508 4.08008L7.20703 4.08203Z"
                                     fill="#ffffff"/>
                                 </svg>
                             <?php }else{ ?>
@@ -1806,7 +1785,7 @@ $end_year = !empty($emp_vals['emp_year_end']) ? $emp_vals['emp_year_end'] : $cur
                             <?php } ?>
                         </div>
 
-                        
+
                     <form method="post" name="step5_form" id="step5_form" action="<?php echo TAOH_ACTION_URL .'/settings'; ?>" style="max-width: 953px;" onsubmit="showLoading(event)">
                         <input type="hidden" name="taoh_action" value="old_profile">
                         <input type="hidden" name="taoh_ptoken" value="<?php echo $ptoken; ?>">
@@ -1821,14 +1800,14 @@ $end_year = !empty($emp_vals['emp_year_end']) ? $emp_vals['emp_year_end'] : $cur
                                 </div>
                                 <div class="form-group col-lg-6">
                                     <label class="text-label" for="">Fun Fact (Great for ice-breakers)</label>
-                                    <textarea class="form-control form--control" rows="8" maxlength="500" name="funfact" style="min-height: 200px;" ><?php echo taoh_title_desc_decode(trim($fun_fact)); ?> </textarea> 
+                                    <textarea class="form-control form--control" rows="8" maxlength="500" name="funfact" style="min-height: 200px;" ><?php echo taoh_title_desc_decode(trim($fun_fact)); ?> </textarea>
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="form-group col-lg-6">
                                     <label class="text-label" for="">Hobbies and Interests</label>
                                     <select name="hobbies[]" id="hobbies" multiple="hobbies"  class="select2 form-control hobbies-field">
-                                        <?php foreach(PROFESSIONAL_HOBBIES as $hkey=>$hobby){ ?> 
+                                        <?php foreach(PROFESSIONAL_HOBBIES as $hkey=>$hobby){ ?>
                                             <option value="<?php echo $hkey; ?>" <?php echo (is_array($hobbies) && in_array($hkey,$hobbies)) ? 'selected' : ''; ?>><?php echo $hobby; ?></option>
                                         <?php } ?>
                                     </select>
@@ -1860,7 +1839,7 @@ $end_year = !empty($emp_vals['emp_year_end']) ? $emp_vals['emp_year_end'] : $cur
                         <div class="profile-card-list mb-4 p-3 p-lg-4" style="max-width: 783px;">
                             <h6 class="list-text-md mb-3" style="font-weight: 500;">Hobbies and Interests</h6>
                             <!-#- <p class="list-text-nml my-3">Tell who you are to employers and your fellow professionals and tell what makes you stand out from others !</p> -#->
-                            <?php 
+                            <?php
                                 // $fun_factArr = explode("##$##",$fun_fact);
                                 // foreach ($hobbies as $f_keys => $f_vals){ ?>
                                     <p class="list-text-nml mb-3"><?php // echo PROFESSIONAL_HOBBIES[$f_vals]; ?></p>
@@ -1884,7 +1863,7 @@ $end_year = !empty($emp_vals['emp_year_end']) ? $emp_vals['emp_year_end'] : $cur
                         </div>
 
                      </div>
-                    
+
                 <!-- form-block-6 -->
                 <div class="tab-pane pb-5 fade" id="form-block-6" role="tabpanel" aria-labelledby="block-6-tab" style="max-width: 953px;">
                     <div class="d-flex align-items-center d-xl-none p-3 mb-4" style="gap: 12px; margin: 0 -24px; background-color: #2557A7;">
@@ -1893,7 +1872,7 @@ $end_year = !empty($emp_vals['emp_year_end']) ? $emp_vals['emp_year_end'] : $cur
                         </svg>
                         <h6 class="p-field-title text-white">Privacy</h6>
                         <svg style="min-width: fit-content;" width="18" height="18" viewBox="0 0 10 10" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M5 10C6.32608 10 7.59785 9.47322 8.53553 8.53553C9.47322 7.59785 10 6.32608 10 5C10 3.67392 9.47322 2.40215 8.53553 1.46447C7.59785 0.526784 6.32608 0 5 0C3.67392 0 2.40215 0.526784 1.46447 1.46447C0.526784 2.40215 0 3.67392 0 5C0 6.32608 0.526784 7.59785 1.46447 8.53553C2.40215 9.47322 3.67392 10 5 10ZM7.20703 4.08203L4.70703 6.58203C4.52344 6.76562 4.22656 6.76562 4.04492 6.58203L2.79492 5.33203C2.61133 5.14844 2.61133 4.85156 2.79492 4.66992C2.97852 4.48828 3.27539 4.48633 3.45703 4.66992L4.375 5.58789L6.54297 3.41797C6.72656 3.23438 7.02344 3.23438 7.20508 3.41797C7.38672 3.60156 7.38867 3.89844 7.20508 4.08008L7.20703 4.08203Z" 
+                            <path d="M5 10C6.32608 10 7.59785 9.47322 8.53553 8.53553C9.47322 7.59785 10 6.32608 10 5C10 3.67392 9.47322 2.40215 8.53553 1.46447C7.59785 0.526784 6.32608 0 5 0C3.67392 0 2.40215 0.526784 1.46447 1.46447C0.526784 2.40215 0 3.67392 0 5C0 6.32608 0.526784 7.59785 1.46447 8.53553C2.40215 9.47322 3.67392 10 5 10ZM7.20703 4.08203L4.70703 6.58203C4.52344 6.76562 4.22656 6.76562 4.04492 6.58203L2.79492 5.33203C2.61133 5.14844 2.61133 4.85156 2.79492 4.66992C2.97852 4.48828 3.27539 4.48633 3.45703 4.66992L4.375 5.58789L6.54297 3.41797C6.72656 3.23438 7.02344 3.23438 7.20508 3.41797C7.38672 3.60156 7.38867 3.89844 7.20508 4.08008L7.20703 4.08203Z"
                             fill="#ffffff"/>
                         </svg>
                     </div>
@@ -2160,7 +2139,7 @@ $end_year = !empty($emp_vals['emp_year_end']) ? $emp_vals['emp_year_end'] : $cur
                         <div class="input-box">
                             <label class="fs-13 text-black lh-20 fw-medium">Fun Fact(Great for ice-breakers) <!-#- <span style="color:red"> * </span> -#-></label>
                             <div class="form-group">
-                            <textarea class="form-control" rows="4" maxlength="500" name="funfact" ><?php echo $fun_fact; ?> </textarea> 
+                            <textarea class="form-control" rows="4" maxlength="500" name="funfact" ><?php echo $fun_fact; ?> </textarea>
                             </div>
                         </div>
                     </div>
@@ -2189,7 +2168,7 @@ $end_year = !empty($emp_vals['emp_year_end']) ? $emp_vals['emp_year_end'] : $cur
                             <label class="fs-13 text-black lh-20 fw-medium">Hobbies<!-#- <span style="color:red"> * </span> -#-></label>
                             <div class="form-group">
                             <select name="hobbies[]" id="hobbies" multiple="hobbies"  class="select2 form-control hobbies-field">
-                                <?php // foreach(PROFESSIONAL_HOBBIES as $hkey=>$hobby){ ?> 
+                                <?php // foreach(PROFESSIONAL_HOBBIES as $hkey=>$hobby){ ?>
                                     <option value="<?php // echo $hkey; ?>" <?php // echo (is_array($hobbies) && in_array($hkey,$hobbies)) ? 'selected' : ''; ?>><?php // echo $hobby; ?></option>
                                 <?php // } ?>
                             </select>
@@ -2214,17 +2193,17 @@ let taoh_user_keywords = JSON.parse('<?php echo defined('TAOH_USER_KEYWORDS') ? 
 var userType = "<?php echo isset($data->type) ? $data->type : ''; ?>";
 var savedTags = { ...<?php echo json_encode(@$data->tags);?> }
 var loginType = "<?php echo $login_type; ?>";
-let isFormModified = false; 
+let isFormModified = false;
 
 $('document').ready(function() {
 
     $( ".hobbies-field" ).select2({width: '100%'});
-        
+
     $("#fname").keyup(function () {
         $('#chat_name').val($(this).val());
     });
 
-     
+
         $('#setting_form, #step2_form, #step5_form').on('change input', 'input, textarea', function() {
             isFormModified = true;
         });
@@ -2235,10 +2214,10 @@ $('document').ready(function() {
                 if (isFormModified) {
                     if (confirm('You have unsaved changes. Are you sure you want to leave without saving?')) {
                         isFormModified = false;  // Reset the flag after confirming
-                        $(this).tab('show'); 
-                    } 
+                        $(this).tab('show');
+                    }
                 } else {
-                    $(this).tab('show'); 
+                    $(this).tab('show');
                 }
             }
         });
@@ -2258,12 +2237,12 @@ $('document').ready(function() {
 
 $("#step2_form").validate({
         rules: {
-            skill: {required:true},  
+            skill: {required:true},
         },
         messages: {
-            skill: {required : "Skill is required"},	
+            skill: {required : "Skill is required"},
         },
-        submitHandler: function (form) {		
+        submitHandler: function (form) {
               if(indx_db_settings==1){
                   step2_submit(form);
                }else{
@@ -2271,43 +2250,43 @@ $("#step2_form").validate({
                }
                return false;
         }
-            
+
     });
 $("#setting_form").validate({
 
     rules: {
-        fname: {required:true},                
+        fname: {required:true},
         lname: {required:true},
         email : {
             required : false,
             email : true
-        },                
-        type:"required",               
-        chat_name:"required",              
-        //aboutme:"required",               
-        //funfact:"required",               
+        },
+        type:"required",
+        chat_name:"required",
+        //aboutme:"required",
+        //funfact:"required",
     },
     messages: {
-        fname: {required : "First Name is required"},		
+        fname: {required : "First Name is required"},
         lname: {required : "Last Name is required"},
         email:{
             url : "Please enter vaild email"
         },
-        type:"Profile type is required", 		
+        type:"Profile type is required",
         chat_name:"Chat name is required",
-       // aboutme:"About Me is required",		
-       // funfact:"Fun Fact is required",		                        
+       // aboutme:"About Me is required",
+       // funfact:"Fun Fact is required",
     },
-    submitHandler: function (form) {			
+    submitHandler: function (form) {
         var v5 = $("input[name=avatar]").val();
         var condition = v5 == 'default';
         <?php if(TAOH_PROFILE_PICTURE_UPLOAD){ ?>
             var v6 = $("input[name=avatar_image]").val();
-            condition = condition && v6 == ''; 
+            condition = condition && v6 == '';
         <?php } ?>
         //console.log('v5',v5+'------ v6'+v6);
         console.log('condition',condition);
-        
+
         if(condition) {
             // alert('if condition true');
             // Scroll to the element with the ID 'myElement'
@@ -2322,13 +2301,13 @@ $("#setting_form").validate({
             $('#avatar-error').hide();
             $("#save_changes").html('<img style="width:28px;" width="20" src="<?php echo TAOH_LOADER_GIF; ?>"> While saving in progress, you can continue to explore other pages.');
             $("#save_changes").attr('disabled', true);
-            
+
            if(indx_db_settings==1){
               indxform_submit(form);
            }else{
               form.submit();
            }
-           <?php $tabname = '#form-block-2'; 
+           <?php $tabname = '#form-block-2';
                 if( !isset( $data->skill ) || $data->skill == ''){
                     $tabname = '#form-block-2';
                 }else if(!is_array($emp_list) || count($emp_list) == 0 ){
@@ -2342,15 +2321,15 @@ $("#setting_form").validate({
         //    window.location.replace('<?php // echo TAOH_SITE_URL_ROOT . '/settings'.$tabname; ?>');
            return false;
         }
-    }  
+    }
 });
-function createSession(formData,e){  
+function createSession(formData,e){
     e.preventDefault();
 
-    
+
     var roleSelect ={};var companySelect ={};
-    
-    
+
+
     $("#roleSelect option:selected").map(function () {
         id = $(this).val();
         roleSelect[id] = $(this).attr("data-slug")+":>"+$(this).text();
@@ -2389,7 +2368,7 @@ function step2_submit(form){
         }
         if (key == "tags[]"){
             settingsdata_2.tags.push(value);
-        } 
+        }
         else if (key == "skill:skill[]" ) {
             if (!settingsdata_2.hasOwnProperty(key)) {
                 settingsdata_2[key] = {};
@@ -2398,9 +2377,9 @@ function step2_submit(form){
         } else {
             settingsdata_2[key] = value;
         }
-    });   
-    
-    /*console.log('----aaaa---settingsdata_2---------',settingsdata_2); 
+    });
+
+    /*console.log('----aaaa---settingsdata_2---------',settingsdata_2);
 
     let setting_time = new Date();
     setting_time = setting_time.setMinutes(setting_time.getMinutes() + 5);
@@ -2425,7 +2404,7 @@ function saveStep2Data(settingsdata_2,form){
 
             var data = {
                 'step2': 1,
-                
+
                 'taoh_ptoken' : $('input[name="taoh_ptoken"]').val(),
             };
             jQuery.post("<?php echo TAOH_ACTION_URL . '/settings'; ?>", settingsdata_2, function(response) {
@@ -2443,12 +2422,12 @@ function saveStep2Data(settingsdata_2,form){
                             }
                     ?>
                     // window.location.replace('<?php // echo TAOH_SITE_URL_ROOT . '/settings'.$tabname; ?>');
-                   
+
                 }
             }).fail(function() {
 
             });
-                
+
 }
 function indxform_submit(form){
     taoh_set_warning_message('Saving changes are in progress!!!');
@@ -2470,7 +2449,7 @@ function indxform_submit(form){
     var settingsdata = {};
     settingsdata.keywords = {};
     formData.forEach(function (value, key) {
-       
+
         if (key == "title:title[]" || key == "company:company[]") {
             if (!settingsdata.hasOwnProperty(key)) {
                 settingsdata[key] = {};
@@ -2484,8 +2463,8 @@ function indxform_submit(form){
             settingsdata[key] = value;
         }
     });
-    // console.log('-------settingsdata---------',settingsdata); 
-    
+    // console.log('-------settingsdata---------',settingsdata);
+
     let setting_time = new Date();
     setting_time = setting_time.setMinutes(setting_time.getMinutes() + 5);
 
@@ -2493,8 +2472,8 @@ function indxform_submit(form){
     IntaoDB.setItem(dataStore, { taoh_data:index_name,values : settingsdata });
     IntaoDB.setItem(TTLStore, { taoh_ttl: index_name,time:setting_time });
     $('#global_settings').val(1);
-    // console.log('-------loginType---------',loginType); 
-    // console.log('-------userType---------',userType); 
+    // console.log('-------loginType---------',loginType);
+    // console.log('-------userType---------',userType);
 
     if (loginType == "first_update" && userType == "employer") {
         localStorage.setItem('show_jobPostModal', 1);
@@ -2505,7 +2484,7 @@ function indxform_submit(form){
     // After the form submission, show the modal using Bootstrap's modal method
     // Only show the modal if the user is a "recruiter"
     // After submitting the form, check again if the conditions are met to show the modal
-    
+
     return false;
 }
 
@@ -2523,7 +2502,7 @@ function indxform_submit(form){
 
         // Update the selected tags
         function updateSelectedTags() {
-            
+
             selectedTagsContainer.innerHTML = '';
             // $("#myTabForm").find(".tab-pane").addClass("fade");
             // $("#myTabForm").find(".tab-pane").removeClass("active show");
@@ -2532,7 +2511,7 @@ function indxform_submit(form){
                 span.textContent = tag;
                 const removeIcon = document.createElement('span');
                 removeIcon.textContent = '✖';
-                removeIcon.classList.add('remove-tag'); 
+                removeIcon.classList.add('remove-tag');
                 removeIcon.addEventListener('click', () => {
                     selectedTags = selectedTags.filter(t => t !== tag);
                     // Uncheck the corresponding checkbox
@@ -2550,10 +2529,10 @@ function indxform_submit(form){
                 });
                 span.appendChild(removeIcon);
                 selectedTagsContainer.appendChild(span);
-                
+
                 // $("#"+tag.replaceAll(" ","")).removeClass('fade');
                 // $("#"+tag.replaceAll(" ","")).addClass('active show');
-                
+
                 // $('#selected-tags span').on('click', function() {
                 $('#selected-tags').on('click', 'span', function (e) {
                     // if($(this).hasClass('remove-tag')){
@@ -2576,10 +2555,10 @@ function indxform_submit(form){
                 // console.log('-----------',$(this).val());
                 // console.log('-----------',$(this).attr('id'));
                 // alert('test tags');
-                   
+
                     const tag = $(this).val();
                     const label = document.querySelector(`label[for="${$(this).val()}"]`);
-                    
+
                     if ( $(this).attr('checked') && !selectedTags.includes(tag)) {
                         selectedTags.push(tag);
                         label.style.backgroundColor = '#2557A7'; // Active background
@@ -2602,7 +2581,7 @@ function indxform_submit(form){
                 console.log('after return');
                 const tag = this.value;
                 const label = document.querySelector(`label[for="${this.value}"]`);
-                
+
                 if (this.checked && !selectedTags.includes(tag)) {
                     selectedTags.push(tag);
                     $("#myTabForm").find(".tab-pane").addClass('fade');
@@ -2629,12 +2608,9 @@ function indxform_submit(form){
         }
 
 
-        
-
-     
     });
 
-    
+
 $('#custom_avatar').change(function() {
     if($('#avt_img_delete').val() != ''){
         let send_array = {};
@@ -2660,7 +2636,7 @@ $('#custom_avatar').change(function() {
             }
         })
         .catch((error) => {
-            
+
         });
     }
     $('#custom_avatar').attr('name', 'fileToUpload');
@@ -2718,7 +2694,7 @@ $('#custom_avatar').change(function() {
         }
     })
     .catch((error) => {
-        
+
     });
     $('#avatar').attr('name', 'avatar_img');
 });
@@ -2801,7 +2777,7 @@ $('#fileToUpload').change(function() {
     $('#error1').hide();
     $('.resume_file_name').html(file);
     $('.resume_name').val(file);
-    var cdnformData = new FormData(document.querySelector('form'));       
+    var cdnformData = new FormData(document.querySelector('form'));
     fetch("<?php echo TAOH_CDN_PREFIX; ?>/cache/upload/now", {
         method: "POST",
         body: cdnformData,
@@ -2817,7 +2793,7 @@ $('#fileToUpload').change(function() {
             var data_url = data.output;
             $('.resume_link').val(data_url);
             taoh_set_success_message('Resume Saved in server click on save button!!!');
-            $('#fileToUpload').attr('name', '');	
+            $('#fileToUpload').attr('name', '');
         } else {
             document.getElementById("responseMessage").style.color = "red";
             document.getElementById("responseMessage").innerHTML = "File upload failed: " + data.output;
@@ -2831,14 +2807,11 @@ $('#fileToUpload').change(function() {
     });
 });
 
-
-
-
-function copyProfileType(type){   
-    userType = type;  
+function copyProfileType(type){
+    userType = type;
 }
 
-let deleteAccountBody = $('#deleteAccountBody');   
+let deleteAccountBody = $('#deleteAccountBody');
 //Delete account
 function deleteAccount() {
     var data = {
@@ -3009,7 +2982,7 @@ function deleteAccount() {
         $(document).on('click', '.add_edit_hobbies', function () {
             $("#add_edit_hobbies").modal('show');
         });
-        
+
         /* $(document).on('change', '#mylink', function () {
             loader(true, $("#settings_loaderArea"));
             var data = {
@@ -3041,7 +3014,7 @@ function deleteAccount() {
             })
         });
 
-        
+
         $(document).on('change', "[name='unlist_me_dir']", function () {
             loader(true, $("#settings_loaderArea"));
             var data = {
@@ -3058,11 +3031,11 @@ function deleteAccount() {
             })
         });
 
-        
+
         $(document).on('change', "#emp_year_starts", function (e) {
             var emp_startYear = $(this).children(':selected').val();
             $('#emp_hidden_end').children().appendTo('#emp_year_ends');
-            
+
             $('#emp_year_ends option').each(function () {
                 if ($(this).val() < emp_startYear) $(this).appendTo('#emp_hidden_end');
             })
@@ -3124,15 +3097,12 @@ function deleteAccount() {
             }, 1000); // Delay submission for demonstration purposes
         } */
 </script>
-
-
-
 <!-- for mobile screen -->
 <script>
     // mobile screen next and prev tabs
     document.addEventListener("DOMContentLoaded", function () {
         const tabNavButtons = document.querySelectorAll('.tab-nav-btn');
-        
+
         tabNavButtons.forEach(button => {
             button.addEventListener('click', function (e) {
                 // console.log('clicked prenext :'+isFormModified);
@@ -3140,9 +3110,9 @@ function deleteAccount() {
             if (isFormModified) {
                 if (confirm('You have unsaved changes. Are you sure you want to leave without saving?')) {
                     isFormModified = false;  // Reset the flag after confirming
-                    $(this).tab('show'); 
+                    $(this).tab('show');
                     nxttabflag = 1;
-                } 
+                }
             } else {
                 nxttabflag = 1;
             }
@@ -3173,12 +3143,9 @@ function deleteAccount() {
             });
         });
     });
-
-
-    
-    // for mobile screen, scroll to top 
+    // for mobile screen, scroll to top
     document.addEventListener('DOMContentLoaded', function () {
-         
+
         // Select all tab navigation buttons for mobile
         document.querySelectorAll('.d-xl-none .tab-nav-btn').forEach(function (tabLink) {
             tabLink.addEventListener('click', function () {

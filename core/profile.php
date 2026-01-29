@@ -247,16 +247,16 @@ $data_keywords = (array)($data['output']['user']['keywords'] ?? []);
 
 <!-- html new template profile start -->
 <!-- <section class="blog-area py-5" style="background: #ffffff">
-  <div class="container">  
+  <div class="container">
     <h2 class="" style="font-size: 33px; font-weight: 500;">My Profile</h2>
 
-    <div class="mx-1 my-4 p-3 shadow  px-md-4 py-md-5" style="border: 1.6px solid #D3D3D3; border-radius: 8px;">     
+    <div class="mx-1 my-4 p-3 shadow  px-md-4 py-md-5" style="border: 1.6px solid #D3D3D3; border-radius: 8px;">
         <div class="row mx-0 d-flex flex-wrap-reverse">
             <div class="col-md-10 d-flex flex-wrap align-items-center" style="gap: 2.8rem">
                 <div class="">
                     <img class=""  src="<?php echo $avatar_image;?>" alt="" style="width: 9rem; height: 9rem; border-radius: 50%;">
                 </div>
-                
+
                 <div>
                     <div class="d-flex flex-wrap align-items-center">
                         <h1 class="d-flex align-items-center py-3"><span class="text-black mr-4" style="font-size: 33px; font-weight: 500;"><?php echo $data['output']['user']['chat_name'];?></span></h1>
@@ -278,7 +278,7 @@ $data_keywords = (array)($data['output']['user']['keywords'] ?? []);
         </div>
     </div>
 
-    <div class="mx-1 my-4 p-3 shadow  px-md-4 py-md-5" style="border: 1.6px solid #D3D3D3; border-radius: 8px;">  
+    <div class="mx-1 my-4 p-3 shadow  px-md-4 py-md-5" style="border: 1.6px solid #D3D3D3; border-radius: 8px;">
         <div class="row mx-0 d-flex flex-wrap-reverse mb-4">
             <div class="col-md-10">
                 <h1 style="font-size: 33px;"> Personal Information</h1>
@@ -355,7 +355,7 @@ $data_keywords = (array)($data['output']['user']['keywords'] ?? []);
                     <span style="color: #727272; font-size: 21px;">About</span>
                 </h6>
                 <p class="mt-3" style="font-size: 18px; color: #000000; text-align: justify;">
-                    <?php if(!empty($about_me)){ ?>       
+                    <?php if(!empty($about_me)){ ?>
                         <?php if (!$user_is_logged_in) { ?>
                             <a href="#" data-toggle="tooltip" data-placement="top" title="Login to see the full details!">
                                 <div class="mt-2 mb-2" id="loading">
@@ -377,7 +377,7 @@ $data_keywords = (array)($data['output']['user']['keywords'] ?? []);
                     <span style="color: #727272; font-size: 21px;">Fun Fact</span>
                 </h6>
                 <p class="mt-3" style="font-size: 18px; color: #000000; text-align: justify;">
-                    <?php if(!empty($fun_fact)){ ?> 
+                    <?php if(!empty($fun_fact)){ ?>
                         <?php if (!$user_is_logged_in) { ?>
                             <a href="#" data-toggle="tooltip" data-placement="top" title="Login to see the full details!">
                                 <div class="mt-2 mb-2" id="loading">
@@ -385,19 +385,19 @@ $data_keywords = (array)($data['output']['user']['keywords'] ?? []);
                                 </div>
                             </a>
                         <?php }else{ ?>
-                            
+
                                 <?php echo $fun_fact; ?>
-                        
+
                         <?php } ?>
                     <?php } ?>
                 </p>
             </div>
         </div>
 
-        
+
     </div>
 
-    <div class="mx-1 my-4 p-3 shadow  px-md-4 py-md-5" style="border: 1.6px solid #D3D3D3; border-radius: 8px;">  
+    <div class="mx-1 my-4 p-3 shadow  px-md-4 py-md-5" style="border: 1.6px solid #D3D3D3; border-radius: 8px;">
         <div class="row mx-0 d-flex flex-wrap-reverse mb-4">
             <div class="col-md-10">
                 <h1 style="font-size: 33px"> Location</h1>
@@ -427,7 +427,7 @@ $data_keywords = (array)($data['output']['user']['keywords'] ?? []);
                     <?php echo $data['output']['user']['full_location'];?>
                 </p>
             </div>
-           
+
             <div class="col-md-6 mb-4">
                 <h6 class="d-flex align-items-center" style="gap: 6px;">
                     <svg width="23" height="23" viewBox="0 0 23 23" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -444,7 +444,7 @@ $data_keywords = (array)($data['output']['user']['keywords'] ?? []);
         </div>
     </div>
 
-    <div class="mx-1 my-4 p-3 shadow px-md-4 py-md-5" style="border: 1.6px solid #D3D3D3; border-radius: 8px;">  
+    <div class="mx-1 my-4 p-3 shadow px-md-4 py-md-5" style="border: 1.6px solid #D3D3D3; border-radius: 8px;">
         <div class="row mx-0 d-flex flex-wrap-reverse mb-4">
             <div class="col-md-10">
                 <h1 style="font-size: 33px"> Core Skills</h1>
@@ -463,7 +463,7 @@ $data_keywords = (array)($data['output']['user']['keywords'] ?? []);
         <div class="row mx-0">
             <div class="col-12">
                 <?php if(!empty($get_skill)){ ?>
-                    
+
                     <?php if (!$user_is_logged_in) { ?>
                         <a href="#" data-toggle="tooltip" data-placement="top" title="Login to see the full details!">
                             <div class="mt-2 mb-2" id="loading">
@@ -474,20 +474,20 @@ $data_keywords = (array)($data['output']['user']['keywords'] ?? []);
                             </div>
                         </a>
                     <?php }else{ ?>
-                        
+
                             <?php foreach($get_skill as $keys => $vals){
                                 if(!empty($vals['value'])){?>
                                 <span class="skill-link px-5 py-2" style="font-size: 20px; background: #F2F1F1; border: 2px solid #D3D3D3;"><?php echo $vals['value']; ?></span>
                             <?php } } ?>
-                        
+
                     <?php } ?>
-                       
+
                 <?php } ?>
             </div>
         </div>
     </div>
 
-    <div class="mx-1 my-4 p-3 shadow px-md-4 py-md-5" style="border: 1.6px solid #D3D3D3; border-radius: 8px;">  
+    <div class="mx-1 my-4 p-3 shadow px-md-4 py-md-5" style="border: 1.6px solid #D3D3D3; border-radius: 8px;">
         <div class="row mx-0 d-flex flex-wrap-reverse mb-4">
             <div class="col-md-10">
                 <h1 style="font-size: 33px"> Professional Experience</h1>
@@ -512,7 +512,7 @@ $data_keywords = (array)($data['output']['user']['keywords'] ?? []);
                     <span style="color: #727272; font-size: 21px;">Current or Last Job Role</span>
                 </h6>
                 <p class="mt-3" style="font-size: 26px; color: #000000;">
-                    
+
                 </p>
             </div>
             <div class="col-md-6 mb-4">
@@ -521,20 +521,17 @@ $data_keywords = (array)($data['output']['user']['keywords'] ?? []);
                     <path d="M3.55556 0C1.59444 0 0 1.59444 0 3.55556V21.3333C0 23.2944 1.59444 24.8889 3.55556 24.8889H28.4444C30.4056 24.8889 32 23.2944 32 21.3333V3.55556C32 1.59444 30.4056 0 28.4444 0H3.55556ZM8 14.2222H11.5556C14.0111 14.2222 16 16.2111 16 18.6667C16 19.1556 15.6 19.5556 15.1111 19.5556H4.44444C3.95556 19.5556 3.55556 19.1556 3.55556 18.6667C3.55556 16.2111 5.54444 14.2222 8 14.2222ZM6.22222 8.88889C6.22222 7.9459 6.59682 7.04153 7.26362 6.37473C7.93042 5.70794 8.83479 5.33333 9.77778 5.33333C10.7208 5.33333 11.6251 5.70794 12.2919 6.37473C12.9587 7.04153 13.3333 7.9459 13.3333 8.88889C13.3333 9.83188 12.9587 10.7363 12.2919 11.403C11.6251 12.0698 10.7208 12.4444 9.77778 12.4444C8.83479 12.4444 7.93042 12.0698 7.26362 11.403C6.59682 10.7363 6.22222 9.83188 6.22222 8.88889ZM20.4444 7.11111H27.5556C28.0444 7.11111 28.4444 7.51111 28.4444 8C28.4444 8.48889 28.0444 8.88889 27.5556 8.88889H20.4444C19.9556 8.88889 19.5556 8.48889 19.5556 8C19.5556 7.51111 19.9556 7.11111 20.4444 7.11111ZM20.4444 10.6667H27.5556C28.0444 10.6667 28.4444 11.0667 28.4444 11.5556C28.4444 12.0444 28.0444 12.4444 27.5556 12.4444H20.4444C19.9556 12.4444 19.5556 12.0444 19.5556 11.5556C19.5556 11.0667 19.9556 10.6667 20.4444 10.6667ZM20.4444 14.2222H27.5556C28.0444 14.2222 28.4444 14.6222 28.4444 15.1111C28.4444 15.6 28.0444 16 27.5556 16H20.4444C19.9556 16 19.5556 15.6 19.5556 15.1111C19.5556 14.6222 19.9556 14.2222 20.4444 14.2222Z" fill="#D3D3D3"/>
                     </svg>
 
-
-
-
                     <span style="color: #727272; font-size: 21px;">Current or Last Company</span>
                 </h6>
                 <p class="mt-3" style="font-size: 26px; color: #000000;">
-                   
+
                 </p>
             </div>
-    
+
         </div>
 
     </div>
-  </div>   
+  </div>
 </section> -->
 <!-- html new template profile end -->
 
@@ -563,10 +560,10 @@ $data_keywords = (array)($data['output']['user']['keywords'] ?? []);
                                                 </svg>
                                                 <?php echo displayTitleName($data['output']['user']['title']);?>
                             </div>
-                            
+
                             <div class="mt-1">
                                 <ul><?php echo $data['output']['user']['mylink'];?></ul>
-                            
+
                             </div>
                         </div>
                         <div class="col-lg-4">
@@ -1190,9 +1187,6 @@ $end_year = !empty($emp_vals['emp_year_end']) ? $emp_vals['emp_year_end'] : $cur
         }
         currentCheckbox.prop('checked', !currentCheckbox.prop('checked'));
     }
-
-   
-
 
 
 </script>

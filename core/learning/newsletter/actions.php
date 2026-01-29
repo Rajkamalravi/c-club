@@ -33,7 +33,7 @@ if($_POST['action'] == "save") {
         'cache' => array('remove' => array("newsletter_" . $_POST['conttoken'], "newsletter_*")),
     );
     //print_r($taoh_vals);die;
-    $url = 'core.content.post';  
+    $url = 'core.content.post';
     // echo taoh_apicall_post_debug($url, $taoh_vals);taoh_exit();
     $result = taoh_apicall_post($url,  $taoh_vals);
 

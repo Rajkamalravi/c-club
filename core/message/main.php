@@ -13,9 +13,9 @@ switch ($slug) {
         include_once('message_ajax.php');  break;
     case 'dm':
         if($keyslug !='')
-        include_once(TAOH_PLUGIN_PATH.'/core/club/networking1.php'); 
+        include_once(TAOH_PLUGIN_PATH.'/core/club/networking1.php');
         else
-        include_once('club.php');  
+        include_once('club.php');
     break;
     default:
         include_once('message.php'); break;

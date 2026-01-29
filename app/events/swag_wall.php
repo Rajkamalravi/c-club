@@ -10,18 +10,18 @@ taoh_get_header();
                     <li class="nav-item">
                         <a href="<?php echo TAOH_SITE_URL_ROOT; ?>">Home</a>
                         <?= icon('chevron-right', '#000000', 19) ?>
-                    </li>                           
+                    </li>
                     <li class="nav-item">
                         <a href="<?php echo TAOH_SITE_URL_ROOT; ?>">Events</a>
                         <?= icon('chevron-right', '#000000', 19) ?>
-                    </li>                           
+                    </li>
                     <li class="nav-item">
                         <a href="<?php echo TAOH_SITE_URL_ROOT; ?>">First Friday Fair Virtual Job Fair Career Expo Event</a>
                         <?= icon('chevron-right', '#000000', 19) ?>
-                    </li>                           
+                    </li>
                     <li class="nav-item">
                         <a href="<?php echo TAOH_SITE_URL_ROOT; ?>">Swag Wall</a>
-                    </li>                           
+                    </li>
                 </ul>
 
                 <div class="d-flex align-items-start flex-column flex-lg-row py-3" style="gap: 9px;">
@@ -29,11 +29,11 @@ taoh_get_header();
                         <h5 class="e-v2-title mb-1">First Friday Fair Virtual Job Fair Career Expo Event</h5>
                     </div>
 
-                    
+
                     <button type="button" class="e-d-v2-btn btn btn-success lh-1 py-2">
                         LIVE NOW! Click to Join
                     </button>
-                    
+
                 </div>
 
             </div>

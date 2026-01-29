@@ -55,19 +55,19 @@ function taoh_define_url_constants() {
     }
     if ( ! defined( 'TAOH_FWD_URL_ROOT' ) ) define( 'TAOH_FWD_URL_ROOT', sprintf( "%s://%s%s", isset( $_SERVER[ 'HTTPS' ] ) && $_SERVER[ 'HTTPS' ] != 'off' ? 'https' : 'http', $_SERVER[ 'HTTP_HOST' ], dirname( $_SERVER[ 'SCRIPT_NAME' ] ) ) );
 
-    
+
     if ( ! defined( 'TAOH_FWD_URL_ROOT' ) ) define( 'TAOH_FWD_URL_ROOT', sprintf( "%s://%s%s", isset( $_SERVER[ 'HTTPS' ] ) && $_SERVER[ 'HTTPS' ] != 'off' ? 'https' : 'http', $_SERVER[ 'HTTP_HOST' ], dirname( $_SERVER[ 'SCRIPT_NAME' ] ) ) );
 
-    
+
     if (!defined('TAOH_SITE_FWD_URL_ROOT')) {
         $protocol = (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off') ? 'https' : 'http';
         define('TAOH_SITE_FWD_URL_ROOT', sprintf("%s://%s%s", $protocol, $_SERVER['HTTP_HOST'], dirname($_SERVER['SCRIPT_NAME'])));
     }
-    
+
     if (!defined('TAOH_SITE_FWD_DOC_ROOT')) {
         define('TAOH_SITE_FWD_DOC_ROOT', $_SERVER['DOCUMENT_ROOT'] . dirname($_SERVER['SCRIPT_NAME']));
     }
-    
+
     if (!defined('TAOH_SITE_FWD_REDIRECT_URL')) {
         $temp = explode(TAOH_SITE_FWD_URL_ROOT, TAOH_SITE_FWD_URL_FULL);
         define('TAOH_SITE_FWD_REDIRECT_URL', trim($temp[1] ?? '', "/"));
@@ -108,17 +108,14 @@ function taoh_handle_autologin_route($url_path) {
         $final_url = TAOH_SITE_URL_ROOT . $destination;
 
         if(taoh_user_is_logged_in() ){
-            
-        
+
+
             header("Location: " . $final_url);
             taoh_exit();
             return true;
         }
 
         //echo '<pre>';  print_r($parts);die();
-        
-        
-
         if($login_token == '') return false;
 
         $app_data = taoh_app_info();
@@ -136,7 +133,7 @@ function taoh_handle_autologin_route($url_path) {
         $return = json_decode( taoh_apicall_get( $taoh_call, $taoh_vals ), true );
 
         //echo "============".$destination;die();
-        
+
         //echo'<pre>';print_r($return);die();
 
         if($return['success'] &&  isset( $return['output'] ) ) {
@@ -144,7 +141,7 @@ function taoh_handle_autologin_route($url_path) {
             if(TAOH_SIMPLE_LOGIN && $return['is_new_user']){
                 setcookie( TAOH_ROOT_PATH_HASH.'_anonymous', 1, strtotime( '+1 days' ),'/');
             }
-            
+
             setcookie( TAOH_ROOT_PATH_HASH."_temp_api_token", $return['output'], strtotime( '+1 days' ), '/'  );
             //echo $final_url;die();
             taoh_redirect($final_url);
@@ -163,21 +160,21 @@ function taoh_handle_autologin_route($url_path) {
  */
 function taoh_handle_uuid_route($url_path) {
     if (strpos($url_path, '/uu/') === false) return false;
-    
+
     $parts = explode("/uu/", $url_path);
     if (!isset($parts[1])) return false;
-    
+
     $uuid = explode("/", $parts[1])[0];
     $uuid_valid = taoh_uuid_fetch($uuid);
-    
+
     if (!$uuid_valid) {
         taoh_redirect_with_error("/404/uuidnotvalid/uu");
     }
-    
-    $redirect_url = (isset($_GET['from']) && $_GET['from'] === 'login') 
-        ? TAOH_SITE_URL_ROOT . '?login=social' 
+
+    $redirect_url = (isset($_GET['from']) && $_GET['from'] === 'login')
+        ? TAOH_SITE_URL_ROOT . '?login=social'
         : TAOH_SITE_URL_ROOT;
-    
+
     taoh_redirect($redirect_url);
     taoh_exit();
     return true;
@@ -188,17 +185,17 @@ function taoh_handle_uuid_route($url_path) {
  */
 function taoh_handle_user_route($url_path) {
     if (strpos($url_path, "/u/") === false) return false;
-    
+
     $forward_url = explode(TAOH_SITE_URL_ROOT, $url_path)[0];
     $login_token = taoh_user_is_logged_in() ? taoh_get_api_token() : '';
-    
+
     $uuid_data = [
         'token' => $login_token,
         'source' => TAOH_SITE_URL_ROOT,
         'sub_secret_token' => TAOH_ROOT_PATH_HASH,
         'forward_url' => $forward_url,
     ];
-    
+
     $uuid = taoh_create_uuid_with_retry($uuid_data);
     if (!$uuid) {
         taoh_redirect_with_error("/404/uuidcreate/fails");
@@ -233,7 +230,7 @@ function taoh_extract_subsecret($url_path, $dash_mode) {
         $parts = explode("/ss/", $url_path);
         return isset($parts[1]) ? explode("/", $parts[1])[0] : null;
     }
-    
+
     // For dashboard mode, check cookies or redirect
     if ($dash_mode) {
         if (isset($_COOKIE['taoh_api_ss'])) {
@@ -241,7 +238,7 @@ function taoh_extract_subsecret($url_path, $dash_mode) {
         }
         taoh_redirect_with_error("/404/ss");
     }
-    
+
     // Non-dashboard mode uses site hash
     return TAOH_SITE_ROOT_HASH ?? null;
 }
@@ -251,7 +248,7 @@ function taoh_extract_subsecret($url_path, $dash_mode) {
  */
 function taoh_extract_login_flag($url_path) {
     if (strpos($url_path, '/log/') === false) return 0;
-    
+
     $parts = explode("/log/", $url_path);
     return isset($parts[1]) ? (int)explode("/", $parts[1])[0] : 0;
 }
@@ -261,7 +258,7 @@ function taoh_extract_login_flag($url_path) {
  */
 function taoh_extract_ptoken($url_path) {
     if (strpos($url_path, '/pt/') === false) return null;
-    
+
     $parts = explode("/pt/", $url_path);
     return isset($parts[1]) ? explode("/", $parts[1])[0] : null;
 }
@@ -273,7 +270,7 @@ function taoh_validate_subsecret($subsecret, $dash_mode) {
     if (!$subsecret) {
         taoh_redirect_with_error("/404/111");
     }
-    
+
     $subsecret_info = taoh_get_subsecret_info($subsecret, 1);
     if (!$subsecret_info && $dash_mode) {
         taoh_redirect_with_error("/404/4");
@@ -285,7 +282,7 @@ function taoh_validate_subsecret($subsecret, $dash_mode) {
  */
 function taoh_handle_authentication($login_flag) {
     if (!$login_flag) return;
-    
+
     $token_key = TAOH_ROOT_PATH_HASH . '_taoh_api_token';
     if (empty($_COOKIE[$token_key])) {
         taoh_logout();
@@ -300,7 +297,7 @@ function taoh_handle_authentication($login_flag) {
 function taoh_build_final_url($url_path, $dash_mode) {
     $base_url = $dash_mode ? TAOH_SITE_URL_ROOT : TAOH_DASH_PREFIX;
     $cache_url = taoh_build_cache_url();
-    
+
     return $base_url . "/" . $url_path . "?ssloc=" . urlencode($cache_url);
 }
 
@@ -356,7 +353,7 @@ function taoh_create_log($values) {
         'status' => 'post',
         'key' => 'errorLog_'.date('Ymd')
     ];
-    
+
     $result = taoh_remote_cache($postData);
     $return = json_decode($result, true);
     return $return['output'] ?? false;
@@ -369,7 +366,7 @@ function taoh_create_log($values) {
  */
 function taoh_uuid_create($data) {
     $json_data = json_encode($data);
-    
+
     while (true) {
         // Create UUID
         $post_data = [
@@ -378,13 +375,13 @@ function taoh_uuid_create($data) {
             'value' => $json_data,
             'status' => 'post',
         ];
-        
+
         $result = taoh_remote_cache($post_data);
         $response = json_decode($result, true);
         $uuid = $response['output'] ?? null;
-        
+
         if (!$uuid) return false;
-        
+
         // Validate UUID
         $validation_data = [
             'code' => 'tc2asi3iida2',
@@ -392,10 +389,10 @@ function taoh_uuid_create($data) {
             'value' => $uuid,
             'status' => 'get',
         ];
-        
+
         $validation_result = taoh_remote_cache($validation_data);
         $validation_response = json_decode($validation_result, true);
-        
+
         if ($json_data === ($validation_response['output'] ?? null)) {
             return $uuid;
         }
@@ -412,27 +409,27 @@ function taoh_uuid_fetch($uuid) {
         'value' => $uuid,
         'status' => 'get',
     ];
-    
+
     $result = taoh_remote_cache($post_data);
     $response = json_decode($result, true);
     $data = json_decode($response['output'] ?? '{}', true);
-    
+
     if (!is_array($data) || empty($data['output'])) return false;
-    
+
     $redirect_set = false;
     $login_from_social = false;
     $token = '';
     $new_user = false;
-    
+
     // Process returned data and set cookies
     foreach ($data['output'] as $key => $value) {
         if (is_array($value)) {
             $value = json_encode($value);
         }
-        
+
         $cookie_key = TAOH_ROOT_PATH_HASH . '_' . $key;
         setcookie($cookie_key, $value, strtotime('+2 days'), '/');
-        
+
         switch ($key) {
             case 'taoh_api_token':
                 $redirect_set = true;
@@ -446,12 +443,12 @@ function taoh_uuid_fetch($uuid) {
                 break;
         }
     }
-    
+
     // Handle new user setup for simple login
     if ($token && $login_from_social && defined('TAOH_SIMPLE_LOGIN') && TAOH_SIMPLE_LOGIN && $new_user) {
         taoh_setup_anonymous_user($token);
     }
-    
+
     return $redirect_set;
 }
 
@@ -469,7 +466,7 @@ function taoh_setup_anonymous_user($token) {
     }
 
     $user_data = taoh_user_all_info_settings($token, 1);
-    
+
     $user_setup = [
         'simple_login' => TAOH_SIMPLE_LOGIN,
         'profile_complete' => 0,
@@ -479,13 +476,13 @@ function taoh_setup_anonymous_user($token) {
         'chat_name' => $user_data->fname ?? 'Anonymous',
         'local_timezone' => $_COOKIE['client_time_zone'] ?? 'UTC',
     ];
-    
+
     $api_data = [
         'token' => $token,
         'mod' => 'tao_tao',
         'toenter' => $user_setup,
     ];
-    
+
     taoh_apicall_post('users.tao.add', $api_data);
 }
 
@@ -504,22 +501,22 @@ function taoh_subsecret_check($subsecret_identifier) {
  */
 function taoh_load_subsecret_from_url($url) {
     $result = json_decode(file_get_contents($url), true);
-    
+
     if (!is_array($result) || empty($result)) return false;
-    
+
     $cache_file = TAOH_PLUGIN_PATH . "/cache/general/subsecret_" . TAOH_SUBSECRET_HASH . ".cache";
-    
+
     // Update cache if old or missing
     if (!file_exists($cache_file) || (time() - filemtime($cache_file)) >= 86400) {
         if (file_exists($cache_file)) unlink($cache_file);
         file_put_contents($cache_file, json_encode($result));
     }
-    
+
     // Define constants from result
     foreach ($result as $key => $value) {
         if (!defined($key)) define($key, $value);
     }
-    
+
     return true;
 }
 
@@ -529,7 +526,7 @@ function taoh_load_subsecret_from_url($url) {
 function taoh_load_subsecret_from_code($code) {
     $cache_file = TAOH_PLUGIN_PATH . "/cache/general/subsecret_" . $code . ".cache";
     $result = null;
-    
+
     // Check existing cache
     if (file_exists($cache_file)) {
         if ((time() - filemtime($cache_file)) >= 86400) {
@@ -538,7 +535,7 @@ function taoh_load_subsecret_from_code($code) {
             $result = json_decode(file_get_contents($cache_file), true);
         }
     }
-    
+
     // Create new cache if needed
     if (!file_exists($cache_file)) {
         $result = taoh_get_subsecret_info($code, 1);
@@ -546,7 +543,7 @@ function taoh_load_subsecret_from_code($code) {
             file_put_contents($cache_file, json_encode($result));
         }
     }
-    
+
     // Define constants from result
     if (is_array($result)) {
         foreach ($result as $key => $value) {
@@ -554,7 +551,7 @@ function taoh_load_subsecret_from_code($code) {
         }
         return $result;
     }
-    
+
     return false;
 }
 

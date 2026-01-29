@@ -1,7 +1,7 @@
 
 <?php
 
-// echo "Download resume"; 
+// echo "Download resume";
 include_once('resume_download_html.php');
 
 $date = date('d/m/Y');

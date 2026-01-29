@@ -14,7 +14,7 @@ img {
 }
 .title-hover{
   width: 100%;
-}         
+}
 h4.session_title>span {
  font-family: "Droid Sans";
   font-size: 12px;
@@ -127,15 +127,15 @@ h3 a{
 }
 @media screen and (min-width: 800px) {
   .cl-image{
-    width:620px; 
-    height:490px; 
+    width:620px;
+    height:490px;
     position:relative;
     overflow:hidden;
   }
   .cl-image img{
-    position:absolute; 
-    top:0; 
-    bottom:0; 
+    position:absolute;
+    top:0;
+    bottom:0;
     margin: auto;
     width:100%;
   }
@@ -215,7 +215,7 @@ h3 a{
         height: auto;
     }
     .divider{
-        border-bottom: 1px solid #dee2e6!important; 
+        border-bottom: 1px solid #dee2e6!important;
     }
     .td-post-content p,.td-post-content li {
         /*font-family: Arimo;*/

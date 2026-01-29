@@ -1,4 +1,4 @@
-<?php taoh_get_header();  
+<?php taoh_get_header();
 
  //"perpage"=>10 is not working
  $query = array("mod"=>"core", "conttype"=>"blog", "type"=>"blog", "ops"=>"list");
@@ -7,7 +7,7 @@
  if(@$_GET['q']) { $query['q'] = $_GET['q']; }
  if(@$_GET['cat']) { $query['category'] = $_GET['cat']; }
  if(@$_GET['page']) { $query['page'] = $_GET['page']; }
- 
+
  $params = http_build_query($query);
 
 function pagination() {
@@ -20,8 +20,8 @@ function pagination() {
 $url = 'core.content.get';
 $taoh_vals = array(
   "mod" => 'core',
-  "conttype"=>"blog", 
-  "type"=>"blog", 
+  "conttype"=>"blog",
+  "type"=>"blog",
   "ops"=>"list",
   'token'=>taoh_get_dummy_token(1),
   "q"=>$_GET['q'],

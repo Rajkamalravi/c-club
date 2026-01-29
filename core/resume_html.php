@@ -126,7 +126,7 @@
                                     <li class="nav-item">
                                         <a class="nav-link interests-tab common-border" data-toggle="tab" href="#bartering" role="tab" aria-controls="bartering" aria-selected="true">
                                             <span class="px-3 py-1">Bartering</span>
-                                        </a> 
+                                        </a>
                                     </li>
                                     <li class="nav-item">
                                         <a class="nav-link interests-tab" data-toggle="tab" href="#volunteering" role="tab" aria-controls="volunteering" aria-selected="true">
@@ -334,7 +334,7 @@
                                     <span class="skill-badge grey-light">Skill 3</span>
                                     <span class="skill-badge grey-light">Skill 4</span>
                                 </div>
-                              
+
                                 <!-- Responsibilities -->
                                 <div>
                                     <h6 class="text-sm-b mb-2">Responsibilities</h6>
@@ -379,7 +379,7 @@
                                     <span class="skill-badge grey-light">Skill 3</span>
                                     <span class="skill-badge grey-light">Skill 4</span>
                                 </div>
-                                
+
                                 <!-- Responsibilities -->
                                 <div>
                                     <h6 class="text-sm-b mb-2"> Responsibilities</h6>
@@ -427,7 +427,7 @@
                                         <span class="club-info-list">Career Growth</span>
                                     </div>
                                 </div>
-                                
+
                             </div>
                         </div>
                      </div>

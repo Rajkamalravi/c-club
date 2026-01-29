@@ -29,7 +29,7 @@ if ( isset( $_GET[ 'key' ] ) && $_GET[ 'key' ] ){
         'cache_time' => 2 * 60 * 60,
         'cache' => array ( "name" => $cache_name,  "ttl" => 2 * 60 * 60),
         //'cfcc2h' => 1 //cfcache newly added
-        
+
     );
     $taoh_call = 'events.event.get';
     //$taoh_vals[ 'cfcache' ] = $cache_name;
@@ -270,7 +270,7 @@ $temp_arr = $return ?? [];
 unset( $return );
 $return[ 'club_info' ] = $room_status_arr[ 'output' ];
 unset( $temp_arr );
-if ( isset( $value_arr[ 'output' ] ) && $value_arr[ 'output' ] ){    
+if ( isset( $value_arr[ 'output' ] ) && $value_arr[ 'output' ] ){
     $return[ 'cell_info' ] = $value_arr[ 'output' ];
 } else {
     $return[ 'cell_info' ] = array(
@@ -357,7 +357,7 @@ $temp_arr = $return;
 unset( $return );
 $return[ 'club_info' ] = $temp_arr;
 unset( $temp_arr );
-if ( isset( $value_arr[ 'output' ] ) && $value_arr[ 'output' ] ){    
+if ( isset( $value_arr[ 'output' ] ) && $value_arr[ 'output' ] ){
     //$return[ 'cell_info' ] = $value_arr[ 'output' ];
     $return[ 'cell_info' ] = $room_status_arr['output'];
 } else {

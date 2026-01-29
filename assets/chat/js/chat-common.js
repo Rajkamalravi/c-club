@@ -32,11 +32,11 @@ $(document).on('click', '.pin-message', function () {
     let frmMessageKey = parentElem.data('frm_message_key');
     let channelId = $('#channel-chat').data('channel_id');
     let msgOwner = thisElem.data('msg-owner');
-    
-    var pinned_count = $('.pin_message_div'+channelId+' .pin_msg').length;    
+
+    var pinned_count = $('.pin_message_div'+channelId+' .pin_msg').length;
 
 
-    if(pinned_count >= 3 && thisElem.attr('data-action') == 1) {        
+    if(pinned_count >= 3 && thisElem.attr('data-action') == 1) {
         jq_confirm_unpin(
             'Replace oldest pin?',
             'Your new pin will replace the oldest one',
@@ -46,10 +46,10 @@ $(document).on('click', '.pin-message', function () {
                 pinMessagePost(msgOwner, thisElem, channelId, frmMessageId, frmMessageKey, thisElem.attr('data-action'), "channel", "", 1);
             },
             true
-        );      
-    } else {    
+        );
+    } else {
         pinMessagePost(msgOwner, thisElem, channelId, frmMessageId, frmMessageKey, thisElem.attr('data-action'), "channel", "");
-    }    
+    }
 });
 
 $(document).on('click', '.unpin-message', function () {
@@ -67,12 +67,12 @@ $(document).on('click', '.unpin-message', function () {
     }
     let msgOwner = $(this).data('msg-owner');
     //alert(chatWith);
-    pinMessagePost(msgOwner, elem, channelId, frmMessageId, frmMessageKey, 0, pinFrom, chatWith);       
+    pinMessagePost(msgOwner, elem, channelId, frmMessageId, frmMessageKey, 0, pinFrom, chatWith);
 });
 
 $(document).on('click', '.view-profile-pin', function () {
     let userPtoken = $(this).data('user-ptoken');
-    alert(userPtoken);   
+    alert(userPtoken);
 });
 
 $(document).on('click', '.pin-message-dm', function () {
@@ -81,10 +81,10 @@ $(document).on('click', '.pin-message-dm', function () {
     let frmMessageId = parentElem.data('ntw_message_id');
     let frmMessageKey = parentElem.data('ntw_message_key');
     let channelId = $('#users-chat').data('channel_id');
-    let chatWith = $('#users-chat').data('chatwith');    
+    let chatWith = $('#users-chat').data('chatwith');
     let msgOwner = thisElem.data('msg-owner');
 
-    var pinned_count = $('.pin_message_div-dm'+channelId+' .pin_msg').length;    
+    var pinned_count = $('.pin_message_div-dm'+channelId+' .pin_msg').length;
 
     if(pinned_count >= 3 && thisElem.attr('data-action') == 1) {
         jq_confirm_unpin(
@@ -96,10 +96,10 @@ $(document).on('click', '.pin-message-dm', function () {
                 pinMessagePost(msgOwner, thisElem, channelId, frmMessageId, frmMessageKey, thisElem.attr('data-action'), "dm", chatWith, 1);
             },
             true
-        );      
-    } else {    
+        );
+    } else {
         pinMessagePost(msgOwner, thisElem, channelId, frmMessageId, frmMessageKey, thisElem.attr('data-action'), "dm", chatWith);
-    }    
+    }
 });
 
 $(document).on('click', '.conversation-mention', async function () {
@@ -126,7 +126,7 @@ $(document).on('click', '.open_profile_sidebar', async function () {
         getUserInfo(chatwith, 'full').catch((e) => {console.log(e)}),
     ]);
 
-    console.log("user info comm", userInfo);    
+    console.log("user info comm", userInfo);
 
     await updateProfileInfo(userInfo, userLiveStatus);
 
@@ -194,21 +194,18 @@ if (chatRoomList) {
 
             const participantsSidebar = document.querySelector("#participants-sidebar");
             const userChat = document.getElementById('user-chat');
-            
+
             if(!userChat.classList.contains('user-chat-show')) {
                  userChat.classList.add('user-chat-show');
             }
             if(userChat.classList.contains('mobile-transform')) {
                  userChat.classList.remove('mobile-transform');
             }
-            
+
             participantsSidebar.style.display = participantsSidebar.style.display === "block" ? " " : "block";
         }
     });
 }
-
-
-
 
 let prev_userLiveStatusInterval = userLiveStatusInterval;
 function userLiveStatusUpdate(interval) {
@@ -425,7 +422,7 @@ function loadchatWindow(chat_window = '', data = false) {
     if("participants" === chat_window){
          $('.chat-leftsidebar').addClass('height-unset');
         // $('.chat-leftsidebar').css('height', 'auto');
-        
+
     }
     else{
         $('.chat-leftsidebar').removeClass('height-unset');
@@ -441,12 +438,9 @@ function loadchatWindow(chat_window = '', data = false) {
         chatInputContainer.removeClass('watchPartyEnabled');
         $('.chat-leftsidebar').removeClass('watchPartyEnabled');
     }
-
-   
-
     if ("channel" === chat_window) {
         //alert('------selectedChat-------'+selectedChat)
-       
+
        if(selectedChat == 'watch-party'){
             $('#user-chat').addClass('user-chat-show');
 
@@ -468,9 +462,9 @@ function loadchatWindow(chat_window = '', data = false) {
             document.getElementById("channel-chat").style.display = "block";
             chatInputContainer.show();
        }
-        
-        
-    } 
+
+
+    }
     else if ("direct_message" === chat_window) {
         $('#user-profile-sidebar').addClass('d-xl-block');
         $('#user-chat').addClass('user-chat-show');

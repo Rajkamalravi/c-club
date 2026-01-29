@@ -1,9 +1,9 @@
 <?php
 /* helper_functions.php
-  This file ment for common functions 
+  This file ment for common functions
   This file should not depends on any other files.
   Use only PHP 8 Core Variable, functions, constants.
-  Do not use any functions from functions.php. 
+  Do not use any functions from functions.php.
   Do not use any CONSTANT from config.php
   Do not Implement the Redirect here
   Do not create Global Variable
@@ -468,9 +468,6 @@ function taohFullyearConvert($timestamp, $convert = false)
 
 
     /*
-
-
-
       echo "===========".$timestamp;
       $postedTime = DateTime::createFromFormat('YmdHis', $timestamp, new DateTimeZone($timezone));
       echo "<br><pre>";print_r($postedTime);
@@ -565,4 +562,3 @@ function taoh_blog_desc_decode($text)
 {
     return displayTaohFormatted(cleanFontstyle(html_entity_decode(html_entity_decode(custom_urldecode($text)))));
 }
-

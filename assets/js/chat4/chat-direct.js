@@ -45,7 +45,7 @@ function sendNTWChat(message, my_pToken, chatwith, ntw_room_key, channel_id, use
 
     const proceedWithSending = () => {
         const sent_time = new Date().getTime();
-        
+
 
         const data = {
             'taoh_action': 'taoh_direct_send_message',
@@ -84,22 +84,22 @@ function sendNTWChat(message, my_pToken, chatwith, ntw_room_key, channel_id, use
 
         renderNTWMessages(chatresponse);
 
-        const chat_temp_messages_key = `cm_temp_${ntw_room_key}_${data.ptoken}`;       
+        const chat_temp_messages_key = `cm_temp_${ntw_room_key}_${data.ptoken}`;
         const ptokenTo = data.other_ptoken;
 
         DMLastMsgSentTime = data.sent_time;
 
-        IntaoDB.getItem(objStores.ntw_store.name, dojo_data_key).then((intao_data) => {         
+        IntaoDB.getItem(objStores.ntw_store.name, dojo_data_key).then((intao_data) => {
             let updatedResponse = {};
             if (intao_data?.values) {
                 updatedResponse = intao_data.values;
-            }        
+            }
             updatedResponse.cm_last_msg_sent_time = data.sent_time;
             return IntaoDB.setItem(objStores.ntw_store.name, {
                 taoh_ntw: dojo_data_key,
                 values: updatedResponse,
                 timestamp: Date.now()
-            });        
+            });
         });
 
         IntaoDB.getItem(objStores.ntw_store.name, chat_temp_messages_key).then((intao_data) => {
@@ -188,9 +188,6 @@ function sendNTWChat(message, my_pToken, chatwith, ntw_room_key, channel_id, use
 
             //let locationPath = currentFullPath + '?chatwith=' + chatwith;
             let locationPath = currentFullPath + '?chatwith=' + my_pToken;
-
-            
-
             taoh_set_warning_message('It appears the user is currently offline. Would you like to send a copy of this message via email?', false, 'toast-middle', [
                 {
                     text: 'Yes',
@@ -454,7 +451,7 @@ async function compiledNTWMsgHtml(cd) {
     } else {
 
         if(cd.pin == 1) {
-            
+
             var pinned_by;
 
             var userInfo = await getUserInfo(cd?.ptokenTo, 'public');
@@ -467,12 +464,12 @@ async function compiledNTWMsgHtml(cd) {
             } else {
                 var avatar_image = _taoh_ops_prefix + '/avatar/PNG/128/avatar_def.png';
             }
-                 
+
             let msg = decodeURIComponent(safeMessageHtml.replace(/\+/g, ' '));
             let decoded = decodeURIComponent(msg);
             decoded = decoded.replace(/\+/g, '');
             const match = decoded.match(/<a [^>]*>.*?<\/a>/i);
-            const aTag = match ? match[0] : "";           
+            const aTag = match ? match[0] : "";
             if(aTag != "") {
                 var msgHTML = "Join "+aTag+" - Video Room";
             } else {
@@ -499,18 +496,18 @@ async function compiledNTWMsgHtml(cd) {
             if(pin_msg_count > 0) {
                 activeClass = "active";
             }
-            
+
             let chat_with = $('#users-chat').data('chatwith');
-    
+
             if ($(`.pin_message_div-dm${cd.channel_id} .pin_message_msg_div [data-frm_message_id="${cd.message_id}"]`).length === 0) {
-                
+
                 $(`.pin_message_div-dm${cd.channel_id} .pin_message_dot_div`).append(`<div class="message-item-dot ${activeClass}" data-channel_id="${cd.channel_id}" data-frm_message_id="${cd.message_id}"></div>`);
 
                 $(`.pin_message_div-dm${cd.channel_id} .pin_message_msg_div`).append(`<div class="pin_msg flex-grow-1 ${(activeClass == "active") ? 'd-flex' : 'd-none'}" data-channel_id="${cd.channel_id}" data-frm_message_id="${cd.message_id}">
                     <div class="flex-grow-1">
                         <div class="d-flex align-items-center" style="gap: 12px;">
                             <img style="width: 28px; height: 28px; border-radius: 100%;" src="${avatar_image}" alt="">
-                            <div class="p-message">                                
+                            <div class="p-message">
                                 ${msgHTML}
                             </div>
                         </div>
@@ -525,7 +522,7 @@ async function compiledNTWMsgHtml(cd) {
                             <a data-chatwith="${cd.pinned_by}" data-profile_token="${cd.pinned_by}" class="dropdown-item ${cd.pinned_by === my_pToken ? 'd-none' : 'd-flex'} align-items-center justify-content-between openProfileModal">View Profile</a>
                         </div>
                     </div>
-                </div>`);                
+                </div>`);
             }
         }
 
@@ -557,11 +554,11 @@ async function compiledNTWMsgHtml(cd) {
                                 <div class="align-self-start message-box-drop d-flex">
                                     <div class="dropdown">
                                         <a class="" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="ri-more-2-fill fs-20" data-bs-toggle="tooltip" data-bs-placement="top" title="More actions"></i></a>
-                                        <div class="dropdown-menu">                                            
+                                        <div class="dropdown-menu">
                                             <a data-frm_message_id="${cd.message_id}" data-msg-owner="${cd.ptokenTo}" class="dropdown-item d-flex align-items-center justify-content-between pin-message-dm" href="#" id="pin-message-0" data-action=${(cd.pin == 1) ? '0' : '1'} >${(cd.pin == 1) ? 'Unpin <i class="bx bx-unlink text-muted ms-2"></i>' : 'Pin <i class="bx bx-pin text-muted ms-2"></i>'} </a>
                                             ${(cd.ptokenTo === cd.ptokenFrom || _can_delete_all_msg == 1) ? '<a class="dropdown-item d-flex align-items-center justify-content-between frm-delete-item" href="#">Delete <i class="bx bx-trash text-muted ms-2"></i></a>' : ''}
                                         </div>
-                                    </div>                                    
+                                    </div>
                                 </div>
                             </div>
                             <div class="conversation-name">
@@ -646,7 +643,7 @@ async function getNTWChatMsgHtml(response, tempMsgList) {
             }
         }
     }
-  
+
 
     // Process merged chats
     for (const v of mergedChats) {
@@ -905,9 +902,6 @@ async function loadDirectMessage(chatwith, channelId = '', chaton='dm', openChat
             const input = [ntw_room_key, my_pToken, chatwith].sort().join('_');
             channelId = await generateSecureSlug(input, 16);
 
-            
-            
-
             await createOnetoOneChannel(chatwith, channelId, openChatWindow);
         }
 
@@ -916,14 +910,14 @@ async function loadDirectMessage(chatwith, channelId = '', chaton='dm', openChat
         if(openChatWindow == 1) {
             $('#users-chat').setSyncedData({ channel_id: channelId, chatwith: chatwith });
             const userChatTopbarInfo = $('#user-chat-topbar-info');
-            
+
             const [userLiveStatus, userInfo] = await Promise.all([
             getUserLiveStatus(chatwith).catch((e) => {console.log(e)}),
             getUserInfo(chatwith, 'full').catch((e) => {console.log(e)}),
             ]);
             chatwith_liveStatus = Boolean(userLiveStatus.output) ? 1 : 0;
             chatname = userInfo.chat_name;
-            
+
             var userAvatarSrc = userInfo?.avatar_image && await checkImageExists(userInfo.avatar_image).catch(() => false)
                 ? userInfo.avatar_image
                 : `${_taoh_ops_prefix}/avatar/PNG/128/${userInfo?.avatar?.trim() || 'default'}.png`;
@@ -982,6 +976,5 @@ async function loadDirectMessage(chatwith, channelId = '', chaton='dm', openChat
 document.addEventListener('DOMContentLoaded', function () {
     setTimeout(function () {
         taoh_ntw_post_metrics('view');
-    }, 5000);    
+    }, 5000);
 });
-

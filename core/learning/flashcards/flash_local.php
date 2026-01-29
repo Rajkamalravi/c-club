@@ -63,7 +63,7 @@ $taoh_user_vars = taoh_user_all_info();
 }
 
 #header {
-    height:85px;    
+    height:85px;
 }
 #footer {
     position:absolute;
@@ -93,7 +93,7 @@ button {
 
 .cards .back .inner{
     font-family: 'Hobo BT', sans-serif;
-    font-weight: bold;                                                
+    font-weight: bold;
     position: absolute;
     top: 10%;
     bottom: 0;
@@ -155,7 +155,7 @@ button {
   bottom: -35px;
   transition: all .3s;
 }
- 
+
 .your-tooltip.show {
   opacity: 1;
 }
@@ -229,7 +229,7 @@ button {
           <?php } ?>
         </div>
     </div>
-    
+
 </section>
 
 <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -360,7 +360,7 @@ button {
       render_title_template(response['output'][0]['title'], listtitle);
       render_quote_template(response['output'][0]['blurb']['description'], listquote);
       render_button(response['output'][0]['conttoken'],response['output'][0]['ptoken'],flashbutton);
-      
+
       save_metrics('flashcard','view',response['output'][0]['conttoken']);
       $('.del_cont').val(response['output'][0]['conttoken']);
     }).fail(function() {
@@ -368,9 +368,6 @@ button {
         console.log( "Network issue!" );
     })
   }
-
-  
-
   function render_title_template(data, slot) {
     loader(false, loaderArea);
       slot.empty();
@@ -407,16 +404,16 @@ button {
     //window.history.pushState(null, "null", url+'/'+data);
   }
 
-  function copyText() { 
-      var yourToolTip = document.querySelector('.your-tooltip'); 
+  function copyText() {
+      var yourToolTip = document.querySelector('.your-tooltip');
       /* Select text area by id*/
       var Text = document.getElementById("copy-text");
       /* Select the text inside text area. */
       Text.select();
       /* Copy selected text into clipboard */
       var copy_text = navigator.clipboard.writeText(Text.value);
-      if(copy_text){    
-        $('.your-tooltip').addClass('show');  
+      if(copy_text){
+        $('.your-tooltip').addClass('show');
         setTimeout(function() {
             $('.your-tooltip').removeClass('show');
         }, 2000)
@@ -456,7 +453,7 @@ button {
           </div>`
       );
     }
-    
+
   }
 
   function flashDelete() {
@@ -475,7 +472,7 @@ button {
       if(response.success){
         $('#deleteAlert').modal('hide');
         location.href = '<?php echo TAOH_FLASHCARD_URL.'/'.$category.'/'; ?>';
-        
+
       }
       else{
         $('#deleteAlert').modal('hide');
@@ -486,5 +483,3 @@ button {
 }
 </script>
 <?php taoh_get_footer(); ?>
-
-

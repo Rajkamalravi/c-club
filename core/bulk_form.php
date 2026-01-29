@@ -1,5 +1,5 @@
 <?php
-taoh_get_header(); 
+taoh_get_header();
 
 ?>
 <section class="question-area pt-40px pb-40px">
@@ -24,7 +24,7 @@ taoh_get_header();
                         <div class="row pt-4">
                                 <div class="mb-12 col-md-12">
                                     <div class="d-flex">
-                                        
+
                                     <label class="form-label text-black fw-medium">Type &nbsp;</label>
                                     <select style="margin-left:20px" name="type" id="type">
                                         <option value="reads">Blogs</option>
@@ -36,7 +36,7 @@ taoh_get_header();
                         <div class="row pt-4">
                                 <div class="mb-12 col-md-12">
                                     <div class="d-flex">
-                                        
+
                                     <label class="form-label text-black fw-medium">Visibility &nbsp;</label>
                                     <select style="margin-left:20px" name="global" id="global">
                                         <option value="1">Global</option>
@@ -48,9 +48,9 @@ taoh_get_header();
                         <div class="row pt-4">
                             <div class="mb-3 mt-3 col-md-6">
 								<div class="d-flex">
-                                   
+
                                     <button type="submit" class="ml-2 btn btn-primary btn-sm">Submit</button>
-                                    
+
                                 </div>
 							</div>
                         </div>

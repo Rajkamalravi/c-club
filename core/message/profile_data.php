@@ -258,9 +258,6 @@ if (!empty($user_data['ptoken'])):
                         </div>
                     </div>
                 </div>
-
-
-
             </div>
         </div>
     </div>

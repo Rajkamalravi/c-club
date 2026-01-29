@@ -15,9 +15,6 @@ $sess_user_info = taoh_session_get(TAOH_ROOT_PATH_HASH)['USER_INFO'];
 $key_key = 'dm-direct-message';
 $keyslug = hash('crc32', $key_key);
 
-
-
-
 $room_info_arr = create_dm_room($keyslug,$sess_user_info->ptoken);
 $room_status_arr = array( 'output' => $room_info_arr, 'success' => true );
 
@@ -31,7 +28,7 @@ $temp_arr = $return;
 unset( $return );
 $return[ 'club_info' ] = $room_status_arr[ 'output' ];
 unset( $temp_arr );
-if ( isset( $value_arr[ 'output' ] ) && $value_arr[ 'output' ] ){    
+if ( isset( $value_arr[ 'output' ] ) && $value_arr[ 'output' ] ){
     $return[ 'cell_info' ] = $value_arr[ 'output' ];
 } else {
     $return[ 'cell_info' ] = array(
@@ -81,7 +78,7 @@ if ( isset( $room_status_arr[ 'output' ] ) && $room_status_arr[ 'output' ] ){
     $return = $room_status_arr[ 'output' ];
 } else {
     $user_ptoken = $sess_user_info->ptoken;
-   
+
     $owner_json = taoh_get_user_info( $user_ptoken, 'cell' );
     $owner_arrar = taoh_get_array( $owner_json, true );
     $owner_arr = $owner_arrar['output']['user'];
@@ -100,7 +97,7 @@ $temp_arr = $return;
 unset( $return );
 $return[ 'club_info' ] = $temp_arr;
 unset( $temp_arr );
-if ( isset( $value_arr[ 'output' ] ) && $value_arr[ 'output' ] ){    
+if ( isset( $value_arr[ 'output' ] ) && $value_arr[ 'output' ] ){
     //$return[ 'cell_info' ] = $value_arr[ 'output' ];
     $return[ 'cell_info' ] = $room_status_arr['output'];
 } else {

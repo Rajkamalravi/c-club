@@ -1,8 +1,5 @@
 <?php
-taoh_get_header(); 
-
-
-
+taoh_get_header();
 // https://opslogy.com/scripts/code.php
 //$url = TAOH_OPS_PREFIX."/scripts/code.php";
 //$response = json_decode(taoh_url_get( $url ), true);
@@ -24,7 +21,7 @@ if(isset( $conttoken )){
     // $taoh_vals[ 'cache_name' ] = $cache_name;
     // $taoh_vals[ 'cache' ] = array ( "name" => $cache_name );
     ksort($taoh_vals);
-    
+
     $response = json_decode(taoh_apicall_get($taoh_call, $taoh_vals), true);
     if(isset($response['output']['profile_pretag'])){
         $pretag = explode(':', $response['output']['profile_pretag']);

@@ -70,7 +70,7 @@
         margin-bottom: 34px;
         text-align: center;
         line-height: 1.16;
-    } 
+    }
     .v2-desc-page .v2-d-banner .reg-btn {
         font-size: clamp(18px, 1vw + 1rem, 24px);
         font-weight: 500;
@@ -119,7 +119,7 @@
         width: 100%;
         max-width: 283px;
     }
-    
+
     .v2-desc-page .counts-container h6 {
         color: #646464;
         font-weight: 500;
@@ -145,8 +145,8 @@
     }
 
     .v2-desc-page .inside-event .deco-line {
-        margin-top: 13px; 
-        margin-bottom: 21px; 
+        margin-top: 13px;
+        margin-bottom: 21px;
         width: 100%;
         max-width: 283px;
         border-top: 1px solid #000000;
@@ -298,9 +298,6 @@
         background-origin: border-box;
         background-clip: content-box, border-box;
     }
-
-
-    
 </style>
 
 <div class="v2-desc-page">

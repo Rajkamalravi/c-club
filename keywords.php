@@ -32,7 +32,7 @@ if ( ! function_exists( 'get_keywords_data' ) ){
                 "allow_expand" => false
             ]
         ];
-        
+
         return $keywords_data;
     }
 
@@ -40,4 +40,3 @@ if ( ! function_exists( 'get_keywords_data' ) ){
 
 
 // for dir in /var/www/*/hires/; do if [ "$dir" != "/var/www/nonprofits.club/hires/" ]; then cp /var/www/nonprofits.club/hires/keywords.php "$dir"; fi; done
-

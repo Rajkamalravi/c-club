@@ -38,7 +38,7 @@ $taoh_vals = array(
 
 );
 //echo taoh_apicall_get_debug($taoh_call, $taoh_vals);exit();
-$get_liked = json_decode( taoh_apicall_get($taoh_call, $taoh_vals), true );	
+$get_liked = json_decode( taoh_apicall_get($taoh_call, $taoh_vals), true );
 $liked_arr = '';
 if(isset($get_liked['conttoken_liked'])){
 	$liked_arr = json_encode($get_liked['conttoken_liked']);
@@ -70,7 +70,7 @@ if(taoh_user_is_logged_in()){
 
 	if($data_res['success']){
 		$_SESSION[TAOH_ROOT_PATH_HASH.'_eligible_scouted_jobs'] = $data_res['output'];
-		
+
 	}
 
 
@@ -257,23 +257,23 @@ $currencies = json_encode(taoh_get_currency_symbol('',true));
          END FUNFACT AREA
 ================================= -->
 <?php } ?>
-        
+
 <header class="bg-white bg-white shadow-sm sticky-top py-3" style="top: 0;">
 	<section class="hero-area pb-3 overflow-hidden">
 		<div class="container">
-			
+
 			<div class="hero-content jobs-mobile-header">
 				<!--<div class="col-lg-7">
 					<h2 class="section-title fs-24 mb-1"><?php echo $app_data->name_slug; ?></h2>
 					<p class="section-desc"><?php echo $app_data->short; ?></p>
 					<div class="hero-btn-box d-flex mt-3">
-					
+
 					</div>
 				</div>-->
 				<div class="col-lg-12 text-center">
 					<div class="horizontal-scroll">
-						
-					
+
+
 						<ul class="nav nav-tabs <?php if (taoh_user_is_logged_in()) { echo 'justify-content-md-center'; } else { echo 'justify-content-center'; } ?> flex-nowrap text-nowrap" id="myTab" role="tablist" style="border-bottom: 0;">
 							<li class="nav-item mb-2">
 								<a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" onclick="get_job_type()" aria-selected="true">All Jobs</a>
@@ -285,24 +285,24 @@ $currencies = json_encode(taoh_get_currency_symbol('',true));
 							<li class="nav-item">
 								<a class="nav-link" id="home-tab3" data-toggle="tab" href="#home3" role="tab" aria-controls="home3" onclick="get_job_type('saved')" aria-selected="false">Saved Jobs</a>
 							</li>
-							<?php 
+							<?php
 							}
 								$page_sel = "jobs";
-								include_once('job_tabs.php'); 
+								include_once('job_tabs.php');
 							?>
-						
-						
-							<?php 
+
+
+							<?php
 								if(taoh_user_is_logged_in()) {
-									
+
 							?>
 								<li class="nav-item">
-									<a class="nav-link" id="home-tab3" href="<?php echo TAOH_SITE_URL_ROOT.'/jobs/dash'; ?>" style='color: #2479D8; font-weight: bold;'>My Jobs</a>	
+									<a class="nav-link" id="home-tab3" href="<?php echo TAOH_SITE_URL_ROOT.'/jobs/dash'; ?>" style='color: #2479D8; font-weight: bold;'>My Jobs</a>
 								</li>
 								<li class="nav-item">
 									<a class="nav-link" id="home-tab3" href="<?php echo TAOH_SITE_URL_ROOT.'/jobs/post'; ?>" style='color: #2479D8; font-weight: bold;'>+&nbsp;Post Job</a>
 								</li>
-							<?php 
+							<?php
 								} else { ?>
 								<li class="nav-item">
 									<a  class="btn theme-btn login-button py-1" aria-pressed="true" data-toggle="modal" data-target="#config-modal">
@@ -311,17 +311,17 @@ $currencies = json_encode(taoh_get_currency_symbol('',true));
 						</ul>
 
 					</div>
-					
+
 				</div>
 			</div><!-- end hero-content -->
 
-			
+
 		</div><!-- end container -->
 	</section>
 
 <?php
 	//if(taoh_user_is_logged_in()) {
-		include('search.php'); 
+		include('search.php');
 	//}
 ?>
 
@@ -334,8 +334,8 @@ $currencies = json_encode(taoh_get_currency_symbol('',true));
         		<div class="" >
 					<div class="row justify-content-center">
 						<div  class="loaderArea"  id='listloaderArea'></div>
-					</div>    
-					<div class="row d-flex justify-content-between" > 
+					</div>
+					<div class="row d-flex justify-content-between" >
 						<div class="col-lg-3 mb-3 result_div">
 							<div id="joblistArea"></div>
 							<div id="pagination"></div>
@@ -358,23 +358,23 @@ $currencies = json_encode(taoh_get_currency_symbol('',true));
 								</div>
 							<?php } ?>
 							<?php if(TAOH_LEARNING_WIDGET_ENABLE) { ?>
-								
-								<?php if (function_exists('taoh_readables_widget')) { 
+
+								<?php if (function_exists('taoh_readables_widget')) {
 									?>
-									<div class="right-side-block mob-hide">									
+									<div class="right-side-block mob-hide">
 									<?php
-									taoh_readables_widget('new');  
+									taoh_readables_widget('new');
 									?>
 									</div>
 									<?php
-									} 
+									}
 									?>
-								
+
 							<?php } ?>
 						</div>
             		</div>
         		</div>
-      		</div>  
+      		</div>
 		</div>
     </div>
 </section>
@@ -395,7 +395,7 @@ $currencies = json_encode(taoh_get_currency_symbol('',true));
 						</button>
 					</div>
 				</div>
-				
+
 			</div>
 			<!-- Modal body -->
 			<div class="modal-body">
@@ -424,9 +424,9 @@ $currencies = json_encode(taoh_get_currency_symbol('',true));
 										<div class="row">
 											<div class="col-lg-6  form-group">
 												<label for="fname" class="sub-lable">First Name <span style="color:red;">*</span></label>
-												
-												<?php 
-													if(isset($taoh_user_vars->profile_complete) 
+
+												<?php
+													if(isset($taoh_user_vars->profile_complete)
 													&& $taoh_user_vars->profile_complete == 0 && isset($taoh_user_vars->fname) && $taoh_user_vars->fname == TAOH_SITE_NAME_SLUG)
 													echo field_fname();
 													else
@@ -434,9 +434,9 @@ $currencies = json_encode(taoh_get_currency_symbol('',true));
 											</div>
 											<div class="col-lg-6  form-group">
 												<label for="lname" class="sub-lable">Last Name <span style="color:red;">*</span></label>
-												
-												<?php 
-													if(isset($taoh_user_vars->profile_complete) 
+
+												<?php
+													if(isset($taoh_user_vars->profile_complete)
 													&& $taoh_user_vars->profile_complete == 0 && isset($taoh_user_vars->fname) && $taoh_user_vars->fname == TAOH_SITE_NAME_SLUG)
 													echo field_lname();
 													else
@@ -458,7 +458,7 @@ $currencies = json_encode(taoh_get_currency_symbol('',true));
 												<label class="sub-lable">Place of Residence <span style="color:red;">*</span></label>
 												<?php echo field_job_location($taoh_user_vars->coordinates,$taoh_user_vars->full_location, $taoh_user_vars->geohash); ?>
 											</div>
-										
+
 											<div class="col-lg-6 form-group">
 												<label for="company" class="sub-lable">Current Company</label>
 												<?php echo field_company( ( isset( $taoh_user_vars->company ) && $taoh_user_vars->company ) ? $taoh_user_vars->company: '' ); ?>
@@ -475,7 +475,7 @@ $currencies = json_encode(taoh_get_currency_symbol('',true));
 													<path d="M16.1875 22.1463H11.8125C11.0852 22.1463 10.5 21.5291 10.5 20.7619V11.071H5.70391C4.73047 11.071 4.24375 9.83079 4.93281 9.10398L13.2508 0.324472C13.6609 -0.108157 14.3336 -0.108157 14.7438 0.324472L23.0672 9.10398C23.7562 9.83079 23.2695 11.071 22.2961 11.071H17.5V20.7619C17.5 21.5291 16.9148 22.1463 16.1875 22.1463ZM28 21.6849V28.1455C28 28.9127 27.4148 29.5299 26.6875 29.5299H1.3125C0.585156 29.5299 0 28.9127 0 28.1455V21.6849C0 20.9177 0.585156 20.3004 1.3125 20.3004H8.75V20.7619C8.75 22.5443 10.1227 23.9922 11.8125 23.9922H16.1875C17.8773 23.9922 19.25 22.5443 19.25 20.7619V20.3004H26.6875C27.4148 20.3004 28 20.9177 28 21.6849ZM21.2188 26.761C21.2188 26.1265 20.7266 25.6074 20.125 25.6074C19.5234 25.6074 19.0312 26.1265 19.0312 26.761C19.0312 27.3956 19.5234 27.9147 20.125 27.9147C20.7266 27.9147 21.2188 27.3956 21.2188 26.761ZM24.7188 26.761C24.7188 26.1265 24.2266 25.6074 23.625 25.6074C23.0234 25.6074 22.5312 26.1265 22.5312 26.761C22.5312 27.3956 23.0234 27.9147 23.625 27.9147C24.2266 27.9147 24.7188 27.3956 24.7188 26.761Z" fill="#7A7979"/>
 												</svg>
 												<input type="file" class="form-control py-2"  id="fileToUpload" name="fileToUpload">
-												   
+
 											</div>
 											<div id="responseMessage" style="display: none;"></div>
 											<p id="error1" style="display:none; color:#FF0000;">
@@ -570,7 +570,7 @@ $currencies = json_encode(taoh_get_currency_symbol('',true));
       </div>
       <div class="modal-body">
 	  	<section class="mb-3 mt-3" id="share_icon">
-			
+
 		</section>
       </div>
       <div class="modal-footer">
@@ -598,7 +598,7 @@ $currencies = json_encode(taoh_get_currency_symbol('',true));
 	let postDate = $('#postdate').val();
 	let from_date = $('#from_date').val();
 	let to_date = $('#to_date').val();
-	let activeListloaderArea = $('#activeListloaderArea'); 
+	let activeListloaderArea = $('#activeListloaderArea');
 	let listUpdatedAt = 0;
 	let activeChatList = $('#activeChatList');
 	let jobCount = $('#jobCount');
@@ -616,20 +616,17 @@ $currencies = json_encode(taoh_get_currency_symbol('',true));
 	var get_slug = false;
 	var job_list_name = "";
 	var store_name = JOBStore;
-	
+
 	var det_slot = $('.detail_tab');
 	var job_type = '';
 	var applied_jobs = '<?php echo json_encode($_SESSION[TAOH_ROOT_PATH_HASH.'_applied_jobs']); ?>';
 	var scouted_jobs = '<?php echo json_encode($_SESSION[TAOH_ROOT_PATH_HASH.'_scouted_jobs']); ?>';
 	var eligible_scouted_jobs = '<?php echo json_encode($_SESSION[TAOH_ROOT_PATH_HASH.'_eligible_scouted_jobs']); ?>';
 	var profile_complete = '<?php echo $profile_complete; ?>';
-
-
-	
 	applied_jobs = JSON.parse(applied_jobs);
 	scouted_jobs = JSON.parse(scouted_jobs);
 	eligible_scouted_jobs = JSON.parse(eligible_scouted_jobs);
-	
+
 	const currencies = <?php echo $currencies; ?>;
 
 	loader(true, loaderArea);
@@ -665,7 +662,7 @@ $currencies = json_encode(taoh_get_currency_symbol('',true));
 			const cursor = event.target.result;
 			if (cursor) {
 				const index_key = cursor.primaryKey;
-				if(index_key.includes('job')) 
+				if(index_key.includes('job'))
 				{
 				objectStore.delete(index_key);
 				}
@@ -686,21 +683,21 @@ $currencies = json_encode(taoh_get_currency_symbol('',true));
 		}else{
 			job_type = '';
 		}
-		/*for clearing search and paging data */ 
+		/*for clearing search and paging data */
 		currentPage = 1;
 		$('#postdate').val('');
 		$('#from_date').val('');
 		$('#to_date').val('');
 		$('#query').val('');
-		
+
 		$('#locationClear').hide();
         $('#coordinateLocation').val("");
         $('#geohash').val("");
         geohash = "";
         $('.ts-control div.item').html('');
 		$('.ts-wrapper').removeClass('full has-items input-hidden');
-		/*for clearing search and paging data */ 
-		
+		/*for clearing search and paging data */
+
 		<?php if(TAOH_INTAODB_ENABLE) { ?>
 			getjoblistdata('', job_type);
 		<?php }else{ ?>
@@ -742,7 +739,7 @@ $currencies = json_encode(taoh_get_currency_symbol('',true));
 			}
 		});
 	}
-    
+
 
 	function getCurrencySymbol(index) {
         if (index >= 0 && index < currencies.length) {
@@ -823,9 +820,9 @@ $currencies = json_encode(taoh_get_currency_symbol('',true));
 					job_type = job_type;
 					taoh_jobs_init(queryString, job_type);
 					console.log('else');
-				}				
+				}
 			}
-			
+
 		}).catch((error) => {
            console.log('Getjoblistdata Error:', error);
        	});
@@ -972,7 +969,7 @@ function taoh_jobs_init (queryString="", job_type_get="") {
 	$('.no_result_div').hide();
 
 	totalItems = data.output.total
-	if(!get_slug){	
+	if(!get_slug){
     	var result = format_object(data);
 	}else{
 		var result = data;
@@ -991,7 +988,7 @@ function taoh_jobs_init (queryString="", job_type_get="") {
 			var job_url = convertToSlug(taoh_title_desc_decode(v.title))+'-'+v.conttoken;
 
 			if(i == 0){
-			
+
 				job_detail_execute(v.conttoken);
 				updateCanonical(additive,job_url);
 			}
@@ -1015,17 +1012,17 @@ function taoh_jobs_init (queryString="", job_type_get="") {
 						if(v.enable_scout_job == 'on'){
 							if(Object.keys(scouted_jobs).includes(v.conttoken)){
 								apply_email_link = `<a data-action="view_application" apply-id="${scouted_jobs[v.conttoken]}"
-								job-url="${job_url}" 
+								job-url="${job_url}"
 								data-conttoken="${v.conttoken}" class="btn theme-btn mb-3  success">Applied! View Application Status </a>`;
 							}
 							else{
 								if(eligible_scouted_jobs.includes(v.conttoken)){
-									apply_email_link = `<a 
-									job-url="${job_url}" data-conttoken="${v.conttoken}" 
+									apply_email_link = `<a
+									job-url="${job_url}" data-conttoken="${v.conttoken}"
 									data-action="apply_through_scout_link" class="btn theme-btn mb-3  click_action" style="background-color:#FF7311">Apply through Scout (referred)</a>`;
-								
+
 								}else{
-									apply_email_link = `<a job-url="${job_url}" data-conttoken="${v.conttoken}" 
+									apply_email_link = `<a job-url="${job_url}" data-conttoken="${v.conttoken}"
 									data-action="request_through_scout_link" class="btn theme-btn mb-3 click_action " style="background-color:#FF7311">Apply through Scout</a>`;
 								}
 							}
@@ -1034,30 +1031,30 @@ function taoh_jobs_init (queryString="", job_type_get="") {
 								apply_email_link = `<a onclick="event.stopPropagation();" class="btn theme-btn mb-3 success">Applied! </a>`;
 							}else {
 								if(v.apply_link){
-									apply_email_link = `<a onclick="event.stopPropagation();" href="${v.apply_link}" target="_blank" 
-									data-action="apply" 
+									apply_email_link = `<a onclick="event.stopPropagation();" href="${v.apply_link}" target="_blank"
+									data-action="apply"
 									class="btn theme-btn w-50 mb-3 click_action">Apply Now </a>`;
 								}else if((v.email) && (v.enable_apply)){
 									apply_email_link = `
-									<a data-position="${(v.title)}" data-company="${(company_name_get)}" data-fname="${(v.fname)}" 
-									data-toemail="${(v.email)}" data-conttoken="${(v.conttoken)}"  data-action="apply" 
-									data-placeType="${renderJobType(v.placeType)}" data-description="${(v.description)}" 
+									<a data-position="${(v.title)}" data-company="${(company_name_get)}" data-fname="${(v.fname)}"
+									data-toemail="${(v.email)}" data-conttoken="${(v.conttoken)}"  data-action="apply"
+									data-placeType="${renderJobType(v.placeType)}" data-description="${(v.description)}"
 									class="btn theme-btn mb-3 open_modal click_action">Apply Now</a>`;
 								}else{
-									apply_email_link = `<a onclick="event.stopPropagation();" href="${'mailto:'+v.email}" data-action="apply" 
+									apply_email_link = `<a onclick="event.stopPropagation();" href="${'mailto:'+v.email}" data-action="apply"
 									 class="btn theme-btn w-50 mb-3 click_action">Apply Now </a>`;
 								}
 							}
 						}
 					}
 				}
-				
+
 				if(v.enable_scout_job == 'on'){
 					show_scout_logo = `<a style="margin-left: 5px">
-					<img 
+					<img
 					data-toggle="tooltip" data-placement="top"
-                 title="Please note: Scout is a specialized program that gets 6x faster result, where industry leading peers help find the best peer talent for the jobs. " 
-                
+                 title="Please note: Scout is a specialized program that gets 6x faster result, where industry leading peers help find the best peer talent for the jobs. "
+
 					src="<?php echo TAOH_SITE_URL_ROOT.'/assets/images/scout_icon.png'; ?>" width="28" height="28" alt="Scout Icon"></a>`;
 				}
 			}else{
@@ -1080,17 +1077,14 @@ function taoh_jobs_init (queryString="", job_type_get="") {
 					payinfo = payinfo + ' per Daily';
 				}else if(v.paymentTerm == 'weekly'){
 					payinfo = payinfo + ' per week';
-				}	
+				}
 			}
-
-			
-			
 			slot.append(
 			`<div class="light-dark-card dash_metrics job-listing-block-row ${i == 0 ? 'active':''}" style="cursor: pointer;"
-			 data-conttoken="${v.conttoken}"  
+			 data-conttoken="${v.conttoken}"
 			 data-canonical = "${additive}"
 			 job-url="${job_url}"
-			 dash_metrics data-metrics="view" conttoken="${v.conttoken}" data-type="jobs" 
+			 dash_metrics data-metrics="view" conttoken="${v.conttoken}" data-type="jobs"
 			  >
 				<div class="">
 					<div><b class="jobing-company-name stop_propagation">${(v.company && v.company.length)? newgenerateCompanyHTML(v.company): ''}</b> <span class="bookmark-icon-right">${liked_check}</span></div>
@@ -1100,10 +1094,10 @@ function taoh_jobs_init (queryString="", job_type_get="") {
 						<h3 class="fs-17 mt-2 b-2 desktop-job-list" style="font-weight: 500;">${taoh_title_desc_decode(v.title)}   </h3>
 						<p>${v.full_location ? newgenerateLocationHTML(v.full_location): ''}</p>
 						<p>${payinfo}</p>
-						
+
 						<div class="col-12 row px-0 mx-auto d-flex flex-wrap">
 							<div class="mt-3 col-10 px-0">
-								${apply_email_link} 
+								${apply_email_link}
 							</div>
 							<div class="col d-flex justify-content-end align-items-center px-0">
 							${show_scout_logo}
@@ -1120,21 +1114,18 @@ function taoh_jobs_init (queryString="", job_type_get="") {
 		}else{
 			$('#pagination').hide();
 		}
-				
+
 		if(search){
-			taoh_metrix_ajax('jobs',arr_cont);					
+			taoh_metrix_ajax('jobs',arr_cont);
 		}
-		
+
 	}
-
-	
-
 	function updateCanonical(newCanonicalUrl,job_url){
 		console.log('-----------'+newCanonicalUrl)
 		//<meta name="original-source" content="'.$response['meta']['canonical_url'].'"/>';
 		if(newCanonicalUrl !=''){
 			// Update or add the canonical link
-			var $canonicalLink = $('link[rel="canonical"]');					
+			var $canonicalLink = $('link[rel="canonical"]');
 			if ($canonicalLink.length) {
 				// If the canonical link already exists, update it
 				$canonicalLink.attr('href', newCanonicalUrl);
@@ -1148,7 +1139,7 @@ function taoh_jobs_init (queryString="", job_type_get="") {
 					.appendTo('head');
 			}
 
-			var $sourceLink = $('meta[name="original-source"]');					
+			var $sourceLink = $('meta[name="original-source"]');
 			if ($sourceLink.length) {
 				// If the canonical link already exists, update it
 				$sourceLink.attr('content', newCanonicalUrl);
@@ -1206,9 +1197,6 @@ function taoh_jobs_init (queryString="", job_type_get="") {
         })
 	}
 
-
-	
-
 function indx_jobs_list(joblistdata){
     var job_taoh_data = { taoh_data:job_list_name,values : joblistdata };
 	let job_setting_time = new Date();
@@ -1227,9 +1215,6 @@ setInterval(function(){
 		checkTTL(job_list_name,store_name);
 	<?php } ?>
 },30000);
-
-
-
 </script>
 <?php
 taoh_get_footer();

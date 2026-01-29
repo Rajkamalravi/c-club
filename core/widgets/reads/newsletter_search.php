@@ -3,7 +3,7 @@ h3.session_title {
   display: flex;
   flex-direction: row;
 }
-          
+
 h3.session_title:after {
     content: "";
     flex: 1 1;

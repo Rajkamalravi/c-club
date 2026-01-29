@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 if ( ! defined ( 'TAO_PAGE_TITLE' ) ) { define ( 'TAO_PAGE_TITLE', "Comprehensive Open Jobs List at ".TAOH_SITE_NAME_SLUG.": Explore and Apply to a Wide Range of Job Opportunities" ); }
 if ( ! defined ( 'TAO_PAGE_DESCRIPTION' ) ) { define ( 'TAO_PAGE_DESCRIPTION', "Browse our comprehensive jobs list featuring a diverse range of job opportunities across industries. Find the perfect job that matches your skills and interests, chat with recruiters and easily apply through our user-friendly platform at ".TAOH_SITE_NAME_SLUG.". Start your job search today and take the next step in your career." ); }
@@ -170,13 +170,13 @@ span.h5 {
                     <h2 class="section-title">Browse our Available Jobs</h2>
                 </div>
                 <div class="jobs-list pt-60px"></div>
-                <div id='loaderArea'></div> 
+                <div id='loaderArea'></div>
                 <div id="pagination" class="dark-blue"></div>
                 <div class="job-signup dark-btn">
                     <!-- <a href="<?php echo TAOH_LOGIN_URL."?redirect_url=".TAOH_REDIRECT_URL;?>" class="btn theme-btn theme-btn mr-2">Sign up to apply <i class="la la-arrow-right ml-1"></i></a> -->
                     <a onclick="localStorage.removeItem('isCodeSent')" href="javascript:void(0);"
                          class="btn theme-btn theme-btn mr-2 login-button " aria-pressed="true" data-toggle="modal" data-target="#config-modal">Sign up to apply <i class="la la-arrow-right ml-1"></i></a>
-                    
+
                 </div>
             </div>
         </div>
@@ -304,7 +304,7 @@ span.h5 {
         </div>
         <div class="col-lg-12">
             <div class="row articles_list">
-            
+
             </div>
         </div><!-- end row -->
     </div><!-- end container -->
@@ -412,15 +412,12 @@ span.h5 {
 	//let locationSelectInput = $('#locationSelect');
     //let geohashInput = $('#geohash');
     //let jobCount = $('#jobCount');
-    let totalItems = 0; 
+    let totalItems = 0;
     let search = "";
 	let itemsPerPage = 10;
 	let currentPage = 1;
 	loader(true, loaderArea);
 
-
-    
-    
     $(document).ready(function(){
        // alert('----');
         taoh_jobs_init();
@@ -533,7 +530,7 @@ span.h5 {
 		}
 		totalItems = data.output.total
 		//jobCount.append(totalItems + ' jobs Found');
-		
+
         result = format_object(data);
 		$.each(result.output.list, function(i, v){
 			slot.append(
@@ -546,9 +543,9 @@ span.h5 {
 
 						&nbsp;&nbsp;
 						<?php if ( taoh_user_is_logged_in()) { ?>
-							<a href="<?php echo TAOH_SITE_URL_ROOT."/".$current_app."/d/"; ?>${convertToSlug(v.title)}-${v.conttoken}" class="tag-link text-primary">APPLY</a> 
+							<a href="<?php echo TAOH_SITE_URL_ROOT."/".$current_app."/d/"; ?>${convertToSlug(v.title)}-${v.conttoken}" class="tag-link text-primary">APPLY</a>
 						<?php } else { ?>
-							<a href="<?php echo TAOH_SITE_URL_ROOT."/".$current_app."/d/"; ?>${convertToSlug(v.title)}-${v.conttoken}" class="tag-link text-primary">APPLY</a>  
+							<a href="<?php echo TAOH_SITE_URL_ROOT."/".$current_app."/d/"; ?>${convertToSlug(v.title)}-${v.conttoken}" class="tag-link text-primary">APPLY</a>
 						<?php } ?>
 						</h5>
 

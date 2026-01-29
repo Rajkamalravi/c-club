@@ -65,7 +65,7 @@ require_once('function.php'); //this file is depends on config and helper functi
 taoh_health_sync();
 if ( file_exists( TAOH_PLUGIN_PATH.'/debug_function.php' ) ){
   require_once('debug_function.php');
-} 
+}
 
 if( taoh_is_wp() ) {
   header("Location: ".TAOH_SITE_URL_ROOT); taoh_exit();

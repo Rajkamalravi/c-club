@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 if ( ! defined ( 'TAO_PAGE_TITLE' ) ) { define ( 'TAO_PAGE_TITLE', "Comprehensive Open Asks List at ".TAOH_SITE_NAME_SLUG.": Explore and Apply to a Wide Range of Job Opportunities" ); }
 if ( ! defined ( 'TAO_PAGE_DESCRIPTION' ) ) { define ( 'TAO_PAGE_DESCRIPTION', "Browse our comprehensive jobs list featuring a diverse range of job opportunities across industries. Find the perfect job that matches your skills and interests, chat with recruiters and easily apply through our user-friendly platform at ".TAOH_SITE_NAME_SLUG.". Start your job search today and take the next step in your career." ); }
@@ -26,7 +26,7 @@ span.h5 {
                     <h2 class="section-title wordSlider  pb-3 lh-55 text-white">Welcome to Asks app, Where Questions Ignite Progress</h2>
                     <p class="section-desc pb-4 text-white">Get answers to the most pressing questions and join the askers' community to build success, network, reputation, and growth.</p>
                     <div class="dark-btn gray-btn">
-                        <!-- <a href="<?php // echo TAOH_SITE_URL_ROOT.'/login'; ?>" class="btn theme-btn">Join the community <i class="la la-arrow-right icon ml-1"></i></a> 
+                        <!-- <a href="<?php // echo TAOH_SITE_URL_ROOT.'/login'; ?>" class="btn theme-btn">Join the community <i class="la la-arrow-right icon ml-1"></i></a>
                         <a href="<?php // echo TAOH_SITE_URL_ROOT.'/login'; ?>" class="btn theme-btn">Ask a question <i class="la la-arrow-right icon ml-1"></i></a> -->
                         <a onclick="localStorage.removeItem('isCodeSent')" href="javascript:void(0);"
                          class="btn theme-btn login-button " aria-pressed="true" data-toggle="modal" data-target="#config-modal">Join the community <i class="la la-arrow-right icon ml-1"></i></a>
@@ -312,7 +312,7 @@ span.h5 {
         </div>
         <div class="col-lg-12">
             <div class="row articles_list">
-            
+
             </div>
         </div><!-- end row -->
     </div><!-- end container -->
@@ -524,9 +524,6 @@ let $ = jQuery;
     }
     taoh_asks_init();
   }
-
-
-
 	function do_search(e) {
 		search = $(e).val();
 		if(currentMod === "<?php echo $current_app; ?>") {
@@ -709,7 +706,7 @@ let $ = jQuery;
                     <span class="text-underline fs-18 text-black fw-medium"><a target=_BLANK href="<?php echo TAOH_SITE_URL_ROOT."/".$current_app."/d/"; ?>${convertToSlug(v.title)}-${v.conttoken}">Show detail <i class="la la-arrow-right ml-1"></a></i></span>
 			</div>`);
 
-                
+
 		});
 		//if(totalItems >= 11) { enable to hide pagination if no date below 10
 			show_pagination('#pagination')
@@ -725,5 +722,3 @@ let $ = jQuery;
 <?php
 taoh_get_footer();
 ?>
-
-

@@ -35,53 +35,53 @@ $form_field = array(
 						'required'=>'1',
 						'place'=>'common'),
 					array(
-						'label' => 'Sponsor', 
+						'label' => 'Sponsor',
 						'name' => 'sponser',
 						'required'=>'1',
 						'type'=>'question',
-						'place'=>'main',		
-						'questions' => array( 
+						'place'=>'main',
+						'questions' => array(
 							array(
 								'label' => 'Please describe your organization`s main area of interest or focus for sponsorship.',
 								'name' => 'organization_area',
 								'type'=>'text',
 								'required'=>'0',
-								'place'=>'main') 
+								'place'=>'main')
 							)),
 					array(
-						'label' => 'Partner', 
+						'label' => 'Partner',
 						'name' => 'partner',
 						'required'=>'1',
 						'type'=>'question',
-						'place'=>'main',					
-						'questions' => array( 
+						'place'=>'main',
+						'questions' => array(
 							array(
 								'label' => 'What type of partnership are you interested in? (E.g., content, Talent, marketing, technology)',
 								'name' => 'interested_partnership',
 								'type'=>'text',
 								'required'=>'0',
-								'place'=>'main') 
+								'place'=>'main')
 						)),
 					array(
-						'label' => 'Volunteer', 
-						'name' => 'volunteer', 
+						'label' => 'Volunteer',
+						'name' => 'volunteer',
 						'required'=>'1',
 						'type'=>'question',
 						'place'=>'main',
-						'questions' => array( 
+						'questions' => array(
 							array(
 								'label' => 'What areas are you interested in volunteering for? (E.g., social media and marketing)',
 								'name' => 'volunteer_interested_area',
 								'type'=>'text',
 								'required'=>'0',
-								'place'=>'main'), 
+								'place'=>'main'),
 							array(
 								'label' => 'Do you have previous experience in these areas?',
 								'name' => 'previous_experience_area',
 								'type'=>'radio',
 								'required'=>'0',
 								'place'=>'main',
-								'option'=>array('label'=>'Yes', 'name'=>'yes','label'=>'No','name'=>'no') ), 
+								'option'=>array('label'=>'Yes', 'name'=>'yes','label'=>'No','name'=>'no') ),
 							array(
 								'label' => 'If Yes, please describe.',
 								'name' => 'experience_describe',
@@ -89,14 +89,14 @@ $form_field = array(
 								'required'=>'0',
 								'place'=>'main'),
 						)),
-					
+
 					array(
 							'label' => 'I am interested in being a',
 							'name' => 'interested',
 							'type'=>'radio',
 							'required'=>'1',
 							'place'=>'workcongress24',
-							'options' => 
+							'options' =>
                                     array(
                                         array('label'=>'Sponsor', 'name'=>'sponsor'),
                                         array('label'=>'Partner', 'name'=>'partner'),
@@ -105,7 +105,7 @@ $form_field = array(
                                         array('label'=>'Participant', 'name'=>'participant'),
                                         array('label'=>'Volunteer', 'name'=>'volunteer'),
 
-                                        
+
 							        ),
 							'actions'=>array(
 								'sponsor' => array(
@@ -114,13 +114,13 @@ $form_field = array(
 										'name' => 'sponsorship',
 										'type'=>'checkbox',
 										'required'=>'1',
-										'place'=>'workcongress24', 
+										'place'=>'workcongress24',
 										'option' => array(
                                             array('label'=>'Increase brand visibility', 'name'=>'brand_visibility'),
                                             array(  'label'=>'Showcase a new product or service', 'name'=>'showcase_product'),
                                             array(  'label'=>'Generate Leads', 'name'=>'generate_leads'),
                                             array(  'label'=>'Engage with a specific audience', 'name'=>'engage_audience'),
-                                            array(  'label'=>'Other', 'name'=>'other_sponsor') 
+                                            array(  'label'=>'Other', 'name'=>'other_sponsor')
 										),
                                     ),
 									array(
@@ -136,7 +136,7 @@ $form_field = array(
 											'name' => 'partnership',
 											'type'=>'checkbox',
 											'required'=>'1',
-											'place'=>'workcongress24', 
+											'place'=>'workcongress24',
 											'option' => array(
                                                             array( 'label'=>'Content', 'name'=>'content'),
                                                             array(  'label'=>'Media and marketing', 'name'=>'media_marketing'),
@@ -161,7 +161,7 @@ $form_field = array(
 										'name' => 'hostat',
 										'type'=>'radio',
 										'required'=>'1',
-										'place'=>'workcongress24', 
+										'place'=>'workcongress24',
 										'option'=>array(
                                             array('label'=>'Content', 'name'=>'content'),
                                             array('label'=>'Media and marketing', 'name'=>'media_marketing'),
@@ -206,13 +206,13 @@ $form_field = array(
 										'name' => 'participant_hear',
 										'type'=>'radio',
 										'required'=>'1',
-										'place'=>'workcongress24', 
+										'place'=>'workcongress24',
 										'option'=>array(
                                                     array('label'=>'Social Media', 'name'=>'social_media_participant'),
 													array(	'label'=>'Email Newsletter', 'name'=>'email_newsletter'),
 													array(	'label'=>'Word of Mouth', 'name'=>'word_of_mouth'),
 													array(	'label'=>'Other', 'name'=>'other_participant')
-                                                        
+
                                                 )
 									),
 									array(
@@ -229,7 +229,7 @@ $form_field = array(
 										'name' => 'volunteer_interest',
 										'type'=>'radio',
 										'required'=>'1',
-										'place'=>'workcongress24', 
+										'place'=>'workcongress24',
 										'option'=>array(
                                                     array('label'=>'Tech Support', 'name'=>'tech_support'),
 													array(	'label'=>'Session Moderation', 'name'=>'session_moderation'),
@@ -251,7 +251,7 @@ $form_field = array(
 										'required'=>'1',
 										'place'=>'workcongress24'),
 								),
-								
+
 							),
 					),
 					array(
@@ -259,16 +259,16 @@ $form_field = array(
 						'name' => 'comments',
 						'required'=>'1',
 						'type'=>'question',
-						'place'=>'workcongress24'	,		
-						'questions' => array( 
+						'place'=>'workcongress24'	,
+						'questions' => array(
 							array('label'=>'Any additional comments or questions?',
 										'name' => 'additional_comments',
 										'type'=>'textarea',
 										'required'=>'0',
 										'place'=>'workcongress24')
 						)
-					),  
-					
+					),
+
 					array(
 							'label' =>'Submit',
 							'name' => 'submit',
@@ -278,13 +278,13 @@ $form_field = array(
                         ),
 			),
             "footer"=>array('footer_image','footer','img','0','common'),
-    );   
+    );
 
 
-$result = json_encode($form_field); 
+$result = json_encode($form_field);
 //header('Content-Type: application/json; charset=utf-8');
 return $result;
-//taoh_exit(); 
+//taoh_exit();
 
 
 ?>

@@ -1,4 +1,4 @@
-<?php 
+<?php
 if ( ! defined ( 'TAO_PAGE_TITLE' ) ) { define ( 'TAO_PAGE_TITLE', "Work Resources at ".TAOH_SITE_NAME_SLUG.": Explore Insights and Strategies for Career Success and Workplace Excellence" ); }
 if ( ! defined ( 'TAO_PAGE_DESCRIPTION' ) ) { define ( 'TAO_PAGE_DESCRIPTION', "Discover our collection of Work Resources, offering valuable insights, strategies, and resources to excel in your career and thrive in the workplace at ".TAOH_SITE_NAME_SLUG.". Stay updated with the latest trends, uncover effective work-life balance techniques, enhance your productivity, and foster professional growth. Elevate your career journey with our comprehensive blog platform." ); }
 if ( ! defined ( 'TAO_PAGE_KEYWORDS' ) ) { define ( 'TAO_PAGE_KEYWORDS', "Work blogs at ".TAOH_SITE_NAME_SLUG.", Career success insights at ".TAOH_SITE_NAME_SLUG.", Workplace excellence strategies at ".TAOH_SITE_NAME_SLUG.", Professional growth resources at ".TAOH_SITE_NAME_SLUG.", Work-life balance tips at ".TAOH_SITE_NAME_SLUG.", Productivity enhancement techniques at ".TAOH_SITE_NAME_SLUG.", Leadership development insights at ".TAOH_SITE_NAME_SLUG.", Workplace communication skills at ".TAOH_SITE_NAME_SLUG.", Time management strategies at ".TAOH_SITE_NAME_SLUG.", Team collaboration techniques at ".TAOH_SITE_NAME_SLUG.", Career advancement tips at ".TAOH_SITE_NAME_SLUG.", Workforce trends at ".TAOH_SITE_NAME_SLUG.", Workplace diversity and inclusion at ".TAOH_SITE_NAME_SLUG.", Workplace wellness at ".TAOH_SITE_NAME_SLUG.", Effective decision-making in the workplace at ".TAOH_SITE_NAME_SLUG.", Work ethics and professionalism at ".TAOH_SITE_NAME_SLUG.", Building strong work relationships at ".TAOH_SITE_NAME_SLUG.", Managing workplace stress at ".TAOH_SITE_NAME_SLUG.", Effective goal setting at work at ".TAOH_SITE_NAME_SLUG.", Workplace learning and development" ); }
@@ -33,12 +33,12 @@ $log_nolog_token = $ptoken;
   }
   }
   .sqs-block-content .sqs-html-content p,  .sqs-block-content .sqs-html-content h1,
-  .sqs-block-content .sqs-html-content h2,  .sqs-block-content .sqs-html-content h3,  .sqs-block-content .sqs-html-content h4, 
+  .sqs-block-content .sqs-html-content h2,  .sqs-block-content .sqs-html-content h3,  .sqs-block-content .sqs-html-content h4,
   .sqs-block-content .sqs-html-content h5,  .sqs-block-content .sqs-html-content h6 {
-    display: -webkit-box;        
-    -webkit-box-orient: vertical; 
-    overflow: hidden;           
-    -webkit-line-clamp: 1;   
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    -webkit-line-clamp: 1;
   }
 </style>
 <section class="blog-listing gray-dark">
@@ -68,23 +68,23 @@ $log_nolog_token = $ptoken;
                 </a>
             </div>
             <?php } ?>
-            </div>        
+            </div>
         </div><!-- end hero-content -->
-        <div class="row bg-white"> 
-            <div class="col-lg-8 m-15px-tb"> 
+        <div class="row bg-white">
+            <div class="col-lg-8 m-15px-tb">
                 <div class="mt-3 sticky-top light-dark">
                     <?php taoh_reads_search_widget(); ?>
-                </div>  
+                </div>
                 <div class="">
-                    <?php taoh_all_reads_widget( $get_widget[ 'center1' ], 'center1' ); ?> 
-                    <?php taoh_all_reads_widget( $get_widget[ 'center2' ], 'center2' ); ?> 
+                    <?php taoh_all_reads_widget( $get_widget[ 'center1' ], 'center1' ); ?>
+                    <?php taoh_all_reads_widget( $get_widget[ 'center2' ], 'center2' ); ?>
                     <?php taoh_all_reads_widget( $get_widget[ 'center3' ], 'center3' ); ?>
-                    <div class="blured"> 
-                        
+                    <div class="blured">
+
                         <div>
                             <h4 class="session_title ml-3"><span>LATEST ARTICLES</span></h4>
                             <div id='loaderArea'></div>
-                            <div id="eventArea">Loading ...</div> 
+                            <div id="eventArea">Loading ...</div>
                         </div>
                         <div class="mb-4" id="pagination"></div>
                     </div>
@@ -108,7 +108,7 @@ $log_nolog_token = $ptoken;
                 </div>
                 <!-- <div class="border-bottom">
                     <?php //taoh_all_reads_widget( $get_widget[ 'right2' ], 'right2' ); ?>
-                </div> -->           
+                </div> -->
                 <section id="sticky">
                     <div class="border-bottom">
                         <?php taoh_all_reads_widget( $get_widget[ 'right_ad3' ], 'right_ad3' ); ?>
@@ -148,7 +148,7 @@ $log_nolog_token = $ptoken;
             var currpage = currentPage-1;
             var readswork_list_hash = queryString+currpage+itemsPerPage;
             readswork_list_name = 'readswork_'+crc32(readswork_list_hash);
-            console.log(readswork_list_name);     
+            console.log(readswork_list_name);
             const datareadsworkrequest = db.transaction(store_name).objectStore(store_name).get(readswork_list_name); // get main data
             datareadsworkrequest.onsuccess = ()=> {
                 console.log(datareadsworkrequest);
@@ -215,7 +215,7 @@ $log_nolog_token = $ptoken;
         'offset': currentPage,
         'limit': itemsPerPage,
 		'filters': queryString,
-        
+
     };console.log(data);
     jQuery.post("<?php echo taoh_site_ajax_url(); ?>", data, function(response) {
         console.log(response);
@@ -286,14 +286,14 @@ function render_blog_template(data, slot) {
                         </div>`;
       }
       console.log('descp ---------- ',v.blurb.description);
-      let Str = decode(v.blurb.description); 
+      let Str = decode(v.blurb.description);
       let decodedStr = decodeURIComponent(Str).replace(/\+/g, ' ');
       console.log('decode descp ---------- ',decodedStr);
       slot.append(`
 
 
                     <div class="td_module_12 mt-3 row align-items-start dash_metrics"
-                    data-type="reads" data-metrics="view" conttoken="${v.conttoken}"                     
+                    data-type="reads" data-metrics="view" conttoken="${v.conttoken}"
                     >
 
                         <div class="col-lg-6 mb-2 mb-lg-0">
@@ -370,7 +370,7 @@ setInterval(function(){
     }
   }
   //Trending Bar End
-  
+
 $('.claimedRight').each(function (f) {
 
     var newstr = $(this).text().substring(0,250)+'....';

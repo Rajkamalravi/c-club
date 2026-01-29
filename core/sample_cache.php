@@ -50,7 +50,7 @@ function subsetArray($array, $start, $stop) {
     if ($stop < 0) {
         $stop = max(0, count($array) + $stop);
     }
-    
+
     // Use array_slice to get the subset
     return array_slice($array, $start, $stop - $start + 1);
 }
@@ -139,7 +139,7 @@ function taoh_lpush( $cache_arr ){
     } else {
         $return = json_encode(['output' => 'Missing "value" for "set" operation', 'success' => false]);
     }
-    
+
     return $return;
 }
 
@@ -165,7 +165,7 @@ function taoh_lpushu( $cache_arr ){
     } else {
         $return = json_encode(['output' => 'Missing "value" for "set" operation', 'success' => false]);
     }
-    
+
     return $return;
 }
 
@@ -182,9 +182,9 @@ function taoh_lpos( $cache_arr ){
                 if ( ! $value2 ){
                     $redis->LREM($key, $value);
                     $pos = false;
-                } 
+                }
             }
-            $return =  json_encode(['output' => $pos, 'success' => true]); 
+            $return =  json_encode(['output' => $pos, 'success' => true]);
         } else {
             $return =  json_encode(['output' => false, 'success' => false]);
         }
@@ -205,8 +205,8 @@ function taoh_ldelete( $cache_arr ){
         $pos = $redis->LREM($key, $value);
         if ( is_numeric( $pos ) ){
             $time = time();
-            $redis->set($key.'_filemtime', $time);    
-            $return = json_encode(['output' => $pos, 'success' => true]); 
+            $redis->set($key.'_filemtime', $time);
+            $return = json_encode(['output' => $pos, 'success' => true]);
         } else {
             $return = json_encode(['output' => false, 'success' => false]);
         }
@@ -291,7 +291,7 @@ function taoh_append( $cache_arr ){
     $value = $redis->get( $key );
     if ( $value ){
         $value = $value.$cache_arr['value'];
-        $ttl = isset($cache_arr['ttl']) ? (int)$cache_arr['ttl'] : null;                            
+        $ttl = isset($cache_arr['ttl']) ? (int)$cache_arr['ttl'] : null;
         if ($ttl !== null) {
             // Set the key with TTL
             $redis->setex($key, $ttl, $value);
@@ -306,7 +306,7 @@ function taoh_append( $cache_arr ){
         $return = json_encode(['output' => $time, 'success' => true]);
     } else {
         $value = $cache_arr['value'];
-        $ttl = isset($cache_arr['ttl']) ? (int)$cache_arr['ttl'] : null;                            
+        $ttl = isset($cache_arr['ttl']) ? (int)$cache_arr['ttl'] : null;
         if ($ttl !== null) {
             // Set the key with TTL
             $redis->setex($key, $ttl, $value);
@@ -337,7 +337,7 @@ function taoh_keys( $cache_arr ){
             $return = json_encode(['output' => $value, 'success' => true]);
         } else {
             $return = json_encode(['output' => 'Key not found', 'success' => true]);
-        }    
+        }
     } else {
         $return = json_encode(['output' => 'Key not found', 'success' => true]);
     }
@@ -456,7 +456,7 @@ function taoh_georadius( $cache_arr ){
     if ( isset( $cache_arr[ 'search' ] ) && $cache_arr[ 'search' ] ){
          // Initialize an array to store matching results
         $matchingResults = [];
-        foreach ($output as $member) {    
+        foreach ($output as $member) {
             // If the value exists and contains the search term, add it to the results
             if ($member && strpos($member, $cache_arr[ 'search' ]) !== false) {
                 $matchingResults[] = $member;
@@ -481,7 +481,7 @@ function taoh_georadiusbymember( $cache_arr ){
     if ( isset( $cache_arr[ 'search' ] ) && $cache_arr[ 'search' ] ){
         // Initialize an array to store matching results
        $matchingResults = [];
-       foreach ($output as $member) {    
+       foreach ($output as $member) {
            // If the value exists and contains the search term, add it to the results
            if ($member && strpos($member, $cache_arr[ 'search' ]) !== false) {
                $matchingResults[] = $member;
@@ -551,7 +551,7 @@ function taoh_roomguestadd( $cache_arr ){
         $redis->geoadd($type_room_key, $longitude, $latitude, $cache_arr['ptoken']);
         if ( ! $redis->sIsMember( $room_guest_set, $cache_arr['ptoken'] ) ){
             $redis->sadd($room_guest_set, $cache_arr['ptoken']);
-            
+
             $room_ptoken_info_key = "taoroom_".$key."_".$cache_arr['ptoken'];
             $redis->set($room_ptoken_info_key, $cache_arr['info']);
         }
@@ -648,13 +648,13 @@ function taoh_roomguestuserfilter( $key, $ptoken_arr, $search ){
         $live = taoh_livecheck( ['key' => $key, 'value' => $ptoken] );
         $live_arr = json_decode( $live, true );
         if ( $live[ 'success' ] && $live[ 'output' ] ){
-            
+
             $room_guest_set = "taoroom_".$key."_".$value;
             $value = $redis->get($room_guest_set);
             if ( $search ){
                 if ($value && strpos($value, $search) !== false) {
                     $return[$ptoken] = $value;
-                }    
+                }
             } else {
                 $return[$ptoken] = $value;
             }
@@ -846,7 +846,7 @@ if ( $doit ) {
                         $return = taoh_roomguestsearch( $cache_arr );
                         taoh_print( $return );
                         break;
-    
+
 
                     case 'keysnvalues':
                         // Perform a Redis DELETE operation
@@ -856,20 +856,20 @@ if ( $doit ) {
                             if ($value) {
                                 $out = array();
                                 print_r($value);exit();
-                                
+
                                 foreach ( $value as $key => $val ){
                                     if ( ! stristr( $val, '_filemtime' ) ){
                                         $valtemp = $redis->get($val);
                                         $out[ $val ] = $valtemp;
                                         echo "Key: $key ; Value: $valtemp";
                                     }
-                                    
-                                    
+
+
                                 }
                                 print_r($out);exit();
                                 if ( is_array($out) ){
                                     if ( isset( $cache_arr[ 'outkey' ] ) && $cache_arr[ 'outkey' ] ){
-                                        $ttl = isset($cache_arr['ttl']) ? (int)$cache_arr['ttl'] : null;        
+                                        $ttl = isset($cache_arr['ttl']) ? (int)$cache_arr['ttl'] : null;
                                         $value = json_encode($out);
                                         $key = $cache_arr[ 'outkey' ];
                                         if ($ttl !== null) {
@@ -888,10 +888,10 @@ if ( $doit ) {
                                 } else {
                                     echo json_encode(['output' => 'Key not found', 'success' => true]);taoh_exit();
                                 }
-                                
+
                             } else {
                                 echo json_encode(['output' => 'Key not found', 'success' => true]);taoh_exit();
-                            }    
+                            }
                         }
                         echo json_encode(['output' => 'Key not found', 'success' => true]);taoh_exit();
                         break;
@@ -906,7 +906,7 @@ if ( $doit ) {
                                 echo json_encode(['output' => json_encode($value), 'success' => true]);
                             } else {
                                 echo json_encode(['output' => 'Key not found', 'success' => true]);
-                            }    
+                            }
                         }
                         echo json_encode(['output' => 'Key not found', 'success' => true]);
                         break;
@@ -925,29 +925,29 @@ if ( $doit ) {
 
                         // Subscribe to the Redis channel
                         $redis->subscribe([$channel]);
-                    
+
                         // Continuously check for incoming messages and send them to the client
                         while (true) {
                             $message = $redis->psubscribeOnce(); // Wait for a message
-                    
+
                             // Respond with the received message
                             echo json_encode(['output' => $message, 'success' => true]) . "\n";
                             ob_flush();
                             flush(); // Flush output to send the message immediately
-                    
+
                             // You can add logic here to handle client disconnects and clean up
                         }
                         break;
-    
+
                     case 'pubsubget':
                         $channel = $key; // Replace with your channel name
 
                         // Retrieve recent messages from the Redis channel
                         $recentMessages = $redis->lrange($channel, 0, -1);
-                    
+
                         // Close the Redis connection
                         $redis->close();
-                    
+
                         // Respond with the list of recent messages
                         http_response_code(200);
                         //echo json_encode(['messages' => $recentMessages]);
@@ -986,7 +986,7 @@ if ( $doit ) {
                 }
 
                 // Close the Redis connection
-                
+
             } else {
                 echo json_encode(['output' => 'Invalid "md" field', 'success' => false]);
             }

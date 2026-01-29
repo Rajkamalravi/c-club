@@ -23,7 +23,7 @@ $taoh_vals = array(
     "ops" => "stats",
 );
 $referral = (array) json_decode(taoh_apicall_get( $taoh_call, $taoh_vals ));
-taoh_get_header(); 
+taoh_get_header();
 
 ?>
 
@@ -35,7 +35,7 @@ taoh_get_header();
     left: 80px;
     transition: all .3s;
     }
-    
+
     .your-tooltip.show {
     opacity: 1;
     }
@@ -84,7 +84,7 @@ taoh_get_header();
                                     <div class="form-group col-lg-4">
                                         <label class="fs-13 text-black lh-20 fw-medium">Email <span style="color:red"> * </span></label>
                                         <input class="form-control form--control" type="email" required name="email" placeholder="Enter email address">
-                                    </div>       
+                                    </div>
                                     <div class="col-lg-12 mt-3 text-center">
                                         <button class="btn theme-btn" type="submit">Send <i class="la la-arrow-right icon ml-1"></i></button>
                                     </div>
@@ -189,19 +189,19 @@ taoh_get_header();
     </div><!-- end container -->
 </section><!-- end user-details-area -->
 <script>
-function copyText() { 
-    var yourToolTip = document.querySelector('.your-tooltip'); 
+function copyText() {
+    var yourToolTip = document.querySelector('.your-tooltip');
     /* Select text area by id*/
     var Text = document.getElementById("copy-text");
     /* Select the text inside text area. */
     Text.select();
     /* Copy selected text into clipboard */
     var copy_text = navigator.clipboard.writeText(Text.value);
-    if(copy_text){   
-        $('.text-success-message').addClass('active'); 
+    if(copy_text){
+        $('.text-success-message').addClass('active');
         setTimeout(function() {
-            $('.text-success-message').removeClass('active'); 
-        }, 2000); 
+            $('.text-success-message').removeClass('active');
+        }, 2000);
     }
 
 }

@@ -177,7 +177,7 @@ function getCompiledProfileHtml(data) {
                                 <p class="lh-20 mb-3 fs-13">${edu_vals['emp_responsibilities'].length <= 200 ? edu_vals['emp_responsibilities'] : edu_vals['emp_responsibilities'].substring(0, 200) + '......'}</p>
                                 ${Array.isArray(emp_vals['skill']) ? `<p class="lh-20 fs-13"><span class="lh-20 fs-13 font-weight-bold">Skills: </span>${items[1]}</p>` : ''}
                             </div>
-                            
+
                         </div>
                     </div>`;
 
@@ -187,9 +187,6 @@ function getCompiledProfileHtml(data) {
                 html += `</div>`;
             }
         }
-
-
-
 
         let edu_list = data.education;
         if(Array.isArray(edu_list) && edu_list.length > 0) {
@@ -268,9 +265,6 @@ function getCompiledProfileHtml(data) {
         resolve(html);
     });
 }
-
-
-
 function getMonthFromNumber(monthNumber, type = 'short') {
     let monthNames = [];
     if(type === 'short'){

@@ -29,7 +29,7 @@ class ChatEvents {
             trackingtoken: options.trackingtoken || '',
             dojoeventrules: options.dojoeventrules || {}
         };
-        
+
         this.init();
     }
 
@@ -37,7 +37,7 @@ class ChatEvents {
         this.setupValidators();
         this.bindEvents();
         this.initializeComponents();
-        
+
         if (this.config.isLoggedIn) {
             this.saveMetrics('events_lobby', this.config.click_view, this.config.eventToken);
         }
@@ -174,7 +174,7 @@ class ChatEvents {
 
         try {
             const eventHallAccess = await this.getEventHallAccess();
-            
+
             // Reset form
             $("#setup_exhibitor_slot_form").trigger('reset');
             $('#setup_exhibitor_slot_form').find('input[type=hidden]').val('');
@@ -184,16 +184,16 @@ class ChatEvents {
 
             // Clear previews
             $('#exhibitorSlotModal').find("#exh_logo_preview, #exh_banner_preview").html('');
-            
+
             // Set form values
             $('#exhibitorSlotModal').find('#taoh_action').val('save_exhibitor_slot');
             $('#exhibitorSlotModal').find('#eventtoken').val(this.config.eventToken);
             $('#exhibitorSlotModal').find('#ptoken').val(this.config.my_pToken);
 
             const {requestData, response} = await this.getEventBaseInfo({eventtoken: this.config.eventToken}, false);
-            
+
             await this.setupExhibitorForm(response.output, eventHallAccess);
-            
+
             $('#exhibitorSlotModal').modal('show');
         } catch (error) {
             console.error("Error setting up exhibitor slot:", error);
@@ -213,7 +213,7 @@ class ChatEvents {
             $('#spk_form').trigger('reset');
             $('#spk_form').find('input[type=hidden]').val('');
             $('#spk_tags').val([]).trigger('change');
-            
+
             // Clear previews
             $("#spk_logo_image_preview, #spk_image_preview, .spk_profileimg_preview").html('');
 
@@ -225,7 +225,7 @@ class ChatEvents {
             // Set date constraints
             let mindate = this.formatTimestamp($("#event_start_at").val());
             let maxdate = this.formatTimestamp($("#event_end_at").val());
-            
+
             document.getElementById('spk_datefrom').setAttribute('min', mindate);
             document.getElementById('spk_datefrom').setAttribute('max', maxdate);
             document.getElementById('spk_dateto').setAttribute('min', mindate);
@@ -233,9 +233,9 @@ class ChatEvents {
 
             const eventHallAccess = await this.getEventHallAccess();
             const {requestData, response} = await this.getEventBaseInfo({eventtoken: this.config.eventToken}, false);
-            
+
             await this.setupSpeakerForm(response.output, eventHallAccess);
-            
+
             $('#speakerSlotModal').modal('show');
         } catch (error) {
             console.error("Error setting up speaker slot:", error);
@@ -319,7 +319,7 @@ class ChatEvents {
             const reader = new FileReader();
             const curIdArr = idArr.split("spk_profileimg_upload_");
             const curId = curIdArr[1];
-            
+
             reader.onload = function(e) {
                 $(`#spk_profileimg_preview_${curId}`).html(`<img src="${e.target.result}" class="img-fluid" alt="Speaker Profile" width="100" />`);
             };
@@ -360,11 +360,11 @@ class ChatEvents {
 
     async handleContactHostSubmit(e) {
         e.preventDefault();
-        
+
         try {
             const {requestData, response} = await this.getEventBaseInfo({eventtoken: this.config.eventToken}, false);
             const conttoken_data = response.output.conttoken;
-            
+
             let to_email = '';
             if (conttoken_data.org_email && $.trim(conttoken_data.org_email)) {
                 to_email = conttoken_data.org_email;
@@ -410,7 +410,7 @@ class ChatEvents {
 
     handleShareModal(e) {
         const $this = $(e.target);
-        
+
         if ($this.hasClass('sponsor-share-click')) {
             $('.sponsor-share-title').show();
             $('.normal-share-title').hide();
@@ -496,9 +496,9 @@ class ChatEvents {
         let user_timezone = this.getUserTimezone();
         const event_output = this.config.event_arr;
         const event_live_state = this.eventLiveState(
-            event_output.utc_start_at || '', 
-            event_output.utc_end_at || '', 
-            event_output.conttoken.locality, 
+            event_output.utc_start_at || '',
+            event_output.utc_end_at || '',
+            event_output.conttoken.locality,
             user_timezone
         );
 
@@ -514,10 +514,10 @@ class ChatEvents {
         if (this.config.isLoggedIn) {
             return window.user_timezone || 'UTC';
         }
-        
+
         let clientTimeZone = typeof getCookie === 'function' ? getCookie('client_time_zone') : null;
         let timezone = convertDeprecatedTimeZone(clientTimeZone || Intl.DateTimeFormat().resolvedOptions().timeZone);
-        
+
         return isValidTimezone(timezone) ? timezone : 'UTC';
     }
 
@@ -606,7 +606,7 @@ class ChatEvents {
                 const transaction = db.transaction(EVENTStore, 'readwrite');
                 const objectStore = transaction.objectStore(EVENTStore);
                 const request = objectStore.openCursor();
-                
+
                 request.onsuccess = (event) => {
                     const cursor = event.target.result;
                     if (cursor) {

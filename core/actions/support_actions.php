@@ -19,7 +19,7 @@ foreach($temparray as $value){
         $array = explode('s:4:"misc";s:',$value);
         if(isset($array[1])){
            // $url_val = str_replace('"','',$array[1]);
-            $url_val = str_replace('";}','',$array[1]) ; 
+            $url_val = str_replace('";}','',$array[1]) ;
         }
         $finallarray = explode(':"',$url_val);
         if(isset($finallarray[1])){
@@ -81,7 +81,7 @@ if ( is_array($_POST) ){
             'token'=>TAOH_API_TOKEN,
             'type' => 'support',
             'ops' => 'send',
-            'toenter' => $post      
+            'toenter' => $post
         );
         //print_r($postdata);
         $cmd = "core.post";

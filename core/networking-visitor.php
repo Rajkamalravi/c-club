@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 if ( ! defined ( 'TAO_PAGE_TITLE' ) ) { define ( 'TAO_PAGE_TITLE', "Comprehensive Open Jobs List at ".TAOH_SITE_NAME_SLUG.": Explore and Apply to a Wide Range of Job Opportunities" ); }
 if ( ! defined ( 'TAO_PAGE_DESCRIPTION' ) ) { define ( 'TAO_PAGE_DESCRIPTION', "Browse our comprehensive jobs list featuring a diverse range of job opportunities across industries. Find the perfect job that matches your skills and interests, chat with recruiters and easily apply through our user-friendly platform at ".TAOH_SITE_NAME_SLUG.". Start your job search today and take the next step in your career." ); }
@@ -8,7 +8,7 @@ $current_status = "<a itemprop=\"".TAOH_SITE_URL_ROOT."/settings\" style=\"font-
 
 if( ! taoh_user_is_logged_in() ) {
   $current_status = "<a href=\"".TAOH_LOGIN_URL."\" itemprop=\"url\" style=\"font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 14px; color: #eaf0f7; text-decoration: none; line-height: 2em; font-weight: bold; text-align: center; cursor: pointer; display: block; border-radius: 5px; text-transform: capitalize; background-color: #0a80ff; margin: 0; border-color: #0a80ff; border-style: solid; border-width: 10px 20px;\" target=\"_BLANK\">Login/Sign Up *</a><right>* Link opens in new tab</right>";
-} 
+}
 $current_app = TAOH_SITE_CURRENT_APP_SLUG;
 $app_config = taoh_app_info($current_app);
 $taoh_user_vars = taoh_user_all_info();
@@ -21,7 +21,7 @@ $avatar = taoh_rand_set(7, 10, 99);
   $array_json =  taoh_url_get_content( TAOH_CDN_PREFIX."/app/$current_app/faq.php" );
   $array = json_decode($array_json);
   $about_url = TAOH_SITE_URL_ROOT."/about";
-  
+
   if ( $current_app != TAOH_PLUGIN_PATH_NAME ) $about_url = TAOH_SITE_URL_ROOT."/".$current_app."/about";
 ?>
 
@@ -6389,7 +6389,7 @@ span.h5 {
             </div><!-- end row -->
         </div><!-- end counter-box -->
     </div><!-- end container -->
-    
+
 </section>
 
 <section class="get-started-area section--padding event-works">
@@ -6605,7 +6605,7 @@ span.h5 {
                                 "Wanda",
                                 "Wendy",
                                 "Yvonne",
-                                "Zoe",                                
+                                "Zoe",
                             );
                             shuffle($chat_name);
                             $profile_type = array('Employer', 'Professional', 'Service Provider');
@@ -6633,7 +6633,7 @@ span.h5 {
                                 "Sales",
                                 "Teamwork",
                                 "Time management",
-                                "Writing",                                
+                                "Writing",
                             );
                             $location_arr = array(
                                 "New York City, New York",
@@ -6685,7 +6685,7 @@ span.h5 {
                                 "Tulsa, Oklahoma",
                                 "Aurora, Colorado",
                                 "Arlington, Virginia",
-                                "Wichita, Kansas",                                
+                                "Wichita, Kansas",
                             );
                             for ( $x = 0; $x < 6 ; $x++ ){
                                 //shuffle($profile_type);
@@ -6702,22 +6702,22 @@ span.h5 {
                                                 <div class="row">
                                                     <div class="col-md-7">
                                                     <span style="display: -webkit-inline-box;">
-                                                    <h5><?php echo $chat_name[$x].'_'.$chat_name[ 50 - $x ]; ?></h5> <span style="background:navy;margin-left:15px" class="badge text-white"><?php echo $profile_type[rand(0,2)] ?></span> 
+                                                    <h5><?php echo $chat_name[$x].'_'.$chat_name[ 50 - $x ]; ?></h5> <span style="background:navy;margin-left:15px" class="badge text-white"><?php echo $profile_type[rand(0,2)] ?></span>
                                                     </span><br>
                                                     <i class="la la-map-marker"></i><?php echo $location_arr[ rand(0, count($location_arr) - 1) ] ?><br>
                                                     <p><a target="_BLANK" href="" class="btn btn-sm" style="margin-right:5px;background-color:#797f871a; font-size:12px; "><?php  echo $city_arr[ rand(0, count($city_arr) - 1) ]; ?></a></p>
                                                     </div>
                                                     <div class="col-md-3" style="margin-top: 15px;margin-inline-start: auto;margin-right: 20px;">
                                                     <a href="<?php echo  TAOH_LOGIN_URL; ?>" target="_blank" class="btn btn-success brn-green" style="white-space: nowrap"><i class="la la-weixin" style="font-size:24px;"></i>Chat Now</a>
-                                                    </div>	
                                                     </div>
-                                                    					
+                                                    </div>
+
                                             </div>
                                         </div>
                                     </div>
                                 </div>
 
-                            <?php    
+                            <?php
                             }
                             ?>
                 </div>
@@ -6873,7 +6873,7 @@ $(document).ready(function(){
     var articles_list = $('.articles_list');
 
     taoh_articles_init();
-    
+
 });
 
     function taoh_articles_init (){

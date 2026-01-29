@@ -2,7 +2,7 @@
     $ops = 'list';
     $limit = 3;
     $offset =  0;
-  
+
     $taoh_call = "events.get";
     $taoh_vals = array(
         'mod' => 'events',
@@ -59,8 +59,7 @@
             ?>
             </div>
         </div>
-    
+
     <!-- events new widget html end -->
 </a>
 <?php } } ?>
-

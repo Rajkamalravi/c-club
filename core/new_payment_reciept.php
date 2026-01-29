@@ -26,7 +26,7 @@ if(!taoh_parse_url(1)){
 }
 $receipt_id = taoh_parse_url(1);
 $taoh_call = "core.content.get";
-$taoh_vals = array(    
+$taoh_vals = array(
     'mod'=>'core',
     'token'=>taoh_get_dummy_token(1),
     'ops'=>'receipt',
@@ -92,7 +92,7 @@ $event_owner_details = array();
 if($receipt_data['app_slug'] == 'rsvp' || $receipt_data['app_slug'] == 'sponsor'){
     $event_details = json_decode($receipt_data['meta']['event_details'],1);
     $event_owner_details = $receipt_data['owner'];
-    
+
 
 }
 
@@ -106,7 +106,7 @@ $order = explode('_',$receipt_data['order_ID']);
 $order_conbt = count($order);
 $order_id = $order[$order_conbt-1];
 
-taoh_get_header(); 
+taoh_get_header();
 ?>
 
 <style>
@@ -131,7 +131,7 @@ taoh_get_header();
         width: fit-content;
         padding-bottom: 4px;
     }
-   
+
     .details-con * {
         font-size: 15px;
         font-weight: 400;
@@ -192,11 +192,11 @@ taoh_get_header();
     }
     .b-r {
         border-right: 1px solid #d3d3d3;
-    }  
+    }
 </style>
 
     <div style="background-color: #ffffff;" class="<?php echo (!$valid_dir_viewer ? 'lblur' : ''); ?>">
-        
+
         <div class="container payment-receipt bg-white py-5">
             <h3 class="heading underline">
                 Payment Receipt <?php echo $receipt_data['meta']['payment_status'];?>
@@ -210,14 +210,14 @@ taoh_get_header();
 
                                 $event_owner_name = $event_owner_details['fname'].' '.$event_owner_details['lname'];
                                 $event_owner_address = $event_owner_details['full_location'];
-                              
-                            
+
+
                             ?>
                                 <h4 class="font-weight-bold mb-2">Event Owner(Receiver) Details</h4>
                                 <div class="r-content">
-                                <p><?php echo ucfirst($org_name);?></p> 
+                                <p><?php echo ucfirst($org_name);?></p>
                                 <p><span><?php echo $org_address;?></span></p>
-                                   
+
                                 <?php if($org_tax_id) { ?>
                                         <p><span class="font-weight-bold">Tax ID : </span> <?php echo $org_tax_id;?></p>
                                     <?php } ?>
@@ -226,21 +226,21 @@ taoh_get_header();
                                 <h4 class="font-weight-bold mb-2">Receiver Details</h4>
                                 <div class="r-content">
 									<?php if($org_name) { ?>
-										<p><?php echo ucfirst($org_name);?></p> 
+										<p><?php echo ucfirst($org_name);?></p>
 									<?php } ?>
-									
+
 									<?php if($org_add_1) { ?>
 										<p><span><?php echo $org_address;?></span></p>
 									<?php } ?>
                                     <p><?php echo $org_site;?></p>
-									
+
                                     <p><?php if($community_org_email) echo $community_org_email;
                                             else echo $admin_email;?></p>
                                     <p><?php echo $org_phone;?></p>
                                     <?php if($org_tax_id) { ?>
                                         <p><span class="font-weight-bold">Tax ID : </span> <?php echo $org_tax_id;?></p>
                                     <?php } ?>
-                                
+
                                     <p><!-- ---<span class="font-weight-bold">IRS Tax-Exempt Status : </span>-->
                                     <?php if($is_profit) { ?>
                                         <span style="font-weight: 500;">Nonprofit Organization</span>
@@ -252,7 +252,7 @@ taoh_get_header();
                         <?php if($receipt_data['user'] ) { ?>
                             <div class="col-md-6 col-lg-4 donor-detail mb-3">
                                 <h4 class="font-weight-bold mb-2">
-                                    <?php 
+                                    <?php
                                     if($receipt_data['app_slug'] == 'donate') echo 'Donor Details';
                                     else if($receipt_data['app_slug'] == 'jobchat') echo 'Purchased By';
                                     else if($receipt_data['app_slug'] == 'rsvp') echo 'Purchased By';
@@ -262,7 +262,7 @@ taoh_get_header();
                                     </h4>
                                 <div class="r-content">
                                     <p><?php echo $receipt_data['user']['fname']. ' ' .$receipt_data['user']['lname'];?></p>
-                                    <span><?php echo $receipt_data['user']['full_location'];?></span> 
+                                    <span><?php echo $receipt_data['user']['full_location'];?></span>
                                     <p><?php echo $customer_email;?></p>
                                 </div>
                             </div>
@@ -316,7 +316,7 @@ taoh_get_header();
                             foreach($purchase['item'] as $key=>$val){
                                 $c = $total;
                                 if(isset($val['price']) && $val['price'] > 0){
-                                    $c = $count * $val['price'];   
+                                    $c = $count * $val['price'];
                                 }
                         ?>
                             <tr>
@@ -342,7 +342,7 @@ taoh_get_header();
                     <tbody>
                         <tr>
                             <th class="py-4 w-50 b-t-none b-r">Particulars</th>
-                            <td class="py-4 w-50 b-t-none">Token Purchase for 
+                            <td class="py-4 w-50 b-t-none">Token Purchase for
                             posting jobs.</td>
                         </tr>
                         <tr>
@@ -383,7 +383,7 @@ taoh_get_header();
                     <tbody>
                         <tr>
                             <td class="py-4">
-                                <p><?php echo $event_details['eventtitle'] ;?></p> 
+                                <p><?php echo $event_details['eventtitle'] ;?></p>
                                 <p style="color: #7C7C7C; font-weight: 500;">Ticket Type: <?php echo $event_details['tokentyp'] ;?></p>
                             </td>
                             <td class="py-4">$<?php echo $total;?></td>
@@ -393,7 +393,7 @@ taoh_get_header();
                         <tr>
                             <td colspan="4" class="text-right">
                                 <p>Total: Online Payment <?php if($receipt_data['meta']['payment_method'] !='link') echo '/ '.$receipt_data['meta']['payment_method'];?></p>
-                                
+
                             </td>
                         </tr>
                     </tbody>
@@ -404,7 +404,7 @@ taoh_get_header();
                         <tr>
                             <th class="py-4 w-50 b-t-none b-r">Particulars</th>
                             <td class="py-4 w-50 b-t-none">
-                            <p><?php echo $event_details['eventtitle'] ;?></p> 
+                            <p><?php echo $event_details['eventtitle'] ;?></p>
                                 <p style="color: #7C7C7C; font-weight: 500;">Ticket Type: <?php echo $event_details['tokentyp'] ;?></p>
                             </td>
                         </tr>
@@ -446,7 +446,7 @@ taoh_get_header();
                     <tbody>
                         <tr>
                             <td class="py-4">
-                                <p>Sponsorship For <?php echo $event_details['eventtitle'] ;?></p> 
+                                <p>Sponsorship For <?php echo $event_details['eventtitle'] ;?></p>
                                 <p style="color: #7C7C7C; font-weight: 500;">Sponsorship Level: <?php echo isset($event_details['level_title']) ? $event_details['level_title'] : $event_details['display_type'] ;?></p>
                             </td>
                             <td class="py-4">$<?php echo $amt;?></td>
@@ -467,7 +467,7 @@ taoh_get_header();
                         <tr>
                             <th class="py-4 w-50 b-t-none b-r">Particulars</th>
                             <td class="py-4 w-50 b-t-none">
-                                <p>Sponsorship For <?php echo $event_details['eventtitle'] ;?></p> 
+                                <p>Sponsorship For <?php echo $event_details['eventtitle'] ;?></p>
                                 <p style="color: #7C7C7C; font-weight: 500;">Sponsorship Level: <?php echo $event_details['title'] ;?></p>
                             </td>
                         </tr>
@@ -511,7 +511,7 @@ taoh_get_header();
             <div class="mb-4 row">
                 <div class="col-lg-6">
                     <h3 class="sub-heading mb-3">Organization Statement For Profit</h3>
-                    <p class="i-text">Please note that <span class="font-weight-bold "><?php echo ucfirst($org_name);?></span> is a for-profit business/DBA. Payments made are not tax-deductible and are for the purchase of goods or services as outlined above. Once again, thank you for your support. 
+                    <p class="i-text">Please note that <span class="font-weight-bold "><?php echo ucfirst($org_name);?></span> is a for-profit business/DBA. Payments made are not tax-deductible and are for the purchase of goods or services as outlined above. Once again, thank you for your support.
                     If you have any questions or need further assistance, please feel free to contact us at <?php echo ucfirst($org_phone);?>.</p>
                 </div>
             </div>
@@ -519,21 +519,18 @@ taoh_get_header();
 
             <div class="row mt-5">
                 <p class="i-text text-center col-lg-11 px-lg-4 mx-auto ">
-                    This is a computer generated receipt, This doesn't require a signature. 
-                    We recommend consulting your tax advisor for specific guidance regarding your contribution. 
-                    Once again, thank you for your support. If you have any questions or need further assistance, 
-                    <?php 
+                    This is a computer generated receipt, This doesn't require a signature.
+                    We recommend consulting your tax advisor for specific guidance regarding your contribution.
+                    Once again, thank you for your support. If you have any questions or need further assistance,
+                    <?php
                     $e_mail  = $community_org_email ? $community_org_email :  $admin_email; ?>
                     please feel free to contact us at <a href="mailTo:<?php echo $e_mail; ?>" ><?php echo $e_mail; ?> </a>
-                                        
+
                                         <?php if($org_phone) echo 'or'.$org_phone;?>.</p>
             </div>
-            
+
         </div>
     </div>
-
-
-
 <?php
 if (!taoh_user_is_logged_in()) {
     echo '<div class="col footer-prompt" id="login-prompt" >';

@@ -162,7 +162,7 @@ taoh_get_header();
                             </p>
                         </div>
                     </div>
-                    
+
 
                     <div class="d-flex justify-content-end my-1">
                         <a href="<?php echo TAOH_SITE_URL_ROOT.'/events/eventshallexhibitors'; ?>" class="all-link">View all Exhibitors</a>
@@ -182,7 +182,7 @@ taoh_get_header();
                         <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
                         <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
                         </ol>
-                        
+
                         <!-- Carousel Inner -->
                         <div class="offer-carousel carousel-inner pt-3 pb-5">
                             <div class="carousel-item active">

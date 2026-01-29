@@ -79,11 +79,11 @@ $(document).ready(function () {
         $('.chat-like-sidebar').css('display', 'none');
 
         let channelId = currentElem.data('channel_id');
-        
+
         $('[class*="pin_message_div"]').removeClass('d-flex').addClass('d-none');
         $('[class*="pin_message_div-dm"]').removeClass('d-flex').addClass('d-none');
         $(`.pin_message_div${channelId}`).removeClass('d-none').addClass('d-flex');
-        
+
         if (!channelId) return;
 
         let channelSlug = String(currentElem.data('channel_ticket_slug') ?? '');
@@ -91,7 +91,7 @@ $(document).ready(function () {
             jq_confirm_alert('Warning', 'You can not access this channel. ', 'orange', 'Ok');
             return;
         }
-    
+
         let channelPasscode = currentElem.data('channel_passcode');
         let channel_passcode_done = 'passcode_done_'+currentElem.data('channel_id');
 
@@ -101,12 +101,12 @@ $(document).ready(function () {
         } else {
             await processChannelClick(currentElem);
         }
-        
+
 
             /*if(localStorage.getItem(channel_passcode_done) != 1
 
             && channelPasscode !='' && channelPasscode != 'undefined' && channelPasscode != undefined && channelPasscode != null){
-            
+
             await  $.confirm({
                     title: '',
                     type: 'orange',
@@ -127,12 +127,12 @@ $(document).ready(function () {
                                 var passcode = this.$content.find('#passcode').val();
                                 if (!passcode) {
                                     $('#passcode').addClass('is-invalid error');
-                                    
+
                                     return false; // prevent modal from closing
                                 } else {
                                     $('#passcode').removeClass('is-invalid');
                                 }
-                                
+
                                 //alert(passcode,'------------',channelPasscode)
                                 if (passcode != decodeBase64(channelPasscode)) {
                                     $('#passcode_error').show();
@@ -144,7 +144,7 @@ $(document).ready(function () {
                                     localStorage.setItem(channel_passcode_done, 1);
                                     processChannelClick(currentElem);
                                 }
-                                
+
                             }
                         },
                         cancel: function () {
@@ -158,8 +158,8 @@ $(document).ready(function () {
                         e.preventDefault();
                         jc.$$formSubmit.trigger('click');
                         }); // trigger submit button click
-                        
-                        
+
+
                     }
                 });
         }
@@ -167,7 +167,7 @@ $(document).ready(function () {
             processChannelClick(currentElem);
         }*/
 
-        
+
         /*var track_data = {
             'action': 'click_channel',
             'channel_id': channelId,
@@ -175,7 +175,7 @@ $(document).ready(function () {
             'ptoken': my_pToken
         };
         taoh_track_activities(track_data);*/
-        
+
     });
 
     $('#channel_password_form').on('submit', async function (e) {
@@ -247,9 +247,6 @@ $(document).ready(function () {
 
             let chatWindow = currentElem.data('name');
             let channelId = currentElem.data('channel_id');
-
-             
-
             if (!channelId  || channelId.trim() === '') {
                 const input = [ntw_room_key, my_pToken, 'organizer'].sort().join('_');
                 channelId = await generateSecureSlug(input, 16);
@@ -285,12 +282,12 @@ $(document).ready(function () {
             }
            // console.log(channelInfoVal);
             $('#channel-chat').setSyncedData('channel_id', channelId);
-            
+
             $('.cw_channel_title').text(channelName);
             $('.channnel_collapsible').removeClass('open');
             $('.channel_toggle').attr('toggle_text','open')
             $('.channel-drp-dwn-svg').css('transform', 'rotate(0deg)');
-            
+
             // $('.cw_channel_icon .username').text(getInitials(channelName));
 
             if (membersCount > 0)
@@ -308,28 +305,25 @@ $(document).ready(function () {
             console.log('----chat_window-----------2')
             loadchatWindow(chatWindow);
             updateForumWindow();
-            
+
             if(selectedChat == 'channel'){
                 loadRightSidebar('members');
                 showMembersList(channelId, channelName);
             }
-            
+
 
             channelConversationList.awloader('show');
             clearUnreadCount(ntw_room_key, channelId, 0);
-
-            
-
         }
         $(document).on('click', '.orgChannelList .channel_btn', async function () {
 
             selectedChat = 'organizer';
             const currentElem = $(this).closest('li');
-            
+
             await processChannelClick(currentElem);
 
          });
-        
+
         $(document).on('click', '.watchpartyChannel .channel_btn', async function () {
 
             selectedChat = 'watch-party';
@@ -337,10 +331,7 @@ $(document).ready(function () {
             $('.watchPartySection').show();
             await processChannelClick(currentElem);
 
-        });        
-
-
-        
+        });
 $(document).on('click', '.dmChannelList li', function () {
     $('#user-chat').removeClass('mobile-transform');
     $('.chat-like-sidebar').css('display', 'none');
@@ -512,7 +503,7 @@ $('#createVideoForm1').validate({
             };
         }
 
-        console.log("track_data", track_data);        
+        console.log("track_data", track_data);
 
         if(room_choice == 1){
             var ext_link_org =  $("input[name=ext_link]").val();
@@ -525,8 +516,8 @@ $('#createVideoForm1').validate({
                                         <div class="">
                                             <!--<h6 class="mb-0 ctext-name fs-13 fw-500">${chatname}</h6>--->
                                             <p class="mb-0 ctext-content fs-12 fw-400">
-                                                
-                                                Join 
+
+                                                Join
                                                 <a href="${ext_link}" video_name="${video_name}" link="${ext_link}" channel_of_type="${channel_of_type}"
                                                 target="_blank" class="d-inline-flex align-items-center join-v-link" style="gap: 4px;">
                                                 ${video_name}
@@ -535,7 +526,7 @@ $('#createVideoForm1').validate({
                                             </p>
 
                                             <p class="mb-0 ctext-content fs-12 fw-400 text-black">${video_desc}</p>
-                                            
+
                                         </div>
                                     </div>`;
             commentInput.val(videoChatLinkData);
@@ -571,8 +562,8 @@ $('#createVideoForm1').validate({
                                                             <div class="">
                                                                 <!--<h6 class="mb-0 ctext-name fs-13 fw-500">${chatname}</h6>-->
                                                                 <p class="mb-0 ctext-content fs-12 fw-400">
-                                                
-                                                                    Join 
+
+                                                                    Join
                                                                     <a href="${link}" video_name="${video_name}" link="${link}" channel_of_type="${channel_of_type}"
                                                                     target="_blank" class="d-inline-flex align-items-center join-v-link" style="gap: 4px;">
                                                                     ${video_name}
@@ -581,7 +572,7 @@ $('#createVideoForm1').validate({
                                                                 </p>
 
                                                                 <p class="mb-0 ctext-content fs-12 fw-400 text-black">${video_desc}</p>
-                                                                
+
                                                             </div>
                                                         </div>`;
                         commentInput.val(videoChatLinkData);
@@ -852,9 +843,6 @@ function updateNTWUserEntriesInterval() {
         }
     }, ntwUserEntriesInterval);
 }
-
-
-
 /* ------------------------------------- */
 async function createOrganizerChannel(channelId=''){
     // alert(channelId)
@@ -862,7 +850,7 @@ async function createOrganizerChannel(channelId=''){
         $('#channel-' + channelId).click();
         return;
     }
-    
+
 
     let data = {
         'taoh_action': 'taoh_create_channel_with_organizer',
@@ -887,12 +875,12 @@ async function createOrganizerChannel(channelId=''){
             console.log('Error:', xhr.status);
         }
     });
-    
+
 }
 async function createOnetoOneChannel(chatwith, channelId = '', openChatWindow = 1) {
 
     // alert(channelId)
-    if (listChannelsArray.includes(channelId)) {       
+    if (listChannelsArray.includes(channelId)) {
         $('#dm-' + channelId).click();
         return;
     }
@@ -907,7 +895,7 @@ async function createOnetoOneChannel(chatwith, channelId = '', openChatWindow = 
     else{
         var  targetChatName = 'Organizer';
     }
-        
+
     //alert(targetChatName)
     /*if (targetUserInfo == null || targetUserInfo == undefined || targetUserInfo == '') {
         return;
@@ -915,7 +903,7 @@ async function createOnetoOneChannel(chatwith, channelId = '', openChatWindow = 
 
     if (senderUserInfo ) {
         const senderChatName = senderUserInfo.chat_name;
-        
+
 
         let data = {
             'taoh_action': 'taoh_create_channel_for_1_1',
@@ -933,7 +921,7 @@ async function createOnetoOneChannel(chatwith, channelId = '', openChatWindow = 
             data: data,
             dataType: 'json',
             success: function (response) {
-                if (response.success) {                   
+                if (response.success) {
 
                     if(openChatWindow == 1) {
                         loadChannelList(1, 0, channelId);
@@ -995,8 +983,8 @@ async function showMembersList(channelId, channelName) {
 
     channelInfo = channelInfoData[channelId];
 
-    if (channelInfo.members != undefined && channelInfo.members.length > 0) {      
-        $.each(channelInfo.members, async function (mkey, memtoken) {            
+    if (channelInfo.members != undefined && channelInfo.members.length > 0) {
+        $.each(channelInfo.members, async function (mkey, memtoken) {
             var d_data = await getUserInfo(memtoken, 'public');
             if (d_data.avatar_image != '' && d_data.avatar_image != undefined) {
                 var avatar_image = d_data.avatar_image;
@@ -1023,7 +1011,7 @@ async function showMembersList(channelId, channelName) {
                                         </div>
                                     </a>
                                 </li>`;
-                
+
                 $('#members_list').append(members);
             }
 
@@ -1091,7 +1079,7 @@ async function showLikeList(frmMessageId) {
         //headers: {'If-None-Match': ntwChannelListETag},
         data: data,
         success: function (response, textStatus, jqXHR) {
-            console.log(response);            
+            console.log(response);
             if (jqXHR.status === 304) return;
             if (response.success) {
                 $.each(response.likelist, async function (mkey, memtoken) {
@@ -1136,7 +1124,7 @@ async function showLikeList(frmMessageId) {
         error: function (xhr, status, err) {
             console.error('Error Fetching activity list : ' + err);
         }
-    });    
+    });
 }
 
 $('#toggleMore').click(function () {
@@ -1305,28 +1293,28 @@ async function renderVideoActivities(videoactivities) {
                 }
                 activities_video_html += `
 
-                                                                                
+
                                                                 <li class="d-flex align-items-center" style="gap: 6px;">
                                                                 <img class="round-profile-24" src="${userAvatarSrc}" alt="">
                                                                 <div>
                                                                     <span class="mr-1">
                                                                     <span class="fw-500 text-capitalize">${userChatName} </span>
-                                                                    created a video room  <b>${activity.video_name}</b> on 
+                                                                    created a video room  <b>${activity.video_name}</b> on
                                                                     <a href="javascript:void(0);"
                                                                     click_channel_id="${activity.channel_id}"
                                                                     class="click_channel a-link">
                                                                     ${activity.channel_name}</a>
-                                                                </span> 
+                                                                </span>
                                                                     <a href="${activity.video_link}" target="_blank" class="text-underline">Check Video Room</a>
                                                                     </div>
                                                                 </li>
-                                                                
+
                                                             `;
             }
 
         }
         activities_video_html += `</ul>
-                                            
+
                                             </div>`;
 
 
@@ -1334,9 +1322,9 @@ async function renderVideoActivities(videoactivities) {
 
         top_data += `
                                                     <p class="fw-500 text-capitalize text-black lh-16 mb-2 sentence" >
-                                                    </p> 
-                                                    <button 
-                                                    type="button" 
+                                                    </p>
+                                                    <button
+                                                    type="button"
                                                     class="toggle-btn btn bor-btn toggle-vdo-lists">
                                                         <span class="toggleText">More Details</span>
                                                         <svg class="drp-dwn-svg" width="14" height="14" viewBox="0 0 10 10" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -1399,9 +1387,6 @@ $(document).on('click', '.channel_toggle', function () {
         $(this).find('.channel-drp-dwn-svg').css('transform', 'rotate(0deg)');
     }
 });
-
-
-
 /*$('.toggle-btn').each(function(index) {
     alert();
   $(this).on('click', function() {
@@ -1416,9 +1401,6 @@ $(document).on('click', '.channel_toggle', function () {
     collapsible.classList.toggle('open');
     });
 });*/
-
-
-
 $(document).on('click', '.click_channel', function () {
     // alert();
     var channelId = $(this).attr('click_channel_id');
@@ -1430,4 +1412,3 @@ $(document).on('click', '.click_channel', function () {
 $(document).on('click', '.chat-like-show', function () {
     $('#chat-like-sidebar').hide();
 });
-

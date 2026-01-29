@@ -3,7 +3,7 @@ $conttoken = $data['conttoken'];
 // if ( taoh_user_is_logged_in() ){
   //$api = TAOH_SITE_CONTENT_GET."?mod=core&token=".taoh_get_dummy_token(1)."&conttoken=".$conttoken."&conttype=blog&type=comment&ops=get&cacheo=0&cache_remove=1";
   //$req = file_get_contents($api);
-  $taoh_call = 'core.content.get';  
+  $taoh_call = 'core.content.get';
   $taoh_vals = array(
     'mod' => 'core',
     'token'=>taoh_get_dummy_token(1),
@@ -33,7 +33,7 @@ $conttoken = $data['conttoken'];
 		// Check for JSON errors
 		return json_last_error() === JSON_ERROR_NONE;
 	}
-  
+
   //echo taoh_apicall_get_debug($taoh_call, $taoh_vals);die;
   $comments = json_decode(taoh_apicall_get($taoh_call, $taoh_vals,'',1),true);
   $total = ( isset( $comments['output']['total'] ) )? $comments['output']['total']:0;
@@ -78,7 +78,7 @@ $conttoken = $data['conttoken'];
                                       </div>
                                       <p class="comment-text">
                                         <?php if(!isJsonString($comment['comment'])){
-                                          echo taoh_title_desc_decode($comment['comment']); 
+                                          echo taoh_title_desc_decode($comment['comment']);
                                         }else{
                                           $commentArr = json_decode($comment['comment'], true);
                                           $ask_comment = '';

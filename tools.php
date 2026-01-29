@@ -172,7 +172,7 @@ if ($ops === 'smdelete') {
 // Build new node
 function buildUrlNode($doc, $valueData, $type) {
     $urlNode = $doc->createElement('url');
-	
+
 	$baseLoc = $valueData['loc'];
     $token   = $valueData['conttoken'];
     $locWithToken = strpos($baseLoc, '?') === false
@@ -181,7 +181,7 @@ function buildUrlNode($doc, $valueData, $type) {
 
     $urlNode->appendChild($doc->createElement('loc', $locWithToken));
     $urlNode->appendChild($doc->createElement('lastmod', date('Y-m-d')));
-	
+
 	/*$urlNode->appendChild($doc->createElement('conttoken', $valueData['conttoken']));
     $urlNode->appendChild($doc->createElement('loc', $valueData['loc']));
     $urlNode->appendChild($doc->createElement('lastmod', date('Y-m-d')));*/

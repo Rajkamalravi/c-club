@@ -75,9 +75,9 @@ if (!empty($data['output']) && is_array($data['output'])) {
         var event_country_name = $('#event_country_name').val();
         let priceMap = {};
         let sortedExhList;
-        
+
         if(spon_list !=undefined && spon_list.length > 0){
-            
+
             spon_list.sort(function(a, b) {
                 if (a.ptoken === my_ptoken) return -1; // a comes first
                 if (b.ptoken === my_ptoken) return 1;  // b comes first
@@ -97,7 +97,7 @@ if (!empty($data['output']) && is_array($data['output'])) {
                 acc[sponsor.ID] = Number(sponsor.final_price);
                 return acc;
             }, {});
-            
+
         }
         if(exh_list !=undefined && exh_list.length > 0){
             exh_list.forEach(exh => {
@@ -196,12 +196,12 @@ if (!empty($data['output']) && is_array($data['output'])) {
                                     <img class="n-hall-list-pic" src="${conttoken_data.event_image != '' ? conttoken_data.event_image : no_image}" alt="">
                                 </div>
                                 <div style="flex: 1;">
-                                    
+
                                     <div class="d-flex align-items-center justify-content-between flex-wrap" style="flex: 1; gap: 12px;">
-                                        <div class="d-flex align-items-center justify-content-between flex-wrap flex-xl-nowrap my-2" style="flex: 1; gap: 12px;">    
+                                        <div class="d-flex align-items-center justify-content-between flex-wrap flex-xl-nowrap my-2" style="flex: 1; gap: 12px;">
                                             <div class="d-flex flex-column" style="gap:3px;">
-                                            <p class="n-info-badge mr-2" style="color: #2557A7;" >${event_date_to_dispay}</p> 
-                                            <div class="d-flex align-items-center mb-1" style="gap: 10px;"> 
+                                            <p class="n-info-badge mr-2" style="color: #2557A7;" >${event_date_to_dispay}</p>
+                                            <div class="d-flex align-items-center mb-1" style="gap: 10px;">
                                                 <h6 class="n-exh-name mr-2" >${taoh_desc_decode(conttoken_data.title)}  - Networking</h6>
                                             </div>
                                         </div> `;
@@ -393,7 +393,7 @@ if (!empty($data['output']) && is_array($data['output'])) {
                          } else {
                              var tt = encodeURIComponent(v.spk_title);
                              spk_img = "<?php echo TAOH_CDN_PREFIX . "/images/igcache/"?>" + tt + "/630_630/blog.jpg";
-                            
+
                          }
                          content += `<a title="View Speaker" target="_blank" href="${TAOH_CURR_APP_URL}/speaker/${eventtoken}/${v.ID}" data-cont="${v.ID}" data-eventtoken="${eventtoken}" data-slug="speaker">
                                 <div class="g-overlay-con">
@@ -488,34 +488,34 @@ if (!empty($data['output']) && is_array($data['output'])) {
 
                          content += `<div style="margin-top: 5px;">`;
                          if (v.enable_tao_networking == 0 && v.spk_external_video_room_link != '') {
-                             content += `<a class="btn ${disableJoinBtn == 'disabled' ? 'bor-btn' : 'btn-success'} 
-                             joinus-btn join_video_link ${disableJoinBtn}" href="${v.spk_external_video_room_link}" 
-                             target="_blank">${disableJoinBtn == 'disabled' ? 'Not Live' : 
+                             content += `<a class="btn ${disableJoinBtn == 'disabled' ? 'bor-btn' : 'btn-success'}
+                             joinus-btn join_video_link ${disableJoinBtn}" href="${v.spk_external_video_room_link}"
+                             target="_blank">${disableJoinBtn == 'disabled' ? 'Not Live' :
                              `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 80" style="width:36px">
                                     <!-- Center circle -->
                                     <circle cx="60" cy="40" r="14" fill="#000" />
                                     <path d="M78 28 C84 35, 84 45, 78 52"  fill="none"  stroke="#000" stroke-width="6" stroke-linecap="round" />
-                                    <path d="M88 14 C102 30, 102 50, 88 66"  fill="none"  stroke="#000" stroke-width="6" stroke-linecap="round" />      
-                                    <path d="M42 28 C36 35, 36 45, 42 52" fill="none"  stroke="#000" stroke-width="6" stroke-linecap="round" />      
-                                     <path d="M32 14 C18 30, 18 50, 32 66" fill="none"  stroke="#000" stroke-width="6" stroke-linecap="round" />      
-                                    
+                                    <path d="M88 14 C102 30, 102 50, 88 66"  fill="none"  stroke="#000" stroke-width="6" stroke-linecap="round" />
+                                    <path d="M42 28 C36 35, 36 45, 42 52" fill="none"  stroke="#000" stroke-width="6" stroke-linecap="round" />
+                                     <path d="M32 14 C18 30, 18 50, 32 66" fill="none"  stroke="#000" stroke-width="6" stroke-linecap="round" />
+
                                 </svg> <span class="color:#000000">Live</span>`
                              }</a>`;
                          } else {
-                             content += `<a class="btn 
+                             content += `<a class="btn
                              ${disableJoinBtn == 'disabled' ? 'bor-btn' : 'btn-success'} joinus-btn join_networking ${disableJoinBtn}"
                                 href="<?php echo TAOH_SITE_URL_ROOT . '/' . TAOH_CURR_APP_SLUG; ?>/club/${taoh_desc_decode(event_output.conttoken.title)}-${eventtoken}?session_id=${v.ID}&session_name=${encodeURIComponent(v.spk_title)}" target="_blank">
-                                ${disableJoinBtn == 'disabled' ? 'Not Live' : 
+                                ${disableJoinBtn == 'disabled' ? 'Not Live' :
                                 `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 80" style="width:36px">
                                     <!-- Center circle -->
                                     <circle cx="60" cy="40" r="14" fill="#000" />
                                     <path d="M78 28 C84 35, 84 45, 78 52"  fill="none"  stroke="#000" stroke-width="6" stroke-linecap="round" />
-                                    <path d="M88 14 C102 30, 102 50, 88 66"  fill="none"  stroke="#000" stroke-width="6" stroke-linecap="round" />      
-                                    <path d="M42 28 C36 35, 36 45, 42 52" fill="none"  stroke="#000" stroke-width="6" stroke-linecap="round" />      
-                                     <path d="M32 14 C18 30, 18 50, 32 66" fill="none"  stroke="#000" stroke-width="6" stroke-linecap="round" />      
-                                    
+                                    <path d="M88 14 C102 30, 102 50, 88 66"  fill="none"  stroke="#000" stroke-width="6" stroke-linecap="round" />
+                                    <path d="M42 28 C36 35, 36 45, 42 52" fill="none"  stroke="#000" stroke-width="6" stroke-linecap="round" />
+                                     <path d="M32 14 C18 30, 18 50, 32 66" fill="none"  stroke="#000" stroke-width="6" stroke-linecap="round" />
+
                                 </svg> <span class="color:#000000">Live</span>`}
-                                
+
                             </a>`;
                          }
 
@@ -625,12 +625,12 @@ if (!empty($data['output']) && is_array($data['output'])) {
                              content += `</div>
                                     <div class="d-flex align-items-center" style="gap: 12px;">
                                          ${((v.ptoken == my_ptoken && opt == 'chat') || is_organizer == 1) ? `
-                                            <a title="configure Sponsor to Exhibitor" style="min-width: unset;" class="svg-opt-con btn  edit-exhibitor metrics_action" 
-                                            id="edit_exh_${v.ID}" data-id="${v.ID}" data-type="sponsor" data-metrics="edit_exhibitor"> 
+                                            <a title="configure Sponsor to Exhibitor" style="min-width: unset;" class="svg-opt-con btn  edit-exhibitor metrics_action"
+                                            id="edit_exh_${v.ID}" data-id="${v.ID}" data-type="sponsor" data-metrics="edit_exhibitor">
                                             <i class="fa fa-cog" aria-hidden="true"></i>
                                             </a>
                                         ` : ''}
-                                        <a title="View Sponsor" target="_blank"  data-metrics="view_exhibitor" href="${_taoh_site_url_root}/events/sponsor/${v.ID}/${eventtoken}" 
+                                        <a title="View Sponsor" target="_blank"  data-metrics="view_exhibitor" href="${_taoh_site_url_root}/events/sponsor/${v.ID}/${eventtoken}"
                                         class="svg-opt-con btn metrics_action">
                                         <i class="fa-solid fa-eye"></i>
                                         </a>
@@ -672,7 +672,7 @@ if (!empty($data['output']) && is_array($data['output'])) {
 
                          if (exh_content == 0) {
                              content += exhtitlecontent;
-                         }  
+                         }
                          let exhibitorWebsiteUrl = v.exh_hero_button_url || '';
                          var sponsArr = null;
                          if (v.sponsor_id && sponsorsBecomeExhibitor?.length > 0) {
@@ -719,7 +719,7 @@ if (!empty($data['output']) && is_array($data['output'])) {
                                 <i class="fa-solid fa-edit"></i>
                             </a>  ` : '<span style="width:30px;"></span>';
 
-                            content += `  <a title="View Exhibitor" target="_blank" data-metrics="view_exhibitor" href="${_taoh_site_url_root}/events/exhibitors/${v.ID}/${eventtoken}" 
+                            content += `  <a title="View Exhibitor" target="_blank" data-metrics="view_exhibitor" href="${_taoh_site_url_root}/events/exhibitors/${v.ID}/${eventtoken}"
                                             class="svg-opt-con btn metrics_action">
                                             <i class="fa-solid fa-eye"></i></a>`;
 
@@ -749,7 +749,7 @@ if (!empty($data['output']) && is_array($data['output'])) {
                                     </div>
 
                                     <div class="d-flex align-items-center justify-content-between flex-wrap my-2" style="flex: 1; gap: 12px;">
-                                        <div class="d-flex flex-column" style="gap:3px;">    
+                                        <div class="d-flex flex-column" style="gap:3px;">
                                             <div class="d-flex align-items-center mb-2" style="gap: 10px;">
                                                 <a title="View Exhibitor" target="_blank" data-metrics="view_exhibitor" href="${_taoh_site_url_root}/events/exhibitors/${v.ID}/${eventtoken}" class="metrics_action">
                                                     <h6 class="n-exh-name mr-2">${taoh_desc_decode_new(v.exh_session_title)}</h6>
@@ -770,7 +770,7 @@ if (!empty($data['output']) && is_array($data['output'])) {
 
                          content += ` </div>
                                         </div>
-                                    
+
                                         <div class="d-flex align-items-center" style="gap: 6px;">`;
                          content += ` </div>
                                     </div>

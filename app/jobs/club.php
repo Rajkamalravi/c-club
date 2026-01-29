@@ -19,7 +19,7 @@ if ( isset( $_GET[ 'key' ] ) && $_GET[ 'key' ] ){
     $keyslug = $_GET[ 'key' ];
 } else {
     if ( ! ctype_alnum( $conttoken ) ) { taoh_redirect( TAOH_SITE_URL_ROOT.'/'.TAOH_SITE_CURRENT_APP_SLUG );taoh_exit(); }
-    
+
     $ops = 'info';
     $mod = 'jobs';
     $taoh_call = 'jobs.job.get';
@@ -39,7 +39,7 @@ if ( isset( $_GET[ 'key' ] ) && $_GET[ 'key' ] ){
     ksort($taoh_vals);
     $response_json = taoh_apicall_get( $taoh_call, $taoh_vals );
     $job_arr = json_decode( $response_json, true );
-    
+
     if ( ( ! isset( $job_arr[ 'success' ] ) || ( isset( $job_arr[ 'success' ] ) && ! $job_arr[ 'success' ] ) ) ){
         taoh_redirect( TAOH_EVENTS_URL.'/d/'.$contslug );taoh_exit();
     }
@@ -64,7 +64,7 @@ if ( isset( $room_status_arr[ 'output' ] ) && $room_status_arr[ 'output' ] ){
    // echo $owner;exit();
     $owner_arr = json_decode( $owner, true );
     //echo'<pre>----1111-------';print_r($owner_arr);echo'</pre>';exit();
-    if ( isset( $owner_arr[ 'output' ] ) && $owner_arr[ 'output' ] ){    
+    if ( isset( $owner_arr[ 'output' ] ) && $owner_arr[ 'output' ] ){
         $return[ 'cell_info' ] = $owner_arr[ 'output' ];
     } else {
         $owner_json = taoh_get_user_info( $job_arr[ 'ptoken' ], 'public' );
@@ -87,7 +87,7 @@ if ( isset( $room_status_arr[ 'output' ] ) && $room_status_arr[ 'output' ] ){
                 'profile_type' => $owner_arr['profile_type'],
                 'site' => $owner_arr['site'],
             ),
-    
+
         );
         $coordinates =  $owner_arr_cell[ 'cell_info' ]['user' ]['coordinates'];
         if($coordinates !=''){
@@ -100,11 +100,8 @@ if ( isset( $room_status_arr[ 'output' ] ) && $room_status_arr[ 'output' ] ){
         //echo'<pre>-----------';print_r($owner_arr_cell);echo'</pre>';exit();
         taoh_networking_postcell( $owner_arr_cell[ 'cell_info' ], $owner_arr[ 'ptoken' ]);//KALPANA COMMENTED
     }
-    
-
-    
     //$owner_arr = json_decode( $owner_json, true );
-    
+
     $return = array(
         'keyslug' => $keyslug,
         'app' => 'job',
@@ -123,7 +120,7 @@ if ( isset( $room_status_arr[ 'output' ] ) && $room_status_arr[ 'output' ] ){
                                     array(
                                         'slug' => 'employer',
                                         'title' => 'Employer',
-                                    ),    
+                                    ),
                                     array(
                                         'slug' => 'professional',
                                         'title' => 'Professional',
@@ -261,7 +258,7 @@ unset( $return );
 $return[ 'club_info' ] = $temp_arr;
 unset( $temp_arr );
 
-if ( isset( $value_arr[ 'output' ] ) && $value_arr[ 'output' ] ){    
+if ( isset( $value_arr[ 'output' ] ) && $value_arr[ 'output' ] ){
     $return[ 'cell_info' ] = $value_arr[ 'output' ];
 } else {
     $return[ 'cell_info' ] = array(

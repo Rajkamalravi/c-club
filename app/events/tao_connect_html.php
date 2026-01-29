@@ -46,7 +46,7 @@
         align-items: center;
         justify-content: space-between;
     }
-    .connect .c-title { 
+    .connect .c-title {
         font-size: 17px;
         font-weight: 400;
         line-height: 20px;
@@ -56,7 +56,7 @@
         width: 100%;
         max-width: 244px;
         border-right: 1px solid #d3d3d3;
-    
+
     }
     .connect .bor-btn {
         border: 1px solid #212121;

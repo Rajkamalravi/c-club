@@ -41,7 +41,7 @@ $(document).ready(function () {
         //     fetchAndInitialize('ft_ntw_networking_misc', 'lastNTWMsgCheckedTimestamp', 'direct_message');
         // }
 
-        
+
     }
 
     if (_ntw_ft_valid_user && curr_page !== 'room' && curr_page !== 'message') {
@@ -51,7 +51,7 @@ $(document).ready(function () {
         }, 5000);
     }
 
-    setInterval(() => {        
+    setInterval(() => {
         if (typeof pagename === 'undefined' || pagename !== 'networking') {
             syncDmRoomStamp({
                 roomslug: pc_room_key,
@@ -367,7 +367,7 @@ function updateInvitesMessages(oldData, newData) {
 
 async function storeRepliesCount(newMessages, my_ptoken) {
 
-    console.log("storeRepliesCount", newMessages);    
+    console.log("storeRepliesCount", newMessages);
 
     const grouped = {};
     let replyCountModifiedKeys = [];
@@ -389,7 +389,7 @@ async function storeRepliesCount(newMessages, my_ptoken) {
         const msgList = grouped[metaId];
         let meta = metas[i]?.values?.chat;
 
-        console.log("msg List", msgList);        
+        console.log("msg List", msgList);
 
         if (meta) {
             const parentIdToKeyMap = {}; // Build-on-demand cache
@@ -439,7 +439,7 @@ async function storeRepliesCount(newMessages, my_ptoken) {
 
             console.log("updates", updates);
             console.log("domUpdates", domUpdates);
-            
+
 
             // Batch DOM update after processing all messages in msgList
             for (const update of domUpdates) {
@@ -456,7 +456,7 @@ async function storeRepliesCount(newMessages, my_ptoken) {
                     if(messageLikeCount > 0) {
                         conversationLikeCountElem.text(messageLikeCount + ' ' + (messageLikeCount === 1 ? 'like' : 'likes'));
                         conversationLikeCountElem.removeClass('d-none');
-                    }                    
+                    }
                     if (my_ptoken !== update.ptoken && messageNewReplyCount > 0) conversationReplyCountElem.addClass('has-new-replies');
                 }
             }
@@ -621,10 +621,10 @@ async function updateConnectionRequestStatus(chatwith, chatFrom, input_status, c
         });
     });
 
-    if (response.status === 200) {        
-        if(response.action == 1) {            
+    if (response.status === 200) {
+        if(response.action == 1) {
 
-            loadDmWindow(chatFrom, 1, videolink, videoname, false);            
+            loadDmWindow(chatFrom, 1, videolink, videoname, false);
 
             $('.chat-input-bottom').removeClass('d-flex').addClass('d-none');
             $('#browse_channels_wrapper').hide();
@@ -637,7 +637,7 @@ async function updateConnectionRequestStatus(chatwith, chatFrom, input_status, c
             $('.openchatacc_chat_now_btn').html("Join Now!");
             $('.openchatacc_chat_now_btn').attr("video_link", videolink);
             $('.watchPartySection').hide();
-            $('.watchPartySection').removeClass('watchPartyEnabled');            
+            $('.watchPartySection').removeClass('watchPartyEnabled');
 
             var track_data = {
                 'action': 'speed_networking_connect',
@@ -649,11 +649,11 @@ async function updateConnectionRequestStatus(chatwith, chatFrom, input_status, c
 
         }  else {
             updateSpeedNetworkingCarousel();
-        }                     
+        }
     } else {
         console.warn("Connection request failed or no user available");
     }
-    
+
 }
 
 async function clearCacheProcess(cacheData) {
@@ -774,7 +774,7 @@ async function speedNetworkingProcess(cacheData) {
         if (key <= lastCleanSpeedNetworkingProcessTime) continue;
 
         let alreadyProcessed = false;
-        let allowCacheFilesToRemove = true;        
+        let allowCacheFilesToRemove = true;
 
         if (item.action === 'speed_networking_connect') {
             if (Object.keys(item.value).length > 0) {
@@ -1695,7 +1695,7 @@ async function syncDmRoomStamp({roomslug, keyword, my_pToken}) {
     const dmChanged = !oldStamp || oldStamp.dm !== roomStamp?.dm;
 
     if (dmChanged) {
-        console.log("DM Chnaged");        
+        console.log("DM Chnaged");
         stopChannelUpdate = false;
         const dmBeforeTimestamp = parseInt(oldStamp?.dm || 0, 10);
         const freshDMStamp = await getRoomChannelStamp({
@@ -1717,7 +1717,7 @@ async function syncDmRoomStamp({roomslug, keyword, my_pToken}) {
             // get and update channel last fetch timestamp in intaodb
             const channelLastStamp = freshDMStamp.response[channelId];
             const channelKey = ['channel', channelId].filter(Boolean).join('_');
-            const channelExisting = await IntaoDB.getItem(store, channelKey);      
+            const channelExisting = await IntaoDB.getItem(store, channelKey);
             console.log("channelExisting channelLastStamp", channelExisting, channelLastStamp);
 
             const payload = {
@@ -1731,9 +1731,9 @@ async function syncDmRoomStamp({roomslug, keyword, my_pToken}) {
             console.log("channelExisting channelLastStamp hasUpdates", hasUpdates);
 
             if(hasUpdates) {
-                getDmMessages(roomslug, keyword, channelId, channelExisting?.last_noti_read_stamp ?? 0, my_pToken);                
+                getDmMessages(roomslug, keyword, channelId, channelExisting?.last_noti_read_stamp ?? 0, my_pToken);
             }
-           
+
         }
     }
 
@@ -1761,10 +1761,10 @@ async function getDmMessages(roomslug, ntw_keyword, channel_id, lastTimestamp, m
                 try {
                     let unreadCount = parseInt($('#allRoomsInviteUnreadCount').text(), 10) || 0;
                     if(Array.isArray(res) && res.length > 0) {
-                        
+
                         $('#messageList #no_previous_chat_all').remove();
                         $('#custom_switch').show();
-                        
+
                         for (const msg of res) {
                             let timestamp = msg?.timestamp;
                             if (timestamp) {
@@ -1786,7 +1786,7 @@ async function getDmMessages(roomslug, ntw_keyword, channel_id, lastTimestamp, m
 
                                 if(msg.ptoken == my_pToken) {
                                     continue;
-                                }                                
+                                }
                                 if ($(`#messageList .card-item[data-msg-key="${msg.timestamp}"]`).length === 0) {
 
                                     const existingMsg = $(`#messageList .card-item[data-invitefrom="${msg.ptoken}"]`);
@@ -1825,15 +1825,15 @@ async function getDmMessages(roomslug, ntw_keyword, channel_id, lastTimestamp, m
                                         // ➕ Add new message
                                         $('#messageList').append(messageHtml);
                                         unreadCount += 1;
-                                    }                                   
+                                    }
                                 }
                             }
-                        }    
+                        }
                         if(unreadCount > 0) {
                             $('#allRoomsInviteUnreadCount').text(unreadCount);
                         } else {
                             $('#allRoomsInviteUnreadCount').text('');
-                        }                                                                  
+                        }
                     }
                     resolve({
                         status: 200,
@@ -1858,7 +1858,7 @@ async function getDmMessages(roomslug, ntw_keyword, channel_id, lastTimestamp, m
 }
 
 function initializeRequest(chat_window, room_hash, my_pToken) {
-    
+
 }
 
 /****************************======================== /Helper Functions ==============================*********************/
@@ -2007,5 +2007,3 @@ $(document).ready(function () {
     });
 
 });
-
-

@@ -11,7 +11,7 @@
         <div class="modal-body px-lg-4 pb-4">
             <div class="d-flex align-items-start" style="gap: 26px;">
                 <img src="<?php echo TAOH_SITE_URL_ROOT;?>/assets/images/continue_tick.svg" alt="">
-              
+
                 <div>
                     <h6>You Unlocked <span class="success_percentage_amt"><?= $success_discount_amt; ?></span> Discount !</h6>
                     <p class="mb-4">You chose for an <span class="success_sponsor_name"><?= $success_sponsor_title; ?></span>. Get <span class="success_percentage_amt"><?= $success_discount_amt; ?></span> Discount Just by sharing the event and instantly unlock extra perks:</p>
@@ -19,11 +19,11 @@
                 </div>
             </div>
         </div>
-        
+
         </div>
     </div>
 </div>
- 
+
     <div class="modal share-v1-modal" id="shareModal" tabindex="-1" role="dialog">
         <div class="modal-dialog modal-dialog-centered modal-md" role="document">
             <div class="modal-content light-dark-card">
@@ -41,7 +41,7 @@
                         <div class="flex-grow-1 d-flex">
                             <div class="flex-grow-1">
                                 <h5 class="modal-title normal-share-title">
-                                    
+
                                      Every share ensures a future where no career is left behind
                                 </h5>
                                 <h5 class="modal-title sponsor-share-title" style="display:none">
@@ -60,13 +60,10 @@
                             </svg>
                         </div>
                     </div>
-
-
-                    
                     <button type="button" class="btn e-sh-close" data-dismiss="modal">
                         <?= icon('close', '#ffffff', 14) ?>
                     </button>
-                    
+
 
                 </div>
                 <div class="modal-body">
@@ -78,12 +75,7 @@
                     <p class="text-xs sponsor-share-title" style="display:none"><b>* Share Event on Social, click Event link once posted to get the referral discount!</b></p>
                     <p class="text-xs normal-share-title"><b>* Share this with your network. Together, we’re creating a future where every career journey is supported.</b><!-- Share the post on social media, then click the link on the shared post and return here to claim your benefit. --></p>
                 </div>
-               
+
             </div>
         </div>
     </div>
-
-   
-
-
-   

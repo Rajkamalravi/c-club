@@ -75,14 +75,11 @@ if (taoh_user_is_logged_in()) {
 //echo "TEST 1234"; die;
 
 ?>
-
-
-
 <style>
-	
-	
+
+
 </style>
-    
+
 <div class="mobile-app">
 <?php if(!taoh_user_is_logged_in()) { ?>
 <section class="hero-area overflow-hidden section-padding events-banner-section yellow-bg">
@@ -466,7 +463,7 @@ if (taoh_user_is_logged_in()) {
                         <!--
                     <div class="col-lg-7 mb-2 mb-lg-0 px-0">
                             <h2 class="section-title fs-24 mb-1"><?php //echo $app_data->name_slug; ?></h2>
-                            
+
                             <p class="section-desc"><?php //echo $app_data->short; ?></p>
                         </div>-->
 
@@ -480,8 +477,8 @@ if (taoh_user_is_logged_in()) {
                                     echo '</div>';
                                 }
                             } else {
-                                echo '<a 
-                                 href="javascript:void(0);" 
+                                echo '<a
+                                 href="javascript:void(0);"
                                  class="btn theme-btn login-button " aria-pressed="true" data-toggle="modal" data-target="#config-modal"
                                 ><i class="la la-sign-in mr-1"></i> Login / Signup</a>';
                             }
@@ -491,7 +488,7 @@ if (taoh_user_is_logged_in()) {
                     </div><!-- end hero-content -->
                 </div><!-- end container -->
             </section>
-    
+
 
             <?php
            // if (taoh_user_is_logged_in()) {
@@ -520,7 +517,7 @@ if (taoh_user_is_logged_in()) {
                         </div>
 
                         <div class="row d-flex justify-content-between">
-                            
+
                             <div class="row col-lg-12 no_result_div ">
                                 <div class="no_result">
                                     <img style="width:20%" src="<?php echo TAOH_SITE_URL_ROOT.'/assets/images/no_jobs_found.png';?>" alt="No Results Illustration">
@@ -642,9 +639,9 @@ if (taoh_user_is_logged_in()) {
                 $('#coordinateLocation').val(locationText);
                 $("#geohash").val(curUserData.geohash);
 
-            }, 500); 
+            }, 500);
             });
-            
+
             var data = {
                 'taoh_action': 'events_get',
                 'ops': 'list',
@@ -707,8 +704,8 @@ if (taoh_user_is_logged_in()) {
                     console.log('getUserInfo error:', e);
                 }
             }
-			
-			
+
+
             // If userInfo not found, set default values
             if (!userInfo.ptoken) {
                 userInfo = {
@@ -724,7 +721,7 @@ if (taoh_user_is_logged_in()) {
 
             return userInfo;
         }
-        
+
         function delete_events_into() {
             getIntaoDb(dbName).then((db) => {
                 let dataStoreName = EVENTStore;
@@ -840,7 +837,7 @@ if (taoh_user_is_logged_in()) {
             getIntaoDb(dbName).then((db) => {
                 var currpage = currentPage - 1;
                 event_type = event_type_get;
-                
+
                 var event_list_hash = 'events'+search + geohash + queryString + currpage + itemsPerPage + postDate + from_date + to_date + event_type;
                 event_list_name = 'events_' + crc32(event_list_hash);
                 console.log(event_list_name);
@@ -1097,7 +1094,7 @@ if (taoh_user_is_logged_in()) {
             //console.log('-----------'+$('#coordinateLocation').val());
             const now = Date.now();
             $.each(result.output.list, function (i, v) {
-                
+
                 let additive = v.canonical_url?.trim() ? v.canonical_url : v.source;
                 let is_expired = false;
 
@@ -1132,7 +1129,7 @@ if (taoh_user_is_logged_in()) {
                 /* if(loc_search != ''){
                     v.title = loc_search +"<br>"+ ucfirst(v.title);
                 } */
-                              
+
                 // var company_name_get = v.company.length && v.company[0] ? v.company[0].name : '';
 
                 var liked_check = get_liked_check(v.eventtoken, v.conttoken);
@@ -1145,7 +1142,7 @@ if (taoh_user_is_logged_in()) {
                 let btn_class = 'btn-primary';
                 let btn_icon = '<i class="fa fa-ticket mr-2" aria-hidden="true"></i>';
                 let event_url = `<?php echo TAOH_SITE_URL_ROOT . "/" . ($app_data?->slug ?? '') . "/d/"; ?>${convertToSlug(taoh_title_desc_decode(v.title))}-${v.eventtoken}?con=${v.conttoken}`;
-                
+
                 const eventEndDate = makeZonedInstant(localized_event_ends_data.datetime, localized_event_ends_data.timezone);
                 if (now > eventEndDate) {
                     is_expired = true;
@@ -1192,7 +1189,7 @@ if (taoh_user_is_logged_in()) {
                 let event_detail_url = event_url;
                 <?php if(TAOH_LINK_CANONICAL_URL_ENABLE) { ?>
                      canonical_link = additive + '/'+`<?php echo ($app_data?->slug ?? '') . "/d/"?>${convertToSlug(taoh_title_desc_decode(v.title))}-${v.eventtoken}?con=${v.conttoken}`;
-                    event_detail_url = canonical_link; 
+                    event_detail_url = canonical_link;
                 <?php } ?>
                 // console.log('--->'+loc_query);
                 // console.log('event_detail_url : '+event_detail_url);
@@ -1204,7 +1201,7 @@ if (taoh_user_is_logged_in()) {
                 } else {
                     rsvp_link = `<button type="button" class="btn create_referral ${btn_class}" id="register_ticket" data-location="${event_detail_url}" data-title="${btoa(unescape(encodeURIComponent(v.title)))}" data-toggle="modal" data-target="#config-modal">${btn_icon} ${btn_text}</button>`;
                 }
-             
+
                 var no_image = '<?php echo TAOH_SITE_URL_ROOT . "/assets/images/event.jpg" ?>';
                 var img = newavatardisplay(v.user_avatar, v.avatar_image, '<?php echo TAOH_OPS_PREFIX;?>');
 
@@ -1214,10 +1211,10 @@ if (taoh_user_is_logged_in()) {
                 const minCost = Math.min(...costArray);
 
                 if(event_type_get == '' && (is_expired == true || (typeof v.freeze_option != 'undefined' && v.freeze_option == 1))){
-                    return true; 
+                    return true;
                 }
                 if (data.output.total == 1 && search =='') {
-                    window.location.href = event_url; 
+                    window.location.href = event_url;
                 } else {
                 var single_event = '';
                 if(data.output.total == 1 && search !='')
@@ -1248,7 +1245,7 @@ if (taoh_user_is_logged_in()) {
 
                                     <h4 class="event-title"><a href="${event_detail_url}" data-metrics="view" class="click_metrics">${taoh_title_desc_decode(v.title)}
                                      </a></h4>
-                                    ${loc_query != '' ? '<p class="event-location py-2">'+loc_query+'</p>' : '' } 
+                                    ${loc_query != '' ? '<p class="event-location py-2">'+loc_query+'</p>' : '' }
                                     ${loc_search != '' ? '<p class="event-location py-2">'+loc_search+'</p>' : '' }
                                     <p class="event-location py-2">${event_type != 'virtual' && v.full_location ? newgenerateLocationHTML(v.full_location) : 'Attend Online'}</p>
 
@@ -1281,7 +1278,7 @@ if (taoh_user_is_logged_in()) {
 
             });
 
-            
+
             if (data.output.total > itemsPerPage) {
                 $('#pagination').show();
                 show_pagination('#pagination');
@@ -1517,7 +1514,7 @@ if (taoh_user_is_logged_in()) {
              /* let timelimit = <?php echo (int)TAOH_DOJO_SUGGESTION_TIMELIMIT; ?>;
              let innertimelimit = Math.floor(timelimit / 2);
             console.log(timelimit+'------timelimit----------'+innertimelimit);
-           
+
             // Every 5 mins: refresh all contexts
             setInterval(() => {
                 refreshDojoEventContexts();

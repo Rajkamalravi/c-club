@@ -60,7 +60,7 @@
             </li>
             <?php
         }
-        
+
         if ( taoh_user_is_logged_in() && isset( $_SESSION[ TAOH_ROOT_PATH_HASH ][ 'USER_INFO' ]->type ) && $_SESSION[ TAOH_ROOT_PATH_HASH ][ 'USER_INFO' ]->type == 'recruiter' ){
             ?>
             <li class="nav-item">

@@ -279,20 +279,20 @@
         max-width: 100% !important;
         min-width: 100% !important;
     }
-    
+
     .contact-host {
         text-align: center;
     }
-    
+
     .contact-host .d-flex {
         flex-direction: column;
         gap: 1rem;
     }
-    
+
     .cover-event-image {
         height: 250px;
     }
-    
+
     .main-media {
         height: 250px;
     }

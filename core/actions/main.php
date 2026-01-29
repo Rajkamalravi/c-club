@@ -52,7 +52,7 @@ else if($action == "candy") {
 }
 
 //Actions from app folder
-if (in_array($action, taoh_available_apps())) {  
+if (in_array($action, taoh_available_apps())) {
     $url = TAOH_PLUGIN_PATH."/app/".$action."/actions/main.php";
     if(file_exists($url)) {
         include_once $url;

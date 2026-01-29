@@ -41,8 +41,8 @@ foreach($fields as $key => $value) {
             echo '>';
             echo '<label class="form-check-label" for="'.$value['name'].$option['value'].'">'.$option['label'].'</label>';
             echo '</div>';
-        }   
-        echo '</div>';  
-    }         
+        }
+        echo '</div>';
+    }
 }
 ?>

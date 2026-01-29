@@ -178,13 +178,13 @@ function displayTaohFormatted(string) {
     // Placeholders and their replacements
     let find = ['[sitenameslug]', '[sitelogosqurl]', '[sitelogourl]', '[sitemytitle]', '[sitemyskill]', '[sitemycompany]', '[sitemycountry]'];
     let replace = [_taoh_site_name, sqLogo, logo, title, skill, company, country];
-    
+
     // Perform the replacement
     let text = string;
     for (let i = 0; i < find.length; i++) {
         text = text.split(find[i]).join(replace[i]);
     }
-    
+
     // Return the modified string
     return text;
 }
@@ -276,12 +276,12 @@ async function taohGet(url, taohVals) {
 function taoh_set_error_message_old(message, time=2000) {
     $('#toast').show();
     $('#toast').addClass('toast_active');
-    $('#toast_error').html('');                    
-    $('#toast_error').html(`<div class='toasterror_class'><span><i class='las la-check-circle mr-2 info_icon'></i> 
+    $('#toast_error').html('');
+    $('#toast_error').html(`<div class='toasterror_class'><span><i class='las la-check-circle mr-2 info_icon'></i>
         ${message} &nbsp;
     <span class='toast_dismiss' aria-hidden='true'  data-dismiss='toast' aria-label='Close'>&times;</span>
     </span></div>`);
-    setTimeout(function () {   
+    setTimeout(function () {
         $("#toast").removeClass("toast_active");
         $("#toast_container").removeClass("toast-middle-con");
     }, time);
@@ -290,12 +290,12 @@ function taoh_set_error_message_old(message, time=2000) {
 function taoh_set_success_message_old(message, time=5000) {
     $('#toast').show();
     $('#toast').addClass('toast_active');
-    $('#toast_error').html('');                    
-    $('#toast_error').html(`<div class='success_class'><span><i class='las la-check-circle mr-2 info_icon'></i> 
+    $('#toast_error').html('');
+    $('#toast_error').html(`<div class='success_class'><span><i class='las la-check-circle mr-2 info_icon'></i>
         ${message} &nbsp;
     <span class='toast_dismiss' aria-hidden='true'  data-dismiss='toast' aria-label='Close'>&times;</span>
     </span></div>`);
-    setTimeout(function () {   
+    setTimeout(function () {
         $('#toast').removeClass('toast_active');
         $("#toast_container").removeClass("toast-middle-con");
     }, time);
@@ -305,7 +305,7 @@ function taoh_set_warning_message_old(message, time=1000) {
     $('#toast').show();
     $('#toast').addClass('toast_active');
     $('#toast_error').html('');
-    $('#toast_error').html(`<div class='info_class'><span><i class='las la-check-circle mr-2 info_icon'></i> 
+    $('#toast_error').html(`<div class='info_class'><span><i class='las la-check-circle mr-2 info_icon'></i>
         ${message} &nbsp;
     <span class='toast_dismiss' aria-hidden='true'  data-dismiss='toast' aria-label='Close'>&times;</span>
     </span></div>`);
@@ -428,14 +428,14 @@ function taoh_dojo_toast_message(message, time = 5000, type = 'success', positio
                     <stop offset="0.9" stop-color="#FF6600"/>
                     </linearGradient>
                     </defs>
-                </svg>                
+                </svg>
                 ${!options?.hideDismissBtn? `<button type="button" class='btn toast_dismiss toast-v2-dismiss shadow-none' aria-hidden='true'  data-dismiss='toast' aria-label='Close'>&times;</button>` : ''}
-                
+
             </div>
 
             <div class="toast-body px-3 pt-3 pb-2">
                 <p class="sm-text mb-2">${message}</p>
-                
+
                 <div class="toast-buttons">
                     ${buttonHTML}
                 </div>
@@ -452,9 +452,6 @@ function taoh_dojo_toast_message(message, time = 5000, type = 'success', positio
         });
     });
 
-     
-    
-        
      // Dismiss the toast after the specified time
     /*if (time && time!= null) {
         //alert();
@@ -465,9 +462,6 @@ function taoh_dojo_toast_message(message, time = 5000, type = 'success', positio
     }*/
 
     startAutoClose(time);
-
-    
-
 }
 
     let toastTimer;
@@ -507,9 +501,6 @@ function taoh_dojo_toast_message(message, time = 5000, type = 'success', positio
        // alert(2)
         startAutoClose(time);
     });
-
-
-
 $(document).on('click', '.toast_dismiss', function () {
     dojoToastActive = false;
     runDojoToastQueue();
@@ -521,7 +512,7 @@ function savetaodata() {
         const dataStoreName = objStores.data_store.name;
         const APIStoreName = objStores.api_store.name;
         if (db.objectStoreNames.contains(APIStoreName)) {
-            //console.log('-------APIStoreName---if-----',APIStoreName)  
+            //console.log('-------APIStoreName---if-----',APIStoreName)
             const apirequest = db.transaction(APIStoreName).objectStore(APIStoreName).get(index_name); // get ttl data
             apirequest.onsuccess = () => {
                 const apiqueue = apirequest.result;
@@ -548,7 +539,7 @@ function savetaodata() {
                     //kalpana added
                     //console.log('-------apiqueue----else----',global_settings)
                     if(global_settings != '' && global_settings ==1){
-                        
+
                         $('#global_settings').val(0);
                         taoh_set_success_message('Settings has been saved successfully');
                         setTimeout(function () {
@@ -558,7 +549,7 @@ function savetaodata() {
                 }
             }
         }
-        
+
     });
 }
 
@@ -571,10 +562,10 @@ function saveapidata(storedata) {
             taoh_set_error_message('Sorry, Settings has not been saved. Please try again.');
         } else {
             taoh_set_success_message('Settings has been saved');
-            
+
             window.location.reload();
             setTimeout(function () {
-               
+
             }, 3000);
         }
 
@@ -594,13 +585,13 @@ function decode(str) {
     try {
         if (!str || typeof str !== 'string') {
             return '';
-        }        
+        }
         var decodedHtml = decodeURIComponent(str);
         var html_decode = (decodedHtml !== "") ? decodedHtml.substring(0, 245) + "...." : '';
         var textarea = document.createElement('textarea');
         textarea.innerHTML = html_decode;
         return textarea.value;
-    } catch (error) {       
+    } catch (error) {
         return '';
     }
 }
@@ -628,7 +619,7 @@ function intao_delete(mod){
           cursor.continue();
         }
       };
-      
+
     });
     const newUrl = new URL(location.href);
     if(cache_delete == 'recipe' || cache_delete == 'read' || cache_delete == 'tags'){
@@ -660,7 +651,7 @@ function intao_delete1(mod){
           cursor.continue();
         }
       };
-      
+
     });
     const newUrl = new URL(location.href);
     if(cache_delete == 'tags'){
@@ -744,12 +735,12 @@ function taohFullyearConvert(timestamp, convert = false) {
       const firstTwoDigits = currentYear.toString().substring(0, 2);
       timestamp = firstTwoDigits + timestamp;
     }
-  
+
     // Ensure the timestamp length is correct (14 characters)
     if (timestamp.length !== 14) {
       throw new Error("Invalid timestamp length.");
     }
-  
+
     // Extract year, month, day, hour, minute, and second from the timestamp
     const year = parseInt(timestamp.substring(0, 4), 10);
     const month = parseInt(timestamp.substring(4, 6), 10) - 1; // Month is 0-based in JS
@@ -757,16 +748,16 @@ function taohFullyearConvert(timestamp, convert = false) {
     const hour = parseInt(timestamp.substring(8, 10), 10);
     const minute = parseInt(timestamp.substring(10, 12), 10);
     const second = parseInt(timestamp.substring(12, 14), 10);
-  
+
     // Create a Date object from the parsed components
     const date = new Date(year, month, day, hour, minute, second);
-  
+
     // Get the current date and time
     const now = new Date();
-  
+
     // Calculate the difference in time
     const diffInSeconds = Math.floor((now - date) / 1000);
-  
+
     // Calculate time units
     const years = Math.floor(diffInSeconds / (3600 * 24 * 365));
     const months = Math.floor(diffInSeconds / (3600 * 24 * 30));
@@ -774,7 +765,7 @@ function taohFullyearConvert(timestamp, convert = false) {
     const hours = Math.floor(diffInSeconds / 3600);
     const minutes = Math.floor(diffInSeconds / 60);
     const seconds = diffInSeconds;
-  
+
     // Determine the appropriate time unit to return
     if (years > 0) {
       return `${years}year ago`;
@@ -800,7 +791,7 @@ function taohFullyearConvert(timestamp, convert = false) {
       month: 'long', // Use 'short' for abbreviated month (e.g., "Aug")
       day: 'numeric'
     };
-  
+
     return date.toLocaleDateString('en-US', options);
   }
 
@@ -954,7 +945,7 @@ function taoh_dojo_suggestion_toast(message, time = 5000, type = 'success', posi
 
       // Hide after 3 seconds
       setTimeout(() => {
-      
+
         $('#dojo-popup').removeClass('dojo-slide-in')
         $('#dojo-popup').addClass('dojo-slide-out')
         // $('#dojo-popup').addClass('d-none');
@@ -962,7 +953,7 @@ function taoh_dojo_suggestion_toast(message, time = 5000, type = 'success', posi
         // icon.classList.remove("head-shake");
 
         setTimeout(() => {
-            $('#dojo-popup').hide();          
+            $('#dojo-popup').hide();
         }, 600); // match the slideOut duration
       }, 3000);
 
@@ -976,13 +967,13 @@ function taoh_dojo_suggestion_toast(message, time = 5000, type = 'success', posi
                     </svg>`;
     } else if (type === 'info') {
         typeClass = 'info_class';
-        
+
     } else if (type === 'warning') {
         typeClass = 'warning_class';
-       
+
     } else if (type === 'success') {
         typeClass = 'success_class';
-        
+
     } else {
         typeClass = 'success_class';
     }
@@ -997,6 +988,5 @@ function taoh_dojo_suggestion_toast(message, time = 5000, type = 'success', posi
             $('#toast_container').removeClass('toast-middle-con');
         }
     }
-   
+
 }
-  

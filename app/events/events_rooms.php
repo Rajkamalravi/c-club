@@ -10,7 +10,7 @@
         $('#rooms_list').html('');
         var content = '';
         var u = 0;
-        
+
         if(exh_list !=undefined && exh_list.length > 0){
             content += `<div class="w-100 mx-auto mx-xl-0 pr-1 pr-lg-3">`;
             $.each(exh_list, function (i, v) {

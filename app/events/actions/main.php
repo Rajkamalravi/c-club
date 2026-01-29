@@ -3,7 +3,7 @@
 //print_r($_POST);
 
 if($_POST['action'] == "delete_my_rsvp") {
-  
+
   //echo"==========".taoh_get_dummy_token();
  // print_r($_POST);die();
     $taoh_vals = array(
@@ -22,7 +22,7 @@ if($_POST['action'] == "delete_my_rsvp") {
   //die('-----------');
   //echo taoh_apicall_get_debug($url,  $taoh_vals);die();
   $data = taoh_apicall_get($url,  $taoh_vals);
-  
+
   header('Content-Type: application/json; charset=utf-8');
   //echo json_encode($data);
   echo $data;
@@ -78,7 +78,7 @@ if($_POST['action'] == "addrsvp") {
       echo '</pre>,<br> "<b>Result</b>": '.$result.'}</div>';
     die();
   }
-  
+
   taoh_set_success_message("RSVP request has been successfully received");
   //header("Location: ".TAOH_SITE_URL_ROOT."/events/rsvp/".$_POST['eventtoken']."#".$_POST['slug']);
   header("Location: ".TAOH_SITE_URL_ROOT."/events/confirmation/".$_POST['eventtoken']."/".$_POST['slug']);

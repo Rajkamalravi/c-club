@@ -49,17 +49,17 @@ $goto = taoh_parse_url(2).'/'.taoh_parse_url(3);
 //echo taoh_parse_url(4);
 if(taoh_parse_url(4)){
 	$id = '/'.taoh_parse_url(4);
-		
+
 }
 
 $param = '';
 if(taoh_parse_url(5)){
 	$param .= '/'.taoh_parse_url(5);
-		
+
 }
 if(taoh_parse_url(6)){
 	$param .= '/'.taoh_parse_url(6);
-		
+
 }
 
 /* if(isset($_GET['social_share']) && $_GET['social_share'] != ''){
@@ -80,9 +80,6 @@ if($goto == 'stlo'){
 // 	$taoh_user_vars[ 'chat' ] = json_decode( taoh_file_get_contents( $locn ) );
 // 	$we_chat_vars = $taoh_user_vars[ 'chat' ];
 // }
-
-
-
 //echo $action; die;
 
 include "functions.php";
@@ -228,16 +225,16 @@ switch ($action) {
         taoh_redirect($url);
         exit();
         break;
-    case 'event_sponsor':    
-               
+    case 'event_sponsor':
+
        // $param = "?social_share=".taoh_parse_url(6) ?? '';
-    
+
         $url = TAOH_SITE_URL_ROOT."/fwd/ss/".TAOH_SITE_ROOT_HASH."/log/1/u/loc/".$current_app."/event_sponsor/".$goto.$id.$param;
         //echo $url;die();
         taoh_redirect($url);
         exit();
         break;
-    case 'master':           
+    case 'master':
         $url = TAOH_SITE_URL_ROOT."/fwd/ss/".TAOH_SITE_ROOT_HASH."/log/1/u/loc/".$current_app."/master-room/".$goto.$id;
         //echo $url;die();
         taoh_redirect($url);
@@ -300,8 +297,8 @@ switch ($action) {
             return taoh_redirect(TAOH_LOGIN_URL);
         }
         include_once(TAOH_PLUGIN_PATH . "/app/" . $current_app . "/export_raffle_feedback.php");
-        break; 
-   
+        break;
+
     default:
         if(EVENT_DEMO_SITE){
             if($action !='')

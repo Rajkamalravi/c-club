@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 $share_link = $_SERVER['REQUEST_SCHEME']."://".$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'];
 //$share_link = "https://dev.unmeta.net/hires/jobs";
@@ -25,7 +25,7 @@ $email_share = "mailto:?subject=I wanted you to see this site&amp;body=Check out
     left: 80px;
     transition: all .3s;
     }
-    
+
     .your-tooltip.show {
     opacity: 1;
     }
@@ -66,16 +66,16 @@ $email_share = "mailto:?subject=I wanted you to see this site&amp;body=Check out
                     </div>
                 </div>
 <script>
-function copyText() { 
-    var yourToolTip = document.querySelector('.your-tooltip'); 
+function copyText() {
+    var yourToolTip = document.querySelector('.your-tooltip');
     /* Select text area by id*/
     var Text = document.getElementById("copy-text");
     /* Select the text inside text area. */
     Text.select();
     /* Copy selected text into clipboard */
     var copy_text = navigator.clipboard.writeText(Text.value);
-    if(copy_text){    
-    $('.your-tooltip').addClass('show');  
+    if(copy_text){
+    $('.your-tooltip').addClass('show');
     setTimeout(function() {
         $('.your-tooltip').removeClass('show');
     }, 2000)

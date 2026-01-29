@@ -1,20 +1,17 @@
-<?php 
+<?php
   $event_type = taoh_parse_url(1);
-  
+
   if (!defined('TAO_PAGE_TITLE')) {define('TAO_PAGE_TITLE', "Comprehensive Open Events List at " . TAOH_SITE_NAME_SLUG . ": Explore and Apply to a Wide Range of Event Opportunities");}
   if (!defined('TAO_PAGE_DESCRIPTION')) {define('TAO_PAGE_DESCRIPTION', "Browse our comprehensive events list featuring a diverse range of event opportunities across industries. Find the perfect event that matches your skills and interests, chat with recruiters and easily apply through our user-friendly platform at " . TAOH_SITE_NAME_SLUG . ". Start your event search today and take the next step in your career.");}
   if (!defined('TAO_PAGE_KEYWORDS')) {define('TAO_PAGE_KEYWORDS', "Event openings at " . TAOH_SITE_NAME_SLUG . ", Employment opportunities at " . TAOH_SITE_NAME_SLUG . ", Event listings at " . TAOH_SITE_NAME_SLUG . ", Event board at " . TAOH_SITE_NAME_SLUG . ", Event search platform at " . TAOH_SITE_NAME_SLUG . ", Event finder at " . TAOH_SITE_NAME_SLUG . ", Event database at " . TAOH_SITE_NAME_SLUG . ", Event search engine at " . TAOH_SITE_NAME_SLUG . ", Event match at " . TAOH_SITE_NAME_SLUG . ", Event applications at " . TAOH_SITE_NAME_SLUG . ", Apply for events at " . TAOH_SITE_NAME_SLUG . ", Event search website at " . TAOH_SITE_NAME_SLUG . ", Find a event at " . TAOH_SITE_NAME_SLUG . ", Event seekers at " . TAOH_SITE_NAME_SLUG . ", Event alerts at " . TAOH_SITE_NAME_SLUG . ", Explore event opportunities at " . TAOH_SITE_NAME_SLUG);}
   define('TAO_PAGE_ROBOT', 'noindex, nofollow');
-  
+
   taoh_get_header_for_events_landing();
-  
+
   $taoh_user_is_logged_in = taoh_user_is_logged_in() ?? false;
   $user_info_obj = $taoh_user_is_logged_in ? taoh_user_all_info() : null;
-  
+
   $valid_user = $taoh_user_is_logged_in && $user_info_obj->profile_complete;
-  
-  
-   
   if(EVENT_DEMO_SITE)
   $current_app ='events';
   else
@@ -22,18 +19,18 @@
   $app_data = taoh_app_info($current_app);
   $taoh_user_vars = $data = taoh_user_all_info();
   $profile_complete = (isset($data->profile_complete) && $data->profile_complete) ? $data->profile_complete : 0;
-  
+
   $empty = 0;
   $ptoken = TAOH_API_TOKEN_DUMMY;
   if (taoh_user_is_logged_in()) {
       $ptoken = $user_ptoken = $data->ptoken;
   }
-  
+
   $share_link = $_SERVER['REQUEST_SCHEME'] . "://" . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];
   define('TAO_PAGE_TYPE', ($app_data?->slug ?? ''));
   $log_nolog_token = (taoh_user_is_logged_in()) ? $ptoken : TAOH_API_TOKEN_DUMMY;
   /* check liked or not */
-  
+
   $liked_arr = array();
   $rsvped_data = array();
   if (taoh_user_is_logged_in()) {
@@ -45,12 +42,12 @@
       );
       //echo taoh_apicall_get_debug($taoh_call, $taoh_vals);exit();
       $get_liked = json_decode(taoh_apicall_get($taoh_call, $taoh_vals), true);
-  
+
       if (isset($get_liked['conttoken_liked'])) {
           $liked_arr = $get_liked['conttoken_liked'];
       }
       /* End check liked or not */
-  
+
       /* Get RSVP list */
       //https://ppapi.tao.ai/events.user.rsvp?mod=core&token=C3kONdHX&ops=events
       $taoh_call = "events.user.rsvp";
@@ -137,7 +134,7 @@
    height: 92px !important;
    }
    .form-row {
- 
+
   box-shadow: 0px 5px 16px 1px rgba(0, 0, 0, .1);
   display: flex;
     flex-wrap: wrap;
@@ -164,13 +161,13 @@
     <div class="row justify-content-center">
                             <div  class="loaderArea" id="listloaderArea"></div>
                         </div>
-    <div class="d-flex justify-content-center flex-wrap px-0" style="gap: 12px;" id="eventlistArea"> 
+    <div class="d-flex justify-content-center flex-wrap px-0" style="gap: 12px;" id="eventlistArea">
 
     </div>
     <div class="d-flex justify-content-center mb-5">
                                 <div id="pagination"></div>
                             </div>
-    
+
 
 </div>
 
@@ -357,7 +354,7 @@
             getIntaoDb(dbName).then((db) => {
                 var currpage = currentPage - 1;
                 event_type = event_type_get;
-                
+
                 var event_list_hash = 'events_+'+search + geohash + queryString + currpage + itemsPerPage + postDate + from_date + to_date + event_type;
                 event_list_name = 'events_tao_all_' + crc32(event_list_hash);
                 console.log(event_list_name);
@@ -578,7 +575,7 @@
                 $('.no_result_div').show();
                 return false;
             }
-             
+
 
                 totalItems = data.output.total
                 if (!get_slug) {
@@ -632,11 +629,11 @@
                                 btn_text = 'Event Live, Join Now';
                                 btn_class = 'btn-success';
                                 btn_icon = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 80" style="width: 36px"><circle cx="40" cy="40" r="28" fill="#fff"></circle>
-                                                                    
+
                                                                     <polygon points="34,28 34,52 54,40" fill="#28A745"></polygon>
-                                                                    
+
                                                                     <path d="M78 26 C84 35, 84 46, 78 54" fill="none" stroke="#fff" stroke-width="5" stroke-linecap="round"></path>
-                                                                    
+
                                                                     <path d="M88 10 C104 28, 104 54, 88 70" fill="none" stroke="#fff" stroke-width="5" stroke-linecap="round"></path>
                                                             </svg>`;
                                 event_url = `${v.source}<?php echo "/" . ($app_data?->slug ?? '') . "/chat/id/events/"; ?>${v.eventtoken}`; // lobby url
@@ -687,7 +684,7 @@
                 let event_start_at = format_event_timestamp(event_timestamp_start_data, user_timezone);
 
                 if (data.output.total == 1 && search =='') {
-                    window.location.href = event_url; 
+                    window.location.href = event_url;
                 } else {
                 var single_event = '';
                 if(data.output.total == 1 && search !='')
@@ -712,7 +709,7 @@
                                             </svg>
                                             <span>${event_start_at}</span>
                                         </div>
-                                       
+
                                     </div>
 
                                     <h4 class="event-title"><a href="${event_url}" data-metrics="view" class="click_metrics">${taoh_title_desc_decode(v.title)}</a></h4>

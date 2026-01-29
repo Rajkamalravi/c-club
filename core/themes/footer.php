@@ -77,7 +77,7 @@ function get_max_upload_size() {
 </main>
 
 <!-- Footer Banner  -->
-<?php if(defined('TAOH_FOOTER_BANNER_AD') && TAOH_FOOTER_BANNER_AD) { 
+<?php if(defined('TAOH_FOOTER_BANNER_AD') && TAOH_FOOTER_BANNER_AD) {
     // file_get_contents(TAOH_OPS_PREFIX.'/images/calendar', false, stream_context_create(array( "ssl"=>array( "verify_peer"=>false, "verify_peer_name"=>false,),)))
     if(!isset($_SESSION['footer_banner'])){
         $get_banner = @file_get_contents(TAOH_CDN_ADS);
@@ -90,9 +90,9 @@ function get_max_upload_size() {
         }
     }
     if(isset($_SESSION['footer_banner']) && count($_SESSION['footer_banner']) > 0){
-    foreach($_SESSION['footer_banner'] as $key=>$val){ 
+    foreach($_SESSION['footer_banner'] as $key=>$val){
         $link = str_ireplace('[TAOH_HOME_URL]',TAOH_SITE_URL_ROOT,$val['link']);
-    
+
 ?>
     <div class="cover-workcongress-image">
     <div class="bg-image" style="background-image: url('<?php echo $val['image'];?>');"></div>
@@ -106,11 +106,11 @@ function get_max_upload_size() {
 <input type="hidden" name="global_settings" id="global_settings" />
     <input type="hidden" name="avt_img_delete" id="avt_img_delete" />
     <input type="hidden" id="max_upload_size" value="<?php echo get_max_upload_size(); ?>">
-    
+
 <?php if( NETWORKING_VERSION == 5 || (taoh_parse_url(1) != 'room' && NETWORKING_VERSION != 5)) { ?>
 <footer class="page-footer">
-    
-    
+
+
     <section class="footer-area pt-30px position-relative font-light">
       <div class="container">
         <div class="row align-items-center pb-4 copyright-wrap">
@@ -128,12 +128,12 @@ function get_max_upload_size() {
             ?>
             <img src="<?php echo TAOH_CDN_PREFIX;?>/images/igtracker/<?php echo $footer_tracking_link;?>/<?php echo $ptokn_track;?>/pixel.png" />
             <?php } ?>
-            
-            <?php if(TAOH_FOOTER_MENU_ARRAY !='')  { 
-                     $footer_array = json_decode(TAOH_FOOTER_MENU_ARRAY,1);  
-                
+
+            <?php if(TAOH_FOOTER_MENU_ARRAY !='')  {
+                     $footer_array = json_decode(TAOH_FOOTER_MENU_ARRAY,1);
+
                 ?>
-           
+
                 <div class="col-xl-5 mx-auto px-0">
                     <ul class="nav justify-content-center">
                         <?php foreach($footer_array as $key=>$val){ ?>
@@ -142,7 +142,7 @@ function get_max_upload_size() {
                     </ul>
 
                 </div>
-                
+
             <?php } else { ?>
 
                 <div class="col-xl-5 mx-auto px-0">
@@ -178,7 +178,7 @@ function get_max_upload_size() {
                 </div>-->
 
                 <div class="dropdown terms-menu">
-                   
+
                     <a class="footer-menu-item mx-lg-5 dropdown-toggle removecaret text-wrap" id="termsLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         <div class="svg-container"><?= icon('file-question', '#1E1C1C') ?></div>
                         <span>Terms</span>
@@ -189,7 +189,7 @@ function get_max_upload_size() {
                         <li class="dropdown-item"><a href="https://tao.ai/conduct.php" target="_BLANK" class="term-item">Code of Conduct</a></li>
                     </ul>
                 </div>
-                
+
                 <a  href="https://tao.ai" target="_blank" class="footer-menu-item mx-lg-5">
                     <?= icon('tao-logo', '#fff', 30) ?>
                     <span>By Tao.ai</span>
@@ -215,7 +215,7 @@ function get_max_upload_size() {
                     <span>Report a Bug</span>
                 </a> -->
             </div>
-           
+
             <p class="text-center text-muted">
               <strong>&copy; <?php echo date('Y'). "</strong> | <strong>".TAOH_SITE_NAME_SLUG."</strong> | "."<a href='https://theworkcompany.com' target='_blank' class='twc-logo'>The<b>W</b><img src='https://theworkcompany.com/assets/images/theworkcompany_sq.png' alt='O' height='14'><b>RK</b>Company</a>"; ?> | <strong>All Rights Reserved</strong>  <?php if(taoh_user_is_logged_in()) { ?> |  <strong><a class="text-primary cursor-pointer" data-toggle="modal" data-target="#reportBugModal">Report an issue</a> <?php } ?>
               </strong><br>
@@ -358,14 +358,14 @@ require_once TAOH_SITE_PATH_ROOT . '/core/basic-settings-modal.php';
                 </div>
                 <div class="modal-body p-0">
                     <div class="main-box p-0 border-0">
-                    <?php 
+                    <?php
                         $login = 0;
                         include_once(TAOH_SITE_DOC_ROOT.'/core/new_login.php');
                     ?>
                     </div>
                 </div>
                 <!-- <div class="modal-footer">
-                    
+
                 </div> -->
                 </div>
             </div>
@@ -392,7 +392,7 @@ require_once TAOH_SITE_PATH_ROOT . '/core/basic-settings-modal.php';
     </div>
     <div class="goal-option">
       <label><input type="radio" name="user_goal" value="Connect">Connect – Events, Networking</label>
-    </div>   
+    </div>
 
     <button id="submitGoalBtn">Submit</button>
   </div>

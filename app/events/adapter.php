@@ -40,9 +40,6 @@ if (!$response['success']) {
 
 $event_arr = $response['output'];
 $events_data = $event_arr['conttoken'] ?? [];
-
-
-
 // Creating Room Info for Networking
 $roomslug = '';
 
@@ -54,9 +51,6 @@ $generate_room_slug_response = $eventsNtwAdapter->generateRoomSlug([
     'eventtoken' => $eventtoken,
     'country_locked' => $events_data['country_locked'] ?? 0,
 ]);
-
-
-
 
 if (in_array($generate_room_slug_response['success'], [true, 'true'])) {
     $generated_roomslug = $generate_room_slug_response['roomslug'] ?? '';
@@ -75,9 +69,6 @@ if (in_array($generate_room_slug_response['success'], [true, 'true'])) {
 
 
         //echo '<pre>';print_r($create_room_response);echo '</pre>';die();
-
-
-
         if (in_array($create_room_response['success'], [true, 'true']) && !empty($create_room_response['output'])) {
             $room_info = $create_room_response['output'];
             if(isset($room_info['room'])) {

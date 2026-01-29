@@ -8,7 +8,7 @@ if (!$user_is_logged_in) {
 $taoh_home_url = (defined('TAOH_PAGE_URL') && TAOH_PAGE_URL) ? TAOH_PAGE_URL : TAOH_SITE_URL_ROOT;
 $directory_flags_to_show = defined('TAOH_DIRECTORY_FLAGS_TO_SHOW') ? TAOH_DIRECTORY_FLAGS_TO_SHOW : [];
 
-taoh_get_header(); 
+taoh_get_header();
 
 $data = taoh_session_get(TAOH_ROOT_PATH_HASH)['USER_INFO'];
 if(empty($ptoken) || $ptoken == 'stlo'){
@@ -208,9 +208,6 @@ if ($user_is_logged_in && !$is_my_profile_view) {
             </div>
         </div> -->
 
-
-
-
             <?php
             if ($is_my_profile_view || $my_profile_stage > 0) {
                 ?>
@@ -397,9 +394,6 @@ if ($user_is_logged_in && !$is_my_profile_view) {
                         <div id="profile_stage_invalid" class="col-12 mt-4 text-center" style='display:none'>
                             <a class="btn s-btn" target="_blank" href="<?php echo TAOH_SITE_URL_ROOT; ?>/settings">Complete your profile to see more information</a>
                         </div>
-
-
-
                         <?php
                         if ($is_my_profile_view || $my_profile_stage >= 2) {
                             ?>
@@ -970,9 +964,6 @@ if ($user_is_logged_in && !$is_my_profile_view) {
         </div>
     </div>
 
-
-
-    
 </div>
 
 <?php
@@ -1060,9 +1051,6 @@ $dm_room_slug = hash('crc32', 'dm-direct-message');
                 window.open(_taoh_site_url_root + '/directory/profile/flag/' + selectedValue, '_blank');
             }
         });
-
-
-
         if(!is_my_profile_view) {
             let show_profile_stage_prompt = <?= json_encode($show_profile_stage_prompt ?? false); ?>;
             let show_profile_stage_prompt_msg = <?= json_encode($show_profile_stage_prompt_msg ?? ''); ?>;

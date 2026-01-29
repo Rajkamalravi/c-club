@@ -8,9 +8,6 @@ function showErrorPage($base_path, $error_code = 1001, $error_from = '', $error_
     taoh_get_footer();
     exit();
 }
-
-
-
 function check_live_now_token($input_array) {
 
     if(empty($input_array['output']['title']) || empty($input_array['output']['channels'])) {
@@ -21,22 +18,22 @@ function check_live_now_token($input_array) {
     $title = ucwords($input_array['output']['title']);
     $description = ucwords($input_array['output']['description']);
     $channels = $input_array['output']['channels'];
-    
+
     $sess_user_info = taoh_session_get(TAOH_ROOT_PATH_HASH)['USER_INFO'];
     $full_loc_expl = explode(', ', $sess_user_info->full_location);
     $country = array_pop($full_loc_expl);
 
-    $geo_enable = 0; 
-    $dateHour = gmdate("YmdH"); 
-    
+    $geo_enable = 0;
+    $dateHour = gmdate("YmdH");
+
     if($geo_enable) {
         $keyslug = hash( 'crc32',$title.$country.$dateHour );
     } else {
-        $keyslug = hash( 'crc32', $title.$dateHour);	
+        $keyslug = hash( 'crc32', $title.$dateHour);
     }
-    
+
     return $keyslug;
-	
+
 }
 
 $url = TAOH_LIVE_NOW_URL . '?y=' . gmdate("YmdH");
@@ -70,7 +67,7 @@ if(isset($user_info_obj->title)){
        // echo "=========".$value;die();
          list ( $id, $role ) = explode( ':>', $value );
     }
-   
+
 }
 
 if(isset($user_info_obj->skill)){
@@ -81,7 +78,7 @@ if(isset($user_info_obj->skill)){
          $skillarray[] = $skilll;
     }
     $skill = implode(',', $skillarray);
-   
+
 }
 //echo '<pre>'; print_r($skillarray); echo '</pre>';die();
 
@@ -102,7 +99,7 @@ $ntw_view = 1;
 $timezone = $user_info_obj->local_timezone;
 
 if ($parse_url_1 == 'room' || $parse_url_1 == 'forum' || $parse_url_1 == 'live') {
-    $contslug = taoh_parse_url(2);    
+    $contslug = taoh_parse_url(2);
 
     if (empty($contslug)) {
 //        taoh_redirect(TAOH_SITE_URL_ROOT);
@@ -132,7 +129,7 @@ else if ($parse_url_1 == 'dm') {
 } else {
     $contslug = ''; // :rk temp fix
     $geo_enable = 1;
-    
+
     $date = new DateTime('now', new DateTimeZone($timezone));
     $abbreviation = $date->format('T');
 
@@ -169,9 +166,6 @@ if (isset($_GET['chatwith']) && !empty($_GET['chatwith'])) {
         $ntw_view = 2;
     }
 }
-
-
-
 $sidekick_avatar = TAOH_SITE_URL_ROOT.'/assets/images/Group 194.svg';
 
 if($ntw_view != 3){
@@ -270,14 +264,14 @@ if (!isset($room_info_arr['success']) || !$room_info_arr['success'] || !$room_in
     }
 }
 
-//echo "<pre>"; print_r($room_info_arr); 
+//echo "<pre>"; print_r($room_info_arr);
 
 $room_app = $room_info_arr['output']['app'] ?? '';
 $sub_app = $room_info_arr['output']['sub_app'] ?? '';
 $club_info = $room_info_arr['output']['club'] ?? '';
 
 
-if (isset($room_app) && $room_app === 'event' && isset($club_info['streaming_link']) && !empty($club_info['streaming_link'])) { 
+if (isset($room_app) && $room_app === 'event' && isset($club_info['streaming_link']) && !empty($club_info['streaming_link'])) {
     $ntw_view = 5;
 }
 
@@ -341,7 +335,7 @@ if (isset($room_app) && $room_app === 'event') {
     $event_arr = $response_det['output'];
     $create_channel_flag = 0;
 
-    //$event_arr['conttoken']['live_link'] = "https://www.youtube.com/embed/TO97VtyPcdE";   
+    //$event_arr['conttoken']['live_link'] = "https://www.youtube.com/embed/TO97VtyPcdE";
 
     if(isset($event_arr['conttoken']['event_organizer_ptokens']) && !empty($event_arr['conttoken']['event_organizer_ptokens'])) {
         $event_organizer_ptokens_arr = explode(",", $event_arr['conttoken']['event_organizer_ptokens']);
@@ -350,7 +344,7 @@ if (isset($room_app) && $room_app === 'event') {
 
     $owner_org_ptoken[] = $event_arr['conttoken']['ptoken'];
     //$owner_org_ptoken[] = $ptoken;
-    
+
 
     if (in_array($ptoken, $owner_org_ptoken)) {
         $can_delete_all_msg = 1;
@@ -416,7 +410,7 @@ if (isset($room_app) && $room_app === 'event') {
         if (empty($current_ticket_types)) {
             taoh_redirect(TAOH_SITE_URL_ROOT );
             exit();
-        } 
+        }
 
         $current_ticket_type = array_values($current_ticket_types)[0];
     }
@@ -561,7 +555,7 @@ $rules = DOJO_NETWORKING_MESSAGE;
     }
 } */
 if(defined('TAOH_SPEEDNETWORKING_ENABLE') && TAOH_SPEEDNETWORKING_ENABLE == 1) {
-    if (isset($room_app) && $room_app === 'event' && isset($club_info['streaming_link']) && !empty($club_info['streaming_link'])) 
+    if (isset($room_app) && $room_app === 'event' && isset($club_info['streaming_link']) && !empty($club_info['streaming_link']))
         $speednetwork_enable = 0;
     else if(isset($sub_app) && $sub_app !='' && ($sub_app == 'session' || $sub_app == 'exhibitor'))
         $speednetwork_enable = 0;
@@ -596,7 +590,7 @@ if ($taoh_user_is_logged_in) {
         $my_following_ptoken_list = array_column($my_following_list, 'ptoken');
     }
 }
-                            
+
 ?>
 
     <link rel="stylesheet" href="<?php echo TAOH_CHAT_PREFIX; ?>/chat/libs/bootstrap/css/bootstrap.min.css">
@@ -824,7 +818,7 @@ if ($taoh_user_is_logged_in) {
         .reaction-popup {
             position: absolute;
             bottom: 100%;
-            /* left: 50%; 
+            /* left: 50%;
             transform: translateX(-50%);*/
             background: white;
             border-radius: 25px;
@@ -901,7 +895,7 @@ if ($taoh_user_is_logged_in) {
         .emoji_placeholder {
             cursor: pointer;
         }
-        
+
     </style>
 
     <div class="bg-white">
@@ -919,7 +913,7 @@ if ($taoh_user_is_logged_in) {
                     ?>
                     <div class="hero-content align-items-center justify-content-between">
                         <div class="col-lg-12">
-                            <div class="row align-items-center">                                
+                            <div class="row align-items-center">
                                 <ul class="col-md-10 nav nav-tabs justify-content-left border-0 mt-4 mb-4 <?=($room_app == "live" ? 'd-none' : '')?>" role="tablist">
                                     <?php
                                     $link_count = count($club_info['breadcrumbs']);
@@ -936,49 +930,43 @@ if ($taoh_user_is_logged_in) {
                                     foreach ($club_info['breadcrumbs'] as $value) {
 
                                         $link = TAOH_SITE_URL_ROOT . $value['link'];
-                                        
+
                                         if($count == count($club_info['breadcrumbs'])){
                                             define('TAOH_NETWORK_REFERRAL_URL', $link);
                                         }
-                                        
-                                        
 
-                                        
                                         if($value['link'] == '#')
                                             $link = 'javascript:void(0);';
                                         echo '<li class="nav-item"  '.$count.'>
                                                     <a href="' . $link . '">' . $value['title'] . '</a>';
-                                                 
+
                                         if($count <= $link_count)
                                             echo icon('chevron-right', '#000000', 19);
-                                        
+
                                         echo '</li>';
 
                                         $count++;
 
 
                                     }
-
-                                   
-
                                     if ($parse_url_1 == 'dm') {
                                        // define('TAOH_NETWORK_REFERRAL_URL', TAOH_SITE_URL_ROOT . '/message/dm');
                                         echo '<li class="nav-item"></span>
                                             DM</li>';
                                     }
                                     else{
-                                       
+
                                          echo '<li class="nav-item"></span>
                                             Networking</li>';
                                     }
-                                    
-                                    
+
+
                                     if (!empty($msg_from_owner) || !empty($club_info['msg_from_owner'])) {
                                         echo '<li class="nav-item ml-2"><span>| Note from organizer</span>';
                                         echo '<i class="fa fa-info-circle ml-2 cursor-pointer" data-toggle="collapse" data-target="#org_msg" title="View more info" aria-expanded="false" aria-controls="org_msg" style="color: #15a4f7; font-size: 20px;"></i>';
                                         echo '</li>';
                                     }
-                                    
+
                                     if (isset($_GET['from'])) {
                                         echo '<li class="nav-item"><span><?= icon('chevron-right', '#000000', 19) ?></span>
                                             <a href="' . TAOH_SITE_URL_ROOT . '/club/room/' . $contslug . '">Networking</a></li>';
@@ -992,19 +980,16 @@ if ($taoh_user_is_logged_in) {
                                     echo '<button class="btn btn-sm theme-btn w-100" id="video_room_btn" data-toggle="modal" data-target="#video_room_join_confirmation"><i class="fa fa-video-camera mr-1" aria-hidden="true"></i> Enter Video Room</button>';
                                     echo '</div>';
                                 }
-                                
+
                                 ?>
                                 <!--<div class="col-md-2">
                                     <button class="btn btn-primary btn-sm theme-btn w-100" data-toggle="modal" data-target="#reportBugModal">
                                         Report an issue</button>
-                                    
+
                                 </div>-->
                             </div>
                         </div>
-                        
 
-
-                            
                         <div class="row">
                             <div class="col-lg-8" id="breadcrumbs_accordion">
                                 <div id="demo" class="collapse" data-parent="#breadcrumbs_accordion">
@@ -1077,7 +1062,7 @@ if ($taoh_user_is_logged_in) {
             <!-- end side-menu nav -->
         </div>
         <!-- end left sidebar-menu -->
-        
+
 
          <!-- Emoji Picker -->
         <div id="emoji-picker" class="emoji-picker">
@@ -1397,11 +1382,11 @@ if ($taoh_user_is_logged_in) {
                     <div>
                         <div class="chat-room-list" data-simplebar>
 
-                           
+
                             <button class="btn row ml-3 my-3 wp-en">
                                 <i class="fas fa-bars fs-24"></i>
                             </button>
-                            
+
 
                             <!-- Start Participant -->
                             <div class="w-hide d-none">
@@ -1419,10 +1404,10 @@ if ($taoh_user_is_logged_in) {
                                             <div class="dropdown-menu dropdown-menu-end" style="">
                                                 <a class="dropdown-item d-flex justify-content-between align-items-center chatlist-sidebar-show" href="#">More info <i class="bx bx-info-circle text-muted"></i></a>
                                             </div>
-                                        </div>   
+                                        </div>
                                     </div>
                                 </div>
-                                <div class="left-section  status_div ">                            
+                                <div class="left-section  status_div ">
                                     <p style="position: relative" class="d-flex update-status px-3">
                                         <span id="loadEmoji"><img onclick="openStatusModal();" src="<?php echo TAOH_SITE_URL_ROOT . '/assets/images/emojis/default.svg';?>" alt="Emoji" id="loadEmojiImg" class="update-image" style="left: 26px;"></span>
                                         <input class="form-control pl-5 light-dark-card" type="text" maxlength="140" value="" name="my_status" id="my_status" placeholder="Say something">
@@ -1470,7 +1455,7 @@ if ($taoh_user_is_logged_in) {
 
                                                 <!-- Button trigger modal -->
                                                 <?php if($create_channel_flag == 1){ ?>
-                                                    <button data-bs-toggle="tooltip" data-bs-trigger="hover" data-bs-placement="top" title="Create group" type="button" 
+                                                    <button data-bs-toggle="tooltip" data-bs-trigger="hover" data-bs-placement="top" title="Create group" type="button"
                                                     class="create_channel btn btn-success btn-sm" data-bs-toggle="modal" data-bs-target="#createChannelModal">
                                                         <i class="bx bx-plus align-middle"></i>
                                                     </button>
@@ -1482,7 +1467,7 @@ if ($taoh_user_is_logged_in) {
 
                                 <div class="left-section  chat-message-list  d-none">
 
-                                
+
                                     <ul class="watchpartyChannel list-unstyled chat-list chat-user-list" id="watch_partyChannel"><!-- data-intro="You can also join the video call on the channel by clicking camera button." data-step="6" -->
 
                                     </ul>
@@ -1514,7 +1499,7 @@ if ($taoh_user_is_logged_in) {
                                 </ul>
                             </div>
                             <!-- End chat-message-list -->
-                            
+
 
                             <?php if(ORGANIZER_CHANNEL_ENABLE && $event_owner_ptoken !='') { ?>
                                 <div class="d-flex align-items-center px-4 mt-4 mb-2 d-none" id="organizer-block">
@@ -1527,9 +1512,6 @@ if ($taoh_user_is_logged_in) {
 
                                 <div class="chat-message-list ">
                                     <ul class="orgChannelList list-unstyled chat-list chat-user-list" id="organizerChatList">
-                                           
-
-                                            
                                     </ul>
                                     <?php if($can_delete_all_msg ) { ?>
                                             <div class="m-3 p-3 w-hide">
@@ -1571,7 +1553,7 @@ if ($taoh_user_is_logged_in) {
                                     </ul>
                                 </div>
                             <?php } ?>
-                           
+
 
                         </div>
 
@@ -1593,7 +1575,7 @@ if ($taoh_user_is_logged_in) {
                 <!-- start chat conversation section -->
                 <div class="w-100 overflow-hidden position-relative bo-lf-rt">
                     <input type="hidden" id="channel_of_type" name="channel_of_type" value="">
-                    
+
                     <!-- participants list margin: auto; -->
                     <div id="participants" class="position-relative" style="display: none; max-width: 1200px;">
                         <div class="px-4 py-3 pb-xl-0">
@@ -1616,7 +1598,7 @@ if ($taoh_user_is_logged_in) {
                                         <!-- <a class="dropdown-item d-flex justify-content-between align-items-center d-lg-none" href="#" data-bs-toggle="modal" data-bs-target=".audiocallModal">Audio <i class="bx bxs-phone-call text-muted"></i></a>
                                         <a class="dropdown-item d-flex justify-content-between align-items-center d-lg-none" href="#" data-bs-toggle="modal" data-bs-target=".videocallModal">Video <i class="bx bx-video text-muted"></i></a> -->
                                     </div>
-                                </div>   
+                                </div>
 
 
                             </div>
@@ -1656,16 +1638,16 @@ if ($taoh_user_is_logged_in) {
                                         <div class="d-flex align-items-center justify-content-between flex-grow-1 mb-2" style="gap: 12px;">
                                             <div class="d-flex align-items-center flex-wrap" style="gap: 9px;">
                                                 <span class="prt-v2-name">Abdul - Frontend Dev</span>
-                                                
+
                                                 <div class="d-flex align-items-center flex-wrap" style="gap: 9px;">
                                                     <span class="round-con pro-type">P</span>
-                                                
+
                                                     <span class="round-con ticket-type">
                                                         <svg width="14" height="9" viewBox="0 0 14 9" fill="none" xmlns="http://www.w3.org/2000/svg">
                                                             <path d="M1.55556 0C0.697569 0 0 0.672656 0 1.5V3C0 3.20625 0.179861 3.36797 0.381597 3.43594C0.838542 3.58828 1.16667 4.00781 1.16667 4.5C1.16667 4.99219 0.838542 5.41172 0.381597 5.56406C0.179861 5.63203 0 5.79375 0 6V7.5C0 8.32734 0.697569 9 1.55556 9H12.4444C13.3024 9 14 8.32734 14 7.5V6C14 5.79375 13.8201 5.63203 13.6184 5.56406C13.1615 5.41172 12.8333 4.99219 12.8333 4.5C12.8333 4.00781 13.1615 3.58828 13.6184 3.43594C13.8201 3.36797 14 3.20625 14 3V1.5C14 0.672656 13.3024 0 12.4444 0H1.55556ZM3.11111 2.625V6.375C3.11111 6.58125 3.28611 6.75 3.5 6.75H10.5C10.7139 6.75 10.8889 6.58125 10.8889 6.375V2.625C10.8889 2.41875 10.7139 2.25 10.5 2.25H3.5C3.28611 2.25 3.11111 2.41875 3.11111 2.625ZM2.33333 2.25C2.33333 1.83516 2.6809 1.5 3.11111 1.5H10.8889C11.3191 1.5 11.6667 1.83516 11.6667 2.25V6.75C11.6667 7.16484 11.3191 7.5 10.8889 7.5H3.11111C2.6809 7.5 2.33333 7.16484 2.33333 6.75V2.25Z" fill="#BC1A53"/>
                                                         </svg>
                                                     </span>
-                                                
+
                                                     <span class="round-con location">
                                                         <svg width="10" height="13" viewBox="0 0 10 13" fill="none" xmlns="http://www.w3.org/2000/svg">
                                                         <path d="M5.61719 12.7079C6.95312 11.0736 10 7.11255 10 4.88765C10 2.18926 7.76042 0 5 0C2.23958 0 0 2.18926 0 4.88765C0 7.11255 3.04688 11.0736 4.38281 12.7079C4.70312 13.0974 5.29688 13.0974 5.61719 12.7079ZM5 3.25843C5.44203 3.25843 5.86595 3.43008 6.17851 3.73562C6.49107 4.04116 6.66667 4.45555 6.66667 4.88765C6.66667 5.31974 6.49107 5.73414 6.17851 6.03968C5.86595 6.34522 5.44203 6.51686 5 6.51686C4.55797 6.51686 4.13405 6.34522 3.82149 6.03968C3.50893 5.73414 3.33333 5.31974 3.33333 4.88765C3.33333 4.45555 3.50893 4.04116 3.82149 3.73562C4.13405 3.43008 4.55797 3.25843 5 3.25843Z" fill="#6F42C1"/>
@@ -1678,9 +1660,9 @@ if ($taoh_user_is_logged_in) {
                                                         </svg>
                                                     </span>
                                                 </div>
-                                                
+
                                             </div>
-                                            <a href="#" class="chat-btn-v2"> 
+                                            <a href="#" class="chat-btn-v2">
                                                 <svg width="12" height="10" viewBox="0 0 12 10" fill="none" xmlns="http://www.w3.org/2000/svg">
                                                     <path d="M3.90034 6.60022C6.05478 6.60022 7.80047 5.12267 7.80047 3.30011C7.80047 1.47755 6.05478 0 3.90034 0C1.74589 0 0.000205215 1.47755 0.000205215 3.30011C0.000205215 4.02389 0.27584 4.69328 0.74273 5.23893C0.677103 5.41518 0.5796 5.57081 0.476471 5.70207C0.386468 5.81832 0.29459 5.90832 0.227088 5.9702C0.193337 6.0002 0.165211 6.02458 0.14646 6.03958C0.137085 6.04708 0.129585 6.0527 0.125834 6.05458L0.122084 6.05833C0.0189558 6.13521 -0.0260457 6.27021 0.0152057 6.39209C0.0564571 6.51397 0.170836 6.60022 0.300215 6.60022C0.708979 6.60022 1.12149 6.49522 1.46463 6.36584C1.63714 6.30021 1.79839 6.22709 1.93902 6.15208C2.51467 6.43709 3.18406 6.60022 3.90034 6.60022ZM8.40049 3.30011C8.40049 5.40581 6.5423 6.99211 4.34098 7.18149C4.79662 8.57654 6.30792 9.60032 8.10048 9.60032C8.81675 9.60032 9.48615 9.43719 10.0637 9.15218C10.2043 9.22719 10.3637 9.30031 10.5362 9.36594C10.8793 9.49532 11.2918 9.60032 11.7006 9.60032C11.83 9.60032 11.9462 9.51595 11.9856 9.39219C12.025 9.26844 11.9819 9.13343 11.8769 9.05656L11.8731 9.05281C11.8694 9.04906 11.8619 9.04531 11.8525 9.03781C11.8337 9.02281 11.8056 9.0003 11.7719 8.96843C11.7044 8.90655 11.6125 8.81655 11.5225 8.70029C11.4193 8.56904 11.3218 8.41153 11.2562 8.23715C11.7231 7.69339 11.9987 7.02399 11.9987 6.29834C11.9987 4.55828 10.4068 3.13136 8.38736 3.0076C8.39486 3.10323 8.39861 3.20073 8.39861 3.29824L8.40049 3.30011Z" fill="#555555"/>
                                                 </svg>
@@ -1697,7 +1679,7 @@ if ($taoh_user_is_logged_in) {
                                     </div>
                                 </div> -->
 
-                            <div class="list-scroll-onmobile" id="networkArea-participant"></div> <!-- height: calc(100vh - 293px); overflow-y: auto; scrollbar-width: thin; width: 100%; max-width: 673px; -->                            
+                            <div class="list-scroll-onmobile" id="networkArea-participant"></div> <!-- height: calc(100vh - 293px); overflow-y: auto; scrollbar-width: thin; width: 100%; max-width: 673px; -->
 
                         </div>
                     </div>
@@ -1717,7 +1699,7 @@ if ($taoh_user_is_logged_in) {
                     <!-- speed networking list margin: auto; -->
                     <div id="speed_networking" class="position-relative" style="display: none; max-width: 1200px;">
                         <div>
-                            
+
                             <div class="py-3 user-chat-topbar">
                                 <div class="row align-items-center flex-nowrap">
                                     <div class="col">
@@ -1727,10 +1709,10 @@ if ($taoh_user_is_logged_in) {
                                                     <i class="bx bx-chevron-left align-middle text-white"></i>
                                                 </a>
                                             </div>
-                                            
+
                                             <div class="flex-grow-1 overflow-hidden">
                                                 <div class="d-flex align-items-center">
-                                                   
+
                                                     <div class="flex-shrink-0 chat-user-img me-3">
                                                         <div class="avatar-xs">
                                                             <span class="avatar-title rounded-circle bg-primary text-white">
@@ -1738,7 +1720,7 @@ if ($taoh_user_is_logged_in) {
                                                             </span>
                                                         </div>
                                                     </div>
-                                                           
+
                                                     <div class="flex-grow-1 overflow-hidden">
                                                         <h6 class="d-flex align-items-center mb-0 fs-18" style="gap: 6px;">
                                                             <span class="text-capitalize text-truncate">Speed Networking</span>
@@ -1746,7 +1728,7 @@ if ($taoh_user_is_logged_in) {
                                                                 <svg class="channel-drp-dwn-svg" width="14" height="14" viewBox="0 0 10 10" fill="none" xmlns="http://www.w3.org/2000/svg" style="transform: rotate(0deg);">
                                                                     <path d="M5 0C3.67392 0 2.40215 0.526784 1.46447 1.46447C0.526784 2.40215 0 3.67392 0 5C0 6.32608 0.526784 7.59785 1.46447 8.53553C2.40215 9.47322 3.67392 10 5 10C6.32608 10 7.59785 9.47322 8.53553 8.53553C9.47322 7.59785 10 6.32608 10 5C10 3.67392 9.47322 2.40215 8.53553 1.46447C7.59785 0.526784 6.32608 0 5 0ZM2.63672 4.70703C2.45312 4.52344 2.45312 4.22656 2.63672 4.04492C2.82031 3.86328 3.11719 3.86133 3.29883 4.04492L4.99805 5.74414L6.69727 4.04492C6.88086 3.86133 7.17773 3.86133 7.35938 4.04492C7.54102 4.22852 7.54297 4.52539 7.35938 4.70703L5.33203 6.73828C5.14844 6.92188 4.85156 6.92188 4.66992 6.73828L2.63672 4.70703Z" fill="black"></path>
                                                                 </svg>
-                                                            </button>                                                            
+                                                            </button>
                                                         </h6>
                                                         <span class="channnel_collapsible fs-14 text-muted lh-1 py-1 d-none">more info</span>
                                                         <p class="channel_members_count text-truncate text-muted mb-0 d-none">1 Member(s)</p>
@@ -1768,11 +1750,11 @@ if ($taoh_user_is_logged_in) {
                                                     </div>
                                                 </div>
                                             </li>
-                                          
+
                                         </ul>
                                     </div>
                                 </div>
-                            </div>                                        
+                            </div>
 
                             <!-- new template speed networking start  -->
 
@@ -1965,7 +1947,7 @@ if ($taoh_user_is_logged_in) {
                             <div class="successMatchDiv container pt-4 px-lg-4 d-none">
                             <div class="speed-nw-card p-3 p-lg-5 d-flex flex-column align-items-center">
                                 <h6 class="sm-text fs-24 text-center">Boom ! It’s a Match</h6>
-                                
+
 
                                 <div class="center-card">
                                     <svg width="129" height="120" viewBox="0 0 129 120" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -2078,7 +2060,7 @@ if ($taoh_user_is_logged_in) {
                             </div>
                             </div>
                             <!-- accept  end -->
-                                
+
                             <!--  reject start -->
                             <div class="rejectDiv container pt-4 px-lg-4 d-none">
                             <div class="speed-nw-card p-3 p-lg-5 d-flex flex-column align-items-center">
@@ -2198,7 +2180,7 @@ if ($taoh_user_is_logged_in) {
                                 <div class="col-auto">
                                     <ul class="list-inline user-chat-nav text-end mb-0">
                                         <!-- video button -->
-                                        <!-- <li class="list-inline-item">                                                
+                                        <!-- <li class="list-inline-item">
                                             <div class="links-list-item" data-bs-container=".chat-input-links" data-bs-toggle="popover" data-bs-trigger="focus" data-bs-html="true" data-bs-placement="top"
                                                 data-bs-content="<div class='loader-line'><div class='line'></div><div class='line'></div><div class='line'></div><div class='line'></div><div class='line'></div></div>">
                                                 <button type="button" class="btn nav-btn chat-video" data-bs-toggle="modal" data-bs-target="#v-channel-room">
@@ -2254,12 +2236,12 @@ if ($taoh_user_is_logged_in) {
 
                                         <li class="list-inline-item d-none d-lg-inline-block me-2 ms-0" >
                                             <button type="button" class="btn nav-btn channelData-show" style="display:none">
-                                                
+
                                                 <i class="bx bxs-info-circle"></i>
                                             </button>
                                         </li>
                                         <!-- user-profile-show data-bs-toggle="modal" data-bs-target=".membersData" -->
-                                         
+
                                         <!--<li class="list-inline-item">
                                             <div class="dropdown">
                                                 <button class="btn nav-btn" type="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -2281,9 +2263,6 @@ if ($taoh_user_is_logged_in) {
 
                         </div>
                         <!-- end chat user head -->
-
-                        
-
                         <!-- start chat conversation -->
                         <div class="chat-conversation p-3 p-lg-4" id="chat-conversation-direct" data-simplebar>
                             <div class="aw aw-spinner" id="ntwChatConversationLoader"></div>
@@ -2299,7 +2278,7 @@ if ($taoh_user_is_logged_in) {
                                     <span class="cursor-pointer" id="arrowContainer_dm">
                                         <svg class="d-flex" id="downArrow_dm" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                                         <polyline points="6 9 12 15 18 9" />
-                                        </svg>                                        
+                                        </svg>
                                         <svg class="d-none" id="upArrow_dm" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="18 15 12 9 6 15" /></svg>
                                     </span>
                                 </h6>
@@ -2315,7 +2294,7 @@ if ($taoh_user_is_logged_in) {
 
 
                     <div class="d-flex flex-column flex-md-row">
-                        <?php 
+                        <?php
                         if (isset($room_app) && $room_app === 'event' && isset($club_info['streaming_link']) && !empty($club_info['streaming_link'])) { ?>
                         <!-- watch party -->
                         <div class="watch-party watchPartySection flex-grow-1" style="display:none; border-right: 1px solid #d3d3d3;">
@@ -2327,10 +2306,10 @@ if ($taoh_user_is_logged_in) {
                                 </div>
 
                                <div class="card-body video-container d-flex align-items-center">
-                                    <iframe 
+                                    <iframe
                                         width="100%" height="315"
-                                        src="<?=$club_info['streaming_link'];?>" 
-                                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                                        src="<?=$club_info['streaming_link'];?>"
+                                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                                         allowfullscreen>
                                     </iframe>
                                 </div>
@@ -2364,7 +2343,7 @@ if ($taoh_user_is_logged_in) {
                                                             type="button"
                                                             toggle_text="open"
                                                             class="channel_toggle btn box-shadow-none p-0">
-                                                        
+
                                                             <svg class="channel-drp-dwn-svg" width="14" height="14" viewBox="0 0 10 10" fill="none" xmlns="http://www.w3.org/2000/svg">
                                                                 <path d="M5 0C3.67392 0 2.40215 0.526784 1.46447 1.46447C0.526784 2.40215 0 3.67392 0 5C0 6.32608 0.526784 7.59785 1.46447 8.53553C2.40215 9.47322 3.67392 10 5 10C6.32608 10 7.59785 9.47322 8.53553 8.53553C9.47322 7.59785 10 6.32608 10 5C10 3.67392 9.47322 2.40215 8.53553 1.46447C7.59785 0.526784 6.32608 0 5 0ZM2.63672 4.70703C2.45312 4.52344 2.45312 4.22656 2.63672 4.04492C2.82031 3.86328 3.11719 3.86133 3.29883 4.04492L4.99805 5.74414L6.69727 4.04492C6.88086 3.86133 7.17773 3.86133 7.35938 4.04492C7.54102 4.22852 7.54297 4.52539 7.35938 4.70703L5.33203 6.73828C5.14844 6.92188 4.85156 6.92188 4.66992 6.73828L2.63672 4.70703Z" fill="black"/>
                                                             </svg>
@@ -2403,19 +2382,19 @@ if ($taoh_user_is_logged_in) {
                                                             <div class="taoh-loader taoh-spinner" id="loader_transcript"  style="width:20px;height:20px;display:none;" ></div>
 
                                                             <a onclick="forwardChannelTranscript();" class="dropdown-item d-flex align-items-center justify-content-between"
-                                                            href="#">Send Transcript 
-                                                            
-                                                            <img 
+                                                            href="#">Send Transcript
+
+                                                            <img
                                                                 data-bs-toggle="tooltip" data-bs-trigger="hover" data-bs-placement="top" title="Click this icon to get the chat conversation via mail"
                                                                 src="<?php echo TAOH_SITE_URL_ROOT; ?>/assets/images/email_fwd.png" class="send_transcript" style="width:30px;height:30px;" /></a>
 
                                                             <!-- in small screen to view members  -->
                                                             <a class="dropdown-item d-flex justify-content-between align-items-center d-xl-none channel-sidebar-show fs-14" href="#">View Members<i class="bx bx-group text-muted fs-18"></i></a>
-                                                        
+
                                                         </div>
                                                     </div>
-                                                    
-                                                    
+
+
                                                 </li>
 
                                                 <li class="list-inline-item d-none  me-2 ms-0">
@@ -2434,7 +2413,7 @@ if ($taoh_user_is_logged_in) {
                                                             <!-- <a class="dropdown-item d-flex justify-content-between align-items-center d-lg-none" href="#" data-bs-toggle="modal" data-bs-target=".audiocallModal">Audio <i class="bx bxs-phone-call text-muted"></i></a>
                                                             <a class="dropdown-item d-flex justify-content-between align-items-center d-lg-none" href="#" data-bs-toggle="modal" data-bs-target=".videocallModal">Video <i class="bx bx-video text-muted"></i></a> -->
                                                         </div>
-                                                    </div> 
+                                                    </div>
                                                 </li>
 
                                             <!--<li class="list-inline-item d-none d-lg-inline-block me-2 ms-0" >
@@ -2458,9 +2437,6 @@ if ($taoh_user_is_logged_in) {
                                 </div>
                             </div>
                             <!-- end chat user head -->
-                            
-                            
-
                             <!-- start chat conversation -->
                             <div class="chat-conversation p-3 p-lg-4" id="chat-conversation-channel" data-simplebar>
                                 <div class="aw aw-spinner" id="frmChatConversationLoader"></div>
@@ -2476,11 +2452,11 @@ if ($taoh_user_is_logged_in) {
                                         <span class="cursor-pointer" id="arrowContainer">
                                             <svg class="d-flex" id="downArrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                                             <polyline points="6 9 12 15 18 9" />
-                                            </svg>                                        
+                                            </svg>
                                             <svg class="d-none" id="upArrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="18 15 12 9 6 15" /></svg>
                                         </span>
                                     </h6>
-                                </div>                    
+                                </div>
 
                                 <ul class="list-unstyled chat-conversation-list" id="channel-conversation-list-default">
                                     <li class="chat-list ">
@@ -2508,10 +2484,10 @@ if ($taoh_user_is_logged_in) {
                                         </div>
                                     </li>
                                 </ul>
-                                
-                                
+
+
                                 <ul class="list-unstyled chat-conversation-list aw aw-logo" id="channel-conversation-list">
-                                
+
                                 </ul>
                                 <ul class="list-unstyled channel-video-room-link mt-3 d-none" id="">
                                     <li class="chat-list ">
@@ -2619,17 +2595,17 @@ if ($taoh_user_is_logged_in) {
                                                                 </button>  -->
                                                     <button type="button" class="btn nav-btn chat-video" data-bs-toggle="modal" data-bs-target="#v-channel-room">
                                                         <i class="bx bx-video fs-35 text-muted align-middle"></i></button>
-                                            
-                                                
+
+
                                                     <!--<div class="dropdown">
-                                                        
+
                                                             <button type="button" class="btn btn-link text-decoration-none btn-sm waves-effect" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
                                                             >
                                                                 <i class="bx bx-video fs-40 text-muted align-middle"></i>
                                                             </button>
-                                                            
+
                                                             <div class="dropdown-menu dropdown-menu-end">
-                                                            
+
                                                                 <a id="user-chat-video-bottom"  data-type="1" class="chat-video dropdown-item d-flex align-items-center justify-content-between"
                                                                 href="#">Share Your Meet.TAO.ai link</a>
                                                                 <div class="dropdown-divider"></div>
@@ -2815,7 +2791,7 @@ if ($taoh_user_is_logged_in) {
                             <ul class="list-unstyled chat-reply-conversation-list aw aw-logo" id="chat-reply-conversation-list">
 
                             </ul>
-                        </div>                    
+                        </div>
 
                         <!-- start chat reply input section -->
                         <div id="chat-reply-input-container" class="chat-input-bottom" style="z-index: 999999;">
@@ -2866,7 +2842,7 @@ if ($taoh_user_is_logged_in) {
                                     <i class="bx bx-x d-none d-lg-inline"></i>
                                     <i class="bx bx-left-arrow-alt d-inline d-lg-none"></i>
                                 </button>
-                            </div>                            
+                            </div>
                         </div>
                     </div>
 
@@ -2880,13 +2856,13 @@ if ($taoh_user_is_logged_in) {
                         <ul class="list-unstyled chat-like-conversation-list aw aw-logo" id="chat-like-conversation-list">
 
                         </ul>
-                    </div>                    
+                    </div>
                 </div>
                 <!-- end chat like sidebar -->
 
                 <!-- start User profile detail sidebar -->
                 <div class="user-profile-sidebar" id="user-profile-sidebar">
-                    
+
                 </div>
                 <!-- end User profile detail sidebar -->
 
@@ -2901,7 +2877,7 @@ if ($taoh_user_is_logged_in) {
                                 </div>
                             </div>
                         </div>
-                    
+
                         <div class="card my-3 mx-2" id="activities_block1">
                             <div class="card-header bg-white" style="cursor: unset;">
                                 <p class="fs-12 fw-400 text-black mb-0">Here is what happening !</p>
@@ -2910,11 +2886,11 @@ if ($taoh_user_is_logged_in) {
                             <div class="card-body">
                                  <!-- video rooms card -->
                              <div class="video-room-activity d-flex align-items-start" style="gap: 12px;">
-                                
+
                                 <div  class="taoh-loader taoh-spinner d-block show" id="pc_loader_room_activities1"
                                                     style="width:50px;height:50px;display:block;"
                                                     ></div>
-                            </div> 
+                            </div>
                                 <div class="card">
                                     <div class="card-body py-2 px-2">
                                         <ul class="p-0 mb-0" id="activities-list1">
@@ -2932,10 +2908,10 @@ if ($taoh_user_is_logged_in) {
 
                         </div>
 
-                    
+
                 </div>
 
-                
+
                 <!-- End channel members detail sidebar -->
 
                  <!-- START participants sidebar -->
@@ -2955,7 +2931,7 @@ if ($taoh_user_is_logged_in) {
                         </div>
                     </div>
                     <div class="px-3 py-4">
-                    
+
                     <!-- <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#v-overlay">video overlay</button> -->
 
                      <?php if (function_exists('jobs_networking_widget')) { jobs_networking_widget();  } ?>
@@ -2969,7 +2945,7 @@ if ($taoh_user_is_logged_in) {
                             <p class="sm-text mb-0">Click for Instructions</p>
                         </div>
                     </button>
-                    
+
                     <div class="border-con p-3 mb-3 d-none d-xl-block">
                         <div class="d-flex align-items-center mb-2 pb-2" style="border-bottom: 1px solid #d3d3d3; gap: 6px;">
                             <div class="circle-highlight">
@@ -2977,7 +2953,7 @@ if ($taoh_user_is_logged_in) {
                                 <div class="center-circle"></div>
                             </div>
                             <h6 class="mb-0 guide-heading">Don't Know Where to Start</h6>
-                        </div>                       
+                        </div>
 
                         <div class="d-flex align-items-center flex-wrap" style="gap: 12px;">
                             <button id="tourbutton" type="button" class="btn bor-btn d-none d-xl-block">Start Application Tour</button>
@@ -2988,21 +2964,21 @@ if ($taoh_user_is_logged_in) {
                     <div class="participants_profile_info"></div>
 
                     <div class="card mb-3 light-dark-card">
-                        
+
                         <div class="card border-0" id="dojo_suggestion_block">
                             <div class="card-header bg-white" style="cursor: unset;">
                                 <p class="fs-12 fw-400 text-black mb-0">Hey Here is what</p>
                                 <h5 class="fs-19 fw-400 text-black mb-0">Dojo Says !</h5>
-                            </div>                           
+                            </div>
                             <div class="card-body" id="dojo_participant_div">
 
 
-                                <p class="fs-12 fw-400 text-black mb-1">Suggested Based on 
+                                <p class="fs-12 fw-400 text-black mb-1">Suggested Based on
                                     <span id="suggestion_on"><span>
                                 </p>
                                 <!-- Based on Roles -->
                                 <div>
-                                    
+
                                     <div class="card" id="suggestion-users">
                                         <div class="taoh-loader taoh-spinner d-block show" id="pc_loader" style="width:50px;height:50px;display:block;"></div>
                                     </div>
@@ -3025,7 +3001,7 @@ if ($taoh_user_is_logged_in) {
                                     </div>
                                 </div> -->
                             </div>
-                        </div>                      
+                        </div>
 
                         <div class="card border-0 mb-3" id="activities_block">
                             <div class="card-header bg-white py-3" style="cursor: unset;">
@@ -3036,7 +3012,7 @@ if ($taoh_user_is_logged_in) {
                                 <!-- video rooms card -->
                                 <div class="video-room-activity">
                                     <div class="taoh-loader taoh-spinner d-block show" id="pc_loader_room_activities" style="width:50px;height:50px;display:block;"></div>
-                                </div> 
+                                </div>
 
                                 <div class="card">
                                     <div class="card-body py-2 px-2">
@@ -3044,7 +3020,7 @@ if ($taoh_user_is_logged_in) {
                                             <div class="taoh-loader taoh-spinner d-block show" id="pc_loader_activities" style="width:50px;height:50px;display:block;"></div>
                                         </ul>
                                     </div>
-                                </div> 
+                                </div>
                             </div>
                         </div>
 
@@ -3056,17 +3032,17 @@ if ($taoh_user_is_logged_in) {
                                 <h3 class="fs-17">How Networking App Works?</h3> <!-- Job Fair video -->
                                 <div class="divider"><span></span></div>
                                 <?php if (function_exists('taoh_video_widget')) {
-                                    //taoh_video_widget('https://youtu.be/L87udpeMKa0'); 
+                                    //taoh_video_widget('https://youtu.be/L87udpeMKa0');
                                      } ?>
                             </div>
                         </div>
                     </div>
 
                     <!-- SPONSOR SECTION STARTS -->
-                                            
+
                     <?php
                         if (isset($room_app) && $room_app === 'event') {
-                            echo taoh_sponsor_slider_widget($club_token); 
+                            echo taoh_sponsor_slider_widget($club_token);
                         }
                     ?>
                     <?php
@@ -3232,7 +3208,7 @@ if ($taoh_user_is_logged_in) {
                     <?php if (function_exists('taoh_invite_friends_widget')) { taoh_invite_friends_widget($club_info['title'],'networking',TAOH_NETWORK_REFERRAL_URL);  } ?>
                     <?php if (function_exists('taoh_get_recent_jobs')) { taoh_get_recent_jobs('new');  } ?>
 
-                    </div>                                 
+                    </div>
                 </div>
                  <!-- END participants sidebar -->
 
@@ -3240,9 +3216,6 @@ if ($taoh_user_is_logged_in) {
             <!-- end user chat content -->
         </div>
         <!-- End User chat -->
-
-      
-
         <!-- Start add group Modal -->
         <div class="modal fade" id="createChannelModal" tabindex="-1" role="dialog" aria-labelledby="createChannelModalLabel" aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
@@ -3250,9 +3223,6 @@ if ($taoh_user_is_logged_in) {
                     <form action="<?= taoh_site_ajax_url(); ?>" method="post" name="createChannelForm" id="createChannelForm">
                         <div class="modal-header">
                             <h5 class="modal-title fs-16" id="createChannelModalLabel">Create New Channel</h5>
-                            
-                               
-
                                 <button type="button" class="btn-close btn-close-black" data-bs-dismiss="modal" aria-label="Close">
                                 </button>
                         </div>
@@ -3278,25 +3248,22 @@ if ($taoh_user_is_logged_in) {
                                 <?php if(count($ticket_types_array) > 0){ ?>
                                 <div class="mb-4 ">
                                     <label for="channel_ticket_type" class="form-label">Channel Ticket Type</label><br>
-                                    
+
                                     <select  name="channel_ticket_type" class="form-control" id="channel_ticket_type"
                                     >
                                     <option value="">Select</option>
                                     <option value="">All</option>
-                                        <?php 
-                                        
-                                            foreach ($ticket_types_array as $key => $value) {  ?>                                    
+                                        <?php
+
+                                            foreach ($ticket_types_array as $key => $value) {  ?>
                                             <option value="<?php echo $value['slug'];?>"><?php echo $value['title'];?></option>
                                         <?php } ?>
                                     </select>
-                                    <span class="fs-10">(Users who registered with this ticket type can only 
+                                    <span class="fs-10">(Users who registered with this ticket type can only
                                         access the channel)</span>
                                 </div>
                                 <?php } ?>
                             </div>
-
-                            
-
                             <div class="mb-3" style="display:none;">
                                 <div class="common-toggle">
                                     <div class="field-label mb-3">Video Channel</div>
@@ -3317,9 +3284,9 @@ if ($taoh_user_is_logged_in) {
                                 <span class="text-danger" id="channel_video_url_error"></span>
                                 (or)
                                 <button class="btn btn-primary" name="jitsi_for_channel"  id="jitsi_for_channel" >Generate Jitsi Url</button>
-                                
+
                             </div>
-                            
+
                         </div>
                         <div class="modal-footer border-top-dashed">
                            <button type="submit" class="btn btn-primary m-0"><i class="fa fa-play-circle-o mr-2" aria-hidden="true"></i> Create Channel</button>
@@ -3516,7 +3483,7 @@ if ($taoh_user_is_logged_in) {
             <div class="modal-dialog bg-white">
                 <div class="modal-content" style="border: 1px solid #ccc; border-radius: 8px;">
                     <!--<div class="modal-header flex-column pb-0 pt-2" style="border: none; position: relative;">
-                        
+
                         <div class="d-flex justify-content-end w-100">
                         <button type="button" class="btn rounded-circle" data-bs-dismiss="modal" aria-label="Close" style="background: none; border: 1px solid #d3d3d3;">
                             <svg width="10" height="10" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -3527,23 +3494,20 @@ if ($taoh_user_is_logged_in) {
                     </div>-->
                     <div class="modal-header">
                             <h5 class="modal-title fs-16" id="createChannelModalLabel">Start a Video Meeting !</h5>
-                            
-                               
-
                                 <button type="button" class="btn-close btn-close-black" data-bs-dismiss="modal" aria-label="Close">
                                 </button>
                         </div>
 
                     <div class="modal-body">
-                       
-                        
+
+
                         <p class="fs-14 fw-400 text-black mb-0">Create or share a video room and invite others to join</p>
                         <hr class="my-2" style="border: none; border-top: 2px solid #d3d3d3;">
                         <form id="createVideoForm" method="post" action="<?= taoh_site_ajax_url(); ?>">
                             <div class="row">
                                 <div class="form-group col-lg-8">
                                     <label for="video_name" class="fs-14 fw-400">Name of the Video Room <span class="text-danger">*</span></label>
-                                    <input type="text" 
+                                    <input type="text"
                                     value="<?php echo $user_info_obj->chat_name ?? ''; ?> Room"
                                     id="video_name" name="video_name"  class="form-control alphanumericInput">
                                 </div>
@@ -3560,7 +3524,7 @@ if ($taoh_user_is_logged_in) {
                                 </div>
                                 <div class="row">
                                     <div class="form-group col-lg-12 row">
-                                        
+
                                         <label for="" class="fs-14 fw-400 mb-1">Choice of the Room <span class="text-danger">*</span></label>
 
                                         <div class="col-lg-6 d-inline-flex align-items-center" style="gap: 4px;">
@@ -3585,7 +3549,7 @@ if ($taoh_user_is_logged_in) {
                                  <button type="submit" class="btn btn-primary m-0"><i class="fa fa-play-circle-o mr-2" aria-hidden="true"></i> Create & Share Room</button>
                              </div>
                         </form>
-                        
+
                         <p class="fs-10 fw-400 ml-auto mt-2 mb-0" style="color: #787272; width: fit-content;">By creating a room, you agree to our Terms & Conditions</p>
                     </div>
                 </div>
@@ -3782,8 +3746,8 @@ if ($taoh_user_is_logged_in) {
                                     } else {
                                         echo ' → ' .ucwords($ch).'<br>';
                                     }
-                                }                                    
-                            }                                
+                                }
+                            }
                         ?>
 
                     </div>
@@ -3797,9 +3761,6 @@ if ($taoh_user_is_logged_in) {
             </div>
         </div>
         <!-- Live now modal end -->
-
-
-
         <!-- What's On Your Mind -->
          <div class="modal fade" id="status-modal" tabindex="-1" role="dialog" aria-labelledby="statusModalLabel" aria-hidden="true">
             <div class="modal-dialog" role="document">
@@ -3862,7 +3823,7 @@ $show_finish_setup_link = 0;
 $data_encode = json_encode(taoh_user_all_info());
 $data = json_decode($data_encode, true);
 
-//print_r($data); 
+//print_r($data);
 
 // if (!isset($data['profile_stage']) || (isset($data['profile_stage']) && $data['profile_stage'] < 2)) {
 //     $show_finish_setup_link = 1;
@@ -3890,8 +3851,8 @@ if (isset($data['profile_stage']) && $data['profile_stage'] < 2) {
         let _taoh_channel_direct_message = '<?php echo defined('TAOH_CHANNEL_DIRECT_MESSAGE') ? TAOH_CHANNEL_DIRECT_MESSAGE : 2; ?>';
         let _room_app = '<?php echo $room_app ?>';
         let _can_delete_all_msg = '<?php echo $can_delete_all_msg ?>';
-        let _like_enable = '<?php echo defined('TAOH_LIKE_ENABLE') ? TAOH_LIKE_ENABLE : 1; ?>';    
-        
+        let _like_enable = '<?php echo defined('TAOH_LIKE_ENABLE') ? TAOH_LIKE_ENABLE : 1; ?>';
+
         var _speed_networking_enable = '<?php echo $speednetwork_enable;?>';
 
         let _settings_url = '<?php echo TAOH_SITE_URL_ROOT . '/settings' ?>';
@@ -3939,7 +3900,7 @@ if (isset($data['profile_stage']) && $data['profile_stage'] < 2) {
         let ntw_asm_indexes = [...ntw_asm_actual_indexes];
         let ntw_asm_index_messages = <?php echo json_encode($ntw_asm_index_messages ?? []); ?>;
 
-        let show_finish_setup_link = <?php echo $show_finish_setup_link; ?>;        
+        let show_finish_setup_link = <?php echo $show_finish_setup_link; ?>;
 
         let sidekick_ptoken = '<?php echo $sidekick_ptoken ?? ''; ?>';
         let sidekick_avatar = '<?php echo $sidekick_avatar ?? ''; ?>';
@@ -4017,8 +3978,8 @@ if (isset($data['profile_stage']) && $data['profile_stage'] < 2) {
 
         var currentFullPath = window.location.origin + window.location.pathname;
         var root_url = '<?php echo TAOH_SITE_URL_ROOT ?>';
-        currentFullPath = currentFullPath.replace(root_url, "");    
-                 
+        currentFullPath = currentFullPath.replace(root_url, "");
+
     </script>
 
 
@@ -4047,13 +4008,10 @@ if (isset($data['profile_stage']) && $data['profile_stage'] < 2) {
                 $('.chat-leftsidebar').css('overflow-x', 'hidden');
             }
         });
-    
-    
-
-        $(document).ready(function () {            
+        $(document).ready(function () {
 
             taoh_network_update_online();
-                       
+
             /*
             $('.chat-leftsidebar').css('height', win_height - 163);
             $('.chat-leftsidebar').css('overflow-y', 'auto');
@@ -4062,9 +4020,9 @@ if (isset($data['profile_stage']) && $data['profile_stage'] < 2) {
 
             setInterval(() => {
 
-                loadChannelList(1, 1);               
+                loadChannelList(1, 1);
                 taoh_load_suggestion_users();
-                
+
             }, 30000);
 
             setInterval(() => {
@@ -4074,8 +4032,8 @@ if (isset($data['profile_stage']) && $data['profile_stage'] < 2) {
 
             setInterval(() => {
                 loadChannelList(1);
-                taoh_network_update_online();                
-            }, 10000);            
+                taoh_network_update_online();
+            }, 10000);
 
             taoh_load_network_entries();
             $('#dm-block').hide();
@@ -4095,15 +4053,15 @@ if (isset($data['profile_stage']) && $data['profile_stage'] < 2) {
             } else {
                 $('.live_now_btn').parent('li').show();
             }
-            
+
            // alert(layout)
 
             if (layout == 1) {
                 console.log('----chat_window-----------3')
                 loadchatWindow('participants');
-            } 
-            else if(layout == 5){ 
-                
+            }
+            else if(layout == 5){
+
                 selectedChat = 'watch-party';
                 $('.watchPartySection').show();
                 $('.watchPartySection').addClass('watchPartyEnabled');
@@ -4114,28 +4072,22 @@ if (isset($data['profile_stage']) && $data['profile_stage'] < 2) {
                    currentElem = $('.watch_party');
                    console.log('-----currentElem--------',currentElem)
                    if(currentElem.length > 0){
-                        processChannelClick(currentElem); 
+                        processChannelClick(currentElem);
                         watch_party_shown = 1;
 
-                   }                   
+                   }
                    /*else{
 
-                       
+
                        console.log('----chat_window-----------33')
                        watch_party_shown = 0;
                        selectedChat = '';
                        loadchatWindow('participants');
                         $('.watchPartySection').hide();
                         $('.watchPartySection').removeClass('watchPartyEnabled');
-
-                        
-
                    }*/
                 }, 1000);
-                
-                 
-              
-                
+
             }
             else if (layout == 3) {
                 console.log('----chat_window-----------5')
@@ -4144,7 +4096,7 @@ if (isset($data['profile_stage']) && $data['profile_stage'] < 2) {
                 $('.left-section').removeClass('d-flex');
                 $('#dm-block').show();
             } else {
-                
+
             }
 
             $(document).on('click', '#nextIndex', function () {
@@ -4166,7 +4118,7 @@ if (isset($data['profile_stage']) && $data['profile_stage'] < 2) {
             $('#watch_party_view_btn').click(function() {
                 const $videoContainer = $('#videoContainer');
                 const $toggleBtn = $(this);
-                
+
                 if ($videoContainer.hasClass('d-none')) {
                     // Show video
                     $videoContainer.removeClass('d-none');
@@ -4179,7 +4131,7 @@ if (isset($data['profile_stage']) && $data['profile_stage'] < 2) {
             });
 
             $(document).on('click', '.message-item-dot', function() {
-                
+
                 var frm_message_id = $(this).data('frm_message_id');
                 var channel_id = $(this).data('channel_id');
 
@@ -4211,7 +4163,7 @@ if (isset($data['profile_stage']) && $data['profile_stage'] < 2) {
         $(document).on('click', '.speed_networking_update_btn', async function () {
             updateSpeedNetworkingData(my_pToken, true);
         });
-            
+
         $(document).on('click', '.speed_networking_btn', async function () {
 
             $('.channelList li').each(function() {
@@ -4235,7 +4187,7 @@ if (isset($data['profile_stage']) && $data['profile_stage'] < 2) {
                 $('.carousel-control-prev').show();
                 $('.carousel-control-next').show();
             }
-            
+
             const currentElem = $(this).closest('li');
             currentElem.addClass('active');
             console.log('----chat_window-----------6');
@@ -4264,17 +4216,17 @@ if (isset($data['profile_stage']) && $data['profile_stage'] < 2) {
                     success: function (res) {
                         loader(false, loaderAreaSp);
                         let resultArr = res;
-                        if(res.success) {                                                    
+                        if(res.success) {
                             const response_data = {
-                                status: 200                                
+                                status: 200
                             };
                             resolve(response_data);
                         } else {
                             const response_data = {
                                 status: 201
                             };
-                            resolve(response_data);                            
-                        }                        
+                            resolve(response_data);
+                        }
                     },
                     error: function (xhr, status, error) {
                         console.log('Error:', xhr.status);
@@ -4283,7 +4235,7 @@ if (isset($data['profile_stage']) && $data['profile_stage'] < 2) {
             });
 
             if (response.status === 200) {
-                
+
                 if(intervalId1) {
                     clearInterval(intervalId1);
                     $(".countDownTimer").text("30 secs");
@@ -4294,7 +4246,7 @@ if (isset($data['profile_stage']) && $data['profile_stage'] < 2) {
                 }
 
                 $('.countDownDiv').addClass('d-none');
-                $('.successMatchDiv').addClass('d-none');                
+                $('.successMatchDiv').addClass('d-none');
 
                 $('.connect_btn').prop('disabled', false).text('Connect');
                 $('.not_interested_btn').prop('disabled', false).text('Not interested');
@@ -4307,8 +4259,8 @@ if (isset($data['profile_stage']) && $data['profile_stage'] < 2) {
                     $('.zeroday-speed').addClass('d-none');
                     $('.successMatchDiv').addClass('d-none');
                 }
-                //updateSpeedNetworkingData(my_pToken, true);                        
-            }            
+                //updateSpeedNetworkingData(my_pToken, true);
+            }
         });
 
         $(document).on('click', '.connect_btn', async function () {
@@ -4331,12 +4283,12 @@ if (isset($data['profile_stage']) && $data['profile_stage'] < 2) {
                     type: 'post',
                     data: data,
                     dataType: 'json',
-                    success: function (res) {                        
+                    success: function (res) {
                         let resultArr = res;
 
                         chat_messages_key = `sn_${ntw_room_key}`;
 
-                        IntaoDB.getItem(objStores.ntw_store.name, chat_messages_key).then((intao_data) => {        
+                        IntaoDB.getItem(objStores.ntw_store.name, chat_messages_key).then((intao_data) => {
                             let updatedResponse = {};
                             if (intao_data?.values) {
                                 updatedResponse = intao_data.values;
@@ -4344,7 +4296,7 @@ if (isset($data['profile_stage']) && $data['profile_stage'] < 2) {
                             if (!Array.isArray(updatedResponse[chatwith])) {
                                 updatedResponse[chatwith] = [];
                             }
-                            
+
                             const exists = updatedResponse[chatwith].some(item => item.ptoken === my_pToken);
                             if (!exists) {
                                 updatedResponse[chatwith].push({
@@ -4352,7 +4304,7 @@ if (isset($data['profile_stage']) && $data['profile_stage'] < 2) {
                                     status: 0
                                 });
                             }
-                                                        
+
                             IntaoDB.setItem(objStores.ntw_store.name, {
                                 taoh_ntw: chat_messages_key,
                                 values: updatedResponse,
@@ -4365,7 +4317,7 @@ if (isset($data['profile_stage']) && $data['profile_stage'] < 2) {
                             success: true,
                         };
                         resolve(response_data);
-                        
+
                     },
                     error: function (xhr, status, error) {
                         const response_data = {
@@ -4382,8 +4334,8 @@ if (isset($data['profile_stage']) && $data['profile_stage'] < 2) {
         $(document).on('click', '.accept_btn, .reject_btn', async function () {
             var chatWith = $(this).attr('data-chatwith');
             var chatFrom = $(this).attr('data-chatfrom');
-            var action = $(this).attr('data-action');            
-            updateConnectionRequestStatus(chatWith, chatFrom, action);            
+            var action = $(this).attr('data-action');
+            updateConnectionRequestStatus(chatWith, chatFrom, action);
         });
 
         $(document).on('click', '.not_interested_btn', async function () {
@@ -4410,7 +4362,7 @@ if (isset($data['profile_stage']) && $data['profile_stage'] < 2) {
                     dataType: 'json',
                     success: function (res) {
                         $btn.closest('.carousel-item').remove();
-                        
+
                         if($('.speed_networking_carousel .carousel-item').length > 0) {
                             $('.zeroday-speed').addClass('d-none');
                             console.log("speed_networking_carousel ==> ", $('.speed_networking_carousel .carousel-item').length);
@@ -4425,15 +4377,15 @@ if (isset($data['profile_stage']) && $data['profile_stage'] < 2) {
                         } else {
                             $('.speed_networking_div').addClass('d-none');
                             $('.zeroday-speed').removeClass('d-none');
-                        }                        
+                        }
                     },
                     error: function (xhr, status, error) {
                         console.log('Error:', xhr.status);
                     }
                 });
-            });     
-            
-              
+            });
+
+
         });
 
         $(document).on('click', '.load_dm', async function () {
@@ -4524,7 +4476,7 @@ if (isset($data['profile_stage']) && $data['profile_stage'] < 2) {
                 opt_search = 0;
                 addRemoveActive();
                 console.log('----chat_window-----------7')
-                
+
                 loadchatWindow(chatWindow);
                 taoh_load_network_entries();
 
@@ -4879,7 +4831,7 @@ if (isset($data['profile_stage']) && $data['profile_stage'] < 2) {
             //taoh_load_network_entries();
 
             Waves.init();
-        });        
+        });
 
 
         async function speedNetworkingAddUser(ptokens) {
@@ -4897,9 +4849,9 @@ if (isset($data['profile_stage']) && $data['profile_stage'] < 2) {
             // });
             // updatedResponse = updatedResponse.filter(token => ptokens.includes(token));
             $('.successMatchDiv').addClass('d-none');
-                      
+
             for (const ptoken of ptokens) {
-                
+
                 if (!updatedResponse.includes(ptoken)) {
 
                     updatedResponse.push(ptoken);
@@ -4908,7 +4860,7 @@ if (isset($data['profile_stage']) && $data['profile_stage'] < 2) {
 
                         if(!$('.rejectDiv:visible').length && !$('.successMatchDiv:visible').length) {
                             $('.speed_networking_div').removeClass('d-none');
-                        }                        
+                        }
                         $('#speed_networking-participant').html("");
 
                         var userInfo = await getUserInfo(ptoken, 'public');
@@ -4943,7 +4895,7 @@ if (isset($data['profile_stage']) && $data['profile_stage'] < 2) {
                             if (extraCount > 0) {
                                 tagsHtml += `<a href="#" class="interest c-4">+${extraCount}</a>\n`;
                             }
-                        }                        
+                        }
 
                         if(!$(`.speed_networking_carousel #carousel_item_${ptoken}`).length) {
                             $('.speed_networking_carousel').append(`<div id="carousel_item_${ptoken}" class="carousel-item">
@@ -4976,7 +4928,7 @@ if (isset($data['profile_stage']) && $data['profile_stage'] < 2) {
                                                 <path d="M4 20C4 16.6863 7.13401 14 11 14H13C16.866 14 20 16.6863 20 20V21C20 21.5523 19.5523 22 19 22H5C4.44772 22 4 21.5523 4 21V20Z" fill="#555555"/>
                                                 </svg>
                                                 <span>${titleValue}</span>
-                                            </div>                                        
+                                            </div>
                                         </div>
                                         <div class="mb-2 ${(skillsHtml == "") ? 'd-none' : ''}">
                                             <h6 class="spd-v1-sub-title">Skills</h6>
@@ -5130,10 +5082,10 @@ if (isset($data['profile_stage']) && $data['profile_stage'] < 2) {
                 loader(false, loaderArea);
             } else {
                 //alert('--------', opt_search);
-                
+
                 if(opt_search == 0 )
                     $('#speed_networking_channel_block').hide();
-                                  
+
                 show_empty_network_entries_screen(networkArea);
 
                 loader(false, loaderArea);
@@ -5273,9 +5225,6 @@ if (isset($data['profile_stage']) && $data['profile_stage'] < 2) {
                                             suggestionUsersOnRoleArray.push(l);
                                         }
                                     }
-
-
-
                                     const locationWords = l.full_location.toLowerCase().split(/\s+/);
                                     const locationmatch = locationWords.some(word => myLocationWords.includes(word));
                                     if (locationmatch) {
@@ -5312,9 +5261,9 @@ if (isset($data['profile_stage']) && $data['profile_stage'] < 2) {
                                     href="javascript:void(0);">
                                 <img class="lazy par-list-pro" data-idx="${kk}" src="${avatarSrc}" alt="${l.chat_name}">
 
-                                
+
                                 <p class="text-capitalize p-type-badge">${l.type ? l.type : 'Professional'}</p>
-                                
+
 
                             </a>
 
@@ -5396,7 +5345,7 @@ if (isset($data['profile_stage']) && $data['profile_stage'] < 2) {
                 if (!totalentries) {
                     show_empty_network_entries_screen(slot);
                     //alert(opt_search)
-                    
+
                     if(opt_search == 0 ){
                        $('#speed_networking_channel_block').hide();
                     }
@@ -5422,7 +5371,7 @@ if (isset($data['profile_stage']) && $data['profile_stage'] < 2) {
 
 
         function loadChannelList(serverFetch = 0, isAppend = 0, channelId = '') {
-            const current_timestamp = Date.now() * 1000 + Math.floor(performance.now() % 1000);            
+            const current_timestamp = Date.now() * 1000 + Math.floor(performance.now() % 1000);
             let data = {
                 ops: 'channel',
                 action: 'list',
@@ -5431,11 +5380,11 @@ if (isset($data['profile_stage']) && $data['profile_stage'] < 2) {
                 room_id: ntw_room_key,
                 channel_type: _taoh_channel_direct_message,
                 //cfcc45: 1 //cfcache newly added
-            };            
+            };
             if (isAppend != 0) {
                 data.timestamp = current_timestamp;
             }
-                        
+
             let ntw_channels_key = 'ntw_channels_' + ntw_room_key;
             IntaoDB.getItem(objStores.ntw_store.name, ntw_channels_key).then((intao_data) => {
                 // Check if data is expired (expires after 10sec (10 * 1000))
@@ -5516,8 +5465,8 @@ if (isset($data['profile_stage']) && $data['profile_stage'] < 2) {
                             if (Array.isArray(res.all_list) && res.all_list.length > 0) {
                                 if (!$('.countDownDiv:visible').length && !$('.successMatchDiv:visible').length) {
                                     $('.speed_networking_div').removeClass('d-none');
-                                }                         
-                                $('.zeroday-speed').addClass('d-none');     
+                                }
+                                $('.zeroday-speed').addClass('d-none');
                                 speedNetworkArea.html("");
                                 speedNetworkingAddUser(res.all_list);
                             } else {
@@ -5618,7 +5567,7 @@ if (isset($data['profile_stage']) && $data['profile_stage'] < 2) {
                 for (const accept_ptoken of response.accept_ptoken) {
                     var input = [ntw_room_key, my_pToken, accept_ptoken].sort().join('_');
                     var channelId = await generateSecureSlug(input, 16);
-                   
+
                     $(`.speed_networking_carousel #carousel_item_${accept_ptoken}`).remove();
                     clearInterval(intervalId2);
                     await loadDirectMessage(accept_ptoken, "", "", "0");
@@ -5632,7 +5581,7 @@ if (isset($data['profile_stage']) && $data['profile_stage'] < 2) {
                     $('.successMatchDiv .load_dm').attr('data-chatwith', accept_ptoken);
 
                     $('.successMatchDiv .user_title').text(accept_ptoken_userinfo.chat_name);
-                    
+
                 }
             }
             if($('.speed_networking_carousel .carousel-item').length > 0 && !$('.speed_networking_carousel .carousel-item.active').length) {
@@ -5666,14 +5615,14 @@ if (isset($data['profile_stage']) && $data['profile_stage'] < 2) {
                                     </div>
                                 </div>
                             </div>
-                            <div class="flex-grow-1 overflow-hidden">                                    
-                                <h6 class="text-truncate mb-0 channel_name text-capitalize">#speednetworking</h6>				
+                            <div class="flex-grow-1 overflow-hidden">
+                                <h6 class="text-truncate mb-0 channel_name text-capitalize">#speednetworking</h6>
                             </div>
                             <div class="flex-shrink-0 ms-2">
                                 <button type="button" class="btn btn-success btn-sm speed_networking_update_btn">
                                     <i class="fa fa-refresh align-middle"></i>
                                 </button>
-                            </div>		                             
+                            </div>
                         </div>
                     </a>
                 </li>`;
@@ -5724,7 +5673,7 @@ if (isset($data['profile_stage']) && $data['profile_stage'] < 2) {
                         if (channel_data[0] == my_pToken || channel_data[1] == my_pToken) {
                             allow = 1;
                         }
-                        
+
                         if (allow) {
                             //dm_count++;
                             var active_class = '';
@@ -5733,7 +5682,7 @@ if (isset($data['profile_stage']) && $data['profile_stage'] < 2) {
 
 
                             }
-                            
+
                             //alert(user_ptoken)
                             //var d_data = await getUserInfo(user_ptoken, 'public');
                             const [userLiveStatus, d_data] = await Promise.all([
@@ -5768,7 +5717,7 @@ if (isset($data['profile_stage']) && $data['profile_stage'] < 2) {
                             user_chat_name = d_data?.chat_name || getInitials(channelInfo.name);
 
                             //console.log('-----_can_delete_all_msg----------',_can_delete_all_msg);
-                            
+
                                 dm_count++;
                                 channelListHtml_1_1 += `<li id="dm-${channelId}" data-ptoken="${d_data.ptoken}" data-chatwith="${d_data.ptoken}" data-name="dm" class="${active_class}" data-channel_id="${channelId}">
 
@@ -5788,8 +5737,8 @@ if (isset($data['profile_stage']) && $data['profile_stage'] < 2) {
                                             </div>
                                         </div>
                                     </a>
-                                </li>        
-                                `;                            
+                                </li>
+                                `;
                         }
                     }
                 } else {
@@ -5797,7 +5746,7 @@ if (isset($data['profile_stage']) && $data['profile_stage'] < 2) {
                             if (selectedChannel != '' && channelId == selectedChannel && !$('.speed_networking_div:visible').length && !$('.countDownDiv:visible').length && !$('.rejectDiv:visible').length && !$('.successMatchDiv:visible').length) {
                                 channel_active_class = 'active';
                             }
-                    
+
 
                             if(channelInfo.channel_passcode != undefined && channelInfo.channel_passcode != null && channelInfo.channel_passcode != '') {
                                 var channel_passcode = encodeBase64(channelInfo.channel_passcode);
@@ -5805,14 +5754,14 @@ if (isset($data['profile_stage']) && $data['profile_stage'] < 2) {
                                 var channel_passcode = '';
                             }
                             if (channelInfo.data != '' && channelInfo.data != null && channelInfo.data != undefined) {
-                                
+
                                     var channel_data = channelInfo.data;
 
-                                    
+
                                     if( _can_delete_all_msg == 1 && channel_data[1] == 'organizer') {
                                         user_ptoken = channel_data[0];
-                                    
-                                        
+
+
                                         const [userLiveStatus, d_data] = await Promise.all([
                                             getUserLiveStatus(user_ptoken).catch((e) => {
                                                 console.log(e)
@@ -5821,8 +5770,8 @@ if (isset($data['profile_stage']) && $data['profile_stage'] < 2) {
                                                 console.log(e)
                                             }),
                                         ]);
-                                        
-                                        
+
+
                                         userAvatarSrc = d_data?.avatar_image && await checkImageExists(d_data.avatar_image).catch(() => false)
                                             ? d_data.avatar_image
                                             : `${_taoh_ops_prefix}/avatar/PNG/128/${d_data?.avatar?.trim() || 'default'}.png`;
@@ -5831,7 +5780,7 @@ if (isset($data['profile_stage']) && $data['profile_stage'] < 2) {
 
                                         /*<div class="chat-user-img  align-self-center me-2 ms-0">*/
 
-                                    }    
+                                    }
 
                                 org_count++;
 
@@ -5849,14 +5798,14 @@ if (isset($data['profile_stage']) && $data['profile_stage'] < 2) {
                                                     </div>
                                                 </div>
 
-                                                <div class="flex-grow-1 overflow-hidden channel_btn">                                    
+                                                <div class="flex-grow-1 overflow-hidden channel_btn">
                                                     <h6 class="text-truncate mb-0 channel_name text-capitalize">${user_chat_name}</h6>
                                                 </div>
-                                                                                
+
                                             </div>
                                         </a>
                                     </li>`;
-                        } 
+                        }
                         else {
                                 var classname = '';
                                 //alert(channelInfo.description)
@@ -5881,7 +5830,7 @@ if (isset($data['profile_stage']) && $data['profile_stage'] < 2) {
                                                 </div>
                                             </div>
 
-                                            <div class="flex-grow-1 overflow-hidden channel_btn">                                    
+                                            <div class="flex-grow-1 overflow-hidden channel_btn">
                                                 <h6 class="text-truncate mb-0 channel_name text-capitalize">${channelInfo.name}</h6>
                                                 ${membersCount > 0 ? `<p class="text-truncate text-muted fs-13 mb-0 members_count" data-count="${membersCount}">${membersCount} Member(s)</p>` : ''}
                                             </div>
@@ -5889,12 +5838,12 @@ if (isset($data['profile_stage']) && $data['profile_stage'] < 2) {
                                                 <div class="flex-shrink-0 ms-2">
                                                     <span class="badge badge-soft-danger rounded p-1 fs-12 unread-count" data-lastview="0" data-count="0">0</span>
                                                 </div>
-                                            </div>                                
+                                            </div>
                                             <div class="flex-shrink-0 ms-2 ${((channelInfo.creator == my_pToken || _can_delete_all_msg == 1) && (membersCount < 0 || membersCount == 0) && channelInfo.channel_created_by == 'user' ) ? '' : 'd-none'}">
                                                 <span data-channel_id="${channelId}" class="delete_channel_btn" title="Delete">
                                                     <i class="bx bx-trash text-danger fs-18"></i>
                                                 </span>
-                                            </div>                                
+                                            </div>
                                         </div>
                                     </a>
                                 </li>`;
@@ -5917,7 +5866,7 @@ if (isset($data['profile_stage']) && $data['profile_stage'] < 2) {
                     showMembersList(channelId, channelInfo.name);
                 }
 
-                
+
             }
 
             $('#channelList').html(channelListHtml);
@@ -5925,13 +5874,13 @@ if (isset($data['profile_stage']) && $data['profile_stage'] < 2) {
             //console.log('------org_count-----',org_count);
            // alert(_can_delete_all_msg)
             if(org_count > 0 && _can_delete_all_msg == 1) {
-               
+
                 //console.log('------org_count-----',channelListHtml_1_org);
                 $('#organizerChatList').html(channelListHtml_1_org);
                 $('#organizerChatList').removeClass('d-none');
             } else if(_can_delete_all_msg !=1 && organizerOnline) {
                 var chatithorghtml = `<li id="channel-organizer"  class=""
-                    data-channel_passcode="" 
+                    data-channel_passcode=""
                     data-channel_ticket_slug=""
                      data-name="channel" data-channel_id="">
                         <a class="d-flex align-items-center justify-content-between" href="javascript: void(0);">
@@ -5945,10 +5894,10 @@ if (isset($data['profile_stage']) && $data['profile_stage'] < 2) {
                                         </div>
                                     </div>
                                 </div>
-                                <div class="flex-grow-1 overflow-hidden channel_btn">                                    
+                                <div class="flex-grow-1 overflow-hidden channel_btn">
                                     <h6 class="text-truncate mb-0 channel_name text-capitalize">#ChatWithOrganizer</h6>
                                  </div>
-                                
+
                             </div>
                         </a>
                      </li>
@@ -5962,7 +5911,7 @@ if (isset($data['profile_stage']) && $data['profile_stage'] < 2) {
             //return false;
 
             if (dm_count == 0 && layout == 3) {
-                
+
             } else {
                 //alert(dm_count)
 
@@ -5975,12 +5924,12 @@ if (isset($data['profile_stage']) && $data['profile_stage'] < 2) {
                 } else {
                     //alert('--------',isAppend)
                     $('#dm-block').removeClass('d-none');
-                    
+
 
                 }
 
                 $('#usersList-block').html(channelListHtml_1_1);
-               
+
 
             }
 
@@ -6002,15 +5951,15 @@ if (isset($data['profile_stage']) && $data['profile_stage'] < 2) {
             currentElem = $('.watch_party');
             if(layout == 5 &&  watch_party_shown == 0 && currentElem.length > 0) {
 
-                
+
                     selectedChat = 'watch-party';
                     $('.watchPartySection').show();
                     $('.watchPartySection').addClass('watchPartyEnabled');
                     console.log('----chat_window-----------555555')
                     loadchatWindow('channel');
-                    
+
                     console.log('-----currentElem--------',currentElem)
-                    processChannelClick(currentElem); 
+                    processChannelClick(currentElem);
                     watch_party_shown = 1;
             }
 
@@ -6032,7 +5981,7 @@ if (isset($data['profile_stage']) && $data['profile_stage'] < 2) {
         });
 
         $(document).on('click', '#confirm_delete_btn', async function () {
-            
+
             let channelId = $('#delete_channel_id').val();
             let frmMessageId = $('#delete_message_id').val();
             let frmMessageKey = $('#delete_message_key').val();
@@ -6062,9 +6011,9 @@ if (isset($data['profile_stage']) && $data['profile_stage'] < 2) {
                     //headers: {'If-None-Match': ntwChannelListETag},
                     data: data,
                     success: function (response, textStatus, jqXHR) {
-                        console.log(response);            
+                        console.log(response);
                         if (jqXHR.status === 304) return;
-                        if (response.success) {                       
+                        if (response.success) {
                             $("#channel-"+channelId).remove();
                             $('#deleteModal').modal('hide');
                             if($('#channel-chat').attr('data-channel_id') == channelId) {
@@ -6075,12 +6024,12 @@ if (isset($data['profile_stage']) && $data['profile_stage'] < 2) {
                     error: function (xhr, status, err) {
                         console.error('Error Fetching activity list : ' + err);
                     }
-                });   
+                });
             } else {
                 $('#deleteModal').modal('hide');
                 jq_confirm_alert('Warning', 'Message ID not found for deletion. Please try again later.', 'orange', 'Ok');
             }
-            
+
         });
 
         // Create or update user cell info
@@ -6124,9 +6073,6 @@ if (isset($data['profile_stage']) && $data['profile_stage'] < 2) {
                 'event_channels': '<?php  echo addslashes($event_channels) ?? ''; ?>',
                 'livenow_channels': '<?php  echo addslashes($livenow_channels) ?? ''; ?>',
                 'streaming_link': '<?php  echo $club_info['streaming_link'] ?? ''; ?>',
-
-
-                
             };
             // commented to remove ticket type channels
             //alert(ntw_channels_key);
@@ -6161,7 +6107,7 @@ if (isset($data['profile_stage']) && $data['profile_stage'] < 2) {
 
                     success: async function (res) {
                         if (res.status === 'success') {
-                            const chat_messages_key = `sn_${ntw_room_key}`;                            
+                            const chat_messages_key = `sn_${ntw_room_key}`;
                             await IntaoDB.setItem(objStores.ntw_store.name, {
                                 taoh_ntw: chat_messages_key,
                                 values: {},
@@ -6178,7 +6124,7 @@ if (isset($data['profile_stage']) && $data['profile_stage'] < 2) {
                                 }
                                 if (!Array.isArray(updatedResponse[user.chat_user])) {
                                     updatedResponse[user.chat_user] = [];
-                                }                                
+                                }
                                 const exists = updatedResponse[user.chat_user].find(item => item?.ptoken === user.ptoken);
                                 if (!exists) {
                                     updatedResponse[user.chat_user].push({
@@ -6404,7 +6350,7 @@ if (isset($data['profile_stage']) && $data['profile_stage'] < 2) {
             }
 
             if ((about_me !== '') || (userInfo.hobbies != '' && userInfo.hobbies !== undefined && userInfo.hobbies !== null)) {
-                userProfileData += ` 
+                userProfileData += `
                     <div class="p-v1-card">`;
                 if (about_me != '') {
                     userProfileData += `    <h5 class="p-v1-title">
@@ -6448,7 +6394,7 @@ if (isset($data['profile_stage']) && $data['profile_stage'] < 2) {
                     });
                     userProfileData += ` </div></div>`;
                 }
-               
+
             }
 
                 // Company, Designation
@@ -6638,15 +6584,15 @@ if (isset($data['profile_stage']) && $data['profile_stage'] < 2) {
                     <div class="simplebar-placeholder" style="width: auto; height: 710px;"></div></div><div class="simplebar-track simplebar-horizontal" style="visibility: hidden;"><div class="simplebar-scrollbar" style="width: 0px; display: none;"></div></div><div class="simplebar-track simplebar-vertical" style="visibility: visible;"><div class="simplebar-scrollbar" style="height: 36px; display: block; transform: translate3d(0px, 0px, 0px);"></div></div></div>
                     <!-- end user-profile-desc -->
                 `;
-            }            
-           
+            }
+
             if(fromParticipants == 1) {
                 $('.participants_profile_info').html(userProfileData);
             } else {
-                
+
                 $('#user-profile-sidebar').html(userProfileData);
                 loadRightSidebar('profile');
-            }            
+            }
         }
 
         function taoh_track_activities(track_data) {
@@ -6667,9 +6613,6 @@ if (isset($data['profile_stage']) && $data['profile_stage'] < 2) {
 
         function zoomin() {
             var radius = $('#radius').val();
-
-           
-            
             var newrad = parseInt(radius) + parseInt(100);
             if (newrad <= maxradius) {
                 $('#radius').val(newrad);
@@ -6689,13 +6632,13 @@ if (isset($data['profile_stage']) && $data['profile_stage'] < 2) {
                 $('#zoom_in').attr('disabled', false);
                 $('#zoom_out').attr('disabled', false);
             }
-            
+
         }
 
         function zoomout() {
             var radius = $('#radius').val();
 
-            
+
             var newrad = parseInt(radius) - parseInt(100);
             if (newrad >= minradius) {
                 $('#radius').val(newrad);
@@ -6726,12 +6669,9 @@ if (isset($data['profile_stage']) && $data['profile_stage'] < 2) {
 
         function forwardChannelTranscript() {
 
-           
+
             $('.send_transcript').hide();
             $('#loader_transcript').addClass('show');
-           
-            
-            
             var data = {
                 'taoh_action': 'taoh_forward_channel_transcript',
                 'keyslug': ntw_room_key,
@@ -6742,14 +6682,14 @@ if (isset($data['profile_stage']) && $data['profile_stage'] < 2) {
                 'ptoken': my_pToken,
             };
 
-            
+
             $.post(_taoh_site_ajax_url, data, function (response) {
-                    
+
                     $('.send_transcript').show();
                     $('#loader_transcript').removeClass('show');
-                
+
                 jq_confirm_alert('Success', 'We will send the transcript to your email shortly!', 'green', 'Ok');
-            
+
             }).fail(function () {
                    $('.send_transcript').show();
                  $('.loader_transcript').removeClass('show');
@@ -6767,12 +6707,12 @@ if (isset($data['profile_stage']) && $data['profile_stage'] < 2) {
         return decodeURIComponent(escape(atob(encodedStr)));
         }
 
-        
+
         $(document).on('click', '.openblock', async function () {
-            
-                     
+
+
             $('.open_block').toggle();
-               
+
         });
 
         $(document).on('click', '.user-profile-close-btn', async function () {
@@ -6782,7 +6722,7 @@ if (isset($data['profile_stage']) && $data['profile_stage'] < 2) {
         function getOnlineStatus() {
 
             //alert();
-            
+
             // Fetch the online status of the organizer
             $.ajax({
                 url: _taoh_cache_chat_url,
@@ -6801,9 +6741,9 @@ if (isset($data['profile_stage']) && $data['profile_stage'] < 2) {
                 },
                 success: function (response, textStatus, jqXHR) {
                     if (jqXHR.status === 304) return;
-                    
+
                     if (response.success && response.status !== undefined) {
-                        
+
                         if (response.status == 1) {
                             $('#channel-organizer').show();
                             $('#organizer-block').removeClass('d-none');
@@ -6812,23 +6752,23 @@ if (isset($data['profile_stage']) && $data['profile_stage'] < 2) {
                              $('#organizer-block').addClass('d-none');
                             if(_can_delete_all_msg == 1 ){
                                     $('#organizer-block').show();
-                            } 
+                            }
                             else
                              $('#organizer-block').addClass('d-none');
 
                             $('#channel-organizer').hide();
                         }
-                        
+
                     } else {
-                        
+
                          $('#organizer-block').addClass('d-none');
                         if(_can_delete_all_msg  == 1){
                             //alert(1);
                             $('#organizer-block').removeClass('d-none');
-                        } 
+                        }
                         else
                          $('#organizer-block').addClass('d-none');
-                    
+
                         $('#channel-organizer').hide();
                     }
                 },
@@ -6847,7 +6787,7 @@ if (isset($data['profile_stage']) && $data['profile_stage'] < 2) {
         // Emoji start
 
         var _emojiElem = messageId = messageKey = channelId = null;
-        
+
         const emojiData = {
             smileys: ['😀', '😃', '😄', '😁', '😆', '😅', '🤣', '😂', '🙂', '🙃', '😉', '😊', '😇', '🥰', '😍', '🤩', '😘', '😗', '😚', '😙', '😋', '😛', '😜', '🤪', '😝', '🤑', '🤗', '🤭', '🤫', '🤔', '🤐', '🤨', '😐', '😑', '😶', '😏', '😒', '🙄', '😬', '🤥', '😔', '😪', '🤤', '😴', '😷', '🤒', '🤕', '🤢', '🤮', '🤧', '🥵', '🥶', '🥴', '😵', '🤯', '🤠', '🥳', '😎', '🤓', '🧐'],
             people: ['👶', '🧒', '👦', '👧', '🧑', '👱', '👨', '👩', '🧔', '👴', '👵', '🙋', '🙎', '🙅', '🙆', '💁', '🙇', '🤦', '🤷', '👮', '🕵️', '💂', '👷', '🤴', '👸', '👳', '👲', '🧕', '🤵', '👰', '🤰', '🤱', '👼', '🎅', '🤶', '🦸', '🦹', '🧙', '🧚', '🧛', '🧜', '🧝', '🧞', '🧟', '💆', '💇', '🚶', '🏃', '💃', '🕺'],
@@ -6999,7 +6939,7 @@ if (isset($data['profile_stage']) && $data['profile_stage'] < 2) {
 
             if(emojiCount != "") {
                 if ($existingReaction.length) {
-                    $existingReaction.text(`${emoji} ${emojiCount}`);             
+                    $existingReaction.text(`${emoji} ${emojiCount}`);
                 } else {
                     const $reaction = $('<div>').addClass('reaction').text(`${emoji} ${emojiCount}`);
                     $reactionsContainer.append($reaction);
@@ -7013,16 +6953,16 @@ if (isset($data['profile_stage']) && $data['profile_stage'] < 2) {
                         $existingReaction.text(`${emoji} ${currentCount + 1}`);
                     } else {
                         $existingReaction.text(`${emoji} ${currentCount}`);
-                    }                
+                    }
                 } else {
                     const $reaction = $('<div>').addClass('reaction').text(`${emoji} 1`);
                     $reactionsContainer.append($reaction);
                 }
-            }            
+            }
 
             if(postToRedis == 1) {
                 emojiPost(data_type, chatfrom, chatwith, elem, channelId, messageId, messageKey, emoji);
-            }            
+            }
 
             console.log(`Added reaction ${emoji} to message ${messageId}`);
         }
@@ -7058,7 +6998,7 @@ if (isset($data['profile_stage']) && $data['profile_stage'] < 2) {
                 $messagesContainer.scrollTop($messagesContainer[0].scrollHeight);
                 $input.val('');
             }
-        }        
+        }
 
         // Event listeners
         $(document).ready(function() {
@@ -7108,7 +7048,7 @@ if (isset($data['profile_stage']) && $data['profile_stage'] < 2) {
                 let chatfrom = $(this).closest('.reaction-popup').data('chatfrom');
                 let chatwith = $(this).closest('.reaction-popup').data('chatwith');
                 let data_type = $(this).closest('.reaction-popup').data('type');
-                
+
                 let ch_channelId = $('#channel-chat').data('channel_id');
                 let user_ChannelId = $('#users-chat').data('channel_id');
                 var channelId;
@@ -7123,12 +7063,12 @@ if (isset($data['profile_stage']) && $data['profile_stage'] < 2) {
                 }
 
                 $(this).closest('.reaction-popup').hide();
-                
+
                 if (emoji === '➕') {
                     emojiElem = $(this).closest('.message').find('.emoji-btn');
                     toggleEmojiPicker(messageId, chatfrom, chatwith, data_type);
-                } else {                    
-                    addReactionToMessage(data_type, chatfrom, chatwith, _emojiElem, messageId, messageKey, channelId, emoji);                                       
+                } else {
+                    addReactionToMessage(data_type, chatfrom, chatwith, _emojiElem, messageId, messageKey, channelId, emoji);
                 }
             });
 
@@ -7183,18 +7123,18 @@ if (isset($data['profile_stage']) && $data['profile_stage'] < 2) {
         });
 
         // Initialize with smileys category
-        showCategory('smileys');        
+        showCategory('smileys');
 
     // Emoji end
 
     //Channel Loading Manually
     $(window).on('load', function () {
-        
+
         if(!$('.channelList li').length) {
-            console.log("channel loads manually");                
+            console.log("channel loads manually");
             loadChannelList(1);
         }
-        
+
         //alert(my_profileType+" * "+_taoh_live_user_count+" * "+DMLastMsgSentTime+" * "+_taoh_last_job_post_date);
         //console.log("^^^^^^channelLastMsgSentTime", channelLastMsgSentTime);
 
@@ -7206,7 +7146,7 @@ if (isset($data['profile_stage']) && $data['profile_stage'] < 2) {
            /*  const dojoCheckNetworkingStatus = () => {
                 if (!document.hidden) taoh_load_dojo_suggestion(ntw_room_key);
             };
-        
+
             setInterval(dojoCheckNetworkingStatus, 30000); // 900000 every 15 minutes
             */
             // Every 5 mins: refresh all contexts
@@ -7233,10 +7173,10 @@ if (isset($data['profile_stage']) && $data['profile_stage'] < 2) {
             profileType: profile_type,
             liveUserCount: live_user_count,
         };
-        console.log("============", roomSlugData);        
+        console.log("============", roomSlugData);
     }
-    
-    
+
+
     </script>
 
 <?php

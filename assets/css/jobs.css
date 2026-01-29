@@ -10,13 +10,13 @@
         line-height: 1.5;
     }
     .get-started-btn {
-        color: #fff; 
-        font-size: clamp(14px, 2vw + 1rem, 16px); 
-        font-weight: 400; 
+        color: #fff;
+        font-size: clamp(14px, 2vw + 1rem, 16px);
+        font-weight: 400;
         display: flex;
         align-items: center;
-        gap: 6px; 
-        background: #333333; 
+        gap: 6px;
+        background: #333333;
         width: fit-content;
         border-radius: 12px;
         padding: 8px 14px;
@@ -306,16 +306,16 @@ span.h5 {
     .jobs-company-badge {
         font-size: 14px;
     }
-    
+
     .jobs-full-text {
         font-size: 16px;
         line-height: 19px;
     }
-    
+
     .jobs-toggle-link {
         font-size: 16px;
     }
-    
+
     .jobs-submit-btn {
         font-size: 15px;
         margin: 3rem 0;

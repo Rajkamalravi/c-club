@@ -2,10 +2,10 @@
     $user_data = taoh_user_all_info();
     //print_r($user_data);exit();
     if ( ! isset( $user_data->fname ) && defined( 'TAOH_API_TOKEN' ) && defined('TAOH_SETTINGS_URL') && TAOH_API_TOKEN ) {
-        taoh_redirect(TAOH_SITE_URL_ROOT.'/createacc'); 
+        taoh_redirect(TAOH_SITE_URL_ROOT.'/createacc');
         taoh_exit();
     }
-    
+
     // TAO_PAGE_DESCRIPTION
     define( 'TAO_PAGE_DESCRIPTION', taoh_site_description() );
     // TAO_PAGE_IMAGE
@@ -17,12 +17,12 @@
     taoh_get_header();
     $showall = 0;
     $app_temp = @taoh_parse_url(0) ? taoh_parse_url(0):TAOH_PLUGIN_PATH_NAME;
-    
+
     // Get the current app
     $current_app = TAOH_SITE_CURRENT_APP_SLUG;
-    
+
     $app_data = taoh_app_info($current_app);
-    
+
     $about_url = TAOH_SITE_URL_ROOT."/about";
     if ( $current_app != TAOH_PLUGIN_PATH_NAME ) $about_url = TAOH_SITE_URL_ROOT."/".$current_app."/about";
 
@@ -41,13 +41,13 @@
     // $taoh_vals[ 'cache_name' ] = $cache_name;
     // $taoh_vals[ 'cache' ] = array ( "name" => $cache_name );
     ksort($taoh_vals);
-    
+
     //echo taoh_apicall_get_debug($url, $taoh_vals);taoh_exit();
     $response_recipe = json_decode(taoh_apicall_get($url, $taoh_vals,'',1), true);
     $response_recipe_api = $response_recipe['output'];
     $first_six_elements = array_slice($response_recipe_api, 0, 6);
     //print_r($response_recipe_api);die;
-  
+
 ?>
 <style>
   .yo-video .y-video{
@@ -127,7 +127,7 @@
                         we're not just about job listings—we're about fostering a vibrant,<br />inclusive network where career growth thrives.
                         ";
                         ?>
-                
+
                     </p>
                     <div class="hero-btn-box py-4">
                         <?php if (! taoh_user_is_logged_in()){ ?>
@@ -159,9 +159,9 @@
                 </div>
             </div>
             <div class="col-lg-3 yo-video">
-                <?php 
+                <?php
                     //$video_link = 'https://www.youtube.com/embed/o9qbgV0Aotk?rel=0';
-                    //taoh_video_widget($video_link); 
+                    //taoh_video_widget($video_link);
                 ?>
                 <iframe id="video" class="y-video" src="https://www.youtube.com/embed/o9qbgV0Aotk?rel=0" frameborder="0" allowfullscreen loading="lazy"></iframe>
             </div>
@@ -238,7 +238,7 @@
         <div class="">
           <div class="question-main-bar">
             <div class="questions-snippet">
-              <?php foreach($first_six_elements as $key => $value){ 
+              <?php foreach($first_six_elements as $key => $value){
                 $recipe_id = $value['ID'];
                 $id_plus_one = $key + 1;
                 $recipe_name = $value['name'];
@@ -248,8 +248,8 @@
                         <div class="large-12 columns">
                             <h4 class="heading"><?php echo ucwords($recipe_name); ?></h4>
                             <div class="owl-carousel owl-theme" id="intRecipe<?php echo $id_plus_one; ?>">
-                                
-                                
+
+
                             </div>
                         </div>
                     </div>
@@ -292,7 +292,7 @@
   let reads_recipe_list_five = '';
   let reads_recipe_list_six = '';
   let store_name = READStore;
-  
+
   //Initial run
   $(document).ready(function(){
         $("#flash-msg").delay(3000).fadeOut("slow");
@@ -316,7 +316,7 @@
   function getrecipelistdata1(){
 		var id = '<?php echo $first_six_elements[0]['ID']; ?>';
 		getIntaoDb(dbName).then((db) => {
-      reads_recipe_list_one = 'reads_recipe_list_'+crc32('list_'+id);     
+      reads_recipe_list_one = 'reads_recipe_list_'+crc32('list_'+id);
       const datareadswellrequest = db.transaction(store_name).objectStore(store_name).get(reads_recipe_list_one); // get main data
       datareadswellrequest.onsuccess = ()=> {
           console.log(datareadswellrequest);
@@ -341,7 +341,7 @@
         'taoh_action': 'taoh_blog_recipe_get_ajax',
         'category': '',
         'count': 5,
-        'id': '<?php echo $first_six_elements[0]['ID']; ?>',  
+        'id': '<?php echo $first_six_elements[0]['ID']; ?>',
     };
     jQuery.post("<?php echo taoh_site_ajax_url(); ?>", data, function(response1) {
         if (response1.success) {
@@ -371,13 +371,13 @@
     // console.log(key, obj_data[key]);
         IntaoDB.setItem(key,obj_data[key]).catch((err) => console.log('Storage failed', err));
     });
-    return false; 
+    return false;
   }
 
   function getrecipelistdata2(){
     var id = '<?php echo $first_six_elements[1]['ID']; ?>';
     getIntaoDb(dbName).then((db) => {
-      reads_recipe_list_two = 'reads_recipe_list_'+crc32('list_'+id);     
+      reads_recipe_list_two = 'reads_recipe_list_'+crc32('list_'+id);
       const datareadswellrequest = db.transaction(store_name).objectStore(store_name).get(reads_recipe_list_two); // get main data
       datareadswellrequest.onsuccess = ()=> {
           console.log(datareadswellrequest);
@@ -402,7 +402,7 @@
         'taoh_action': 'taoh_blog_recipe_get_ajax',
         'category': '',
         'count': 5,
-        'id': '<?php echo $first_six_elements[1]['ID']; ?>',  
+        'id': '<?php echo $first_six_elements[1]['ID']; ?>',
     };
     jQuery.post("<?php echo taoh_site_ajax_url(); ?>", data, function(response2) {
         if (response2.success) {
@@ -433,13 +433,13 @@
     // console.log(key, obj_data[key]);
         IntaoDB.setItem(key,obj_data[key]).catch((err) => console.log('Storage failed', err));
     });
-    return false; 
+    return false;
   }
 
   function getrecipelistdata3(){
     var id = '<?php echo $first_six_elements[2]['ID']; ?>';
     getIntaoDb(dbName).then((db) => {
-      reads_recipe_list_three = 'reads_recipe_list_'+crc32('list_'+id);     
+      reads_recipe_list_three = 'reads_recipe_list_'+crc32('list_'+id);
       const datareadswellrequest = db.transaction(store_name).objectStore(store_name).get(reads_recipe_list_three); // get main data
       datareadswellrequest.onsuccess = ()=> {
           console.log(datareadswellrequest);
@@ -464,7 +464,7 @@
         'taoh_action': 'taoh_blog_recipe_get_ajax',
         'category': '',
         'count': 5,
-        'id': '<?php echo $first_six_elements[2]['ID']; ?>',  
+        'id': '<?php echo $first_six_elements[2]['ID']; ?>',
     };
     jQuery.post("<?php echo taoh_site_ajax_url(); ?>", data, function(response3) {
         if (response3.success) {
@@ -494,13 +494,13 @@
     // console.log(key, obj_data[key]);
         IntaoDB.setItem(key,obj_data[key]).catch((err) => console.log('Storage failed', err));
     });
-    return false; 
+    return false;
   }
 
   function getrecipelistdata4(){
     var id = '<?php echo $first_six_elements[3]['ID']; ?>';
     getIntaoDb(dbName).then((db) => {
-      reads_recipe_list_four = 'reads_recipe_list_'+crc32('list_'+id);     
+      reads_recipe_list_four = 'reads_recipe_list_'+crc32('list_'+id);
       const datareadswellrequest = db.transaction(store_name).objectStore(store_name).get(reads_recipe_list_four); // get main data
       datareadswellrequest.onsuccess = ()=> {
           console.log(datareadswellrequest);
@@ -525,7 +525,7 @@
         'taoh_action': 'taoh_blog_recipe_get_ajax',
         'category': '',
         'count': 5,
-        'id': '<?php echo $first_six_elements[3]['ID']; ?>',  
+        'id': '<?php echo $first_six_elements[3]['ID']; ?>',
     };
     jQuery.post("<?php echo taoh_site_ajax_url(); ?>", data, function(response4) {
         if (response4.success) {
@@ -555,13 +555,13 @@
     // console.log(key, obj_data[key]);
         IntaoDB.setItem(key,obj_data[key]).catch((err) => console.log('Storage failed', err));
     });
-    return false; 
+    return false;
   }
 
   function getrecipelistdata5(){
     var id = '<?php echo $first_six_elements[4]['ID']; ?>';
     getIntaoDb(dbName).then((db) => {
-      reads_recipe_list_five = 'reads_recipe_list_'+crc32('list_'+id);     
+      reads_recipe_list_five = 'reads_recipe_list_'+crc32('list_'+id);
       const datareadswellrequest = db.transaction(store_name).objectStore(store_name).get(reads_recipe_list_five); // get main data
       datareadswellrequest.onsuccess = ()=> {
           console.log(datareadswellrequest);
@@ -586,7 +586,7 @@
         'taoh_action': 'taoh_blog_recipe_get_ajax',
         'category': '',
         'count': 5,
-        'id': '<?php echo $first_six_elements[4]['ID']; ?>',  
+        'id': '<?php echo $first_six_elements[4]['ID']; ?>',
     };
     jQuery.post("<?php echo taoh_site_ajax_url(); ?>", data, function(response5) {
         if (response5.success) {
@@ -616,13 +616,13 @@
     // console.log(key, obj_data[key]);
         IntaoDB.setItem(key,obj_data[key]).catch((err) => console.log('Storage failed', err));
     });
-    return false; 
+    return false;
   }
 
   function getrecipelistdata6(){
     var id = '<?php echo $first_six_elements[5]['ID']; ?>';
     getIntaoDb(dbName).then((db) => {
-      reads_recipe_list_six = 'reads_recipe_list_'+crc32('list_'+id);     
+      reads_recipe_list_six = 'reads_recipe_list_'+crc32('list_'+id);
       const datareadswellrequest = db.transaction(store_name).objectStore(store_name).get(reads_recipe_list_six); // get main data
       datareadswellrequest.onsuccess = ()=> {
           console.log(datareadswellrequest);
@@ -647,7 +647,7 @@
         'taoh_action': 'taoh_blog_recipe_get_ajax',
         'category': '',
         'count': 5,
-        'id': '<?php echo $first_six_elements[5]['ID']; ?>',  
+        'id': '<?php echo $first_six_elements[5]['ID']; ?>',
     };
     jQuery.post("<?php echo taoh_site_ajax_url(); ?>", data, function(response6) {
         if (response6.success) {
@@ -677,7 +677,7 @@
     // console.log(key, obj_data[key]);
         IntaoDB.setItem(key,obj_data[key]).catch((err) => console.log('Storage failed', err));
     });
-    return false; 
+    return false;
   }
 
   function remove_cloned_items(){
@@ -733,13 +733,10 @@
       nav: true,
     });
     $('#intRecipe'+id).trigger('refresh.owl.carousel');
-  } 
-  
-  
-  
+  }
   /* $('#myCarousel').carousel({
    interval: 5000
   }) */
-  
+
 </script>
 <?php taoh_get_footer();  ?>

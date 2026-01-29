@@ -88,7 +88,7 @@ if(defined('TAOH_API_TOKEN')){
             background-origin: border-box;
             background-clip: content-box, border-box; */
             border-radius: 6px;
-        } 
+        }
         .exh-d-right button {
             font-size: 14px;
         }
@@ -98,7 +98,7 @@ if(defined('TAOH_API_TOKEN')){
             }
             .winner_profile.card {
                 max-width: 361px;
-            } 
+            }
         }
         @media (min-width: 1024px) {
             .exh-d-right-rbtn-blk {
@@ -109,15 +109,6 @@ if(defined('TAOH_API_TOKEN')){
             display: none;
         }
     </style>
-
-
-
-
- 
-
-
-
-
 <div class="detail-hall aw aw-logo aw-loader">
 
     <div class="light-dark">
@@ -135,7 +126,7 @@ if(defined('TAOH_API_TOKEN')){
                         </li>
                         <li class="nav-item">
                             First Friday Fair Virtual Job Fair Career Expo Event
-                        </li>   -->                              
+                        </li>   -->
                     </ul>
 
                     <div class="d-flex align-items-start flex-column flex-lg-row py-3" style="gap: 9px;">
@@ -145,7 +136,7 @@ if(defined('TAOH_API_TOKEN')){
                                 <svg style="min-width: fit-content;" width="25" height="25" viewBox="0 0 21 25" fill="none" xmlns="http://www.w3.org/2000/svg">
                                     <path d="M6 0C6.82969 0 7.5 0.698242 7.5 1.5625V3.125H13.5V1.5625C13.5 0.698242 14.1703 0 15 0C15.8297 0 16.5 0.698242 16.5 1.5625V3.125H18.75C19.9922 3.125 21 4.1748 21 5.46875V7.8125H0V5.46875C0 4.1748 1.00781 3.125 2.25 3.125H4.5V1.5625C4.5 0.698242 5.17031 0 6 0ZM0 9.375H21V22.6562C21 23.9502 19.9922 25 18.75 25H2.25C1.00781 25 0 23.9502 0 22.6562V9.375ZM15.4219 14.8926C15.8625 14.4336 15.8625 13.6914 15.4219 13.2373C14.9812 12.7832 14.2688 12.7783 13.8328 13.2373L9.37969 17.876L7.17656 15.5811C6.73594 15.1221 6.02344 15.1221 5.5875 15.5811C5.15156 16.04 5.14687 16.7822 5.5875 17.2363L8.5875 20.3613C9.02812 20.8203 9.74063 20.8203 10.1766 20.3613L15.4219 14.8926Z" fill="#2557A7"></path>
                                 </svg>
-                                <p class="e-v2-info"><span id="event_start_datetime"></span> 
+                                <p class="e-v2-info"><span id="event_start_datetime"></span>
                                 <!--<span id="event_end_datetime"></span>-->
                                 </p>
                             </div>
@@ -155,7 +146,7 @@ if(defined('TAOH_API_TOKEN')){
                         <!-- <button type="button" class="e-d-v2-btn btn btn-success lh-1 py-2">
                             LIVE NOW! Click to Join
                         </button> -->
-                        
+
                     </div>
 
                 </div>
@@ -186,7 +177,7 @@ if(defined('TAOH_API_TOKEN')){
                 <div class="exh-d-v2-left flex-grow-1 py-5 pr-md-3">
                     <div class="d-flex align-items-start" style="gap: 12px;">
                         <img class="c-v2-img" id="exhibitor_logo" src="<?php echo TAOH_SITE_URL_ROOT;?>/assets/images/exh-v2-3.png" alt="Exhibitor logo">
-                        <div> 
+                        <div>
                             <h6 class="c-v2-name mb-1" id="exhibitor_title"></h6>
                             <p class="c-v2-tag mb-2" id="exhibitor_subtitle"></p>
                             <input type="hidden" id="raffle_question" name="raffle_question" value="">
@@ -290,7 +281,7 @@ if(defined('TAOH_API_TOKEN')){
                                 <hr class="my-0" style="border-top: 1px solid #d3d3d3;">
                                 <div class="px-3">
                                     <p class="py-3" id='raffle_description'></p>
-                                
+
                                     <a href="#" class="btn redeem-v2 avail_now" id="avail_now">Avail Now</a>
                                 </div>
                             </div>
@@ -313,7 +304,7 @@ if(defined('TAOH_API_TOKEN')){
                             </svg>
                             <span>Raffle Winner !</span>
                         </h6>
-                         
+
                         <div class="winner-card">
                             <img class="winner-img n-participants-img" src="" alt="avatar">
                             <div>
@@ -346,11 +337,11 @@ if(defined('TAOH_API_TOKEN')){
                                     <i class="fas fa-download"></i>
                                     <span>Download Raffle Entries</span>
                                 </a>
-                                <a target="_blank" class="d-v2-btn mb-2" href="<?php echo TAOH_SITE_URL_ROOT . '/events/export_raffle_feedback/?eventtoken='.$eventtoken.'&exh='.$exhibitor_id;?>" id="download_leadgen"> 
+                                <a target="_blank" class="d-v2-btn mb-2" href="<?php echo TAOH_SITE_URL_ROOT . '/events/export_raffle_feedback/?eventtoken='.$eventtoken.'&exh='.$exhibitor_id;?>" id="download_leadgen">
                                     <i class="fas fa-download"></i>
                                     <span>Download Lead gen</span>
                                 </a>
-                            </div>        
+                            </div>
                         </div>
                     </div>
 
@@ -375,7 +366,7 @@ if(defined('TAOH_API_TOKEN')){
                 </div>
             </div>
             <div class="modal-body">
-                
+
                     <div class="row mx-0">
                         <div class="form-group col-lg-10">
                             <label for="">Post your reply</label>
@@ -385,7 +376,7 @@ if(defined('TAOH_API_TOKEN')){
                     <div class="px-3 mb-4">
                         <button type="button" id="submitRaffleAnswer" class="btn btn-primary">Submit</button>
                     </div>
-                
+
             </div>
             </div>
         </div>
@@ -410,7 +401,7 @@ if(defined('TAOH_API_TOKEN')){
                     <input type="hidden" name="eventtoken" value="<?= $eventtoken ?? ''; ?>">
                     <input type="hidden" name="ptoken" value="<?= $ptoken ?? ''; ?>">
                     <input type="hidden" name="exhibitor_id" value="<?= $exhibitor_id ?? ''; ?>">
-                
+
                     <div class="row mx-0">
                         <div class="form-group col-lg-10">
                             <label for="">Write comments / questions</label>
@@ -445,7 +436,7 @@ if(defined('TAOH_API_TOKEN')){
                     <input type="hidden" name="eventtoken" value="<?= $eventtoken ?? ''; ?>">
                     <input type="hidden" name="ptoken" value="<?= $ptoken ?? ''; ?>">
                     <input type="hidden" name="exhibitor_id" value="<?= $exhibitor_id ?? ''; ?>">
-                
+
                     <div class="row mx-0">
                         <div class="form-group col-xl-6">
                             <label for="">Full Name <span class="text-danger">*</span></label>
@@ -499,7 +490,7 @@ if(defined('TAOH_API_TOKEN')){
             </div>
         </div>
     </div>
-    
+
 
 </div>
 
@@ -833,11 +824,11 @@ if(defined('TAOH_API_TOKEN')){
                                     liveLink = ` <div class="d-flex align-items-center" style="gap: 6px;">
                                             <a target="_blank" href="${event_live_link}" class="mr-lg-5 btn btn-success w-100 metrics_action" data-metrics="event_join">
                                             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 80" style="width: 36px"><circle cx="40" cy="40" r="28" fill="#fff"></circle>
-                                                                    
+
                                                     <polygon points="34,28 34,52 54,40" fill="#28A745"></polygon>
-                                                    
+
                                                     <path d="M78 26 C84 35, 84 46, 78 54" fill="none" stroke="#fff" stroke-width="5" stroke-linecap="round"></path>
-                                                    
+
                                                     <path d="M88 10 C104 28, 104 54, 88 70" fill="none" stroke="#fff" stroke-width="5" stroke-linecap="round"></path>
                                             </svg>
                                             ${chatroom_text}</a>
@@ -845,13 +836,13 @@ if(defined('TAOH_API_TOKEN')){
                                 } else {
                                     liveLink = ` <div class="d-flex align-items-center" style="gap: 6px;">
                                             <a href="javascript:void(0)" class="mr-lg-5 btn btn-success w-100">
-                                            
+
                                             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 80" style="width: 36px"><circle cx="40" cy="40" r="28" fill="#fff"></circle>
-                                                                    
+
                                                                     <polygon points="34,28 34,52 54,40" fill="#28A745"></polygon>
-                                                                    
+
                                                                     <path d="M78 26 C84 35, 84 46, 78 54" fill="none" stroke="#fff" stroke-width="5" stroke-linecap="round"></path>
-                                                                    
+
                                                                     <path d="M88 10 C104 28, 104 54, 88 70" fill="none" stroke="#fff" stroke-width="5" stroke-linecap="round"></path>
                                                             </svg>
                                                              ${chatroom_text}</a>
@@ -871,9 +862,9 @@ if(defined('TAOH_API_TOKEN')){
                             let localized_event_start_data = get_localized_event_data(event_timestamp_start_data, user_timezone);
                             let localized_event_ends_data = get_localized_event_data(event_timestamp_end_data, user_timezone);
 
-                            
+
                             $('#event_start_datetime').text(formatEventDateTime(localized_event_start_data, localized_event_ends_data));
-                            
+
                             //$("#event_start_datetime").text(event_start_at);
                             $("#event_end_datetime").text(event_end_at);
 

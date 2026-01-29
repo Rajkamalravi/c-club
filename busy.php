@@ -1,5 +1,5 @@
 <!doctype html>
-<html> 
+<html>
   <head>
     <link rel="icon" href="./assets/images/TAO_AI_Logo_SQ_256.png" type="image/png">
     <title>Hires [by TAO] Site Maintenance</title>
@@ -35,14 +35,14 @@
       <center>
       <pre class="ascii">
 
-        /$$$$$$$$ /$$$$$$   /$$$$$$ 
+        /$$$$$$$$ /$$$$$$   /$$$$$$
         |__  $$__//$$__  $$ /$$__  $$
            | $$  | $$  \ $$| $$  \ $$
            | $$  | $$$$$$$$| $$  | $$
            | $$  | $$__  $$| $$  | $$
            | $$  | $$  | $$| $$  | $$
            | $$  | $$  | $$|  $$$$$$/
-           |__/  |__/  |__/ \______/ 
+           |__/  |__/  |__/ \______/
       </pre>
         <img src="./assets/images/ob.png" height=250>
         <h2>We&rsquo;ll be back soon!</h2>

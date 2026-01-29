@@ -13,13 +13,13 @@ $taoh_call = 'jobs.job.get';
 $cache_name = 'job_details_' . $conttoken;
 $taoh_vals = array(
     'token' => taoh_get_dummy_token(1),
-    'ops' => $ops,  
+    'ops' => $ops,
     'mod' => $mod,
     'cache_name' => $cache_name,
     'cfcc1d'=> 1,
     //'cache' => array ( "name" => $cache_name,  "ttl" => 7200),
     'conttoken' => $conttoken,
-    
+
 );
 //$taoh_vals[ 'cfcache' ] = $cache_name;
 ksort($taoh_vals);
@@ -113,9 +113,9 @@ if($response['success']){
 
                 if($data_res['success']){
                     $_SESSION[TAOH_ROOT_PATH_HASH.'_eligible_scouted_jobs'] = $data_res['output'];
-                    
+
                 }
-            }    
+            }
             if(!isset($_SESSION[TAOH_ROOT_PATH_HASH.'_scouted_jobs']) || !isset($_SESSION[TAOH_ROOT_PATH_HASH.'_applied_jobs'])){
                 $taoh_call = "jobs.applied.job";
                 $taoh_vals = array(
@@ -204,7 +204,7 @@ if($response['success']){
                         <div  style="float:left" class="mt-3" id="go_back">
                             <a href="<?php echo TAOH_SITE_URL_ROOT.'/'.$app_data->slug.'/'; ?>" class="back-btn"><i class="las la-arrow-left"></i> Back</a>
                         </div>
-                        <div style="float:right" class="mt-3" id="apply_button"><?php echo $apply_btn;?></div>          
+                        <div style="float:right" class="mt-3" id="apply_button"><?php echo $apply_btn;?></div>
                     </div>
                 <?php } ?>
                 <div class="clear">
@@ -244,8 +244,8 @@ if($response['success']){
                 <?php echo $job_deadline;?>
             </div>
         </div>
-        <?php if($from == 'listing') { ?>               
-                    <div class="mt-3" id="apply_button"><?php echo $apply_btn;?></div>                         
+        <?php if($from == 'listing') { ?>
+                    <div class="mt-3" id="apply_button"><?php echo $apply_btn;?></div>
         <?php } ?>
         <input type="hidden" id="hideconttoken" value="<?php echo $conttoken;?>" />
     </div>

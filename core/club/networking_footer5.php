@@ -529,20 +529,20 @@ function taoh_profile_room_info($keyslug, $ptoken, $createIfNotExist = true)
             e.stopPropagation();
         });
 
-    }); 
+    });
 
     document.addEventListener('DOMContentLoaded', () => {
         if (!_ntw_ft_ptoken) return;
 
         const maybeUpdateStatus = () => {
             if (!document.hidden) updateUserLiveStatus(_ntw_ft_ptoken);
-        };       
+        };
 
         if(typeof updateUserLiveStatus === 'function') {
             updateUserLiveStatus(_ntw_ft_ptoken);
         }
         document.addEventListener('visibilitychange', maybeUpdateStatus);
-        setInterval(maybeUpdateStatus, 120000); // every 2 minutes       
+        setInterval(maybeUpdateStatus, 120000); // every 2 minutes
     });
 
 async function getPinData(ntw_room_key, channelId, frmMessageId, frmMessageKey, pinFrom, chatWith, chatFrom) {
@@ -566,11 +566,11 @@ async function getPinData(ntw_room_key, channelId, frmMessageId, frmMessageKey, 
         data: data,
         success: function (response, textStatus, jqXHR) {
             (async () => {
-                console.log(response);            
+                console.log(response);
                 if (jqXHR.status === 304) return;
                 if (response.status == "success") {
                     console.log("pinned_by", response.messages[0].pinned_by);
-                    
+
                     //const chat_messages_key = `frm_${ntw_room_key}_${channelId}`;
                     var $parent;
                     var msg_div;
@@ -588,7 +588,7 @@ async function getPinData(ntw_room_key, channelId, frmMessageId, frmMessageKey, 
                         common_class_name = "comm_pin_message_div_dm";
                     }
 
-                    console.log("chat_messages_key", chat_messages_key);                    
+                    console.log("chat_messages_key", chat_messages_key);
 
                     var intao_data;
                     intao_data = await IntaoDB.getItem(objStores.ntw_store.name, chat_messages_key);
@@ -598,17 +598,17 @@ async function getPinData(ntw_room_key, channelId, frmMessageId, frmMessageKey, 
                         if (!intao_data?.values || !intao_data.values.chat[frmMessageKey]) {
                             console.log("not updated ==> ", chat_messages_key);
                             return;
-                        }                        
+                        }
                     }
 
-                    const updatedResponse = { ...intao_data.values };	
+                    const updatedResponse = { ...intao_data.values };
                     updatedResponse.chat[frmMessageKey].pin = response.messages[0].pin;
                     updatedResponse.chat[frmMessageKey].pinned_by = response.messages[0].pinned_by;
 
                     var pinned_by;
                     var pinned_by_ptoken = response.messages[0].ptoken;
                     const userInfo = await getUserInfo(response.messages[0].ptoken, 'public');
-                    
+
                     console.log(" !! "+pinFrom+" !! "+response.messages[0].pin+" !! "+frmMessageId);
 
                     let message = updatedResponse.chat[frmMessageKey].message;
@@ -629,7 +629,7 @@ async function getPinData(ntw_room_key, channelId, frmMessageId, frmMessageKey, 
                             let decoded = decodeURIComponent(msg);
                             decoded = decoded.replace(/\+/g, '');
                             const match = decoded.match(/<a [^>]*>.*?<\/a>/i);
-                            const aTag = match ? match[0] : "";           
+                            const aTag = match ? match[0] : "";
                             if(aTag != "") {
                                 var msgHTML = "Join "+aTag+" - Video Room";
                             } else {
@@ -642,7 +642,7 @@ async function getPinData(ntw_room_key, channelId, frmMessageId, frmMessageKey, 
                                     var msgHTML = msg;
                                 }
                             }
-                                
+
                             // if (msg.length > 100) {
                             //     var visibleText = msg.slice(0, 100);
                             //     var hiddenText = msg.slice(100);
@@ -663,16 +663,16 @@ async function getPinData(ntw_room_key, channelId, frmMessageId, frmMessageKey, 
                             if(pin_msg_count > 0) {
                                 activeClass = "active";
                             }
-                            
+
                             if ($(`.${msg_div}${channelId} .pin_message_msg_div [data-frm_message_id="${frmMessageId}"]`).length === 0) {
-                                
+
                                 $(`.${msg_div}${channelId} .pin_message_dot_div`).append(`<div class="message-item-dot ${activeClass}" data-channel_id="${channelId}" data-frm_message_id="${frmMessageId}"></div>`);
 
                                 $(`.${msg_div}${channelId} .pin_message_msg_div`).append(`<div class="pin_msg flex-grow-1 ${(activeClass == "active") ? 'd-flex' : 'd-none'} " data-channel_id="${channelId}" data-frm_message_id="${frmMessageId}">
                                     <div class="flex-grow-1">
                                         <div class="d-flex align-items-center" style="gap: 12px;">
                                             <img style="width: 28px; height: 28px; border-radius: 100%;" src="${avatar_image}" alt="">
-                                            <div class="p-message">                                
+                                            <div class="p-message">
                                                 ${msgHTML}
                                             </div>
                                         </div>
@@ -690,12 +690,12 @@ async function getPinData(ntw_room_key, channelId, frmMessageId, frmMessageKey, 
 
                                 elem.attr('data-action', 0);
                                 elem.html('Unpin <i class="bx bx-unlink text-muted ms-2"></i>');
-                            }                            
+                            }
                         } else {
                             //$(`.pin_message_div [data-frm_message_id="${frmMessageId}"]`).remove();
 
                             $('.pin_msg[data-frm_message_id="' + frmMessageId + '"]').remove();
-                            $('.message-item-dot[data-frm_message_id="' + frmMessageId + '"]').remove();                            
+                            $('.message-item-dot[data-frm_message_id="' + frmMessageId + '"]').remove();
 
                             elem.attr('data-action', 1);
                             elem.html('Pin <i class="bx bx-pin text-muted ms-2"></i>');
@@ -705,7 +705,7 @@ async function getPinData(ntw_room_key, channelId, frmMessageId, frmMessageKey, 
                     //     if (response.messages[0].pin == 1) {
                     //         if ($(`.pin_message_dm_div [data-frm_message_id="${frmMessageId}"]`).length === 0) {
                     //             console.log("hit inside");
-                                
+
                     //             //$('.pin_message_dm_div').append(`<div data-channel_id="${channelId}" data-frm_message_id="${frmMessageId}"><i class="bx bx-pin text-muted ms-2"></i> ${pinned_by}: ${msg}</div>`);
 
                     //             $('.pin_message_dm_div').append(`<div data-channel_id="${channelId}" data-frm_message_id="${frmMessageId}" class="pin_msg d-flex justify-content-between align-items-start">
@@ -750,7 +750,7 @@ async function getPinData(ntw_room_key, channelId, frmMessageId, frmMessageKey, 
         error: function (xhr, status, err) {
             console.error('Error Fetching activity list : ' + err);
         }
-    });    
+    });
 }
 
 async function getLikeData(ntw_room_key, channelId, frmMessageId, frmMessageKey) {
@@ -772,11 +772,11 @@ async function getLikeData(ntw_room_key, channelId, frmMessageId, frmMessageKey)
         //headers: {'If-None-Match': ntwChannelListETag},
         data: data,
         success: function (response, textStatus, jqXHR) {
-            console.log(response);            
+            console.log(response);
             if (jqXHR.status === 304) return;
             if (response.success) {
                 console.log(response);
-                
+
                 const chat_messages_key = `frm_${ntw_room_key}_${channelId}`;
 
                     IntaoDB.getItem(objStores.ntw_store.name, chat_messages_key).then((intao_data) => {
@@ -785,7 +785,7 @@ async function getLikeData(ntw_room_key, channelId, frmMessageId, frmMessageKey)
                         console.log("not updated");
                         return;
                     }
-                    
+
                     const updatedResponse = { ...intao_data.values };
                     updatedResponse.chat[frmMessageKey].reactions = updatedResponse.chat[frmMessageKey].reactions || [];
 
@@ -798,13 +798,13 @@ async function getLikeData(ntw_room_key, channelId, frmMessageId, frmMessageKey)
                         grouped[emoji] = (grouped[emoji] || 0) + 1;
                     });
 
-                    for (const emoji in grouped) {                   
+                    for (const emoji in grouped) {
                         addReactionToMessage(elem, frmMessageId, frmMessageKey, channelId, emoji, 0, grouped[emoji]);
                     }
-                    
+
                     // response.likelist.forEach(function (likeItem) {
-                        
-                    // });                   
+
+                    // });
 
                     IntaoDB.setItem(objStores.ntw_store.name, {
                         taoh_ntw: chat_messages_key,
@@ -813,7 +813,7 @@ async function getLikeData(ntw_room_key, channelId, frmMessageId, frmMessageKey)
                     });
                     console.log("updated");
                 });
-                
+
             } else {
 
             }
@@ -821,7 +821,7 @@ async function getLikeData(ntw_room_key, channelId, frmMessageId, frmMessageKey)
         error: function (xhr, status, err) {
             console.error('Error Fetching activity list : ' + err);
         }
-    });    
+    });
 }
 
 </script>
@@ -836,4 +836,3 @@ const TAOH_CHAT_PREFIX = TAOH_SITE_URL_ROOT . '/assets';
 
 <!-- <script src="<?php echo TAOH_CDN_JS_PREFIX; ?>/chat4/chat-profile.js?v=<?php echo TAOH_CSS_JS_VERSION; ?>"></script>
 <script src="<?php echo TAOH_CDN_JS_PREFIX; ?>/chat4/chat-footer.js?v=<?php echo TAOH_CSS_JS_VERSION; ?>"></script> -->
-

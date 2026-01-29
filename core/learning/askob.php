@@ -2,7 +2,7 @@
 if ( ! taoh_user_is_logged_in() ) {
     taoh_redirect( '../' );
 }
-taoh_get_header();  
+taoh_get_header();
 ?>
 <style>
 #chat1 .form-outline .form-control~.form-notch div {
@@ -79,7 +79,7 @@ color: #39c0ed;
 
 #chat1 .form-outline .form-control~.form-label {
 color: #bfbfbf;
-}    
+}
 </style>
 <section  style="background: #333" class="blog-area pt-40px pb-80px">
     <div class="container">
@@ -100,7 +100,7 @@ color: #bfbfbf;
                                     <a href="./obviousbaba"><i class="fas fa-times text-white"></i></a>
                                 </div>
                                 <div class="card-body">
-                                    <div id ="obviousChat"></div>    
+                                    <div id ="obviousChat"></div>
                                     <div class="form-outline">
                                         <div class="d-flex flex-wrap align-items-center">
                                                 <div class="d-flex flex-wrap align-items-center flex-grow-1">
@@ -137,12 +137,12 @@ color: #bfbfbf;
         });
 
         $(document).ajaxStop(function () {
-            $(".load").hide();       
+            $(".load").hide();
         });
 
         $(document).ajaxError(function () {
-            $(".load").hide();       
-        }); 
+            $(".load").hide();
+        });
     });
 
     $(".btn").click(function(){
@@ -197,10 +197,10 @@ color: #bfbfbf;
                             </div>
                             <?php echo taoh_get_profile_image(); ?>
                         </div>
-				`); 
+				`);
                 }
 			})
-          $('.ask').val('');  
+          $('.ask').val('');
 		}
 
 	}

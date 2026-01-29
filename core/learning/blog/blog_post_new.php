@@ -1,5 +1,5 @@
 <?php
-taoh_get_header(); 
+taoh_get_header();
 $conttoken = taoh_parse_url(2);
 $page = 'Create';
 if(isset( $conttoken ) && $conttoken != 'stlo'){
@@ -19,7 +19,7 @@ if(isset( $conttoken ) && $conttoken != 'stlo'){
     // $taoh_vals[ 'cache_name' ] = $cache_name;
     // $taoh_vals[ 'cache' ] = array ( "name" => $cache_name, 'ttl' => 7200 );
     ksort($taoh_vals);
-    
+
     //echo $taoh_vals['cache']['name'];exit();
     //print_r($taoh_vals);taoh_exit();
     //echo taoh_apicall_get_debug($url, $taoh_vals);taoh_exit();
@@ -176,7 +176,7 @@ $post_local = (defined( 'TAOH_READS_POST_LOCAL')) ? TAOH_READS_POST_LOCAL : fals
 								<span data-toggle="tooltip" data-placement="top" title="Your post will be shared on multiple relevant partner sites for an increased response rate.">
 									<label for="publish" class="form-label">Publish this Post globally</label>
 								</span>
-                                
+
 							</div>
                             <div class="mb-3 col-md-6">
 								<div class="d-flex">
@@ -317,7 +317,7 @@ $post_local = (defined( 'TAOH_READS_POST_LOCAL')) ? TAOH_READS_POST_LOCAL : fals
 border-radius: 1.25rem;
 /* box-shadow: 0 27px 24px 0 rgba(0,0,0,0.2), 0 40px 77px 0 rgba(0,0,0,0.22) !important; */
 }
-@media (min-width:320px)  { 
+@media (min-width:320px)  {
     .fixme-css{
         position: fixed;
         top: 0;
@@ -327,7 +327,7 @@ border-radius: 1.25rem;
         background-color: white;
     }
 }
-@media (min-width:961px)  { 
+@media (min-width:961px)  {
     .fixme-css{
         position: fixed;
         top: 0;
@@ -337,7 +337,7 @@ border-radius: 1.25rem;
         background-color: white;
     }
 }
-@media (min-width:1025px) { 
+@media (min-width:1025px) {
     .fixme-css{
         position:fixed;
         top: 0;
@@ -357,7 +357,7 @@ border-radius: 1.25rem;
         <?php if(isset( $conttoken ) && $conttoken != 'stlo'){ ?>
             var items = <?php echo $items; ?>;
             initializeInputs(items);
-        <?php } ?>		
+        <?php } ?>
     });
     function check_enable_off(){
         if ($('#publish').is(":checked")) {
@@ -369,14 +369,14 @@ border-radius: 1.25rem;
     function addInput(value = '') {
         // Create a new input wrapper div
         var inputWrapper = document.createElement('div');
-        
+
         // Create a new input element
         var newInput = document.createElement('input');
         newInput.type = 'text';
         newInput.name = 'tags[]';
         newInput.value = value;
         newInput.placeholder = 'Enter Tag';
-        
+
         // Create a remove button
         var removeButton = document.createElement('button');
         removeButton.type = 'button';
@@ -384,11 +384,11 @@ border-radius: 1.25rem;
         removeButton.onclick = function() {
             inputWrapper.remove();
         };
-        
+
         // Append input and remove button to the wrapper
         inputWrapper.appendChild(newInput);
         inputWrapper.appendChild(removeButton);
-        
+
         // Append the wrapper to the form
         var form = document.getElementById('tags_add');
         form.appendChild(inputWrapper);
@@ -397,6 +397,6 @@ border-radius: 1.25rem;
     function initializeInputs(items) {
         items.forEach(item => addInput(item));
     }
- 
+
 </script>
 <?php taoh_get_footer(); ?>
