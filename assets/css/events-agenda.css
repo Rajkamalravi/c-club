@@ -1,0 +1,14 @@
+    .new-agenda-list .svg-opt-con, .new-exh-list .svg-opt-con, .spk-v2-list .svg-opt-con, .new-spk-list .svg-opt-con {
+        border-radius: 50px;
+    }
+    .new-exh-list {
+        border-left-color: #1997c9;
+
+    }
+    .new-agenda-list, .new-spk-con .new-spk-list {
+        border-left: 6px solid #2557A7;
+    }
+    .new-agenda-list .joinus-btn {
+        min-height: 39px;
+        line-height: 22px;
+    }

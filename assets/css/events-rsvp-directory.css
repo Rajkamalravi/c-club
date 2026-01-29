@@ -1,0 +1,42 @@
+    .erd_follow_btn {
+        background-color: transparent;
+    }
+
+    .erd_follow_btn[data-follow_status="1"] {
+        background-color: #2557A7 !important;
+        border: 1px solid #2557A7 !important;
+        color: #ffffff !important;
+    }
+    .n-participants-name {
+        font-size: 22px;
+        font-weight: 600;
+        line-height: 22px;
+    }
+    .events-hall .n-participants-text span.badge, .events-hall .n-participants-text span.badge.text-success {
+        color: #b4b4b4 !important;
+        font-size: 14px !important;
+        font-weight: 500;
+    }
+    .events-hall .n-participants-text {
+        color: #b4b4b4;
+    }
+    .n-participants-text {
+        font-size: 14px;
+        font-weight: 500;
+    }
+    .events-hall .attendees_card .bor-btn {
+        line-height: 17px;
+        font-size: 17px;
+        border: 2px solid #545454;
+        min-height: 30px;
+        padding: 5px;
+        color: #545454;
+        border-radius: 10px;
+    }
+    .tables_div.new-exh-list .btn.bor-btn.metrics_action {
+        min-height: auto;
+        padding: 5px;
+        background: #3b62ab;
+        color: #fff !important;
+        font-size: 15px;
+    }

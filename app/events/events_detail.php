@@ -251,15 +251,7 @@ taoh_get_header();
 
 require_once TAOH_APP_PATH . '/events/event_health_check.php';
 ?>
-    <style>
-        #choose_ticket {
-            overflow: hidden;
-        }
-
-    .sticky-top-fixed{
-        top: -50px;
-    }
-    </style>
+<link rel="stylesheet" href="<?php echo TAOH_SITE_URL_ROOT; ?>/assets/css/events-detail.css?v=<?php echo TAOH_CSS_JS_VERSION; ?>">
 
     <input type="hidden" id="share_link" value="<?= $share_link ?>">
     <div class="new-event-detail event-new-flow py-3 py-lg-5 aw aw-logo aw-loader">

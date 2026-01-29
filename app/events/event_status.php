@@ -1,47 +1,7 @@
 <?php
 taoh_get_header();
 ?>
-<style>
-
-  .main-text{
-    text-align: center;
-    font-size: 15pt;
-    margin: 0;
-    font-family: sans-serif;
-  }
-  .sub-text{
-    text-align: center;
-    font-family: sans-serif;
-    font-size: 12pt;
-    margin-top: 0;
-    padding-top: 10px;
-    padding-bottom: 20px;
-  }
-  .err-img{
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
-    width: 40%;
-  }
-  .main-div{
-    margin: auto;
-    width: 50%;
-    padding: 10px;
-  }
-  .main-status{
-    padding: 10px;
-    margin: auto;
-    width: 65%;
-    color: #f27200;
-    font-size: 30pt;
-    font-weight: 700;
-    text-align: center;
-  }
-  .btn-warning{
-    background-color: #f27200;
-    color: white;
-  }
-</style>
+<link rel="stylesheet" href="<?php echo TAOH_SITE_URL_ROOT; ?>/assets/css/event-status.css?v=<?php echo TAOH_CSS_JS_VERSION; ?>">
 <!-- ================================
          START ERROR AREA
 ================================= -->

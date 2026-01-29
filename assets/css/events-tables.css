@@ -1,0 +1,12 @@
+    .tables_div a {
+        color: #007bff !important;
+        text-decoration: none;
+    }
+    .new-exh-list .n-exh-name {
+        font-weight: 500;
+        font-size: 22px;
+    }
+    .discussion-tab-inner {
+        border: 1px solid #a6a6a6;
+        border-radius: 10px;
+    }

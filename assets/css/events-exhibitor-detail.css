@@ -1,0 +1,54 @@
+        #external_video_room,
+        #exhibitor_website,
+        #exhibitor_location {
+            max-width: 300px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+
+        #exhibitor_website_blk i,
+        #exhibitor_location_blk i {
+            color: #2557a7;
+            font-size: 14px;
+        }
+
+        #exhibitor_website_blk a:hover span,
+        #exhibitor_location_blk a:hover span {
+            text-decoration: underline;
+        }
+        /*  */
+        .exh-d-right, .exh-d-right-rbtn-blk {
+            width: 100%;
+            max-width: 100%;
+        }
+        .winner_profile.card {
+            width: 100%;
+            max-width: 480px;
+
+            padding: 0;
+            border: 2px solid #d3d3d3;
+            /* background-image: linear-gradient(#ffffff, #ffffff), linear-gradient(90deg, #396AFC 0%, #2948FF 50%);
+            background-origin: border-box;
+            background-clip: content-box, border-box; */
+            border-radius: 6px;
+        }
+        .exh-d-right button {
+            font-size: 14px;
+        }
+        @media (min-width: 768px) {
+            .exh-d-right {
+                max-width: 361px;
+            }
+            .winner_profile.card {
+                max-width: 361px;
+            }
+        }
+        @media (min-width: 1024px) {
+            .exh-d-right-rbtn-blk {
+                max-width: 362px;
+            }
+        }
+        .star-con input {
+            display: none;
+        }

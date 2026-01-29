@@ -1,0 +1,17 @@
+    .session-form {
+        white-space: nowrap;
+    }
+    .session-form-header:after {
+        display: block;
+        content: "";
+        height: 3px;
+        background-color: #000;
+        margin-top: 10px;
+    }
+    a.session-form svg {
+        margin-left: 8px;
+        margin-bottom: 2px;
+    }
+    a.session-form[aria-expanded="true"] svg {
+        transform: rotate(180deg);
+    }
