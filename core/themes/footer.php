@@ -115,13 +115,10 @@ function get_max_upload_size() {
       <div class="container">
         <div class="row align-items-center pb-4 copyright-wrap">
           <div class="col-lg-12">
-
-                <?php if(taoh_user_is_logged_in()) {
+            <?php if(taoh_user_is_logged_in()) {
                 $ptokn_track = taoh_session_get(TAOH_ROOT_PATH_HASH)['USER_INFO']->ptoken;
                 $full_url = (empty($_SERVER['HTTPS']) ? 'http' : 'https') . "://" . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];
                 $encoded_path = urlencode($full_url);
-                //echo "==========".$footer_tracking_link;die();
-                //$encoded_path = "aaaa";
                 if(!isset($footer_tracking_link) || $footer_tracking_link ==''){
                     $footer_tracking_link = $encoded_path;
                 }
@@ -129,10 +126,8 @@ function get_max_upload_size() {
             <img src="<?php echo TAOH_CDN_PREFIX;?>/images/igtracker/<?php echo $footer_tracking_link;?>/<?php echo $ptokn_track;?>/pixel.png" />
             <?php } ?>
 
-            <?php if(TAOH_FOOTER_MENU_ARRAY !='')  {
-                     $footer_array = json_decode(TAOH_FOOTER_MENU_ARRAY,1);
-
-                ?>
+            <?php if(TAOH_FOOTER_MENU_ARRAY !='')  { 
+                $footer_array = json_decode(TAOH_FOOTER_MENU_ARRAY,1); ?>
 
                 <div class="col-xl-5 mx-auto px-0">
                     <ul class="nav justify-content-center">

@@ -41,18 +41,13 @@ if (TAOH_JUSASK_ENABLE) {
       <div class="container">
         <div class="row align-items-center pb-4 copyright-wrap">
           <div class="col-lg-12">
-            <?php if(TAOH_FOOTER_MENU_ARRAY !='')  {
-                     $footer_array = json_decode(TAOH_FOOTER_MENU_ARRAY,1);
-
-                ?>
-
+            <?php if(TAOH_FOOTER_MENU_ARRAY !='')  { $footer_array = json_decode(TAOH_FOOTER_MENU_ARRAY,1); ?>
                 <div class="col-xl-5 mx-auto px-0">
                     <ul class="nav justify-content-center" style="margin-bottom: -10px;">
                         <?php foreach($footer_array as $key=>$val){ ?>
                             <li class="nav-item text-center footer-link-text"><a class="nav-link " title="<?php echo $val[2];?>" href="<?php echo $val[0];?>" target="_blank" style="color: #ffffff;"><?php echo $val[1];?></a></li>
                         <?php } ?>
                     </ul>
-
                 </div>
 
             <?php } else { ?>
