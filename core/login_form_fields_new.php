@@ -1,29 +1,6 @@
 <?php
 function avatar_select($current = "") {
 	$return = "<div id='avatarSelect'></div>
-  <style>
-	.selected-box {
-	    border: none !important;
-      cursor: pointer;
-	}
-	.component-icon {
-	    display: none;
-	}
-	.icon {
-	    background: none !important;
-	    width: 40px !important;
-	    height: 40px !important;
-	    border: none !important;
-	    margin: 0 !important;
-	}
-	div#avatarSelect-box-scroll {
-	    width: 425px;
-	    padding: 10px;
-	    text-align: center;
-			z-index: 9;
-			height: auto;
-	}
-	</style>
   <script type='text/javascript' src='".TAOH_CDN_PREFIX."/assets/iconselect/iconselect.js'></script>
   <script> avatarSelect('".$current."','".TAOH_AVATAR_URL."'); </script>";
   return $return;
