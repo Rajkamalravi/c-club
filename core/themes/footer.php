@@ -304,6 +304,7 @@ require_once TAOH_SITE_PATH_ROOT . '/core/basic-settings-modal.php';
 </div>
 <!-- chat bot end -->
 
+<?php if(taoh_user_is_logged_in()) { ?>
 <!--bug Modal -->
 <div class="modal fade" id="reportBugModal" tabindex="-1" role="dialog" aria-labelledby="reportBugModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
@@ -317,30 +318,18 @@ require_once TAOH_SITE_PATH_ROOT . '/core/basic-settings-modal.php';
       <div class="modal-body h-auto">
         <form name="bugForm" id="bugForm" enctype="multipart/form-data" method="post">
           <div class="form-group">
-            <!-- <label for="bugDescription">Describe the bug</label> -->
             <textarea class="form-control" name="description" id="bugDescription"  rows="4" placeholder="Describe the issue..." required></textarea>
           </div>
-          <?php if(!taoh_user_is_logged_in()) { ?>
-          <div class="form-group">
-            <input type="email" class="form-control" name="bugemail" id="bugemail"  rows="4" placeholder="Enter email" required>
-          </div>
-          <div class="form-group">
-            <label for="" class="text-label-md  mb-1">Let us know you're human</label>
-            <div class="human-verify-box">
-                <br><input onclick="checkReportHumanCheckbox();" type="checkbox" id="human_report" name="human_report" value="human"> 
-                <label class="mb-0" for="human_report" id="verify_label">Verify you're human</label>
-            </div>
-          </div>
-          <?php } ?>
         </form>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="submit" id="bugsubmit" <?php if(!taoh_user_is_logged_in()) { ?> disabled="true" <?php } ?> class="btn btn-primary"><i></i>Submit Report</button>
+        <button type="submit" id="bugsubmit" class="btn btn-primary"><i></i>Submit Report</button>
       </div>
     </div>
   </div>
 </div>
+<?php } ?>
 
 <div class="modal" id="indexedDBWarningModal" tabindex="-1" role="dialog" aria-labelledby="indexedDBWarningModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
@@ -355,38 +344,8 @@ require_once TAOH_SITE_PATH_ROOT . '/core/basic-settings-modal.php';
     </div>
 </div>
 
-<!-- jobPostModal - injected via JS only when needed -->
+<!-- jobPostModal - injected via JS in footer-main.js only when needed -->
 <div id="jobPostModalContainer"></div>
-<script>
-(function(){
-    if(localStorage.getItem('show_jobPostModal') != 1) return;
-    var c = document.getElementById('jobPostModalContainer');
-    if(!c) return;
-    c.innerHTML = '<div class="modal fade post-option" id="jobPostModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">' +
-        '<div class="modal-dialog bg-white mx-auto" role="document">' +
-            '<div class="modal-content">' +
-                '<div class="modal-header bg-white justify-content-end">' +
-                    '<button type="button" class="btn" data-dismiss="modal" aria-label="Close"><?= icon("close", "#000", 9) ?></button>' +
-                '</div>' +
-                '<div class="modal-body d-flex flex-wrap justify-content-center align-items-start">' +
-                    '<div class="d-flex justify-content-between w-100">' +
-                        '<div><?= icon("jp-confetti-left", "", 202, "job-post-svg-lg") ?></div>' +
-                        '<div><?= icon("jp-badge", "", 149, "job-post-svg-md") ?></div>' +
-                        '<div><?= icon("jp-confetti-right", "", 202, "job-post-svg-lg") ?></div>' +
-                    '</div>' +
-                    '<div class="d-flex flex-column align-items-center mb-4 text-center">' +
-                        '<h6 class="setting-sm-text mb-4">Thanks! Your Profile Settings is now complete!</h6>' +
-                        '<h3 class="setting-lg-text mb-2">Actively Hiring? Find Top Talent Here!</h3>' +
-                        '<h5 class="setting-md-text mb-4">Post a free Job and get a Hiring badge </h5>' +
-                        '<button type="button" class="btn s-btn setting-post-btn" id="postJobButton">Post a Free Job</button>' +
-                    '</div>' +
-                '</div>' +
-            '</div>' +
-        '</div>' +
-    '</div>';
-    $('#jobPostModal').modal('show');
-})();
-</script>
 
 <?php if(!taoh_user_is_logged_in()) { ?>
     <div class="modal top fade" id="config-modal" tabindex="" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">

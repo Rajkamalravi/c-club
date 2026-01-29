@@ -1,3 +1,37 @@
+// Job Post Modal - lazy inject only when needed
+(function(){
+    if(localStorage.getItem('show_jobPostModal') != 1) return;
+    var c = document.getElementById('jobPostModalContainer');
+    if(!c) return;
+    var sp = _taoh_site_url_root + '/assets/icons/sprite.svg';
+    var svgUse = function(name, w, cls) {
+        return '<svg class="icon icon-' + name + (cls ? ' ' + cls : '') + '" width="' + w + '" height="' + w + '" fill="currentColor"><use href="' + sp + '#icon-' + name + '"></use></svg>';
+    };
+    c.innerHTML = '<div class="modal fade post-option" id="jobPostModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">' +
+        '<div class="modal-dialog bg-white mx-auto" role="document">' +
+            '<div class="modal-content">' +
+                '<div class="modal-header bg-white justify-content-end">' +
+                    '<button type="button" class="btn" data-dismiss="modal" aria-label="Close">' + svgUse('close', 9) + '</button>' +
+                '</div>' +
+                '<div class="modal-body d-flex flex-wrap justify-content-center align-items-start">' +
+                    '<div class="d-flex justify-content-between w-100">' +
+                        '<div>' + svgUse('jp-confetti-left', 202, 'job-post-svg-lg') + '</div>' +
+                        '<div>' + svgUse('jp-badge', 149, 'job-post-svg-md') + '</div>' +
+                        '<div>' + svgUse('jp-confetti-right', 202, 'job-post-svg-lg') + '</div>' +
+                    '</div>' +
+                    '<div class="d-flex flex-column align-items-center mb-4 text-center">' +
+                        '<h6 class="setting-sm-text mb-4">Thanks! Your Profile Settings is now complete!</h6>' +
+                        '<h3 class="setting-lg-text mb-2">Actively Hiring? Find Top Talent Here!</h3>' +
+                        '<h5 class="setting-md-text mb-4">Post a free Job and get a Hiring badge </h5>' +
+                        '<button type="button" class="btn s-btn setting-post-btn" id="postJobButton">Post a Free Job</button>' +
+                    '</div>' +
+                '</div>' +
+            '</div>' +
+        '</div>' +
+    '</div>';
+    $('#jobPostModal').modal('show');
+})();
+
 if (document.getElementById('termsLink')) {
     const termsLink = document.getElementById('termsLink');
     const termsList = document.getElementById('termsList');
