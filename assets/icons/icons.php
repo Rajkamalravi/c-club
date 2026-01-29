@@ -315,6 +315,15 @@ $GLOBALS['SVG_ICONS'] = [
     'directions',
     'menu',
     'more',
+    'file-question',
+    'tao-logo',
+    'feedback',
+    'donate',
+    'chatbot-minimize',
+    'chat-send',
+    'jp-confetti-left',
+    'jp-badge',
+    'jp-confetti-right',
 ];
 
 /**
