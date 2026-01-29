@@ -1,4 +1,5 @@
 <?php
+include_once $_SERVER['DOCUMENT_ROOT'].'/raj/assets/icons/icons.php';
 $ptoken = (taoh_session_get(TAOH_ROOT_PATH_HASH)['USER_INFO'] ?? null)?->ptoken ?? '';
 $opt = taoh_parse_url(1);
 
@@ -168,9 +169,7 @@ if (TAO_CURRENT_APP_INNER_PAGE == 'events_lobby') {
             <div class="event-description event_description" id="event_description_all"></div>
 
             <div class="tagline-v1 my-3 rsvp-tagline" style="display: <?= ($opt ?? '') == 'chat' ? 'none' : 'flex'; ?>;">
-                <svg style="min-width: fit-content;" width="28" height="32" viewBox="0 0 28 32" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M8 0C9.10625 0 10 0.89375 10 2V4H18V2C18 0.89375 18.8937 0 20 0C21.1063 0 22 0.89375 22 2V4H25C26.6562 4 28 5.34375 28 7V10H0V7C0 5.34375 1.34375 4 3 4H6V2C6 0.89375 6.89375 0 8 0ZM0 12H28V29C28 30.6562 26.6562 32 25 32H3C1.34375 32 0 30.6562 0 29V12ZM20.5625 19.0625C21.15 18.475 21.15 17.525 20.5625 16.9438C19.975 16.3625 19.025 16.3563 18.4438 16.9438L12.5063 22.8813L9.56875 19.9438C8.98125 19.3563 8.03125 19.3563 7.45 19.9438C6.86875 20.5312 6.8625 21.4813 7.45 22.0625L11.45 26.0625C12.0375 26.65 12.9875 26.65 13.5688 26.0625L20.5625 19.0625Z" fill="#2C7678"/>
-                </svg>
+                <?= icon('calendar-check', '#2C7678', 28) ?>
                 <div>
                     <p>After you register, return to this page at the scheduled start time (for virtual event)—the event will go live here. We’ll also email your join link. No apps or downloads required.</p>
                 </div>
@@ -330,9 +329,7 @@ if (TAO_CURRENT_APP_INNER_PAGE == 'events_lobby') {
             </div>
 
             <div class="tagline-v1 my-3 attendee_tagline" style="display: none;">
-                <svg style="min-width: fit-content;" width="28" height="32" viewBox="0 0 28 32" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M8 0C9.10625 0 10 0.89375 10 2V4H18V2C18 0.89375 18.8937 0 20 0C21.1063 0 22 0.89375 22 2V4H25C26.6562 4 28 5.34375 28 7V10H0V7C0 5.34375 1.34375 4 3 4H6V2C6 0.89375 6.89375 0 8 0ZM0 12H28V29C28 30.6562 26.6562 32 25 32H3C1.34375 32 0 30.6562 0 29V12ZM20.5625 19.0625C21.15 18.475 21.15 17.525 20.5625 16.9438C19.975 16.3625 19.025 16.3563 18.4438 16.9438L12.5063 22.8813L9.56875 19.9438C8.98125 19.3563 8.03125 19.3563 7.45 19.9438C6.86875 20.5312 6.8625 21.4813 7.45 22.0625L11.45 26.0625C12.0375 26.65 12.9875 26.65 13.5688 26.0625L20.5625 19.0625Z" fill="#2C7678"/>
-                </svg>
+                <?= icon('calendar-check', '#2C7678', 28) ?>
                 <div>
                     <p>You can view and connect with attendees 3 days before the event starts.</p>
                 </div>
@@ -447,9 +444,7 @@ if (TAO_CURRENT_APP_INNER_PAGE == 'events_lobby') {
       
       <div class="modal-header position-relative border-0 light-dark p-0">
         <button type="button" class="btn v1-modal-close-btn" data-dismiss="modal" aria-label="Close">
-            <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M11.6449 2.04935C12.1134 1.58082 12.1134 0.819928 11.6449 0.351398C11.1763 -0.117133 10.4154 -0.117133 9.9469 0.351398L6 4.30205L2.04935 0.355146C1.58082 -0.113384 0.819928 -0.113384 0.351398 0.355146C-0.117133 0.823676 -0.117133 1.58457 0.351398 2.0531L4.30205 6L0.355146 9.95065C-0.113384 10.4192 -0.113384 11.1801 0.355146 11.6486C0.823676 12.1171 1.58457 12.1171 2.0531 11.6486L6 7.69795L9.95065 11.6449C10.4192 12.1134 11.1801 12.1134 11.6486 11.6449C12.1171 11.1763 12.1171 10.4154 11.6486 9.9469L7.69795 6L11.6449 2.04935Z" fill="#555555"/>
-            </svg>
+            <?= icon('close', '#555555', 12) ?>
         </button>
       </div>
       

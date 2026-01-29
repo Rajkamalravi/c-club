@@ -1,4 +1,5 @@
 <?php
+include_once $_SERVER['DOCUMENT_ROOT'].'/raj/assets/icons/icons.php';
 taoh_get_header();
 
 $pagename = 'directory';

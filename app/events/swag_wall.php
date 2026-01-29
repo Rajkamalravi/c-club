@@ -1,4 +1,7 @@
-<?php taoh_get_header(); ?>
+<?php
+include_once $_SERVER['DOCUMENT_ROOT'].'/raj/assets/icons/icons.php';
+taoh_get_header();
+?>
 <div class="swag-wall light-dark">
 
        <div class="pt-4 sticky-top light-dark shadow-sm border-bottom" style="z-index: 99;">
@@ -6,15 +9,15 @@
                 <ul class="nav nav-tabs justify-content-left border-0 mt-3" role="tablist" style="line-height: 1.143;">
                     <li class="nav-item">
                         <a href="<?php echo TAOH_SITE_URL_ROOT; ?>">Home</a>
-                        <svg xmlns="http://www.w3.org/2000/svg" height="19px" viewBox="0 0 24 24" width="19px" fill="#000000"><path d="M0 0h24v24H0V0z" fill="none"></path><path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6-6-6z"></path></svg>
+                        <?= icon('chevron-right', '#000000', 19) ?>
                     </li>                           
                     <li class="nav-item">
                         <a href="<?php echo TAOH_SITE_URL_ROOT; ?>">Events</a>
-                        <svg xmlns="http://www.w3.org/2000/svg" height="19px" viewBox="0 0 24 24" width="19px" fill="#000000"><path d="M0 0h24v24H0V0z" fill="none"></path><path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6-6-6z"></path></svg>
+                        <?= icon('chevron-right', '#000000', 19) ?>
                     </li>                           
                     <li class="nav-item">
                         <a href="<?php echo TAOH_SITE_URL_ROOT; ?>">First Friday Fair Virtual Job Fair Career Expo Event</a>
-                        <svg xmlns="http://www.w3.org/2000/svg" height="19px" viewBox="0 0 24 24" width="19px" fill="#000000"><path d="M0 0h24v24H0V0z" fill="none"></path><path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6-6-6z"></path></svg>
+                        <?= icon('chevron-right', '#000000', 19) ?>
                     </li>                           
                     <li class="nav-item">
                         <a href="<?php echo TAOH_SITE_URL_ROOT; ?>">Swag Wall</a>

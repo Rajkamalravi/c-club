@@ -1,0 +1,177 @@
+/* Footer Styles */
+
+@keyframes highlight-green {
+    0% { background: #3ee632; }
+    100% { background: #ffff99; }
+}
+
+.highlight-green {
+    animation: highlight-green 10s;
+}
+
+.vertical-alignment-helper {
+    display: table;
+    height: 100%;
+    pointer-events: none;
+    margin: auto;
+}
+
+.vertical-align-center {
+    display: table-cell;
+    vertical-align: middle;
+    pointer-events: none;
+}
+
+.close-btn {
+    position: absolute;
+    top: 12px;
+    right: 16px;
+    font-size: 22px;
+    font-weight: bold;
+    cursor: pointer;
+    color: #888;
+}
+
+.close-btn:hover {
+    color: #000;
+}
+
+#goalModalContent {
+    position: relative;
+}
+
+/* Footer section */
+.footer-area {
+    background: #1E1C1C;
+}
+
+.footer-area .nav {
+    margin-bottom: -10px;
+}
+
+.footer-link-text .nav-link {
+    color: #ffffff;
+}
+
+.footer-area .copyright-wrap .text-muted {
+    color: #999999;
+}
+
+.footer-area .copyright-wrap .text-muted strong {
+    color: #6C757D;
+}
+
+/* Dojo popup */
+.dojo-popup .popup-title-text {
+    gap: 8px;
+}
+
+/* Dojo V1 modal */
+.dojo-v1-modal .modal-content {
+    border: 1px solid #ccc;
+    border-radius: 8px;
+}
+
+.dojo-v1-modal .modal-header {
+    border: none;
+    position: relative;
+}
+
+.dojo-v1-modal .dojo-v1-close {
+    background: none;
+    border: none;
+}
+
+/* Chatbot accordion */
+.chatbot-acc .card {
+    overflow: unset;
+    border-radius: 8px;
+    border-color: #2557A7;
+}
+
+.chatbot-acc #chatOne {
+    height: 350px;
+}
+
+.chatbot-acc .user-chatarea-messages {
+    max-height: 210px;
+}
+
+/* Bug report modal - human verify */
+.human-verify-box {
+    align-items: center;
+    background-color: #fafafa;
+    border: 1px solid #e0e0e0;
+    box-sizing: border-box;
+    display: flex;
+    gap: 7px;
+    height: 45px;
+    user-select: none;
+}
+
+#verify_label {
+    font-size: 16px;
+}
+
+/* Job post modal */
+#jobPostModal .modal-dialog {
+    width: 95%;
+    max-width: 800px;
+}
+
+#jobPostModal .modal-header {
+    border: none;
+}
+
+#jobPostModal .modal-body {
+    gap: 24px;
+}
+
+#jobPostModal .modal-body svg {
+    width: 100%;
+}
+
+/* Login modal */
+#config-modal .close {
+    padding: 0;
+    margin: 0;
+}
+
+#config-modal .main-box {
+    border: 0;
+}
+
+/* Footer menu items */
+.footer-menu-item {
+    cursor: pointer;
+}
+
+.terms-menu .dropdown-toggle {
+    cursor: pointer;
+}
+
+/* TWC logo in copyright */
+.twc-logo {
+    color: #fff;
+}
+
+.twc-logo b {
+    color: #fff;
+}
+
+/* Job post modal SVGs */
+.job-post-svg-lg {
+    width: 100%;
+    max-width: 202px;
+}
+
+.job-post-svg-md {
+    width: 100%;
+    max-width: 149px;
+}
+
+/* Config modal close */
+#config-modal .close {
+    padding: 0;
+    margin: 0;
+}

@@ -1,4 +1,5 @@
 <?php
+include_once $_SERVER['DOCUMENT_ROOT'].'/raj/assets/icons/icons.php';
 taoh_get_header();
 
 
@@ -122,9 +123,7 @@ $valid_dir_viewer = $taoh_user_is_logged_in && $user_info_obj->profile_complete 
                         <h4 class="sub-title">Basic Organization Details</h4>
                         <a href="#" class="d-flex align-items-center justify-content-end view" style="gap: 6px;">
                             <span class="">View Original Page</span>
-                            <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M10.2857 0C11.2312 0 12 0.76875 12 1.71429V10.2857C12 11.2312 11.2312 12 10.2857 12H1.71429C0.76875 12 0 11.2312 0 10.2857V1.71429C0 0.76875 0.76875 0 1.71429 0H10.2857ZM4.28571 3C3.92946 3 3.64286 3.28661 3.64286 3.64286C3.64286 3.99911 3.92946 4.28571 4.28571 4.28571H6.80625L3.1875 7.90179C2.93571 8.15357 2.93571 8.56071 3.1875 8.80982C3.43929 9.05893 3.84643 9.06161 4.09554 8.80982L7.71161 5.19375V7.92857C7.71161 8.28482 7.99821 8.57143 8.35446 8.57143C8.71071 8.57143 8.99732 8.28482 8.99732 7.92857V3.64286C8.99732 3.28661 8.71071 3 8.35446 3H4.28571Z" fill="#2557A7"/>
-                            </svg>
+                            <?= icon('external-link', '#2557A7', 12) ?>
                         </a>
                     </div>
                     <div class="row">
@@ -183,9 +182,7 @@ $valid_dir_viewer = $taoh_user_is_logged_in && $user_info_obj->profile_complete 
                         <h4 class="sub-title">Setup about Section</h4>
                         <a href="#" class="d-flex align-items-center justify-content-end view" style="gap: 6px;">
                             <span class="">View Original Page</span>
-                            <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M10.2857 0C11.2312 0 12 0.76875 12 1.71429V10.2857C12 11.2312 11.2312 12 10.2857 12H1.71429C0.76875 12 0 11.2312 0 10.2857V1.71429C0 0.76875 0.76875 0 1.71429 0H10.2857ZM4.28571 3C3.92946 3 3.64286 3.28661 3.64286 3.64286C3.64286 3.99911 3.92946 4.28571 4.28571 4.28571H6.80625L3.1875 7.90179C2.93571 8.15357 2.93571 8.56071 3.1875 8.80982C3.43929 9.05893 3.84643 9.06161 4.09554 8.80982L7.71161 5.19375V7.92857C7.71161 8.28482 7.99821 8.57143 8.35446 8.57143C8.71071 8.57143 8.99732 8.28482 8.99732 7.92857V3.64286C8.99732 3.28661 8.71071 3 8.35446 3H4.28571Z" fill="#2557A7"/>
-                            </svg>
+                            <?= icon('external-link', '#2557A7', 12) ?>
                         </a>
                     </div>
                     <div class="row">
@@ -196,9 +193,7 @@ $valid_dir_viewer = $taoh_user_is_logged_in && $user_info_obj->profile_complete 
                                     <span>refer original page</span>
                                     <a href="#" class="d-flex align-items-center justify-content-end view" style="gap: 6px;">
                                         <span class="">View Original Page</span>
-                                        <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                            <path d="M10.2857 0C11.2312 0 12 0.76875 12 1.71429V10.2857C12 11.2312 11.2312 12 10.2857 12H1.71429C0.76875 12 0 11.2312 0 10.2857V1.71429C0 0.76875 0.76875 0 1.71429 0H10.2857ZM4.28571 3C3.92946 3 3.64286 3.28661 3.64286 3.64286C3.64286 3.99911 3.92946 4.28571 4.28571 4.28571H6.80625L3.1875 7.90179C2.93571 8.15357 2.93571 8.56071 3.1875 8.80982C3.43929 9.05893 3.84643 9.06161 4.09554 8.80982L7.71161 5.19375V7.92857C7.71161 8.28482 7.99821 8.57143 8.35446 8.57143C8.71071 8.57143 8.99732 8.28482 8.99732 7.92857V3.64286C8.99732 3.28661 8.71071 3 8.35446 3H4.28571Z" fill="#2557A7"/>
-                                        </svg>
+                                        <?= icon('external-link', '#2557A7', 12) ?>
                                     </a>
                                 </p>
                                 <div class="mt-3 col-lg-9 px-0">
@@ -215,9 +210,7 @@ $valid_dir_viewer = $taoh_user_is_logged_in && $user_info_obj->profile_complete 
                                     <span>refer original page</span>
                                     <a href="#" class="d-flex align-items-center justify-content-end view" style="gap: 6px;">
                                         <span class="">View Original Page</span>
-                                        <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                            <path d="M10.2857 0C11.2312 0 12 0.76875 12 1.71429V10.2857C12 11.2312 11.2312 12 10.2857 12H1.71429C0.76875 12 0 11.2312 0 10.2857V1.71429C0 0.76875 0.76875 0 1.71429 0H10.2857ZM4.28571 3C3.92946 3 3.64286 3.28661 3.64286 3.64286C3.64286 3.99911 3.92946 4.28571 4.28571 4.28571H6.80625L3.1875 7.90179C2.93571 8.15357 2.93571 8.56071 3.1875 8.80982C3.43929 9.05893 3.84643 9.06161 4.09554 8.80982L7.71161 5.19375V7.92857C7.71161 8.28482 7.99821 8.57143 8.35446 8.57143C8.71071 8.57143 8.99732 8.28482 8.99732 7.92857V3.64286C8.99732 3.28661 8.71071 3 8.35446 3H4.28571Z" fill="#2557A7"/>
-                                        </svg>
+                                        <?= icon('external-link', '#2557A7', 12) ?>
                                     </a>
                                 </p>
                                 <div class="mt-3 col-lg-9 px-0">
@@ -257,9 +250,7 @@ $valid_dir_viewer = $taoh_user_is_logged_in && $user_info_obj->profile_complete 
                         <h4 class="sub-title">Setup Culture Section</h4>
                         <a href="#" class="d-flex align-items-center justify-content-end view" style="gap: 6px;">
                             <span class="">View Original Page</span>
-                            <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M10.2857 0C11.2312 0 12 0.76875 12 1.71429V10.2857C12 11.2312 11.2312 12 10.2857 12H1.71429C0.76875 12 0 11.2312 0 10.2857V1.71429C0 0.76875 0.76875 0 1.71429 0H10.2857ZM4.28571 3C3.92946 3 3.64286 3.28661 3.64286 3.64286C3.64286 3.99911 3.92946 4.28571 4.28571 4.28571H6.80625L3.1875 7.90179C2.93571 8.15357 2.93571 8.56071 3.1875 8.80982C3.43929 9.05893 3.84643 9.06161 4.09554 8.80982L7.71161 5.19375V7.92857C7.71161 8.28482 7.99821 8.57143 8.35446 8.57143C8.71071 8.57143 8.99732 8.28482 8.99732 7.92857V3.64286C8.99732 3.28661 8.71071 3 8.35446 3H4.28571Z" fill="#2557A7"/>
-                            </svg>
+                            <?= icon('external-link', '#2557A7', 12) ?>
                         </a>
                     </div>
                     <div class="row">
@@ -270,9 +261,7 @@ $valid_dir_viewer = $taoh_user_is_logged_in && $user_info_obj->profile_complete 
                                     <span>refer original page</span>
                                     <a href="#" class="d-flex align-items-center justify-content-end view" style="gap: 6px;">
                                         <span class="">View Original Page</span>
-                                        <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                            <path d="M10.2857 0C11.2312 0 12 0.76875 12 1.71429V10.2857C12 11.2312 11.2312 12 10.2857 12H1.71429C0.76875 12 0 11.2312 0 10.2857V1.71429C0 0.76875 0.76875 0 1.71429 0H10.2857ZM4.28571 3C3.92946 3 3.64286 3.28661 3.64286 3.64286C3.64286 3.99911 3.92946 4.28571 4.28571 4.28571H6.80625L3.1875 7.90179C2.93571 8.15357 2.93571 8.56071 3.1875 8.80982C3.43929 9.05893 3.84643 9.06161 4.09554 8.80982L7.71161 5.19375V7.92857C7.71161 8.28482 7.99821 8.57143 8.35446 8.57143C8.71071 8.57143 8.99732 8.28482 8.99732 7.92857V3.64286C8.99732 3.28661 8.71071 3 8.35446 3H4.28571Z" fill="#2557A7"/>
-                                        </svg>
+                                        <?= icon('external-link', '#2557A7', 12) ?>
                                     </a>
                                 </p>
                                 <div class="mt-3 col-lg-9 px-0">
@@ -316,9 +305,7 @@ $valid_dir_viewer = $taoh_user_is_logged_in && $user_info_obj->profile_complete 
                         </div>
                         <a href="#" class="d-flex align-items-center justify-content-end view" style="gap: 6px;">
                             <span class="">View Original Page</span>
-                            <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M10.2857 0C11.2312 0 12 0.76875 12 1.71429V10.2857C12 11.2312 11.2312 12 10.2857 12H1.71429C0.76875 12 0 11.2312 0 10.2857V1.71429C0 0.76875 0.76875 0 1.71429 0H10.2857ZM4.28571 3C3.92946 3 3.64286 3.28661 3.64286 3.64286C3.64286 3.99911 3.92946 4.28571 4.28571 4.28571H6.80625L3.1875 7.90179C2.93571 8.15357 2.93571 8.56071 3.1875 8.80982C3.43929 9.05893 3.84643 9.06161 4.09554 8.80982L7.71161 5.19375V7.92857C7.71161 8.28482 7.99821 8.57143 8.35446 8.57143C8.71071 8.57143 8.99732 8.28482 8.99732 7.92857V3.64286C8.99732 3.28661 8.71071 3 8.35446 3H4.28571Z" fill="#2557A7"/>
-                            </svg>
+                            <?= icon('external-link', '#2557A7', 12) ?>
                         </a>
                     </div>
 
@@ -392,9 +379,7 @@ $valid_dir_viewer = $taoh_user_is_logged_in && $user_info_obj->profile_complete 
                         </div>
                         <a href="#" class="d-flex align-items-center justify-content-end view" style="gap: 6px;">
                             <span class="">View Original Page</span>
-                            <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M10.2857 0C11.2312 0 12 0.76875 12 1.71429V10.2857C12 11.2312 11.2312 12 10.2857 12H1.71429C0.76875 12 0 11.2312 0 10.2857V1.71429C0 0.76875 0.76875 0 1.71429 0H10.2857ZM4.28571 3C3.92946 3 3.64286 3.28661 3.64286 3.64286C3.64286 3.99911 3.92946 4.28571 4.28571 4.28571H6.80625L3.1875 7.90179C2.93571 8.15357 2.93571 8.56071 3.1875 8.80982C3.43929 9.05893 3.84643 9.06161 4.09554 8.80982L7.71161 5.19375V7.92857C7.71161 8.28482 7.99821 8.57143 8.35446 8.57143C8.71071 8.57143 8.99732 8.28482 8.99732 7.92857V3.64286C8.99732 3.28661 8.71071 3 8.35446 3H4.28571Z" fill="#2557A7"/>
-                            </svg>
+                            <?= icon('external-link', '#2557A7', 12) ?>
                         </a>
                     </div>
 

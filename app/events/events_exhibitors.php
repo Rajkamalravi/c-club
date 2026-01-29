@@ -1,4 +1,5 @@
 <?php
+include_once $_SERVER['DOCUMENT_ROOT'].'/raj/assets/icons/icons.php';
 require_once('events_exhibitor_form_new.php');
 //echo "===ssssssssss";die();
 // $click_view = (isset($_SERVER['HTTP_REFERER']) && !empty($_SERVER['HTTP_REFERER'])) ? 'click' : 'view';
@@ -70,9 +71,7 @@ $user_country_name = trim(end($user_country_array));
                         <span id="sponsorDetailModalTitle">Event Ticket</span>
                     </h5>
                     <button type="button" class="btn rounded-circle border" data-dismiss="modal" aria-label="Close">
-                        <svg width="13" height="13" viewBox="0 0 13 13" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M12.6153 2.22013C13.1228 1.71256 13.1228 0.888255 12.6153 0.380681C12.1077 -0.126894 11.2834 -0.126894 10.7758 0.380681L6.5 4.66055L2.22013 0.384741C1.71256 -0.122833 0.888255 -0.122833 0.380681 0.384741C-0.126894 0.892316 -0.126894 1.71662 0.380681 2.22419L4.66055 6.5L0.384742 10.7799C-0.122833 11.2874 -0.122833 12.1117 0.384742 12.6193C0.892316 13.1269 1.71662 13.1269 2.22419 12.6193L6.5 8.33945L10.7799 12.6153C11.2874 13.1228 12.1117 13.1228 12.6193 12.6153C13.1269 12.1077 13.1269 11.2834 12.6193 10.7758L8.33945 6.5L12.6153 2.22013Z" fill="#D3D3D3"></path>
-                        </svg>
+                        <?= icon('close', '#D3D3D3', 13) ?>
                     </button>
                 </div>
                 <div class="modal-body p-3 px-lg-5 pb-lg-5 pt-lg-4">

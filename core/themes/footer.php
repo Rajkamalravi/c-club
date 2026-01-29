@@ -8,15 +8,8 @@ if((taoh_user_is_logged_in() && (TAOH_ENABLE_OBVIOUSBABA || TAOH_ENABLE_SIDEKICK
 }
 
 if (taoh_user_is_logged_in()) {
-    if (NETWORKING_VERSION == 1) {
-        require_once(TAOH_CORE_PATH . '/club/networking_footer1.php');
-    } elseif (NETWORKING_VERSION == 4) {
-        require_once(TAOH_CORE_PATH . '/club/networking_footer4.php');
-    }  elseif (NETWORKING_VERSION == 5) {
-        require_once(TAOH_CORE_PATH . '/club/networking_footer5.php');
-    } else {
-        require_once(TAOH_CORE_PATH . '/club/networking_footer1.php');
-    }
+    $nv = in_array(NETWORKING_VERSION, [4, 5]) ? NETWORKING_VERSION : 1;
+    require_once(TAOH_CORE_PATH . "/club/networking_footer{$nv}.php");
 }
 
 if ($curr_page == 'events' && ($opt == 'chat' || $opt == 'd')) {
@@ -45,110 +38,12 @@ if (in_array($curr_page, ['chat','events', 'room', 'forum', 'custom-room'])) {
     require_once(TAOH_APP_PATH . '/events/events_footer.php');
 }
 
-function getMaxUploadSize() {
-
-    // Get PHP configuration values
-    $upload_max_filesize = ini_get('upload_max_filesize');
-    $post_max_size = ini_get('post_max_size');
-    $memory_limit = ini_get('memory_limit');
-
-    // Convert to bytes
-    $uploadBytes = convertToBytes($upload_max_filesize);
-    $postBytes = convertToBytes($post_max_size);
-    $memoryBytes = convertToBytes($memory_limit);
-
-    // Try to get Nginx client_max_body_size
-    $nginxSize = '1M'; // Default Nginx value
-    $nginxBytes = convertToBytes($nginxSize);
-
-    // Attempt to read Nginx config (may not have permissions)
-    $nginxConfig = @shell_exec('grep -r client_max_body_size /etc/nginx/ 2>/dev/null | grep -v "#"');
-
-    if (!empty($nginxConfig) && preg_match('/client_max_body_size\s+(\d+[KMG]?);/', $nginxConfig, $matches)) {
-        $nginxSize = $matches[1];
-        $nginxBytes = convertToBytes($nginxSize);
-    } else {
-        // Try nginx -T command
-        $nginxTest = @shell_exec('nginx -T 2>&1 | grep client_max_body_size | grep -v "#"');
-        if (!empty($nginxTest) && preg_match('/client_max_body_size\s+(\d+[KMG]?);/', $nginxTest, $matches)) {
-            $nginxSize = $matches[1];
-            $nginxBytes = convertToBytes($nginxSize);
-        }
-    }
-
-    // Find the minimum (most restrictive) value
-    $limits = [
-        'nginx_client_max_body_size' => $nginxBytes,
-        'php_upload_max_filesize' => $uploadBytes,
-        'php_post_max_size' => $postBytes
-    ];
-
-    // Filter out unlimited values for comparison
-    $realLimits = array_filter($limits, function($value) {
-        return $value < PHP_INT_MAX;
-    });
-
-    if (empty($realLimits)) {
-        $minBytes = PHP_INT_MAX;
-        $limitingFactor = 'none_unlimited';
-    } else {
-        $minBytes = min($realLimits);
-        $limitingFactor = array_search($minBytes, $limits);
-    }
-
-    // Format the result
-    $maxUploadMB = $minBytes / 1024 / 1024;
-
-    // Create human-readable format
-    if ($minBytes >= 1024 * 1024 * 1024) {
-        $formatted = round($minBytes / (1024 * 1024 * 1024), 2) . ' GB';
-    } elseif ($minBytes >= 1024 * 1024) {
-        $formatted = round($minBytes / (1024 * 1024), 2) . ' MB';
-    } elseif ($minBytes >= 1024) {
-        $formatted = round($minBytes / 1024, 2) . ' KB';
-    } else {
-        $formatted = $minBytes . ' bytes';
-    }
-
-    return [
-        'bytes' => $minBytes,
-        'mb' => $maxUploadMB,
-        'formatted' => $formatted,
-        'limiting_factor' => $limitingFactor,
-        'details' => [
-            'nginx_client_max_body_size' => [
-                'value' => $nginxSize,
-                'bytes' => $nginxBytes
-            ],
-            'php_upload_max_filesize' => [
-                'value' => $upload_max_filesize,
-                'bytes' => $uploadBytes
-            ],
-            'php_post_max_size' => [
-                'value' => $post_max_size,
-                'bytes' => $postBytes
-            ],
-            'php_memory_limit' => [
-                'value' => $memory_limit,
-                'bytes' => $memoryBytes
-            ]
-        ]
-    ];
-}
-
 function convertToBytes($size) {
-    if ($size == '-1') {
-        return PHP_INT_MAX; // Unlimited
-    }
-
+    if ($size == '-1') return PHP_INT_MAX;
     $size = trim($size);
-    if (empty($size)) {
-        return 0;
-    }
-
+    if (empty($size)) return 0;
     $last = strtolower($size[strlen($size)-1]);
     $size = (float)$size;
-
     switch($last) {
         case 'g': $size *= 1024;
         case 'm': $size *= 1024;
@@ -157,44 +52,30 @@ function convertToBytes($size) {
     return (int)$size;
 }
 
-function getMaxUploadSizeBytes() {
-    $result = getMaxUploadSize();
-    return $result['bytes'];
-}
-
 function get_max_upload_size() {
-    $upload_max = getMaxUploadSizeBytes();
-    // $upload_max = convert_to_bytes(ini_get('upload_max_filesize'));
-    $post_max   = convert_to_bytes(ini_get('post_max_size'));
-    return min($upload_max, $post_max);
-}
+    $uploadBytes = convertToBytes(ini_get('upload_max_filesize'));
+    $postBytes = convertToBytes(ini_get('post_max_size'));
 
-function convert_to_bytes($val) {
-    $val = trim($val);
-    $unit = strtolower(substr($val, -1));
-    $num = (int)$val;
-
-    switch ($unit) {
-        case 'g': $num *= 1024;
-        case 'm': $num *= 1024;
-        case 'k': $num *= 1024;
+    $nginxBytes = convertToBytes('1M');
+    $nginxConfig = @shell_exec('grep -r client_max_body_size /etc/nginx/ 2>/dev/null | grep -v "#"');
+    if (!empty($nginxConfig) && preg_match('/client_max_body_size\s+(\d+[KMG]?);/', $nginxConfig, $matches)) {
+        $nginxBytes = convertToBytes($matches[1]);
+    } else {
+        $nginxTest = @shell_exec('nginx -T 2>&1 | grep client_max_body_size | grep -v "#"');
+        if (!empty($nginxTest) && preg_match('/client_max_body_size\s+(\d+[KMG]?);/', $nginxTest, $matches)) {
+            $nginxBytes = convertToBytes($matches[1]);
+        }
     }
-    return $num;
+
+    $limits = array_filter([$nginxBytes, $uploadBytes, $postBytes], function($v) { return $v < PHP_INT_MAX; });
+    return empty($limits) ? PHP_INT_MAX : min($limits);
 }
 
 ?>
 
 </main>
 
-<!--<?php
-//if (!taoh_user_is_logged_in()) {
-   // echo '<div class="col footer-prompt" id="login-prompt" style="display: none;">';
-    //echo '<h5 class="pb-2">You need to log in to see the full content!</h5>';
-    //echo '<a href="' . (TAOH_LOGIN_URL ?? '') . '" class="btn theme-btn" id="login-btn"><i class="la la-sign-in mr-1"></i>Login / Signup</a>';
-    //echo '</div>';
-//}
-?> -->
- <!-- Footer Banner  -->
+<!-- Footer Banner  -->
 <?php if(defined('TAOH_FOOTER_BANNER_AD') && TAOH_FOOTER_BANNER_AD) { 
     // file_get_contents(TAOH_OPS_PREFIX.'/images/calendar', false, stream_context_create(array( "ssl"=>array( "verify_peer"=>false, "verify_peer_name"=>false,),)))
     if(!isset($_SESSION['footer_banner'])){
@@ -229,7 +110,7 @@ function convert_to_bytes($val) {
 <footer class="page-footer">
     
     
-    <section class="footer-area pt-30px position-relative font-light" style="background: #1E1C1C;">
+    <section class="footer-area pt-30px position-relative font-light">
       <div class="container">
         <div class="row align-items-center pb-4 copyright-wrap">
           <div class="col-lg-12">
@@ -253,9 +134,9 @@ function convert_to_bytes($val) {
                 ?>
            
                 <div class="col-xl-5 mx-auto px-0">
-                    <ul class="nav justify-content-center" style="margin-bottom: -10px;">
+                    <ul class="nav justify-content-center">
                         <?php foreach($footer_array as $key=>$val){ ?>
-                            <li class="nav-item text-center footer-link-text"><a class="nav-link " title="<?php echo $val[2];?>" href="<?php echo $val[0];?>" target="_blank" style="color: #ffffff;"><?php echo $val[1];?></a></li>
+                            <li class="nav-item text-center footer-link-text"><a class="nav-link " title="<?php echo $val[2];?>" href="<?php echo $val[0];?>" target="_blank"><?php echo $val[1];?></a></li>
                         <?php } ?>
                     </ul>
 
@@ -264,10 +145,10 @@ function convert_to_bytes($val) {
             <?php } else { ?>
 
                 <div class="col-xl-5 mx-auto px-0">
-                    <ul class="nav justify-content-center" style="margin-bottom: -10px;">
-                    <li class="nav-item text-center footer-link-text"><a class="nav-link " href="<?php echo TAOH_SITE_URL_ROOT."/professionals";?>" target="_blank" style="color: #ffffff;">Professionals</a></li>
-                    <li class="nav-item text-center footer-link-text"><a class="nav-link " href="<?php echo TAOH_SITE_URL_ROOT."/partners";?>" target="_blank" style="color: #ffffff;">Partners</a></li>
-                    <li class="nav-item text-center footer-link-text"><a class="nav-link " href="<?php echo TAOH_SITE_URL_ROOT."/employers";?>" target="_blank" style="color: #ffffff;">Employers</a></li>
+                    <ul class="nav justify-content-center">
+                    <li class="nav-item text-center footer-link-text"><a class="nav-link " href="<?php echo TAOH_SITE_URL_ROOT."/professionals";?>" target="_blank">Professionals</a></li>
+                    <li class="nav-item text-center footer-link-text"><a class="nav-link " href="<?php echo TAOH_SITE_URL_ROOT."/partners";?>" target="_blank">Partners</a></li>
+                    <li class="nav-item text-center footer-link-text"><a class="nav-link " href="<?php echo TAOH_SITE_URL_ROOT."/employers";?>" target="_blank">Employers</a></li>
                     </ul>
                 </div>
            <?php } ?>
@@ -301,7 +182,7 @@ function convert_to_bytes($val) {
 
                 <div class="dropdown terms-menu">
                    
-                    <a class="footer-menu-item mx-lg-5 dropdown-toggle removecaret text-wrap" id="termsLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" classss="" id="termsLink" style="cursor: pointer;">
+                    <a class="footer-menu-item mx-lg-5 dropdown-toggle removecaret text-wrap" id="termsLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         <div class="svg-container">
                             <svg width="16" height="16" viewBox="0 0 10 9" fill="none" xmlns="http://www.w3.org/2000/svg">
                                 <path d="M0 1.11111C0 0.498264 0.498264 0 1.11111 0H3.88889V2.22222C3.88889 2.52951 4.13715 2.77778 4.44444 2.77778H6.66667V3.44792C5.38368 3.81076 4.44444 4.98958 4.44444 6.38889C4.44444 7.41493 4.94965 8.32118 5.72396 8.87674C5.6684 8.88542 5.61285 8.88889 5.55556 8.88889H1.11111C0.498264 8.88889 0 8.39062 0 7.77778V1.11111ZM6.66667 2.22222H4.44444V0L6.66667 2.22222ZM7.5 3.88889C8.16304 3.88889 8.79893 4.15228 9.26777 4.62112C9.73661 5.08996 10 5.72585 10 6.38889C10 7.05193 9.73661 7.68782 9.26777 8.15666C8.79893 8.6255 8.16304 8.88889 7.5 8.88889C6.83696 8.88889 6.20107 8.6255 5.73223 8.15666C5.26339 7.68782 5 7.05193 5 6.38889C5 5.72585 5.26339 5.08996 5.73223 4.62112C6.20107 4.15228 6.83696 3.88889 7.5 3.88889ZM7.5 8.05556C7.61051 8.05556 7.71649 8.01166 7.79463 7.93352C7.87277 7.85538 7.91667 7.7494 7.91667 7.63889C7.91667 7.52838 7.87277 7.4224 7.79463 7.34426C7.71649 7.26612 7.61051 7.22222 7.5 7.22222C7.38949 7.22222 7.28351 7.26612 7.20537 7.34426C7.12723 7.4224 7.08333 7.52838 7.08333 7.63889C7.08333 7.7494 7.12723 7.85538 7.20537 7.93352C7.28351 8.01166 7.38949 8.05556 7.5 8.05556ZM6.38889 5.58333V5.69444C6.38889 5.84722 6.51389 5.97222 6.66667 5.97222C6.81944 5.97222 6.94444 5.84722 6.94444 5.69444V5.58333C6.94444 5.49132 7.0191 5.41667 7.11111 5.41667H7.81424C7.94792 5.41667 8.05556 5.52431 8.05556 5.65799C8.05556 5.74826 8.00521 5.82986 7.92708 5.87153L7.37153 6.16319C7.27951 6.21181 7.22222 6.30556 7.22222 6.40972V6.66667C7.22222 6.81944 7.34722 6.94444 7.5 6.94444C7.65278 6.94444 7.77778 6.81944 7.77778 6.66667V6.57812L8.18576 6.36458C8.44792 6.22743 8.61111 5.95486 8.61111 5.65972C8.61111 5.21875 8.25347 4.86285 7.81424 4.86285H7.11111C6.71181 4.86285 6.38889 5.18576 6.38889 5.58507V5.58333Z" fill="#1E1C1C"/>
@@ -323,7 +204,7 @@ function convert_to_bytes($val) {
                     <span>By Tao.ai</span>
                 </a>
                 <?php if(taoh_user_is_logged_in()){ ?>
-                <a class="feedback-page footer-menu-item mx-lg-5" target="_blank" style="cursor:pointer;">
+                <a class="feedback-page footer-menu-item mx-lg-5" target="_blank">
                     <div class="svg-container">
                         <svg width="16" height="16" viewBox="0 0 12 10" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path d="M1.25 0C0.560547 0 0 0.560547 0 1.25V8.75C0 9.43945 0.560547 10 1.25 10H6.25C6.93945 10 7.5 9.43945 7.5 8.75V8.37305C7.44727 8.39453 7.39453 8.41211 7.33984 8.42578L6.16602 8.71875C6.10742 8.73242 6.04883 8.74219 5.99023 8.74609C5.97266 8.74805 5.95508 8.75 5.9375 8.75H4.6875C4.56836 8.75 4.46094 8.68359 4.4082 8.57812L4.23633 8.23242C4.20312 8.16602 4.13672 8.125 4.06445 8.125C3.99219 8.125 3.92383 8.16602 3.89258 8.23242L3.7207 8.57812C3.66406 8.69336 3.54102 8.76172 3.41406 8.75C3.28711 8.73828 3.17773 8.65039 3.14258 8.5293L2.8125 7.44141L2.62109 8.08203C2.50195 8.47852 2.13672 8.75 1.72266 8.75H1.5625C1.39062 8.75 1.25 8.60938 1.25 8.4375C1.25 8.26562 1.39062 8.125 1.5625 8.125H1.72266C1.86133 8.125 1.98242 8.03516 2.02148 7.90234L2.3125 6.93555C2.37891 6.71484 2.58203 6.5625 2.8125 6.5625C3.04297 6.5625 3.24609 6.71484 3.3125 6.93555L3.53906 7.68945C3.68359 7.56836 3.86719 7.5 4.0625 7.5C4.37305 7.5 4.65625 7.67578 4.79492 7.95312L4.88086 8.125H5.05469C4.99414 7.95312 4.98242 7.76562 5.02734 7.58203L5.32031 6.4082C5.375 6.1875 5.48828 5.98828 5.64844 5.82812L7.5 3.97656V3.125H5C4.6543 3.125 4.375 2.8457 4.375 2.5V0H1.25ZM5 0V2.5H7.5L5 0ZM10.7383 2.72852C10.4336 2.42383 9.93945 2.42383 9.63281 2.72852L9.05859 3.30273L10.4453 4.68945L11.0195 4.11523C11.3242 3.81055 11.3242 3.31641 11.0195 3.00977L10.7383 2.72852ZM6.0918 6.26953C6.01172 6.34961 5.95508 6.44922 5.92773 6.56055L5.63477 7.73438C5.60742 7.8418 5.63867 7.95312 5.7168 8.03125C5.79492 8.10938 5.90625 8.14062 6.01367 8.11328L7.1875 7.82031C7.29688 7.79297 7.39844 7.73633 7.47852 7.65625L10.002 5.13086L8.61523 3.74414L6.0918 6.26953Z" fill="#1E1C1C"/>
@@ -352,8 +233,8 @@ function convert_to_bytes($val) {
                 </a> -->
             </div>
            
-            <p class="text-center text-muted" style="color: #999999;">
-              <strong style="color: #6C757D;">&copy; <?php echo date('Y'). "</strong> | <strong>".TAOH_SITE_NAME_SLUG."</strong> | "."<a href='https://theworkcompany.com' target='_blank' class='twc-logo' style='color: #fff;'>The<b>W</b><img src='https://theworkcompany.com/assets/images/theworkcompany_sq.png' alt='O' height='14'><b style='color: #fff;'>RK</b>Company</a>"; ?> | <strong style="color: #6C757D;">All Rights Reserved</strong>  <?php if(taoh_user_is_logged_in()) { ?> |  <strong style="color: #6C757D;"><a class="text-primary cursor-pointer" data-toggle="modal" data-target="#reportBugModal">Report an issue</a> <?php } ?>
+            <p class="text-center text-muted">
+              <strong>&copy; <?php echo date('Y'). "</strong> | <strong>".TAOH_SITE_NAME_SLUG."</strong> | "."<a href='https://theworkcompany.com' target='_blank' class='twc-logo'>The<b>W</b><img src='https://theworkcompany.com/assets/images/theworkcompany_sq.png' alt='O' height='14'><b>RK</b>Company</a>"; ?> | <strong>All Rights Reserved</strong>  <?php if(taoh_user_is_logged_in()) { ?> |  <strong><a class="text-primary cursor-pointer" data-toggle="modal" data-target="#reportBugModal">Report an issue</a> <?php } ?>
               </strong><br>
             </p>
           </div><!-- end col-lg-12 -->
@@ -371,7 +252,7 @@ require_once TAOH_SITE_PATH_ROOT . '/core/basic-settings-modal.php';
 
 <!-- dojo toast like popup -->
 <div class="dojo-popup success d-none" id="dojo-popup">
-    <h6 class="popup-title-text d-flex align-items-center border-bottom" style="gap: 8px;">
+    <h6 class="popup-title-text d-flex align-items-center border-bottom">
         <img class="sm-img" src="<?php echo TAOH_SITE_URL_ROOT.'/assets/images/Group 194.svg';?>" alt="">
         <strong>
             Dojo Suggestion
@@ -393,10 +274,10 @@ require_once TAOH_SITE_PATH_ROOT . '/core/basic-settings-modal.php';
 <!-- dojo pop up V1 modal -->
 <div class="modal fade dojo-v1-modal" id="dojoV1Modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-dialog light-dark" role="document">
-        <div class="modal-content" style="border: 1px solid #ccc; border-radius: 8px;">
-            <div class="modal-header py-4" style="border: none; position: relative;">
+        <div class="modal-content">
+            <div class="modal-header py-4">
                 
-                <button type="button" class="btn dojo-v1-close shadow-none" data-dismiss="modal" aria-label="Close" style="background: none; border: none;">
+                <button type="button" class="btn dojo-v1-close shadow-none" data-dismiss="modal" aria-label="Close">
                     <svg width="10" height="10" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path d="M19.4172 3.41719C20.1984 2.63594 20.1984 1.36719 19.4172 0.585938C18.6359 -0.195312 17.3672 -0.195312 16.5859 0.585938L10.0047 7.17344L3.41719 0.592187C2.63594 -0.189063 1.36719 -0.189063 0.585938 0.592187C-0.195312 1.37344 -0.195312 2.64219 0.585938 3.42344L7.17344 10.0047L0.592188 16.5922C-0.189062 17.3734 -0.189062 18.6422 0.592188 19.4234C1.37344 20.2047 2.64219 20.2047 3.42344 19.4234L10.0047 12.8359L16.5922 19.4172C17.3734 20.1984 18.6422 20.1984 19.4234 19.4172C20.2047 18.6359 20.2047 17.3672 19.4234 16.5859L12.8359 10.0047L19.4172 3.41719Z" fill="white"/>
                     </svg>
@@ -436,8 +317,8 @@ require_once TAOH_SITE_PATH_ROOT . '/core/basic-settings-modal.php';
 
 <!-- chat bot -->
 <div class="chatbot-acc d-none">
-    <div style="" class="accordion" id="accordionExample">
-        <div class="card" style="overflow: unset; border-radius: 8px; border-color: #2557A7;">
+    <div class="accordion" id="accordionExample">
+        <div class="card">
             <!-- side-kick-svg.svg -->
             <div class="card-header" id="headingOne">
                 <div class="title-con">
@@ -464,9 +345,9 @@ require_once TAOH_SITE_PATH_ROOT . '/core/basic-settings-modal.php';
                 </div>
             </div>
 
-            <div id="chatOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordionExample"  style="height: 350px">
+            <div id="chatOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordionExample">
                 <div class="card-body px-2">
-                    <div class="user-chatarea-messages pr-2" style="max-height: 210px;">
+                    <div class="user-chatarea-messages pr-2">
                         <div class="acc-user-chat">
                             <img class="user-img" src="<?php echo TAOH_SITE_URL_ROOT.'/assets/images/profile_room_1.png';?>" alt="">
                             <p class="chat-message">What is a super perfect resume !</p>
@@ -517,14 +398,9 @@ require_once TAOH_SITE_PATH_ROOT . '/core/basic-settings-modal.php';
           </div>
           <div class="form-group">
             <label for="" class="text-label-md  mb-1">Let us know you're human</label>
-            <div style="align-items: center;  background-color: #fafafa;  border: 1px solid #e0e0e0;
-                box-sizing: border-box;
-                display: flex;
-                gap: 7px;
-                height: 45px;
-                user-select: none;">
+            <div class="human-verify-box">
                 <br><input onclick="checkReportHumanCheckbox();" type="checkbox" id="human_report" name="human_report" value="human"> 
-                <label class="mb-0" for="human_report" id="verify_label" style="font-size: 16px;">Verify you're human</label>
+                <label class="mb-0" for="human_report" id="verify_label">Verify you're human</label>
             </div>
           </div>
           <?php } ?>
@@ -553,19 +429,19 @@ require_once TAOH_SITE_PATH_ROOT . '/core/basic-settings-modal.php';
 
 <!-- jobPostModal Modal -->
 <div class="modal fade post-option" id="jobPostModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-    <div class="modal-dialog bg-white mx-auto" role="document" style="width: 95%; max-width: 800px;">
+    <div class="modal-dialog bg-white mx-auto" role="document">
         <div class="modal-content">
-            <div class="modal-header bg-white justify-content-end" style="border: none;">
+            <div class="modal-header bg-white justify-content-end">
                 <button type="button" class="btn" data-dismiss="modal" aria-label="Close">
                     <svg width="9" height="9" viewBox="0 0 9 9" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path d="M8.73364 1.53701C9.08504 1.18562 9.08504 0.614946 8.73364 0.263548C8.38224 -0.0878494 7.81157 -0.0878494 7.46017 0.263548L4.5 3.22653L1.53701 0.266359C1.18562 -0.0850383 0.614946 -0.0850383 0.263548 0.266359C-0.0878494 0.617757 -0.0878494 1.18843 0.263548 1.53982L3.22653 4.5L0.26636 7.46299C-0.0850382 7.81438 -0.0850382 8.38505 0.26636 8.73645C0.617757 9.08785 1.18843 9.08785 1.53982 8.73645L4.5 5.77346L7.46299 8.73364C7.81438 9.08504 8.38505 9.08504 8.73645 8.73364C9.08785 8.38224 9.08785 7.81157 8.73645 7.46017L5.77347 4.5L8.73364 1.53701Z" fill="black"/>
                     </svg>
                 </button>
             </div>
-            <div class="modal-body d-flex flex-wrap justify-content-center align-items-start" style="gap: 24px;">
+            <div class="modal-body d-flex flex-wrap justify-content-center align-items-start">
                 <div class="d-flex justify-content-between w-100">
                     <div>
-                        <svg style="width: 100%; max-width: 202px" viewBox="0 0 202 159" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <svg class="job-post-svg-lg" viewBox="0 0 202 159" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path d="M32.4723 121.112C35.3675 116.679 40.3842 112.91 43.6772 109.461C48.9127 103.913 53.9112 98.124 58.6845 92.1299C64.0985 85.2929 69.1805 78.166 73.9176 70.833C76.2565 67.1364 79.3113 62.2149 78.8612 57.6334C80.3176 57.8373 81.6746 58.4707 82.8952 59.6645C85.4466 63.1289 84.8379 67.1395 83.1547 71.0211C80.6299 76.8436 76.4478 82.2094 72.7818 87.3287C68.6557 93.1133 64.3277 98.7646 59.7627 104.175C54.485 110.451 48.9228 116.463 43.1236 122.233C40.2177 125.159 36.948 128.681 36.185 132.582L32.4723 121.112Z" fill="url(#paint0_linear_122_2)"/>
                             <path d="M142.95 33.8061C143.903 32.3469 145.554 31.1062 146.638 29.9707C148.362 28.1444 150.007 26.2387 151.578 24.2655C153.361 22.0148 155.034 19.6687 156.593 17.2547C157.363 16.0378 158.369 14.4177 158.22 12.9095C158.7 12.9767 159.147 13.1852 159.548 13.5782C160.388 14.7186 160.188 16.0389 159.634 17.3167C158.803 19.2334 157.426 20.9997 156.219 22.685C154.861 24.5892 153.436 26.4496 151.933 28.2306C150.196 30.2968 148.365 32.2756 146.456 34.1751C145.499 35.1386 144.423 36.2977 144.172 37.5821L142.95 33.8061Z" fill="url(#paint1_linear_122_2)"/>
                             <path d="M82.4921 59.1586C82.6106 59.2792 82.6931 59.4114 82.764 59.5076C82.8232 59.5679 82.8348 59.6038 82.8941 59.6641C81.6734 58.4702 80.3164 57.8369 78.8601 57.633C75.6015 57.1385 72.0006 58.8998 69.1749 60.8473C63.2 64.8469 57.7889 69.9749 52.2275 74.5159C45.6668 79.8968 33.1677 93.3174 24.0712 85.2184C22.4105 83.7697 20.7287 82.01 19.2383 80.2282L15.1532 67.6072C15.5802 65.2445 16.4852 62.8859 17.5795 60.7441C22.197 52.0594 32.7633 42.363 28.981 32.0275C26.8371 31.1721 24.4955 31.0561 21.9626 30.9623C18.2345 30.8581 14.6174 30.3604 11.0415 29.2536C7.54912 28.1594 4.25234 26.565 1.22203 24.5665L0 20.791C2.58284 22.0207 5.28727 23.0124 8.04243 23.6698C13.3624 24.8875 20.4153 23.3594 25.0491 26.5073C27.9123 28.4804 30.6911 31.9109 32.7707 34.6541C36.0436 38.9972 36.0634 44.9494 34.1085 49.8327C30.296 59.4088 17.4178 69.6946 21.2785 80.6404C29.9259 84.0384 39.7328 73.7138 45.824 68.7232C51.2288 64.3122 56.457 59.601 62.0629 55.4428C65.3951 52.9739 70.1539 50.0035 74.467 51.547C77.6601 52.6983 80.4104 56.6545 82.4921 59.1586Z" fill="url(#paint2_linear_122_2)"/>
@@ -611,7 +487,7 @@ require_once TAOH_SITE_PATH_ROOT . '/core/basic-settings-modal.php';
                         </svg>
                     </div>
                     <div>
-                        <svg  style="width: 100%; max-width: 149px" viewBox="0 0 149 152" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <svg class="job-post-svg-md" viewBox="0 0 149 152" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path fill-rule="evenodd" clip-rule="evenodd" d="M146.916 83.0234C148.328 85.1918 149 87.6288 149 90.0371C149 94.3835 146.8 98.634 142.795 101.052C138.905 103.403 136.58 107.596 136.58 112.057C136.58 112.604 136.619 113.16 136.686 113.717C136.763 114.273 136.801 114.83 136.801 115.377C136.801 121.911 131.825 127.533 125.15 128.167C122.604 128.416 120.26 129.395 118.349 130.92C116.428 132.446 114.949 134.509 114.151 136.936C112.355 142.348 107.312 145.754 101.924 145.754C100.444 145.754 98.9363 145.495 97.4667 144.957C96.0162 144.42 94.5082 144.161 93.0193 144.161C89.5902 144.161 86.2283 145.533 83.7597 148.085C81.2238 150.695 77.8619 152 74.5 152C71.1381 152 67.7762 150.695 65.2403 148.085C62.7717 145.533 59.4098 144.161 55.9807 144.161C54.4918 144.161 52.9838 144.42 51.5333 144.957C50.0637 145.495 48.5556 145.754 47.0764 145.754C41.6877 145.754 36.6449 142.348 34.8486 136.936C34.0514 134.509 32.5721 132.446 30.651 130.92C28.7396 129.395 26.3958 128.416 23.8504 128.167C17.1746 127.533 12.1989 121.911 12.1989 115.377C12.1989 114.83 12.2374 114.273 12.3142 113.717C12.3814 113.16 12.4199 112.604 12.4199 112.057C12.4199 107.596 10.0953 103.403 6.20513 101.052C2.19965 98.634 0 94.3835 0 90.0371C0 87.6288 0.672383 85.1918 2.08439 83.0234C3.47718 80.8837 4.17838 78.4467 4.17838 76C4.17838 73.5533 3.47718 71.1067 2.08439 68.9766C0.672383 66.8082 0 64.3712 0 61.9629C0 57.6165 2.19965 53.366 6.20513 50.9481C10.0953 48.5878 12.4199 44.3949 12.4199 39.9429C12.4199 39.396 12.3814 38.8395 12.3142 38.283C12.2374 37.7265 12.1989 37.1701 12.1989 36.6136C12.1989 30.0891 17.1746 24.4666 23.8504 23.8238C26.3958 23.5839 28.7396 22.6052 30.651 21.0797C32.5721 19.5541 34.0514 17.4912 34.8486 15.0638C36.6449 9.65232 41.6877 6.24618 47.0764 6.24618C48.5556 6.24618 50.0637 6.50524 51.5333 7.04254C52.9838 7.57985 54.4918 7.83891 55.9807 7.83891C59.4098 7.83891 62.7717 6.46686 65.2403 3.91466C67.7762 1.30489 71.1381 0 74.5 0C77.8619 0 81.2238 1.30489 83.7597 3.91466C87.3041 7.57985 92.6831 8.80798 97.4667 7.04254C98.9363 6.50524 100.444 6.24618 101.924 6.24618C107.312 6.24618 112.355 9.65232 114.151 15.0638C114.949 17.4912 116.428 19.5541 118.349 21.0797C120.26 22.6052 122.604 23.5839 125.15 23.8238C131.825 24.4666 136.801 30.0891 136.801 36.6136C136.801 37.1701 136.763 37.7265 136.686 38.283C136.619 38.8395 136.58 39.396 136.58 39.9429C136.58 44.3949 138.905 48.5878 142.795 50.9481C146.8 53.366 149 57.6165 149 61.9629C149 64.3712 148.328 66.8082 146.916 68.9766C145.523 71.1067 144.822 73.5533 144.822 76C144.822 78.4467 145.523 80.8837 146.916 83.0234Z" fill="url(#paint0_linear_5452_2308)"/>
                             <path class="checkmarksvg" d="M63.4662 109L38 83.6334L48.9266 72.7495L62.2684 86.0391L99.0021 41L111 50.7101L63.4662 109Z" fill="#FEFEFE"/>
                             <defs>
@@ -623,7 +499,7 @@ require_once TAOH_SITE_PATH_ROOT . '/core/basic-settings-modal.php';
                         </svg>
                     </div>
                     <div>
-                        <svg style="width: 100%; max-width: 202px" viewBox="0 0 202 158" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <svg class="job-post-svg-lg" viewBox="0 0 202 158" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path d="M168.795 37.4702C165.9 41.903 160.883 45.6719 157.59 49.1212C152.355 54.6691 147.356 60.458 142.583 66.4521C137.169 73.2892 132.087 80.416 127.35 87.749C125.011 91.4457 121.956 96.3671 122.406 100.949C120.95 100.745 119.593 100.111 118.372 98.9175C115.821 95.4531 116.43 91.4426 118.113 87.5609C120.638 81.7385 124.82 76.3727 128.486 71.2534C132.612 65.4688 136.94 59.8174 141.505 54.4071C146.783 48.1306 152.345 42.1195 158.144 36.3495C161.05 33.4227 164.32 29.9015 165.083 25.9999L168.795 37.4702Z" fill="url(#paint0_linear_122_2)"/>
                             <path d="M58.318 124.776C57.365 126.235 55.7135 127.476 54.6295 128.611C52.906 130.438 51.2605 132.343 49.6892 134.317C47.9069 136.567 46.234 138.913 44.6746 141.327C43.9046 142.544 42.899 144.164 43.0472 145.672C42.5677 145.605 42.121 145.397 41.7192 145.004C40.8793 143.863 41.0797 142.543 41.6338 141.265C42.4649 139.349 43.8416 137.582 45.0485 135.897C46.4067 133.993 47.8315 132.132 49.3342 130.351C51.0716 128.285 52.9027 126.306 54.8117 124.407C55.7683 123.443 56.8447 122.284 57.0959 121L58.318 124.776Z" fill="url(#paint1_linear_122_2)"/>
                             <path d="M118.775 99.4234C118.657 99.3028 118.574 99.1706 118.504 99.0744C118.444 99.0141 118.433 98.9782 118.374 98.9179C119.594 100.112 120.951 100.745 122.407 100.949C125.666 101.444 129.267 99.6822 132.093 97.7348C138.068 93.7352 143.479 88.6072 149.04 84.0661C155.601 78.6852 168.1 65.2646 177.196 73.3637C178.857 74.8124 180.539 76.572 182.029 78.3539L186.114 90.9748C185.687 93.3376 184.782 95.6962 183.688 97.838C179.071 106.523 168.504 116.219 172.287 126.555C174.43 127.41 176.772 127.526 179.305 127.62C183.033 127.724 186.65 128.222 190.226 129.328C193.718 130.423 197.015 132.017 200.046 134.016L201.268 137.791C198.685 136.561 195.98 135.57 193.225 134.912C187.905 133.695 180.852 135.223 176.218 132.075C173.355 130.102 170.576 126.671 168.497 123.928C165.224 119.585 165.204 113.633 167.159 108.749C170.972 99.1733 183.85 88.8874 179.989 77.9417C171.342 74.5437 161.535 84.8683 155.444 89.8589C150.039 94.2698 144.811 98.9811 139.205 103.139C135.873 105.608 131.114 108.579 126.801 107.035C123.607 105.884 120.857 101.928 118.775 99.4234Z" fill="url(#paint2_linear_122_2)"/>
@@ -687,10 +563,10 @@ require_once TAOH_SITE_PATH_ROOT . '/core/basic-settings-modal.php';
                 <div class="modal-content log-in-modal-content">
                 <div class="modal-header blue_bg">
                     <h4 class="modal-title">Login</h4>
-                    <button type="button" class="close" style="padding:0;margin:0;" data-dismiss="modal">&times;</button>
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
                 </div>
                 <div class="modal-body p-0">
-                    <div class="main-box p-0" style="border: 0;">
+                    <div class="main-box p-0 border-0">
                     <?php 
                         $login = 0;
                         include_once(TAOH_SITE_DOC_ROOT.'/core/new_login.php');
@@ -764,74 +640,11 @@ require_once TAOH_SITE_PATH_ROOT . '/core/basic-settings-modal.php';
 </div>
 <!-- Contact host popup - end -->
 
-<style>
-    @keyframes highlight-green {
-        0% {
-            background: #3ee632;
-        }
-        100% {
-            background: #ffff99;
-        }
-    }
-
-    .highlight-green {
-        animation: highlight-green 10s;
-    }
-
-/* use specific modal class if needed
-   .modal-lg {
-    max-width: 80% !important;
-    display: table-cell;
-    vertical-align: middle;
-}*/
-
-    .vertical-alignment-helper {
-    display:table;
-    height: 100%;
-    pointer-events:none;
-    margin: auto;
-}
-
-    .vertical-align-center {
-    /* To center vertically */
-    display: table-cell;
-    vertical-align: middle;
-    pointer-events:none;
-}
-.close-btn {
-    position: absolute;
-    top: 12px;
-    right: 16px;
-    font-size: 22px;
-    font-weight: bold;
-    cursor: pointer;
-    color: #888;
-  }
-
-  .close-btn:hover {
-    color: #000;
-  }
-
-  #goalModalContent {
-    position: relative; /* So close button positions inside */
-  }
-
-/*    .modal-content {
-    !* Bootstrap sets the size of the modal in the modal-dialog class, we need to inherit it *!
-    width:inherit;
-    max-width:inherit; !* For Bootstrap 4 - to avoid the modal window stretching
-    full width *!
-    height:inherit;
-    !* To center horizontally *!
-    margin: 0 auto;
-    pointer-events:all;}*/
-</style>
+<link rel="stylesheet" href="<?php echo TAOH_SITE_URL_ROOT; ?>/assets/css/footer.css?v=<?php echo TAOH_CSS_JS_VERSION; ?>">
 <?php
  $session_data = taoh_session_get(TAOH_ROOT_PATH_HASH);
 if (defined('TAOH_CUSTOM_FOOT')) {
     echo TAOH_CUSTOM_FOOT;
-
-    var_dump(get_defined_vars());
 }
 
 if (defined('TAOH_SITE_GA_ENABLE') && TAOH_SITE_GA_ENABLE) {
@@ -843,16 +656,12 @@ if (defined('TAOH_SITE_GA_ENABLE') && TAOH_SITE_GA_ENABLE) {
         <script async
                 src="https://www.googletagmanager.com/gtag/js?id=<?php echo (defined('TAOH_PAGE_GA') && TAOH_PAGE_GA) ? TAOH_PAGE_GA : TAOH_SITE_GA; ?>"></script>
         <script>
-            window.dataLayer = window.dataLayer || [];
-
-            function gtag() {
-                dataLayer.push(arguments);
-            }
-
-            gtag('js', new Date());
-
-            gtag('config', '<?php  echo (defined('TAOH_PAGE_GA') && TAOH_PAGE_GA) ? TAOH_PAGE_GA : TAOH_SITE_GA; ?>');
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){ dataLayer.push(arguments); }
+        gtag('js', new Date());
+        gtag('config', '<?= (defined('TAOH_PAGE_GA') && TAOH_PAGE_GA) ? TAOH_PAGE_GA : TAOH_SITE_GA ?>');
         </script>
+
     <?php }
 }
 
@@ -874,1021 +683,36 @@ if (!@$_COOKIE['client_time_zone']) { ?>
 <script src="https://unpkg.com/intro.js/minified/intro.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
 
-<script type="text/javascript">
-    const ft_isLoggedIn = <?= json_encode(taoh_user_is_logged_in() ?? false); ?>;
-
-    // Get the elements
-   
-    if(document.getElementById('termsLink')){
-         const termsLink = document.getElementById('termsLink');
-        const termsList = document.getElementById('termsList');
-        const termItems = document.querySelectorAll('.term-item');
-
-        // Toggle visibility of the terms list when the anchor is clicked
-        termsLink.addEventListener('click', (event) => {
-            event.preventDefault(); // Prevent default anchor behavior
-            termsList.style.display = (termsList.style.display === 'none' || termsList.style.display === '') ? 'block' : 'none';
-        });
-
-        // Hide the terms list when any of the list items is clicked
-        termItems.forEach(item => {
-            item.addEventListener('click', () => {
-                termsList.style.display = 'none'; // Hide the list
-            });
-        });
-    }
-
-
-    var loopTime = '<?php echo TAOH_NOTIFICATION_LOOP_TIME_INTERVAL;?>';
-
-    let profileRSLiveStatusInterval;
-
-    $(document).ready(function () {
-        // Set a threshold for maximum load time (e.g., 15000 milliseconds = 15 seconds)
-        //const loadTimeThreshold = <?php //echo TAOH_HEALTH_TIMEOUT; ?>// * 1000;
-
-        // Set a timeout function that redirects the user if the page takes too long to load
-        /*const timeoutHandle = setTimeout(function() {   // Redirect the user to a different page if the load time exceeds the threshold
-            window.location.href = '<?php //echo TAOH_SITE_URL_ROOT."/down.html";  ?>';
-        }, loadTimeThreshold);
-
-        // Listen for the window's 'load' event
-        window.addEventListener('load', function() {  // If the page loads within the threshold, clear the timeout to prevent redirection
-            clearTimeout(timeoutHandle);
-        });*/
-
-        // var loadTime = window.performance.timing.domContentLoadedEventEnd - window.performance.timing.navigationStart;
-        // console.log('Load Time ------------', loadTime);
-        // console.log(loadTime + " <= " + loadTimeThreshold);
-        //if(loadTime >= loadTimeThreshold){
-        //window.location.href = '<?php //echo TAOH_SITE_URL_ROOT."/down.php";  ?>';
-        //}
-        
-        <?php if($curr_page != 'login' && $curr_page != 'createacc' && taoh_user_is_logged_in()){ ?>
-            //checkReferralStatus();
-            <?php if(!taoh_user_is_logged_in() ) { ?>
-            setInterval(function () {
-                checkReferralStatus();
-
-            }, 60000);
-            <?php } ?>
-        <?php } ?>
-
-        <?php if(taoh_user_is_logged_in() ) { ?>
-            setInterval(function () {
-                moveMetricstoRedis();
-            }, 10000);
-            <?php } ?>
-
-
-        <?php
-        if(taoh_user_is_logged_in() ) {
-            if(TAOH_NOTIFICATION_ENABLED && TAOH_NOTIFICATION_STATUS == 2){
-                ?>
-                setTimeout(function () {
-                    taoh_notification_init(1);
-                }, 3000);
-
-                setInterval(function () {
-                    taoh_notification_init(0);
-
-                }, loopTime);
-                <?php
-            }
-
-            ?>
-            // checksitemap(); //commented on 20/5 to stop old sitemap file call
-
-           <?php if($curr_page != 'settings'){ ?>
-                setInterval(function () {
-                    checkProfileCompletion();
-                  
-                }, 60000);
-
-                
-            <?php } ?>
-            checksuperadminInit();
-            setInterval(function () {
-                    checksuperadminInit();
-            }, 60000);
-
-            savetaodata();
-            setInterval(function () {
-               // console.log('----savetaodata------------')
-                if(typeof index_name !== 'undefined') checkTTL(index_name);
-                savetaodata();
-            }, 10000);
-
-            <?php
-        }
-        ?>
-
-
-    // Get the current URL
-    var currentUrl = window.location.href;
-
-    // Retrieve the list of previously accessed URLs from localStorage, or initialize an empty array
-    var visitedUrls = JSON.parse(localStorage.getItem('visitedUrls')) || [];
-
-    // Add the current URL to the list
-    visitedUrls.push(currentUrl);
-
-    // Keep only the last 5 URLs (if there are more than 5)
-    if (visitedUrls.length > 5) {
-        visitedUrls.shift(); // Remove the oldest URL if there are more than 5
-    }
-
-    // Store the updated list back to localStorage
-    localStorage.setItem('visitedUrls', JSON.stringify(visitedUrls));
-
-    $(document).on('click', '#bugsubmit', function(e) {
-        e.preventDefault(); // Prevent form submission
-        if($("#bugForm").valid()){
-            const formData = new FormData($("#bugForm")[0]);
-            formData.append('taoh_action', 'taoh_report_bug');
-            var currentUrl = window.location.href;
-            var visitedUrls = JSON.parse(localStorage.getItem('visitedUrls')) || [];
-            console.log(visitedUrls);
-            formData.append('visited_url', visitedUrls);
-            formData.append('current_url', currentUrl);
-
-            let submit_btn = $(this);
-            submit_btn.prop('disabled', true);
-
-            // let submit_btn_icon = submit_btn.find('i');
-            // submit_btn_icon.removeClass('fa-play-circle-o').addClass('fa-spinner fa-spin');
-
-            $.ajax({
-                url: '<?php echo taoh_site_ajax_url(); ?>',
-                type: 'post',
-                data: formData,
-                dataType: 'json',
-                processData: false,
-                contentType: false,
-                cache: false,
-                success: function (response) {
-                    if(response.success){
-                        $("#reportBugModal").modal("hide");
-                        $("#reportBugModal").hide();
-                        $('.modal-backdrop').remove();
-                        $('body').removeClass('modal-open');
-                        document.getElementById("bugForm").reset();
-                        submit_btn.prop('disabled', false);
-                        // $.alert(response.output);
-                        taoh_set_success_message('<h5>Thanks!</h5>Issue report submitted successfully.', false);
-                    }
-                    // location.reload();
-                },
-                error: function (xhr, status, error) {
-                    console.log(xhr.responseText);
-                }
-            });
-        }
-    });
-
-        $('#contactusModal').on('show.bs.modal', function (event) {
-            var button = $(event.relatedTarget); // The button that triggered the modal
-            var email = button.data('email'); // Extract info from data-* attributes
-            $('#contact_email').val(email); // Update the hidden input field
-            var addtitle = button.data('addtitle') || ''; // Extract info from data-* attributes
-            $('#contact_addtitle').val(addtitle); // Update the hidden input field
-        });
-
-        $(document).on('click', '#contactusSubmit', async function(e) {
-            e.preventDefault(); // Prevent form submission
-            let to_email = $('#contact_email').val();
-            if(to_email == ''){
-                taoh_set_error_message('Error on sending email. Please check after sometime', false);
-                return false;
-            }else{
-                if($("#contactusForm").valid()){
-                    const formData = new FormData($("#contactusForm")[0]);
-                    formData.append('taoh_action', 'taoh_contact_us');
-                    formData.append('eventtoken', eventToken);
-                    formData.append('to_email', to_email);
-                    
-                    let submit_btn = $(this);
-                    submit_btn.prop('disabled', true);
-
-                    $.ajax({
-                        url: '<?php echo taoh_site_ajax_url(); ?>',
-                        type: 'post',
-                        data: formData,
-                        dataType: 'json',
-                        processData: false,
-                        contentType: false,
-                        cache: false,
-                        success: function (response) {
-                            if(response.success){
-                                $("#contactusModal").modal("hide");
-                                document.getElementById("contactusForm").reset();
-                                submit_btn.prop('disabled', false);
-                                taoh_set_success_message('Thanks! Mail sent successfully.', false);
-                            }
-                        },
-                        error: function (xhr, status, error) {
-                            console.log(xhr.responseText);
-                        }
-                    });
-                }
-            }
-        });
-    });
-
-
-
-    function checksitemap() {
-        <?php
-        $currentDate = date("Ymd");
-        $filename = "sitemap_" . $currentDate . ".sitemap";
-        if(!file_exists($filename)){
-        //$myfile = fopen($filename, "a") or die("Unable to open file!");
-        ?>
-        jQuery.get("<?php echo TAOH_SITE_URL_ROOT . '/sitemap'; ?>", {
-            'taoh_action': 'taoh_sitemap_call',
-        }, function (response) {
-            res = response;
-            //render_events_template(res, eventArea);
-        }).fail(function () {
-            console.log("Network issue!");
-        })
-        <?php
-        }  ?>
-    }
-
-    function checkProfileCompletion(){
-        <?php if(isset(taoh_session_get(TAOH_ROOT_PATH_HASH)['USER_INFO']->profile_complete)  &&
-        taoh_session_get(TAOH_ROOT_PATH_HASH)['USER_INFO']->profile_complete == 0 &&
-        isset(taoh_session_get(TAOH_ROOT_PATH_HASH)['USER_INFO']->fname) &&
-        taoh_session_get(TAOH_ROOT_PATH_HASH)['USER_INFO']->fname == TAOH_SITE_NAME_SLUG){ ?>
-            if (typeof showBasicSettingsModal === 'function') {
-                const $completeModal = $('#completeSettingsModal');
-                if ($completeModal.length === 0 || !$completeModal.hasClass('show')) {
-                    showBasicSettingsModal();
-                }
-            }
-             // $('#toast').toast('show');
-             //    $('#toast').show();
-             //    $("#toast").addClass("toast_active");
-             //    var msg = "complete your settings to fully use the platform.";
-             //    $("#toast_error").html("<div class='toasterror_class'><span><i class='las la-exclamation-circle info_icon'></i> "+msg+"&nbsp;<span class='toast_dismiss' aria-hidden='true'  data-dismiss='toast' aria-label='Close'>&times;</span></span></div>");
-             //    setTimeout(function () {
-             //        $("#toast").removeClass("toast_active");
-             //    }, 8000);
-        <?php } ?>       
-    }
-
-    function checksuperadminInit(){
-        <?php if(isset(taoh_session_get(TAOH_ROOT_PATH_HASH)['USER_INFO']->is_super_admin) && 
-        taoh_session_get(TAOH_ROOT_PATH_HASH)['USER_INFO']->is_super_admin == 1 && 
-        taoh_session_get(TAOH_ROOT_PATH_HASH)['USER_INFO']->site_status == 'init'){ ?>
-            var msg = 'Please complete your site settings. Click Manage Button on the header menu and proceed to fill the site data.';
-            taoh_set_error_message(msg,8000);
-        <?php } ?>       
-    }
-
-    function checkReferralStatus(){
-        <?php  if(isset($_COOKIE[TAOH_ROOT_PATH_HASH.'_'.'refer_token']) && $_COOKIE[TAOH_ROOT_PATH_HASH.'_'.'refer_token']!=''
-                 && isset($_COOKIE[TAOH_ROOT_PATH_HASH.'_'.'referral_back_url']) && $_COOKIE[TAOH_ROOT_PATH_HASH.'_'.'referral_back_url'] != '')
-             { ?>
-                $('#toast').toast('show');
-                $('#toast').show();
-                $("#toast").addClass("toast_active");
-                var msg = "Sorry, You haven't logged in the site. You will be redirecting in few secs.";
-                $("#toast_error").html("<div class='toasterror_class'><span><i class='las la-exclamation-circle info_icon'></i> "+msg+"&nbsp;<span class='toast_dismiss' aria-hidden='true'  data-dismiss='toast' aria-label='Close'>&times;</span></span></div>");
-                //$("#loader").show();
-                //$("#error_textmsg").html(msg);
-
-                setTimeout(function () {
-
-                    $("#toast").removeClass("toast_active");
-                    $("#toast_container").removeClass("toast-middle-con");
-                    $("#loader").hide();
-
-                    //window.location.href = '<?php //echo TAOH_SITE_URL_ROOT.'/login' ?>';
-                    localStorage.setItem('email', '');
-                    $('#config-modal').modal({show:true});
-                }, 8000);
-        <?php } ?>
-
-        /*var datas = {
-            'taoh_action': 'taoh_check_referral_status',
-        };
-
-        jQuery.post("<?php echo taoh_site_ajax_url(); ?>", datas, function (response) {
-            data = response;//JSON.parse(response);
-            // alert(data);
-            if (data == 0) {
-
-                $('#toast').toast('show');
-                $('#toast').show();
-                $("#toast").addClass("toast_active");
-                var msg = "Sorry, You haven't logged in the site. You will be redirecting in few secs.";
-                $("#toast_error").html("<div class='toasterror_class'><span><i class='las la-exclamation-circle info_icon'></i> "+msg+"&nbsp;<span class='toast_dismiss' aria-hidden='true'  data-dismiss='toast' aria-label='Close'>&times;</span></span></div>");
-                //$("#loader").show();
-                //$("#error_textmsg").html(msg);
-                    
-                setTimeout(function () {
-
-                    $("#toast").removeClass("toast_active");
-                    $("#loader").hide();
-                    
-                    //window.location.href = '<?php //echo TAOH_SITE_URL_ROOT.'/login' ?>';
-                    $('#config-modal').modal({show:true});
-                }, 8000);
-                
-
-            } else {
-
-            }
-
-
-        });*/
-    }
-
-    function updateStatus(process) {
-        <?php  if(taoh_user_is_logged_in() ) { ?>
-
-        $('#userMenuDropdownarea').addClass('stay_open');
-
-        var my_status = $('#my_status').val();
-
-        if (my_status == '') {
-            return false;
-        }
-        if (process == 0) {
-            $('#my_status').val('');
-            my_status = '';
-        }
-        if (my_status != '') { //add
-            $('#status_save').hide();
-            $('#status_remove').show();
-        } else { //remove
-            $('#status_save').show();
-            $('#status_remove').hide();
-        }
-        var data = {
-            'taoh_action': 'taoh_update_status',
-            "process": process,
-            "my_status": my_status,
-            "ptoken": "<?php echo (taoh_session_get(TAOH_ROOT_PATH_HASH)['USER_INFO'] ?? null)?->ptoken ?? ''; ?>",
-        };
-
-        jQuery.post("<?php echo taoh_site_ajax_url(); ?>", data, function (response) {
-            data = response;//JSON.parse(response);
-            if (process) {
-
-
-            } else {
-
-            }
-
-
-        });
-
-        setTimeout(function () {
-            $('#userMenuDropdownarea').removeClass('stay_open');
-        }, 5000);
-
-
-        <?php } ?>
-    }
-
-    function taoh_counter_init(call_at) {
-
-        <?php  if(taoh_user_is_logged_in() && TAOH_NOTIFICATION_ENABLED ) { ?>
-        //alert('----2------');
-        $('#badge_count').hide();
-        $('#badge_count').html('');
-        $('.notification_row').removeClass('bold');
-        <?php  if ( taoh_user_is_logged_in() ) {  ?>
-        var data = {
-            'taoh_action': 'taoh_get_notification_counter',
-            'mod': 'core',
-            'ops': "get",
-            "type": "notify",
-            "token": "<?php echo TAOH_API_TOKEN; ?>",
-            "ptoken": "<?php echo (taoh_session_get(TAOH_ROOT_PATH_HASH)['USER_INFO'] ?? null)?->ptoken ?? ''; ?>",
-            "call_at": call_at
-
-        };
-        jQuery.post("<?php echo taoh_site_ajax_url(); ?>", data, function (response) {
-            data = response;//JSON.parse(response);
-            if (data.status) {
-                if (data.total_num > 0) {
-                    $('#badge_count').show();
-                    $('#badge_count').html(data.total_num);
-                } else {
-                    $('#badge_count').hide();
-                    $('#badge_count').html('');
-                }
-
-            } else {
-                $('#badge_count').hide();
-                $('#badge_count').html('');
-            }
-        });
-        <?php } ?>
-        <?php } ?>
-    }
-
-    <?php  if ( taoh_user_is_logged_in() && TAOH_NOTIFICATION_ENABLED ) {  ?>
-    function taoh_notification_init(call_from = 0) {
-        // $('#loaderChat').show();
-        /*var data = {
-         'taoh_action': 'taoh_get_notification',
-         'mod': 'core',
-         'ops': "get",
-         "type" : "notify",
-         "token" : "<?php //echo TAOH_API_TOKEN; ?>",
-     "ptoken" :  "<?php //echo $_SESSION[TAOH_ROOT_PATH_HASH]['USER_INFO']->ptoken; ?>",
-     "call_from" : call_from
-   };*/
-        var data = {
-            'taoh_action': 'taoh_get_notification',
-            'mod': 'notify',
-            'ops': "webnotify",
-            "type": "notify",
-            "token": "<?php echo TAOH_API_TOKEN; ?>",
-            "ptoken": "<?php echo (taoh_session_get(TAOH_ROOT_PATH_HASH)['USER_INFO'] ?? null)?->ptoken ?? ''; ?>",
-            "call_from": 0, //call_from
-        };
-        jQuery.post("<?php echo taoh_site_ajax_url(); ?>", data, function (response) {
-            data = response; //JSON.parse(response);
-            // console.log(data);
-            if (data.status) {
-                if (data.total_num > 0) {
-                    $('#notifications-list').css('height', '250px');
-                    render_notification_list_template(data.output, call_from);
-                    if (!call_from) {
-                        $('#badge_count').show();
-                        //$('#badge_count').html(data.total_num);
-                        var old = $('#badge_count').html();
-                        if (old == '') old = 0;
-                        var total = data.output.length + parseInt(old);
-                        $('#badge_count').html(total);
-                    }
-                } else {
-                    if (call_from) {
-                        $('#notifications-list').html('<li class="no-result">No Result Found</li>');
-                    }
-                }
-                if (data.total_num > 10) {
-                    $('#notification_load_more').show();
-                }
-            } else {
-                if (call_from) {
-                    $('#badge_count').hide();
-                    $('#notifications-list').html('<li class="no-result">No Result Found</li>');
-                    $('#notification_load_more').hide();
-                }
-            }
-            $('#loaderChat').hide();
-            if (call_from) {
-                taoh_counter_init(1);
-            }
-
-        });
-
-    }
-
-    function render_notification_list_template(data, call_from) {
-        var notification_data = '';
-        // console.log('------call_from------', call_from);
-        var class_add = '';
-        if (call_from == 0) {
-            class_add = 'bold';
-        }
-        $.each(data, function (i, v) {
-
-            notification_data += `<li class="notification_row ${class_add}">
-            <div class="row m-2" style="font-size:12px;">
-              <div class="col-lg-2" style="padding-left:2px;padding-right:2px;">
-                <div class='bgimage ' style="">
-                 <img width="50" class="lazy" src="https://opslogy.com/avatar/PNG/128/${v.avatar ? v.avatar : 'default'}.png" alt="avatar" style=""></div>
-
-                </div>
-
-                <div class="col-lg-8 fs-12" style="padding-left: 5px;">
-                  <p><span>${v.title}</span><p>
-                  <span>${v.message}</span>
-               </div>
-               <div class="col-lg-2 fs-12" style="padding:0px;margin:0px;">
-                 <span class="notify_time">${v.timestamp}</span>
-               </div>
-            </div>
-            <div class="dropdown-divider"></div>
-          </li>`;
-
-
-        });
-        //<span><h3>${v.title}</h3></span>
-        if (call_from == 1) {
-            $('#notifications-list').html(notification_data);
-        } else {
-            $('#notifications-list').prepend(notification_data);
-        }
-    }
-    <?php  }  ?>
-
-    $(document).on('click','.media_share', function(event) {
-		var click =  $(this).attr("data-click");
-		var dataconttoken = $(this).attr("data-gconntoken");
-		save_metrics('jobs','share',dataconttoken);
-	});
-
-
-    function taoh_metrix_ajax(app,arr_cont) {
-        $.each(arr_cont, function(i, v){
-            save_metrics(app,'view',v);
-        });
-    }
-
-    function save_metrics(app,metrics_type,conttoken){
-        var store_name = METIRCSStore;
-
-        var metrics = {
-            "conttoken": conttoken,
-            "met_type" : app,
-            "ptoken": '<?php echo isset($session_data['USER_INFO']) ? $session_data['USER_INFO']->ptoken : '' ; ?>',
-            'met_action': metrics_type,
-            'time': Date.now(),
-            'secret':'<?php echo TAOH_API_SECRET; ?>',
-            'type': 'metrics',
-        }
-
-        let metrics_setting_time = Date.now()+'_'+conttoken;
-        //metrics_setting_time = metrics_setting_time.setMinutes(metrics_setting_time.getMilliseconds());
-
-        let name = app+'_'+metrics_setting_time;
-        var metrics_data = { taoh_data:name,values : metrics };
-
-        obj_data = { [store_name]:metrics_data };
-       // console.log('--1---store_name---------',store_name);
-       // console.log('--1---metrics_data---------',metrics_data);
-        Object.keys(obj_data).forEach(key => {
-            IntaoDB.setItem(key,obj_data[key]).catch((err) => console.log('Storage failed', err));
-        });
-        return false;
-    }
-
-    var mertricsLoad = function () {
-        $('.dash_metrics').each(function (f) {
-            var conttoken = $(this).attr("conttoken");
-            var metrics = $(this).attr("data-metrics");
-            var app = $(this).attr("data-type");
-            if (metrics == '') {
-                metrics = 'view';
-            }
-
-            save_metrics(app, metrics, conttoken);
-
-
-        });
-    }
-
-    function moveMetricstoRedis() {
-        var store_name = METIRCSStore;
-
-        const MetricsStoreName = METIRCSStore;
-        let metricsPush = [];
-        getIntaoDb(dbName).then((db) => {
-            if (db.objectStoreNames.contains(MetricsStoreName)) {
-                const request = db.transaction(MetricsStoreName).objectStore(MetricsStoreName).getAll();
-
-                request.onsuccess = () => {
-                    const metricsData = request.result;
-
-                    //console.log('----metricsData-----',metricsData);
-                    if (metricsData && metricsData.length > 0) {
-                        metricsData.forEach((data) => {
-                            let metrics_data = data.values;
-                            let metrics_key = data.taoh_data;
-                            //console.log('----metrics_key-----',metrics_key);
-
-                            metricsPush.push(data.values);
-                            IntaoDB.removeItem(store_name, data.taoh_data).catch((err) => console.log('Storage failed', err));
-
-
-                        });
-
-                        //console.log('----metricsPush-----',metricsPush);
-
-                        var data = {
-                            'taoh_action': 'toah_metrics_push',
-                            'metrics_data': JSON.stringify(metricsPush),
-                            
-                        };
-                        jQuery.post("<?php echo taoh_site_ajax_url(); ?>", data, function (response) {
-                            //success
-                        }).fail(function () {
-                            console.log("Network issue!");
-                        })
-
-                    }
-                }
-
-                //console.log('----metricsPush-----',metricsPush);
-            }
-        });
-    }
-    window.onload = function () {
-        setTimeout(mertricsLoad, 8000);
-    }
-
-
-    function triggerNextRequest(callback, ttl = 3000) {
-        setTimeout(callback, ttl);
-    }
-
-    $(document).on("click", '.toast_dismiss', function () {
-        // $("#toast").toggle();
-        $("#toast").removeClass("toast_active");
-        $("#toast_container").removeClass("toast-middle-con");
-    });
-
-
-
-
-    <?php if(isset($_GET['clear']) && $_GET['clear'] == 'config') { ?>
-        
-        const newUrl = new URL(location.href);
-        newUrl.searchParams.delete('clear');
-        window.history.replaceState({}, document.title, newUrl.href);
-    <?php } ?>
-
-
-    $('.li-modal').on('click', function(e){
-      e.preventDefault();
-      $('#theModal').modal('show').find('.modal-content').load($(this).attr('href'));
-    });
-
-    
-
-$('.login-button').click(function(e){    
-    
-    var locc = $(location).attr('href');
-    var days = 1;
-    var name  = '<?php echo TAOH_ROOT_PATH_HASH.'_'.'referral_back_url';?>';
-    var value = locc;
-    //alert(locc);
-    var expires = "";
-    if (days) {
-        var date = new Date();
-        date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
-        expires = "; expires=" + date.toUTCString();
-    }
-    document.cookie = name + "=" + (value || "") + expires + "; path=/";
-    localStorage.setItem('email', '');
-    $('#config-modal').modal({show:true});
-
-});
-$(document).on('click', '.login-button1', function (e) {
-    
-  //window.location.href = '<?php //echo TAOH_SITE_URL_ROOT; ?>/login';
- // var login_url = '<?php //echo TAOH_SITE_URL_ROOT; ?>/login';
-   // e.preventDefault();
-   //   $('#config-modal').modal('show').find('.modal-content').load(login_url);
-});
-
-if (localStorage.getItem('show_jobPostModal') == 1) {
-    
-    $('#jobPostModal').modal('show');
-    localStorage.setItem('show_jobPostModal', 0);
-}
-
-// Close the modal and redirect to the "Post a Job" form when the button is clicked
-$('#postJobButton').click(function() {
-    window.location.href = "<?php echo TAOH_SITE_URL_ROOT.'/jobs/post'; ?>";  // Redirect after a short delay
-});
-
-    $(document).on('show.bs.modal', '#config-modal', function (e) {
-
-        $('#isCodeSent').hide();
-        $('#isCodeNotSent').show();
-        localStorage.setItem('isCodeSent', 'false');
-        if (!e.relatedTarget) return; // Stop execution if triggered via jQuery
-
-        const key = _taoh_root_path_hash + '_referral_back_url';
-        let value = $(e.relatedTarget).data('location');
-        if (key && value) {
-            const expires = new Date(Date.now() + 86400000).toUTCString(); // 1 day in milliseconds
-            document.cookie = `${key}=${value}; expires=${expires}; path=/`;
-        }
-    });
-
-    const formatObjectAndReunOnlyValue = (obj) => {
-        if (typeof obj !== "undefined" && typeof obj === "object") {
-            return Object.entries(obj).map(([key, value]) => {
-                if (typeof value === "string" && value.includes(":>")) {
-                    const [slug, name] = value.split(":>");
-                    return name;
-                } else {
-                    if (value['id'] != undefined)
-                        return value['name'];
-                    else
-                        return value['value'];
-                }
-            });
-        }
-        return {};
-    };
-
-    function get_to_date() {
-        var currentDate = new Date()
-        var day = currentDate.getDate();
-        var month = currentDate.getMonth() + 1;
-        var year = currentDate.getFullYear();
-        var my_date = month + "-" + day + "-" + year;
-        return my_date;
-        //localStorage.setItem('date_last_agree', my_date);
-    }
-
-
-    var date_lat_intao_delete  = localStorage.getItem('date_lat_intao_delete');
-    var current_date = get_to_date();
-    if(date_lat_intao_delete == '' || date_lat_intao_delete == null){
-        deleteIntaoData();
-        localStorage.setItem('date_lat_intao_delete', current_date);
-    }
-    else if(date_lat_intao_delete != current_date){
-        deleteIntaoData();
-        localStorage.setItem('date_lat_intao_delete', current_date);
-    }
-
-    function deleteIntaoData() {
-        var db_version = parseInt(_intao_db_version) || 1;
-       var db_name = 'intaodb_'+_taoh_plugin_name;
-
-        notifyRecreateIntaoDb(db_name, db_version);
-        recreateIntaoDb(db_name, db_version);
-    }
-
-    function checkReportHumanCheckbox(){
-        if($('#human_report').is(':checked')){
-            $('#human_report').val(1);
-
-            $('#bugsubmit').animate({
-            width: '200px'
-            }, 2000, function() {        
-                $('#bugsubmit').attr({'disabled': false});
-            });
-            
-        }else{
-            $('#human_report').val(0);
-        }
-    }
-     function checkdojotracker() {
-       <?php if(taoh_user_is_logged_in() ) { ?>
-       /*  IntaoDB.getItem(objStores.event_store.name, eventBaseInfoKey)
-            .then((data) => {
-                if (data?.values) {
-                    handleResponse(data.values, false);
-                } else {
-                    getEventBaseInfo(requestData, true).then(resolve).catch(reject);
-                }
-            })
-            .catch(reject); */
-        <?php } ?>
-     }
-
-
-    
-   
-    function isGoalStale(timestamp) {
-        let reaffirm_interval_days = 7;
-        if (!timestamp) return true;
-        const daysElapsed = (Date.now() - new Date(timestamp).getTime()) / (1000 * 60 * 60 * 24);
-        return daysElapsed > reaffirm_interval_days;
-    } 
-
-        async function shouldPromptGoal() {
-            try {
-                //console.log('--logged user details---22222------')
-                var existing = await IntaoDB.getItem(objStores.dojo_store.name,objStores.dojo_store.name);
-                //console.log(existing);
-                if(!existing){
-                    
-                     jQuery.get("<?php echo taoh_site_ajax_url(); ?>", {
-                        'taoh_action': 'check_dojo_goal',
-                    }, function (response) {
-                        res = response;
-                        if(res.dojo_goal != undefined){
-                            var payload = res.dojo_goal;
-                            IntaoDB.setItem(objStores.dojo_store.name,payload);
-                            existing = payload;
-                        }
-                            //render_events_template(res, eventArea);
-                    }).fail(function () {
-                        console.log("Network issue!");
-                    }) 
-                }
-                return !existing || isGoalStale(existing.timestamp);
-            } catch {
-                return true;
-            }
-         }
-
-        function showGoalModal() {
-            //if (shouldPromptGoal()) {
-                   document.getElementById("goalModal").style.display = "block";
-            //}
-            
-        }
-         document.getElementById("closeGoalModal").addEventListener("click", function () {
-            document.getElementById("goalModal").style.display = "none";
-        });
-
-        function hideGoalModal() {
-            document.getElementById("goalModal").style.display = "none";
-        }
-
-        document.getElementById("submitGoalBtn").addEventListener("click", async () => {
-            const selected = document.querySelector('input[name="user_goal"]:checked');
-            if (!selected) {
-                alert("Please select a goal");
-                return;
-            }
-            let savetime =  Date.now();            
-            const goal = selected.value;
-            const payload = {
-                taoh_dojo_goal: objStores.dojo_store.name,
-                values: {
-                goal,
-                success: true,
-                timestamp : savetime,
-                output: "Goal saved"
-                },
-                timestamp: savetime
-            };
-
-            try {
-                IntaoDB.setItem(objStores.dojo_store.name,payload);
-                    hideGoalModal();
-                var data = {
-                    'taoh_action': 'update_dojo_tracker_status',
-                    'mod': 'core',
-                    "token": "<?php echo taoh_get_api_token(); ?>",
-                    "ptoken": "<?php echo (taoh_session_get(TAOH_ROOT_PATH_HASH)['USER_INFO'] ?? null)?->ptoken ?? ''; ?>",
-                    "data" : payload
-                };
-               
-                jQuery.post("<?php echo taoh_site_ajax_url(); ?>", data, function (response) {
-                    data = response;//JSON.parse(response);
-                    console.log(data);
-                   /*  if (data.status) {
-                        if (data.total_num > 0) {
-                            $('#badge_count').show();
-                            $('#badge_count').html(data.total_num);
-                        } else {
-                            $('#badge_count').hide();
-                            $('#badge_count').html('');
-                        }
-
-                    } else {
-                        $('#badge_count').hide();
-                        $('#badge_count').html('');
-                    } */
-                }); 
-                // Optional: send to server too
-                /* fetch("/api/save_user_goal.php", {
-                method: "POST",
-                headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({ goal })
-                }); */
-            } catch (err) {
-                console.error("Failed to save goal", err);
-            }
-            });
-
-            //window.addEventListener("load", showGoalModal());
-            <?php if(TAOH_DOJO_TRACKER_ENABLE){ ?>
-            window.addEventListener("load", async () => {
-                <?php // if (taoh_parse_url(0) == 'login' || taoh_parse_url(0) == 'settings') { ?>
-                 //showGoalModal();
-                if (await shouldPromptGoal()) {
-                    showGoalModal();
-                } 
-            });
-            <?php } ?>
-
-
-document.addEventListener('DOMContentLoaded', function () {
-    const maxSize = parseInt(document.getElementById('max_upload_size').value);
-
-    document.querySelectorAll('input[type="file"]:not(.file_my_validation)').forEach(function (input) {
-        input.addEventListener('change', function () {
-            for (let file of input.files) {
-                if (file.size > maxSize) {
-                    taoh_set_error_message(`"${file.name}" is too large. Max allowed is ${formatBytes(maxSize)}.`,false);
-                    input.value = ''; // Clear the input
-                    break; // stop checking further files
-                }
-            }
-        });
-    });
-
-    function formatBytes(bytes) {
-        const sizes = ['B', 'KB', 'MB', 'GB'];
-        if (bytes === 0) return '0 B';
-        const i = parseInt(Math.floor(Math.log(bytes) / Math.log(1024)));
-        return Math.round(bytes / Math.pow(1024, i), 2) + ' ' + sizes[i];
-    }
-});
-
-function updateRSProfileLiveStatus() {
-    const ptoken = $('#profileModalContent').getSyncedData('ptoken');
-    if (!ptoken || typeof getUserLiveStatus !== 'function') return;
-
-    const $statusContainer = $('#profileModal').find('.rs_profile_live_status');
-    if (!$statusContainer.length) return false; // return false if not yet available
-
-    getUserLiveStatus(ptoken).then((userLiveStatus) => {
-        const isOnline = userLiveStatus.success && Boolean(userLiveStatus.output);
-
-        $statusContainer.find('.status-con').toggleClass('active', isOnline);
-        $statusContainer.find('.status-text').text(isOnline ? 'Online' : 'Away');
-        $statusContainer.show();
-    }).catch(console.error);
-
-    return true; // element exists and update triggered
-}
-
-$(document).on('click', '.openProfileModal', function() {
-    if(ft_isLoggedIn) {
-        const currentElem = $(this);
-        let currentFullPath = (window.location.href).replace(_taoh_site_url_root, '');
-
-        var pagename = currentElem.attr('data-pagename');
-
-        var profile_token = currentElem.attr('data-profile_token');
-        var view_more = currentElem.hasClass('view_more');
-        var height_pop = window.innerHeight; // Adjust height as needed
-
-        $('.profileModalBody').css('height', height_pop + 'px');
-        $('#profileModalContent').css('height', height_pop - 100 + 'px');
-        $('#profileModalContent').css('overflow', 'auto');
-
-
-        $('#profileModalContent').html('<div class="d-flex align-items-center justify-content-center h-100"><img class="loader-gif" src="https://cdn.tao.ai/assets/wertual/images/taoh_loader.gif"></div>'); // Optional loading text
-        $('#profileModalContent').setSyncedData('ptoken', profile_token);
-
-        $('#profileModal').modal('show');
-
-        $.ajax({
-            url: _taoh_site_ajax_url,
-            type: 'GET',
-            data: {
-                taoh_action: 'get_profile_data',
-                profile_token: profile_token,
-                pagename,
-                view_more,
-                path: encodeURIComponent(btoa(currentFullPath)),
-            },
-            success: function(response) {
-                $('#profileModalContent').html(response);
-            }
-        });
-    }
-});
-
-$(document).on('shown.bs.modal', '#profileModal', function() {
-    // Try every 500ms until the element exists
-    let waitForStatus = setInterval(() => {
-        if (updateRSProfileLiveStatus()) {
-            clearInterval(waitForStatus);
-
-            // Start regular 5-minute updates
-            profileRSLiveStatusInterval = setInterval(updateRSProfileLiveStatus, 300000);
-        }
-    }, 500);
-});
-
-$(document).on('hide.bs.modal', '#profileModal', function() {
-    if (profileRSLiveStatusInterval) {
-        clearInterval(profileRSLiveStatusInterval);
-        profileRSLiveStatusInterval = null;
-    }
-});
-
-$(document).on('shown.bs.collapse', '#profile_rs_view_more', function () {
-    this.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-    $('[data-target="#profile_rs_view_more"]').text('View Less');
-}).on('hidden.bs.collapse', function () {
-    $('[data-target="#profile_rs_view_more"]').text('View More');
-});
-
-$(document).on('click', '.remaining-skills', function () {
-    let currentElem = $(this);
-    let remainingSkillsCount = currentElem.data('count');
-    if (remainingSkillsCount > 0) {
-        let remainingSkillsContainer = currentElem.siblings('.remaining-skills-container'); // Get the sibling container
-        remainingSkillsContainer.toggle();
-        currentElem.text(remainingSkillsContainer.is(':visible') ? `- ${remainingSkillsCount}` : `+${remainingSkillsCount}`);
-    }
-});
-
+<?php
+$_ft_user_info = $session_data['USER_INFO'] ?? null;
+$_ft_ptoken = $_ft_user_info->ptoken ?? '';
+$_ft_isLoggedIn = taoh_user_is_logged_in();
+$_ft_notificationEnabled = defined('TAOH_NOTIFICATION_ENABLED') && TAOH_NOTIFICATION_ENABLED;
+$_ft_notificationStatus = defined('TAOH_NOTIFICATION_STATUS') ? TAOH_NOTIFICATION_STATUS : 0;
+$_ft_profileIncomplete = $_ft_isLoggedIn && isset($_ft_user_info->profile_complete) && $_ft_user_info->profile_complete == 0 && isset($_ft_user_info->fname) && $_ft_user_info->fname == TAOH_SITE_NAME_SLUG;
+$_ft_isSuperAdminInit = $_ft_isLoggedIn && isset($_ft_user_info->is_super_admin) && $_ft_user_info->is_super_admin == 1 && $_ft_user_info->site_status == 'init';
+$_ft_hasReferralCookie = isset($_COOKIE[TAOH_ROOT_PATH_HASH.'_refer_token']) && $_COOKIE[TAOH_ROOT_PATH_HASH.'_refer_token'] != '' && isset($_COOKIE[TAOH_ROOT_PATH_HASH.'_referral_back_url']) && $_COOKIE[TAOH_ROOT_PATH_HASH.'_referral_back_url'] != '';
+$_ft_enableReferralCheck = $curr_page != 'login' && $curr_page != 'createacc' && $_ft_isLoggedIn;
+$_ft_sitemapNeeded = !file_exists("sitemap_" . date("Ymd") . ".sitemap");
+?>
+<script>
+    const ft_isLoggedIn = <?= json_encode($_ft_isLoggedIn); ?>;
+    window._ft_loopTime = <?= json_encode(TAOH_NOTIFICATION_LOOP_TIME_INTERVAL); ?>;
+    window._ft_ptoken = <?= json_encode($_ft_ptoken); ?>;
+    window._ft_apiToken = <?= json_encode(TAOH_API_TOKEN); ?>;
+    window._ft_apiSecret = <?= json_encode(TAOH_API_SECRET); ?>;
+    window._ft_notificationEnabled = <?= json_encode($_ft_notificationEnabled); ?>;
+    window._ft_notificationStatus = <?= json_encode($_ft_notificationStatus); ?>;
+    window._ft_profileIncomplete = <?= json_encode($_ft_profileIncomplete); ?>;
+    window._ft_isSuperAdminInit = <?= json_encode($_ft_isSuperAdminInit); ?>;
+    window._ft_hasReferralCookie = <?= json_encode($_ft_hasReferralCookie); ?>;
+    window._ft_enableReferralCheck = <?= json_encode($_ft_enableReferralCheck); ?>;
+    window._ft_isSettingsPage = <?= json_encode($curr_page == 'settings'); ?>;
+    window._ft_sitemapNeeded = <?= json_encode($_ft_sitemapNeeded); ?>;
+    window._ft_clearConfig = <?= json_encode(isset($_GET['clear']) && $_GET['clear'] == 'config'); ?>;
+    window._ft_dojoTrackerEnabled = <?= json_encode(defined('TAOH_DOJO_TRACKER_ENABLE') && TAOH_DOJO_TRACKER_ENABLE); ?>;
 </script>
+<script src="<?php echo TAOH_CDN_JS_PREFIX; ?>/footer-main.js?v=<?php echo TAOH_CSS_JS_VERSION; ?>"></script>
 
 </body>
 </html>

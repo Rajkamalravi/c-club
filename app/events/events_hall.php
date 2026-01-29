@@ -1,4 +1,7 @@
-<?php taoh_get_header(); ?>
+<?php
+include_once $_SERVER['DOCUMENT_ROOT'].'/raj/assets/icons/icons.php';
+taoh_get_header();
+?>
 <div class="events-hall pb-5">
     <div class="blue-banner">
         <div class="container">
@@ -17,9 +20,7 @@
             <!-- list 1 -->
             <div class="hall-list d-flex flex-column flex-md-row mb-3">
                 <div class="time d-flex flex-md-column align-items-center justify-content-center p-2 p-md-1" style="gap: 12px;">
-                    <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M16 0C20.2435 0 24.3131 1.68571 27.3137 4.68629C30.3143 7.68687 32 11.7565 32 16C32 20.2435 30.3143 24.3131 27.3137 27.3137C24.3131 30.3143 20.2435 32 16 32C11.7565 32 7.68687 30.3143 4.68629 27.3137C1.68571 24.3131 0 20.2435 0 16C0 11.7565 1.68571 7.68687 4.68629 4.68629C7.68687 1.68571 11.7565 0 16 0ZM14.5 7.5V16C14.5 16.5 14.75 16.9688 15.1687 17.25L21.1688 21.25C21.8563 21.7125 22.7875 21.525 23.25 20.8312C23.7125 20.1375 23.525 19.2125 22.8312 18.75L17.5 15.2V7.5C17.5 6.66875 16.8312 6 16 6C15.1687 6 14.5 6.66875 14.5 7.5Z" fill="white"/>
-                    </svg>
+                    <?= icon('clock-solid', '#ffffff', 32) ?>
                     <p>10 am to 11 am</p>
                 </div>
                 <div class="info d-flex flex-column flex-md-row align-items-md-center justify-content-between px-3 py-4" style="flex: 1; border: 1px solid #d3d3d3; gap: 12px;">
@@ -31,15 +32,11 @@
                             <p class="hall-text-md mb-2">Topic of the Talk</p>
                             <div class="d-flex flex-wrap align-items-center mb-2" style="gap: 12px;">
                                 <p class="hall-text-xs d-flex align-items-center" style="gap: 6px;">
-                                    <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                        <path d="M12.4688 12.0063C11.7781 10.8063 10.4812 10 9 10H7C5.51875 10 4.22188 10.8063 3.53125 12.0063C4.63125 13.2313 6.225 14 8 14C9.775 14 11.3687 13.2281 12.4688 12.0063ZM0 8C0 5.87827 0.842855 3.84344 2.34315 2.34315C3.84344 0.842855 5.87827 0 8 0C10.1217 0 12.1566 0.842855 13.6569 2.34315C15.1571 3.84344 16 5.87827 16 8C16 10.1217 15.1571 12.1566 13.6569 13.6569C12.1566 15.1571 10.1217 16 8 16C5.87827 16 3.84344 15.1571 2.34315 13.6569C0.842855 12.1566 0 10.1217 0 8ZM8 8.5C8.59674 8.5 9.16903 8.26295 9.59099 7.84099C10.0129 7.41903 10.25 6.84674 10.25 6.25C10.25 5.65326 10.0129 5.08097 9.59099 4.65901C9.16903 4.23705 8.59674 4 8 4C7.40326 4 6.83097 4.23705 6.40901 4.65901C5.98705 5.08097 5.75 5.65326 5.75 6.25C5.75 6.84674 5.98705 7.41903 6.40901 7.84099C6.83097 8.26295 7.40326 8.5 8 8.5Z" fill="#5E5E5E" fill-opacity="0.898039"/>
-                                    </svg>
+                                    <?= icon('user', '#5E5E5E', 16) ?>
                                     <span>Speaker Name</span>
                                 </p>
                                 <p class="hall-text-xs d-flex align-items-center" style="gap: 6px;">
-                                    <svg width="15" height="14" viewBox="0 0 15 14" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                        <path d="M5.39062 1.4H9.60938C9.73828 1.4 9.84375 1.505 9.84375 1.63333V2.8H5.15625V1.63333C5.15625 1.505 5.26172 1.4 5.39062 1.4ZM3.75 1.63333V2.8H1.875C0.84082 2.8 0 3.63708 0 4.66667V7.46667H5.625H9.375H15V4.66667C15 3.63708 14.1592 2.8 13.125 2.8H11.25V1.63333C11.25 0.732083 10.5146 0 9.60938 0H5.39062C4.48535 0 3.75 0.732083 3.75 1.63333ZM15 8.4H9.375V9.33333C9.375 9.84958 8.95605 10.2667 8.4375 10.2667H6.5625C6.04395 10.2667 5.625 9.84958 5.625 9.33333V8.4H0V12.1333C0 13.1629 0.84082 14 1.875 14H13.125C14.1592 14 15 13.1629 15 12.1333V8.4Z" fill="#5E5E5E"/>
-                                    </svg>
+                                    <?= icon('briefcase', '#5E5E5E', 15) ?>
                                     <span>VP Marketing at TamQ</span>
                                 </p>
                             </div>
@@ -54,9 +51,7 @@
             <!-- list 2 -->
             <div class="hall-list d-flex flex-column flex-md-row mb-3">
                 <div class="time d-flex flex-md-column align-items-center justify-content-center p-2 p-md-1" style="gap: 12px;">
-                    <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M16 0C20.2435 0 24.3131 1.68571 27.3137 4.68629C30.3143 7.68687 32 11.7565 32 16C32 20.2435 30.3143 24.3131 27.3137 27.3137C24.3131 30.3143 20.2435 32 16 32C11.7565 32 7.68687 30.3143 4.68629 27.3137C1.68571 24.3131 0 20.2435 0 16C0 11.7565 1.68571 7.68687 4.68629 4.68629C7.68687 1.68571 11.7565 0 16 0ZM14.5 7.5V16C14.5 16.5 14.75 16.9688 15.1687 17.25L21.1688 21.25C21.8563 21.7125 22.7875 21.525 23.25 20.8312C23.7125 20.1375 23.525 19.2125 22.8312 18.75L17.5 15.2V7.5C17.5 6.66875 16.8312 6 16 6C15.1687 6 14.5 6.66875 14.5 7.5Z" fill="white"/>
-                    </svg>
+                    <?= icon('clock-solid', '#ffffff', 32) ?>
                     <p>10 am to 11 am</p>
                 </div>
                 <div class="info d-flex flex-column flex-md-row align-items-md-center justify-content-between px-3 px-lg-5 py-4" style="flex: 1; border: 1px solid #d3d3d3; gap: 12px;">
@@ -78,9 +73,7 @@
             <!-- list 3 -->
             <div class="hall-list d-flex flex-column flex-md-row mb-3">
                 <div class="time d-flex flex-md-column align-items-center justify-content-center p-2 p-md-1" style="gap: 12px;">
-                    <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M16 0C20.2435 0 24.3131 1.68571 27.3137 4.68629C30.3143 7.68687 32 11.7565 32 16C32 20.2435 30.3143 24.3131 27.3137 27.3137C24.3131 30.3143 20.2435 32 16 32C11.7565 32 7.68687 30.3143 4.68629 27.3137C1.68571 24.3131 0 20.2435 0 16C0 11.7565 1.68571 7.68687 4.68629 4.68629C7.68687 1.68571 11.7565 0 16 0ZM14.5 7.5V16C14.5 16.5 14.75 16.9688 15.1687 17.25L21.1688 21.25C21.8563 21.7125 22.7875 21.525 23.25 20.8312C23.7125 20.1375 23.525 19.2125 22.8312 18.75L17.5 15.2V7.5C17.5 6.66875 16.8312 6 16 6C15.1687 6 14.5 6.66875 14.5 7.5Z" fill="white"/>
-                    </svg>
+                    <?= icon('clock-solid', '#ffffff', 32) ?>
                     <p>10 am to 11 am</p>
                 </div>
                 <div class="info d-flex flex-column flex-md-row align-items-md-center justify-content-between px-3 px-lg-5 py-4" style="flex: 1; border: 1px solid #d3d3d3; gap: 12px;">
@@ -120,9 +113,7 @@
                         <div class="py-4">
                             <h4 class="side-card-title mb-2">Exhibitor One LLC</h4>
                             <p class="side-card-location">
-                                <svg width="15" height="20" viewBox="0 0 15 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                    <path d="M8.42578 19.5506C10.4297 17.0363 15 10.9424 15 7.51946C15 3.36809 11.6406 0 7.5 0C3.35938 0 0 3.36809 0 7.51946C0 10.9424 4.57031 17.0363 6.57422 19.5506C7.05469 20.1498 7.94531 20.1498 8.42578 19.5506ZM7.5 5.01297C8.16304 5.01297 8.79893 5.27705 9.26777 5.74711C9.73661 6.21716 10 6.8547 10 7.51946C10 8.18422 9.73661 8.82176 9.26777 9.29181C8.79893 9.76187 8.16304 10.0259 7.5 10.0259C6.83696 10.0259 6.20107 9.76187 5.73223 9.29181C5.26339 8.82176 5 8.18422 5 7.51946C5 6.8547 5.26339 6.21716 5.73223 5.74711C6.20107 5.27705 6.83696 5.01297 7.5 5.01297Z" fill="black"/>
-                                </svg>
+                                <?= icon('location', '#000000', 15) ?>
                                 <span>Tokyo, Japan</span>
                             </p>
                         </div>
@@ -141,9 +132,7 @@
                         <div class="py-4">
                             <h4 class="side-card-title mb-2">Exhibitor Two LLC</h4>
                             <p class="side-card-location">
-                                <svg width="15" height="20" viewBox="0 0 15 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                    <path d="M8.42578 19.5506C10.4297 17.0363 15 10.9424 15 7.51946C15 3.36809 11.6406 0 7.5 0C3.35938 0 0 3.36809 0 7.51946C0 10.9424 4.57031 17.0363 6.57422 19.5506C7.05469 20.1498 7.94531 20.1498 8.42578 19.5506ZM7.5 5.01297C8.16304 5.01297 8.79893 5.27705 9.26777 5.74711C9.73661 6.21716 10 6.8547 10 7.51946C10 8.18422 9.73661 8.82176 9.26777 9.29181C8.79893 9.76187 8.16304 10.0259 7.5 10.0259C6.83696 10.0259 6.20107 9.76187 5.73223 9.29181C5.26339 8.82176 5 8.18422 5 7.51946C5 6.8547 5.26339 6.21716 5.73223 5.74711C6.20107 5.27705 6.83696 5.01297 7.5 5.01297Z" fill="black"/>
-                                </svg>
+                                <?= icon('location', '#000000', 15) ?>
                                 <span>Tokyo, Japan</span>
                             </p>
                         </div>
@@ -168,9 +157,7 @@
                         <div class="py-4">
                             <h4 class="side-card-title mb-2">Exhibitor Three LLC</h4>
                             <p class="side-card-location">
-                                <svg width="15" height="20" viewBox="0 0 15 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                    <path d="M8.42578 19.5506C10.4297 17.0363 15 10.9424 15 7.51946C15 3.36809 11.6406 0 7.5 0C3.35938 0 0 3.36809 0 7.51946C0 10.9424 4.57031 17.0363 6.57422 19.5506C7.05469 20.1498 7.94531 20.1498 8.42578 19.5506ZM7.5 5.01297C8.16304 5.01297 8.79893 5.27705 9.26777 5.74711C9.73661 6.21716 10 6.8547 10 7.51946C10 8.18422 9.73661 8.82176 9.26777 9.29181C8.79893 9.76187 8.16304 10.0259 7.5 10.0259C6.83696 10.0259 6.20107 9.76187 5.73223 9.29181C5.26339 8.82176 5 8.18422 5 7.51946C5 6.8547 5.26339 6.21716 5.73223 5.74711C6.20107 5.27705 6.83696 5.01297 7.5 5.01297Z" fill="black"/>
-                                </svg>
+                                <?= icon('location', '#000000', 15) ?>
                                 <span>Tokyo, Japan</span>
                             </p>
                         </div>

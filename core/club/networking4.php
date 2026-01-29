@@ -1,4 +1,5 @@
 <?php
+include_once $_SERVER['DOCUMENT_ROOT'].'/raj/assets/icons/icons.php';
 taoh_get_header();
 
 function showErrorPage($base_path, $error_code = 1001, $error_from = '', $error_data = [])
@@ -1037,7 +1038,7 @@ $isEventNetworking = !empty($eventtoken);
                                                     <a href="' . $link . '">' . $value['title'] . '</a>';
                                                  
                                         if($count <= $link_count)
-                                            echo '<svg xmlns="http://www.w3.org/2000/svg" height="19px" viewBox="0 0 24 24" width="19px" fill="#000000"><path d="M0 0h24v24H0V0z" fill="none"/><path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6-6-6z"/></svg>';
+                                            echo icon('chevron-right', '#000000', 19);
                                         
                                         echo '</li>';
 
@@ -1067,7 +1068,7 @@ $isEventNetworking = !empty($eventtoken);
                                     }
                                     
                                     if (isset($_GET['from'])) {
-                                        echo '<li class="nav-item"><span><svg xmlns="http://www.w3.org/2000/svg" height="19px" viewBox="0 0 24 24" width="19px" fill="#000000"><path d="M0 0h24v24H0V0z" fill="none"/><path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6-6-6z"/></svg></span>
+                                        echo '<li class="nav-item"><span><?= icon('chevron-right', '#000000', 19) ?></span>
                                             <a href="' . TAOH_SITE_URL_ROOT . '/club/room/' . $contslug . '">Networking</a></li>';
                                     }
                                     ?>
