@@ -96,18 +96,18 @@
 	background-color: #555;
 }
 .chat-likes {
-	display: flex;
-	padding: 0 15px;
+	display: flex; 
+	padding: 0 15px; 
 	font-size: 25px;
 }
 .like-icon {
-	display: inline-block;
-	text-align: center;
-	width: 30px;
-	height: 30px;
-	border: 1px solid #fff;
-	background: #fff;
-	border-radius: 50%;
+	display: inline-block; 
+	text-align: center; 
+	width: 30px; 
+	height: 30px; 
+	border: 1px solid #fff; 
+	background: #fff; 
+	border-radius: 50%; 
 	margin-right: 10px
 }
 .like-icon:last-child{
@@ -217,7 +217,7 @@
 	30% {opacity:1}
 	70% {opacity:1}
 	100% {opacity: 0}
-}
+} 
 @media only screen and (max-width: 767px) {
 	.form-popup .header-control, .form-popup .footer-control {
 		width: 100%;

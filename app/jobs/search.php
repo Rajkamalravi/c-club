@@ -3,7 +3,7 @@
 
 	<div  class="container">
 		<div class="col-lg-12 text-center">
-			<?php if(isset(taoh_session_get(TAOH_ROOT_PATH_HASH)['USER_INFO']->profile_complete) && taoh_session_get(TAOH_ROOT_PATH_HASH)['USER_INFO']->profile_complete == 0){
+			<?php if(isset(taoh_session_get(TAOH_ROOT_PATH_HASH)['USER_INFO']->profile_complete) && taoh_session_get(TAOH_ROOT_PATH_HASH)['USER_INFO']->profile_complete == 0){ 
 				// taoh_set_error_message('complete your settings to fully use the platform.'); ?>
                     <script>
                         $(document).ready(function() {
@@ -14,12 +14,12 @@
                     </script>
 			<!--<p>Looking for Job? Discover <strong>Your Top Job</strong> Today</p>-->
 			<?php }else{ ?>
-
+			
 			<!--	<p>Looking to Hire? <a class="post-text" href="<?php echo TAOH_SITE_URL_ROOT; ?>/jobs/post"><strong><u>Post a Job</u></strong> Today & Discover Top Talent</a></p>
 			-->
 			<?php }  ?>
 		</div>
-
+	
 
 		<div class="search-filter-section" style="max-width: 1012px; margin: 0 auto">
 			<form id="searchFilter" onsubmit="searchFilter();return false" class="search-form p-0 rounded-0 bg-transparent shadow-none position-relative z-index-1">

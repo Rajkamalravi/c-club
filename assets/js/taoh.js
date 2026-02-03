@@ -944,7 +944,7 @@ function locationSelect() {
   	valueField: 'coordinates',
   	labelField: 'location',
   	searchField: ['location','coordinates'],
-
+	
   	load: function(query, callback) {
       var data = {
          'taoh_action': 'taoh_get_location',
@@ -975,7 +975,7 @@ function locationSelect() {
     onFocus: function(){
       $('#locationSelect-ts-control').keyup(function(){
         $('.locationSelect .item').html('');
-      })
+      }) 
     },
     onChange: function(item) {
       let coordinates = item.split('::');
@@ -993,7 +993,7 @@ function locationSelect() {
           $("#geohash").val(res.geohash);
         }).fail(function() {
         })
-
+		
       }
 
       //alert(item);
@@ -1016,11 +1016,11 @@ function locationSelect() {
 		let label = $($item).html();
 		$('#coordinateLocation').val(label);
 		let countryCode = label.split(',');
-
+		
 		let coordinates = value.split('::');
         let lon = coordinates[1];
         let lat = coordinates[0];
-
+		
 		if(typeof timeZoneInstance != 'undefined') {
 			var data = {
 			   'op': 'timezone',
@@ -1028,18 +1028,18 @@ function locationSelect() {
 			   'lat': lat,
 			   'lon': lon,
 			 };
-
+		 
 			jQuery.get('https://opslogy.com/mapn/', data, function(response) {
 				let res = JSON.parse(response);
 				timeZoneInstance.addOption({
 					name: res.output,
 				});
-				timeZoneInstance.setValue(res.output);
+				timeZoneInstance.setValue(res.output); 
 			}).fail(function() {
 			})
-
+			
 		}
-
+	
     }
   });
 }
@@ -1051,7 +1051,7 @@ function joblocationSelect() {
   	valueField: 'coordinates',
   	labelField: 'location',
   	searchField: ['location','coordinates'],
-
+	
   	load: function(query, callback) {
       var data = {
          'taoh_action': 'taoh_get_location',
@@ -1073,7 +1073,7 @@ function joblocationSelect() {
     onFocus: function(){
       $('#locationSelect-ts-control').keyup(function(){
         $('.locationSelect .item').html('');
-      })
+      }) 
     },
     onChange: function(item) {
       let coordinates = item.split('::');
@@ -1091,7 +1091,7 @@ function joblocationSelect() {
           $("#geohash").val(res.geohash);
         }).fail(function() {
         })
-
+		
       }
 
       //alert(item);
@@ -1114,11 +1114,11 @@ function joblocationSelect() {
 		let label = $($item).html();
 		$('#coordinateLocation').val(label);
 		let countryCode = label.split(',');
-
+		
 		let coordinates = value.split('::');
         let lon = coordinates[1];
         let lat = coordinates[0];
-
+		
 		if(typeof timeZoneInstance != 'undefined') {
 			var data = {
 			   'op': 'timezone',
@@ -1126,18 +1126,18 @@ function joblocationSelect() {
 			   'lat': lat,
 			   'lon': lon,
 			 };
-
+		 
 			jQuery.get('https://opslogy.com/mapn/', data, function(response) {
 				let res = JSON.parse(response);
 				timeZoneInstance.addOption({
 					name: res.output,
 				});
-				timeZoneInstance.setValue(res.output);
+				timeZoneInstance.setValue(res.output); 
 			}).fail(function() {
 			})
-
+			
 		}
-
+	
     }
   });
 }
@@ -1149,7 +1149,7 @@ function emp_locationSelect(index) {
   	valueField: 'coordinates',
   	labelField: 'location',
   	searchField: ['location','coordinates'],
-
+	
   	load: function(query, callback) {
       var data = {
          'taoh_action': 'taoh_get_location',
@@ -1171,7 +1171,7 @@ function emp_locationSelect(index) {
     onFocus: function(){
       $('#emp_locationSelect_'+index+'-ts-control').keyup(function(){
         $('.emp_locationSelect_'+index+' .item').html('');
-      })
+      }) 
     },
     onChange: function(item) {
       let coordinates = item.split('::');
@@ -1189,7 +1189,7 @@ function emp_locationSelect(index) {
           $("#emp_geohash"+index).val(res.geohash);
         }).fail(function() {
         })
-
+		
       }
 
       //alert(item);
@@ -1212,11 +1212,11 @@ function emp_locationSelect(index) {
 		let label = $($item).html();
 		$('#emp_coordinateLocation'+index).val(label);
 		let countryCode = label.split(',');
-
+		
 		let coordinates = value.split('::');
         let lon = coordinates[1];
         let lat = coordinates[0];
-
+		
 		if(typeof timeZoneInstance != 'undefined') {
 			var data = {
 			   'op': 'timezone',
@@ -1224,18 +1224,18 @@ function emp_locationSelect(index) {
 			   'lat': lat,
 			   'lon': lon,
 			 };
-
+		 
 			jQuery.get('https://opslogy.com/mapn/', data, function(response) {
 				let res = JSON.parse(response);
 				timeZoneInstance.addOption({
 					name: res.output,
 				});
-				timeZoneInstance.setValue(res.output);
+				timeZoneInstance.setValue(res.output); 
 			}).fail(function() {
 			})
-
+			
 		}
-
+	
     }
   });
 }
@@ -1277,7 +1277,7 @@ function roleSelect() {
       onFocus: function(){
         $('.roleSelect').keyup(function(){
           $('.roleSelect .item').html('');
-        })
+        }) 
       },
   		// custom rendering function for options
   		render: {
@@ -1425,7 +1425,7 @@ function companySelect() {
       onFocus: function(){
         $('.companySelect').keyup(function(){
           $('.companySelect .item').html('');
-        })
+        }) 
       },
       // custom rendering function for options
       render: {
@@ -1443,7 +1443,7 @@ function companySelect() {
 }
 
 function emp_companySelect(index=0) {
-  new TomSelect('#emp_companySelect_'+index,{
+  new TomSelect('#emp_companySelect_'+index,{ 
       create: true,
       maxItems: 1,
       valueField: 'id',
@@ -1475,8 +1475,8 @@ function emp_companySelect(index=0) {
         })
       },
       // custom rendering function for options
-
-      render: {
+      
+      render: {      
         option: function(item, escape) {
           return `<div class="py-2 d-flex">
                 <div class="mb-1">
@@ -1491,7 +1491,7 @@ function emp_companySelect(index=0) {
 }
 
 function edu_companySelect(index=0) {
-  new TomSelect('#edu_companySelect_'+index,{
+  new TomSelect('#edu_companySelect_'+index,{ 
       create: true,
       maxItems: 1,
       valueField: 'id',
@@ -1523,8 +1523,8 @@ function edu_companySelect(index=0) {
         })
       },
       // custom rendering function for options
-
-      render: {
+      
+      render: {      
         option: function(item, escape) {
           return `<div class="py-2 d-flex">
                 <div class="mb-1">
@@ -1628,7 +1628,7 @@ function timeZoneSelect(index = 0) {
       //$('#coordinateLocation').val($($item).html());
     }
   });
-
+  
 }
 
 function moreInputFaq(name, edit, index) {
@@ -1886,7 +1886,7 @@ function moreDatesInit(name, edit, index) {
 } */
 
 function format_object(data) {
-
+  
       const obj_result = {
         total: data.output.total,
         count: data.output.count,
@@ -1950,8 +1950,8 @@ function format_object_event(data) {
     count: '',
     list: []
 };
-
-
+  
+  
   function search(nameKey, myArray) {
       return myArray.find(item => item.id === nameKey);
   }
@@ -2783,7 +2783,7 @@ function get_localized_event_data(event_timestamp_data, user_timezone = 'UTC') {
         };
     }
 
-
+    
 }
 
 /**

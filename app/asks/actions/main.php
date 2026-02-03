@@ -9,7 +9,7 @@ if($_POST['action'] == "addanswer") {
 
 function add_answer() {
 	$error = 0;
-
+  
 	if ( taoh_user_is_logged_in() ){
 		$taoh_call = 'asks.ask.post';
 		$taoh_call_type = 'POST';

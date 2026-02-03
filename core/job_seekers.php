@@ -1,4 +1,4 @@
-<?php
+<?php 
 
 if ( ! defined ( 'TAO_PAGE_TITLE' ) ) { define ( 'TAO_PAGE_TITLE', "Comprehensive Open Jobs List at ".TAOH_SITE_NAME_SLUG.": Explore and Apply to a Wide Range of Job Opportunities" ); }
 if ( ! defined ( 'TAO_PAGE_DESCRIPTION' ) ) { define ( 'TAO_PAGE_DESCRIPTION', "Browse our comprehensive jobs list featuring a diverse range of job opportunities across industries. Find the perfect job that matches your skills and interests, chat with recruiters and easily apply through our user-friendly platform at ".TAOH_SITE_NAME_SLUG.". Start your job search today and take the next step in your career." ); }
@@ -153,7 +153,7 @@ span.h5 {
             </div>
         </div>
     </div>
-
+    
 </section>
 <!-- ================================
          END LEFTCURVE AREA
@@ -169,7 +169,7 @@ span.h5 {
         <div class="dark-btn orange-btn text-center mt-30px"><a href="<?php echo TAOH_SITE_URL_ROOT;?>" class="btn theme-btn">Checkout Hires by Tao</a></div>
         <div class="row pt-70px">
             <div class="col-lg-4 responsive-column-half">
-                <div class="info-box px-2">
+                <div class="info-box px-2"> 
                     <div class="mb-4 action-num" style="color:#f27200">
                         95%
                     </div>

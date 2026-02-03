@@ -3,25 +3,36 @@
 Configure for Google Search Console
 */
 // TAO_PAGE_AUTHOR
-define('TAO_PAGE_AUTHOR', 'Flashcard');
+define('TAO_PAGE_AUTHOR', TAOH_SITE_NAME_SLUG);
 // TAO_PAGE_DESCRIPTION
-define('TAO_PAGE_DESCRIPTION', '');
+define('TAO_PAGE_DESCRIPTION', 'Interactive flashcards for career development, interview prep, networking, and professional growth at ' . TAOH_SITE_NAME_SLUG . '.');
 // TAO_PAGE_IMAGE
 define('TAO_PAGE_IMAGE','');
 // TAO_PAGE_TITLE
-define('TAO_PAGE_TITLE', 'Flashcard');
+define('TAO_PAGE_TITLE', 'Flashcards - ' . TAOH_SITE_NAME_SLUG);
 // TAO_PAGE_TWITTER_SITE
 // TAO_PAGE_ROBOT
 define('TAO_PAGE_ROBOT', 'index, follow');
+define('TAO_PAGE_KEYWORDS', 'flashcards, interview prep, career development, professional growth, ' . TAOH_SITE_NAME_SLUG);
 // TAO_PAGE_CANONICAL
-taoh_get_header();
+
+// JSON-LD WebPage structured data for SEO/AEO
+$jsonld_flash = array(
+    '@context' => 'https://schema.org',
+    '@type' => 'WebPage',
+    'name' => TAO_PAGE_TITLE,
+    'description' => TAO_PAGE_DESCRIPTION,
+    'url' => TAOH_SITE_URL_ROOT . '/learning/flashcard/',
+);
+$additive_flash = '<script type="application/ld+json">' . json_encode($jsonld_flash, JSON_UNESCAPED_SLASHES | JSON_PRETTY_PRINT) . '</script>';
+taoh_get_header($additive_flash);
 
 $category = taoh_parse_url(2);
 $conttoken = taoh_parse_url(3);
 
 $taoh_category_info = taoh_category_info($category, 'flash');
 $all_catagories2 = taoh_get_categories( 'flash');//print_r($all_catagories);exit();
-$all_catagories = taoh_category_bucket($all_catagories2, $taoh_category_info[ 'bucket' ]);
+$all_catagories = $all_catagories2;
 $taoh_user_vars = taoh_user_all_info();
 //print_r($all_catagories);exit();
 ?>
@@ -45,6 +56,28 @@ $taoh_user_vars = taoh_user_all_info();
     position: absolute;
     top: 44%;
     right: 46%;
+}
+
+#loaderArea {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 10;
+    background: rgba(255,255,255,0.7);
+    border-radius: 0.75rem;
+}
+
+#loaderArea:empty {
+    display: none;
+}
+
+#loaderArea img {
+    width: 40px !important;
 }
 
 /* Safari */
@@ -83,16 +116,24 @@ button {
   font-weight: 700;
 }
 
+/* Card container - responsive */
 .cards {
     margin-top: 1rem;
-    height: 474px;
     width: 300px;
-    border-radius: 0.25rem;
+    height: 474px;
+    border-radius: 0.75rem;
     position: relative;
+    filter: drop-shadow(0 4px 12px rgba(0,0,0,0.10));
+}
+
+/* Force all card images to fill container width */
+.cards img {
+    width: 100% !important;
+    height: auto;
 }
 
 .cards .back .inner{
-    font-family: 'Hobo BT', sans-serif;
+    font-family: var(--theme-font-family, "Ubuntu", sans-serif);
     font-weight: bold;
     position: absolute;
     top: 10%;
@@ -100,10 +141,11 @@ button {
     left: 0;
     right: 0;
     padding: 44px;
+    line-height: 1.4;
 }
 
 .cards .front .inner{
-    font-family: 'Hobo BT', sans-serif;
+    font-family: var(--theme-font-family, "Ubuntu", sans-serif);
     font-weight: bold;
     position: absolute;
     top: 50%;
@@ -111,17 +153,19 @@ button {
     left: 0;
     right: 0;
     padding: 44px 55px;
-    line-height: 20px;
+    line-height: 24px;
 }
 
 .cardFront,
 .cardBack {
     box-sizing: border-box;
-    border-radius: 0.25rem;
+    width: 100%;
+    border-radius: 0.75rem;
     transition: transform 0.5s ease;
     position: absolute;
     -webkit-backface-visibility: hidden;
     backface-visibility: hidden;
+    overflow: hidden;
 }
 .cardBack {
   transform: perspective(1000px) rotateY(180deg);
@@ -141,8 +185,10 @@ button {
 
 .cards .sq-image{
     position: absolute;
-    top: 93px;
-    left: 90px;
+    top: 20%;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 130px !important;
 }
 
 .copy-section {
@@ -154,33 +200,143 @@ button {
   position: absolute;
   bottom: -35px;
   transition: all .3s;
+  font-size: 13px;
+  color: #28a745;
+  font-weight: 600;
 }
 
 .your-tooltip.show {
   opacity: 1;
 }
 
-/* Style for arrow buttons */
+/* Arrow buttons - use normal flow instead of transform hack */
 .arrow-buttons {
-  /*position: absolute;*/
-  width: 100%;
+  max-width: 320px;
+  margin: -20px auto 0;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  transform: translateY(-203%);
   pointer-events: auto;
-  margin-left: 2px;
+  position: relative;
+  z-index: 2;
 }
 
 /* Style for individual arrows */
+.arrow-buttons > div {
+    padding: 6px 12px;
+    border-radius: 50%;
+    transition: background 0.2s;
+    cursor: pointer;
+}
+.arrow-buttons > div:hover {
+    background: rgba(0,0,0,0.06);
+}
 .arrow-buttons i {
     font-size: 25px;
     cursor: pointer;
-    background : none;
+    background: none;
     padding: 5px 10px;
     border-radius: 50%;
 }
+#flip-btn {
+    transition: transform 0.3s;
+}
+#flip-btn:hover {
+    transform: rotate(90deg);
+}
 
+/* Category modal */
+.modal-content {
+    border-radius: 0.75rem;
+}
+.modal-body .dropdown-item {
+    padding: 10px 20px;
+    border-radius: 6px;
+    margin-bottom: 2px;
+    font-weight: 500;
+    transition: background 0.15s;
+}
+.modal-body .dropdown-item:hover {
+    background: rgba(0,0,0,0.04);
+}
+
+/* ===== Mobile (up to 480px) ===== */
+@media (max-width: 480px) {
+  .cards {
+    width: 260px;
+    height: 410px;
+  }
+  .cards .sq-image {
+    width: 100px !important;
+    top: 18%;
+  }
+  .cards .back .inner {
+    padding: 30px 28px;
+    font-size: 15px;
+  }
+  .cards .front .inner {
+    padding: 30px 36px;
+    font-size: 18px;
+    line-height: 22px;
+    top: 48%;
+  }
+  .arrow-buttons {
+    max-width: 280px;
+  }
+  .arrow-buttons i {
+    font-size: 22px;
+  }
+  .blog-area.pt-40px {
+    padding-top: 20px !important;
+  }
+  .blog-area.pb-80px {
+    padding-bottom: 40px !important;
+  }
+}
+
+/* ===== Small mobile (up to 360px) ===== */
+@media (max-width: 360px) {
+  .cards {
+    width: 240px;
+    height: 379px;
+  }
+  .cards .sq-image {
+    width: 85px !important;
+  }
+  .cards .back .inner {
+    padding: 24px 22px;
+    font-size: 14px;
+  }
+  .cards .front .inner {
+    padding: 24px 30px;
+    font-size: 16px;
+    line-height: 20px;
+  }
+  .arrow-buttons {
+    max-width: 260px;
+  }
+}
+
+/* ===== Tablet and up (768px+) ===== */
+@media (min-width: 768px) {
+  .cards {
+    width: 340px;
+    height: 537px;
+  }
+  .cards .sq-image {
+    width: 145px !important;
+    top: 19%;
+  }
+  .cards .back .inner {
+    padding: 50px;
+  }
+  .cards .front .inner {
+    padding: 50px 60px;
+  }
+  .arrow-buttons {
+    max-width: 360px;
+  }
+}
 
 </style>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -198,15 +354,15 @@ button {
                 </div>
             </div>
         </div>
-        <div class="row justify-content-center arrow-buttons">
-            <div onclick="taoh_flash_init();">
-                <i class="fa fa-arrow-left " onclick="taoh_flash_init(); "  style="font-size:25px;cursor: pointer;"></i>
-            </div>
-            <div style="width: 198px;">
-                <i id="flip-btn" class="fa fa-refresh" style="font-size:25px;"></i>
+        <div class="arrow-buttons">
+            <div onclick="resetAndFetch();">
+                <i class="fa fa-arrow-left"></i>
             </div>
             <div>
-            <i class="fa fa-arrow-right" onclick="taoh_flash_init();" style="font-size:25px;cursor: pointer;"></i>
+                <i id="flip-btn" class="fa fa-refresh"></i>
+            </div>
+            <div onclick="resetAndFetch();">
+                <i class="fa fa-arrow-right"></i>
             </div>
         </div>
         <div class="row justify-content-center p-0 mt-4 mb-4 rounded-0 bg-transparent">
@@ -229,7 +385,7 @@ button {
           <?php } ?>
         </div>
     </div>
-
+    
 </section>
 
 <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -315,7 +471,8 @@ button {
     }
 
     if (!response.output) {
-        console.error("Response does not contain 'output' key!", response);
+        loader(false, loaderArea);
+        render_no_flashcards(listtitle, listquote);
         return;
     }
 
@@ -357,6 +514,11 @@ button {
      };
     jQuery.post("<?php echo taoh_site_ajax_url(); ?>", data, function(response) {
       console.log(response);
+      if (!response || !response.output) {
+        loader(false, loaderArea);
+        render_no_flashcards(listtitle, listquote);
+        return;
+      }
       render_title_template(response['output'][0]['title'], listtitle);
       render_quote_template(response['output'][0]['blurb']['description'], listquote);
       render_button(response['output'][0]['conttoken'],response['output'][0]['ptoken'],flashbutton);
@@ -368,6 +530,9 @@ button {
         console.log( "Network issue!" );
     })
   }
+
+  
+
   function render_title_template(data, slot) {
     loader(false, loaderArea);
       slot.empty();
@@ -388,6 +553,13 @@ button {
             slot.append(`<div class="inner" style="color: <?php echo $taoh_category_info[ 'text' ]; ?>; font-size: 20px; line-height: 1.3;">${extractContent(desc)}</div>`);
     }
   }
+  function render_no_flashcards(titleSlot, quoteSlot) {
+    titleSlot.empty();
+    quoteSlot.empty();
+    titleSlot.append(`<div class="inner" style="color: <?php echo $taoh_category_info[ 'text' ] ?? '#333'; ?>; font-size: 20px; line-height: 25px;">No flashcards available for this category.</div>`);
+    flashbutton.empty();
+  }
+
   function render_url(data){
     console.log(data);
     var url = window.location.href;
@@ -404,16 +576,16 @@ button {
     //window.history.pushState(null, "null", url+'/'+data);
   }
 
-  function copyText() {
-      var yourToolTip = document.querySelector('.your-tooltip');
+  function copyText() { 
+      var yourToolTip = document.querySelector('.your-tooltip'); 
       /* Select text area by id*/
       var Text = document.getElementById("copy-text");
       /* Select the text inside text area. */
       Text.select();
       /* Copy selected text into clipboard */
       var copy_text = navigator.clipboard.writeText(Text.value);
-      if(copy_text){
-        $('.your-tooltip').addClass('show');
+      if(copy_text){    
+        $('.your-tooltip').addClass('show');  
         setTimeout(function() {
             $('.your-tooltip').removeClass('show');
         }, 2000)
@@ -437,6 +609,12 @@ button {
 
   btn.addEventListener('click', handleFlip)
 
+  function resetAndFetch() {
+    front.classList.remove('flipped');
+    back.classList.remove('flipped');
+    taoh_flash_init();
+  }
+
   function render_button(data,flashptoken,slot) {
     slot.empty();
     if(ptoken == flashptoken){
@@ -453,7 +631,7 @@ button {
           </div>`
       );
     }
-
+    
   }
 
   function flashDelete() {
@@ -472,7 +650,7 @@ button {
       if(response.success){
         $('#deleteAlert').modal('hide');
         location.href = '<?php echo TAOH_FLASHCARD_URL.'/'.$category.'/'; ?>';
-
+        
       }
       else{
         $('#deleteAlert').modal('hide');

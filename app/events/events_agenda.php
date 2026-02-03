@@ -35,7 +35,7 @@ if (!empty($data['output']) && is_array($data['output'])) {
     }
 }
 ?>
-<link rel="stylesheet" href="<?php echo TAOH_SITE_URL_ROOT; ?>/assets/css/events-agenda.css?v=<?php echo TAOH_CSS_JS_VERSION; ?>">
+<link rel="stylesheet" href="<?php echo TAOH_SITE_URL_ROOT; ?>/assets/events/css/events-agenda.css?v=<?php echo TAOH_CSS_JS_VERSION; ?>">
 <script>
     window._ega_cfg = {
         myPtoken: <?= json_encode((taoh_session_get(TAOH_ROOT_PATH_HASH)['USER_INFO'] ?? null)?->ptoken ?? ''); ?>,
@@ -48,7 +48,7 @@ if (!empty($data['output']) && is_array($data['output'])) {
         userTimezone: <?= json_encode($taoh_user_is_logged_in ? taoh_user_timezone() : ''); ?>,
         cdnPrefix: <?= json_encode(TAOH_CDN_PREFIX); ?>,
         currAppSlug: <?= json_encode(TAOH_CURR_APP_SLUG); ?>
-    };
+                         };
 </script>
-<script src="<?php echo TAOH_SITE_URL_ROOT; ?>/assets/js/events-agenda.js?v=<?php echo TAOH_CSS_JS_VERSION; ?>"></script>
+<script src="<?php echo TAOH_SITE_URL_ROOT; ?>/assets/events/js/events-agenda.js?v=<?php echo TAOH_CSS_JS_VERSION; ?>"></script>
 </script>

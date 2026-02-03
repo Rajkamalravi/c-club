@@ -1,9 +1,9 @@
 <?php
-include_once $_SERVER['DOCUMENT_ROOT'].'/raj/assets/icons/icons.php';
+include_once TAOH_SITE_PATH_ROOT.'/assets/icons/icons.php';
 // Session Slot Modal
 require_once('events_session_form.php');
 ?>
-<div class="modal speaker-detail-modal fade" id="speakerDetailModal" tabindex="-1" role="dialog"
+<div class="modal speaker-detail-modal fade" id="speakerDetailModal" tabindex="-1" role="dialog" 
         aria-labelledby="mySpeakerModalLabel" aria-hidden="true">
     <div class="modal-dialog bg-white" role="document">
         <div class="modal-content">
@@ -15,15 +15,15 @@ require_once('events_session_form.php');
                     </svg>
                     <span>Speaker details</span>
                 </h4>
-
+                
                 <button type="button" class="btn" data-dismiss="modal" aria-label="Close">
                     <?= icon('close', '#D3D3D3', 13) ?>
                 </button>
-
+                
             </div>
             <div id="speakerdet_loaderArea" style="text-align: center;"></div>
             <div class="modal-body p-3 px-lg-5 pb-lg-5 pt-lg-4" id="speaker_info">
-
+                
             </div>
         </div>
     </div>
@@ -34,4 +34,4 @@ require_once('events_session_form.php');
     window._spk_ptoken = "<?php echo $ptoken ?? ''; ?>";
     window._spk_user_timezone = "<?php echo taoh_user_is_logged_in() ? taoh_user_timezone() : ''; ?>";
 </script>
-<script src="<?php echo TAOH_SITE_URL_ROOT; ?>/assets/js/events-speakers.js?v=<?php echo TAOH_CSS_JS_VERSION; ?>"></script>
+<script src="<?php echo TAOH_SITE_URL_ROOT; ?>/assets/events/js/events-speakers.js?v=<?php echo TAOH_CSS_JS_VERSION; ?>"></script>

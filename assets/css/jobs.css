@@ -10,13 +10,13 @@
         line-height: 1.5;
     }
     .get-started-btn {
-        color: #fff;
-        font-size: clamp(14px, 2vw + 1rem, 16px);
-        font-weight: 400;
+        color: #fff; 
+        font-size: clamp(14px, 2vw + 1rem, 16px); 
+        font-weight: 400; 
         display: flex;
         align-items: center;
-        gap: 6px;
-        background: #333333;
+        gap: 6px; 
+        background: #333333; 
         width: fit-content;
         border-radius: 12px;
         padding: 8px 14px;
@@ -306,16 +306,16 @@ span.h5 {
     .jobs-company-badge {
         font-size: 14px;
     }
-
+    
     .jobs-full-text {
         font-size: 16px;
         line-height: 19px;
     }
-
+    
     .jobs-toggle-link {
         font-size: 16px;
     }
-
+    
     .jobs-submit-btn {
         font-size: 15px;
         margin: 3rem 0;
@@ -380,4 +380,176 @@ span.h5 {
 /* Utility Classes */
 .jobs-hidden {
     display: none;
+}
+
+/* === Jobs Page UX Improvements === */
+
+/* CTA bar — above tabs */
+.jobs-cta-bar {
+    margin-bottom: 10px;
+    text-align: center;
+}
+.jobs-post-cta {
+    display: inline-block;
+    background-color: #0a9e01 !important;
+    color: #fff !important;
+    font-weight: 600 !important;
+    border-radius: 20px !important;
+    padding: 8px 24px !important;
+    font-size: 15px !important;
+    text-decoration: none !important;
+}
+.jobs-post-cta:hover {
+    background-color: #088a01 !important;
+    color: #fff !important;
+    text-decoration: none !important;
+}
+.jobs-post-reassurance {
+    display: block;
+    font-size: 11px;
+    color: #888;
+    text-align: center;
+    margin-top: 4px;
+}
+
+/* "Your Hiring" divider in tabs */
+.jobs-hiring-divider {
+    display: flex;
+    align-items: center;
+    padding: 0 8px !important;
+}
+.jobs-hiring-divider span {
+    font-size: 10px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+    color: #999;
+    border-left: 1px solid #ddd;
+    padding-left: 12px;
+    line-height: 1;
+}
+
+/* Collapsible employer tip bar */
+.jobs-tipbar {
+    background: #f8f9fa;
+    border: 1px solid #e9ecef;
+    border-radius: 8px;
+    margin-bottom: 12px;
+    overflow: hidden;
+    transition: box-shadow 0.2s;
+}
+.jobs-tipbar:hover {
+    box-shadow: 0 1px 4px rgba(0,0,0,0.06);
+}
+.jobs-tipbar-header {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 14px;
+    cursor: pointer;
+    user-select: none;
+}
+.jobs-tipbar-icon {
+    font-size: 16px;
+    flex-shrink: 0;
+}
+.jobs-tipbar-label {
+    font-size: 13px;
+    color: #555;
+    flex: 1;
+}
+.jobs-tipbar-cta {
+    display: inline-block;
+    background: #0a9e01;
+    color: #fff !important;
+    font-size: 12px;
+    font-weight: 600;
+    padding: 4px 14px;
+    border-radius: 14px;
+    white-space: nowrap;
+    text-decoration: none !important;
+    flex-shrink: 0;
+}
+.jobs-tipbar-cta:hover {
+    background: #088a01;
+    color: #fff !important;
+    text-decoration: none !important;
+}
+.jobs-tipbar-toggle {
+    font-size: 12px;
+    color: #aaa;
+    transition: transform 0.2s;
+    flex-shrink: 0;
+}
+.jobs-tipbar.open .jobs-tipbar-toggle {
+    transform: rotate(180deg);
+}
+.jobs-tipbar-body {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease, padding 0.3s ease;
+    padding: 0 14px;
+}
+.jobs-tipbar.open .jobs-tipbar-body {
+    max-height: 200px;
+    padding: 0 14px 12px;
+}
+.jobs-tipbar-cols {
+    display: flex;
+    gap: 24px;
+    flex-wrap: wrap;
+}
+.jobs-tipbar-col {
+    flex: 1;
+    min-width: 180px;
+}
+.jobs-tipbar-col strong {
+    font-size: 12px;
+    color: #333;
+    display: block;
+    margin-bottom: 4px;
+}
+.jobs-tipbar-col ul {
+    margin: 0;
+    padding-left: 16px;
+    list-style: disc;
+}
+.jobs-tipbar-col li {
+    font-size: 12px;
+    line-height: 1.5;
+    color: #666;
+}
+.jobs-tipbar-col p {
+    font-size: 12px;
+    line-height: 1.5;
+    color: #666;
+    margin: 0;
+}
+
+/* External apply link badge */
+.jobs-external-link {
+    opacity: 0.85;
+}
+.jobs-external-badge {
+    font-size: 10px;
+    color: #999;
+    display: inline-block;
+    margin-top: 2px;
+    margin-left: 4px;
+}
+
+@media (max-width: 768px) {
+    .jobs-tipbar-label {
+        font-size: 12px;
+    }
+    .jobs-tipbar-cols {
+        flex-direction: column;
+        gap: 12px;
+    }
+    .jobs-post-reassurance {
+        font-size: 10px;
+    }
+    .jobs-hiring-divider {
+        display: none;
+    }
 }

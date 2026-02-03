@@ -32,11 +32,11 @@ $(document).on('click', '.pin-message', function () {
     let frmMessageKey = parentElem.data('frm_message_key');
     let channelId = $('#channel-chat').data('channel_id');
     let msgOwner = thisElem.data('msg-owner');
+    
+    var pinned_count = $('.pin_message_div'+channelId+' .pin_msg').length;    
 
-    var pinned_count = $('.pin_message_div'+channelId+' .pin_msg').length;
 
-
-    if(pinned_count >= 3 && thisElem.attr('data-action') == 1) {
+    if(pinned_count >= 3 && thisElem.attr('data-action') == 1) {        
         jq_confirm_unpin(
             'Replace oldest pin?',
             'Your new pin will replace the oldest one',
@@ -46,10 +46,10 @@ $(document).on('click', '.pin-message', function () {
                 pinMessagePost(msgOwner, thisElem, channelId, frmMessageId, frmMessageKey, thisElem.attr('data-action'), "channel", "", 1);
             },
             true
-        );
-    } else {
+        );      
+    } else {    
         pinMessagePost(msgOwner, thisElem, channelId, frmMessageId, frmMessageKey, thisElem.attr('data-action'), "channel", "");
-    }
+    }    
 });
 
 $(document).on('click', '.unpin-message', function () {
@@ -67,12 +67,12 @@ $(document).on('click', '.unpin-message', function () {
     }
     let msgOwner = $(this).data('msg-owner');
     //alert(chatWith);
-    pinMessagePost(msgOwner, elem, channelId, frmMessageId, frmMessageKey, 0, pinFrom, chatWith);
+    pinMessagePost(msgOwner, elem, channelId, frmMessageId, frmMessageKey, 0, pinFrom, chatWith);       
 });
 
 $(document).on('click', '.view-profile-pin', function () {
     let userPtoken = $(this).data('user-ptoken');
-    alert(userPtoken);
+    alert(userPtoken);   
 });
 
 $(document).on('click', '.pin-message-dm', function () {
@@ -81,10 +81,10 @@ $(document).on('click', '.pin-message-dm', function () {
     let frmMessageId = parentElem.data('ntw_message_id');
     let frmMessageKey = parentElem.data('ntw_message_key');
     let channelId = $('#users-chat').data('channel_id');
-    let chatWith = $('#users-chat').data('chatwith');
+    let chatWith = $('#users-chat').data('chatwith');    
     let msgOwner = thisElem.data('msg-owner');
 
-    var pinned_count = $('.pin_message_div-dm'+channelId+' .pin_msg').length;
+    var pinned_count = $('.pin_message_div-dm'+channelId+' .pin_msg').length;    
 
     if(pinned_count >= 3 && thisElem.attr('data-action') == 1) {
         jq_confirm_unpin(
@@ -96,10 +96,10 @@ $(document).on('click', '.pin-message-dm', function () {
                 pinMessagePost(msgOwner, thisElem, channelId, frmMessageId, frmMessageKey, thisElem.attr('data-action'), "dm", chatWith, 1);
             },
             true
-        );
-    } else {
+        );      
+    } else {    
         pinMessagePost(msgOwner, thisElem, channelId, frmMessageId, frmMessageKey, thisElem.attr('data-action'), "dm", chatWith);
-    }
+    }    
 });
 
 $(document).on('click', '.conversation-mention', async function () {
@@ -128,7 +128,7 @@ $(document).on('click', '.open_profile_sidebar', async function () {
         getUserInfo(chatwith, 'full').catch((e) => {console.log(e)}),
     ]);
 
-    console.log("user info comm", userInfo);
+    console.log("user info comm", userInfo);    
 
     await updateProfileInfo(userInfo, userLiveStatus);
 
@@ -197,28 +197,28 @@ if (chatRoomList) {
 
             const participantsSidebar = document.querySelector("#participants-sidebar");
             const userChat = document.getElementById('user-chat');
-
+            
             if(!userChat.classList.contains('user-chat-show')) {
                  userChat.classList.add('user-chat-show');
             }
             if(userChat.classList.contains('mobile-transform')) {
                  userChat.classList.remove('mobile-transform');
             }
-
+            
             participantsSidebar.style.display = participantsSidebar.style.display === "block" ? " " : "block";
         }
     });
     document.addEventListener("click", function (e) {
         if (e.target.closest(".chat-user-list li .channel_btn")) {
             const userChat = document.getElementById('user-chat');
-
+            
             if(!userChat.classList.contains('user-chat-show')) {
                  userChat.classList.add('user-chat-show');
             }
             if(userChat.classList.contains('mobile-transform')) {
                  userChat.classList.remove('mobile-transform');
             }
-
+            
         }
     });
 }
@@ -477,7 +477,7 @@ function loadchatWindow(chat_window = '', data = false) {
             $('.watchPartySection').addClass('watchPartyEnabled');
             chatInputContainer.addClass('watchPartyEnabled');
             $('.chat-leftsidebar').addClass('watchPartyEnabled');
-        }
+        }        
     }
 }
 
@@ -528,7 +528,7 @@ async function loadChannelsList(tabSlug) {
     if (!tabInfo) return;
 
     const browseChannels = $(`#browse_${tabSlug}_channels`);
-    const browseChannelQuery = $('#browseChannelQuery');
+    const browseChannelQuery = $('#browseChannelQuery');    
 
     browseChannels.empty();
 
@@ -564,7 +564,7 @@ async function loadChannelsList(tabSlug) {
                 ? response.channels
                 : [];
 
-        let browseChannelsHtml = '';
+        let browseChannelsHtml = '';        
 
         if (channels.length) {
             browseChannelsHtml = channels.map((channel) => {
@@ -577,25 +577,25 @@ async function loadChannelsList(tabSlug) {
                 const isJoined = Boolean((channel.members)?.includes(my_pToken) || false);
 
                 if(type == taohChannelExhibitor){
-
+                    
                     if(data.exh_state == 'active' || data.exh_state == 'live') {
                         exh_channel_count++;
                     }
 
                     return `<div class="channel-item ch-list pr-lg-5 open_channel_in_home ${data.exh_state == 'suspended' || data.exh_state == 'closed' ? 'd-none' : ''}" data-channelid="${id}" data-channeltype="${type}" data-channelname="${name}">
                              <div class="d-flex align-items-sm-center flex-column flex-sm-row" style="gap: 25px;">
-                                 <img class="exh-list-img" src="${data.exhibitor_logo}" alt="">
+                                 <img class="exh-list-img" src="${data.exhibitor_logo}" alt="" onerror="this.onerror=null; this.src='${_taoh_cdn_main_prefix + '/images/empty_network.png'}';">
                                  <div class="flex-grow-1 d-flex flex-wrap flex-xl-nowrap align-items-center">
                                      <div class="flex-grow-1">
                                          <div class="d-flex flex-wrap align-items-center mb-2" style="gap: 10px;">
                                              <h6 class="exh-title channel_info_view text-capitalize">${name}</h6>
 
                                              <span class="h-name lh-1">${data.exhibitor_hall}</span>
-
+                                             
                                              <ul class="channel-item-top-badges dotted-list pl-1 mb-0">
-                                                ${isJoined ? '<li class="join-status text-success"><i class="fa fa-check-circle text-success mr-1" aria-hidden="true"></i> Joined</li>' : ''}
+                                                ${isJoined ? '<li class="join-status text-success"><i class="fa fa-check-circle text-success mr-1" aria-hidden="true"></i> Joined</li>' : ''}                                
                                                 <li class="members_view ch-mem lh-1 cursor-pointer" data-count="${members_count}">${members_count} ${members_count === 1 ? 'Member' : 'Members'}</li>
-                                            </ul>
+                                            </ul>   
                                          </div>
                                          <p class="exh-desc line-clamp-2 mb-2">${description}</p>
                                      </div>
@@ -617,18 +617,18 @@ async function loadChannelsList(tabSlug) {
 
                     return `<div class="channel-item ch-list pr-lg-5 open_channel_in_home ${data.spk_state == 'suspended' || data.spk_state == 'closed' ? 'd-none' : ''}" data-channelid="${id}" data-channeltype="${type}" data-channelname="${name}">
                              <div class="d-flex align-items-sm-center flex-column flex-sm-row" style="gap: 25px;">
-                                 <img class="session-list-img" src="${data.speaker_logo}" alt="">
+                                 <img class="session-list-img" src="${data.speaker_logo}" alt="" onerror="this.onerror=null; this.src='${_taoh_cdn_main_prefix + '/images/empty_network.png'}';">
                                  <div class="flex-grow-1 d-flex flex-wrap flex-xl-nowrap align-items-center">
                                      <div class="flex-grow-1">
                                          <div class="d-flex flex-wrap align-items-center mb-2" style="gap: 10px;">
                                              <h6 class="session-title channel_info_view text-capitalize">${name}</h6>
 
                                              <span class="h-name lh-1">${data.speaker_hall}</span>
-
+                                             
                                              <ul class="channel-item-top-badges dotted-list pl-1 mb-0">
-                                                ${isJoined ? '<li class="join-status text-success"><i class="fa fa-check-circle text-success mr-1" aria-hidden="true"></i> Joined</li>' : ''}
+                                                ${isJoined ? '<li class="join-status text-success"><i class="fa fa-check-circle text-success mr-1" aria-hidden="true"></i> Joined</li>' : ''}                                
                                                 <li class="members_view ch-mem lh-1 cursor-pointer" data-count="${members_count}">${members_count} ${members_count === 1 ? 'Member' : 'Members'}</li>
-                                            </ul>
+                                            </ul>   
                                          </div>
                                          <p class="session-desc line-clamp-2 mb-2">${description}</p>
                                      </div>
@@ -648,9 +648,9 @@ async function loadChannelsList(tabSlug) {
                             <div class="d-flex flex-wrap align-items-center mb-2" style="gap: 6px;">
                                 <h6 class="ch-title channel_info_view mb-0 text-capitalize"><i class="la ${channel.visibility === 'private' ? 'la-lock' : 'la-hashtag'} mr-1"></i>${name}</h6>
                                 <ul class="channel-item-top-badges dotted-list pl-1 mb-0">
-                                    ${isJoined ? '<li class="join-status text-success"><i class="fa fa-check-circle text-success mr-1" aria-hidden="true"></i> Joined</li>' : ''}
+                                    ${isJoined ? '<li class="join-status text-success"><i class="fa fa-check-circle text-success mr-1" aria-hidden="true"></i> Joined</li>' : ''}                                
                                     <li class="members_view ch-mem lh-1 cursor-pointer" data-count="${members_count}">${members_count} ${members_count === 1 ? 'Member' : 'Members'}</li>
-                                </ul>
+                                </ul>                
                             </div>
                             <p class="ch-desc line-clamp-2 mb-1">${description}</p>
                         </div>
@@ -1010,8 +1010,8 @@ if (typeof getNTWUserChannels !== 'function') {
                 return;
             }
 
-            const ntwUserChannelListKey = ['room', requestData.keyword, requestData.roomslug, requestData.my_pToken, requestData.type, 'channels'].filter(Boolean).join('_');
-
+            const ntwUserChannelListKey = ['room', requestData.keyword, requestData.roomslug, requestData.my_pToken, requestData.type, 'channels'].filter(Boolean).join('_');            
+                            
 
             const handleResponse = (response, saveToDB = true) => {
 
@@ -1108,7 +1108,7 @@ async function getNTWChannelById(requestData, serverFetch = false, saveToDB = tr
 
         // Function to handle the response after fetching or creating channels
         const handleResponse = async (response) => {
-
+ 
             // Channels found, return as is
             if (saveToDB) {
                 IntaoDB.setItem(objStores.ntw_store.name, {
@@ -1154,7 +1154,7 @@ async function getNTWChannelById(requestData, serverFetch = false, saveToDB = tr
 
             IntaoDB.getItem(objStores.ntw_store.name, ntwChannelInfoKey)
                 .then((data) => {
-
+                    
                     if (data?.values) {
                         handleResponse(data.values);
                     } else {
@@ -1529,8 +1529,8 @@ async function showChannelInfoModal(channelId, channelType, tabSelector = '') {
                     var member = null;
                     if(memberJson) {
                         let parsedMember = JSON.parse(memberJson.trim());
-                        member = parsedMember?.output?.user;
-                    }
+                        member = parsedMember?.output?.user;             
+                    }                                       
                     if(!member || member == null) {
                         member = await getUserInfo(member_ptoken);
                     }
@@ -1639,7 +1639,7 @@ async function showChannelInfoModal(channelId, channelType, tabSelector = '') {
                                     </div>
                                 </div>
                             </div>
-                        </div>
+                        </div>                        
                     `);
                     membersListContainer.append(memberItem);
                 }
@@ -1814,7 +1814,7 @@ async function showChannelInfoModalPopup(channelId, channelType, tabSelector = '
                                     </div>
                                 </div>
                             </div>
-                        </div>
+                        </div>                        
                     `);
                     membersListContainer.append(memberItem);
                 }

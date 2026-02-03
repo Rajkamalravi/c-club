@@ -1,5 +1,5 @@
 <?php
-include_once $_SERVER['DOCUMENT_ROOT'].'/raj/assets/icons/icons.php';
+include_once TAOH_SITE_PATH_ROOT.'/assets/icons/icons.php';
 taoh_get_header();
 
 
@@ -80,7 +80,7 @@ $valid_dir_viewer = $taoh_user_is_logged_in && $user_info_obj->profile_complete 
     top: 50%;
     transform: translateY(-50%);
   }
-
+   
    .carousel-control-next {
         right: 10px;
   }
@@ -93,12 +93,12 @@ $valid_dir_viewer = $taoh_user_is_logged_in && $user_info_obj->profile_complete 
     }
 
     .company-info-tabs .company-info:hover {
-       color: #333ABF;
+       color: #333ABF; 
        font-weight: 500;
        border-bottom: 2px solid #333ABF;
     }
 
-
+    
     .company-info-tabs .company-info.active {
         border-bottom: 2px solid #333ABF;
     }
@@ -119,7 +119,7 @@ $valid_dir_viewer = $taoh_user_is_logged_in && $user_info_obj->profile_complete 
         border: 2px solid #D3D3D3;
         border-radius: 12px;
     }
-
+   
     .left-job-list .card .company {
         font-size: 12px;
         font-weight: 700;
@@ -235,7 +235,7 @@ $valid_dir_viewer = $taoh_user_is_logged_in && $user_info_obj->profile_complete 
     .scroll-container::-webkit-scrollbar {
         display: none;
     }
-
+  
     .scroll-container {
         scrollbar-width: none;
     }
@@ -267,7 +267,7 @@ $valid_dir_viewer = $taoh_user_is_logged_in && $user_info_obj->profile_complete 
         font-size: 19px;
         color: #444444;
         font-weight: 400;
-    }
+    } 
 
 </style>
 
@@ -405,7 +405,7 @@ $valid_dir_viewer = $taoh_user_is_logged_in && $user_info_obj->profile_complete 
         </div>
 
         <!-- company info tabs -->
-        <div id="" class="row mt-3" style="overflow-x: hidden;">
+        <div id="" class="row mt-3" style="overflow-x: hidden;">  
             <!-- Nav Tabs -->
             <ul class="nav nav-tabs col-12 mx-auto d-flex flex-nowrap justify-content-between company-info-tabs scroll-container" role="tablist" style="gap: 12px; overflow-x: auto; border-bottom: 1px solid #D3D3D3">
                 <li class="nav-item">
@@ -433,7 +433,7 @@ $valid_dir_viewer = $taoh_user_is_logged_in && $user_info_obj->profile_complete 
         <!--  about page -->
         <div class="container pb-5 px-lg-5 tab-pane fade show active" id="about" role="tabpanel" aria-labelledby="about-tab">
             <div class="py-5 row mx-0">
-
+            
                 <h2 class="headline">Headline or Mission of the Company</h2>
                 <p class="content-detail mt-3">
                     Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna 1 aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
@@ -443,7 +443,7 @@ $valid_dir_viewer = $taoh_user_is_logged_in && $user_info_obj->profile_complete 
                     <br>
                 </p>
                 <a href="#" class="content-detail read-more mt-3">Read More ...</a>
-
+            
             </div>
 
             <div class="row d-flex align-items-center justify-content-between">
@@ -591,7 +591,7 @@ $valid_dir_viewer = $taoh_user_is_logged_in && $user_info_obj->profile_complete 
                             <span class="info px-3">Remote | Full Time</span>
                             <span class="info">Company Location</span>
                         </div>
-
+                        
                         <p class="pay">₹40,000 - 50,0000</p>
                         <button type="button" class="btn apply-job my-3"><a href="#">Apply</a></button>
 
@@ -655,7 +655,7 @@ $valid_dir_viewer = $taoh_user_is_logged_in && $user_info_obj->profile_complete 
                                     <div class="d-flex align-items-center">
                                         <svg width="18" height="20" viewBox="0 0 18 20" fill="none" xmlns="http://www.w3.org/2000/svg">
                                             <path d="M5.14286 0C5.85402 0 6.42857 0.558594 6.42857 1.25V2.5H11.5714V1.25C11.5714 0.558594 12.146 0 12.8571 0C13.5683 0 14.1429 0.558594 14.1429 1.25V2.5H16.0714C17.1362 2.5 18 3.33984 18 4.375V6.25H0V4.375C0 3.33984 0.863839 2.5 1.92857 2.5H3.85714V1.25C3.85714 0.558594 4.4317 0 5.14286 0ZM0 7.5H18V18.125C18 19.1602 17.1362 20 16.0714 20H1.92857C0.863839 20 0 19.1602 0 18.125V7.5ZM3.21429 10C2.86071 10 2.57143 10.2812 2.57143 10.625V14.375C2.57143 14.7188 2.86071 15 3.21429 15H7.07143C7.425 15 7.71429 14.7188 7.71429 14.375V10.625C7.71429 10.2812 7.425 10 7.07143 10H3.21429Z" fill="#1C52A8"/>
-                                        </svg>
+                                        </svg> 
                                         <span class="label-title ml-3">Application Deadline</span>
                                     </div>
                                     <div class="divider d-flex"><span></span><span></span></div>
@@ -722,7 +722,7 @@ $valid_dir_viewer = $taoh_user_is_logged_in && $user_info_obj->profile_complete 
 
         <div class="container pb-5 px-lg-5 tab-pane fade" id="culture" role="tabpanel" aria-labelledby="culture-tab">
             <div class="py-5 row mx-0">
-
+            
             <h2 class="headline">Highlight of the Culture</h2>
             <p class="content-detail mt-3">
                 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna 1 aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
@@ -732,7 +732,7 @@ $valid_dir_viewer = $taoh_user_is_logged_in && $user_info_obj->profile_complete 
                 <br>
             </p>
             <a href="#" class="content-detail read-more mt-3">Read More ...</a>
-
+            
             </div>
 
             <div class="row d-flex align-items-center justify-content-between">
@@ -867,7 +867,7 @@ $valid_dir_viewer = $taoh_user_is_logged_in && $user_info_obj->profile_complete 
             </div>
         </div>
      </div>
-
+    
 </div>
 
 <?php

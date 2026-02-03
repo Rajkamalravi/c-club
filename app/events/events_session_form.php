@@ -1,4 +1,4 @@
-<link rel="stylesheet" href="<?php echo TAOH_SITE_URL_ROOT; ?>/assets/css/events-session-form.css?v=<?php echo TAOH_CSS_JS_VERSION; ?>">
+<link rel="stylesheet" href="<?php echo TAOH_SITE_URL_ROOT; ?>/assets/events/css/events-session-form.css?v=<?php echo TAOH_CSS_JS_VERSION; ?>">
 
 <div class="modal speaker-slot fade" id="speakerSlotModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-dialog bg-white" role="document">
@@ -278,4 +278,4 @@
 </script>
 <!-- /Speaker Banner Template -->
 
-<script src="<?php echo TAOH_SITE_URL_ROOT; ?>/assets/js/events-session-form.js?v=<?php echo TAOH_CSS_JS_VERSION; ?>"></script>
+<script src="<?php echo TAOH_SITE_URL_ROOT; ?>/assets/events/js/events-session-form.js?v=<?php echo TAOH_CSS_JS_VERSION; ?>"></script>

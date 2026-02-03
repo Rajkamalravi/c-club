@@ -528,20 +528,53 @@
             }
         });
 
+        // Sticky header: use position:fixed when scrolled past sentinel
+        (function() {
+            var $stickyEl = $('.sticky-top-fixed');
+            var sentinel = document.getElementById('stickySentinel');
+            if (!$stickyEl.length || !sentinel) return;
+
+            // Store the original height for the placeholder
+            var normalHeight = $stickyEl.outerHeight(true);
+
+            // Create placeholder to reserve space when element becomes fixed
+            var placeholder = document.createElement('div');
+            placeholder.id = 'stickyPlaceholder';
+            placeholder.style.cssText = 'height:0;margin:0;padding:0;';
+            $stickyEl[0].parentNode.insertBefore(placeholder, $stickyEl[0].nextSibling);
+
+            var isStuck = false;
+            // Cache sentinel offset (document position)
+            var sentinelOffset = sentinel.getBoundingClientRect().top + window.scrollY;
+
+            $(window).on('scroll.stickyHeader', function() {
+                var scrollTop = window.scrollY;
+                var $hallTabsNav = $('.hall_tabs > ul.nav-tabs');
+
+                if (scrollTop >= sentinelOffset && !isStuck) {
+                    isStuck = true;
+                    placeholder.style.height = normalHeight + 'px';
+                    $stickyEl.addClass('is-sticky');
+                    // Measure collapsed height after is-sticky is applied
+                    var collapsedHeight = $stickyEl.outerHeight();
+                    if ($hallTabsNav.length) {
+                        $hallTabsNav.addClass('is-tabs-sticky');
+                        $hallTabsNav.css('top', collapsedHeight + 'px');
+                    }
+                } else if (scrollTop < sentinelOffset && isStuck) {
+                    isStuck = false;
+                    placeholder.style.height = '0';
+                    $stickyEl.removeClass('is-sticky');
+                    if ($hallTabsNav.length) {
+                        $hallTabsNav.removeClass('is-tabs-sticky');
+                        $hallTabsNav.css('top', '');
+                    }
+                }
+            });
+        })();
+
         // Sticky scroll handling
         $(window).on('scroll', function() {
-            var $sticky = $('.sticky-top-fixed');
-            if ($sticky.length) {
-                var top_sticky_pos = $sticky.offset().top;
-                var stickyTop = cfg.stickyTopThreshold || 126;
-
-                if (top_sticky_pos > stickyTop) {
-                    $sticky.addClass('is-sticky');
-                } else {
-                    $sticky.removeClass('is-sticky');
-                }
-            }
-
             if ($(this).scrollTop() > 100) {
                 $('#back-to-top').fadeIn();
             } else {

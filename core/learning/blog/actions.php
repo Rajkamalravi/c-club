@@ -51,7 +51,7 @@ if($_POST['action'] == "save") {
     if(isset($_POST['tags']) && !empty($_POST['tags']) && isset($_POST['recipe_title']) && !empty($_POST['recipe_title'])) {
       $intao_delete_name = '?intao_delete=recipe&intao_delete1=tags';
     }
-    $url = 'core.content.post';
+    $url = 'core.content.post';  
     //echo taoh_apicall_post_debug($url,  $taoh_vals);die();
     $result = taoh_apicall_post($url,  $taoh_vals);
 
@@ -68,7 +68,7 @@ if($_POST['action'] == "save") {
     echo '<div style="word-break: break-all; font-family: monospace;">{<b>"Endpoint": '.$url.'</b>,<br/> "<b>Postdata</b>": '.$postdata.',<br> "<b>Result</b>": '.print_r($result).'}</div>';
     die();
   }
-
+  
   if( isset( $result ) && $success ) {
     taoh_set_success_message('Awesome,  Success!');
     header("Location: ".TAOH_READS_URL."/blog/".( ( isset( $result['output']['title']  ) && $result['output']['title'] ) ? taoh_slugify($result['output']['title']).'-':'' ).$conttoken.$intao_delete_name);

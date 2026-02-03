@@ -12,8 +12,8 @@ $valid_dir_viewer = $taoh_user_is_logged_in && $user_info_obj->profile_complete 
 <style>
 
 .owl-stage-outer .owl-item:hover .item {
-    width: auto !important;
-    transform: none !important;
+    width: auto !important; 
+    transform: none !important; 
     transition: none !important;
 }
 
@@ -25,7 +25,7 @@ $valid_dir_viewer = $taoh_user_is_logged_in && $user_info_obj->profile_complete 
 
 <div class="bg-white">
     <div class="mx-auto py-4 px-4" style="max-width: 1028px;">
-        <div class="d-flex justify-content-end">
+        <div class="d-flex justify-content-end">  
             <a href="<?php echo TAOH_SITE_URL_ROOT;?>/club/news_feed" class="d-flex align-items-center" style="gap: 0.8rem;">
                 <svg width="23" height="14" viewBox="0 0 23 14" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path d="M0.421163 6.01171C-0.140388 6.55833 -0.140388 7.44604 0.421163 7.99266L6.17144 13.59C6.733 14.1367 7.64495 14.1367 8.2065 13.59C8.76805 13.0434 8.76805 12.1557 8.2065 11.6091L4.90908 8.39934H21.5624C22.3576 8.39934 23 7.77401 23 7C23 6.22599 22.3576 5.60066 21.5624 5.60066H4.90908L8.2065 2.39091C8.76805 1.84429 8.76805 0.956583 8.2065 0.409964C7.64495 -0.136655 6.733 -0.136655 6.17144 0.409964L0.421163 6.00734V6.01171Z" fill="#2557A7"/>

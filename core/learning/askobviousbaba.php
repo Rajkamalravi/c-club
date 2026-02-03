@@ -17,14 +17,14 @@ define('TAO_PAGE_ROBOT', 'index, follow');
 // TAO_PAGE_CANONICAL
 
 $taoh_vals = array(
-
+    
 );
 $taoh_call = "/health/appload.php?url=".urlencode($_SERVER[ 'REQUEST_URI' ]);
 $taoh_call_type = "get";
 $out = json_decode(taoh_apicall_get( $taoh_call, $taoh_vals, $prefix=TAOH_OPS_PREFIX ), true);
 if (0)
 if ( ! isset( $out[ 'success' ] ) || ! $out[ 'success' ]  ){ header( "Location: ".TAOH_SITE_URL_ROOT."/backsoon" ); taoh_exit(); }
-taoh_get_header();
+taoh_get_header();  
 ?>
 <style>
 #chat1 .form-outline .form-control~.form-notch div {
@@ -125,8 +125,8 @@ color: #bfbfbf;
 </style>
 <section  style="background: #333" class="blog-area pt-40px pb-80px">
     <div class="container">
-    <!--<div class="alert alert_error w-50 text-center" style="margin-left: 25%;" id="alert_error">
-        <strong>Message should not be empty!!!</strong>
+    <!--<div class="alert alert_error w-50 text-center" style="margin-left: 25%;" id="alert_error"> 
+        <strong>Message should not be empty!!!</strong> 
     </div> -->
         <div class="row">
             <div class="col-lg-12 text-center">
@@ -161,7 +161,7 @@ color: #bfbfbf;
                                                 <button class="btn theme-btn">Chat <i class="fa fa-spinner fa-spin load"></i> <i class="la la-search ml-1"></i></button>
                                             </div><!-- end search-btn-box -->
                                         </div>
-                                        <input type="hidden" name="messages" class="messages" value="">
+                                        <input type="hidden" name="messages" class="messages" value="">                                            
                                     </div>
                                 </div>
                                 <?php
@@ -250,10 +250,10 @@ color: #bfbfbf;
                             </div>
                             <?php echo taoh_get_profile_image(); ?>
                         </div>
-				`);
+				`); 
                 }
 			})
-          $('.ask').val('');
+          $('.ask').val('');  
 		}
 
 	}

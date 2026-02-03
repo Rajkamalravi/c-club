@@ -28,7 +28,7 @@ if (isset($content['success']) && $content['success']) {
             ?>
                 <a href="<?php echo TAOH_SITE_URL_ROOT . '/jobs'; ?>" class="btn bor-btn">View All Jobs</a>
             <?php } ?>
-
+            
         </div>
         <div class="divider mb-0"><span></span></div>
 
@@ -55,7 +55,7 @@ if (isset($content['success']) && $content['success']) {
                     <?php } ?>
                 </div>
                 <div class="info">
-                     <?php echo $wid_job_location; ?>
+                     <?php echo $wid_job_location; ?> 
                 </div>
             </div>
         </a>
@@ -66,6 +66,6 @@ if (isset($content['success']) && $content['success']) {
                 <a href="<?php echo TAOH_SITE_URL_ROOT.'/jobs/post'; ?>" type="button" class="btn btn-primary">+ Post a Job</a>
             </div>
         <?php } ?>
-
+        
     </div>
 <?php } }?>

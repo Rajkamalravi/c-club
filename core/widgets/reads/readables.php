@@ -32,7 +32,7 @@ if (taoh_user_is_logged_in()) {
   $result = taoh_apicall_get($taoh_call, $taoh_vals);
   $readables = json_decode( $result );
  // echo'<pre>';print_r($readables);die();
- //
+ // 
 
 list($readables_slug, $readables_value) = array_pad(explode('###', $readables->value ?? '', 2), 2, '');
 if (is_object($readables)){

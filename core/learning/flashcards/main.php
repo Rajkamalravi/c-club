@@ -20,6 +20,13 @@ switch (taoh_parse_url(2)) {
         }
     include_once('flashcard_post.php');
     break;
+    case 'jobs':
+    case 'networking':
+    case 'career-development':
+    case 'mindfulness':
+        header("Location: " . TAOH_SITE_URL_ROOT . "/learning/flashcard/");
+        taoh_exit();
+        break;
     default:
       include_once('flash_local.php');
       break;

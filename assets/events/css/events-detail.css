@@ -1,0 +1,63 @@
+#choose_ticket {
+    overflow: hidden;
+}
+
+.sticky-top-fixed {
+    top: 0;
+}
+
+.sticky-top-fixed .nav-tabs {
+    visibility: visible !important;
+}
+
+/* When stuck: switch to position:fixed and collapse content */
+.sticky-top-fixed.is-sticky {
+    position: fixed !important;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1030 !important;
+    padding-top: 0.5rem !important;
+    padding-bottom: 0.5rem !important;
+}
+
+.sticky-top-fixed.is-sticky .d-flex.align-items-start > .flex-grow-1 {
+    display: none !important;
+}
+
+.sticky-top-fixed.is-sticky .nav.nav-tabs {
+    margin-bottom: 0.25rem !important;
+    display: flex;
+    align-items: center;
+}
+
+.sticky-top-fixed.is-sticky .d-flex.align-items-start {
+    margin-top: 0 !important;
+}
+
+.sticky-top-fixed.is-sticky #event_info_container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.sticky-top-fixed.is-sticky #event_info_container > .nav.nav-tabs {
+    flex: 1;
+    margin: 0 !important;
+}
+
+/* Sticky tabs row 2 (Agenda / Description / Attendees) */
+.hall_tabs > ul.nav-tabs.is-tabs-sticky {
+    position: fixed !important;
+    left: 0;
+    right: 0;
+    z-index: 1029;
+    background: #fff;
+    padding: 0 15px;
+    border-bottom: none !important;
+}
+
+/* Remove border from tabs */
+.hall_tabs > ul.nav-tabs {
+    border-bottom: none !important;
+}

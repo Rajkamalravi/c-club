@@ -1,5 +1,5 @@
-<?php
-include_once('head_landing.php');
+<?php 
+include_once('head_landing.php'); 
 
 $url = "core.content.get";
 $taoh_vals = array(
@@ -61,7 +61,7 @@ if(isset($response_tag['success']) && $response_tag['success']) {
 <!-- Navbar -->
 <!-- Navbar -->
 <div class="boxed" id="wrapper">
-
+  
     <div class="header-res-height">
         <header style="position: fixed; top: 0; width: 100%; background: #ffffff; z-index: 100001;">
           <div id="theme-header" class="container theme-header">
@@ -74,7 +74,7 @@ if(isset($response_tag['success']) && $response_tag['success']) {
                       //print_r($headers1->title);
                       foreach($headers1 as $header1_keys => $header1_val) {
                         echo '<li id="menu-item-1072" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-1072"><a href="'.$header1_val.'">'.$header1_keys.'</a></li>';
-                      }
+                      }  
                     ?>
                     </ul>
                   </div>
@@ -93,13 +93,13 @@ if(isset($response_tag['success']) && $response_tag['success']) {
               </div>
               <!-- .container /-->
             </div>
-            <!-- .top-menu /-->
+            <!-- .top-menu /-->	
             <div class="header-content" style="position: relative;">
               <a id="slide-out-open" class="slide-out-open" href="#top-nav"><span></span></a>
               <div class="logo">
                 <a href="<?php echo $taoh_home_url . "/../"; ?>" class="logo">
                   <img src="<?php echo (defined('TAOH_PAGE_LOGO')) ? TAOH_PAGE_LOGO : TAOH_SITE_LOGO; ?>" alt="logo" style="max-height: 35px; width: auto;">
-                </a>
+                </a>            
               </div>
               <!-- .logo /-->
               <div class="e3lan e3lan-top">
@@ -110,7 +110,7 @@ if(isset($response_tag['success']) && $response_tag['success']) {
                     echo '<a href="'.$banner_first['OUTSIDEURL'].'" title="'.$banner_first['TITLE'].'" target="_blank">
                               <img src="'.$banner_first['IMAGEURL'].'" alt="'.$banner_first['ALT_TEXT'].'">
                           </a>';
-                  ?>
+                  ?>  
               </div>
               <div class="clear"></div>
             </div>
@@ -122,16 +122,16 @@ if(isset($response_tag['success']) && $response_tag['success']) {
                       <?php
                           foreach($slice_array as $header2_keys => $header2_val) {
                               echo '<li id="menu-item-1063" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-1063"><a href="'.TAOH_READS_LP_URL."/category/".$header2_val.'">'.ucwords(str_replace("_"," ",$header2_val)).'</a></li>';
-                          }
+                          }  
                         ?>
                         <?php if(count($slice_array) > 1){ ?>
-                          <li id="menu-item-1063" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-1063"><a href="<?php echo TAOH_SITE_DOC_ROOT_FILE.'blog'; ?>">Blogs</a></li>
+                          <li id="menu-item-1063" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-1063"><a href="<?php echo TAOH_SITE_DOC_ROOT_FILE.'blog'; ?>">Blogs</a></li> 
                         <?php } ?>
                     </ul>
                   </div>
                   <!-- <a href="https://grants.club/?tierand=1" class="random-article ttip" original-title="Random Article">
                     <i class="fa fa-random"></i>
-                  </a> -->
+                  </a> -->						
               </div>
             </nav>
           </div>

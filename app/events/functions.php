@@ -1,5 +1,5 @@
 <?php
-include_once $_SERVER['DOCUMENT_ROOT'].'/raj/assets/icons/icons.php';
+include_once TAOH_SITE_PATH_ROOT.'/assets/icons/icons.php';
 
 /**
  * Event Helper Functions
@@ -121,14 +121,14 @@ function event_live_state( $start_time, $end_time, $event_status, $locality = 0 
   if ( $locality ){
     $timezone = taoh_user_timezone();
     date_default_timezone_set($timezone);
-    $now_stamp = date( TAOH_TIMEZONE_FORMAT, time());
+    $now_stamp = date( TAOH_TIMEZONE_FORMAT, time());  
     if ( $now_stamp < $start_time ) $return = 'before';
     if ( $now_stamp > $end_time ) $return = 'after';
     if ( $now_stamp >= $start_time && $now_stamp <= $end_time ) $return = 'live';
   } else {
     //date_default_timezone_set($_COOKIE['localTimeZone']);
-    //$now_stamp = $_COOKIE['localTime'];
-    //$now_stamp = date( TAOH_TIMEZONE_FORMAT, time());
+    //$now_stamp = $_COOKIE['localTime'];  
+    //$now_stamp = date( TAOH_TIMEZONE_FORMAT, time());  
     /*echo $utcTime;
     echo "<br>=======now_stamp====".strtotime($utcTime);
     echo "<br>=======start_time====".strtotime($start_time);
@@ -145,7 +145,7 @@ function event_live_state( $start_time, $end_time, $event_status, $locality = 0 
 
     //$timezone = taoh_user_timezone();
     /*date_default_timezone_set(TAOH_DEFAULT_TIMEZONE);
-    $now_stamp = date( TAOH_TIMEZONE_FORMAT, time());
+    $now_stamp = date( TAOH_TIMEZONE_FORMAT, time());  
     if ( $now_stamp < $start_time ) $return = 'before';
     if ( $now_stamp > $end_time ) $return = 'after';
     if ( $now_stamp >= $start_time && $now_stamp <= $end_time ) $return = 'live';*/
@@ -164,7 +164,7 @@ function event_live_state( $start_time, $end_time, $event_status, $locality = 0 
     }
     */
   }/*else{
-    date_default_timezone_set('America/Los_Angeles');
+    date_default_timezone_set('America/Los_Angeles'); 
     $date = new DateTime("now", new DateTimeZone('America/Los_Angeles') );
     $now_stamp = $date->format('YmdHis');
     if ( $now_stamp < $start_time ) $return = 'before';
@@ -187,7 +187,7 @@ function event_action_button($event_arr, $tokenkey = 0) {
     if( isset( $event_arr[ 'mystatus' ][ 'rsvptoken' ] ) && $event_arr[ 'mystatus' ][ 'rsvptoken' ] ) {
       if( $live == "live" ) {
         //RSVP IS DONE AND EVENT IS LIVE GO TO LOBBY
-
+        
         echo '
 
         <span class="edit-status">
@@ -204,8 +204,8 @@ function event_action_button($event_arr, $tokenkey = 0) {
             </span>
           ';
           echo taoh_calendar_widget($event_arr);
-
-
+          
+          
       } else if ( $live == 'before' ) {
         //if ( $event_arr[ 'mystatus' ][ 'liveable' ] )
           //RSVP IS DONE EVENT NOT LIVE GO TO EDIT RSVP
@@ -267,22 +267,22 @@ function event_action_button($event_arr, $tokenkey = 0) {
           echo '<span class="hide-resp"><ul class="menu--main">
           <li class="">
                     <a class="btn btn-primary  btn-sm  rsvp-login" style="color:#ffffff;" href="'.$url.'"><i class="la la-calendar-check mr-1"></i><span>Login to Register</span></a>
-
+                      
                   </li>
           </ul><span>';
 
         }
-
-
+        
+      
       } else if ( $live == 'before' ) {
         //RSVP IS DONE EVENT NOT LIVE GO TO EDIT RSVP
         //echo '<a href="'.TAOH_CURR_APP_URL.'/rsvp/'.$event_arr[ 'eventtoken' ].'" class="btn btn-success btn-block"><i class="la la-calendar-check mr-1"></i>Select ticket</a>';
 
         echo '<span class="edit-status">
-
+            
           </span>
           ';
-          if (taoh_user_is_logged_in()) {
+          if (taoh_user_is_logged_in()) { 
         echo '<span class="hide-resp"><ul class="menu--main">
         <li data-metrics="rsvplink" class="btn btn-success btn-block rsvp_btn click_metrics"><i class="la la-calendar-check mr-1"></i> Select ticket
             <ul class="sub-menu">
@@ -293,13 +293,13 @@ function event_action_button($event_arr, $tokenkey = 0) {
             echo '<span class="hide-resp"><ul class="menu--main">
             <li class="">
                     <a class="btn btn-primary  btn-sm  rsvp-login" style="color:#ffffff;" href="'.$url.'"><i class="la la-calendar-check mr-1"></i><span>Login to Register</span></a>
-
+                      
                   </li>
           </ul><span>';
           }
       } else {
         //RSVP IS DONE EVENT NOT LIVE GO TO EDIT RSVP
-        //echo '<a href="'.TAOH_CURR_APP_URL.'/rsvp/'.$event_arr[ 'eventtoken' ].'" class="btn btn-success btn-block"><i class="la la-calendar-check mr-1"></i>Select ticket</a>';
+        //echo '<a href="'.TAOH_CURR_APP_URL.'/rsvp/'.$event_arr[ 'eventtoken' ].'" class="btn btn-success btn-block"><i class="la la-calendar-check mr-1"></i>Select ticket</a>';        
           echo '<span class="hide-resp"><ul class="menu--main">
           <li  class="btn btn-secondary btn-block"><i class=\"la la-hourglass-end mr-1\"></i> Event <strong>Ended</strong>
           </li>
@@ -324,7 +324,7 @@ function event_action_button($event_arr, $tokenkey = 0) {
         echo '<span class="hide-resp"><ul class="menu--main">
           <li class="">
                   <a class="btn btn-primary  btn-sm  rsvp-login" style="color:#ffffff;" href="'.$url.'"><i class="la la-calendar-check mr-1"></i><span>Login to Register</span></a>
-
+                    
                 </li>
         </ul><span>';
       }
@@ -407,13 +407,13 @@ function event_state_widget($event_arr, $hide_rsvp = 1)
         }
     } else {
         //NOT LOGGED IN
-//
+//     
       $url = TAOH_LOGIN_URL;
         $rsvp_state = '<i class="la la-calendar-check mr-1" style="font-size: 20px;"></i> Registration status :<span style="display: inline-block;">
             <ul class="menu--main">
                 <li class="">
                   <a class="btn btn-primary  btn-sm  rsvp-login" style="color:#ffffff;" href="'.$url.'"><i class="la la-calendar-check mr-1"></i><span>Login to Register</span></a>
-
+                    
                 </li>
             </ul>
         </span>';
@@ -471,7 +471,7 @@ function event_state_widget($event_arr, $hide_rsvp = 1)
                         '<a href="' . $events_data['map_link'] . '" target="_blank" class="cursor-pointer text-underline">' . $events_data['venue'] . '</a>' : $events_data['venue'];
 
                     echo '<li><div class="d-flex align-items-center flex-wrap" style="gap: 4px;"><i class="fas fa-map-marker"></i>
-                        Venue: Hybrid - ' . $event_venue_loc . ' or Virtual,
+                        Venue: Hybrid - ' . $event_venue_loc . ' or Virtual, 
                         <a href="' . $lobby_link . '" title="'.$lobby_link.'" target="_blank" class="cursor-pointer text-underline">
                         Join here </a> Or  </div></li>';
 
@@ -479,8 +479,8 @@ function event_state_widget($event_arr, $hide_rsvp = 1)
                     $lobby_link = TAOH_CURR_APP_URL . '/chat/id/events/' . $event_arr['eventtoken'];
 
                     echo '<li><div class="d-flex align-items-center flex-wrap" style="gap: 4px;">
-                    <i class="fas fa-map-marker"></i>
-                    Venue: Virtual, <a href="' . $lobby_link . '" title="'.$lobby_link.'" target="_blank"
+                    <i class="fas fa-map-marker"></i> 
+                    Venue: Virtual, <a href="' . $lobby_link . '" title="'.$lobby_link.'" target="_blank" 
                     class="cursor-pointer text-underline">Join here</a></div></li>';
                 }
 
@@ -537,7 +537,7 @@ function event_state_widget($event_arr, $hide_rsvp = 1)
       $event_end_at = $event_arr['local_end_at'];
 
       $event_locality = $event_arr['locality'];
-      $event_timezone = $event_arr['local_timezone'];
+      $event_timezone = $event_arr['local_timezone']; 
       $event_attendie_count = $event_arr['attendees'];
 
       $rsvp_state = '';
@@ -545,14 +545,14 @@ function event_state_widget($event_arr, $hide_rsvp = 1)
       if( taoh_user_is_logged_in() ) {
         if ( ( $state == 'live' || $state == 'prelive' || $state == 'before' ) ){
              $rsvp_state = '
-            <span class="d-flex align-items-center" style="gap: 6px;">
+            <span class="d-flex align-items-center" style="gap: 6px;"> 
               ' . icon('calendar-check', '#2557A7', 21) . '
               <span class="text-dark text-nowrap" style="color: #000000; font-size: 16px;">Registration status :</span>
-            </span>
+            </span>  
             <span style="display: inline-block;">
               <ul class="menu--main">
               <li data-metrics="rsvplink" class="btn btn-sm btn-success rsvp_btn click_metrics py-0 mb-0 text-nowrap d-flex align-items-center">
-                  <i class="la la-calendar-check mr-1" style="font-size: 20px;"></i>
+                  <i class="la la-calendar-check mr-1" style="font-size: 20px;"></i>                  
                   <span> Select ticket</span>
                   <ul class="sub-menu">
                   </ul>
@@ -563,11 +563,11 @@ function event_state_widget($event_arr, $hide_rsvp = 1)
       } else {
         //NOT LOGGED IN
         $url = TAOH_LOGIN_URL;
-
+       
       $rsvp_state = '
             <span class="d-flex aligm-items-center" style="gap: 6px;">
               '.icon('calendar-check', '#2557A7', 21).'
-              <span class="text-nowrap" style="color: #000000; font-size: 16px;">Registration status :</span>
+              <span class="text-nowrap" style="color: #000000; font-size: 16px;">Registration status :</span> 
             </span>
             <span style="display: inline-block;">
               <ul class="menu--main">
@@ -583,18 +583,18 @@ function event_state_widget($event_arr, $hide_rsvp = 1)
     ?>
     <div class=" event_details_center">
       <div class="card-body px-0">
-
+        
         <ul class="generic-list-item d-flex flex-wrap pt-2 fs-15 w-100" style="gap: 12px;">
             <?php
             if ($rsvp_state && $hide_rsvp) {
                 echo '<li class="edit-status-js mr-3 d-flex flex-wrap align-items-center" style="gap: 6px;">' . $rsvp_state . '</li>';
             }
             ?>
-
+         
             <li class="d-flex flex-wrap align-items-center" style="gap: 6px;">
               <div class="d-flex align-items-center" style="gap: 6px;">
                 <?= icon('hourglass', '#2557A7', 18) ?>
-                <span class="text-nowrap" style="color: #000000; font-size: 16px;">Event Status :</span>
+                <span class="text-nowrap" style="color: #000000; font-size: 16px;">Event Status :</span> 
               </div>
               <?php echo $event_state; ?>
             </li>
@@ -611,7 +611,7 @@ function event_state_widget($event_arr, $hide_rsvp = 1)
               echo "</li>";
           }
           ?>
-
+        
           </li>
         </ul>
 
@@ -663,7 +663,7 @@ function event_state_widget($event_arr, $hide_rsvp = 1)
                           '<a href="' . $events_data['map_link'] . '" target="_blank" class="cursor-pointer">' . $events_data['venue'] . '</a>' : $events_data['venue'];
 
                       echo '<p style="line-height: 1.3;"><span class="theme-blue-clr">
-                      Venue: Hybrid - <span>' . $event_venue_loc . '</span> Or
+                      Venue: Hybrid - <span>' . $event_venue_loc . '</span> Or 
                       <span>Virtual, <a href="' . $lobby_link . '" title="'.$lobby_link.'" target="_blank" class="cursor-pointer text-underline">
                        Join here</a></span></span></p>';
 
@@ -730,7 +730,7 @@ function event_state_center_widget2($event_arr, $hide_rsvp = 1)
     if (taoh_user_is_logged_in()) {
         if (($state == 'live' || $state == 'prelive' || $state == 'before')) {
             $rsvp_state = '<i class="la la-calendar-check mr-1" style="font-size: 24px; color: #2557A7;"></i>
-                <span class="text-dark"> <span style="color: #000000; font-size: 16px;">Registration status :</span></span>
+                <span class="text-dark"> <span style="color: #000000; font-size: 16px;">Registration status :</span></span>  
                 <span style="display: inline-block;">
                   <ul class="menu--main">
                       <li data-metrics="rsvplink" class="btn btn-sm btn-success rsvp_btn click_metrics py-0 ml-2 mb-0">
@@ -743,7 +743,7 @@ function event_state_center_widget2($event_arr, $hide_rsvp = 1)
     } else {
         //NOT LOGGED IN
         $url = TAOH_LOGIN_URL ;
-        $rsvp_state = '<i class="la la-calendar-check mr-1" style="font-size: 20px;"></i> <span style="color: #000000; font-size: 16px;">Registration status :</span>
+        $rsvp_state = '<i class="la la-calendar-check mr-1" style="font-size: 20px;"></i> <span style="color: #000000; font-size: 16px;">Registration status :</span>  
             <span style="display: inline-block;">
                 <ul class="menu--main">
                     <li data-metrics="rsvplink" class="btn btn-success  btn-sm rsvp_btn click_metrics"><i class="la la-calendar-check mr-1"></i><span> Select ticket </span>

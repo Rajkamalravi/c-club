@@ -11,7 +11,7 @@ if ( ! taoh_user_is_logged_in() ){
     taoh_redirect( TAOH_SITE_URL_ROOT.'/'.TAOH_SITE_CURRENT_APP_SLUG.'/d/'.$eventtoken.'?redirect=1' ); taoh_exit();
 }
     $taoh_call = "events.content.detail";
-    $cache_name = 'event_MetaInfo_'. $eventtoken.'_speaker_'.$session_id;
+    $cache_name = 'event_MetaInfo_'. $eventtoken.'_speaker_'.$session_id; 
     $taoh_vals = array(
         'mod' => 'events',
         'token' => taoh_get_dummy_token(),
@@ -23,7 +23,7 @@ if ( ! taoh_user_is_logged_in() ){
     $response= json_decode(taoh_apicall_get($taoh_call, $taoh_vals), true);
     date_default_timezone_set($sess_user_info->local_timezone);
 
-
+    
     if ( ( ! isset( $response[ 'success' ] ) || ( isset( $response[ 'success' ] ) && ! $response[ 'success' ] ) ) ){
         taoh_redirect( TAOH_SITE_URL_ROOT.'/'.TAOH_SITE_CURRENT_APP_SLUG.'/d/'.$eventtoken ); taoh_exit();
     }
@@ -45,7 +45,7 @@ if ( ! taoh_user_is_logged_in() ){
         'cache_name' => $cache_name,
         'cache_time' => 2 * 60 * 60,
         'cache' => array ( "name" => $cache_name,  "ttl" => 2 * 60 * 60),
-
+        
     );
     $taoh_call = 'events.event.get';
     //$taoh_vals[ 'cfcache' ] = $cache_name;
@@ -74,7 +74,7 @@ if ( ! taoh_user_is_logged_in() ){
             $geo_enable = 0;
         }
     } else {
-
+       
         $key_key = $session_title.$eventtoken;
         $geo_enable = 0;
     } */
@@ -85,7 +85,7 @@ if ( ! taoh_user_is_logged_in() ){
     //echo "============".$geo_enable;die();
     //echo '<pre>';print_r($speaker_data);exit();
     $title = $title_desc = '';
-
+       
     $title = $session_title . ' by ' . $speaker_data['spk_name']['0'];
     $title_desc = '<span class="super_title">'.$session_title . ' by ' . $speaker_data['spk_name']['0'].'</span><br>'.$speaker_data['spk_desc'];
 
@@ -118,7 +118,7 @@ if ( ! taoh_user_is_logged_in() ){
             'skill' => taoh_either_or( $events_arr[ 'conttoken' ][ 'skill' ], '' ),
             'company' => taoh_either_or( $events_arr[ 'conttoken' ][ 'company' ], '' ),
             'roles' => taoh_either_or( $events_arr[ 'conttoken' ][ 'roles' ], '' ),
-
+           
             'breadcrumbs' => array(
                 array(
                     'title' => 'Home',
@@ -132,7 +132,7 @@ if ( ! taoh_user_is_logged_in() ){
                     'title' => $title,
                     'link' => $event_path,
                  ),
-
+                
             ),
             'live' => '',
             'geo_enable' => $geo_enable,
@@ -143,7 +143,7 @@ if ( ! taoh_user_is_logged_in() ){
             'geohash' => taoh_either_or( $events_arr[ 'meta' ][ 'geohash' ], '' ),
             'longitude' => '',
             'latitude' => '',
-
+            
         ),
     );
    // echo '<pre>';print_r($room_info_arr);exit();
@@ -160,7 +160,7 @@ $temp_arr = $return;
 unset( $return );
 $return[ 'club_info' ] = $room_status_arr[ 'output' ];
 unset( $temp_arr );
-if ( isset( $value_arr[ 'output' ] ) && $value_arr[ 'output' ] ){
+if ( isset( $value_arr[ 'output' ] ) && $value_arr[ 'output' ] ){    
     $return[ 'cell_info' ] = $value_arr[ 'output' ];
 } else {
     $return[ 'cell_info' ] = array(

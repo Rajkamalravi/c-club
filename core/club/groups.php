@@ -1,5 +1,5 @@
 <?php
-include_once $_SERVER['DOCUMENT_ROOT'].'/raj/assets/icons/icons.php';
+include_once TAOH_SITE_PATH_ROOT.'/assets/icons/icons.php';
 taoh_get_header();
 
 $pagename = 'groups';
@@ -95,10 +95,10 @@ $keywords = (array) ($user_info_obj?->keywords ?? []);
                 </div>
             </section>
         </header>
-
+        
         <div class="mobile-app groups-nav py-3">
             <ul class="nav nav-tabs justify-content-center border-0" id="room_tabs" role="tablist">
-                    <?php
+                    <?php 
                     $active = 'active';
                     $show = '';
                     if(!empty($keywords)) {
@@ -115,13 +115,13 @@ $keywords = (array) ($user_info_obj?->keywords ?? []);
                             <a class="nav-link rooms <?php echo  $active ;?> " id="custom_rooms_tab" onclick="loadRoom('custom_rooms');">General Groups</a>
                         </li>
                     <?php } ?>
+                    
 
-
-            </ul>
+            </ul>  
         </div>
         <section class="question-area pb-40px groups-body-bg">
             <div class="container pt-5">
-
+                 
                 <div class="row" id="loaderArea"></div>
                 <div class="row" id="CustomRoomArea" style="display:<?php echo $show;?>;"></div>
                 <div class="row justify-content-center" id="ProfileRoomArea" >
@@ -377,7 +377,7 @@ $keywords = (array) ($user_info_obj?->keywords ?? []);
             loader(true, loaderArea);
             $('#CustomRoomArea').show();
             $('#ProfileRoomArea').hide();
-
+            
             let data = {
                 'taoh_action': 'taoh_rooms_get',
                 'ops': 'list',

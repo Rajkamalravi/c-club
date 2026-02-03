@@ -5,7 +5,7 @@ FgEmojiPicker.init({
     trigger: 'button',
     position: ['bottom', 'right'],
     dir: 'directory/to/json', (without json name)
-    preFetch: true, //load emoji json when function called
+    preFetch: true, //load emoji json when function called 
     emit(emoji) {
         console.log(emoji);
     }
@@ -152,7 +152,7 @@ const FgEmojiPicker = function (options) {
 
     this.functions = {
 
-        // Put in place
+        // Put in place 
         putInPlace(myField, myValue) {
             if (document.selection) {
                 myField.focus();
@@ -162,9 +162,9 @@ const FgEmojiPicker = function (options) {
                 const startPos = myField.selectionStart;
                 const endPos = myField.selectionEnd;
                 myField.value = myField.value.substring(0, startPos) + myValue + myField.value.substring(endPos, myField.value.length);
-
+                
                 setCaretPosition(myField, startPos + 2)
-
+                
             } else {
                 myField.value += myValue;
                 myField.focus()
@@ -204,16 +204,16 @@ const FgEmojiPicker = function (options) {
                     position: relative;
                     animation: sk-chase 2.5s infinite linear both;
                   }
-
+                  
                   .sk-chase-dot {
                     width: 100%;
                     height: 100%;
                     position: absolute;
                     left: 0;
-                    top: 0;
-                    animation: sk-chase-dot 2.0s infinite ease-in-out both;
+                    top: 0; 
+                    animation: sk-chase-dot 2.0s infinite ease-in-out both; 
                   }
-
+                  
                   .sk-chase-dot:before {
                     content: '';
                     display: block;
@@ -221,9 +221,9 @@ const FgEmojiPicker = function (options) {
                     height: 25%;
                     background-color: #9fa1a5;
                     border-radius: 100%;
-                    animation: sk-chase-dot-before 2.0s infinite ease-in-out both;
+                    animation: sk-chase-dot-before 2.0s infinite ease-in-out both; 
                   }
-
+                  
                   .sk-chase-dot:nth-child(1) { animation-delay: -1.1s; }
                   .sk-chase-dot:nth-child(2) { animation-delay: -1.0s; }
                   .sk-chase-dot:nth-child(3) { animation-delay: -0.9s; }
@@ -236,21 +236,21 @@ const FgEmojiPicker = function (options) {
                   .sk-chase-dot:nth-child(4):before { animation-delay: -0.8s; }
                   .sk-chase-dot:nth-child(5):before { animation-delay: -0.7s; }
                   .sk-chase-dot:nth-child(6):before { animation-delay: -0.6s; }
-
+                  
                   @keyframes sk-chase {
-                    100% { transform: rotate(360deg); }
+                    100% { transform: rotate(360deg); } 
                   }
-
+                  
                   @keyframes sk-chase-dot {
-                    80%, 100% { transform: rotate(360deg); }
+                    80%, 100% { transform: rotate(360deg); } 
                   }
-
+                  
                   @keyframes sk-chase-dot-before {
                     50% {
-                      transform: scale(0.4);
+                      transform: scale(0.4); 
                     } 100%, 0% {
-                      transform: scale(1.0);
-                    }
+                      transform: scale(1.0); 
+                    } 
                   }
 
 
@@ -444,7 +444,7 @@ const FgEmojiPicker = function (options) {
                     code: el.getAttribute('data-code')
                 }
                 if (this.variable.emit) this.variable.emit(emoji, this.triggerer)
-
+                
                 // If insert into option exists
                 if (this.insertInto) this.functions.putInPlace(this.insertInto, emoji.emoji)
 
@@ -511,9 +511,9 @@ const FgEmojiPicker = function (options) {
                 // Emoji Picker Promise
                 this.emojiPicker().then(emojiPicker => {
 
-                    // Create node from
+                    // Create node from 
                     const node = new DOMParser().parseFromString(emojiPicker, 'text/html').body.firstElementChild;
-
+                    
                     emojiPickerMain.innerHTML = node.innerHTML;
 
                     const emojiFooter       = emojiPickerMain.querySelector(this.selectors.emojiFooter);

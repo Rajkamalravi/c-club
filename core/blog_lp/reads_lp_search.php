@@ -1,4 +1,4 @@
-<?php
+<?php 
     taoh_lp_get_header();
     $ajax_url = TAOH_TEMP_SITE_FILE_PARSE.TAOH_TEMP_SITE_URL.'/ajax';
     $action = taoh_parse_url_lp(1);
@@ -34,7 +34,7 @@
     <div class="content">
         <div class="page-head">
             <h1 class="page-title">
-                <?php echo $text; ?>
+                <?php echo $text; ?>			
             </h1>
             <div class="stripe-line"></div>
         </div>
@@ -49,7 +49,7 @@
     <aside id="sidebar" style="position: relative; overflow: visible; box-sizing: border-box; min-height: 1px;">
         <?php taoh_side_bar(); ?>
     </aside>
-    <!-- #sidebar /-->
+    <!-- #sidebar /-->	
     <div class="clear"></div>
 </div>
 <!-- .container /-->
@@ -65,7 +65,7 @@
     let store_name = READStore;
 
     $(document).ready(function(){
-        <?php if(TAOH_INTAODB_ENABLE) { ?>
+        <?php if(TAOH_INTAODB_ENABLE) { ?>			
             get_lp_bloglistdata();
         <?php }else{ ?>
             taoh_blogs_init();
@@ -158,7 +158,7 @@
                 'search': searchText,
             <?php }else{ ?>
                 'tags': searchText,
-            <?php } ?>
+            <?php } ?>   
         };
         jQuery.post("<?php echo $ajax_url; ?>", data, function(response) {
             console.log('data',response);
@@ -193,7 +193,7 @@
         }else{
             v.blurb.image = prefix+"/images/igcache/"+encodeURIComponent(v.title)+"/900_600/blog.jpg";
         }
-        let decodedStr = htmlDecode(v.blurb.description);
+        let decodedStr = htmlDecode(v.blurb.description); 
         slot.append(`
                 <article class="item-list">
                     <h2 class="post-box-title">
@@ -211,7 +211,7 @@
                     </div>
                     <div class="clear"></div>
                 </article>`
-
+                    
         );
     });
     if(totalItems >= 11){
@@ -239,6 +239,6 @@ function indx_blogs_lp_list(bloglistdata){
     },10000);
 
 </script>
-<?php
+<?php 
    taoh_lp_get_footer();
-?>
+?> 

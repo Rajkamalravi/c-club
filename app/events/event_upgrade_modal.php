@@ -34,4 +34,4 @@
 
 <?php $um_encodeCurrentUrl = encrypt_url_safe(getCurrentUrl()); ?>
 <script>window._um_encodeCurrentUrl = "<?php echo $um_encodeCurrentUrl ?? ''; ?>";</script>
-<script src="<?php echo TAOH_SITE_URL_ROOT; ?>/assets/js/event-upgrade-modal.js?v=<?php echo TAOH_CSS_JS_VERSION; ?>"></script>
+<script src="<?php echo TAOH_SITE_URL_ROOT; ?>/assets/events/js/event-upgrade-modal.js?v=<?php echo TAOH_CSS_JS_VERSION; ?>"></script>

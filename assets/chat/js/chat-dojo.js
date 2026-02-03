@@ -18,7 +18,7 @@ async function getDynamicContexts(_ntw_ft_room_key) {
             let group_one_started = false;
             let job_posted = false;
             let job_shared = false;
-
+            
             console.log('-------------inta data-');
             console.log(intao_data);
             if (intao_data !== undefined) {
@@ -74,13 +74,13 @@ async function getDynamicContexts(_ntw_ft_room_key) {
     });
 }
 async function taoh_load_dojo_suggestion(_ntw_ft_room_key){
-
-
+    
+    
     console.log(objStores.ntw_store);
     ntw_dojo_msg_key = 'dojo_data_'+_ntw_ft_room_key;
-
+   
     let contst =  await getDynamicContexts(_ntw_ft_room_key);
-
+    
     let output = [];
     if(contst != undefined){
         for (let i = 0; i < dojorules.length; i++) {

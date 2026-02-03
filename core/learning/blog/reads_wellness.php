@@ -1,4 +1,4 @@
-<?php
+<?php 
 if ( ! defined ( 'TAO_PAGE_TITLE' ) ) { define ( 'TAO_PAGE_TITLE', "Wellness Resources at ".TAOH_SITE_NAME_SLUG." : Explore Holistic Strategies for Work-Life Balance and Personal Well-being" ); }
 if ( ! defined ( 'TAO_PAGE_DESCRIPTION' ) ) { define ( 'TAO_PAGE_DESCRIPTION', "Discover our collection of Wellness Resources offering holistic strategies, tips, and resources to achieve work-life balance and prioritize personal well-being at ".TAOH_SITE_NAME_SLUG.". Gain insights into stress management techniques, mindfulness practices, self-care routines, and healthy lifestyle choices. Elevate your overall well-being with our comprehensive blog platform." ); }
 if ( ! defined ( 'TAO_PAGE_KEYWORDS' ) ) { define ( 'TAO_PAGE_KEYWORDS', "Wellness blogs at ".TAOH_SITE_NAME_SLUG.", Work-life balance strategies at ".TAOH_SITE_NAME_SLUG.", Stress management techniques at ".TAOH_SITE_NAME_SLUG.", Mindfulness practices at ".TAOH_SITE_NAME_SLUG.", Self-care routines at ".TAOH_SITE_NAME_SLUG.", Healthy lifestyle choices at ".TAOH_SITE_NAME_SLUG.", Mental well-being at ".TAOH_SITE_NAME_SLUG.", Physical wellness tips at ".TAOH_SITE_NAME_SLUG.", Emotional resilience at ".TAOH_SITE_NAME_SLUG.", Holistic wellness insights at ".TAOH_SITE_NAME_SLUG.", Nutrition and fitness guidance at ".TAOH_SITE_NAME_SLUG.", Sleep hygiene at ".TAOH_SITE_NAME_SLUG.", Meditation and relaxation techniques at ".TAOH_SITE_NAME_SLUG.", Emotional intelligence at work at ".TAOH_SITE_NAME_SLUG.", Burnout prevention strategies at ".TAOH_SITE_NAME_SLUG.", Positive mindset and motivation at ".TAOH_SITE_NAME_SLUG.", Wellness resources for professionals at ".TAOH_SITE_NAME_SLUG.", Work-life harmony at ".TAOH_SITE_NAME_SLUG.", Time management for self-care at ".TAOH_SITE_NAME_SLUG.", Building healthy habits" ); }
@@ -33,12 +33,12 @@ $log_nolog_token = $ptoken;
   }
   }
   .sqs-block-content .sqs-html-content p,  .sqs-block-content .sqs-html-content h1,
-  .sqs-block-content .sqs-html-content h2,  .sqs-block-content .sqs-html-content h3,  .sqs-block-content .sqs-html-content h4,
+  .sqs-block-content .sqs-html-content h2,  .sqs-block-content .sqs-html-content h3,  .sqs-block-content .sqs-html-content h4, 
   .sqs-block-content .sqs-html-content h5,  .sqs-block-content .sqs-html-content h6 {
-    display: -webkit-box;
-    -webkit-box-orient: vertical;
-    overflow: hidden;
-    -webkit-line-clamp: 1;
+    display: -webkit-box;        
+    -webkit-box-orient: vertical; 
+    overflow: hidden;           
+    -webkit-line-clamp: 1;   
   }
 </style>
 <section class="blog-listing gray-dark">
@@ -68,23 +68,23 @@ $log_nolog_token = $ptoken;
                 </a>
             </div>
             <?php } ?>
-            </div>
+            </div>        
         </div><!-- end hero-content -->
-        <div class="row bg-white">
-            <div class="col-lg-8 m-15px-tb">
+        <div class="row bg-white"> 
+            <div class="col-lg-8 m-15px-tb"> 
                 <div class="mt-3 sticky-top light-dark">
                     <?php taoh_reads_search_widget(); ?>
-                </div>
+                </div>  
                 <div class="">
-                    <?php taoh_all_reads_widget( $get_widget[ 'center1' ], 'center1' ); ?>
-                    <?php taoh_all_reads_widget( $get_widget[ 'center2' ], 'center2' ); ?>
+                    <?php taoh_all_reads_widget( $get_widget[ 'center1' ], 'center1' ); ?> 
+                    <?php taoh_all_reads_widget( $get_widget[ 'center2' ], 'center2' ); ?> 
                     <?php taoh_all_reads_widget( $get_widget[ 'center3' ], 'center3' ); ?>
-                    <div class="blured">
-
+                    <div class="blured"> 
+                        
                         <div>
                             <h4 class="session_title ml-3"><span>LATEST ARTICLES</span></h4>
                             <div id='loaderArea'></div>
-                            <div id="eventArea">Loading ...</div>
+                            <div id="eventArea">Loading ...</div> 
                         </div>
                         <div class="mb-4" id="pagination"></div>
                     </div>
@@ -108,7 +108,7 @@ $log_nolog_token = $ptoken;
                 </div>
                 <!-- <div class="border-bottom">
                     <?php //taoh_all_reads_widget( $get_widget[ 'right2' ], 'right2' ); ?>
-                </div> -->
+                </div> -->           
                 <section id="sticky">
                     <div class="border-bottom">
                         <?php taoh_all_reads_widget( $get_widget[ 'right_ad3' ], 'right_ad3' ); ?>
@@ -148,7 +148,7 @@ $log_nolog_token = $ptoken;
             var currpage = currentPage-1;
             var readswell_list_hash = queryString+currpage+itemsPerPage;
             readswell_list_name = 'readswell_'+crc32(readswell_list_hash);
-            console.log(readswell_list_name);
+            console.log(readswell_list_name);     
             const datareadswellrequest = db.transaction(store_name).objectStore(store_name).get(readswell_list_name); // get main data
             datareadswellrequest.onsuccess = ()=> {
                 console.log(datareadswellrequest);
@@ -215,7 +215,7 @@ $log_nolog_token = $ptoken;
         'offset': currentPage,
         'limit': itemsPerPage,
 		'filters': queryString,
-
+        
     };console.log(data);
     jQuery.post("<?php echo taoh_site_ajax_url(); ?>", data, function(response) {
         console.log(response);
@@ -285,14 +285,14 @@ function render_blog_template(data, slot) {
                         </div>`;
       }
       console.log('descp ---------- ',v.blurb.description);
-      let Str = decode(v.blurb.description);
+      let Str = decode(v.blurb.description); 
       let decodedStr = decodeURIComponent(Str).replace(/\+/g, ' ');
       console.log('decode descp ---------- ',decodedStr);
       slot.append(`
 
                     <div class="td_module_12 mt-3 row align-items-start dash_metrics"
-                    data-type="reads" data-metrics="view"
-                    conttoken="${v.conttoken}"
+                    data-type="reads" data-metrics="view" 
+                    conttoken="${v.conttoken}" 
                     >
 
                         <div class="col-lg-6 mb-2 mb-lg-0">
@@ -329,8 +329,8 @@ function render_blog_template(data, slot) {
   }else{
         $('#pagination').hide();
   }
-
-}
+  
+} 
 
 function indx_reads_list(readslistdata){
     var reads_taoh_data = { taoh_data:readswell_list_name,values : readslistdata };
@@ -366,13 +366,13 @@ setInterval(function(){
     }
   }
   //Trending Bar End
-
+  
 $('.claimedRight').each(function (f) {
 
     var newstr = $(this).text().substring(0,250)+'....';
     $(this).text(newstr);
 
   });
-
+ 
 </script>
 <?php taoh_get_footer();  ?>

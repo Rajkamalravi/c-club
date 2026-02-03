@@ -6925,12 +6925,12 @@ $login_url = TAOH_TEMP_SITE_FILE_PARSE.TAOH_TEMP_SITE_URL.'/login';
         <div class="ahead-section pt-50px pb-50px">
             <div class="d-flex justify-content-center">
                 <div>
-                    <h1 class="text-white">ELEVATE YOUR CAREER.</h1>
+                    <h1 class="text-white">ELEVATE YOUR CAREER.</h1> 
                 </div>
                 <div class="ml-2 orange-btn">
                     <a href="<?php echo  $login_url; ?>" class="btn theme-btn">Join for free</a>
                 </div>
-
+                
             </div>
         </div>
     </div>
@@ -7148,7 +7148,7 @@ $login_url = TAOH_TEMP_SITE_FILE_PARSE.TAOH_TEMP_SITE_URL.'/login';
                                 "Wanda",
                                 "Wendy",
                                 "Yvonne",
-                                "Zoe",
+                                "Zoe",                                
                             );
                             shuffle($chat_name);
                             $profile_type = array('Employer', 'Professional', 'Service Provider');
@@ -7176,7 +7176,7 @@ $login_url = TAOH_TEMP_SITE_FILE_PARSE.TAOH_TEMP_SITE_URL.'/login';
                                 "Sales",
                                 "Teamwork",
                                 "Time management",
-                                "Writing",
+                                "Writing",                                
                             );
                             $location_arr = array(
                                 "New York City, New York",
@@ -7228,7 +7228,7 @@ $login_url = TAOH_TEMP_SITE_FILE_PARSE.TAOH_TEMP_SITE_URL.'/login';
                                 "Tulsa, Oklahoma",
                                 "Aurora, Colorado",
                                 "Arlington, Virginia",
-                                "Wichita, Kansas",
+                                "Wichita, Kansas",                                
                             );
                             for ( $x = 0; $x < 3 ; $x++ ){
                                 //shuffle($profile_type);
@@ -7245,22 +7245,22 @@ $login_url = TAOH_TEMP_SITE_FILE_PARSE.TAOH_TEMP_SITE_URL.'/login';
                                                 <div class="row">
                                                     <div class="col-md-7">
                                                     <span style="display: -webkit-inline-box;">
-                                                    <h5><?php echo $chat_name[$x].'_'.$chat_name[ 50 - $x ]; ?></h5> <span style="background:navy;margin-left:15px" class="badge text-white"><?php echo $profile_type[rand(0,2)] ?></span>
+                                                    <h5><?php echo $chat_name[$x].'_'.$chat_name[ 50 - $x ]; ?></h5> <span style="background:navy;margin-left:15px" class="badge text-white"><?php echo $profile_type[rand(0,2)] ?></span> 
                                                     </span><br>
                                                     <i class="la la-map-marker"></i><?php echo $location_arr[ rand(0, count($location_arr) - 1) ] ?><br>
                                                     <p><a target="_BLANK" href="" class="btn btn-sm" style="margin-right:5px;background-color:#797f871a; font-size:12px; "><?php  echo $city_arr[ rand(0, count($city_arr) - 1) ]; ?></a></p>
                                                     </div>
                                                     <div class="col-md-3" style="margin-top: 15px;margin-inline-start: auto;margin-right: 20px;">
                                                     <a href="<?php echo  $login_url; ?>" target="_blank" class="btn btn-success brn-green" style="white-space: nowrap"><i class="la la-weixin" style="font-size:24px;"></i>Chat Now</a>
+                                                    </div>	
                                                     </div>
-                                                    </div>
-
+                                                    					
                                             </div>
                                         </div>
                                     </div>
                                 </div>
 
-                            <?php
+                            <?php    
                             }
                             ?>
                 </div>
@@ -7276,12 +7276,12 @@ $login_url = TAOH_TEMP_SITE_FILE_PARSE.TAOH_TEMP_SITE_URL.'/login';
         <div class="ahead-section pt-50px pb-50px">
             <div class="d-flex justify-content-center">
                 <div>
-                    <h1 class="text-white">ELEVATE YOUR CAREER.</h1>
+                    <h1 class="text-white">ELEVATE YOUR CAREER.</h1> 
                 </div>
                 <div class="ml-2 orange-btn">
                     <a href="<?php echo  $login_url; ?>" class="btn theme-btn">Join for free</a>
                 </div>
-
+                
             </div>
         </div>
     </div>
@@ -7301,8 +7301,8 @@ $login_url = TAOH_TEMP_SITE_FILE_PARSE.TAOH_TEMP_SITE_URL.'/login';
         </div>
         <div class="col-lg-12">
         <div class="loaderArea"></div>
-            <div class="row events_list">
-            </div>
+            <div class="row events_list">                
+            </div>            
         </div><!-- end row -->
         <div class="text-center orange-btn"><a href="<?php echo  $login_url; ?>" class="btn theme-btn">Explore more events</a></div>
     </div><!-- end container -->
@@ -7312,12 +7312,12 @@ $login_url = TAOH_TEMP_SITE_FILE_PARSE.TAOH_TEMP_SITE_URL.'/login';
         <div class="ahead-section pt-50px pb-50px">
             <div class="d-flex justify-content-center">
                 <div>
-                    <h1 class="text-white">ELEVATE YOUR CAREER.</h1>
+                    <h1 class="text-white">ELEVATE YOUR CAREER.</h1> 
                 </div>
                 <div class="ml-2 orange-btn">
                     <a href="<?php echo  $login_url; ?>" class="btn theme-btn">Join for free</a>
                 </div>
-
+                
             </div>
         </div>
     </div>
@@ -7330,7 +7330,7 @@ $login_url = TAOH_TEMP_SITE_FILE_PARSE.TAOH_TEMP_SITE_URL.'/login';
                     <h2 class="section-title">Browse our Available Jobs</h2>
                 </div>
                 <div class="jobs-list pt-60px"></div>
-                <div class="loaderArea"></div>
+                <div class="loaderArea"></div> 
                 <div id="job_pagination" class="dark-blue"></div>
                 <div class="job-signup dark-btn"><a href="<?php echo $login_url;?>" class="btn theme-btn theme-btn mr-2">Sign up to apply <i class="la la-arrow-right ml-1"></i></a></div>
             </div>
@@ -7478,12 +7478,12 @@ $login_url = TAOH_TEMP_SITE_FILE_PARSE.TAOH_TEMP_SITE_URL.'/login';
         <div class="ahead-section pt-50px pb-50px">
             <div class="d-flex justify-content-center">
                 <div>
-                    <h1 class="text-white">ELEVATE YOUR CAREER.</h1>
+                    <h1 class="text-white">ELEVATE YOUR CAREER.</h1> 
                 </div>
                 <div class="ml-2 orange-btn">
                     <a href="<?php echo  $login_url; ?>" class="btn theme-btn">Join for free</a>
                 </div>
-
+                
             </div>
         </div>
     </div>
@@ -7616,7 +7616,7 @@ $login_url = TAOH_TEMP_SITE_FILE_PARSE.TAOH_TEMP_SITE_URL.'/login';
 
     $(document).ready(function(){
 
-        <?php if(TAOH_INTAODB_ENABLE) { ?>
+        <?php if(TAOH_INTAODB_ENABLE) { ?>			
             get_lp_eventlistdata();
             get_lp_joblistdata();
             get_lp_articlelistdata();
@@ -7728,7 +7728,7 @@ $login_url = TAOH_TEMP_SITE_FILE_PARSE.TAOH_TEMP_SITE_URL.'/login';
 			<?php }else{ ?>
 				render_events_grid_template(res, events_list);
 			<?php } ?>
-
+			
 			loader(false, loaderArea);
 		}).fail(function() {
 				loader(false, loaderArea);
@@ -7853,8 +7853,8 @@ $login_url = TAOH_TEMP_SITE_FILE_PARSE.TAOH_TEMP_SITE_URL.'/login';
 		}
 		totalItems = data.output.total
 		//jobCount.append(totalItems + ' jobs Found');
-
-        if(!get_slug){
+		
+        if(!get_slug){	
             var result = format_object(data);
         }else{
             var result = data;
@@ -7870,9 +7870,9 @@ $login_url = TAOH_TEMP_SITE_FILE_PARSE.TAOH_TEMP_SITE_URL.'/login';
 
 						&nbsp;&nbsp;
 						<?php if ( taoh_user_is_logged_in()) { ?>
-							<a href="<?php echo TAOH_TEMP_SITE_URL."/".$current_app."/d/"; ?>${convertToSlug(v.title)}-${v.conttoken}" class="tag-link text-primary">APPLY</a>
+							<a href="<?php echo TAOH_TEMP_SITE_URL."/".$current_app."/d/"; ?>${convertToSlug(v.title)}-${v.conttoken}" class="tag-link text-primary">APPLY</a> 
 						<?php } else { ?>
-							<a href="<?php echo TAOH_TEMP_SITE_URL."/".$current_app."/d/"; ?>${convertToSlug(v.title)}-${v.conttoken}" class="tag-link text-primary">APPLY</a>
+							<a href="<?php echo TAOH_TEMP_SITE_URL."/".$current_app."/d/"; ?>${convertToSlug(v.title)}-${v.conttoken}" class="tag-link text-primary">APPLY</a>  
 						<?php } ?>
 						</h5>
 
@@ -7881,7 +7881,7 @@ $login_url = TAOH_TEMP_SITE_FILE_PARSE.TAOH_TEMP_SITE_URL.'/login';
                             ${(v.rolechat && v.rolechat.length > 0)? generateRoleHTML(v.rolechat): ''}
                             ${(v.company && v.company.length)? generateCompanyHTML(v.company): ''}
                             ${v.full_location ? generateLocationHTML(v.full_location): ''}
-                        </div>
+                        </div>                    
 					</div>
                     <span class="text-underline fs-18 text-black fw-medium"><a target='_blank' href="<?php echo TAOH_TEMP_SITE_URL."/".$current_app."/d/"; ?>${convertToSlug(v.title)}-${v.conttoken}">Show detail <i class="la la-arrow-right ml-1"></a></i></span>
 			</div>`);
@@ -7908,7 +7908,7 @@ $login_url = TAOH_TEMP_SITE_FILE_PARSE.TAOH_TEMP_SITE_URL.'/login';
 			<?php }else{ ?>
 				render_articles_grid_template(res, articles_list);
 			<?php } ?>
-
+			
 			loader(false, loaderArea);
 		}).fail(function() {
 			loader(false, loaderArea);

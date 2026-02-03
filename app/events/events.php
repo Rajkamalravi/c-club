@@ -80,6 +80,8 @@ if (taoh_user_is_logged_in()) {
 
 ?>
 
+<link rel="stylesheet" href="<?php echo TAOH_SITE_URL_ROOT; ?>/assets/events/css/events.css?v=<?php echo TAOH_CSS_JS_VERSION; ?>">
+
 <div class="mobile-app">
 <?php if(!taoh_user_is_logged_in()) { ?>
 <section class="hero-area overflow-hidden section-padding events-banner-section yellow-bg">
@@ -455,49 +457,12 @@ if (taoh_user_is_logged_in()) {
 </section>
 <?php } ?>
 
-    <header class="border-bottom border-bottom-gray sticky-top shadow-sm events-hero-bg py-3" style="z-index: 9; top: 0px;">
-        <div class="max-w-1248 mx-auto">
-            <section class="hero-area overflow-hidden">
-                <div class="container">
-                    <div class="hero-content row mx-0 align-items-center justify-content-between events-mobile-header">
-                        <!--
-                    <div class="col-lg-7 mb-2 mb-lg-0 px-0">
-                            <h2 class="section-title fs-24 mb-1"><?php //echo $app_data->name_slug; ?></h2>
+<header class="bg-white shadow-sm sticky-top" style="top: 0; padding: 10px 0;">
+	<div class="container">
+		<?php include('search_new.php'); ?>
+	</div>
 
-                            <p class="section-desc"><?php //echo $app_data->short; ?></p>
-                        </div>-->
-
-                        <!--<div class=" col-lg-5 mb-0 px-0">
-                            <?php
-                            if (taoh_user_is_logged_in()) {
-                                if (isset($_GET['creator']) && $_GET['creator']) {
-                                    echo '<div class="d-flex flex-column flex-sm-row" style="gap: 12px;">';
-                                    echo '<a href="' . TAOH_SITE_URL_ROOT . '/' . ($app_data?->slug ?? '') . '/post" class="btn theme-btn">Post Events</a>';
-                                    echo '<a href="' . TAOH_SITE_URL_ROOT . '/' . ($app_data?->slug ?? '') . '/dash" class="btn theme-btn" style="background-color: #38B653;">My Events</a>';
-                                    echo '</div>';
-                                }
-                            } else {
-                                echo '<a
-                                 href="javascript:void(0);"
-                                 class="btn theme-btn login-button " aria-pressed="true" data-toggle="modal" data-target="#config-modal"
-                                ><i class="la la-sign-in mr-1"></i> Login / Signup</a>';
-                            }
-
-                            ?>
-                        </div>--->
-                    </div><!-- end hero-content -->
-                </div><!-- end container -->
-            </section>
-
-
-            <?php
-           // if (taoh_user_is_logged_in()) {
-                include('search_new.php');
-            //}
-            ?>
-        </div>
-
-    </header>
+</header>
 
     <section>
         <div class="px-3 sticky-container">
@@ -517,7 +482,7 @@ if (taoh_user_is_logged_in()) {
                         </div>
 
                         <div class="row d-flex justify-content-between">
-
+                            
                             <div class="row col-lg-12 no_result_div ">
                                 <div class="no_result">
                                     <img style="width:20%" src="<?php echo TAOH_SITE_URL_ROOT.'/assets/images/no_jobs_found.png';?>" alt="No Results Illustration">
@@ -583,12 +548,12 @@ if (taoh_user_is_logged_in()) {
                             <path d="M19.4172 3.41719C20.1984 2.63594 20.1984 1.36719 19.4172 0.585938C18.6359 -0.195312 17.3672 -0.195312 16.5859 0.585938L10.0047 7.17344L3.41719 0.592187C2.63594 -0.189063 1.36719 -0.189063 0.585938 0.592187C-0.195312 1.37344 -0.195312 2.64219 0.585938 3.42344L7.17344 10.0047L0.592188 16.5922C-0.189062 17.3734 -0.189062 18.6422 0.592188 19.4234C1.37344 20.2047 2.64219 20.2047 3.42344 19.4234L10.0047 12.8359L16.5922 19.4172C17.3734 20.1984 18.6422 20.1984 19.4234 19.4172C20.2047 18.6359 20.2047 17.3672 19.4234 16.5859L12.8359 10.0047L19.4172 3.41719Z" fill="white"/>
                         </svg>
                     </button>
-
+                    
 
                 </div>
                 <div class="modal-body">
                     <section class="mb-3 mt-3">
-
+                        
                         <?php taoh_share_widget(array('share_data' => $share_link, 'conttoken' => $eventtoken, 'conttype' => 'events', 'ptoken' => $ptoken, 'widget_id'=> 'social_widget')); ?>
                     </section>
                     <input type="hidden" id="share_link" value="">
@@ -599,11 +564,11 @@ if (taoh_user_is_logged_in()) {
                     <input type="hidden" id="social_conttoken" value="">
                     <input type="hidden" id="social_title" value="">
                     <input type="hidden" id="social_desc" value="">
-
+                    
 
                     <p class="text-xs"><b>* Share this with your network. Together, we’re creating a future where every career journey is supported.</b>
                 </div>
-
+               
             </div>
         </div>
     </div>
@@ -611,8 +576,8 @@ if (taoh_user_is_logged_in()) {
 
 </div>
 
-<script src="<?php echo TAOH_SITE_URL_ROOT; ?>/assets/js/event.js?v=<?php echo TAOH_CSS_JS_VERSION; ?>"></script>
-<script>
+<script src="<?php echo TAOH_SITE_URL_ROOT; ?>/assets/events/js/event.js?v=<?php echo TAOH_CSS_JS_VERSION; ?>"></script>
+    <script>
     window._evl_cfg = {
         isLoggedIn: <?= json_encode($taoh_user_is_logged_in); ?>,
         isValidUser: <?= json_encode($valid_user); ?>,
@@ -635,9 +600,9 @@ if (taoh_user_is_logged_in()) {
         pageImage: <?= json_encode(defined('TAO_PAGE_IMAGE') ? TAO_PAGE_IMAGE : ''); ?>,
         pageDesc: <?= json_encode(defined('TAO_PAGE_DESCRIPTION') ? urlencode(substr(TAO_PAGE_DESCRIPTION, 0, 240)) : ''); ?>,
         pageTitle: <?= json_encode(defined('TAO_PAGE_TITLE') ? TAO_PAGE_TITLE : ''); ?>
-    };
-</script>
-<script src="<?php echo TAOH_SITE_URL_ROOT; ?>/assets/js/events-listing.js?v=<?php echo TAOH_CSS_JS_VERSION; ?>"></script>
+                        };
+    </script>
+<script src="<?php echo TAOH_SITE_URL_ROOT; ?>/assets/events/js/events-listing.js?v=<?php echo TAOH_CSS_JS_VERSION; ?>"></script>
 
 <?php
 

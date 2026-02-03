@@ -26,7 +26,7 @@ $res = get_follow( $contoken, $type);
         </span>
     <?php } ?>
  <?php //} ?>
-
+    
 
 <script type="text/javascript">
   function doFollow() {

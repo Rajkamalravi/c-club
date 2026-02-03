@@ -39,7 +39,7 @@ function taoh_lp_get_widget(){
   $url = 'core.content.get';
   $taoh_vals = array(
     "mod" => 'users',
-    "type"=> "landing",
+    "type"=> "landing", 
     //"ops"=> 'hires',
     'token'=>TAOH_API_TOKEN_DUMMY,
     "cache_time" => 120,
@@ -50,7 +50,7 @@ function taoh_lp_get_widget(){
   // $taoh_vals[ 'cache_name' ] = $cache_name;
   // $taoh_vals[ 'cache' ] = array ( "name" => $cache_name );
   ksort($taoh_vals);
-
+  
   $req = taoh_apicall_get($url, $taoh_vals, '', 1);
   //echo taoh_apicall_get_debug($url, $taoh_vals);exit();
   $res = json_decode($req, true);
@@ -88,7 +88,7 @@ ksort($taoh_vals);
  //echo TAOH_API_PREFIX . '/' .$url.'?'.http_build_query($taoh_vals); taoh_exit();
  if($debug) {
   echo taoh_apicall_get_debug($url, $taoh_vals);
- }
+ }  
  //echo taoh_apicall_get_debug($url, $taoh_vals);die;
  $content = taoh_apicall_get($url, $taoh_vals, '', 1);
   if($content != "") {
@@ -113,7 +113,7 @@ function taoh_side_bar(){ ?>
                   $job_rand = blog_lp_related_post('',5);
                       if($job_rand['success'] && $job_rand['output']['list']) {
                         taoh_job_releated($job_rand['output']['list']);
-                      }
+                      } 
                 ?>
             </ul>
           </div>
@@ -123,7 +123,7 @@ function taoh_side_bar(){ ?>
                   $rand_rand = blog_lp_related_post('',5);
                       if($rand_rand['success'] && $rand_rand['output']['list']) {
                         taoh_rand_releated($rand_rand['output']['list']);
-                      }
+                      } 
                 ?>
             </ul>
           </div>
@@ -142,7 +142,7 @@ function taoh_side_bar(){ ?>
             <img width="310" height="165" src="https://pcdn.tao.ai/app/jusask/images/jusask_sq_256.png" class="attachment-tie-medium size-tie-medium wp-post-image tie-appear" alt="" decoding="async"  sizes="(max-width: 310px) 100vw, 310px">
             </a>
           </div>
-
+          												
           <div class="entry">
             <p>Talk to AI powered #CareerCoach to get your career questions answered!</p>
             <a class="more-link" href="http://localhost/lp/blog/eight-039-s-test-t-duhwkvj4jemv">Read More »</a>
@@ -160,7 +160,7 @@ function taoh_side_bar(){ ?>
   </div>
 <?php return 1; }
 function taoh_all_lp_central_widget1($center1){
-  foreach ($center1 as $first_key => $first_val){
+  foreach ($center1 as $first_key => $first_val){ 
     if ( ! isset( $first_val['image']) || ! $first_val['image'] || stristr( $first_val['image'], 'images.unsplash.com' ) ) $first_val['image'] = TAOH_CDN_PREFIX."/images/igcache/".urlencode( taoh_title_desc_decode($first_val['title']) )."/900_600/blog.jpg";
     //print_r($first_key);
     ?>
@@ -170,10 +170,10 @@ function taoh_all_lp_central_widget1($center1){
           <a href="<?php echo taoh_lp_blog_link(slugify2($first_val['title'])."-".$first_val['conttoken']); ?>" rel="bookmark">
             <img width="310" height="165" src="<?php echo $first_val['image']; ?>" class="attachment-tie-medium size-tie-medium wp-post-image tie-appear" alt="" decoding="async" fetchpriority="high" srcset="<?php echo $first_val['image']; ?> 310w, <?php echo $first_val['image']; ?> 620w" sizes="(max-width: 310px) 100vw, 310px"><span class="fa overlay-icon"></span>
           </a>
-        </div><!-- post-thumbnail /-->
+        </div><!-- post-thumbnail /-->        
         <h2 class="post-box-title">
           <a href="<?php echo taoh_lp_blog_link(slugify2($first_val['title'])."-".$first_val['conttoken']); ?>" rel="bookmark"><?php echo $first_val['title']; ?></a>
-        </h2>
+        </h2>       
         <div class="entry">
           <p style="overflow: hidden; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; text-overflow: ellipsis;"><?php echo html_entity_decode($first_val['blurb']['description']); ?> …</p>
           <a class="more-link" href="<?php echo taoh_lp_blog_link(slugify2($first_val['title'])."-".$first_val['conttoken']); ?>">Read More »</a>
@@ -185,18 +185,18 @@ function taoh_all_lp_central_widget1($center1){
           <a href="<?php echo taoh_lp_blog_link(slugify2($first_val['title'])."-".$first_val['conttoken']); ?>" rel="bookmark">
             <img width="110" height="75" src="<?php echo $first_val['image']; ?>" class="attachment-tie-small size-tie-small wp-post-image tie-appear" alt="" decoding="async" srcset="<?php echo $first_val['image']; ?> 110w, <?php echo $first_val['image']; ?> 220w, <?php echo $first_val['image']; ?> 330w" sizes="(max-width: 110px) 100vw, 110px"><span class="fa overlay-icon"></span>
           </a>
-        </div><!-- post-thumbnail /-->
+        </div><!-- post-thumbnail /-->				
         <h3 class="post-box-title">
           <a href="<?php echo taoh_lp_blog_link(slugify2($first_val['title'])."-".$first_val['conttoken']); ?>" rel="bookmark"><?php echo $first_val['title']; ?></a>
         </h3>
       </li>
     <?php } ?>
-    <?php }
+    <?php } 
   return 1;
 }
 function taoh_all_lp_central_widget2($center_2){
   $center2 = array_slice($center_2, 0, 3);
-  foreach ($center2 as $first_key => $first_val){
+  foreach ($center2 as $first_key => $first_val){ 
     if ( ! isset( $first_val['image']) || ! $first_val['image'] || stristr( $first_val['image'], 'images.unsplash.com' ) ) $first_val['image'] = TAOH_CDN_PREFIX."/images/igcache/".urlencode( taoh_title_desc_decode($first_val['title']) )."/900_600/blog.jpg";
     //print_r($first_key);
     ?>
@@ -209,10 +209,10 @@ function taoh_all_lp_central_widget2($center_2){
               <span class="fa overlay-icon"></span>
               </a>
             </div>
-            <!-- post-thumbnail /-->
+            <!-- post-thumbnail /-->												
             <h2 class="post-box-title"><a href="<?php echo taoh_lp_blog_link(slugify2($first_val['title'])."-".$first_val['conttoken']); ?>" rel="bookmark"><?php echo $first_val['title']; ?></a></h2>
-            <!-- <p class="post-meta">
-              <span class="tie-date"><i class="fa fa-clock-o"></i>January 23, 2024</span>
+            <!-- <p class="post-meta">	
+              <span class="tie-date"><i class="fa fa-clock-o"></i>January 23, 2024</span>	
               <span class="post-comments"><i class="fa fa-comments"></i><a href="<?php //echo taoh_lp_blog_link(slugify2($first_val['title'])."-".$first_val['conttoken']); ?>">0</a></span>
             </p> -->
             <div class="entry">
@@ -226,17 +226,17 @@ function taoh_all_lp_central_widget2($center_2){
         <div class="post-thumbnail tie-appear">
             <a href="<?php echo taoh_lp_blog_link(slugify2($first_val['title'])."-".$first_val['conttoken']); ?>" rel="bookmark"><img width="110" height="75" src="<?php echo $first_val['image']; ?>" class="attachment-tie-small size-tie-small wp-post-image tie-appear" alt="" decoding="async" srcset="<?php echo $first_val['image']; ?> 110w, <?php echo $first_val['image']; ?> 220w, <?php echo $first_val['image']; ?> 330w" sizes="(max-width: 110px) 100vw, 110px"><span class="fa overlay-icon"></span></a>
         </div>
-        <!-- post-thumbnail /-->
+        <!-- post-thumbnail /-->			
         <h3 class="post-box-title"><a href="<?php echo taoh_lp_blog_link(slugify2($first_val['title'])."-".$first_val['conttoken']); ?>" rel="bookmark"><?php echo $first_val['title']; ?></a></h3>
       </li>
     <?php } ?>
-    <?php }
+    <?php } 
   return 1;
 }
 function taoh_all_lp_central_widget4($center_4){
   $center4 = array_slice($center_4, -3, 3, true);
   $key_i = 0;
-  foreach ($center4 as $first_key => $first_val){
+  foreach ($center4 as $first_key => $first_val){ 
     if ( ! isset( $first_val['image']) || ! $first_val['image'] || stristr( $first_val['image'], 'images.unsplash.com' ) ) $first_val['image'] = TAOH_CDN_PREFIX."/images/igcache/".urlencode( taoh_title_desc_decode($first_val['title']) )."/900_600/blog.jpg";
     //print_r($first_key);
     ?>
@@ -248,10 +248,10 @@ function taoh_all_lp_central_widget4($center_4){
               <img width="310" height="165" src="<?php echo $first_val['image']; ?>" class="attachment-tie-medium size-tie-medium wp-post-image tie-appear" alt="" decoding="async" srcset="<?php echo $first_val['image']; ?> 310w, <?php echo $first_val['image']; ?> 620w" sizes="(max-width: 310px) 100vw, 310px"><span class="fa overlay-icon"></span>
               </a>
             </div>
-            <!-- post-thumbnail /-->
+            <!-- post-thumbnail /-->												
             <h2 class="post-box-title"><a href="<?php echo taoh_lp_blog_link(slugify2($first_val['title'])."-".$first_val['conttoken']); ?>" rel="bookmark"><?php echo $first_val['title']; ?></a></h2>
-            <!-- <p class="post-meta">
-              <span class="tie-date"><i class="fa fa-clock-o"></i>January 23, 2024</span>
+            <!-- <p class="post-meta">	
+              <span class="tie-date"><i class="fa fa-clock-o"></i>January 23, 2024</span>	
               <span class="post-comments"><i class="fa fa-comments"></i><a href="<?php //echo taoh_lp_blog_link(slugify2($first_val['title'])."-".$first_val['conttoken']); ?>">0</a></span>
             </p> -->
             <div class="entry">
@@ -265,16 +265,16 @@ function taoh_all_lp_central_widget4($center_4){
         <div class="post-thumbnail tie-appear">
             <a href="<?php echo taoh_lp_blog_link(slugify2($first_val['title'])."-".$first_val['conttoken']); ?>" rel="bookmark"><img width="110" height="75" src="<?php echo $first_val['image']; ?>" class="attachment-tie-small size-tie-small wp-post-image tie-appear" alt="" decoding="async" srcset="<?php echo $first_val['image']; ?> 110w, <?php echo $first_val['image']; ?> 220w, <?php echo $first_val['image']; ?> 330w" sizes="(max-width: 110px) 100vw, 110px"><span class="fa overlay-icon"></span></a>
         </div>
-        <!-- post-thumbnail /-->
+        <!-- post-thumbnail /-->			
         <h3 class="post-box-title"><a href="<?php echo taoh_lp_blog_link(slugify2($first_val['title'])."-".$first_val['conttoken']); ?>" rel="bookmark"><?php echo $first_val['title']; ?></a></h3>
       </li>
     <?php } $key_i++;?>
-    <?php }
+    <?php } 
   return 1;
 }
 function taoh_all_lp_central_widget3($center3){
   //print_r($center3);die;
-  foreach ($center3 as $first_key => $first_val){
+  foreach ($center3 as $first_key => $first_val){ 
     if ( ! isset( $first_val['image']) || ! $first_val['image'] || stristr( $first_val['image'], 'images.unsplash.com' ) ) $first_val['image'] = TAOH_CDN_PREFIX."/images/igcache/".urlencode( taoh_title_desc_decode($first_val['title']) )."/900_600/blog.jpg";
   ?>
     <div class="scroll-item">
@@ -286,10 +286,10 @@ function taoh_all_lp_central_widget3($center3){
         <!-- post-thumbnail /-->
         <h3 class="post-box-title"><a href="<?php echo taoh_lp_blog_link(slugify2($first_val['title'])."-".$first_val['conttoken']); ?>" rel="bookmark"><?php echo $first_val['title']; ?></a></h3>
         <!-- <p class="post-meta">
-          <span class="tie-date"><i class="fa fa-clock-o"></i>January 23, 2024</span>
+          <span class="tie-date"><i class="fa fa-clock-o"></i>January 23, 2024</span>						
         </p> -->
     </div>
-  <?php }
+  <?php } 
   return 1;
 }
 function taoh_lp_blog_satart($hero) { ?>
@@ -330,7 +330,7 @@ function taoh_releated_widget1($related){
       <h3><a href="<?php echo taoh_lp_blog_link(slugify2($first_val['title'])."-".$first_val['conttoken']); ?>" rel="bookmark"><?php echo $first_val['title']; ?></a></h3>
       <p class="post-meta"><span class="tie-date"><i class="fa fa-clock-o"></i> <?php echo $first_val['category'][0]; ?></span></p>
     </div>
-  <?php }
+  <?php } 
   return 1;
 }
 function taoh_releated_widget2($related){
@@ -344,7 +344,7 @@ function taoh_releated_widget2($related){
       </span>
       <time class="jp-relatedposts-post-date mt-2" style="display:block"><?php echo $first_val['category'][0]; ?></time>
     </p>
-  <?php }
+  <?php } 
   return 1;
 }
 function taoh_int_releated($int_related){
@@ -363,7 +363,7 @@ function taoh_int_releated($int_related){
         </div>
         <!-- post-thumbnail /-->
       </li>
-    <?php }else{ ?>
+    <?php }else{ ?> 
       <li class="">
         <div class="post-thumbnail tie-appear">
             <a href="<?php echo taoh_lp_blog_link(slugify2($first_val['title'])."-".$first_val['conttoken']); ?>" class="ttip" original-title="">
@@ -373,7 +373,7 @@ function taoh_int_releated($int_related){
         </div>
         <!-- post-thumbnail /-->
       </li>
-  <?php }
+  <?php } 
   $key_i++;
   }
   return 1;
@@ -392,7 +392,7 @@ function taoh_resume_releated($res_related){
         </div>
         <!-- post-thumbnail /-->
       </li>
-  <?php
+  <?php 
   }
   return 1;
 }
@@ -412,7 +412,7 @@ function taoh_brand_releated($brand_related){
             <!-- post-thumbnail /-->
             <h2 class="post-box-title"><a href="<?php echo taoh_lp_blog_link(slugify2($first_val['title'])."-".$first_val['conttoken']); ?>" rel="bookmark"><?php echo $first_val['title']; ?></a></h2>
             <!-- <p class="post-meta">
-              <span class="tie-date"><i class="fa fa-clock-o"></i>January 23, 2024</span>
+              <span class="tie-date"><i class="fa fa-clock-o"></i>January 23, 2024</span>	
               <span class="post-comments"><i class="fa fa-comments"></i><a href="<?php //echo taoh_lp_blog_link(slugify2($first_val['title'])."-".$first_val['conttoken']); ?>">0</a></span>
             </p> -->
             <div class="entry">
@@ -421,7 +421,7 @@ function taoh_brand_releated($brand_related){
             </div>
         </div>
       </li>
-    <?php }else{ ?>
+    <?php }else{ ?> 
       <li class="other-news">
         <div class="post-thumbnail tie-appear">
             <a href="<?php echo taoh_lp_blog_link(slugify2($first_val['title'])."-".$first_val['conttoken']); ?>" rel="bookmark"><img width="110" height="75" src="<?php echo $first_val['image']; ?>" class="attachment-tie-small size-tie-small wp-post-image tie-appear" alt="" decoding="async" srcset="<?php echo $first_val['image']; ?> 110w, <?php echo $first_val['image']; ?> 220w, <?php echo $first_val['image']; ?> 330w" sizes="(max-width: 110px) 100vw, 110px"><span class="fa overlay-icon"></span></a>
@@ -429,11 +429,11 @@ function taoh_brand_releated($brand_related){
         <!-- post-thumbnail /-->
         <h3 class="post-box-title"><a href="<?php echo taoh_lp_blog_link(slugify2($first_val['title'])."-".$first_val['conttoken']); ?>" rel="bookmark"><?php echo $first_val['title']; ?></a></h3>
         <!-- <p class="post-meta">
-            <span class="tie-date"><i class="fa fa-clock-o"></i>January 23, 2024</span>
+            <span class="tie-date"><i class="fa fa-clock-o"></i>January 23, 2024</span>	
             <span class="post-comments"><i class="fa fa-comments"></i><a href="<?php //echo taoh_lp_blog_link(slugify2($first_val['title'])."-".$first_val['conttoken']); ?>">0</a></span>
         </p> -->
       </li>
-  <?php }
+  <?php } 
   $key_i++;
   }
   return 1;
@@ -451,9 +451,9 @@ function taoh_job_releated($job_related){
         </div>
         <!-- post-thumbnail /-->
         <h3><a href="<?php echo taoh_lp_blog_link(slugify2($first_val['title'])."-".$first_val['conttoken']); ?>"><?php echo $first_val['title']; ?></a></h3>
-        <!-- <span class="tie-date"><i class="fa fa-clock-o"></i>February 1, 2024</span>	 -->
+        <!-- <span class="tie-date"><i class="fa fa-clock-o"></i>February 1, 2024</span>	 -->	
       </li>
-  <?php
+  <?php 
   }
   return 1;
 }
@@ -470,15 +470,15 @@ function taoh_rand_releated($rand_related){
         </div>
         <!-- post-thumbnail /-->
         <h3><a href="<?php echo taoh_lp_blog_link(slugify2($first_val['title'])."-".$first_val['conttoken']); ?>"><?php echo $first_val['title']; ?></a></h3>
-        <span class="tie-date"><i class="fa fa-clock-o"></i> <?php echo $first_val['category'][0]; ?></span>
+        <span class="tie-date"><i class="fa fa-clock-o"></i> <?php echo $first_val['category'][0]; ?></span>		
       </li>
-  <?php
+  <?php 
   }
   return 1;
 }
 function taoh_learn_releated($learn_rand){
   //print_r($learn_rand);
-  foreach ($learn_rand as $first_key => $first_val){
+  foreach ($learn_rand as $first_key => $first_val){ 
     if ( ! isset( $first_val['image']) || ! $first_val['image'] || stristr( $first_val['image'], 'images.unsplash.com' ) ) $first_val['image'] = TAOH_CDN_PREFIX."/images/igcache/".urlencode( taoh_title_desc_decode($first_val['title']) )."/900_600/blog.jpg";
      if($first_key == 0){ ?>
       <li class="first-news">
@@ -486,10 +486,10 @@ function taoh_learn_releated($learn_rand){
           <a href="<?php echo taoh_lp_blog_link(slugify2($first_val['title'])."-".$first_val['conttoken']); ?>" rel="bookmark">
             <img width="310" height="165" src="<?php echo $first_val['image']; ?>" class="attachment-tie-medium size-tie-medium wp-post-image tie-appear" alt="" decoding="async" fetchpriority="high" srcset="<?php echo $first_val['image']; ?> 310w, <?php echo $first_val['image']; ?> 620w" sizes="(max-width: 310px) 100vw, 310px"><span class="fa overlay-icon"></span>
           </a>
-        </div><!-- post-thumbnail /-->
+        </div><!-- post-thumbnail /-->        
         <h2 class="post-box-title">
           <a href="<?php echo taoh_lp_blog_link(slugify2($first_val['title'])."-".$first_val['conttoken']); ?>" rel="bookmark"><?php echo $first_val['title']; ?></a>
-        </h2>
+        </h2>       
         <div class="entry">
           <p style="overflow: hidden; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; text-overflow: ellipsis;"><?php echo html_entity_decode($first_val['blurb']['description']); ?> …</p>
           <a class="more-link" href="<?php echo taoh_lp_blog_link(slugify2($first_val['title'])."-".$first_val['conttoken']); ?>">Read More »</a>
@@ -501,18 +501,18 @@ function taoh_learn_releated($learn_rand){
           <a href="<?php echo taoh_lp_blog_link(slugify2($first_val['title'])."-".$first_val['conttoken']); ?>" rel="bookmark">
             <img width="110" height="75" src="<?php echo $first_val['image']; ?>" class="attachment-tie-small size-tie-small wp-post-image tie-appear" alt="" decoding="async" srcset="<?php echo $first_val['image']; ?> 110w, <?php echo $first_val['image']; ?> 220w, <?php echo $first_val['image']; ?> 330w" sizes="(max-width: 110px) 100vw, 110px"><span class="fa overlay-icon"></span>
           </a>
-        </div><!-- post-thumbnail /-->
+        </div><!-- post-thumbnail /-->				
         <h3 class="post-box-title">
           <a href="<?php echo taoh_lp_blog_link(slugify2($first_val['title'])."-".$first_val['conttoken']); ?>" rel="bookmark"><?php echo $first_val['title']; ?></a>
         </h3>
       </li>
     <?php } ?>
-    <?php }
+    <?php } 
   return 1;
 }
 function taoh_mind_releated($mind_rand){
   //print_r($mind_rand);
-  foreach ($mind_rand as $first_key => $first_val){
+  foreach ($mind_rand as $first_key => $first_val){ 
     if ( ! isset( $first_val['image']) || ! $first_val['image'] || stristr( $first_val['image'], 'images.unsplash.com' ) ) $first_val['image'] = TAOH_CDN_PREFIX."/images/igcache/".urlencode( taoh_title_desc_decode($first_val['title']) )."/900_600/blog.jpg";
      if($first_key == 0){ ?>
       <li class="first-news">
@@ -520,10 +520,10 @@ function taoh_mind_releated($mind_rand){
           <a href="<?php echo taoh_lp_blog_link(slugify2($first_val['title'])."-".$first_val['conttoken']); ?>" rel="bookmark">
             <img width="310" height="165" src="<?php echo $first_val['image']; ?>" class="attachment-tie-medium size-tie-medium wp-post-image tie-appear" alt="" decoding="async" fetchpriority="high" srcset="<?php echo $first_val['image']; ?> 310w, <?php echo $first_val['image']; ?> 620w" sizes="(max-width: 310px) 100vw, 310px"><span class="fa overlay-icon"></span>
           </a>
-        </div><!-- post-thumbnail /-->
+        </div><!-- post-thumbnail /-->        
         <h2 class="post-box-title">
           <a href="<?php echo taoh_lp_blog_link(slugify2($first_val['title'])."-".$first_val['conttoken']); ?>" rel="bookmark"><?php echo $first_val['title']; ?></a>
-        </h2>
+        </h2>       
         <div class="entry">
           <p style="overflow: hidden; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; text-overflow: ellipsis;"><?php echo html_entity_decode($first_val['blurb']['decription']); ?> …</p>
           <a class="more-link" href="<?php echo taoh_lp_blog_link(slugify2($first_val['title'])."-".$first_val['conttoken']); ?>">Read More »</a>
@@ -535,18 +535,18 @@ function taoh_mind_releated($mind_rand){
           <a href="<?php echo taoh_lp_blog_link(slugify2($first_val['title'])."-".$first_val['conttoken']); ?>" rel="bookmark">
             <img width="110" height="75" src="<?php echo $first_val['image']; ?>" class="attachment-tie-small size-tie-small wp-post-image tie-appear" alt="" decoding="async" srcset="<?php echo $first_val['image']; ?> 110w, <?php echo $first_val['image']; ?> 220w, <?php echo $first_val['image']; ?> 330w" sizes="(max-width: 110px) 100vw, 110px"><span class="fa overlay-icon"></span>
           </a>
-        </div><!-- post-thumbnail /-->
+        </div><!-- post-thumbnail /-->				
         <h3 class="post-box-title">
           <a href="<?php echo taoh_lp_blog_link(slugify2($first_val['title'])."-".$first_val['conttoken']); ?>" rel="bookmark"><?php echo $first_val['title']; ?></a>
         </h3>
       </li>
     <?php } ?>
-    <?php }
+    <?php } 
   return 1;
 }
 function taoh_prod_releated($prod_rand){
   //print_r($prod_rand);
-  foreach ($prod_rand as $first_key => $first_val){
+  foreach ($prod_rand as $first_key => $first_val){ 
     if ( ! isset( $first_val['image']) || ! $first_val['image'] || stristr( $first_val['image'], 'images.unsplash.com' ) ) $first_val['image'] = TAOH_CDN_PREFIX."/images/igcache/".urlencode( taoh_title_desc_decode($first_val['title']) )."/900_600/blog.jpg";
      if($first_key == 0){ ?>
       <li class="first-news">
@@ -554,10 +554,10 @@ function taoh_prod_releated($prod_rand){
           <a href="<?php echo taoh_lp_blog_link(slugify2($first_val['title'])."-".$first_val['conttoken']); ?>" rel="bookmark">
             <img width="310" height="165" src="<?php echo $first_val['image']; ?>" class="attachment-tie-medium size-tie-medium wp-post-image tie-appear" alt="" decoding="async" fetchpriority="high" srcset="<?php echo $first_val['image']; ?> 310w, <?php echo $first_val['image']; ?> 620w" sizes="(max-width: 310px) 100vw, 310px"><span class="fa overlay-icon"></span>
           </a>
-        </div><!-- post-thumbnail /-->
+        </div><!-- post-thumbnail /-->        
         <h2 class="post-box-title">
           <a href="<?php echo taoh_lp_blog_link(slugify2($first_val['title'])."-".$first_val['conttoken']); ?>" rel="bookmark"><?php echo $first_val['title']; ?></a>
-        </h2>
+        </h2>       
         <div class="entry">
           <p style="overflow: hidden; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; text-overflow: ellipsis;"><?php echo html_entity_decode($first_val['blurb']['decription']); ?> …</p>
           <a class="more-link" href="<?php echo taoh_lp_blog_link(slugify2($first_val['title'])."-".$first_val['conttoken']); ?>">Read More »</a>
@@ -569,18 +569,18 @@ function taoh_prod_releated($prod_rand){
           <a href="<?php echo taoh_lp_blog_link(slugify2($first_val['title'])."-".$first_val['conttoken']); ?>" rel="bookmark">
             <img width="110" height="75" src="<?php echo $first_val['image']; ?>" class="attachment-tie-small size-tie-small wp-post-image tie-appear" alt="" decoding="async" srcset="<?php echo $first_val['image']; ?> 110w, <?php echo $first_val['image']; ?> 220w, <?php echo $first_val['image']; ?> 330w" sizes="(max-width: 110px) 100vw, 110px"><span class="fa overlay-icon"></span>
           </a>
-        </div><!-- post-thumbnail /-->
+        </div><!-- post-thumbnail /-->				
         <h3 class="post-box-title">
           <a href="<?php echo taoh_lp_blog_link(slugify2($first_val['title'])."-".$first_val['conttoken']); ?>" rel="bookmark"><?php echo $first_val['title']; ?></a>
         </h3>
       </li>
     <?php } ?>
-    <?php }
+    <?php } 
   return 1;
 }
 function taoh_net_releated($net_rand){
   //print_r($net_rand);
-  foreach ($net_rand as $first_key => $first_val){
+  foreach ($net_rand as $first_key => $first_val){ 
     if ( ! isset( $first_val['image']) || ! $first_val['image'] || stristr( $first_val['image'], 'images.unsplash.com' ) ) $first_val['image'] = TAOH_CDN_PREFIX."/images/igcache/".urlencode( taoh_title_desc_decode($first_val['title']) )."/900_600/blog.jpg";
      if($first_key == 0){ ?>
       <li class="first-news">
@@ -588,10 +588,10 @@ function taoh_net_releated($net_rand){
           <a href="<?php echo taoh_lp_blog_link(slugify2($first_val['title'])."-".$first_val['conttoken']); ?>" rel="bookmark">
             <img width="310" height="165" src="<?php echo $first_val['image']; ?>" class="attachment-tie-medium size-tie-medium wp-post-image tie-appear" alt="" decoding="async" fetchpriority="high" srcset="<?php echo $first_val['image']; ?> 310w, <?php echo $first_val['image']; ?> 620w" sizes="(max-width: 310px) 100vw, 310px"><span class="fa overlay-icon"></span>
           </a>
-        </div><!-- post-thumbnail /-->
+        </div><!-- post-thumbnail /-->        
         <h2 class="post-box-title">
           <a href="<?php echo taoh_lp_blog_link(slugify2($first_val['title'])."-".$first_val['conttoken']); ?>" rel="bookmark"><?php echo $first_val['title']; ?></a>
-        </h2>
+        </h2>       
         <div class="entry">
           <p style="overflow: hidden; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; text-overflow: ellipsis;"><?php echo html_entity_decode($first_val['blurb']['decription']); ?> …</p>
           <a class="more-link" href="<?php echo taoh_lp_blog_link(slugify2($first_val['title'])."-".$first_val['conttoken']); ?>">Read More »</a>
@@ -603,18 +603,18 @@ function taoh_net_releated($net_rand){
           <a href="<?php echo taoh_lp_blog_link(slugify2($first_val['title'])."-".$first_val['conttoken']); ?>" rel="bookmark">
             <img width="110" height="75" src="<?php echo $first_val['image']; ?>" class="attachment-tie-small size-tie-small wp-post-image tie-appear" alt="" decoding="async" srcset="<?php echo $first_val['image']; ?> 110w, <?php echo $first_val['image']; ?> 220w, <?php echo $first_val['image']; ?> 330w" sizes="(max-width: 110px) 100vw, 110px"><span class="fa overlay-icon"></span>
           </a>
-        </div><!-- post-thumbnail /-->
+        </div><!-- post-thumbnail /-->				
         <h3 class="post-box-title">
           <a href="<?php echo taoh_lp_blog_link(slugify2($first_val['title'])."-".$first_val['conttoken']); ?>" rel="bookmark"><?php echo $first_val['title']; ?></a>
         </h3>
       </li>
     <?php } ?>
-    <?php }
+    <?php } 
   return 1;
 }
 function taoh_stress_releated($stress_rand){
   //print_r($stress_rand);die;
-  foreach ($stress_rand as $first_key => $first_val){
+  foreach ($stress_rand as $first_key => $first_val){ 
     if ( ! isset( $first_val['image']) || ! $first_val['image'] || stristr( $first_val['image'], 'images.unsplash.com' ) ) $first_val['image'] = TAOH_CDN_PREFIX."/images/igcache/".urlencode( taoh_title_desc_decode($first_val['title']) )."/900_600/blog.jpg";
      if($first_key == 0){ ?>
       <li class="first-news">
@@ -622,10 +622,10 @@ function taoh_stress_releated($stress_rand){
           <a href="<?php echo taoh_lp_blog_link(slugify2($first_val['title'])."-".$first_val['conttoken']); ?>" rel="bookmark">
             <img width="310" height="165" src="<?php echo $first_val['image']; ?>" class="attachment-tie-medium size-tie-medium wp-post-image tie-appear" alt="" decoding="async" fetchpriority="high" srcset="<?php echo $first_val['image']; ?> 310w, <?php echo $first_val['image']; ?> 620w" sizes="(max-width: 310px) 100vw, 310px"><span class="fa overlay-icon"></span>
           </a>
-        </div><!-- post-thumbnail /-->
+        </div><!-- post-thumbnail /-->        
         <h2 class="post-box-title">
           <a href="<?php echo taoh_lp_blog_link(slugify2($first_val['title'])."-".$first_val['conttoken']); ?>" rel="bookmark"><?php echo $first_val['title']; ?></a>
-        </h2>
+        </h2>       
         <div class="entry">
           <p style="overflow: hidden; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; text-overflow: ellipsis;"><?php echo html_entity_decode($first_val['blurb']['decription']); ?> …</p>
           <a class="more-link" href="<?php echo taoh_lp_blog_link(slugify2($first_val['title'])."-".$first_val['conttoken']); ?>">Read More »</a>
@@ -637,13 +637,13 @@ function taoh_stress_releated($stress_rand){
           <a href="<?php echo taoh_lp_blog_link(slugify2($first_val['title'])."-".$first_val['conttoken']); ?>" rel="bookmark">
             <img width="110" height="75" src="<?php echo $first_val['image']; ?>" class="attachment-tie-small size-tie-small wp-post-image tie-appear" alt="" decoding="async" srcset="<?php echo $first_val['image']; ?> 110w, <?php echo $first_val['image']; ?> 220w, <?php echo $first_val['image']; ?> 330w" sizes="(max-width: 110px) 100vw, 110px"><span class="fa overlay-icon"></span>
           </a>
-        </div><!-- post-thumbnail /-->
+        </div><!-- post-thumbnail /-->				
         <h3 class="post-box-title">
           <a href="<?php echo taoh_lp_blog_link(slugify2($first_val['title'])."-".$first_val['conttoken']); ?>" rel="bookmark"><?php echo $first_val['title']; ?></a>
         </h3>
       </li>
     <?php } ?>
-    <?php }
+    <?php } 
   return 1;
 }
 function get_tags_list_lp() {
@@ -662,7 +662,7 @@ function get_tags_list_lp() {
   //  $taoh_vals[ 'cache_name' ] = $cache_name;
   //  $taoh_vals[ 'cache' ] = array ( "name" => $cache_name );
    ksort($taoh_vals);
-
+   
    //echo taoh_apicall_get_debug($url, $taoh_vals);taoh_exit();
    $response_tag = json_decode(taoh_apicall_get($url, $taoh_vals, '', 1), true);
    if(isset($response_tag['output']) && $response_tag['output'] != ""){

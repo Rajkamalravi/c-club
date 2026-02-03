@@ -1,7 +1,7 @@
-<?php
-taoh_get_header();
+<?php  
+taoh_get_header(); 
 ?>
-<link rel="stylesheet" href="<?php echo TAOH_SITE_URL_ROOT; ?>/assets/css/event-status.css?v=<?php echo TAOH_CSS_JS_VERSION; ?>">
+<link rel="stylesheet" href="<?php echo TAOH_SITE_URL_ROOT; ?>/assets/events/css/event-status.css?v=<?php echo TAOH_CSS_JS_VERSION; ?>">
 <!-- ================================
          START ERROR AREA
 ================================= -->

@@ -107,7 +107,7 @@ $get_liked = json_decode( taoh_apicall_get($taoh_call, $taoh_vals), true );
 $userliked_already = isset($get_liked['userliked'])?$get_liked['userliked']:'0';
 /* End check liked or not */
 
-taoh_get_header($additive);
+taoh_get_header($additive); 
 include 'reads_css.php';
 
 ?>
@@ -133,8 +133,8 @@ include 'reads_css.php';
     display: inline-block;
     position: relative;
     cursor: pointer;
-
-
+    
+	
   }
   .menu--main>li:hover {
       background-color: #218838;
@@ -142,14 +142,14 @@ include 'reads_css.php';
     }
 
 
-    .menu--main li:hover .sub-menu {
+    .menu--main li:hover .sub-menu {      
       max-height: 300px;
       visibility: visible;
       bottom: 100%;  /* align to top of parent element*/
       transition: all 0.4s linear;
     }
-
-
+	
+  
   .sub-menu {
     display: block;
     visibility: hidden;
@@ -163,7 +163,7 @@ include 'reads_css.php';
 	background-color: whitesmoke;
 	white-space: nowrap;
   }
-
+  
 .sub-menu li {
 	display: block;
 	padding: 10px 0px;
@@ -194,7 +194,7 @@ include 'reads_css.php';
         <div class="hero-content">
 					<div class="media media-card align-items-center shadow-none p-1 pt-3 pb-3 mb-0 rounded-0 light-dark-card">
 						<div class="media-body">
-              <div style="display: flex; white-space: nowrap;">
+              <div style="display: flex; white-space: nowrap;">    
                 <h4> <?php echo $response['output']['title']; ?></h4>
               </div>
               <?php if ( taoh_user_is_logged_in()) { ?>
@@ -204,7 +204,7 @@ include 'reads_css.php';
                   <a class="text-center" data-toggle="modal" data-target="#exampleModal1" style="font-size: 20px;margin: 0 10px;"><i title="Share" class="la la-share ml-1 text-primary" style="cursor:pointer;"></i>&nbsp;<?php if (TAOH_METRICS_COUNT_SHOW) { ?><span id="shareCount" class="badge text-dark fs-14 p-0"></span><?php } ?></a>
                   <?php if ( TAOH_METRICS_EYE_SHOW) { ?><a class="text-center" style="font-size: 20px;margin: 0 10px;"><i title="View" class="la la-eye text-primary"></i>&nbsp;<?php if (TAOH_METRICS_COUNT_SHOW) { ?><span id="viewCount" class="badge text-dark fs-14 p-0"></span><?php } ?></a><?php } ?>
                 </div>
-              <?php } ?>
+              <?php } ?>			
 						</div>
 					</div>
         </div><!-- end hero-content -->
@@ -272,12 +272,12 @@ include 'reads_css.php';
 
           <!--Section: Text-->
           <section class="td-post-content">
-
+            
             <p>
               <?php echo html_content($description) ?>
             </p>
 
-
+            
           </section>
 
           <section class="border-bottom mb-4 pb-4 mt-t pt-4">
@@ -325,9 +325,9 @@ include 'reads_css.php';
                 if($related->success) {
           ?>
           <section>
-          <h2 class="section-title fs-30">Related posts</h2>
+          <h2 class="section-title fs-30">Related posts</h2> 
             <div class="row">
-              <?php foreach ($related->output as $post ){
+              <?php foreach ($related->output as $post ){ 
                 if ( ! isset( $post->image[0] ) || ! $post->image[0] || stristr( $post->image[0], 'images.unsplash.com' ) ) $post->image[0] = TAOH_CDN_PREFIX."/images/igcache/".urlencode( $post->title )."/900_600/blog.jpg";
                 ?>
               <div class="col-lg-4">
@@ -356,7 +356,7 @@ include 'reads_css.php';
         <div class="col-md-4 mb-4 border-left" style="z-index: 999;">
           <!--Section: Sidebar-->
           <section class="sticky-top" style="top: 80px;">
-          <?php if(taoh_user_is_logged_in() ) {
+          <?php if(taoh_user_is_logged_in() ) { 
             if($taoh_user_vars->ptoken == $ptoken){ ?>
             <section class="border-bottom pb-4 mb-4">
               <div class="card-body">
@@ -398,7 +398,7 @@ include 'reads_css.php';
         <button type="button" style="padding:0" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
-
+		
       </div>
       <div class="modal-body">
         Are you sure, Do you want to delete?
@@ -436,8 +436,8 @@ include 'reads_css.php';
 	let is_local = localStorage.getItem(app_slug+'_'+conttoken+'_liked');
 
   $(document).ready(function(){
-		save_metrics('newsletter','<?php echo $click_view ?>',conttoken);
-
+		save_metrics('newsletter','<?php echo $click_view ?>',conttoken);  
+		
 	});
   if((<?php echo $userliked_already ?>) || (is_local)){
 		var like_html = `<i title="Like" class="la la-heart text-danger ml-1"></i>&nbsp;<?php if (TAOH_METRICS_COUNT_SHOW) { ?><span id="likeCount" class="badge text-dark fs-14 p-0"></span><?php } ?>`;
@@ -472,10 +472,10 @@ function deleteConfirm(){
       if(response.success){
         $('#deleteAlert').modal('hide');
         location.href = '<?php echo TAOH_READS_URL; ?>';
-
+        
       }
       else{console.log('false');
-        $('#deleteAlert').modal('hide');
+        $('#deleteAlert').modal('hide');      
       }
     }).fail(function() {
         console.log( "Network issue!" );
@@ -492,13 +492,13 @@ $(document).on('click','.newsletters_like', function(event) {
     //setCookie('blog_'+conttoken+'_liked',1,1);
     localStorage.setItem(app_slug+'_'+conttoken+'_liked',1);
     save_metrics('newsletter','like',conttoken);
-
+		
 	});
 
   $(document).on('click','.click_metrics', function(event) {
         var metrics = $(this).attr("data-metrics");
-        save_metrics('newsletter',metrics,conttoken);
-
+        save_metrics('newsletter',metrics,conttoken);  
+        
         if(metrics == 'comment_click'){
             $('.command_form').attr('action','<?php echo TAOH_ACTION_URL .'/comments'; ?>');
             $('.command_form').submit();

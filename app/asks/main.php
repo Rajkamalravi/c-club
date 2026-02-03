@@ -59,7 +59,7 @@ switch ($action) {
 		$url = TAOH_SITE_URL_ROOT."/fwd/ss/".TAOH_SITE_ROOT_HASH."/log/1/u/loc/".$current_app."/post";
 		//echo $url ;die();
 		taoh_redirect($url); exit();
-		break;
+		break;	
 	case 'about':
 		include_once(TAOH_PLUGIN_PATH."/app/".$current_app."/visitor.php");
 		break;
@@ -85,7 +85,7 @@ switch ($action) {
 			} else {
 				include_once(TAOH_PLUGIN_PATH."/app/".$current_app."/visitor.php");
 			}
-
+			
 		}*/
 		if( taoh_user_is_logged_in() || 1 ) {
 			include_once(TAOH_PLUGIN_PATH."/app/".$current_app."/asks.php");

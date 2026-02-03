@@ -1,5 +1,5 @@
 <?php
-include_once $_SERVER['DOCUMENT_ROOT'].'/raj/assets/icons/icons.php';
+include_once TAOH_SITE_PATH_ROOT.'/assets/icons/icons.php';
 taoh_get_header();
 
 $pagename = 'connections';
@@ -410,10 +410,10 @@ if ($taoh_user_is_logged_in) {
                 dataType: 'json',
                 data: data,
                 success: function (response, textStatus, jqXHR) {
-                    console.log("get_connections get_connections", response);
+                    console.log("get_connections get_connections", response); 
                     if (response && response.success) {
                         console.log("step1");
-
+                        
                         appendProfiles(response, callFromEvent);
                         $('.search-filter-section').show();
                     } else {
@@ -604,7 +604,7 @@ if ($taoh_user_is_logged_in) {
 
         $(document).on('click', '.openchatacc', async function () {
             const currentElem = $(this);
-
+            
             const chatButtonIconElem = currentElem.find('i');
             chatButtonIconElem.removeClass('la-angle-double-right').addClass('la-spinner la-spin');
             chatButtonIconElem.prop('disabled', true);

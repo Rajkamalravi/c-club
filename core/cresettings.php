@@ -11,7 +11,7 @@
    font-size: 13px !important;
    }
 </style>
-<?php
+<?php 
    $google_details = $_POST['google_details'];
    $email = (isset($google_details['email']))?($google_details['email']):$_COOKIE[ 'tao_api_email' ];
    $fname = (isset($google_details['given_name']))?($google_details['given_name']):'';
@@ -288,7 +288,7 @@
                                        </div>
                                     </div>
                                     <!-- end col-lg-12 -->
-                                    <!--
+                                    <!-- 
                                        <div class="col-lg-12">
                                            <div class="submit-btn-box pt-3">
                                            <a href="#" onclick="next()" class="btn theme-btn">Next step</a>
@@ -318,7 +318,7 @@
                                  </div>
                                  <!-- end row -->
                               </div>
-                              <!-- end settings-item -->
+                              <!-- end settings-item -->                                
                               <div class="col-12">
                                  <div class="submit-btn-box pt-3">
                                     <button class="btn theme-btn" type="submit">Save changes</button>
@@ -332,7 +332,7 @@
                      </div>
                      <!-- end tab-pane -->
                      <?php
-                        /*
+                        /*               
                         					<div class="tab-pane fade" id="notification" role="tabpanel" aria-labelledby="notification-tab">
                                                 <div class="user-panel-main-bar">
                                                     <div class="user-panel">
@@ -522,7 +522,7 @@
          </div>
          <!-- end tab-pane -->
          */
-         ?>
+         ?>                                  
       </div>
       </form>
    </div>
@@ -552,7 +552,7 @@
      }
      checkType();
    })
-
+   
    function checkType() {
        let chktype = $('input[name="type"]:checked').val();
        if(chktype == 'professional'){
@@ -562,7 +562,7 @@
            $('.proftype').html('Employer Public Information');
            $('.profstype').html('Employer Public Information');
        }else if(chktype == 'provider'){
-           $('.proftype').html('Service Provider Public Information');
+           $('.proftype').html('Service Provider Public Information'); 
            $('.profstype').html('Service Provider Public Information');
        }
    }

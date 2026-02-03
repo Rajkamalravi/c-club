@@ -3,7 +3,7 @@ h3.session_title {
   display: flex;
   flex-direction: row;
 }
-
+          
 h3.session_title:after {
     content: "";
     flex: 1 1;
@@ -17,8 +17,8 @@ h3.session_title:after {
         <div class="d-flex justify-content-between align-items-center" style="gap: 12px;">
             <h4 class="session_title search-title-v2"><span>SEARCH BLOG</span></h4>
             <?php  if (isset($_GET['creator']) && $_GET['creator']) { ?>
-            <a href="<?php echo TAOH_READS_URL; ?>/post/?post=<?php echo date('Ymd');?>"
-            class="btn btn-primary post-btn-v2"
+            <a href="<?php echo TAOH_READS_URL; ?>/post/?post=<?php echo date('Ymd');?>" 
+            class="btn btn-primary post-btn-v2" 
             >
                     <i class="la la-plus  "></i>&nbsp;Post
             </a>

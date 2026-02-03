@@ -21,12 +21,12 @@ $app_data = taoh_app_info();
 //$api = TAOH_USER_ACCOUNT_TEMP."?secret=".TAOH_API_SECRET."&mod=".$config['slug']."&cmd=create&q=".urlencode( $current_app.":::".$access_code );
 //$return = json_decode(taoh_url_get_content( $api ), true);
 $taoh_call = "account.temps";
-$taoh_vals = array(
+$taoh_vals = array(    
   'secret'=>TAOH_API_SECRET,
   'mod'=>($app_data?->slug ?? ''),
   'cmd'=>'create',
   'q'=>urlencode( $current_app.":::".$access_code ),
-);
+); 
 $taoh_call_type = "get";
 $return = json_decode( taoh_apicall_get( $taoh_call, $taoh_vals ), true );
 

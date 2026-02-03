@@ -66,7 +66,7 @@ $conttoken = taoh_parse_url(3);
 }
 
 #header {
-    height:85px;
+    height:85px;    
 }
 #footer {
     position:absolute;
@@ -93,7 +93,7 @@ $conttoken = taoh_parse_url(3);
               <div class="item">
                 <div id="listChatRooms" style="margin: 0% 10% 0% 4%;"></div>
               </div>
-            </div>
+            </div> 
           </div>
         </div>
       </div>
@@ -129,7 +129,7 @@ $conttoken = taoh_parse_url(3);
 
 <?php if($conttoken) { ?>
 	<script type="text/javascript">
-
+		
 	</script>
 <?php } ?>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css">
@@ -177,10 +177,10 @@ $conttoken = taoh_parse_url(3);
         string = string.replace(/\b\w/g, x => x.toUpperCase());
 			$('.owl-carousel').owlCarousel('add', `<div style="margin: 0% 10% 0% 2%;"><div id="container"><div id="header"><h5 class="text-center">${fl_title.substring(0,100)}</h5></div>
               <div class="text-center p-0 mb-0 mt-2" id="body" style="font-size: 12px; line-height: 1.5;" >
-
+               
                 <div class="fs-12 font-black" style="text-align: justify; margin-top: -20px;">${descrpt}</div>
               </div>
-              <?php
+              <?php              
 /*
               <div class="p-0 mb-0 rounded-0 mt-2 bg-transparent text-center ml-4" id="footer">
                   <p class="fs-8 fw-medium ml-3">${data.output.profile_pretag} ${name.replace('\\','',name)}</p>
@@ -220,7 +220,7 @@ $conttoken = taoh_parse_url(3);
               <div class="text-center p-0 mb-0 mt-2" id="body" style="font-size: 12px; line-height: 1.5;" >
                 <div class="fs-12 font-black" style="text-align: justify; margin-top: -20px;">${extractContent(ddescrpt)}</div>
               </div>
-<?php
+<?php              
 /*
 <center><b>${string}</b></center><br />
               <div class="p-0 mb-0 rounded-0 mt-10 bg-transparent text-center ml-3" id="footer">
@@ -240,20 +240,20 @@ $conttoken = taoh_parse_url(3);
   var owl = $('.owl-carousel');
 
   $(document).ready(function() {
-
+ 
     $("#owl-demo").owlCarousel({
-
+      
       navigation : true, // Show next and prev buttons
-
+        
       slideSpeed : 300,
       paginationSpeed : 400,
-
-      items : 1,
+        
+      items : 1, 
       itemsDesktop : false,
       itemsDesktopSmall : false,
       itemsTablet: false,
       itemsMobile : false
-
+      
     });
 
     // Listen to owl events:

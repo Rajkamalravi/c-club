@@ -455,8 +455,8 @@ final class NtwAdapterEvents
         $description = taoh_title_desc_encode($events_data['description'] ?? '');
         $tags = array_filter(array_map('trim', explode(',', $events_data['event_tags'] ?? '')));
         $breadcrumbs = array_merge($breadcrumbs, [
-            ['label' => 'Events', 'url' => TAOH_SITE_URL_ROOT . '/events'],
-            ['label' => $title, 'url' => TAOH_SITE_URL_ROOT . '/events/chat/id/events/' . $eventtoken],
+            ['label' => 'Events', 'url' => '/events'],
+            ['label' => $title, 'url' =>  '/events/chat/id/events/' . $eventtoken],
             ["label" => "Networking", "url" => null],
         ]);
 
@@ -613,6 +613,7 @@ final class NtwAdapterEvents
             "welcome_messages" => $welcome_messages ?? '',
         ];
 
+        /*
         $room_info_arr['profiles'] = [
             "attendee" => [
                 "label" => "Attendee",
@@ -766,6 +767,7 @@ final class NtwAdapterEvents
                 "can" => "full_access",
             ],
         ];
+        */
 
         $create_room_response = createRoomInfo($room_info_arr, $eventtoken, $ptoken);
 
@@ -954,6 +956,7 @@ final class NtwAdapterEvents
             "speednetworking" => 0,
         ];
 
+        /*
         $room_info_arr['profiles'] = [
             "attendee" => [
                 "label" => "Attendee",
@@ -1107,6 +1110,7 @@ final class NtwAdapterEvents
                 "can" => "full_access",
             ],
         ];
+        */
 
         $update_room_response = updateRoomInfo($room_info_arr, $ptoken);
         if (in_array($update_room_response['success'], [true, 'true']) && !empty($update_room_response['output'])) {

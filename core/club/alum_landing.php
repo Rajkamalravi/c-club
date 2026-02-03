@@ -9,9 +9,6 @@ $valid_dir_viewer = $taoh_user_is_logged_in && $user_info_obj->profile_complete 
 
 ?>
 
-<style>
-</style>
-
 <div class="bg-white">
     <header class="container mx-auto row d-flex flex-wrap-reverse" style="border-bottom: 1px solid #D3D3D3;">
         <div class="col-md-9 d-flex align-items-center" style="gap: 0.5rem;">

@@ -33,7 +33,7 @@ $referral_code = $referral_code[ 'key' ] ?? '';
 					<li><a href="https://www.facebook.com/sharer/sharer.php?u=<?php echo TAOH_INVITE_REFERRAL_URL; ?>" target="_blank" class="hover-y light-dark"><i class="la la-facebook" style="font-size: 18px;"></i></a></li>
 					<li><a href="https://twitter.com/intent/tweet?url=<?php echo TAOH_INVITE_REFERRAL_URL; ?>&text=I%20invite%20you%20to%20checkout%20Hires%2C%20where%20we%20grow%20together" class="hover-y light-dark" target="_blank"><i class="fa-brands fa-x-twitter" style="font-size: 16px;"></i></a></li>
                     <li><a href="http://www.linkedin.com/shareArticle?mini=true&url=<?php echo TAOH_INVITE_REFERRAL_URL; ?>&title=I%20invite%20you%20to%20checkout%20Hires%2C%20where%20we%20grow%20together" class="hover-y light-dark" target="_blank"><i class="la la-linkedin" style="font-size: 18px;"></i></a></li>
-					<!-- <li><a href="#" class="hover-y"><i class="la la-instagram"></i></a></li>
+					<!-- <li><a href="#" class="hover-y"><i class="la la-instagram"></i></a></li> 
 					<li><a href="http://pinterest.com/pin/create/button/?url=<?php //echo TAOH_INVITE_REFERRAL_URL; ?>&media=<?php //echo TAOH_SITE_FAVICON; ?>&description=I%20invite%20you%20to%20checkout%20Hires%2C%20where%20we%20grow%20together" class="hover-y" target="_blank"><i class="la la-pinterest" style="font-size: 18px;"></i></a></li>
 					<li><a href="https://www.tumblr.com/widgets/share/tool?canonicalUrl=<?php //echo TAOH_INVITE_REFERRAL_URL; ?>&caption=https://dev.unmeta.net/hires/go/ref/g0ge17vh2r74lf7&tags=tao.ai" class="hover-y" target="_blank"><i class="la la-tumblr" style="font-size: 18px;"></i></a></li>
 					<li><a href="https://api.whatsapp.com/send?text=%0a<?php //echo TAOH_INVITE_REFERRAL_URL; ?>" class="hover-y" target="_blank"><i class="la la-whatsapp" style="font-size: 18px;"></i></a></li>-->
@@ -56,8 +56,8 @@ $referral_code = $referral_code[ 'key' ] ?? '';
 			</div><!-- end media -->
 		</div>
 	</div>
-</div>
-
+</div>		
+			
 <div class="modal top fade" id="invite-modal" tabindex="" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
 <div class="modal-dialog" role="document">
 	<div class="modal-content">
@@ -109,7 +109,7 @@ $referral_code = $referral_code[ 'key' ] ?? '';
 		</div>
 	</div>
 	<!-- <div class="modal-footer">
-
+		
 	</div> -->
 	</div>
 </div>
@@ -119,7 +119,7 @@ $referral_code = $referral_code[ 'key' ] ?? '';
         $("#error_msg").html('');
         $("#invite_formdiv").show();
     })
-
+        
     function chk_validations(id) { //alert(id);
         var req = 0;
         $(id + ' .validate').each(function (index) {  //alert();
@@ -156,7 +156,7 @@ $referral_code = $referral_code[ 'key' ] ?? '';
             let ilname = $("#ilname").val();
             let iemail = $("#iemail").val();
             let icomment = $("#icomment").val();
-
+            
             var data = {
                 'taoh_action': 'taoh_invite_friend',
                 'first_name': iname,

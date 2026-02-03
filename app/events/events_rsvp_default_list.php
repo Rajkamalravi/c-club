@@ -22,7 +22,7 @@ $taoh_user_is_logged_in = taoh_user_is_logged_in() ?? false;
         <div class="d-flex flex-wrap align-items-center" style="gap: 12px;">
             <div class="d-flex flex-column align-items-center" style="gap: 6px;">
                 <img class="n-participants-img rounded-circle" src="<?php echo TAOH_SITE_URL_ROOT;?>/assets/images/profile_room_1.png" alt="">
-
+                
             </div>
             <div>
                 <div class="d-flex">
@@ -32,7 +32,7 @@ $taoh_user_is_logged_in = taoh_user_is_logged_in() ?? false;
                     <svg width="19" height="11" viewBox="0 0 19 13" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path d="M2.11111 0C0.946701 0 0 0.946701 0 2.11111V4.22222C0 4.5125 0.244097 4.7401 0.517882 4.83576C1.13802 5.05017 1.58333 5.64062 1.58333 6.33333C1.58333 7.02604 1.13802 7.61649 0.517882 7.8309C0.244097 7.92656 0 8.15417 0 8.44444V10.5556C0 11.72 0.946701 12.6667 2.11111 12.6667H16.8889C18.0533 12.6667 19 11.72 19 10.5556V8.44444C19 8.15417 18.7559 7.92656 18.4821 7.8309C17.862 7.61649 17.4167 7.02604 17.4167 6.33333C17.4167 5.64062 17.862 5.05017 18.4821 4.83576C18.7559 4.7401 19 4.5125 19 4.22222V2.11111C19 0.946701 18.0533 0 16.8889 0H2.11111ZM4.22222 3.69444V8.97222C4.22222 9.2625 4.45972 9.5 4.75 9.5H14.25C14.5403 9.5 14.7778 9.2625 14.7778 8.97222V3.69444C14.7778 3.40417 14.5403 3.16667 14.25 3.16667H4.75C4.45972 3.16667 4.22222 3.40417 4.22222 3.69444ZM3.16667 3.16667C3.16667 2.58281 3.63837 2.11111 4.22222 2.11111H14.7778C15.3616 2.11111 15.8333 2.58281 15.8333 3.16667V9.5C15.8333 10.0839 15.3616 10.5556 14.7778 10.5556H4.22222C3.63837 10.5556 3.16667 10.0839 3.16667 9.5V3.16667Z" fill="#636161"></path>
                     </svg>
-                        Free Conference Pass
+                        Free Conference Pass 
                 </div>
                 <div class="n-participants-text d-flex align-items-center mb-1" style="gap: 6px;">
                     <svg width="10" height="13" viewBox="0 0 10 13" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -56,7 +56,7 @@ $taoh_user_is_logged_in = taoh_user_is_logged_in() ?? false;
                             <path d="M0 0V10H10V0H0ZM7.06473 7.25893L5 9.23884L2.93527 7.25893L4.375 3.15179L2.93527 1.21875H7.0625L5.625 3.15179L7.06473 7.25893Z" fill="#636161"></path>
                         </svg>
                         <span>
-                            <span class="badge fs-14">Role:</span>
+                            <span class="badge fs-14">Role:</span> 
                             <span class="">
                                 <a href="#" class="badge text-success fs-14">
                                     <span title="Join the role chat for Test Lead">Test Lead</span>
@@ -73,19 +73,19 @@ $taoh_user_is_logged_in = taoh_user_is_logged_in() ?? false;
                         </svg>
                         <span>Skills</span>
                     </div>
-
+                    
                     <ul class="att-skill-con d-flex flex-wrap" style="gap: 4px;">
                         <li class="skill btn btn-sm">Html</li>
                         <li class="skill btn btn-sm">Css</li>
                         <li class="skill btn btn-sm">JavaScript</li>
                         <li class="skill btn btn-sm">Testing</li>
                     </ul>
-
+                   
                 </div>
             </div>
         </div>
     </li>
-
+    
 </ul>
 
 
@@ -103,8 +103,8 @@ $taoh_user_is_logged_in = taoh_user_is_logged_in() ?? false;
         <p class="mb-2">Make Some Exciting Connections !</p>
         <div class="d-flex align-items-center flex-wrap" style="gap: 6px;">
             <?php if (!$taoh_user_is_logged_in) { ?>
-            <button type="button" class="btn banner-v2-btn mt-0 mr-1"
-                data-toggle="modal" data-target="#config-modal"
+            <button type="button" class="btn banner-v2-btn mt-0 mr-1" 
+                data-toggle="modal" data-target="#config-modal" 
                 id="register_now" class="register_now">Login & Register Now</button>
 
             <?php }else{ ?>
@@ -125,7 +125,7 @@ $taoh_user_is_logged_in = taoh_user_is_logged_in() ?? false;
         <div class="d-flex flex-wrap align-items-center" style="gap: 12px;">
             <div class="d-flex flex-column align-items-center" style="gap: 6px;">
                 <img class="n-participants-img rounded-circle" src="<?php echo TAOH_SITE_URL_ROOT;?>/assets/images/profile_room_2.png" alt="">
-
+                
             </div>
             <div>
                 <div class="d-flex">
@@ -140,7 +140,7 @@ $taoh_user_is_logged_in = taoh_user_is_logged_in() ?? false;
                     <svg width="19" height="11" viewBox="0 0 19 13" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path d="M2.11111 0C0.946701 0 0 0.946701 0 2.11111V4.22222C0 4.5125 0.244097 4.7401 0.517882 4.83576C1.13802 5.05017 1.58333 5.64062 1.58333 6.33333C1.58333 7.02604 1.13802 7.61649 0.517882 7.8309C0.244097 7.92656 0 8.15417 0 8.44444V10.5556C0 11.72 0.946701 12.6667 2.11111 12.6667H16.8889C18.0533 12.6667 19 11.72 19 10.5556V8.44444C19 8.15417 18.7559 7.92656 18.4821 7.8309C17.862 7.61649 17.4167 7.02604 17.4167 6.33333C17.4167 5.64062 17.862 5.05017 18.4821 4.83576C18.7559 4.7401 19 4.5125 19 4.22222V2.11111C19 0.946701 18.0533 0 16.8889 0H2.11111ZM4.22222 3.69444V8.97222C4.22222 9.2625 4.45972 9.5 4.75 9.5H14.25C14.5403 9.5 14.7778 9.2625 14.7778 8.97222V3.69444C14.7778 3.40417 14.5403 3.16667 14.25 3.16667H4.75C4.45972 3.16667 4.22222 3.40417 4.22222 3.69444ZM3.16667 3.16667C3.16667 2.58281 3.63837 2.11111 4.22222 2.11111H14.7778C15.3616 2.11111 15.8333 2.58281 15.8333 3.16667V9.5C15.8333 10.0839 15.3616 10.5556 14.7778 10.5556H4.22222C3.63837 10.5556 3.16667 10.0839 3.16667 9.5V3.16667Z" fill="#636161"></path>
                     </svg>
-                        Free Conference Pass
+                        Free Conference Pass 
                 </div>
                 <div class="n-participants-text d-flex align-items-center mb-1" style="gap: 6px;">
                     <svg width="10" height="13" viewBox="0 0 10 13" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -164,7 +164,7 @@ $taoh_user_is_logged_in = taoh_user_is_logged_in() ?? false;
                             <path d="M0 0V10H10V0H0ZM7.06473 7.25893L5 9.23884L2.93527 7.25893L4.375 3.15179L2.93527 1.21875H7.0625L5.625 3.15179L7.06473 7.25893Z" fill="#636161"></path>
                         </svg>
                         <span>
-                            <span class="badge fs-14">Role:</span>
+                            <span class="badge fs-14">Role:</span> 
                             <span class="">
                                 <a href="#" class="badge text-success fs-14">
                                     <span title="Join the role chat for Test Lead">Test Lead</span>
@@ -181,14 +181,14 @@ $taoh_user_is_logged_in = taoh_user_is_logged_in() ?? false;
                         </svg>
                         <span>Skills</span>
                     </div>
-
+                    
                     <ul class="att-skill-con d-flex flex-wrap" style="gap: 4px;">
                         <li class="skill btn btn-sm">Html</li>
                         <li class="skill btn btn-sm">Css</li>
                         <li class="skill btn btn-sm">JavaScript</li>
                         <li class="skill btn btn-sm">Testing</li>
                     </ul>
-
+                   
                 </div>
             </div>
         </div>
@@ -198,7 +198,7 @@ $taoh_user_is_logged_in = taoh_user_is_logged_in() ?? false;
         <div class="d-flex flex-wrap align-items-center" style="gap: 12px;">
             <div class="d-flex flex-column align-items-center" style="gap: 6px;">
                 <img class="n-participants-img rounded-circle" src="<?php echo TAOH_SITE_URL_ROOT;?>/assets/images/profile_room_3.png" alt="">
-
+                
             </div>
             <div>
                 <div class="d-flex">
@@ -213,7 +213,7 @@ $taoh_user_is_logged_in = taoh_user_is_logged_in() ?? false;
                     <svg width="19" height="11" viewBox="0 0 19 13" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path d="M2.11111 0C0.946701 0 0 0.946701 0 2.11111V4.22222C0 4.5125 0.244097 4.7401 0.517882 4.83576C1.13802 5.05017 1.58333 5.64062 1.58333 6.33333C1.58333 7.02604 1.13802 7.61649 0.517882 7.8309C0.244097 7.92656 0 8.15417 0 8.44444V10.5556C0 11.72 0.946701 12.6667 2.11111 12.6667H16.8889C18.0533 12.6667 19 11.72 19 10.5556V8.44444C19 8.15417 18.7559 7.92656 18.4821 7.8309C17.862 7.61649 17.4167 7.02604 17.4167 6.33333C17.4167 5.64062 17.862 5.05017 18.4821 4.83576C18.7559 4.7401 19 4.5125 19 4.22222V2.11111C19 0.946701 18.0533 0 16.8889 0H2.11111ZM4.22222 3.69444V8.97222C4.22222 9.2625 4.45972 9.5 4.75 9.5H14.25C14.5403 9.5 14.7778 9.2625 14.7778 8.97222V3.69444C14.7778 3.40417 14.5403 3.16667 14.25 3.16667H4.75C4.45972 3.16667 4.22222 3.40417 4.22222 3.69444ZM3.16667 3.16667C3.16667 2.58281 3.63837 2.11111 4.22222 2.11111H14.7778C15.3616 2.11111 15.8333 2.58281 15.8333 3.16667V9.5C15.8333 10.0839 15.3616 10.5556 14.7778 10.5556H4.22222C3.63837 10.5556 3.16667 10.0839 3.16667 9.5V3.16667Z" fill="#636161"></path>
                     </svg>
-                        Free Conference Pass
+                        Free Conference Pass 
                 </div>
                 <div class="n-participants-text d-flex align-items-center mb-1" style="gap: 6px;">
                     <svg width="10" height="13" viewBox="0 0 10 13" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -237,7 +237,7 @@ $taoh_user_is_logged_in = taoh_user_is_logged_in() ?? false;
                             <path d="M0 0V10H10V0H0ZM7.06473 7.25893L5 9.23884L2.93527 7.25893L4.375 3.15179L2.93527 1.21875H7.0625L5.625 3.15179L7.06473 7.25893Z" fill="#636161"></path>
                         </svg>
                         <span>
-                            <span class="badge fs-14">Role:</span>
+                            <span class="badge fs-14">Role:</span> 
                             <span class="">
                                 <a href="#" class="badge text-success fs-14">
                                     <span title="Join the role chat for Test Lead">Test Lead</span>
@@ -254,19 +254,19 @@ $taoh_user_is_logged_in = taoh_user_is_logged_in() ?? false;
                         </svg>
                         <span>Skills</span>
                     </div>
-
+                    
                     <ul class="att-skill-con d-flex flex-wrap" style="gap: 4px;">
                         <li class="skill btn btn-sm">Html</li>
                         <li class="skill btn btn-sm">Css</li>
                         <li class="skill btn btn-sm">JavaScript</li>
                         <li class="skill btn btn-sm">Testing</li>
                     </ul>
-
+                   
                 </div>
             </div>
         </div>
     </li>
-
+    
 </ul>
 
 <!-- zero day attendees -->

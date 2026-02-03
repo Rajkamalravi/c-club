@@ -57,7 +57,7 @@ if($new_rand['success'] && $new_rand['output']['list']) {
    $getjstitle = json_encode($items);
 }
 }
-?>
+?> 
 <style>
    #related_posts .related-item {
       /* float: left; */
@@ -76,13 +76,13 @@ if($new_rand['success'] && $new_rand['output']['list']) {
    <div class="content">
       <article class="post-listing post-1080 post type-post status-publish format-standard has-post-thumbnail  category-impact-measurement category-mental-health category-nonprofit-management" id="the-post">
          <div class="single-post-thumb">
-            <img width="660" height="330" src="<?php echo $image; ?>" class="attachment-slider size-slider wp-post-image tie-appear" alt="" decoding="async" fetchpriority="high">
+            <img width="660" height="330" src="<?php echo $image; ?>" class="attachment-slider size-slider wp-post-image tie-appear" alt="" decoding="async" fetchpriority="high">		
          </div>
          <div class="post-inner">
             <h1 class="name post-title entry-title"><span itemprop="name"><?php echo $title; ?></span></h1>
             <!-- <p class="post-meta">
                <span class="post-cats"><i class="fa fa-folder"></i><a href="https://grants.club/category/impact-measurement/" rel="category tag">Impact Measurement</a>, <a href="https://grants.club/category/mental-health/" rel="category tag">Mental Health</a>, <a href="https://grants.club/category/nonprofit-management/" rel="category tag">Nonprofit Management</a></span>
-               <span class="post-views"><i class="fa fa-eye"></i>4 Views</span>
+               <span class="post-views"><i class="fa fa-eye"></i>4 Views</span> 
             </p> -->
             <div class="clear"></div>
             <div class="entry">
@@ -110,13 +110,13 @@ if($new_rand['success'] && $new_rand['output']['list']) {
             <?php $related = blog_lp_related_post($tags, 3);
                if($related['success'] && $related['output']['list']) {
                   taoh_releated_widget1($related['output']['list']);
-               }
+               } 
             ?>
             <div class="clear"></div>
          </div>
       </section>
    </aside>
-   <!-- #sidebar /-->
+   <!-- #sidebar /-->	
    <div class="clear"></div>
 </div>
 <!-- .container /-->
@@ -147,6 +147,6 @@ if($new_rand['success'] && $new_rand['output']['list']) {
       }
    //Trending Bar End
 </script>
-<?php
+<?php 
    taoh_lp_get_footer();
-?>
+?> 

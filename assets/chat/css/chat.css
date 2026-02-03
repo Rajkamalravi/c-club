@@ -2947,7 +2947,7 @@ a.fg-emoji-picker-close-button {
     display: none;
     min-width: 380px;
     max-width: 380px;
-    overflow-y: auto;
+    overflow-y: auto; 
     scrollbar-width: thin;
 }
 
@@ -3587,19 +3587,19 @@ a.fg-emoji-picker-close-button {
 }
 .speed-nw-card {
     position: relative;
-
+    
 }
 .speed-nw-card .left-ribbon, .speed-nw-card .right-ribbon {
     position: absolute;
     z-index: 0;
     bottom: 10px;
-}
+} 
 .speed-nw-card .left-ribbon{
     left: 10px;
-}
+} 
 .speed-nw-card .right-ribbon {
     right: 10px;
-}
+} 
 .speed-sm-profile {
     min-width: 30px;
     max-width: 30px;

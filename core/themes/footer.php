@@ -39,6 +39,97 @@ if (in_array($curr_page, ['chat','events', 'room', 'forum', 'custom-room'])) {
     require_once(TAOH_APP_PATH . '/events/events_footer.php');
 }
 
+function getMaxUploadSize() {
+
+    // Get PHP configuration values
+    $upload_max_filesize = ini_get('upload_max_filesize');
+    $post_max_size = ini_get('post_max_size');
+    $memory_limit = ini_get('memory_limit');
+
+    // Convert to bytes
+    $uploadBytes = convertToBytes($upload_max_filesize);
+    $postBytes = convertToBytes($post_max_size);
+    $memoryBytes = convertToBytes($memory_limit);
+
+    // Try to get Nginx client_max_body_size
+    $nginxSize = '1M'; // Default Nginx value
+    $nginxBytes = convertToBytes($nginxSize);
+
+    // Attempt to read Nginx config (may not have permissions)
+    $nginxConfig = @shell_exec('grep -r client_max_body_size /etc/nginx/ 2>/dev/null | grep -v "#"');
+
+    if (!empty($nginxConfig) && preg_match('/client_max_body_size\s+(\d+[KMG]?);/', $nginxConfig, $matches)) {
+        $nginxSize = $matches[1];
+        $nginxBytes = convertToBytes($nginxSize);
+    } else {
+        // Try nginx -T command
+        $nginxTest = @shell_exec('nginx -T 2>&1 | grep client_max_body_size | grep -v "#"');
+        if (!empty($nginxTest) && preg_match('/client_max_body_size\s+(\d+[KMG]?);/', $nginxTest, $matches)) {
+            $nginxSize = $matches[1];
+            $nginxBytes = convertToBytes($nginxSize);
+        }
+    }
+
+    // Find the minimum (most restrictive) value
+    $limits = [
+        'nginx_client_max_body_size' => $nginxBytes,
+        'php_upload_max_filesize' => $uploadBytes,
+        'php_post_max_size' => $postBytes
+    ];
+
+    // Filter out unlimited values for comparison
+    $realLimits = array_filter($limits, function($value) {
+        return $value < PHP_INT_MAX;
+    });
+
+    if (empty($realLimits)) {
+        $minBytes = PHP_INT_MAX;
+        $limitingFactor = 'none_unlimited';
+    } else {
+        $minBytes = min($realLimits);
+        $limitingFactor = array_search($minBytes, $limits);
+    }
+
+    // Format the result
+    $maxUploadMB = $minBytes / 1024 / 1024;
+
+    // Create human-readable format
+    if ($minBytes >= 1024 * 1024 * 1024) {
+        $formatted = round($minBytes / (1024 * 1024 * 1024), 2) . ' GB';
+    } elseif ($minBytes >= 1024 * 1024) {
+        $formatted = round($minBytes / (1024 * 1024), 2) . ' MB';
+    } elseif ($minBytes >= 1024) {
+        $formatted = round($minBytes / 1024, 2) . ' KB';
+    } else {
+        $formatted = $minBytes . ' bytes';
+    }
+
+    return [
+        'bytes' => $minBytes,
+        'mb' => $maxUploadMB,
+        'formatted' => $formatted,
+        'limiting_factor' => $limitingFactor,
+        'details' => [
+            'nginx_client_max_body_size' => [
+                'value' => $nginxSize,
+                'bytes' => $nginxBytes
+            ],
+            'php_upload_max_filesize' => [
+                'value' => $upload_max_filesize,
+                'bytes' => $uploadBytes
+            ],
+            'php_post_max_size' => [
+                'value' => $post_max_size,
+                'bytes' => $postBytes
+            ],
+            'php_memory_limit' => [
+                'value' => $memory_limit,
+                'bytes' => $memoryBytes
+            ]
+        ]
+    ];
+}
+
 function convertToBytes($size) {
     if ($size == '-1') return PHP_INT_MAX;
     $size = trim($size);
@@ -76,8 +167,8 @@ function get_max_upload_size() {
 
 </main>
 
-<!-- Footer Banner  -->
-<?php if(defined('TAOH_FOOTER_BANNER_AD') && TAOH_FOOTER_BANNER_AD) {
+ <!-- Footer Banner  -->
+<?php if(defined('TAOH_FOOTER_BANNER_AD') && TAOH_FOOTER_BANNER_AD) { 
     // file_get_contents(TAOH_OPS_PREFIX.'/images/calendar', false, stream_context_create(array( "ssl"=>array( "verify_peer"=>false, "verify_peer_name"=>false,),)))
     if(!isset($_SESSION['footer_banner'])){
         $get_banner = @file_get_contents(TAOH_CDN_ADS);
@@ -90,9 +181,9 @@ function get_max_upload_size() {
         }
     }
     if(isset($_SESSION['footer_banner']) && count($_SESSION['footer_banner']) > 0){
-    foreach($_SESSION['footer_banner'] as $key=>$val){
+    foreach($_SESSION['footer_banner'] as $key=>$val){ 
         $link = str_ireplace('[TAOH_HOME_URL]',TAOH_SITE_URL_ROOT,$val['link']);
-
+    
 ?>
     <div class="cover-workcongress-image">
     <div class="bg-image" style="background-image: url('<?php echo $val['image'];?>');"></div>
@@ -106,45 +197,48 @@ function get_max_upload_size() {
 <input type="hidden" name="global_settings" id="global_settings" />
     <input type="hidden" name="avt_img_delete" id="avt_img_delete" />
     <input type="hidden" id="max_upload_size" value="<?php echo get_max_upload_size(); ?>">
-
+    
 <?php if( NETWORKING_VERSION == 5 || (taoh_parse_url(1) != 'room' && NETWORKING_VERSION != 5)) { ?>
 <footer class="page-footer">
-
-
-    <section class="footer-area pt-30px position-relative font-light">
+    
+    
+    <section class="footer-area pt-30px position-relative font-light" style="background: #1E1C1C;">
       <div class="container">
         <div class="row align-items-center pb-4 copyright-wrap">
           <div class="col-lg-12">
-            <?php if(taoh_user_is_logged_in()) {
+                <?php if(taoh_user_is_logged_in()) {
                 $ptokn_track = taoh_session_get(TAOH_ROOT_PATH_HASH)['USER_INFO']->ptoken;
                 $full_url = (empty($_SERVER['HTTPS']) ? 'http' : 'https') . "://" . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];
                 $encoded_path = urlencode($full_url);
                 if(!isset($footer_tracking_link) || $footer_tracking_link ==''){
                     $footer_tracking_link = $encoded_path;
                 }
-            ?>
-            <img src="<?php echo TAOH_CDN_PREFIX;?>/images/igtracker/<?php echo $footer_tracking_link;?>/<?php echo $ptokn_track;?>/pixel.png" />
-            <?php } ?>
+    $encoded_urlencode = str_replace('.', '%2E', $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI']);
+    $encoded_urlencode = str_replace('~', '%7E', $encoded_urlencode);
 
+            ?>
+            <img src="<?php echo TAOH_CDN_PREFIX;?>/images/igtracker/<?php echo rawurlencode($encoded_urlencode);?>/<?php echo $ptokn_track;?>/pixel.png" />
+            <?php } ?>
+            
             <?php if(TAOH_FOOTER_MENU_ARRAY !='')  { 
                 $footer_array = json_decode(TAOH_FOOTER_MENU_ARRAY,1); ?>
-
+           
                 <div class="col-xl-5 mx-auto px-0">
-                    <ul class="nav justify-content-center">
+                    <ul class="nav justify-content-center" style="margin-bottom: -10px;">
                         <?php foreach($footer_array as $key=>$val){ ?>
-                            <li class="nav-item text-center footer-link-text"><a class="nav-link " title="<?php echo $val[2];?>" href="<?php echo $val[0];?>" target="_blank"><?php echo $val[1];?></a></li>
+                            <li class="nav-item text-center footer-link-text"><a class="nav-link " title="<?php echo $val[2];?>" href="<?php echo $val[0];?>" target="_blank" style="color: #ffffff;"><?php echo $val[1];?></a></li>
                         <?php } ?>
                     </ul>
 
                 </div>
-
+                
             <?php } else { ?>
 
                 <div class="col-xl-5 mx-auto px-0">
-                    <ul class="nav justify-content-center">
-                    <li class="nav-item text-center footer-link-text"><a class="nav-link " href="<?php echo TAOH_SITE_URL_ROOT."/professionals";?>" target="_blank">Professionals</a></li>
-                    <li class="nav-item text-center footer-link-text"><a class="nav-link " href="<?php echo TAOH_SITE_URL_ROOT."/partners";?>" target="_blank">Partners</a></li>
-                    <li class="nav-item text-center footer-link-text"><a class="nav-link " href="<?php echo TAOH_SITE_URL_ROOT."/employers";?>" target="_blank">Employers</a></li>
+                    <ul class="nav justify-content-center" style="margin-bottom: -10px;">
+                    <li class="nav-item text-center footer-link-text"><a class="nav-link " href="<?php echo TAOH_SITE_URL_ROOT."/professionals";?>" target="_blank" style="color: #ffffff;">Professionals</a></li>
+                    <li class="nav-item text-center footer-link-text"><a class="nav-link " href="<?php echo TAOH_SITE_URL_ROOT."/partners";?>" target="_blank" style="color: #ffffff;">Partners</a></li>
+                    <li class="nav-item text-center footer-link-text"><a class="nav-link " href="<?php echo TAOH_SITE_URL_ROOT."/employers";?>" target="_blank" style="color: #ffffff;">Employers</a></li>
                     </ul>
                 </div>
            <?php } ?>
@@ -173,7 +267,7 @@ function get_max_upload_size() {
                 </div>-->
 
                 <div class="dropdown terms-menu">
-
+                   
                     <a class="footer-menu-item mx-lg-5 dropdown-toggle removecaret text-wrap" id="termsLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         <div class="svg-container"><?= icon('file-question', '#1E1C1C') ?></div>
                         <span>Terms</span>
@@ -184,7 +278,7 @@ function get_max_upload_size() {
                         <li class="dropdown-item"><a href="https://tao.ai/conduct.php" target="_BLANK" class="term-item">Code of Conduct</a></li>
                     </ul>
                 </div>
-
+                
                 <a  href="https://tao.ai" target="_blank" class="footer-menu-item mx-lg-5">
                     <?= icon('tao-logo', '#fff', 30) ?>
                     <span>By Tao.ai</span>
@@ -210,7 +304,7 @@ function get_max_upload_size() {
                     <span>Report a Bug</span>
                 </a> -->
             </div>
-
+           
             <p class="text-center text-muted">
               <strong>&copy; <?php echo date('Y'). "</strong> | <strong>".TAOH_SITE_NAME_SLUG."</strong> | "."<a href='https://theworkcompany.com' target='_blank' class='twc-logo'>The<b>W</b><img src='https://theworkcompany.com/assets/images/theworkcompany_sq.png' alt='O' height='14'><b>RK</b>Company</a>"; ?> | <strong>All Rights Reserved</strong>  <?php if(taoh_user_is_logged_in()) { ?> |  <strong><a class="text-primary cursor-pointer" data-toggle="modal" data-target="#reportBugModal">Report an issue</a> <?php } ?>
               </strong><br>
@@ -315,11 +409,28 @@ require_once TAOH_SITE_PATH_ROOT . '/core/basic-settings-modal.php';
           <div class="form-group">
             <textarea class="form-control" name="description" id="bugDescription"  rows="4" placeholder="Describe the issue..." required></textarea>
           </div>
+          <?php if(!taoh_user_is_logged_in()) { ?>
+          <div class="form-group">
+            <input type="email" class="form-control" name="bugemail" id="bugemail"  rows="4" placeholder="Enter email" required>
+          </div>
+          <div class="form-group">
+            <label for="" class="text-label-md  mb-1">Let us know you're human</label>
+            <div style="align-items: center;  background-color: #fafafa;  border: 1px solid #e0e0e0;
+                box-sizing: border-box;
+                display: flex;
+                gap: 7px;
+                height: 45px;
+                user-select: none;">
+                <br><input onclick="checkReportHumanCheckbox();" type="checkbox" id="human_report" name="human_report" value="human"> 
+                <label class="mb-0" for="human_report" id="verify_label" style="font-size: 16px;">Verify you're human</label>
+            </div>
+          </div>
+          <?php } ?>
         </form>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="submit" id="bugsubmit" class="btn btn-primary"><i></i>Submit Report</button>
+        <button type="submit" id="bugsubmit" <?php if(!taoh_user_is_logged_in()) { ?> disabled="true" <?php } ?> class="btn btn-primary"><i></i>Submit Report</button>
       </div>
     </div>
   </div>
@@ -353,14 +464,14 @@ require_once TAOH_SITE_PATH_ROOT . '/core/basic-settings-modal.php';
                 </div>
                 <div class="modal-body p-0">
                     <div class="main-box p-0 border-0">
-                    <?php
+                    <?php 
                         $login = 0;
                         include_once(TAOH_SITE_DOC_ROOT.'/core/new_login.php');
                     ?>
                     </div>
                 </div>
                 <!-- <div class="modal-footer">
-
+                    
                 </div> -->
                 </div>
             </div>
@@ -387,7 +498,7 @@ require_once TAOH_SITE_PATH_ROOT . '/core/basic-settings-modal.php';
     </div>
     <div class="goal-option">
       <label><input type="radio" name="user_goal" value="Connect">Connect – Events, Networking</label>
-    </div>
+    </div>   
 
     <button id="submitGoalBtn">Submit</button>
   </div>
@@ -442,9 +553,9 @@ if (defined('TAOH_SITE_GA_ENABLE') && TAOH_SITE_GA_ENABLE) {
         <script async
                 src="https://www.googletagmanager.com/gtag/js?id=<?php echo (defined('TAOH_PAGE_GA') && TAOH_PAGE_GA) ? TAOH_PAGE_GA : TAOH_SITE_GA; ?>"></script>
         <script>
-        window.dataLayer = window.dataLayer || [];
+            window.dataLayer = window.dataLayer || [];
         function gtag(){ dataLayer.push(arguments); }
-        gtag('js', new Date());
+            gtag('js', new Date());
         gtag('config', '<?= (defined('TAOH_PAGE_GA') && TAOH_PAGE_GA) ? TAOH_PAGE_GA : TAOH_SITE_GA ?>');
         </script>
 
@@ -469,7 +580,7 @@ if (!@$_COOKIE['client_time_zone']) { ?>
 <script src="https://unpkg.com/intro.js/minified/intro.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
 
-<?php
+            <?php
 $_ft_user_info = $session_data['USER_INFO'] ?? null;
 $_ft_ptoken = $_ft_user_info->ptoken ?? '';
 $_ft_isLoggedIn = taoh_user_is_logged_in();
@@ -480,7 +591,7 @@ $_ft_isSuperAdminInit = $_ft_isLoggedIn && isset($_ft_user_info->is_super_admin)
 $_ft_hasReferralCookie = isset($_COOKIE[TAOH_ROOT_PATH_HASH.'_refer_token']) && $_COOKIE[TAOH_ROOT_PATH_HASH.'_refer_token'] != '' && isset($_COOKIE[TAOH_ROOT_PATH_HASH.'_referral_back_url']) && $_COOKIE[TAOH_ROOT_PATH_HASH.'_referral_back_url'] != '';
 $_ft_enableReferralCheck = $curr_page != 'login' && $curr_page != 'createacc' && $_ft_isLoggedIn;
 $_ft_sitemapNeeded = !file_exists("sitemap_" . date("Ymd") . ".sitemap");
-?>
+        ?>
 <script>
     const ft_isLoggedIn = <?= json_encode($_ft_isLoggedIn); ?>;
     window._ft_loopTime = <?= json_encode(TAOH_NOTIFICATION_LOOP_TIME_INTERVAL); ?>;

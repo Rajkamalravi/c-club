@@ -14,9 +14,9 @@ var profile_complete = '<?php echo $profile_complete; ?>';
 let isLoggedIn = "<?php echo taoh_user_is_logged_in(); ?>";
 $(document).on('click','.click_action', function(event) {
 		var metrics = $(this).attr("data-metrics");
-
-		save_metrics('asks',metrics,conttoken);
-
+		
+		save_metrics('asks',metrics,conttoken);     
+		
 		if(metrics == 'comment_click'){
 			$('.command_form').attr('action','<?php echo TAOH_ACTION_URL .'/comments'; ?>');
 			$('.command_form').submit();
@@ -32,7 +32,7 @@ $(document).on("click", ".create_referral", function(event) {
 		var job_title = $(this).attr("data-title");
 		var link = $(this).attr("data-sharelink");
 		var data = {
-			'taoh_action': 'taoh_apply_job_ask',
+			'taoh_action': 'taoh_apply_job_ask',			
 			'from_link' : link,
 			'detail_link': window.location.href,
 			'ask_title' : job_title,
@@ -56,7 +56,7 @@ $(document).on("click", ".create_referral", function(event) {
 			document.cookie = name + "=" + (value || "") + expires + "; path=/";
 			localStorage.setItem('email', '');
 			$('#config-modal').modal({show:true});
-
+			
 			if(res.success ==1){
 				$("#loader").hide();
 			}else{
@@ -72,7 +72,7 @@ function get_liked_check(conttoken){
 			var get_liked = 1;
 		}else{
 			var get_liked = 0;
-		}
+		} 
 		let is_local = localStorage.getItem(app_slug+'_'+conttoken+'_liked');
 		if ((get_liked) || (is_local)) {
 			var liked_checks = `<a class="fs-25 mr-2 ml-2 already-saved" style="vertical-align: text-bottom;">
@@ -90,7 +90,7 @@ function get_liked_check(conttoken){
 				</svg>
 			</a>`;
 		}
-		//<img src="<?php echo TAOH_SITE_URL_ROOT;?>/assets/images/bookmark.svg" alt="bookark" style="width: 18px">
+		//<img src="<?php echo TAOH_SITE_URL_ROOT;?>/assets/images/bookmark.svg" alt="bookark" style="width: 18px"> 
 		//<i style="cursor:pointer;" data-cont="${(conttoken)}" title="Save Job" class="las la-bookmark ask_save"></i>
 		return liked_checks;
 	}

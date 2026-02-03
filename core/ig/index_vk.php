@@ -47,7 +47,7 @@ $width = empty($img['width']) ? 100 : $img['width'];
 $height = empty($img['height']) ? 100 : $img['height'];
 
 // Get text from URL
-// Create the image resource
+// Create the image resource 
 $image = @imagecreate($width, $height) or die("Cannot Initialize new GD image stream");
 imagelayereffect($image, IMG_EFFECT_OVERLAY);
 
@@ -122,6 +122,6 @@ function hex2rgb($hex) {
     }
 
     $rgb = array($r, $g, $b);
-    return implode(",", $rgb);
+    return implode(",", $rgb); 
 }
 ?>

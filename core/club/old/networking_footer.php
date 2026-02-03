@@ -1707,7 +1707,7 @@ function taoh_profile_room_info($keyslug, $ptoken, $createIfNotExist = true)
         if (pToken_from.trim() !== '') {
             var con_token = '<?php echo $pc_key_slug ?? ''; ?>';
             save_metrics('profile',metrics,con_token);
-
+          
         }
     }
     /****************************======================== Networking methods ==============================*********************/

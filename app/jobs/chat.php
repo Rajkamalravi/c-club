@@ -28,7 +28,7 @@ while( ! $clubkey && $tried >= 1 ){
     //echo TAOH_API_PREFIX . '/' .$taoh_call.'?'.http_build_query($taoh_vals); die();
     //echo taoh_apicall_get_debug($taoh_call, $taoh_vals);exit();
     $return = taoh_apicall_get($taoh_call, $taoh_vals);
-
+    
     //echo taoh_apicall_get_debug($taoh_call, $taoh_vals);
     $return = json_decode($return, true);
     if ( isset( $return[ 'success' ] ) && isset( $return[ 'status' ] ) && $return[ 'success' ] && $return[ 'output' ] &&  $return[ 'status' ] == 'redirect' ) {

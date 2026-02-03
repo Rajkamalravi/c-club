@@ -14,11 +14,13 @@ img {
 }
 .title-hover{
   width: 100%;
-}
+}         
 h4.session_title>span {
- font-family: "Droid Sans";
-  font-size: 12px;
-  font-weight: bold;
+ font-family: var(--theme-font-family, "Ubuntu", sans-serif);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.8px;
+  text-transform: uppercase;
   color: #fff;
   background-color: #222;
   border-radius: 3px;
@@ -87,8 +89,8 @@ a.parentContainer:hover {
   line-height: 23px;
 }
 .descrip{
-  font-family: Arimo;
-  font-size: 13px;
+  font-family: var(--theme-font-family, "Ubuntu", sans-serif);
+  font-size: 14px;
   margin-bottom: 12px;
   line-height:18px;
 }
@@ -127,15 +129,15 @@ h3 a{
 }
 @media screen and (min-width: 800px) {
   .cl-image{
-    width:620px;
-    height:490px;
+    width:620px; 
+    height:490px; 
     position:relative;
     overflow:hidden;
   }
   .cl-image img{
-    position:absolute;
-    top:0;
-    bottom:0;
+    position:absolute; 
+    top:0; 
+    bottom:0; 
     margin: auto;
     width:100%;
   }
@@ -154,7 +156,7 @@ h3 a{
     display: inline-block;
 }
 .td-read-more a {
-    font-family: 'Open Sans', arial, sans-serif;
+    font-family: var(--theme-font-family, "Ubuntu", sans-serif);
     background-color: #444;
     border-radius: 3px;
     color: #fff;
@@ -169,7 +171,7 @@ h3 a{
     color: #fff;
 }
 .lat-title{
-  font-family: "Droid Serif";
+  font-family: var(--theme-font-family, "Ubuntu", sans-serif);
   font-size: 28px;
   line-height: 32px;
   margin: 0 0 7px 0;
@@ -183,7 +185,7 @@ h3 a{
     line-height: 25px;
     font-weight: 500;
     margin-bottom: 7px;
-    font-family: "Droid Serif";
+    font-family: var(--theme-font-family, "Ubuntu", sans-serif);
 }
 .td-post-small-box a
 {
@@ -215,7 +217,7 @@ h3 a{
         height: auto;
     }
     .divider{
-        border-bottom: 1px solid #dee2e6!important;
+        border-bottom: 1px solid #dee2e6!important; 
     }
     .td-post-content p,.td-post-content li {
         /*font-family: Arimo;*/
@@ -253,7 +255,7 @@ h3 a{
     transform: scale(1.1);
 }
 .td-post-template-5 header h1 {
-  font-family: "Droid Serif";
+  font-family: var(--theme-font-family, "Ubuntu", sans-serif);
   font-weight: 400;
   font-size: 32px;
   line-height: 35px;

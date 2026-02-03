@@ -1,7 +1,7 @@
 <?php taoh_get_header(); ?>
 
 
-<link rel="stylesheet" href="<?php echo TAOH_SITE_URL_ROOT; ?>/assets/css/events-desc-page.css?v=<?php echo TAOH_CSS_JS_VERSION; ?>">
+<link rel="stylesheet" href="<?php echo TAOH_SITE_URL_ROOT; ?>/assets/events/css/events-desc-page.css?v=<?php echo TAOH_CSS_JS_VERSION; ?>">
 
 <div class="v2-desc-page">
     <div class="v2-d-page-header py-4 py-lg-5">

@@ -10,7 +10,7 @@ $file_to_import = array(
     //"job-search" => "C:\Users\Lenovo\Downloads\csv_files\job_search.csv", //done
     //"handling-change" => "C:\Users\Lenovo\Downloads\csv_files\handling-change.csv", //done
     //"conflict-management" => "C:\Users\Lenovo\Downloads\csv_files\conflict-management.csv", //done
-
+    
     //"negotiation" => "C:\Users\Lenovo\Downloads\csv_files\/negotiation.csv", //done
     //"career-development" => "C:\Users\Lenovo\Downloads\csv_files\career-development.csv", //done
     //"leadership" => "C:\Users\Lenovo\Downloads\csv_files\leadership-development.csv", //done
@@ -20,15 +20,15 @@ $file_to_import = array(
     //"future-of-work" => "C:\Users\Lenovo\Downloads\csv_files\/future-of-work.csv", //done
     //"organization" => "C:\Users\Lenovo\Downloads\csv_files\organization.csv", //done
     //"productivity" => "C:\Users\Lenovo\Downloads\csv_files\productivity.csv", //done
-    ///"wellness" => "C:\Users\Lenovo\Downloads\csv_files\wellness.csv", //done
+    ///"wellness" => "C:\Users\Lenovo\Downloads\csv_files\wellness.csv", //done   
     //"wellness" => "C:\Users\devir\Downloads\Flash-Final_Wellness4.csv", //done
 );
 
 foreach($file_to_import as $k => $value){
     if (($open = fopen($value, "r")) !== FALSE) {
-        while (($data = fgetcsv($open, 1000, ",")) !== FALSE)
-        {
-        $array[] = $data;
+        while (($data = fgetcsv($open, 1000, ",")) !== FALSE) 
+        {        
+        $array[] = $data; 
         }
         fclose($open);
     }

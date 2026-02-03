@@ -6,14 +6,11 @@
  * Uses FontAwesome where available, falls back to custom SVG sprite.
  *
  * USAGE:
- *   <?php include_once $_SERVER['DOCUMENT_ROOT'].'/raj/assets/icons/icons.php'; ?>
+ *   <?php include_once TAOH_SITE_PATH_ROOT.'/assets/icons/icons.php'; ?>
  *   <?= icon('calendar') ?>
  *   <?= icon('location', '#b4b4b4', 14) ?>
  *   <?= icon('ticket', 'text-primary') ?>
  */
-
-// Base path for SVG sprite
-define('ICON_SPRITE_PATH', '/raj/assets/icons/sprite.svg');
 
 // FontAwesome icon mappings
 $GLOBALS['FA_ICONS'] = [
@@ -427,7 +424,7 @@ function icon_exists($name) {
  * @return string HTML img tag
  */
 function icon_img($name, $size = 16, $class = '', $alt = '') {
-    $path = '/raj/assets/icons/svg/' . $name . '.svg';
+    $path = '/assets/icons/svg/' . $name . '.svg';
     $altText = $alt ?: $name;
     $extraClass = $class ? ' class="' . htmlspecialchars($class) . '"' : '';
 

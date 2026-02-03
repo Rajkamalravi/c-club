@@ -1,5 +1,5 @@
 <?php
-include_once $_SERVER['DOCUMENT_ROOT'].'/raj/assets/icons/icons.php';
+include_once TAOH_SITE_PATH_ROOT.'/assets/icons/icons.php';
 taoh_get_header();
 
 $pagename = 'news_feed';
@@ -24,15 +24,15 @@ $is_admin = false;
 if(TAOH_ADMIN_TOKENS !='' && TAOH_ADMIN_TOKENS != null){
     $admin_token_get = explode( ',',TAOH_ADMIN_TOKENS);
   //  print_r($admin_token_get);
-
+  
     $is_admin = (in_array($token,$admin_token_get))?true:false;
     if(!$is_admin){
         $is_admin = (in_array($ptoken,$admin_token_get))?true:false;
     }
 }
 
-if(taoh_user_is_logged_in() && isset(taoh_session_get(TAOH_ROOT_PATH_HASH)['USER_INFO']->is_super_admin) &&
-taoh_session_get(TAOH_ROOT_PATH_HASH)['USER_INFO']->is_super_admin == 1  ) {
+if(taoh_user_is_logged_in() && isset(taoh_session_get(TAOH_ROOT_PATH_HASH)['USER_INFO']->is_super_admin) && 
+taoh_session_get(TAOH_ROOT_PATH_HASH)['USER_INFO']->is_super_admin == 1  ) { 
     $is_admin = true;
 }
 
@@ -52,11 +52,11 @@ taoh_session_get(TAOH_ROOT_PATH_HASH)['USER_INFO']->is_super_admin == 1  ) {
         color: #555555;
         border-radius: 5px;
         cursor: pointer;
-
+        
     }
 
     .custom-file-upload:hover {
-
+    
     }
 
     .custom-file-upload input[type="file"] {
@@ -228,7 +228,7 @@ taoh_session_get(TAOH_ROOT_PATH_HASH)['USER_INFO']->is_super_admin == 1  ) {
                     <img src="<?php echo $avatar_image; ?>" alt="profile" style="border-radius: 50%;width: 55px; height: 55px; border: 2px solid #ddd;" />
                     <div>
                         <h4 style="font-size: clamp(18px, 3vw + 1rem, 20px); font-weight: 400; color: #555555;">
-                        Hi, <strong><?php echo taoh_user_nice_name(); ?></strong><br />
+                        Hi, <strong><?php echo taoh_user_nice_name(); ?></strong><br />    
                         What's on your mind? Share it with your Buddies..</h4>
                     </div>
                 </div>
@@ -256,7 +256,7 @@ taoh_session_get(TAOH_ROOT_PATH_HASH)['USER_INFO']->is_super_admin == 1  ) {
                 </div>
                 <div>
                     <?php if (function_exists('taoh_recent_event_widget')) { taoh_recent_event_widget();  } ?>
-                </div>
+                </div>    
         </div>
     </div>
 </div>
@@ -298,8 +298,8 @@ taoh_session_get(TAOH_ROOT_PATH_HASH)['USER_INFO']->is_super_admin == 1  ) {
                         <label class="custom-file-upload mr-3">
                             <input type="file" id="fileUpload" multiple accept=".pdf, .doc, .docx">
                             <?= icon('paperclip', '#555555', 28) ?>
-                            <span class="ml-3" style="font-size: 16px; font-weight: 400;">Add File</span>
-                        </label>
+                           <span class="ml-3" style="font-size: 16px; font-weight: 400;">Add File</span>
+                        </label> 
                     </div>
                     <div id="previewContainer" class="preview-container"></div>
                     <div class="modal-footer border-0 background-transparent">
@@ -319,7 +319,7 @@ taoh_session_get(TAOH_ROOT_PATH_HASH)['USER_INFO']->is_super_admin == 1  ) {
         <button type="button" style="padding:0" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
-
+		
       </div>
       <div class="modal-body">
         Are you sure, Do you want to delete?
@@ -349,7 +349,7 @@ taoh_session_get(TAOH_ROOT_PATH_HASH)['USER_INFO']->is_super_admin == 1  ) {
                         </svg>
                     </a>
                     <div class="owl-carousel owl-theme" style="max-width: 1097px; width: 100%; height: 259px;">
-
+                        
                     </div>
                     <a class="owl-next" role="button" aria-label="Next">
                         <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -460,7 +460,7 @@ taoh_session_get(TAOH_ROOT_PATH_HASH)['USER_INFO']->is_super_admin == 1  ) {
                 <button type="button" class="btn no-feed-btn px-4 px-lg-5"  data-toggle="modal" data-target="#postModal">
                 Make an feed</button>
                  <?php } ?>
-
+               
              </div>
             `;
 			slot.append(no_result);
@@ -486,7 +486,7 @@ taoh_session_get(TAOH_ROOT_PATH_HASH)['USER_INFO']->is_super_admin == 1  ) {
                             </div>`;
             }
             var img = feedavatardisplay(v.avatar,v.avatar_image,'<?php echo TAOH_OPS_PREFIX;?>');
-
+            
             console.log(v.meta.images)
             if(Array.isArray(v.meta.images)){
                 $.each(v.meta.images, function(index, value) {
@@ -568,8 +568,8 @@ taoh_session_get(TAOH_ROOT_PATH_HASH)['USER_INFO']->is_super_admin == 1  ) {
             show_pagination('#pagination');
         }else{
             $('#pagination').hide();
-        }
-
+        }	
+        
 	}
     function feedavatardisplay(avatar,img,path){
         var avatar_img = '';
@@ -652,7 +652,7 @@ taoh_session_get(TAOH_ROOT_PATH_HASH)['USER_INFO']->is_super_admin == 1  ) {
                 }
                 if(scroll_btm){
                     const commentsSection = document.getElementById('comments'+com_conttoken);
-                    commentsSection.scrollTop = commentsSection.scrollHeight;
+                    commentsSection.scrollTop = commentsSection.scrollHeight;               
                 }
             },
             error: function(xhr, status, error) {
@@ -778,7 +778,7 @@ taoh_session_get(TAOH_ROOT_PATH_HASH)['USER_INFO']->is_super_admin == 1  ) {
             }
         })
         .fail(function() {
-
+            
         });
     }
 
@@ -795,7 +795,7 @@ taoh_session_get(TAOH_ROOT_PATH_HASH)['USER_INFO']->is_super_admin == 1  ) {
             alert("You can only upload up to 10 files.");
             return; // Exit the function early
         }
-
+        
         $.each(getfiles, function(index, file) {
             // Check if the file name already exists
             if (existingFiles.includes(file.name)) {
@@ -838,7 +838,7 @@ taoh_session_get(TAOH_ROOT_PATH_HASH)['USER_INFO']->is_super_admin == 1  ) {
                                 const img = $('<img>').attr('src', url);
                                 previewItem.append(img);
                                 previewItem.append(removeIcon);
-
+                                
                             } else if (extension == 'pdf') {
                                 const pdfPreview = $('<img>').attr('src', '<?php echo TAOH_SITE_URL_ROOT . '/assets/images/pdf.png'; ?>');
                                 previewItem.append(pdfPreview);
@@ -860,7 +860,7 @@ taoh_session_get(TAOH_ROOT_PATH_HASH)['USER_INFO']->is_super_admin == 1  ) {
                         }
                     };
                     reader.readAsDataURL(myBlob);
-                });
+                });      
             }
 
             if(!from_edit){
@@ -945,7 +945,7 @@ taoh_session_get(TAOH_ROOT_PATH_HASH)['USER_INFO']->is_super_admin == 1  ) {
         $.each(files, function(index, file) {
             const formData = new FormData(); // Create a new FormData for each file
             const isHttpFile = file.type.startsWith('http');
-
+            
             if (!isHttpFile) {
                 // Upload file via AJAX
                 formData.append('fileToUpload', file);
@@ -988,7 +988,7 @@ taoh_session_get(TAOH_ROOT_PATH_HASH)['USER_INFO']->is_super_admin == 1  ) {
 
     function handleUrlFile(file) {
         const extension = file.type.split('.').pop().toLowerCase();
-
+        
         if (['jpg', 'png'].includes(extension)) {
             image_array.push(file.type);
         } else if (['pdf', 'doc', 'docx'].includes(extension)) {

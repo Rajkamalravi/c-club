@@ -28,7 +28,7 @@ $log_nolog_token = ( taoh_user_is_logged_in()) ? $ptoken : TAOH_API_TOKEN_DUMMY;
 			const cursor = event.target.result;
 			if (cursor) {
 				const index_key = cursor.primaryKey;
-				if(index_key.includes('job'))
+				if(index_key.includes('job')) 
 				{
 				objectStore.delete(index_key);
 				}
@@ -46,7 +46,7 @@ $log_nolog_token = ( taoh_user_is_logged_in()) ? $ptoken : TAOH_API_TOKEN_DUMMY;
 		var job_title = $(this).attr("data-title");
 		var link = $(this).attr("data-sharelink");
 		var data = {
-			'taoh_action': 'taoh_apply_job_referral',
+			'taoh_action': 'taoh_apply_job_referral',			
 			'from_link' : link,
 			'detail_link': window.location.href,
 			'job_title' : job_title,
@@ -121,7 +121,7 @@ $log_nolog_token = ( taoh_user_is_logged_in()) ? $ptoken : TAOH_API_TOKEN_DUMMY;
 			var req_link = _taoh_site_url_root+"/"+app_slug+"/employer-dashboard/";
 			//alert('--------',req_link);
 			window.location.href = req_link;
-		}
+		}		
 		/* else if (metrics == 'email_click') {
 			window.location.href = '<?php //echo 'mailto:'.$apllicant_email; ?>';
 		} */
@@ -132,7 +132,7 @@ $log_nolog_token = ( taoh_user_is_logged_in()) ? $ptoken : TAOH_API_TOKEN_DUMMY;
 			var get_liked = 1;
 		}else{
 			var get_liked = 0;
-		}
+		} 
 		let is_local = localStorage.getItem(app_slug+'_'+conttoken+'_liked');
 		if ((get_liked) || (is_local)) {
 			var liked_checks = `<a class="fs-25 mr-2 ml-2 already-saved" onclick="event.stopPropagation();" style="vertical-align: text-bottom;">
@@ -149,7 +149,7 @@ $log_nolog_token = ( taoh_user_is_logged_in()) ? $ptoken : TAOH_API_TOKEN_DUMMY;
 				</svg>
 			</a>`;
 		}
-		//<img src="<?php echo TAOH_SITE_URL_ROOT;?>/assets/images/bookmark.svg" alt="bookark" style="width: 18px">
+		//<img src="<?php echo TAOH_SITE_URL_ROOT;?>/assets/images/bookmark.svg" alt="bookark" style="width: 18px"> 
 		//<i style="cursor:pointer;" data-cont="${(conttoken)}" title="Save Job" class="las la-bookmark job_save"></i>
 		return liked_checks;
 	}
@@ -162,7 +162,7 @@ $log_nolog_token = ( taoh_user_is_logged_in()) ? $ptoken : TAOH_API_TOKEN_DUMMY;
 		$('.jobs_like').find(`[data-cont='${savetoken}']`).parent().removeAttr("style");
 		localStorage.setItem(app_slug+'_'+savetoken+'_liked',1);
 		delete_jobs_into();
-
+		
 		save_metrics('jobs','like',savetoken);
 		var data = {
 			 'taoh_action': 'job_like_put',
@@ -237,7 +237,7 @@ $log_nolog_token = ( taoh_user_is_logged_in()) ? $ptoken : TAOH_API_TOKEN_DUMMY;
 		var mod_position = taoh_title_desc_decode($(this).attr("data-position"));
 		var mod_company = $(this).attr("data-company");
 		var mod_toemail = $(this).attr("data-toemail");
-		var mod_fname = $(this).attr("data-fname");
+		var mod_fname = $(this).attr("data-fname");    
 
 		$('.mod_conntoken').val(mod_conttoken);
 		$('.recruiter_fname').val(mod_fname);
@@ -255,9 +255,9 @@ $log_nolog_token = ( taoh_user_is_logged_in()) ? $ptoken : TAOH_API_TOKEN_DUMMY;
 		console.log("Formatted Description:", decodedDescription);
 
 		// Replace + signs with spaces
-		decodedDescription = decodedDescription.replace(/\+/g, ' ');
+		decodedDescription = decodedDescription.replace(/\+/g, ' '); 
 		console.log("Formatted Description after replace + with spaces:", decodedDescription);
-
+		
 
 		$('.full-text').html(decodedDescription); // Full content
 
@@ -330,7 +330,7 @@ $log_nolog_token = ( taoh_user_is_logged_in()) ? $ptoken : TAOH_API_TOKEN_DUMMY;
             })
             .then((data) => {
                 if (data.success) {
-					var data_url = data.output;
+					var data_url = data.output;	
                     $('.resume_link').val(data_url);
 					document.getElementById("responseMessage").style.color = "green";
 					document.getElementById("responseMessage").innerHTML = "File uploaded successfully";
@@ -358,10 +358,10 @@ $log_nolog_token = ( taoh_user_is_logged_in()) ? $ptoken : TAOH_API_TOKEN_DUMMY;
 			);
 			var serialize = $('#fileUploadForm').serialize();
 			var editor_val = $('.summernote').summernote('code');
-
+			
 			var apply_method = enable_scout_apply ? 'scout_apply' : 'apply';
 			var contt = $('.mod_conntoken').val();
-
+			
 			save_metrics('jobs','applyform',contt);
 
 				delete_jobs_into();
@@ -378,12 +378,12 @@ $log_nolog_token = ( taoh_user_is_logged_in()) ? $ptoken : TAOH_API_TOKEN_DUMMY;
 						taoh_set_success_message('Your application has been submitted.');
 						window.location.reload();
 					}
-					else{
+					else{  
 						$('.submit').prop("disabled", true);
 						// add spinner to button
 						$('.submit').html(
 							`<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span> Loading...`
-						);
+						);   
 					}
 					}).fail(function() {
 						console.log( "Network issue111!" );
@@ -423,14 +423,14 @@ $log_nolog_token = ( taoh_user_is_logged_in()) ? $ptoken : TAOH_API_TOKEN_DUMMY;
 						extension:"Please upload .pdf or .doc or .docx file of notice.",
 						required:"Please upload file."
 					}
-				},
+				}, 
 		});
 	});
 
 
     $(document).on('click','.share_box', function(event) {
 
-
+		
 		var datatitle = $(this).attr("data-title");console.log(datatitle);
 		var dataptoken = $(this).attr("data-ptoken");
 		var datashare = $(this).attr("data-share");
@@ -444,7 +444,7 @@ $log_nolog_token = ( taoh_user_is_logged_in()) ? $ptoken : TAOH_API_TOKEN_DUMMY;
 		var tw_share = "https://twitter.com/intent/tweet?text="+title+"&url="+share_link;
 		var link_share = "https://www.linkedin.com/shareArticle?mini=true&url="+share_link+"&title="+title+"&summary="+desc+"&images="+image;
 		var email_share = "mailto:?subject=I wanted you to see this site&amp;body=Check out this site "+title+share_link;
-
+        
 		$("#share_icon").html(`
 						<div class="social-icon-box d-flex text-center" data-ajax="${(dat_ajax)}" data-conttype="<?php echo ($app_data?->slug ?? ''); ?>">
 							<a data-gtitle="${(datatitle)}" data-gptoken="${(dataptoken)}" data-gshare="${(datashare)}" data-gconntoken="${(dataconttoken)}" data-social="${(fb_share)}" class="ml-3 icon-element icon-element-sm shadow-sm text-gray hover-y media_share share_count" data-click="facebook" style="background-color:#365899; margin-bottom:10px;cursor:pointer;" target="_blank" title="Share on Facebook">

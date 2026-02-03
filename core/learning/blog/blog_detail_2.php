@@ -95,7 +95,7 @@ taoh_get_header($additive); ?>
                         <?php //if(isset( $profile_picture ) && $profile_picture) { ?>
                             <a href="#" class="media-img media-img--sm d-block mr-2 rounded-full">
                                     <img src="<?php //echo @$profile_picture; ?>" alt="avatar" class="rounded-full lazy" style="">
-                            </a>
+                            </a> 
                         <?php //} ?>
                             <div class="media-body">
                                     <?php //if(isset( $author ) && $author) { ?>

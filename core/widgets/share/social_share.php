@@ -38,7 +38,7 @@ $share_title_js = json_encode($page_title);
     <a class="ml-3 icon-element icon-element-sm shadow-sm text-gray hover-y share_counts" data-click="linkedin" style="background-color:#0A66C2; margin-bottom:10px;cursor:pointer;" target="_blank" title="Share on Linkedin">
         <svg focusable="false" class="svg-inline--fa fa-linkedin fa-w-14" style="color: white;" width="16px" height="16px" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path fill="currentColor" d="M416 32H31.9C14.3 32 0 46.5 0 64.3v383.4C0 465.5 14.3 480 31.9 480H416c17.6 0 32-14.5 32-32.3V64.3c0-17.8-14.4-32.3-32-32.3zM135.4 416H69V202.2h66.5V416zm-33.2-243c-21.3 0-38.5-17.3-38.5-38.5S80.9 96 102.2 96c21.2 0 38.5 17.3 38.5 38.5 0 21.3-17.2 38.5-38.5 38.5zm282.1 243h-66.4V312c0-24.8-.5-56.7-34.5-56.7-34.6 0-39.9 27-39.9 54.9V416h-66.4V202.2h63.7v29.2h.9c8.9-16.8 30.6-34.5 62.9-34.5 67.2 0 79.7 44.3 79.7 101.9V416z"></path></svg>
     </a>
-
+    
 </div>
 <!-- <div class="text-center mt-2 mb-2"> or </div> -->
     <span class="text-success-message">Link Copied!</span>
@@ -58,7 +58,7 @@ $share_title_js = json_encode($page_title);
 (function(d, s, id) {
     var js, fjs = d.getElementsByTagName(s)[0];
     if (d.getElementById(id)) return;
-    js = d.createElement(s);
+    js = d.createElement(s); 
     js.id = id;
     js.src = "https://connect.facebook.net/en_US/sdk.js";
     fjs.parentNode.insertBefore(js, fjs);
@@ -70,7 +70,7 @@ function sharOnFacebook(url){
         method: 'share',
         href: url,
         quote:description, // Add description for timeline posts
-
+        
     };
     // Open Facebook share dialog
     FB.ui(shareData, function(response) {
@@ -81,11 +81,11 @@ function sharOnFacebook(url){
             alert("Congrats! Discount unlocked 🎉");
         }
 	});
-
+    
 }
 
 $(document).ready(function(){
-	// copy btn
+	// copy btn 
 	$('.copys-btns').click(function(){
 		var copyText = document.getElementById("copys-input");
 		copyText.style.display = 'block';
@@ -102,15 +102,15 @@ $(document).ready(function(){
     $(document).on('click','.share_counts', function(event) {
 		//console.log(event)
         var dataId = $(this).attr("data-click");
-		save_metrics('<?php echo $conttype;?>','share','<?php echo $conttoken; ?>');
+		save_metrics('<?php echo $conttype;?>','share','<?php echo $conttoken; ?>');	
 		//console.log('<?php echo $share_link; ?>')
-
+		
 		if(currentShareLink != ''){
 			share_url = currentShareLink;
 		}else{
 			share_url = '<?php echo $share_link; ?>';
 		}
-
+		
 		if(dataId == 'facebook'){
 			taoh_events_enable_share_discount(share_url,'fb');
 			/*sharOnFacebook(share_url);
@@ -130,7 +130,7 @@ $(document).ready(function(){
 
 			window.open(mailtoLink, "_blank"); // Open email client in new tab
 		}
-
+		
 	});
 	function taoh_events_enable_share_discount(share_url, platform){
 		//alert('=========='+currentShareLink)
@@ -139,7 +139,7 @@ $(document).ready(function(){
 		}else{
 			var shareUrl  = share_url; //window.location.href; // event page url
 		}
-
+		
 		//var shareText = encodeURIComponent("Checkout this awesome event!");
 		// Use actual event content instead of generic text
 		var shareText = encodeURIComponent(<?php echo json_encode($share_text_js, JSON_UNESCAPED_UNICODE); ?>);

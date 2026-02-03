@@ -1,13 +1,13 @@
-<?php
-taoh_get_header();
+<?php  
+taoh_get_header(); 
 ?>
 <section class="error-area pb-40px pt-40px position-relative color">
     <div id="inex-container" class="inex-container"><center>
     <h1 class="main-text" style="color: #FF6000">Let's Breathe Together!</h1>
-    <img src="<?php echo TAOH_OPS_PREFIX."/images/obviousbaba.png"; ?>" class="err-img">
+    <img src="<?php echo TAOH_OPS_PREFIX."/images/obviousbaba.png"; ?>" class="err-img">        
     </center>
     <div class="text_inex-container"><h1 id="text" style="color: #FF6000">INHALE</h1></div>
-
+    
     </div>
 </section>
 
@@ -36,17 +36,17 @@ body{margin:0px;}
   background: linear-gradient(to bottom, #e5e5e5 0%,#e5e5e5 50%,#111111 50%,#111111 50%,#111111 100%);
   background-size:100% 200%;
   animation: moveBackground 8s ease-in-out infinite reverse;
-
+  
 }
 
 .inex-container-hold{
   width:100vw;
   height:50vh;
   background:#111111;
-  background-size:100% 200%;
+  background-size:100% 200%;  
 }
 
-@keyframes moveBackground {
+@keyframes moveBackground { 
     0%{background-position:0% 0%}
     100%{background-position:0% 100%}
 }

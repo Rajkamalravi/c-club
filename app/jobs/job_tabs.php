@@ -1,18 +1,18 @@
 
 <?php if($page_sel != "jobs") { ?>
   <li class="nav-item">
-    <a class="nav-link <?php if($page_sel == "jobs") echo 'active';?> " id="jobs_tab"
+    <a class="nav-link <?php if($page_sel == "jobs") echo 'active';?> " id="jobs_tab" 
     href="<?php echo TAOH_SITE_URL_ROOT."/jobs/"; ?>" role="tab" aria-controls="jobs"
       aria-selected="true">All Jobs</a>
   </li>
   <?php if(defined('TAOH_SCOUT_ENABLE') && TAOH_SCOUT_ENABLE) { ?>
     <li class="nav-item">
-      <a class="nav-link <?php if($page_sel == "scout") echo 'active';?> " id="scout_tab"
+      <a class="nav-link <?php if($page_sel == "scout") echo 'active';?> " id="scout_tab" 
       style='color: #2479D8; font-weight: bold;'
-      href="<?php echo TAOH_SITE_URL_ROOT."/jobs/scout"; ?>" role="tab" aria-controls="scout"
+      href="<?php echo TAOH_SITE_URL_ROOT."/jobs/scout"; ?>" role="tab" aria-controls="scout" 
       aria-selected="true">Scout</a>
     </li>
-  <?php } ?>
+  <?php } ?>   
 <?php } else { ?>
   <?php if(defined('TAOH_SCOUT_ENABLE') && TAOH_SCOUT_ENABLE) { ?>
     <?php if(taoh_user_is_logged_in()) { ?>
@@ -34,9 +34,9 @@
               </li>
         <?php } ?>
 
-    <?php } ?>
+    <?php } ?> 
     <li class="nav-item">
       <a class="nav-link <?php if($page_sel == "scout") echo 'active';?>" id="scoutt_tab" href="<?php echo TAOH_SITE_URL_ROOT."/jobs/scout/"; ?>" role="tab" aria-controls="scout" aria-selected="true" style='color: #2479D8; font-weight: bold;'>About Scout</a>
     </li>
-  <?php } ?>
+  <?php } ?>  
 <?php } ?>

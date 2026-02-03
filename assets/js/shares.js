@@ -1,5 +1,5 @@
 $(document).ready(function(){
-	// copy btn
+	// copy btn 
     $(document).on('click','.copys-btn', function(event) {
         /* Select text area by id*/
         var Text = document.getElementById("copys-input");
@@ -7,10 +7,10 @@ $(document).ready(function(){
         Text.select();
         /* Copy selected text into clipboard */
         var copy_text = navigator.clipboard.writeText(Text.value);
-        if(copy_text){
+        if(copy_text){    
         $(".text-success-message").addClass('active');
 		setTimeout(function(){
-			$(".text-success-message").removeClass('active');
+			$(".text-success-message").removeClass('active'); 
         }, 1000);
         }
     });
@@ -25,7 +25,7 @@ $(document).ready(function(){
 
         save_metrics(dataconttype,share,datagconntoken);
 
-
+		
         $("#exampleModal1").modal('hide');
         if(dataId == 'facebook'){
             window.open(datasocial, '_blank').focus();
@@ -36,6 +36,6 @@ $(document).ready(function(){
         }else{
             window.open(datasocial, '_blank').focus();
         }
-
+		
 	});
 });

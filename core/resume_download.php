@@ -1,16 +1,16 @@
 
 <?php
 
-// echo "Download resume";
+// echo "Download resume"; 
 include_once('resume_download_html.php');
 
 $date = date('d/m/Y');
 global $htmldata;
 // echo ($htmldata); die;
 
-require('core/mpdf-autoload.php');
-// require('core/mpdf/src/Strict.php');
-require('core/mpdf/src/Mpdf.php');
+require('assets/tools/mpdf-autoload.php');
+// require('assets/tools/mpdf/src/Strict.php');
+require('assets/tools/mpdf/src/Mpdf.php');
 
 $mpdf = new \Mpdf\Mpdf();
 // $mpdf->WriteHTML('<h1>Hello World!</h1>');
@@ -20,7 +20,7 @@ $mpdf->Output('my-pdf.pdf', 'I');
 // $tcpdf->AddPage();
 
 // convert TTF font to TCPDF format and store it on the fonts folder
-// $fontname = TCPDF_FONTS::addTTFfont(TAOH_PLUGIN_PATH.'/core/TCPDF-main/fonts/Autography.ttf', 'TrueTypeUnicode', '', 96);
+// $fontname = TCPDF_FONTS::addTTFfont(TAOH_PLUGIN_PATH.'/assets/tools/TCPDF-main/fonts/Autography.ttf', 'TrueTypeUnicode', '', 96);
 
 // use the font
 // $tcpdf->SetFont($fontname, '', 16, '', false);

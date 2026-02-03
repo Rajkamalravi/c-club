@@ -42,7 +42,7 @@ if (!taoh_user_is_logged_in()) {
 
                 echo TAOH_CUSTOM_FOOTER;
             } ?>
-
+           
             <p class="text-center text-muted" style="color: #999999;">
               <strong style="color: #6C757D;">&copy; <?php echo date('Y'); ?>
                 <a href="https://jushires.com" style="color: #6C757D;">#Hires</a>
@@ -57,7 +57,7 @@ if (!taoh_user_is_logged_in()) {
                       </g>
                     </svg>  <span  style="color: #31A4FB;">Support</span>
                   </a> <?php if(taoh_user_is_logged_in()){ ?> |
-                  <a class="support-page" target="_blank" style="color: #31A4FB;">Question?</a> /
+                  <a class="support-page" target="_blank" style="color: #31A4FB;">Question?</a> / 
                       <a class="feedback-page" target="_blank" style="cursor:pointer;color: #31A4FB;">Feedback</a>
                   <?php } ?>
 
@@ -165,7 +165,7 @@ if (!@$_COOKIE['client_time_zone']) { ?>
         //if(loadTime >= loadTimeThreshold){
         //window.location.href = '<?php //echo TAOH_SITE_URL_ROOT."/down.php";  ?>';
         //}
-
+        
         <?php if($curr_page != 'login' && $curr_page != 'createacc'){ ?>
             //checkReferralStatus();
             setInterval(function () {
@@ -195,10 +195,10 @@ if (!@$_COOKIE['client_time_zone']) { ?>
            <?php if($curr_page != 'settings'){ ?>
                 setInterval(function () {
                     checkProfileCompletion();
-
+                  
                 }, 60000);
 
-
+                
             <?php } ?>
             checksuperadminInit();
             setInterval(function () {
@@ -260,9 +260,9 @@ if (!@$_COOKIE['client_time_zone']) { ?>
     }
 
     function checkProfileCompletion(){
-        <?php if(isset(taoh_session_get(TAOH_ROOT_PATH_HASH)['USER_INFO']->profile_complete)  &&
-        taoh_session_get(TAOH_ROOT_PATH_HASH)['USER_INFO']->profile_complete == 0 &&
-        isset(taoh_session_get(TAOH_ROOT_PATH_HASH)['USER_INFO']->fname) &&
+        <?php if(isset(taoh_session_get(TAOH_ROOT_PATH_HASH)['USER_INFO']->profile_complete)  && 
+        taoh_session_get(TAOH_ROOT_PATH_HASH)['USER_INFO']->profile_complete == 0 && 
+        isset(taoh_session_get(TAOH_ROOT_PATH_HASH)['USER_INFO']->fname) && 
         taoh_session_get(TAOH_ROOT_PATH_HASH)['USER_INFO']->fname == 'anonymous'){ ?>
         if (typeof showBasicSettingsModal === 'function') {
             showBasicSettingsModal();
@@ -275,16 +275,16 @@ if (!@$_COOKIE['client_time_zone']) { ?>
              //    setTimeout(function () {
              //        $("#toast").removeClass("toast_active");
              //    }, 8000);
-        <?php } ?>
+        <?php } ?>       
     }
 
     function checksuperadminInit(){
-        <?php if(isset(taoh_session_get(TAOH_ROOT_PATH_HASH)['USER_INFO']->is_super_admin) &&
-        taoh_session_get(TAOH_ROOT_PATH_HASH)['USER_INFO']->is_super_admin == 1 &&
+        <?php if(isset(taoh_session_get(TAOH_ROOT_PATH_HASH)['USER_INFO']->is_super_admin) && 
+        taoh_session_get(TAOH_ROOT_PATH_HASH)['USER_INFO']->is_super_admin == 1 && 
         taoh_session_get(TAOH_ROOT_PATH_HASH)['USER_INFO']->site_status == 'init'){ ?>
             var msg = 'Please complete your site settings. Click Manage Button on the header menu and proceed to fill the site data.';
             taoh_set_error_message(msg,8000);
-        <?php } ?>
+        <?php } ?>       
     }
 
     function checkReferralStatus(){
@@ -304,15 +304,15 @@ if (!@$_COOKIE['client_time_zone']) { ?>
                 $("#toast_error").html("<div class='toasterror_class'><span><i class='las la-exclamation-circle info_icon'></i> "+msg+"&nbsp;<span class='toast_dismiss' aria-hidden='true'  data-dismiss='toast' aria-label='Close'>&times;</span></span></div>");
                 //$("#loader").show();
                 //$("#error_textmsg").html(msg);
-
+                    
                 setTimeout(function () {
 
                     $("#toast").removeClass("toast_active");
                     $("#loader").hide();
-
+                    
                     //window.location.href = '<?php //echo TAOH_SITE_URL_ROOT.'/login' ?>';
                 }, 8000);
-
+                
 
             } else {
 
@@ -581,7 +581,7 @@ if (!@$_COOKIE['client_time_zone']) { ?>
 
 
     <?php if(isset($_GET['clear']) && $_GET['clear'] == 'config') { ?>
-
+        
         const newUrl = new URL(location.href);
         newUrl.searchParams.delete('clear');
         window.history.replaceState({}, document.title, newUrl.href);

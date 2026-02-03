@@ -69,14 +69,14 @@ if($_POST['action'] == "flash_delete") {
       'ops'=>$ops,
       'type'=>'flash',
       'conttoken'=>$conttoken,
-      'status'=>'confirm'
+      'status'=>'confirm'      
   );
   $cache_name = $taoh_call.'_flash_' . hash('sha256', $taoh_call . serialize($taoh_vals));
   //$taoh_vals[ 'cfcache' ] = $cache_name;
   $taoh_vals[ 'cache_name' ] = $cache_name;
   $taoh_vals[ 'cache' ] = array ( "name" => $cache_name );
   ksort($taoh_vals);
-
+  
   $taoh_call_type = "get";
   $data = taoh_apicall_get( $taoh_call, $taoh_vals );
   header('Content-Type: application/json; charset=utf-8');

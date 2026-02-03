@@ -1,4 +1,4 @@
-<?php taoh_get_header();
+<?php taoh_get_header(); 
 if (taoh_user_is_logged_in() ){
 	$title_text = "Welcome ".taoh_user_nice_name().", apps for you";
 } else {
@@ -30,7 +30,7 @@ $apps = taoh_available_apps();
 	.carousel-control-next-icon:after
 	{
 	content: '>';
-	font-size: 30px;
+	font-size: 30px;	
 	color: black;
 	top: -6px;
     position: absolute;
@@ -120,9 +120,9 @@ $apps = taoh_available_apps();
 						<a href="#" class="btn theme-btn theme-btn-outline">More... <i class="la la-arrow-right icon ml-1"></i></a>
 					</div>
 				</div><!-- end card -->
-        	</div><!-- end col-lg-4 -->
+        	</div><!-- end col-lg-4 -->				
 		</div><!-- end row -->
-		<div class="row pt-50px">
+		<div class="row pt-50px">	
 			<div class="col-lg-6 responsive-column-half">
 				<div class="card card-item hover-y text-center">
 					<a href="http://localhost/hires/hires-i/asks">
@@ -154,7 +154,7 @@ $apps = taoh_available_apps();
 						<a href="#" class="btn theme-btn theme-btn-outline">More... <i class="la la-arrow-right icon ml-1"></i></a>
 					</div>
                 </div><!-- end card -->
-            </div><!-- end col-lg-4 -->
+            </div><!-- end col-lg-4 -->				
 		</div><!-- end row -->
     </div><!-- end container -->
 </section>

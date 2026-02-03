@@ -34,7 +34,7 @@ getIntaoDb(db_name).then((db) => {
     }
   };
   window.location.href="<?php echo TAOH_SITE_URL_ROOT.'/';?>"+cache_delete_mod+'/dash?cache_deleted=1';
-
+  
 });
 /* getIntaoDb().then((db) => {
   const dataStoreName = objStores.data_store.name;

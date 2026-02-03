@@ -71,25 +71,25 @@ button.calendar{
 	<div class="col-sm-3 col-md-4 pb-3" style="white-space: nowrap;padding-right: 10rem!important;">
 		<div class="calendar_dropdown" style="display:inline-block;margin: -6px;">
 			<button type="button" class="btn btn-light fs-12 calender" style="padding-right: 10px;" >Add to Calender</button>
-			<?php
-
+			<?php 
+					
 			?>
 			<ul>
-				<?php
+				<?php 
 					$calendarDate = date('Ymd',strtotime($event_start_date)) .'T'. date('Hi',strtotime($calendar_start_time)). '00/' . date('Ymd',strtotime($event_end_date)) .'T'. date('Hi',strtotime($calendar_end_time)) . '00';
-
+					
 					$start_outlook = date('Y-m-d',strtotime($event_start_date)) .'T'. date('H:i:s',strtotime($calendar_start_time)). '' ;
 
 					$end_outlook = date('Y-m-d',strtotime($event_end_date)) .'T'. date('H:i:s',strtotime($calendar_end_time)). '';
-
+					
 					$startDate_yahoo = date('Ymd',strtotime($event_start_date)) .'T'. date('Hi',strtotime($calendar_start_time)). '00' ;
-
+					
 					$endDate_yahoo =  date('Ymd',strtotime($event_end_date)) .'T'. date('Hi',strtotime($calendar_end_time)) . '00';
-
+				
 					$eventDetails = 'To RSVP and see the complete details click here - ' . TAOH_SITE_URL_ROOT . '/events/d/' . taoh_slugify($title) . '-' . $response['eventtoken'];
 
 					$eventLocation = isset($response['conttoken'][ 'full_location' ]) ? $response['conttoken'][ 'full_location' ] : '';
-
+				
 				?>
 				<li><a target="_blank" href="<?php echo 'https://calendar.google.com/calendar/render?action=TEMPLATE&text='.str_replace("#","",$title).'&dates='.$calendarDate.'&details='.$eventDetails.'&location='.$eventLocation.'&sf=true&output=xml'; ?>">Google Calendar</a></li>
 

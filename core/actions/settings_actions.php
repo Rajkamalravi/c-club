@@ -70,8 +70,8 @@ function update_profile_info($data)
         "profile_cell_" . $taoh_ptoken,
         "profile_full_" . $taoh_ptoken,
         "profile_public_" . $taoh_ptoken,
-        "users_users_public_" . $taoh_ptoken,
-        "*_networking_cell_" . $taoh_ptoken,
+        "users_users_public_" . $taoh_ptoken,        
+        "*_networking_cell_" . $taoh_ptoken,              
         "users_*",
     );
 

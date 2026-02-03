@@ -30,10 +30,10 @@ if ($sess_user_info) {
 }
 
 $eventlivelink = TAOH_SITE_URL_ROOT . '/' . TAOH_SITE_CURRENT_APP_SLUG . '/club/' . slugify2(TAO_PAGE_TITLE) . '-' . $eventtoken;
-
+ 
 ?>
 
-<link rel="stylesheet" href="<?php echo TAOH_SITE_URL_ROOT; ?>/assets/css/events-rsvp-directory.css?v=<?php echo TAOH_CSS_JS_VERSION; ?>">
+<link rel="stylesheet" href="<?php echo TAOH_SITE_URL_ROOT; ?>/assets/events/css/events-rsvp-directory.css?v=<?php echo TAOH_CSS_JS_VERSION; ?>">
 
 <script>
     window._erd_cfg = {
@@ -43,6 +43,6 @@ $eventlivelink = TAOH_SITE_URL_ROOT . '/' . TAOH_SITE_CURRENT_APP_SLUG . '/club/
         siteNameSlug: <?= json_encode(TAOH_SITE_NAME_SLUG); ?>,
         eventtoken: <?= json_encode($eventtoken ?? ''); ?>,
         userCountry: <?= json_encode($user_country ?? ''); ?>
-    };
+        };
 </script>
-<script src="<?php echo TAOH_SITE_URL_ROOT; ?>/assets/js/events-rsvp-directory.js?v=<?php echo TAOH_CSS_JS_VERSION; ?>"></script>
+<script src="<?php echo TAOH_SITE_URL_ROOT; ?>/assets/events/js/events-rsvp-directory.js?v=<?php echo TAOH_CSS_JS_VERSION; ?>"></script>

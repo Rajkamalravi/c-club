@@ -38,7 +38,7 @@ $taoh_vals = array(
 
 );
 //echo taoh_apicall_get_debug($taoh_call, $taoh_vals);exit();
-$get_liked = json_decode( taoh_apicall_get($taoh_call, $taoh_vals), true );
+$get_liked = json_decode( taoh_apicall_get($taoh_call, $taoh_vals), true );	
 $liked_arr = '';
 if(isset($get_liked['conttoken_liked'])){
 	$liked_arr = json_encode($get_liked['conttoken_liked']);
@@ -70,7 +70,7 @@ if(taoh_user_is_logged_in()){
 
 	if($data_res['success']){
 		$_SESSION[TAOH_ROOT_PATH_HASH.'_eligible_scouted_jobs'] = $data_res['output'];
-
+		
 	}
 
 
@@ -160,6 +160,221 @@ $currencies = json_encode(taoh_get_currency_symbol('',true));
 	.w-50{
 		width:120px;
 	}
+
+	/* === Jobs Page UX === */
+
+	/* Header row — single line: tabs | search | CTA */
+	.jobs-header-row {
+		display: flex;
+		align-items: center;
+		gap: 16px;
+		min-height: 40px;
+	}
+
+	/* Tab row — underline tabs (events-style) */
+	.jobs-tab-row {
+		display: flex;
+		align-items: center;
+		border-bottom: 0 !important;
+		gap: 0;
+		flex-shrink: 0;
+		margin: 0;
+		padding: 0;
+	}
+	.jobs-tab-row .nav-item {
+		list-style: none;
+	}
+	.jobs-tab-row .nav-link {
+		display: inline-block;
+		font-size: 16px;
+		font-weight: 500;
+		color: #333333 !important;
+		padding: 8px 20px;
+		text-align: center;
+		border: none !important;
+		border-radius: 0 !important;
+		border-bottom: 3px solid transparent !important;
+		background: transparent !important;
+		transition: color 0.2s, border-color 0.2s;
+		white-space: nowrap;
+		text-decoration: none !important;
+		line-height: 1.2;
+		box-sizing: border-box;
+	}
+	.jobs-tab-row .nav-link:hover {
+		background: transparent !important;
+		color: #2557A7 !important;
+		border-bottom: 3px solid #2557A7 !important;
+	}
+	.jobs-tab-row .nav-link.active {
+		background: transparent !important;
+		color: #2557A7 !important;
+		border-bottom: 3px solid #2557A7 !important;
+		font-weight: 500;
+	}
+
+	/* Inline search */
+	.jobs-header-search {
+		position: relative;
+		flex-shrink: 0;
+		margin-left: auto;
+		display: flex;
+		align-items: center;
+	}
+	.jobs-header-search-input {
+		width: 180px;
+		height: 38px;
+		padding: 8px 36px 8px 14px;
+		border: 1px solid #bbb !important;
+		border-radius: 20px !important;
+		font-size: 13px;
+		background: #f9f9f9;
+		color: #333;
+		transition: width 0.3s ease, border-color 0.2s, box-shadow 0.2s;
+		outline: none;
+		font-family: inherit;
+		-webkit-appearance: none;
+		-moz-appearance: none;
+		appearance: none;
+	}
+	.jobs-header-search-input::placeholder {
+		color: #999;
+		font-weight: 400;
+	}
+	.jobs-header-search-input:focus {
+		width: 220px;
+		border-color: #2479D8;
+		box-shadow: 0 0 0 3px rgba(36,121,216,0.08);
+		background: #fff;
+	}
+	.jobs-header-search-btn {
+		position: absolute;
+		right: 2px;
+		top: 50%;
+		transform: translateY(-50%);
+		background: none;
+		border: none;
+		padding: 4px 8px;
+		font-size: 16px;
+		color: #888;
+		cursor: pointer;
+		transition: color 0.2s;
+		line-height: 1;
+	}
+	.jobs-header-search-btn:hover {
+		color: #333;
+	}
+	.jobs-header-search-input:focus ~ .jobs-header-search-btn {
+		color: #007bff;
+	}
+
+	/* Post CTA button */
+	.jobs-post-cta {
+		display: inline-flex;
+		align-items: center;
+		gap: 5px;
+		white-space: nowrap;
+		flex-shrink: 0;
+		background: #0a9e01 !important;
+		color: #fff !important;
+		font-weight: 600 !important;
+		font-size: 13px !important;
+		border-radius: 20px !important;
+		padding: 7px 18px !important;
+		text-decoration: none !important;
+		transition: background 0.2s, box-shadow 0.2s;
+		box-shadow: 0 1px 3px rgba(10,158,1,0.15);
+	}
+	.jobs-post-cta:hover {
+		background: #088a01 !important;
+		color: #fff !important;
+		text-decoration: none !important;
+		box-shadow: 0 2px 6px rgba(10,158,1,0.25);
+	}
+
+	/* Expandable search panel (row 2) */
+	.jobs-search-panel {
+		max-height: 0;
+		overflow: hidden;
+		transition: max-height 0.35s ease, margin-top 0.35s ease, opacity 0.3s ease;
+		margin-top: 0;
+		opacity: 0;
+	}
+	.jobs-search-panel.open {
+		max-height: 300px;
+		margin-top: 14px;
+		opacity: 1;
+	}
+	/* Hide duplicate search field inside panel (already in row 1) */
+	.jobs-search-panel .form-row > .col.col-md-3 {
+		display: none;
+	}
+	/* Expand remaining fields — equal widths */
+	.jobs-search-panel .form-row > .col-md-4 {
+		flex: 0 0 38%; max-width: 38%;
+		display: block !important;
+	}
+	.jobs-search-panel .form-row > .col-md-3.date-range-dropdown {
+		flex: 0 0 38%; max-width: 38%;
+		display: block !important;
+	}
+	.jobs-search-panel .form-row > .col-auto.col-md-2 {
+		flex: 0 0 auto;
+	}
+	/* Polish the search.php form inside the panel */
+	.jobs-search-panel .search-filter-section {
+		margin: 0 auto;
+	}
+	.jobs-search-panel .form-control {
+		border-radius: 15px;
+		font-size: 13px;
+		height: 38px;
+		padding: 8px 12px 8px 30px;
+		border: 1px solid #bbb;
+		background: #f9f9f9;
+		transition: border-color 0.2s, box-shadow 0.2s;
+	}
+	.jobs-search-panel .form-control:focus {
+		border-color: #2479D8;
+		box-shadow: 0 0 0 3px rgba(36,121,216,0.08);
+		background: #fff;
+	}
+	.jobs-search-panel .btn-primary {
+		border-radius: 15px;
+		font-size: 13px;
+		font-weight: 600;
+		padding: 8px 20px;
+	}
+
+	/* External badge */
+	.jobs-external-link { opacity: 0.85; }
+	.jobs-external-badge {
+		font-size: 10px;
+		color: #999;
+		display: inline-block;
+		margin-top: 2px;
+		margin-left: 4px;
+	}
+
+	/* Responsive */
+	@media (max-width: 768px) {
+		.jobs-header-row {
+			gap: 8px;
+			overflow-x: auto;
+			-webkit-overflow-scrolling: touch;
+			scrollbar-width: none;
+		}
+		.jobs-header-row::-webkit-scrollbar { display: none; }
+		.jobs-tab-row .nav-link { font-size: 12px; padding: 5px 10px; }
+		.jobs-header-search-input { width: 120px; font-size: 12px; padding: 0 32px 0 10px; }
+		.jobs-header-search-input:focus { width: 150px; }
+		.jobs-post-cta { font-size: 11px !important; padding: 6px 14px !important; }
+		.jobs-search-panel .form-control { font-size: 12px; }
+	}
+	@media (max-width: 480px) {
+		.jobs-header-search-input { width: 100px; }
+		.jobs-header-search-input:focus { width: 130px; }
+	}
 </style>
 
 <div class="mobile-app">
@@ -175,8 +390,8 @@ $currencies = json_encode(taoh_get_currency_symbol('',true));
             <div class="col-lg-6">
                 <div class="hero-content">
                     <h4 class="pb-1 text-white">PROFESSIONAL</h4>
-                    <h2 class="section-title pb-3 text-white">Is your next career milestone calling?</h2>
-                    <p class="section-desc text-white">Explore a curated selection of job openings, internships, and freelance positions.</p>
+                    <h2 class="section-title pb-3 text-white">Hire &amp; Get Hired through Our Community</h2>
+                    <p class="section-desc text-white">Explore job openings, internships, and freelance positions — or post your own to reach event-connected talent.</p>
                     <div class="hero-btn-box  fit py-4 dark-btn">
                         <!-- <a href="<?php echo TAOH_LOGIN_URL; ?>" class="btn theme-btn theme-btn mr-2">Sign up today</a> -->
                         <a onclick="localStorage.removeItem('isCodeSent')" href="javascript:void(0);"
@@ -187,8 +402,8 @@ $currencies = json_encode(taoh_get_currency_symbol('',true));
             <div class="col-lg-6 text-right">
             <div class="hero-content">
                     <h4 class="pb-1 text-white">EMPLOYER</h4>
-                    <h2 class="section-title pb-3 text-white">In search of exceptional talent?</h2>
-                    <p class="section-desc text-white">Partner with us to connect with professionals who can propel your organization forward.</p>
+                    <h2 class="section-title pb-3 text-white">Hire from Our Events &amp; Community</h2>
+                    <p class="section-desc text-white">Post a job and reach professionals who attend career events — engaged, vetted, and ready to work.</p>
                     <div class="hero-btn-box py-4 light-btn fit">
                         <!-- <a href="<?php echo TAOH_LOGIN_URL; ?>" class="btn theme-btn theme-btn mr-2">Find your next Hire</a> -->
                         <a onclick="localStorage.removeItem('isCodeSent')" href="javascript:void(0);"
@@ -257,74 +472,58 @@ $currencies = json_encode(taoh_get_currency_symbol('',true));
          END FUNFACT AREA
 ================================= -->
 <?php } ?>
+        
+<header class="bg-white shadow-sm sticky-top" style="top: 0; padding: 10px 0;">
+	<div class="container">
 
-<header class="bg-white bg-white shadow-sm sticky-top py-3" style="top: 0;">
-	<section class="hero-area pb-3 overflow-hidden">
-		<div class="container">
+		<!-- Row 1: tabs + search + CTA -->
+		<div class="jobs-header-row">
+			<ul class="nav nav-tabs flex-nowrap text-nowrap jobs-tab-row" id="myTab" role="tablist">
+				<li class="nav-item">
+					<a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" onclick="get_job_type()" aria-selected="true">Jobs</a>
+				</li>
+				<?php if(taoh_user_is_logged_in()) { ?>
+				<li class="nav-item">
+					<a class="nav-link" id="home-tab2" data-toggle="tab" href="#home2" role="tab" aria-controls="home2" onclick="get_job_type('applied')" aria-selected="false">Applied</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link" id="home-tab3" data-toggle="tab" href="#home3" role="tab" aria-controls="home3" onclick="get_job_type('saved')" aria-selected="false">Saved</a>
+				</li>
+				<?php
+				}
+					$page_sel = "jobs";
+					include_once('job_tabs.php');
+				?>
+				<?php if(taoh_user_is_logged_in()) { ?>
+					<li class="nav-item">
+						<a class="nav-link" href="<?php echo TAOH_SITE_URL_ROOT.'/jobs/dash'; ?>">My Jobs</a>
+					</li>
+				<?php } else { ?>
+					<li class="nav-item">
+						<a class="btn theme-btn login-button py-1" aria-pressed="true" data-toggle="modal" data-target="#config-modal">
+						<i class="la la-sign-in mr-1"></i> Login / Signup</a>
+					</li>
+				<?php }  ?>
+			</ul>
 
-			<div class="hero-content jobs-mobile-header">
-				<!--<div class="col-lg-7">
-					<h2 class="section-title fs-24 mb-1"><?php echo $app_data->name_slug; ?></h2>
-					<p class="section-desc"><?php echo $app_data->short; ?></p>
-					<div class="hero-btn-box d-flex mt-3">
+			<form class="jobs-header-search" onsubmit="searchFilter();return false">
+				<input type="search" id="jobsQuickSearch" placeholder="Search jobs..." class="jobs-header-search-input"
+					onfocus="document.getElementById('jobsSearchPanel').classList.add('open')"
+					oninput="document.getElementById('query').value=this.value">
+				<button type="submit" class="jobs-header-search-btn"><i class="la la-search"></i></button>
+			</form>
 
-					</div>
-				</div>-->
-				<div class="col-lg-12 text-center">
-					<div class="horizontal-scroll">
+			<?php if(taoh_user_is_logged_in()) { ?>
+				<a class="jobs-post-cta" href="<?php echo TAOH_SITE_URL_ROOT.'/jobs/post'; ?>"><i class="la la-plus" style="font-size:12px"></i> Post a Job</a>
+			<?php } ?>
+		</div>
 
+		<!-- Row 2: expandable filter panel -->
+		<div class="jobs-search-panel" id="jobsSearchPanel">
+			<?php include('search.php'); ?>
+		</div>
 
-						<ul class="nav nav-tabs <?php if (taoh_user_is_logged_in()) { echo 'justify-content-md-center'; } else { echo 'justify-content-center'; } ?> flex-nowrap text-nowrap" id="myTab" role="tablist" style="border-bottom: 0;">
-							<li class="nav-item mb-2">
-								<a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" onclick="get_job_type()" aria-selected="true">All Jobs</a>
-							</li>
-							<?php if(taoh_user_is_logged_in()) { ?>
-							<li class="nav-item">
-								<a class="nav-link" id="home-tab2" data-toggle="tab" href="#home2" role="tab" aria-controls="home2" onclick="get_job_type('applied')" aria-selected="false">Applied Jobs</a>
-							</li>
-							<li class="nav-item">
-								<a class="nav-link" id="home-tab3" data-toggle="tab" href="#home3" role="tab" aria-controls="home3" onclick="get_job_type('saved')" aria-selected="false">Saved Jobs</a>
-							</li>
-							<?php
-							}
-								$page_sel = "jobs";
-								include_once('job_tabs.php');
-							?>
-
-
-							<?php
-								if(taoh_user_is_logged_in()) {
-
-							?>
-								<li class="nav-item">
-									<a class="nav-link" id="home-tab3" href="<?php echo TAOH_SITE_URL_ROOT.'/jobs/dash'; ?>" style='color: #2479D8; font-weight: bold;'>My Jobs</a>
-								</li>
-								<li class="nav-item">
-									<a class="nav-link" id="home-tab3" href="<?php echo TAOH_SITE_URL_ROOT.'/jobs/post'; ?>" style='color: #2479D8; font-weight: bold;'>+&nbsp;Post Job</a>
-								</li>
-							<?php
-								} else { ?>
-								<li class="nav-item">
-									<a  class="btn theme-btn login-button py-1" aria-pressed="true" data-toggle="modal" data-target="#config-modal">
-									<i class="la la-sign-in mr-1"></i> Login / Signup</a></li>
-							<?php }  ?>
-						</ul>
-
-					</div>
-
-				</div>
-			</div><!-- end hero-content -->
-
-
-		</div><!-- end container -->
-	</section>
-
-<?php
-	//if(taoh_user_is_logged_in()) {
-		include('search.php');
-	//}
-?>
-
+	</div>
 </header>
 
 <section>
@@ -335,7 +534,7 @@ $currencies = json_encode(taoh_get_currency_symbol('',true));
 					<div class="row justify-content-center">
 						<div  class="loaderArea"  id='listloaderArea'></div>
 					</div>
-					<div class="row d-flex justify-content-between" >
+					<div class="row d-flex justify-content-between" > 
 						<div class="col-lg-3 mb-3 result_div">
 							<div id="joblistArea"></div>
 							<div id="pagination"></div>
@@ -358,23 +557,23 @@ $currencies = json_encode(taoh_get_currency_symbol('',true));
 								</div>
 							<?php } ?>
 							<?php if(TAOH_LEARNING_WIDGET_ENABLE) { ?>
-
-								<?php if (function_exists('taoh_readables_widget')) {
+								
+								<?php if (function_exists('taoh_readables_widget')) { 
 									?>
-									<div class="right-side-block mob-hide">
+									<div class="right-side-block mob-hide">									
 									<?php
-									taoh_readables_widget('new');
+									taoh_readables_widget('new');  
 									?>
 									</div>
 									<?php
-									}
+									} 
 									?>
-
+								
 							<?php } ?>
 						</div>
             		</div>
         		</div>
-      		</div>
+      		</div>  
 		</div>
     </div>
 </section>
@@ -395,7 +594,7 @@ $currencies = json_encode(taoh_get_currency_symbol('',true));
 						</button>
 					</div>
 				</div>
-
+				
 			</div>
 			<!-- Modal body -->
 			<div class="modal-body">
@@ -424,9 +623,9 @@ $currencies = json_encode(taoh_get_currency_symbol('',true));
 										<div class="row">
 											<div class="col-lg-6  form-group">
 												<label for="fname" class="sub-lable">First Name <span style="color:red;">*</span></label>
-
-												<?php
-													if(isset($taoh_user_vars->profile_complete)
+												
+												<?php 
+													if(isset($taoh_user_vars->profile_complete) 
 													&& $taoh_user_vars->profile_complete == 0 && isset($taoh_user_vars->fname) && $taoh_user_vars->fname == TAOH_SITE_NAME_SLUG)
 													echo field_fname();
 													else
@@ -434,9 +633,9 @@ $currencies = json_encode(taoh_get_currency_symbol('',true));
 											</div>
 											<div class="col-lg-6  form-group">
 												<label for="lname" class="sub-lable">Last Name <span style="color:red;">*</span></label>
-
-												<?php
-													if(isset($taoh_user_vars->profile_complete)
+												
+												<?php 
+													if(isset($taoh_user_vars->profile_complete) 
 													&& $taoh_user_vars->profile_complete == 0 && isset($taoh_user_vars->fname) && $taoh_user_vars->fname == TAOH_SITE_NAME_SLUG)
 													echo field_lname();
 													else
@@ -458,7 +657,7 @@ $currencies = json_encode(taoh_get_currency_symbol('',true));
 												<label class="sub-lable">Place of Residence <span style="color:red;">*</span></label>
 												<?php echo field_job_location($taoh_user_vars->coordinates,$taoh_user_vars->full_location, $taoh_user_vars->geohash); ?>
 											</div>
-
+										
 											<div class="col-lg-6 form-group">
 												<label for="company" class="sub-lable">Current Company</label>
 												<?php echo field_company( ( isset( $taoh_user_vars->company ) && $taoh_user_vars->company ) ? $taoh_user_vars->company: '' ); ?>
@@ -475,7 +674,7 @@ $currencies = json_encode(taoh_get_currency_symbol('',true));
 													<path d="M16.1875 22.1463H11.8125C11.0852 22.1463 10.5 21.5291 10.5 20.7619V11.071H5.70391C4.73047 11.071 4.24375 9.83079 4.93281 9.10398L13.2508 0.324472C13.6609 -0.108157 14.3336 -0.108157 14.7438 0.324472L23.0672 9.10398C23.7562 9.83079 23.2695 11.071 22.2961 11.071H17.5V20.7619C17.5 21.5291 16.9148 22.1463 16.1875 22.1463ZM28 21.6849V28.1455C28 28.9127 27.4148 29.5299 26.6875 29.5299H1.3125C0.585156 29.5299 0 28.9127 0 28.1455V21.6849C0 20.9177 0.585156 20.3004 1.3125 20.3004H8.75V20.7619C8.75 22.5443 10.1227 23.9922 11.8125 23.9922H16.1875C17.8773 23.9922 19.25 22.5443 19.25 20.7619V20.3004H26.6875C27.4148 20.3004 28 20.9177 28 21.6849ZM21.2188 26.761C21.2188 26.1265 20.7266 25.6074 20.125 25.6074C19.5234 25.6074 19.0312 26.1265 19.0312 26.761C19.0312 27.3956 19.5234 27.9147 20.125 27.9147C20.7266 27.9147 21.2188 27.3956 21.2188 26.761ZM24.7188 26.761C24.7188 26.1265 24.2266 25.6074 23.625 25.6074C23.0234 25.6074 22.5312 26.1265 22.5312 26.761C22.5312 27.3956 23.0234 27.9147 23.625 27.9147C24.2266 27.9147 24.7188 27.3956 24.7188 26.761Z" fill="#7A7979"/>
 												</svg>
 												<input type="file" class="form-control py-2"  id="fileToUpload" name="fileToUpload">
-
+												   
 											</div>
 											<div id="responseMessage" style="display: none;"></div>
 											<p id="error1" style="display:none; color:#FF0000;">
@@ -570,7 +769,7 @@ $currencies = json_encode(taoh_get_currency_symbol('',true));
       </div>
       <div class="modal-body">
 	  	<section class="mb-3 mt-3" id="share_icon">
-
+			
 		</section>
       </div>
       <div class="modal-footer">
@@ -598,7 +797,7 @@ $currencies = json_encode(taoh_get_currency_symbol('',true));
 	let postDate = $('#postdate').val();
 	let from_date = $('#from_date').val();
 	let to_date = $('#to_date').val();
-	let activeListloaderArea = $('#activeListloaderArea');
+	let activeListloaderArea = $('#activeListloaderArea'); 
 	let listUpdatedAt = 0;
 	let activeChatList = $('#activeChatList');
 	let jobCount = $('#jobCount');
@@ -616,7 +815,7 @@ $currencies = json_encode(taoh_get_currency_symbol('',true));
 	var get_slug = false;
 	var job_list_name = "";
 	var store_name = JOBStore;
-
+	
 	var det_slot = $('.detail_tab');
 	var job_type = '';
 	var applied_jobs = '<?php echo json_encode($_SESSION[TAOH_ROOT_PATH_HASH.'_applied_jobs']); ?>';
@@ -626,7 +825,7 @@ $currencies = json_encode(taoh_get_currency_symbol('',true));
 	applied_jobs = JSON.parse(applied_jobs);
 	scouted_jobs = JSON.parse(scouted_jobs);
 	eligible_scouted_jobs = JSON.parse(eligible_scouted_jobs);
-
+	
 	const currencies = <?php echo $currencies; ?>;
 
 	loader(true, loaderArea);
@@ -662,7 +861,7 @@ $currencies = json_encode(taoh_get_currency_symbol('',true));
 			const cursor = event.target.result;
 			if (cursor) {
 				const index_key = cursor.primaryKey;
-				if(index_key.includes('job'))
+				if(index_key.includes('job')) 
 				{
 				objectStore.delete(index_key);
 				}
@@ -683,21 +882,21 @@ $currencies = json_encode(taoh_get_currency_symbol('',true));
 		}else{
 			job_type = '';
 		}
-		/*for clearing search and paging data */
+		/*for clearing search and paging data */ 
 		currentPage = 1;
 		$('#postdate').val('');
 		$('#from_date').val('');
 		$('#to_date').val('');
 		$('#query').val('');
-
+		
 		$('#locationClear').hide();
         $('#coordinateLocation').val("");
         $('#geohash').val("");
         geohash = "";
         $('.ts-control div.item').html('');
 		$('.ts-wrapper').removeClass('full has-items input-hidden');
-		/*for clearing search and paging data */
-
+		/*for clearing search and paging data */ 
+		
 		<?php if(TAOH_INTAODB_ENABLE) { ?>
 			getjoblistdata('', job_type);
 		<?php }else{ ?>
@@ -739,7 +938,7 @@ $currencies = json_encode(taoh_get_currency_symbol('',true));
 			}
 		});
 	}
-
+    
 
 	function getCurrencySymbol(index) {
         if (index >= 0 && index < currencies.length) {
@@ -750,8 +949,24 @@ $currencies = json_encode(taoh_get_currency_symbol('',true));
     }
 
 
+	// Close search panel when clicking outside
+	document.addEventListener('click', function(e) {
+		var panel = document.getElementById('jobsSearchPanel');
+		var searchInput = document.getElementById('jobsQuickSearch');
+		if (panel && panel.classList.contains('open')) {
+			if (!panel.contains(e.target) && e.target !== searchInput && !searchInput.contains(e.target)) {
+				panel.classList.remove('open');
+			}
+		}
+	});
+
 	function searchFilter() {
 		currentPage = 1;
+		// Sync quick search - hidden query field
+		var qs = document.getElementById('jobsQuickSearch');
+		if (qs && qs.value) {
+			document.getElementById('query').value = qs.value;
+		}
 		var queryString = $('#searchFilter').serialize();
 		console.log(queryString);
 		geohash = geohashInput.val();
@@ -788,7 +1003,7 @@ $currencies = json_encode(taoh_get_currency_symbol('',true));
 					const jsonLd = {
 						"@context": "https://schema.org",
 						"@graph": jobs.map(jobs => ({
-							"@type": "Job",
+							"@type": "JobPosting",
 							"title": jobs.title,
 							"payinfo": jobs.payinfo,
 							"paymentTerm": jobs.paymentTerm,
@@ -820,9 +1035,9 @@ $currencies = json_encode(taoh_get_currency_symbol('',true));
 					job_type = job_type;
 					taoh_jobs_init(queryString, job_type);
 					console.log('else');
-				}
+				}				
 			}
-
+			
 		}).catch((error) => {
            console.log('Getjoblistdata Error:', error);
        	});
@@ -969,7 +1184,7 @@ function taoh_jobs_init (queryString="", job_type_get="") {
 	$('.no_result_div').hide();
 
 	totalItems = data.output.total
-	if(!get_slug){
+	if(!get_slug){	
     	var result = format_object(data);
 	}else{
 		var result = data;
@@ -988,7 +1203,7 @@ function taoh_jobs_init (queryString="", job_type_get="") {
 			var job_url = convertToSlug(taoh_title_desc_decode(v.title))+'-'+v.conttoken;
 
 			if(i == 0){
-
+			
 				job_detail_execute(v.conttoken);
 				updateCanonical(additive,job_url);
 			}
@@ -1012,17 +1227,17 @@ function taoh_jobs_init (queryString="", job_type_get="") {
 						if(v.enable_scout_job == 'on'){
 							if(Object.keys(scouted_jobs).includes(v.conttoken)){
 								apply_email_link = `<a data-action="view_application" apply-id="${scouted_jobs[v.conttoken]}"
-								job-url="${job_url}"
+								job-url="${job_url}" 
 								data-conttoken="${v.conttoken}" class="btn theme-btn mb-3  success">Applied! View Application Status </a>`;
 							}
 							else{
 								if(eligible_scouted_jobs.includes(v.conttoken)){
-									apply_email_link = `<a
-									job-url="${job_url}" data-conttoken="${v.conttoken}"
+									apply_email_link = `<a 
+									job-url="${job_url}" data-conttoken="${v.conttoken}" 
 									data-action="apply_through_scout_link" class="btn theme-btn mb-3  click_action" style="background-color:#FF7311">Apply through Scout (referred)</a>`;
-
+								
 								}else{
-									apply_email_link = `<a job-url="${job_url}" data-conttoken="${v.conttoken}"
+									apply_email_link = `<a job-url="${job_url}" data-conttoken="${v.conttoken}" 
 									data-action="request_through_scout_link" class="btn theme-btn mb-3 click_action " style="background-color:#FF7311">Apply through Scout</a>`;
 								}
 							}
@@ -1033,28 +1248,28 @@ function taoh_jobs_init (queryString="", job_type_get="") {
 								if(v.apply_link){
 									apply_email_link = `<a onclick="event.stopPropagation();" href="${v.apply_link}" target="_blank"
 									data-action="apply"
-									class="btn theme-btn w-50 mb-3 click_action">Apply Now </a>`;
+									class="btn theme-btn w-50 mb-3 click_action jobs-external-link">Apply Now </a><span class="jobs-external-badge">↗ External</span>`;
 								}else if((v.email) && (v.enable_apply)){
 									apply_email_link = `
-									<a data-position="${(v.title)}" data-company="${(company_name_get)}" data-fname="${(v.fname)}"
-									data-toemail="${(v.email)}" data-conttoken="${(v.conttoken)}"  data-action="apply"
-									data-placeType="${renderJobType(v.placeType)}" data-description="${(v.description)}"
+									<a data-position="${(v.title)}" data-company="${(company_name_get)}" data-fname="${(v.fname)}" 
+									data-toemail="${(v.email)}" data-conttoken="${(v.conttoken)}"  data-action="apply" 
+									data-placeType="${renderJobType(v.placeType)}" data-description="${(v.description)}" 
 									class="btn theme-btn mb-3 open_modal click_action">Apply Now</a>`;
 								}else{
-									apply_email_link = `<a onclick="event.stopPropagation();" href="${'mailto:'+v.email}" data-action="apply"
+									apply_email_link = `<a onclick="event.stopPropagation();" href="${'mailto:'+v.email}" data-action="apply" 
 									 class="btn theme-btn w-50 mb-3 click_action">Apply Now </a>`;
 								}
 							}
 						}
 					}
 				}
-
+				
 				if(v.enable_scout_job == 'on'){
 					show_scout_logo = `<a style="margin-left: 5px">
-					<img
+					<img 
 					data-toggle="tooltip" data-placement="top"
-                 title="Please note: Scout is a specialized program that gets 6x faster result, where industry leading peers help find the best peer talent for the jobs. "
-
+                 title="Please note: Scout is a specialized program that gets 6x faster result, where industry leading peers help find the best peer talent for the jobs. " 
+                
 					src="<?php echo TAOH_SITE_URL_ROOT.'/assets/images/scout_icon.png'; ?>" width="28" height="28" alt="Scout Icon"></a>`;
 				}
 			}else{
@@ -1077,14 +1292,14 @@ function taoh_jobs_init (queryString="", job_type_get="") {
 					payinfo = payinfo + ' per Daily';
 				}else if(v.paymentTerm == 'weekly'){
 					payinfo = payinfo + ' per week';
-				}
+				}	
 			}
 			slot.append(
 			`<div class="light-dark-card dash_metrics job-listing-block-row ${i == 0 ? 'active':''}" style="cursor: pointer;"
-			 data-conttoken="${v.conttoken}"
+			 data-conttoken="${v.conttoken}"  
 			 data-canonical = "${additive}"
 			 job-url="${job_url}"
-			 dash_metrics data-metrics="view" conttoken="${v.conttoken}" data-type="jobs"
+			 dash_metrics data-metrics="view" conttoken="${v.conttoken}" data-type="jobs" 
 			  >
 				<div class="">
 					<div><b class="jobing-company-name stop_propagation">${(v.company && v.company.length)? newgenerateCompanyHTML(v.company): ''}</b> <span class="bookmark-icon-right">${liked_check}</span></div>
@@ -1094,10 +1309,10 @@ function taoh_jobs_init (queryString="", job_type_get="") {
 						<h3 class="fs-17 mt-2 b-2 desktop-job-list" style="font-weight: 500;">${taoh_title_desc_decode(v.title)}   </h3>
 						<p>${v.full_location ? newgenerateLocationHTML(v.full_location): ''}</p>
 						<p>${payinfo}</p>
-
+						
 						<div class="col-12 row px-0 mx-auto d-flex flex-wrap">
 							<div class="mt-3 col-10 px-0">
-								${apply_email_link}
+								${apply_email_link} 
 							</div>
 							<div class="col d-flex justify-content-end align-items-center px-0">
 							${show_scout_logo}
@@ -1114,18 +1329,18 @@ function taoh_jobs_init (queryString="", job_type_get="") {
 		}else{
 			$('#pagination').hide();
 		}
-
+				
 		if(search){
-			taoh_metrix_ajax('jobs',arr_cont);
+			taoh_metrix_ajax('jobs',arr_cont);					
 		}
-
+		
 	}
 	function updateCanonical(newCanonicalUrl,job_url){
 		console.log('-----------'+newCanonicalUrl)
 		//<meta name="original-source" content="'.$response['meta']['canonical_url'].'"/>';
 		if(newCanonicalUrl !=''){
 			// Update or add the canonical link
-			var $canonicalLink = $('link[rel="canonical"]');
+			var $canonicalLink = $('link[rel="canonical"]');					
 			if ($canonicalLink.length) {
 				// If the canonical link already exists, update it
 				$canonicalLink.attr('href', newCanonicalUrl);
@@ -1139,7 +1354,7 @@ function taoh_jobs_init (queryString="", job_type_get="") {
 					.appendTo('head');
 			}
 
-			var $sourceLink = $('meta[name="original-source"]');
+			var $sourceLink = $('meta[name="original-source"]');					
 			if ($sourceLink.length) {
 				// If the canonical link already exists, update it
 				$sourceLink.attr('content', newCanonicalUrl);

@@ -59,18 +59,18 @@ foreach($textfile as $key => $val){
     if($val['title'] != 'TITLEHERE'){
         if(in_array(strtolower($val['category']), $slug)){
             $title = $val['title'];
-            $category = strtolower($val['category']);
+            $category = strtolower($val['category']); 
             $global = 1;
             $media_type = '';
             $desc = $val['body'];
         }else{
             $title = $val['title'];
-            $category = $val['category']; //$category = 'general';
-            $global = 0;
+            $category = $val['category']; //$category = 'general'; 
+            $global = 0; 
             $media_type = $val['category'];
             $desc = $val['body'];
         }
-
+    
         $post_array = array(
             "title" => $title,
             "category" => $category,
@@ -96,7 +96,7 @@ foreach($textfile as $key => $val){
             ),
         );
         $context  = stream_context_create( $opts );
-        //echo $postdata; exit();
+        //echo $postdata; exit(); 
         //print_r($mail_array); exit();
         $url = "https://api.tao.ai/scripts/addblurb.php";
         echo file_get_contents( $url, false, $context );

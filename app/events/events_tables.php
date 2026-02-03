@@ -1,4 +1,4 @@
-<link rel="stylesheet" href="<?php echo TAOH_SITE_URL_ROOT; ?>/assets/css/events-tables.css?v=<?php echo TAOH_CSS_JS_VERSION; ?>">
+<link rel="stylesheet" href="<?php echo TAOH_SITE_URL_ROOT; ?>/assets/events/css/events-tables.css?v=<?php echo TAOH_CSS_JS_VERSION; ?>">
 <script>
     window._etb_cfg = {
         myPtoken: <?= json_encode((taoh_session_get(TAOH_ROOT_PATH_HASH)['USER_INFO'] ?? null)?->ptoken ?? ''); ?>,
@@ -11,6 +11,6 @@
         tablesCreateUrl: <?= json_encode(TAOH_SITE_URL_ROOT . '/events/d/event-' . $eventtoken . '/tables/create'); ?>,
         tablesUrl: <?= json_encode(TAOH_SITE_URL_ROOT . '/events/d/event-' . $eventtoken . '/tables'); ?>,
         userTimezone: <?= json_encode(taoh_user_is_logged_in() ? taoh_user_timezone() : ''); ?>
-    };
+                };
 </script>
-<script src="<?php echo TAOH_SITE_URL_ROOT; ?>/assets/js/events-tables.js?v=<?php echo TAOH_CSS_JS_VERSION; ?>"></script>
+<script src="<?php echo TAOH_SITE_URL_ROOT; ?>/assets/events/js/events-tables.js?v=<?php echo TAOH_CSS_JS_VERSION; ?>"></script>

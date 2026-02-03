@@ -1,4 +1,4 @@
-<?php
+<?php 
 function flashcard_get(){
     //https://preapi.tao.ai/core.content.get?mod=core&ops=random&type=flash&token=y2Ds3ugv&category=mindfulness
     $category = ( isset( $_POST['category'] ) && $_POST['category'] )? $_POST['category']:'interview';

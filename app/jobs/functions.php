@@ -24,7 +24,7 @@ function taoh_get_info( $conttoken, $type = 'content' ){
 			} else if( $type == "orgchat") {
 		      $type2 = "company";
 	  }
-
+	  
 		$taoh_vals[ 'title' ] = $conttoken;
 		$taoh_vals[ 'type' ] = $type2;
 	}
@@ -33,7 +33,7 @@ function taoh_get_info( $conttoken, $type = 'content' ){
 	//$taoh_vals[ 'cfcache' ] = 'jobs_job_'. $key;
 	ksort($taoh_vals);
 	$return = taoh_apicall_get( $taoh_call, $taoh_vals );
-	$return = json_decode($return, true);
+	$return = json_decode($return, true);	
 	return $return;
 }
 

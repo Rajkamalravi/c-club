@@ -22,7 +22,7 @@ $taoh_vals = array(
     'cache_time' => 7200,
     'cache' => array ( "name" => $cache_name,  "ttl" => 7200),
     'conttoken' => $conttoken,
-
+    
 );
 $taoh_vals[ 'cfcache' ] = $cache_name;
 ksort($taoh_vals);
@@ -78,12 +78,12 @@ $taoh_vals = array(
     'slug' => TAO_PAGE_TYPE,
 );
 //echo taoh_apicall_get_debug($taoh_call, $taoh_vals);exit();
-$get_liked = json_decode( taoh_apicall_get($taoh_call, $taoh_vals), true );
+$get_liked = json_decode( taoh_apicall_get($taoh_call, $taoh_vals), true );	
 $liked_arr = '';
 if(isset($get_liked['conttoken_liked'])){
 	$liked_arr = json_encode($get_liked['conttoken_liked']);
 }
-/* End check liked or not */
+/* End check liked or not */ 
 
 
 taoh_get_header( $additive );
@@ -91,23 +91,23 @@ taoh_get_header( $additive );
 <style>
 	.error{
 		color: red;
-	}
+	} 
 </style>
 <section class="asks-area pt-5x pb-40px">
 	<div class="container">
 		<div class="row">
 			<div class="col-lg-9">
 				<section class="asks-area pt-10px pb-40px">
-					<?php
+					<?php 
 					$from = 'detail';
 					require_once('asks_detail_content.php'); ?>
 				</section>
-
+				
 			</div><!-- end col-lg-9 -->
 
 			<div class="col-lg-3">
 				<div class="sidebar pt-2">
-
+				
 				<?php if (function_exists('taoh_user_profile_short')) { taoh_user_profile_short($owner_ptoken);  } ?>
 			<?php if (function_exists('taoh_invite_friends_widget')) { taoh_invite_friends_widget($raw_title,'asks');  } ?>
 			<div class="sidebar-widget <?php echo ($ask_info_flag) ? '':'hide'; ?>">
@@ -145,7 +145,7 @@ taoh_get_header( $additive );
 												</div>
 											</div>
 										</div>
-
+										
 					<?php if (function_exists('taoh_jusask_widget')) { taoh_jusask_widget();  } ?>
 				</div><!-- end sidebar -->
 			</div><!-- end col-lg-3 -->
@@ -183,12 +183,12 @@ let is_local = localStorage.getItem(app_slug+'_'+conttoken+'_liked');
 let liked_arr = '<?php echo $liked_arr; ?>';
 
 	$(document).ready(function(){
-
-
+		
+		
 		var detail_like = get_liked_check(conttoken);
 		$('.like_render').html(detail_like);
 		$('[data-toggle="tooltip"]').tooltip();
-
+		
 	});
 	function delete_asks_into(){
 		getIntaoDb(dbName).then((db) => {
@@ -200,7 +200,7 @@ let liked_arr = '<?php echo $liked_arr; ?>';
 			const cursor = event.target.result;
 			if (cursor) {
 				const index_key = cursor.primaryKey;
-				if(index_key.includes('ask'))
+				if(index_key.includes('ask')) 
 				{
 				objectStore.delete(index_key);
 				}
@@ -217,7 +217,7 @@ let liked_arr = '<?php echo $liked_arr; ?>';
         localStorage.removeItem("Status_"+conttoken);
     }
 
-
+		
 	if(get_comment){
 		$("#scroll_show").show();
 		$('html, body').animate({

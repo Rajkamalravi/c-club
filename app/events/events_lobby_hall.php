@@ -1,12 +1,12 @@
 <?php
-include_once $_SERVER['DOCUMENT_ROOT'].'/raj/assets/icons/icons.php';
+include_once TAOH_SITE_PATH_ROOT.'/assets/icons/icons.php';
 $ptoken = (taoh_session_get(TAOH_ROOT_PATH_HASH)['USER_INFO'] ?? null)?->ptoken ?? '';
 $opt = taoh_parse_url(1);
 
 $iamorg = isset($event_organizer_ptokens) && in_array($ptoken, $event_organizer_ptokens);
 ?>
 
-<link rel="stylesheet" href="<?php echo TAOH_SITE_URL_ROOT; ?>/assets/css/events-lobby-hall.css?v=<?php echo TAOH_CSS_JS_VERSION; ?>">
+<link rel="stylesheet" href="<?php echo TAOH_SITE_URL_ROOT; ?>/assets/events/css/events-lobby-hall.css?v=<?php echo TAOH_CSS_JS_VERSION; ?>">
 <?php
 if (TAO_CURRENT_APP_INNER_PAGE == 'events_lobby') {
     ?>
@@ -26,12 +26,12 @@ if (TAO_CURRENT_APP_INNER_PAGE == 'events_lobby') {
             <span style="color: #333333;display:none" id="dashboard-slash" >/</span>
             <a class="nav-link mr-1" id="dashboard-tab" data-toggle="tab" href="#dashboard_desc" role="tab" aria-controls="dashboard" aria-selected="false" style="display:none"> My</a>
         </li>
-        <?php
-
+        <?php 
+        
         if(TAO_CURRENT_APP_INNER_PAGE != 'events_lobby'){ ?>
         <li class="nav-item" id="desc_top">
             <a class="nav-link " id="desc-tab" data-toggle="tab" href="#desc_desc" role="tab" aria-controls="desc" aria-selected="false">Description</a>
-
+            
         </li>
         <?php } ?>
          <?php if(TAOH_TABLES_DISCUSSION_SHOW){ ?>
@@ -48,7 +48,7 @@ if (TAO_CURRENT_APP_INNER_PAGE == 'events_lobby') {
         <?php } ?>
 
         <li class="nav-item">
-            <a class="nav-link" id="rsvp-tab" data-toggle="tab" href="#rsvp_desc" role="tab" aria-controls="rsvp"
+            <a class="nav-link" id="rsvp-tab" data-toggle="tab" href="#rsvp_desc" role="tab" aria-controls="rsvp" 
             aria-selected="false">Attendees</a>
         </li>
 
@@ -59,11 +59,18 @@ if (TAO_CURRENT_APP_INNER_PAGE == 'events_lobby') {
         <li class="nav-item speaker_exhibitor" id="speaker_top" style="display:none">
             <a class="nav-link" id="speakers-tab" data-toggle="tab" href="#speakers_desc" role="tab" aria-controls="speakers" aria-selected="false" >Speakers</a>
         </li>
+        <?php if(TAO_CURRENT_APP_INNER_PAGE == 'events_lobby' && TAOH_ENABLE_CONVERSATION){ ?>
 
+         <li class="nav-item speaker_exhibitor" id="conversation_top" style="display:block">
+            <a class="nav-link" id="conversation-tab" data-toggle="tab" href="#conversation_desc" role="tab" aria-controls="conversation" aria-selected="false" >Conversations</a>
+        </li>
+        
+        <?php } ?>
+        
         <li class="nav-item" style="display:none;">
             <a class="nav-link" id="rooms-tab" data-toggle="tab" href="#rooms_desc" role="tab" aria-controls="rooms" aria-selected="false" style="display:none">Rooms</a>
         </li>
-
+       
         <li class="nav-item position-relative select-dw-svg" style="display:none;">
             <select name="search_halls" id="search_halls">
                 <option value="" selected>-- Select Hall --</option>
@@ -74,13 +81,13 @@ if (TAO_CURRENT_APP_INNER_PAGE == 'events_lobby') {
         </li>
 
         <?php
-        if (TAO_CURRENT_APP_INNER_PAGE == 'events_lobby' || $iamorg) {
+        if (TAO_CURRENT_APP_INNER_PAGE == 'events_lobby' || TAO_CURRENT_APP_INNER_PAGE == 'events_details' || $iamorg) {
 //            echo '<li class="nav-item upgrade_modal_btn_wrapper" style="display:none;right: 70px;position: absolute;">';
 //            echo '<button class="btn btn-primary mr-2" id="upgrade_modal_btn" data-toggle="modal" data-target="#upgradeModal" data-backdrop="static" data-keyboard="false">Upgrade</button>';
 //            echo '</li>';
 
-            echo '<li class="nav-item">';
-            echo '<div class="dropdown show for_agenda d-flex justify-content-end pr-1 pr-lg-3" style="right: 0;position: absolute;top: ' . (TAO_CURRENT_APP_INNER_PAGE == 'events_details' ? '40px': '70px') . ';margin-right: 20px;">';
+            echo '<li class="nav-item d-flex align-items-center">';
+            echo '<div class="dropdown show for_agenda d-flex align-items-center">';
             echo '<a class="btn" style="background-color:#cccccc" href="#" role="button" id="dropdownMenuLink_more" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">⋮</a>';
             echo '<div class="dropdown-menu agenda_more" aria-labelledby="dropdownMenuLink_more" style="z-index: 9;">';
             if (TAO_CURRENT_APP_INNER_PAGE == 'events_lobby') {
@@ -90,7 +97,7 @@ if (TAO_CURRENT_APP_INNER_PAGE == 'events_lobby') {
             if ($iamorg) {
                 echo '<div class="dropdown-item"><a class="pl-2 m-1" onclick="openBanner();" id="add_banner_btn" data-toggle="tab" href="#add_banner_tab" role="tab" aria-controls="desc" aria-selected="false">Add Banner</a></div>';
             }
-            echo '<div class="dropdown-item"><a class="pl-2 m-1" style="display: none;" id="org_video_modal_btn" data-toggle="modal" href="#orgVideoModal">Organizer Video Message</a></div>';
+            echo '<div class="dropdown-item" id="org_video_modal_btn" style="display: none;"><a class="pl-2 m-1" data-toggle="modal" href="#orgVideoModal">Organizer Video Message</a></div>';
             echo '</div>';
             echo '</div>';
             echo '</li>';
@@ -101,7 +108,7 @@ if (TAO_CURRENT_APP_INNER_PAGE == 'events_lobby') {
     <div class="tab-content pt-3 px-0" id="myTabContent">
         <div class="hall-list-container mx-auto tab-pane fade show active speaker_exhibitor" id="agenda_desc" role="tabpanel" aria-labelledby="agenda-tab" style="max-height: unset;">
             <div id="agenda_default_banner" class=" mx-auto mx-xl-0" style="display:none">
-                <?php include_once('includes/defaults.php'); render_agenda_default_banner(); ?>
+                <?php include_once('events_agenda_default_banner.php'); ?>
             </div>
             <div class="agenda_block">
              <div class="dropdown show mb-3 for_agenda d-flex justify-content-end">
@@ -112,9 +119,9 @@ if (TAO_CURRENT_APP_INNER_PAGE == 'events_lobby') {
                 <div class="dropdown-menu agenda_hall_list" aria-labelledby="dropdownMenuLink_agenda" style="z-index: 9;">
 
                 </div>
-
+                
             </div>
-
+            
             <div id="agenda_loaderArea"></div>
             <div id="agenda_list" class=" mx-auto mx-xl-0">
 
@@ -246,11 +253,11 @@ if (TAO_CURRENT_APP_INNER_PAGE == 'events_lobby') {
 
         <div class="hall-list-container mx-auto tab-pane fade speaker_exhibitor" id="exhibitors_desc" role="tabpanel" aria-labelledby="exhibitors-tab" style="max-height: unset;">
             <div id="exhibitor_default_banner" class="mx-auto mx-xl-0"  style="display:none">
-
+                
             </div>
 
             <div class="exhibitor_block">
-                <div class="dropdown show for_exhibitor d-flex justify-content-end pr-1 pr-lg-3">
+                <div class="dropdown show for_exhibitor d-flex justify-content-end pr-1">
                     <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink_exh" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         Select Exhibitor Hall
                     </a>
@@ -263,7 +270,7 @@ if (TAO_CURRENT_APP_INNER_PAGE == 'events_lobby') {
                 <div id="exhibitors_loaderArea"></div>
 
                 <div class="d-flex flex-column  justify-content-xl-center mt-3" style="gap: 36px;">
-                    <div id="exhibitors_list" class="w-100 mx-auto mx-xl-0 pr-1 pr-lg-3">
+                    <div id="exhibitors_list" class="w-100 mx-auto mx-xl-0 pr-1">
 
                     </div>
                 </div>
@@ -289,7 +296,7 @@ if (TAO_CURRENT_APP_INNER_PAGE == 'events_lobby') {
                 </div>
 
                 <div id="exhibitor_default_list" class=" mx-auto mx-xl-0" style="display:none">
-
+                
                 </div>
             </div>
         </div>
@@ -332,30 +339,30 @@ if (TAO_CURRENT_APP_INNER_PAGE == 'events_lobby') {
         </div>
         <div class="hall-list-container mx-auto tab-pane fade pt-3" id="tables_desc" role="tabpanel" aria-labelledby="tables-tab"  style="max-height: unset;">
             <div class="tables_block">
-                <div id="tables_list" class=" mx-auto mx-xl-0 pr-1 pr-lg-3"></div>
+                <div id="tables_list" class=" mx-auto mx-xl-0 pr-1"></div>
             </div>
         </div>
         <div class="hall-list-container mx-auto tab-pane fade pt-3 text-center" id="comments_desc" role="tabpanel" aria-labelledby="comments-tab"  style="max-height: unset;">
             <?php if(taoh_user_is_logged_in() && TAO_CURRENT_APP_INNER_PAGE == 'events_lobby') { ?>
             <div class="comments_block">
-
-                    <?php
+                
+                    <?php 
                     $current_user_name = taoh_session_get(TAOH_ROOT_PATH_HASH)['USER_INFO']->fname.' '.taoh_session_get(TAOH_ROOT_PATH_HASH)['USER_INFO']->lname;
-
+    
                     $currentUserData = json_encode(array(
-                        "user_id" => $ptoken,
-                        "user_name" => $current_user_name,
+                        "user_id" => $ptoken, 
+                        "user_name" => $current_user_name, 
                         "avatar_url" => taoh_get_avatar_src() ,
-                        "profile_link" => TAOH_SITE_URL . '/profile/' . $ptoken
+                        "profile_link" => TAOH_SITE_URL . '/profile/' . $ptoken              
                      ));
 
 
                     ?>
                     <script src="<?php echo TAOH_COMMENTS_JS;?>?v=<?php echo TAOH_CSS_JS_VERSION; ?>"></script>
                     <link rel="stylesheet" href="<?php echo TAOH_COMMENTS_CSS;?>?v=<?php echo TAOH_CSS_JS_VERSION; ?>">
-                    <div id="comments_list" class="mx-auto mx-xl-0 pr-1 pr-lg-3">
+                    <div id="comments_list" class="mx-auto mx-xl-0 pr-1">          
                         <script>
-
+                           
                         var currentUser = {
                             user_id: '<?php echo  $ptoken; ?>',
                             user_name: '<?php echo  $current_user_name; ?>',
@@ -370,7 +377,7 @@ if (TAO_CURRENT_APP_INNER_PAGE == 'events_lobby') {
                                                             appName: 'table_<?php echo $eventtoken?>_comments',
                                                             env: '<?php echo TAOH_COMMENTS_VERSION;?>',
                                                             pageId: '<?php echo addslashes($eventtoken); ?>',
-                                                            currentUser :  currentUser,
+                                                            currentUser :  currentUser, 
                                                             perPage: 20,
                                                             enableNestedComments: true,
                                                             maxNestingLevel: 1
@@ -383,14 +390,14 @@ if (TAO_CURRENT_APP_INNER_PAGE == 'events_lobby') {
                 <!--<a class="btn btn-success banner-v2-btn mt-0 mr-1 register_now" id='' href="javascript:void(0);">Register to view or post comments</a>
             -->
                  <div class="v2-banner flex-column flex-md-row p-3 px-lg-5">
-
+                        
                         <div>
                             <h6 class="mb-2" >Be the first to start posting the comments.</h6>
-
+                            
                             <div class="d-flex align-items-center flex-wrap" style="gap: 6px;">
-
+                               
                                     <span class="info" style="color:#007bff;">Register to view or post comments</span>
-
+                                
                             </div>
                         </div>
                     </div>
@@ -399,16 +406,23 @@ if (TAO_CURRENT_APP_INNER_PAGE == 'events_lobby') {
                 <div class="comments_block">
                     Please login to view and post comments.
                     <br>
-                    <button type="button" class="mt-3 mb-2 btn btn-primary " style="width:200px;" data-location="" data-toggle="modal"
+                    <button type="button" class="mt-3 mb-2 btn btn-primary " style="width:200px;" data-location="" data-toggle="modal" 
                     data-target="#config-modal"><i class="fa fa-ticket mr-2" aria-hidden="true"></i>Login</button>
                 </div>
             <?php } ?>
         </div>
+        <div class="hall-list-container mx-auto tab-pane fade pt-3" id="conversation_desc" role="tabpanel" aria-labelledby="conversation-tab"  style="max-height: unset;">
+            <div class="conversation_block">
+                    <?php include_once('events_conversations.php'); ?>
+            </div>
+        </div>
+
+        
 
         <div class="hall-list-container mx-auto tab-pane fade pt-3" id="dashboard_desc" role="tabpanel" aria-labelledby="dashboard-tab" style="max-height: unset;">
 
             <div id="my_agenda_default_banner" class=" mx-auto mx-xl-0" style="display:none">
-                <?php render_no_saved_agenda_banner(); ?>
+                <?php include_once('events_no_saved_agenda_banner.php'); ?>
             </div>
             <div id="dashboard_loaderArea"></div>
             <div id="dashboard_list" class=" mx-auto mx-xl-0 pr-1 pr-lg-3">
@@ -427,13 +441,13 @@ if (TAO_CURRENT_APP_INNER_PAGE == 'events_lobby') {
 <div class="modal fade" id="unlockRewards" tabindex="-1" role="dialog" aria-labelledby="unlockRewardsLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
-
+      
       <div class="modal-header position-relative border-0 light-dark p-0">
         <button type="button" class="btn v1-modal-close-btn" data-dismiss="modal" aria-label="Close">
             <?= icon('close', '#555555', 12) ?>
         </button>
       </div>
-
+      
       <div class="modal-body px-lg-4">
             <div class="v2-svg-con mx-auto">
                 <svg width="84" height="76" viewBox="0 0 84 76" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -454,7 +468,7 @@ if (TAO_CURRENT_APP_INNER_PAGE == 'events_lobby') {
                 <a href="#" class="btn v1-dark-btn-lg ">I agree, Unlock Rewards</a>
             </div>
       </div>
-
+    
     </div>
   </div>
 </div>
@@ -497,6 +511,6 @@ if (TAO_CURRENT_APP_INNER_PAGE == 'events_lobby') {
         eventtoken: <?= json_encode($eventtoken ?? ''); ?>,
         opt: <?= json_encode($opt ?? ''); ?>,
         speakerTitle: <?= json_encode($speaker_data['spk_title'] ?? 'Video-Chat'); ?>
-    };
+                };
 </script>
-<script src="<?php echo TAOH_SITE_URL_ROOT; ?>/assets/js/events-lobby-hall.js?v=<?php echo TAOH_CSS_JS_VERSION; ?>"></script>
+<script src="<?php echo TAOH_SITE_URL_ROOT; ?>/assets/events/js/events-lobby-hall.js?v=<?php echo TAOH_CSS_JS_VERSION; ?>"></script>

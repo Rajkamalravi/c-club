@@ -35,7 +35,7 @@
                         <?php
                           $learn_foot_rand = blog_lp_related_post($response_tags[0],3);
                           if($learn_foot_rand['success'] && $learn_foot_rand['output']['list']) {
-                          foreach ($learn_foot_rand['output']['list'] as $first_key => $first_val){
+                          foreach ($learn_foot_rand['output']['list'] as $first_key => $first_val){ 
                             if ( ! isset( $first_val['image']) || ! $first_val['image'] || stristr( $first_val['image'], 'images.unsplash.com' ) ) $first_val['image'] = TAOH_CDN_PREFIX."/images/igcache/".urlencode( $first_val['title'] )."/900_600/blog.jpg";
                         ?>
                         <li>
@@ -45,24 +45,24 @@
                             </a>
                           </div><!-- post-thumbnail /-->
                           <h3 style="overflow: hidden; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; text-overflow: ellipsis;"><a class="css-font" href="<?php echo taoh_lp_blog_link(slugify2($first_val['title'])."-".$first_val['conttoken']); ?>"><?php echo $first_val['title']; ?></a></h3>
-                          <!-- <span class="tie-date"><i class="fa fa-clock-o"></i>January 22, 2024</span>	 -->
+                          <!-- <span class="tie-date"><i class="fa fa-clock-o"></i>January 22, 2024</span>	 -->						
                         </li>
                         <?php }
-                          }
+                          } 
                         ?>
                       </ul>
                       <div class="clear"></div>
                     </div>
-                  </div><!-- .widget /-->
+                  </div><!-- .widget /-->		
                 </div>
                 <div id="footer-second" class="footer-widgets-box">
                   <div id="posts-list-widget-3" class="footer-widget posts-list"><div class="footer-widget-top"><h4 class="grey-col"><?php echo ucwords($response_tags[1]); ?>		</h4></div>
-                    <div class="footer-widget-container">
+                    <div class="footer-widget-container">				
                       <ul>
                         <?php
                           $res_foot_rand = blog_lp_related_post($response_tags[1],3);
                           if($res_foot_rand['success'] && $res_foot_rand['output']['list']) {
-                          foreach ($res_foot_rand['output']['list'] as $res_first_key => $res_first_val){
+                          foreach ($res_foot_rand['output']['list'] as $res_first_key => $res_first_val){ 
                             if ( ! isset( $res_first_val['image']) || ! $res_first_val['image'] || stristr( $res_first_val['image'], 'images.unsplash.com' ) ) $res_first_val['image'] = TAOH_CDN_PREFIX."/images/igcache/".urlencode( $res_first_val['title'] )."/900_600/blog.jpg";
                         ?>
                         <li>
@@ -72,24 +72,24 @@
                             </a>
                           </div><!-- post-thumbnail /-->
                           <h3 style="overflow: hidden; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; text-overflow: ellipsis;"><a class="css-font" href="<?php echo taoh_lp_blog_link(slugify2($res_first_val['title'])."-".$res_first_val['conttoken']); ?>"><?php echo $res_first_val['title']; ?></a></h3>
-                          <!-- <span class="tie-date"><i class="fa fa-clock-o"></i>January 22, 2024</span>	 -->
+                          <!-- <span class="tie-date"><i class="fa fa-clock-o"></i>January 22, 2024</span>	 -->						
                         </li>
                         <?php }
-                          }
+                          } 
                         ?>
                       </ul>
                       <div class="clear"></div>
                     </div>
-                  </div><!-- .widget /-->
+                  </div><!-- .widget /-->		
                 </div><!-- #second .widget-area -->
                 <div id="footer-third" class="footer-widgets-box">
                   <div id="posts-list-widget-4" class="footer-widget posts-list"><div class="footer-widget-top"><h4 class="grey-col"><?php echo ucwords($response_tags[2]); ?>		</h4></div>
-                    <div class="footer-widget-container">
+                    <div class="footer-widget-container">				
                       <ul>
                         <?php
                           $brand_foot_rand = blog_lp_related_post($response_tags[2],3);
                           if($brand_foot_rand['success'] && $brand_foot_rand['output']['list']) {
-                          foreach ($brand_foot_rand['output']['list'] as $brand_first_key => $brand_first_val){
+                          foreach ($brand_foot_rand['output']['list'] as $brand_first_key => $brand_first_val){ 
                             if ( ! isset( $brand_first_val['image']) || ! $brand_first_val['image'] || stristr( $brand_first_val['image'], 'images.unsplash.com' ) ) $brand_first_val['image'] = TAOH_CDN_PREFIX."/images/igcache/".urlencode( $brand_first_val['title'] )."/900_600/blog.jpg";
                         ?>
                         <li>
@@ -99,15 +99,15 @@
                             </a>
                           </div><!-- post-thumbnail /-->
                           <h3 style="overflow: hidden; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; text-overflow: ellipsis;"><a class="css-font" href="<?php echo taoh_lp_blog_link(slugify2($brand_first_val['title'])."-".$brand_first_val['conttoken']); ?>"><?php echo $brand_first_val['title']; ?></a></h3>
-                          <!-- <span class="tie-date"><i class="fa fa-clock-o"></i>January 22, 2024</span>	 -->
+                          <!-- <span class="tie-date"><i class="fa fa-clock-o"></i>January 22, 2024</span>	 -->						
                         </li>
                         <?php }
-                          }
+                          } 
                         ?>
                       </ul>
                       <div class="clear"></div>
                     </div>
-                  </div><!-- .widget /-->
+                  </div><!-- .widget /-->		
                 </div><!-- #third .widget-area -->
               </div><!-- #footer-widget-area -->
             </div>
@@ -127,7 +127,7 @@
                           <a class="nav-link " href="'.$foot_line1_val.'" target="_blank" style="color: #999999;">'.$foot_line1_keys.'</a>
                         </li>';
                       }
-                    ?>
+                    ?> 
                   </ul>
                   <ul class="nav justify-content-center border-bottom pb-3 mb-3">
                     <?php

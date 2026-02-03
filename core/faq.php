@@ -1,15 +1,15 @@
-<?php
+<?php  
 
-taoh_get_header();
-
+taoh_get_header(); 
+    
 
 $data = array();
-$current_status = "<a itemprop=\"".TAOH_SITE_URL_ROOT."/settings\" style=\"font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 14px; color: #ffffff; text-decoration: none; line-height: 2em; font-weight: bold; text-align: center; cursor: pointer; display: block; border-radius: 5px; text-transform: capitalize; background-color: #32A250; margin: 0; border-color: #32A250; border-style: solid; border-width: 10px 20px;\"> Checkout Settings!</a>";
+$current_status = "<a itemprop=\"".TAOH_SITE_URL_ROOT."/settings\" style=\"font-family: 'Ubuntu',sans-serif; box-sizing: border-box; font-size: 14px; color: #ffffff; text-decoration: none; line-height: 2em; font-weight: bold; text-align: center; cursor: pointer; display: block; border-radius: 5px; text-transform: capitalize; background-color: #32A250; margin: 0; border-color: #32A250; border-style: solid; border-width: 10px 20px;\"> Checkout Settings!</a>";
 
 if( ! taoh_user_is_logged_in() ) {
-  $current_status = "<a href=\"".TAOH_SITE_URL_ROOT."/login\" itemprop=\"url\" style=\"font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 14px; color: #eaf0f7; text-decoration: none; line-height: 2em; font-weight: bold; text-align: center; cursor: pointer; display: block; border-radius: 5px; text-transform: capitalize; background-color: #0a80ff; margin: 0; border-color: #0a80ff; border-style: solid; border-width: 10px 20px;\" target=\"_BLANK\">Login/Sign Up *</a><right>* Link opens in new tab</right>";
-}
-$current_app = TAOH_SITE_CURRENT_APP_SLUG;
+  $current_status = "<a href=\"".TAOH_SITE_URL_ROOT."/login\" itemprop=\"url\" style=\"font-family: 'Ubuntu',sans-serif; box-sizing: border-box; font-size: 14px; color: #eaf0f7; text-decoration: none; line-height: 2em; font-weight: bold; text-align: center; cursor: pointer; display: block; border-radius: 5px; text-transform: capitalize; background-color: #0a80ff; margin: 0; border-color: #0a80ff; border-style: solid; border-width: 10px 20px;\" target=\"_BLANK\">Login/Sign Up *</a><right>* Link opens in new tab</right>";
+} 
+$current_app = TAOH_SITE_CURRENT_APP_SLUG;  
 $app_config = taoh_app_info($current_app);
 $app_temp = @taoh_parse_url(0) ? taoh_parse_url(0):TAOH_PLUGIN_PATH_NAME;
 $conttokenvar = @taoh_parse_url(3) ? taoh_parse_url(3) : '';
@@ -45,23 +45,23 @@ $array = json_decode($array_json); */
 //echo "<pre>";print_r($array);echo "</pre>";
 //die;
 $about_url = TAOH_SITE_URL_ROOT."/about";
-$array1 = [];
+$array1 = []; 
 if ( $current_app != TAOH_PLUGIN_PATH_NAME ) $about_url = TAOH_SITE_URL_ROOT."/".$current_app."/about";
 
 ?>
 <section class="faq-area pt-30px pb-30px">
     <div class="container">
-        <div class="row">
+        <div class="row"> 
             <div class="col-12">
                 <div class="pb-2">
-                    <h5>Search our help library</h5>
+                    <h5>Search our help library</h5>     
                 </div>
-                <div class="form-group">
-
+                <div class="form-group">    
+                             
                     <input class="form-control pl-40px" type="text" name="searchSupport" id="searchSupport" placeholder='Ask your question here'>
                     <span class="la la-search input-icon"></span>
                     <button class="search-faq"><span class="la la-paper-plane"></span></button>
-
+                    
                 </div>
             </div>
         </div>
@@ -77,8 +77,8 @@ if ( $current_app != TAOH_PLUGIN_PATH_NAME ) $about_url = TAOH_SITE_URL_ROOT."/"
 
                 <div class="row" id="listChatRooms"> </div>
 		        <?php if ( taoh_user_is_logged_in() ){ ?>
-                    <div class="sidebar support-message d-none" id="accordion">
-                        <div class="card card-item">
+                    <div class="sidebar support-message d-none" id="accordion">									
+                        <div class="card card-item">                                   
                             <form action="<?php echo TAOH_ACTION_URL."/support"; ?>" method="post">
                                 <div class="card-body">
                                     <div class="form-group">
@@ -88,20 +88,20 @@ if ( $current_app != TAOH_PLUGIN_PATH_NAME ) $about_url = TAOH_SITE_URL_ROOT."/"
                                                 <i class="la la-angle-up collapse-icon"></i>
                                             </div>
                                             <div class="divider"><span></span></div>
-
+                                            
                                     </div><!-- end form-group -->
                                     <div id="collapse-faq" class="collapse" aria-labelledby="heading-faq" data-parent="#accordion">
                                         <!-- <div class="form-group">
                                                 <label class="fs-14 text-black fw-medium lh-20">First Name<span class="text-gray fs-13"></span></label>
-                                                <input type="text" class="form-control form--control fs-14" placeholder="e.g. First Name" name="first_name">
+                                                <input type="text" class="form-control form--control fs-14" placeholder="e.g. First Name" name="first_name">                                            
                                         </div>
                                         <div class="form-group">
                                                 <label class="fs-14 text-black fw-medium lh-20">Last Name<span class="text-gray fs-13"></span></label>
-                                                <input type="text" class="form-control form--control fs-14" placeholder="e.g. Last Name" name="last_name">
+                                                <input type="text" class="form-control form--control fs-14" placeholder="e.g. Last Name" name="last_name">                                            
                                         </div>
                                         <div class="form-group">
                                                 <label class="fs-14 text-black fw-medium lh-20">Email<span class="text-gray fs-13"></span></label>
-                                                <input type="text" class="form-control form--control fs-14" placeholder="e.g. Email" name="email">
+                                                <input type="text" class="form-control form--control fs-14" placeholder="e.g. Email" name="email">                                            
                                         </div> -->
                                         <div class="form-group">
                                                 <label class="fs-14 text-black fw-medium lh-20">Message</label>
@@ -116,24 +116,24 @@ if ( $current_app != TAOH_PLUGIN_PATH_NAME ) $about_url = TAOH_SITE_URL_ROOT."/"
                         </div><!-- end card -->
                     </div><!-- end sidebar -->
                 <?php } else { ?>
-                    <div class="sidebar support-message d-none" id="accordion">
-                        <div class="card card-item">
+                    <div class="sidebar support-message d-none" id="accordion">									
+                        <div class="card card-item">   
                             <div class="card-body">
                                 <div class="form-group">
                                         <!-- <h3 class="fs-17 pb-3 text-info">If you still need help contact us</h3> -->
                                         <div class="btn btn-link"  aria-expanded="true" aria-controls="collapse-faq">
                                             <span>If you still need help, please provide us with your feedback using the following link:  <a href="https://one.tao.ai/taoreach" target="_blank">https://one.tao.ai/taoreach.</a></span>
-
+                                            
                                         </div>
                                         <div class="divider"><span></span></div>
-
+                                        
                                 </div>
                             </div>
                         </div>
                     </div>
                 <?php } ?>
-
-
+				
+            
     </div><!-- end container -->
 </section>
 
@@ -158,7 +158,7 @@ if ( $current_app != TAOH_PLUGIN_PATH_NAME ) $about_url = TAOH_SITE_URL_ROOT."/"
   let currentMod = '<?php echo $app_config->slug; ?>';
   let faqresult = [];
   $(document).ready(function(){
-
+   
         $('.ts-control').css('height', '37px');
         taoh_asks_init();
   });
@@ -174,11 +174,11 @@ function taoh_asks_init() {
 			locationClear.show();
 		} else {
 			locationClear.hide();
-		} */
-       // console.log("<?php //echo $array_json; ?>")
-
+		} */     
+       // console.log("<?php //echo $array_json; ?>")   
+     
       var data = {
-           'taoh_action': 'get_support',
+           'taoh_action': 'get_support',           
            'app': '<?php echo $app_temp; ?>',
            'contoken' : '<?php echo $conttokenvar;?>',
            'url':'<?php echo $detail_name; ?>'
@@ -190,17 +190,17 @@ function taoh_asks_init() {
             $.each(data, function(i, v){
                 if(i != ''){
                     let temp = [];
-                    var slotstr = v.substring(0,100);
-                    temp['key'] = i;
-                    temp['value'] = v;
+                    var slotstr = v.substring(0,100); 
+                    temp['key'] = i; 
+                    temp['value'] = v; 
                     faqresult.push(temp);
                 }
             });
         });
         render_asks_template(faqresult, listChatRooms);
-
-      });
-
+        
+      }); 
+ 
 	}
 
 	function render_asks_template(response, slot) {
@@ -208,14 +208,14 @@ function taoh_asks_init() {
        	slot.empty();
         if(response.length > 0){
             //$('.support-message').addClass('d-none');
-            $.each(response, function(j, data){
+            $.each(response, function(j, data){        
                     var strlen = data.value.length;
-                    //console.log(strlen)
-                    var slotstr = data.value.substring(0,150);
+                    //console.log(strlen)    
+                    var slotstr = data.value.substring(0,150);   
                     var showtext =  '';
                     if(strlen > 150){
                         showtext =  `<span class="less-content-${j}">${slotstr}... <a class="show-more fs-12" data-id="${j}" style="cursor:pointer;">show more</a></span>
-                                    <span class="more-content-${j} d-none">${data.value} <a class="show-less fs-12" data-id="${j}" style="cursor:pointer;">show less</a></span>`
+                                    <span class="more-content-${j} d-none">${data.value} <a class="show-less fs-12" data-id="${j}" style="cursor:pointer;">show less</a></span>`             
                     }else{
                         showtext =  `<span class="less-content-${j}">${slotstr}</span>`;
                     }
@@ -229,11 +229,11 @@ function taoh_asks_init() {
                             </div>
                         </div>`
                         );
-
+            
             });
             $('.support-message').removeClass('d-none');
            // slot.append(`<div class="col-lg-12  media media-card media--card align-items-center">"Do you have other questions? <a class="btn btn-sm issue-not-found"> Yes </a>, or <a class="btn btn-sm issue-found"> No </a></div>`);
-
+            
         }else{
             slot.append(`<div class="col-lg-6  media media-card media--card align-items-center">No result found</div>`);
             $('.support-message').removeClass('d-none');
@@ -270,7 +270,7 @@ function taoh_asks_init() {
     if (event.key === "Enter") {
         // Cancel the default action, if needed
         event.preventDefault();
-
+        
         searchSupportResult();
        // document.getElementById("myBtn").click();
     }
@@ -283,7 +283,7 @@ function taoh_asks_init() {
         var searchstrtemp  = $('#searchSupport').val();
         searchstrtemp = searchstrtemp.replace('"','');
         searchstrtemp = searchstrtemp.replace(',','');
-
+        
         var searchstr = searchstrtemp.toLowerCase();
 
        let result = faqresult.filter(function(value) {
@@ -302,10 +302,10 @@ function taoh_asks_init() {
                if(str.indexOf(searchstr) > -1){
                     return true;
                 }
-            }
-
-        });
-
+            } 
+      
+        });      
+     
 
         //console.log(result);
         render_asks_template(result, listChatRooms);

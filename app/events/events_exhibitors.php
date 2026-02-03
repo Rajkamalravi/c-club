@@ -1,5 +1,5 @@
 <?php
-include_once $_SERVER['DOCUMENT_ROOT'].'/raj/assets/icons/icons.php';
+include_once TAOH_SITE_PATH_ROOT.'/assets/icons/icons.php';
 require_once('events_exhibitor_form_new.php');
 //echo "===ssssssssss";die();
 // $click_view = (isset($_SERVER['HTTP_REFERER']) && !empty($_SERVER['HTTP_REFERER'])) ? 'click' : 'view';
@@ -15,19 +15,19 @@ $ref_slug = taoh_parse_url(4);
 $trackingtoken = '';
 
 if($taoh_user_is_logged_in && $ptoken != ''){
-
+    
     $trackingtoken = hash('sha256',(string)$ptoken);
-
+    
 }
 
 $social_token = '';
 if (isset($ref_param) && $ref_param != '' && $ref_param != 'stlo') {
-
-    $hashptoken =  hash('sha256',(string)$ptoken);
+    
+    $hashptoken =  hash('sha256',(string)$ptoken); 
     if ( $ptoken !== '' && $hashptoken === (string)$ref_param) {
         $social_token = $ref_param;
     }
-
+    
 }
 
 $success_discount_amt   = (string)($GLOBALS['success_discount_amt']   ?? '');
@@ -41,7 +41,7 @@ $user_country_name = trim(end($user_country_array));
 // echo 'user_country_name : '.$user_country_name."====".$full_location;
 ?>
 <?php // exhibitors css ?>
-<link rel="stylesheet" href="<?php echo TAOH_SITE_URL_ROOT; ?>/assets/css/events-exhibitors.css?v=<?php echo TAOH_CSS_JS_VERSION; ?>">
+<link rel="stylesheet" href="<?php echo TAOH_SITE_URL_ROOT; ?>/assets/events/css/events-exhibitors.css?v=<?php echo TAOH_CSS_JS_VERSION; ?>">
 <div class="modal fade" id="sponsorDetailModal" tabindex="-1" role="dialog" aria-labelledby="sponsorDetailModal" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content">
@@ -70,13 +70,13 @@ $user_country_name = trim(end($user_country_array));
                             </p>
                             <a class="visit-link btn" href="#" id="sponsorDetailWebsite" target="_blank">Visit Website</a>
                         </div>
-                    </div>
+                    </div>  
                 </div>
 
             </div>
         </div>
     </div>
-
+    
 <script>
     window._exh_cfg = {
         myPtoken: <?= json_encode((taoh_session_get(TAOH_ROOT_PATH_HASH)['USER_INFO'] ?? null)?->ptoken ?? ''); ?>,
@@ -84,6 +84,6 @@ $user_country_name = trim(end($user_country_array));
         userCountryName: <?= json_encode($user_country_name ?? ''); ?>,
         socialToken: <?= json_encode($social_token); ?>,
         trackingToken: <?= json_encode($trackingtoken); ?>
-    };
+                        };
 </script>
-<script src="<?php echo TAOH_SITE_URL_ROOT; ?>/assets/js/events-exhibitors.js?v=<?php echo TAOH_CSS_JS_VERSION; ?>"></script>
+<script src="<?php echo TAOH_SITE_URL_ROOT; ?>/assets/events/js/events-exhibitors.js?v=<?php echo TAOH_CSS_JS_VERSION; ?>"></script>

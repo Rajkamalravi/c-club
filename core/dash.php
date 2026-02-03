@@ -28,7 +28,7 @@ $taoh_vals = array(
   //'toenter' => $dash,
   //'available_apps' => taoh_available_apps(),
   //'source' => TAOH_SITE_URL_ROOT,
-
+  
   //'site' => TAOH_SITE_TITLE,
   //'url' => TAOH_SITE_URL,
   //'path' => TAOH_WERTUAL_SLUG,
@@ -46,7 +46,7 @@ $taoh_vals = array(
   );
   $return = taoh_remote_cache( $post_data );
   $result = json_decode($return, true);
-
+        
 //echo "<pre>";print_r($result);//die();*/
 $url = TAOH_SITE_URL_ROOT;
 if ( $result[ 'success' ] && $result[ 'output' ] ){

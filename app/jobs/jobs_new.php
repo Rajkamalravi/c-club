@@ -23,7 +23,7 @@ $taoh_vals = array(
     'slug' => TAO_PAGE_TYPE,
 );
 //echo taoh_apicall_get_debug($taoh_call, $taoh_vals);exit();
-$get_liked = json_decode( taoh_apicall_get($taoh_call, $taoh_vals), true );
+$get_liked = json_decode( taoh_apicall_get($taoh_call, $taoh_vals), true );	
 $liked_arr = '';
 if(isset($get_liked['conttoken_liked'])){
 	$liked_arr = json_encode($get_liked['conttoken_liked']);
@@ -48,7 +48,7 @@ $_SESSION[TAOH_ROOT_PATH_HASH.'_applied_jobs'] = array();
 
 if($data_res['success']){
 	$_SESSION[TAOH_ROOT_PATH_HASH.'_eligible_scouted_jobs'] = $data_res['output'];
-
+	
 }
 
 //list of applied job contoken
@@ -68,7 +68,7 @@ $applied = taoh_apicall_get($taoh_call, $taoh_vals);
 $applied_res = json_decode($applied,1);
 $apply_result = array();
 if($applied_res['success']){
-
+  
   foreach($applied_res['output'] as $key=>$val){
 	$apply_result[$val['conttoken']] = $val['apply_id'];
 
@@ -120,7 +120,7 @@ span.h5 {
             </div>
 
 			<div class="hero-btn-box col-lg-3" >
-				<?php
+				<?php 
 				if(taoh_user_is_logged_in()) {
                 	if( $taoh_user_vars->type == 'employer') {
 						//echo "<a href=\"".TAOH_DASH_URL."?app=".$app_data->slug."&from=dash&to=".$app_data->slug."\" class=\"btn theme-btn w-100 mb-3\" style=\"background-color: #38B653;\"><i class=\"icon-line-awesome-wechat\"></i>My ".$app_data->slug." <i class=\"icon-material-outline-arrow-right-alt\"></i></a><a href=\"".TAOH_DASH_URL."?app=".$app_data->slug."&from=dash&to=".$app_data->slug."/post\" data-metrics=\"post\" class=\"btn theme-btn w-100 mb-3\"><i class=\"icon-line-awesome-wrench\"></i> Post ".$app_data->name_slug." <i class=\"icon-material-outline-arrow-right-alt\"></i></a>"; http://localhost/wpl/hires-i/jobs/dash
@@ -132,7 +132,7 @@ span.h5 {
 					echo "
 					<a href=\"".TAOH_LOGIN_URL."/".$app_data->slug."\" class=\"btn theme-btn mb-3\"><i class=\"la la-sign-in mr-1\"></i> Login / Signup</a>
 					";
-				}
+				} 
 				?>
 			</div>
         </div><!-- end hero-content -->
@@ -141,15 +141,15 @@ span.h5 {
 			</header>
 <section class="question-area pt-40px pb-40px">
     <div class="container">
-
+			
 				<!-- <div class="filters">
                     <div class="d-flex flex-wrap align-items-center">
                         <div class="d-flex flex-wrap align-items-center flex-grow-1">
                             <div class="form-group mr-3 flex-grow-1">
 							<label for="">Search Keyword <span style="display:none" id="searchClear" onclick="clearBtn('search')" class="badge badge-danger"><i class="la la-close"></i> Clear</span></label>
-
+									
 							<?php //echo field_search('do_search'); ?>
-
+                               
                             </div>
 								<div class="form-group mr-3 flex-grow-1">
                                 <label for="">Search Location <span style="display:none" id="locationClear" onclick="clearBtn('geohash')" class="badge badge-danger"><i class="la la-close"></i> Clear</span></label>
@@ -159,11 +159,11 @@ span.h5 {
                         <!-- <div class="search-btn-box mb-3">
                             <button onclick='search()' class="btn theme-btn">Search </button>
                         </div> -->
-
+						
 						<!-- end search-btn-box -->
                     <!-- </div> -->
-
-
+                
+                  
                     <!-- <div class="d-flex flex-wrap align-items-center justify-content-between">
                         <p id='jobCount' class="fs-14 fw-medium"></p> -->
                         <!-- <div class="d-flex align-items-center lh-1">
@@ -175,7 +175,7 @@ span.h5 {
                             </select>
                         </div> -->
                     <!-- </div> -->
-
+               
 				<!-- </div> -->
         <div class="tab-content" id="myTabContent">
             <div class="tab-pane fade show active" id="jobs" role="tabpanel" aria-labelledby="jobs-tab">
@@ -194,12 +194,12 @@ span.h5 {
                             <label for="">Search Location <span style="display:none" id="locationClear" onclick="clearBtn('geohash')" class="badge badge-danger"><i class="la la-close"></i> Clear</span></label>
                          </div>
                       </div> -->
-					  <?php
+					  <?php 
 				if(taoh_user_is_logged_in()) {
-                	include('search.php');
+                	include('search.php'); 
 				}
 			?>
-					  <div id='loaderArea'></div>
+					  <div id='loaderArea'></div> 
                       <div id="eventArea">Loading ...</div>
 					  <div id="pagination"></div>
 
@@ -338,10 +338,10 @@ if ( isset( $taoh_user_vars->type ) && $taoh_user_vars->type == 'employer'){
 						<?php if (function_exists('taoh_get_recent_jobs')) { taoh_get_recent_jobs();  } ?>
 						<?php if (function_exists('taoh_invite_friends_widget')) { taoh_invite_friends_widget('','jobs');  } ?>
 						<?php if (function_exists('taoh_jusask_widget')) { taoh_jusask_widget();  } ?>
-
+						
 						<?php if (function_exists('taoh_tao_widget')) { taoh_tao_widget();  } ?>
 						<?php if (function_exists('taoh_asks_widget')) { taoh_asks_widget();  } ?>
-
+						
 						<?php if (function_exists('taoh_readables_widget')) { taoh_readables_widget();  } ?>
 
 						<?php if (function_exists('taoh_ads_widget')) { taoh_ads_widget();  } ?>
@@ -381,8 +381,8 @@ if ( isset( $taoh_user_vars->type ) && $taoh_user_vars->type == 'employer'){
                                 <h5 class="fs-14 text-uppercase mb-3 text-gray">1. Personal Details</h5>
                                 <div class="form-group">
                                     <label class="fs-14 text-black fw-medium">First Name <span style="color:red;">*</span></label>
-                                    <?php
-                                    if(isset($taoh_user_vars->profile_complete)
+                                    <?php 
+                                    if(isset($taoh_user_vars->profile_complete) 
                                     && $taoh_user_vars->profile_complete == 0 && isset($taoh_user_vars->fname) && $taoh_user_vars->fname == TAOH_SITE_NAME_SLUG)
                                     echo field_fname();
                                     else
@@ -390,8 +390,8 @@ if ( isset( $taoh_user_vars->type ) && $taoh_user_vars->type == 'employer'){
                                 </div><!-- end form-group -->
                                 <div class="form-group">
                                     <label class="fs-14 text-black fw-medium">Last Name <span style="color:red;">*</span></label>
-                                    <?php
-                                    if(isset($taoh_user_vars->profile_complete)
+                                    <?php 
+                                    if(isset($taoh_user_vars->profile_complete) 
                                     && $taoh_user_vars->profile_complete == 0 && isset($taoh_user_vars->fname) && $taoh_user_vars->fname == TAOH_SITE_NAME_SLUG)
                                     echo field_lname();
                                     else
@@ -405,7 +405,7 @@ if ( isset( $taoh_user_vars->type ) && $taoh_user_vars->type == 'employer'){
                                     <label class="fs-14 text-black fw-medium">Place of residence <span style="color:red;">*</span></label>
                                     <?php echo field_job_location($taoh_user_vars->coordinates,$taoh_user_vars->full_location, $taoh_user_vars->geohash); ?>
                                 </div><!-- end form-group -->
-                                <div class="form-group">
+                                <div class="form-group"> 
                                     <label class="fs-14 text-black fw-medium">Current Company</label>
                                     <?php echo field_company( ( isset( $taoh_user_vars->company ) && $taoh_user_vars->company ) ? $taoh_user_vars->company: '' ); ?>
                                 </div><!-- end form-group -->
@@ -473,7 +473,7 @@ if ( isset( $taoh_user_vars->type ) && $taoh_user_vars->type == 'employer'){
       </div>
       <div class="modal-body">
 	  	<section class="mb-3 mt-3" id="share_icon">
-
+			
 		</section>
       </div>
       <div class="modal-footer">
@@ -499,7 +499,7 @@ if ( isset( $taoh_user_vars->type ) && $taoh_user_vars->type == 'employer'){
 	let postDate = $('#postdate').val();
 	let from_date = $('#from_date').val();
 	let to_date = $('#to_date').val();
-	let activeListloaderArea = $('#activeListloaderArea');
+	let activeListloaderArea = $('#activeListloaderArea'); 
 	let listUpdatedAt = 0;
 	let activeChatList = $('#activeChatList');
 	let jobCount = $('#jobCount');
@@ -655,7 +655,7 @@ function taoh_scout_list(){
 	   'ptoken': '<?php echo $ptoken; ?>',
      };
     jQuery.post("<?php echo taoh_site_ajax_url(); ?>", data, function(response) {
-      	res = JSON.stringify(response['output']);
+      	res = JSON.stringify(response['output']); 
 		localStorage.setItem('scout_list', res);
 		const str = localStorage.getItem('scout_list');
 		const parsedArray = JSON.parse(str);
@@ -737,7 +737,7 @@ function taoh_jobs_init (queryString=""){
 
 	totalItems = data.output.total
 	jobCount.append(totalItems + ' jobs Found');
-	if(!get_slug){
+	if(!get_slug){	
     	var result = format_object(data);
 	}else{
 		var result = data;
@@ -750,7 +750,7 @@ function taoh_jobs_init (queryString=""){
 				var get_liked = 1;
 			}else{
 				var get_liked = 0;
-			}
+			} 
 			let is_local = localStorage.getItem(app_slug+'_'+v.conttoken+'_liked');
 			if ((get_liked) || (is_local)) {
 				var liked_check = `<a style="font-size:20px;" class=""><i title="Like" class="la la-heart text-danger"></i></a>&nbsp;<?php if (TAOH_METRICS_COUNT_SHOW) { ?><span id="likeCount" data-conts="${(v.conttoken)}" class="badge text-dark fs-14 p-0 met_like"></span><?php } ?>`
@@ -788,7 +788,7 @@ function taoh_jobs_init (queryString=""){
 						apply_email_link = `<a href="${'mailto:'+v.email}" target="_blank"  class="tag-link text-primary">APPLY</a>`
 					}
 				}
-
+			
 			/*if(v.enable_scout_job && profile != 'recruiter'){
 				apply_email_link += `<a href="<?php echo TAOH_SITE_URL_ROOT."/".($app_data?->slug ?? '')."/scouts-dashboard"; ?>" target="_blank"  class="tag-link text-primary">Apply through Scout</a>`
 			}*/
@@ -799,16 +799,16 @@ function taoh_jobs_init (queryString=""){
 					<h5 class="pb-1">
 						<a class="dash_metrics" data-metrics="view" conttoken="${v.conttoken}" data-type="jobs" target='_blank' href="<?php echo TAOH_SITE_URL_ROOT."/".($app_data?->slug ?? '')."/d/"; ?>${convertToSlug(displayTaohFormatted(v.title))}-${v.conttoken}">${displayTaohFormatted(v.title)}</a>
 						&nbsp;&nbsp;
-						<?php
-
+						<?php 
+						
 						if ( taoh_user_is_logged_in()) { ?>
 							${apply_email_link}
 							<div class="tags float-right">
 								${liked_check}
 								${shares_count}
 							</div>
-						<?php }
-
+						<?php } 
+						
 						?>
 					</h5>
 					<div class="col-lg-12">
@@ -818,12 +818,12 @@ function taoh_jobs_init (queryString=""){
 					</div>
 					<div class="col-lg-12">
 						${v.full_location ? generateLocationHTML(v.full_location): ''}
-					</div>
+					</div>                    
 					</div>
 			</div>`);
 			/*<div class="col-lg-4">
 						<button class="btn btn-primary" onclick="refer(this, ${v.conttoken})">Refer</button>
-
+						
 					</div>*/
 		});
 		if(data.output.total >= 11) {
@@ -832,7 +832,7 @@ function taoh_jobs_init (queryString=""){
 		}else{
 			$('#pagination').hide();
 		}
-
+		
 		if(search){
 			mertricsLoad();
 		}
@@ -905,7 +905,7 @@ function taoh_jobs_init (queryString=""){
             })
             .then((data) => {
                 if (data.success) {
-					var data_url = data.output;
+					var data_url = data.output;	
                     $('.resume_link').val(data_url);
                 } else {
                     document.getElementById("responseMessage").style.color = "red";
@@ -931,9 +931,9 @@ function taoh_jobs_init (queryString=""){
 			);
 			var serialize = $('#fileUploadForm').serialize();
 			var editor_val = $('.summernote').summernote('code');
-
+			
 			var apply_method = enable_scout_apply ? 'scout_apply' : 'apply';
-			var datas = {
+			var datas = {			
 				'taoh_action': 'toah_metrics_push',
 				'conttoken': $('.mod_conntoken').val(),
 				'ptoken': '<?php echo $log_nolog_token; ?>',
@@ -944,7 +944,7 @@ function taoh_jobs_init (queryString=""){
 			};
 			jQuery.post("<?php echo taoh_site_ajax_url(); ?>", datas, function(response) {
 				if(response.success){
-
+		
 				}else{
 					console.log( "Like Failed!" );
 				}
@@ -961,12 +961,12 @@ function taoh_jobs_init (queryString=""){
 						taoh_set_success_message('Your application has been submitted.');
 						window.location.reload();
 					}
-					else{
+					else{  
 						$('.submit').prop("disabled", true);
 						// add spinner to button
 						$('.submit').html(
 							`<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span> Loading...`
-						);
+						);   
 					}
 					}).fail(function() {
 						console.log( "Network issue111!" );
@@ -1004,10 +1004,10 @@ function taoh_jobs_init (queryString=""){
                 extension:"Please upload .pdf or .doc or .docx file of notice.",
                 required:"Please upload file."
             }
-        },
+        }, 
     });
 
-
+	
 	$(document).on('click','.share_box', function(event) {
 		var datatitle = $(this).attr("data-title");console.log(datatitle);
 		var dataptoken = $(this).attr("data-ptoken");
@@ -1062,7 +1062,7 @@ function taoh_jobs_init (queryString=""){
 		};
 		jQuery.post("<?php echo taoh_site_ajax_url(); ?>", data, function(response) {
 			if(response.success){
-
+				
 			}else{
 				console.log( "Like Failed!" );
 			}
@@ -1099,7 +1099,7 @@ function taoh_jobs_init (queryString=""){
 		$('#pagination').empty();
     	taoh_jobs_init();
 	}*/
-
+	
 /*$(document).on('click','.dash_metrics', function(event) {
 	var metrics = $(this).attr("data-metrics");
 	var data = {

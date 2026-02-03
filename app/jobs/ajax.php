@@ -33,7 +33,7 @@ function jobs_get() {
 	  //'secret' => TAOH_API_SECRET,
     'token'=>taoh_get_dummy_token(1),
     'key' => defined('TAOH_JOBS_GET_LOCAL') && TAOH_JOBS_GET_LOCAL ? TAOH_API_SECRET : TAOH_API_DUMMY_SECRET,
-    'token' => taoh_get_dummy_token(1),
+    'token' => taoh_get_dummy_token(1),   
     'local'=>TAOH_JOBS_GET_LOCAL,
     'geohash'=>$geohash,
     'search'=>$search,
@@ -45,10 +45,10 @@ function jobs_get() {
     'filters'=>$allFilters,
     'filter_type'=>$filter_type,
     'cfcc5h'=> 1,
-
+    
     //'cache'=> array ( "name" => taoh_p2us($taoh_call).'_'.$_POST['ptoken'].'_'.TAOH_ROOT_PATH_HASH.'_'.hash('crc32',$search.$geohash.$allFilters.$offset.$limit).'_list', 'ttl' => 3600 ),
   );
-
+ 
   //$taoh_vals[ 'cfcache' ] = hash('sha256', $taoh_call . serialize($taoh_vals));
   /*if ( $offset == $offset_default && $limit == $limit_default ) {
     $taoh_vals['cache'] = array ( "name" => taoh_p2us($taoh_call).'_'.TAOH_API_SECRET.'_'.hash('crc32',$search).'_list', 'ttl' => 3600 ) ;
@@ -59,9 +59,9 @@ function jobs_get() {
     unset($taoh_vals['cache_time']);
     unset($taoh_vals['cache']);
     $taoh_vals['token'] = taoh_get_dummy_token();
-
+    
   }
-
+  
   $taoh_call_type = "get";
   //echo taoh_apicall_get_debug( $taoh_call, $taoh_vals );die;
   //$data = taoh_apicall_get($taoh_call, $taoh_vals, '', 1);
@@ -79,7 +79,7 @@ function jobs_get_detail_old(){
   $mod = 'jobs';
   $taoh_call = 'jobs.job.get';
   if ( ! ctype_alnum( $conttoken ) ) { taoh_redirect( TAOH_SITE_URL_ROOT.'/'.TAOH_SITE_CURRENT_APP_SLUG );taoh_exit(); }
-
+  
   //$cache_name = $mod.'_'.$ops.'_' . $conttoken . '_' . taoh_scope_key_encode( $conttoken, 'global' );
   $cache_name = $mod.'_'.$ops.'_' . $conttoken ;
   $taoh_vals = array(
@@ -90,7 +90,7 @@ function jobs_get_detail_old(){
       'cache_time' => 7200,
      // 'cache' => array ( "name" => $cache_name,  "ttl" => 7200),
       'conttoken' => $conttoken,
-
+      
   );
   //$taoh_vals[ 'cfcache' ] = $cache_name;
   ksort($taoh_vals);
@@ -198,10 +198,10 @@ function taoh_apply_job_referral(){
       'token' => taoh_get_dummy_token(),
       'toenter' => $toenter,
   );
-
+  
   //echo taoh_apicall_post_debug( $taoh_call, $taoh_vals );
   // $result = taoh_post( TAOH_CACHE_CHAT_PROC_URL, $taoh_vals );
-  $result = json_decode(taoh_apicall_post($taoh_call, $taoh_vals));
+  $result = json_decode(taoh_apicall_post($taoh_call, $taoh_vals)); 
   //print_r($result);die();
   $res = array('success'=> 1,'refer_token' => $result->refer_token[0]);
   setcookie(TAOH_ROOT_PATH_HASH.'_'.'refer_token', $result->refer_token[0], strtotime( '+1 days' ), '/');

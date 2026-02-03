@@ -1,4 +1,4 @@
-<?php
+<?php 
 if ( ! defined ( 'TAO_PAGE_TITLE' ) ) { define ( 'TAO_PAGE_TITLE', "Career Resources at ".TAOH_SITE_NAME_SLUG.": Explore Invaluable Resources and Insights for Professional Development" ); }
 if ( ! defined ( 'TAO_PAGE_DESCRIPTION' ) ) { define ( 'TAO_PAGE_DESCRIPTION', "Discover a wealth of career blogs offering invaluable resources, tips, and insights for your professional development at ".TAOH_SITE_NAME_SLUG.". Stay updated with the latest industry trends, enhance your skills, and gain inspiration from our diverse collection of career-focused articles. Elevate your career journey with our comprehensive learning platform." ); }
 if ( ! defined ( 'TAO_PAGE_KEYWORDS' ) ) { define ( 'TAO_PAGE_KEYWORDS', "Career blogs at ".TAOH_SITE_NAME_SLUG.", Professional development resources at ".TAOH_SITE_NAME_SLUG.", Career insights at ".TAOH_SITE_NAME_SLUG.", Industry trends at ".TAOH_SITE_NAME_SLUG.", Skill enhancement tips at ".TAOH_SITE_NAME_SLUG.", Career inspiration at ".TAOH_SITE_NAME_SLUG.", Career growth articles at ".TAOH_SITE_NAME_SLUG.", Personal branding strategies at ".TAOH_SITE_NAME_SLUG.", Leadership development insights at ".TAOH_SITE_NAME_SLUG.", Job search strategies at ".TAOH_SITE_NAME_SLUG.", Resume writing tips at ".TAOH_SITE_NAME_SLUG.", Interview preparation advice at ".TAOH_SITE_NAME_SLUG.", Networking guidance at ".TAOH_SITE_NAME_SLUG.", Professional growth articles, Career exploration resources at ".TAOH_SITE_NAME_SLUG.", Industry-specific insights at ".TAOH_SITE_NAME_SLUG.", Workplace success tips at ".TAOH_SITE_NAME_SLUG.", Work-life balance strategies at ".TAOH_SITE_NAME_SLUG.", Career transition advice at ".TAOH_SITE_NAME_SLUG.", Continuous learning resources at ".TAOH_SITE_NAME_SLUG ); }
@@ -49,22 +49,22 @@ $getjstitle = json_encode($items);
                 </a>
             </div>
             <?php } ?>
-            </div>
+            </div>        
         </div><!-- end hero-content -->
-        <div class="row bg-white">
-            <div class="col-lg-8 m-15px-tb">
+        <div class="row bg-white"> 
+            <div class="col-lg-8 m-15px-tb"> 
                 <div class="mt-3 sticky-top light-dark">
                     <?php taoh_newsletter_search_widget(); // taoh_reads_search_widget(); ?>
-                </div>
+                </div>  
                 <div class="">
-                    <?php taoh_all_reads_widget( $get_widget[ 'center1' ], 'center1' ); ?>
-                    <?php taoh_all_reads_widget( $get_widget[ 'center2' ], 'center2' ); ?>
+                    <?php taoh_all_reads_widget( $get_widget[ 'center1' ], 'center1' ); ?> 
+                    <?php taoh_all_reads_widget( $get_widget[ 'center2' ], 'center2' ); ?> 
                     <?php taoh_all_reads_widget( $get_widget[ 'center3' ], 'center3' ); ?>
-                    <div class="blured">
+                    <div class="blured"> 
                         <div id='loaderArea'></div>
                         <div>
                             <h4 class="session_title ml-3"><span>LATEST ARTICLES</span></h4>
-                            <div id="eventArea">Loading ...</div>
+                            <div id="eventArea">Loading ...</div> 
                         </div>
                         <div class="mb-4" id="pagination"></div>
                     </div>
@@ -86,7 +86,7 @@ $getjstitle = json_encode($items);
                 <div class="border-bottom">
                     <?php // taoh_all_reads_widget( $get_widget[ 'right2' ], 'right2' ); ?>
                     <?php if (function_exists('taoh_get_recent_jobs')) { taoh_get_recent_jobs('new');  } ?>
-                </div>
+                </div>           
                 <section id="sticky">
                     <div class="border-bottom">
                         <?php taoh_all_reads_widget( $get_widget[ 'right_ad3' ], 'right_ad3' ); ?>
@@ -148,7 +148,7 @@ $getjstitle = json_encode($items);
         'ops': 'list',
         'offset': currentPage,
         'limit': itemsPerPage,
-
+        
     };
     // console.log(data);
     jQuery.post("<?php echo taoh_site_ajax_url(); ?>", data, function(response) {
@@ -170,7 +170,7 @@ function render_newsletter_template(data, slot) {
 
   $.each(data.output.list, function(i, v){
       var prefix = '<?php echo TAOH_CDN_PREFIX ?>';
-      v.blurb.image = prefix+"/images/igcache/"+encodeURIComponent(v.title)+"/900_600/blog.jpg";
+      v.blurb.image = prefix+"/images/igcache/"+encodeURIComponent(v.title)+"/900_600/blog.jpg"; 
       slot.append(`
                   <div class="td_module_12 mt-3">
                       <div class="item-details">
@@ -200,7 +200,7 @@ function render_newsletter_template(data, slot) {
   if(totalItems >= 11){
     show_pagination('#pagination');
   }
-
+  
 }
 
 
@@ -220,7 +220,7 @@ function render_newsletter_template(data, slot) {
     }
   }
   //Trending Bar End
-
+  
 $('.claimedRight').each(function (f) {
 
     var newstr = $(this).text().substring(0,250)+'....';

@@ -8,14 +8,14 @@ else{
   if ( taoh_user_is_logged_in() ){
     //echo "===========";die();
     $url = TAOH_SITE_URL_ROOT.'?uslo=1';
-      taoh_redirect($url);
+      taoh_redirect($url); 
       taoh_exit();
   }
 }
 $_SESSION = array();
 if ( ! defined ( 'TAOH_SITE_MAIN_TITLE' ) ) define ( 'TAOH_SITE_MAIN_TITLE', 'Elevate Your Career with '.TAOH_SITE_NAME_SLUG.'!' );
 if($login == 1) {
-    taoh_get_header();
+    taoh_get_header(); 
 }
 
 $current_app = taoh_parse_url(1) ? taoh_parse_url(1) : TAOH_WERTUAL_SLUG;
@@ -40,10 +40,10 @@ $lock_text = TAOH_LOGIC_LOCK_TEXT;
             <div class="left-container py-4 border-lg-right mx-auto" style="width: 100%; max-width: 480px;">
                 <div id="carouselExampleControls" class="carousel slide" data-ride="carousel" data-interval="5000" aria-label="Image carousel with different slides">
                     <div class="carousel-inner px-lg-5">
-
+                       
                         <div class="carousel-item active">
                             <img class="d-block w-100" src="<?php echo TAOH_SITE_URL_ROOT . '/assets/images/login_c_3.png';?>" alt="Fourth slide" style="object-fit: contain;">
-                            <h5 class="text-center text-sm-title my-4">Join the Club ! Meet New People ! Expand your Professional Network !</h5>
+                            <h5 class="text-center text-sm-title my-4">Join the Club ! Meet New People ! Expand your Professional Network !</h5>   
                             <div class="card d-none d-block px-4 py-3 shadow-card mt-3" >
                                 <div class="card-body">
                                     <div class="d-flex align-items-center mb-2" style="gap: 12px;">
@@ -54,7 +54,7 @@ $lock_text = TAOH_LOGIC_LOCK_TEXT;
                                         <?php } else { ?>
                                             <img class="round-img" src="<?php echo TAOH_OPS_PREFIX."/avatar/PNG/128/avatar_0".rand(10,60).".png" ;?>" alt="">
                                         <?php } ?>
-
+                                        
                                         <div>
                                             <p class="text-md-normal mb-1"><?php echo TAOH_SITE_NAME_SLUG.' Admin'?></p>
                                             <p class="text-sm-sub">&nbsp;</p>
@@ -83,16 +83,16 @@ $lock_text = TAOH_LOGIC_LOCK_TEXT;
                     <div class="d-block">
                          <div id="isCodeNotSent" style="display:none" >
                             <h3 class="text-title-medium ">Welcome! Your next step awaits !</h3>
-                            <p class="text-xs-normal my-3" style="font-size:10px;">By signing up or logging in, you agree to Tao.ai's (on behalf of <?php echo TAOH_SITE_NAME_SLUG;?>) <a href="https://tao.ai/terms.php" class="text-underline">Terms and Policies</a>.
-                            You may receive marketing emails but can opt out anytime.
-                            You might need to complete your profile to access all features.
+                            <p class="text-xs-normal my-3" style="font-size:10px;">By signing up or logging in, you agree to Tao.ai's (on behalf of <?php echo TAOH_SITE_NAME_SLUG;?>) <a href="https://tao.ai/terms.php" class="text-underline">Terms and Policies</a>. 
+                            You may receive marketing emails but can opt out anytime. 
+                            You might need to complete your profile to access all features. 
                             Tao.ai's (on behalf of <?php echo TAOH_SITE_NAME_SLUG;?>) Terms and Policies may be updated from time to time.</p>
-
+                        
                             <!-- <div id="social_section">
                                 <?php if(TAOH_USE_SOCIAL_LOGIN) { ?>
-
+                                    
                                     <a class="social_click"><button type="button" class="btn ggl-btn w-100"><img src="<?php echo TAOH_SITE_URL_ROOT . '/assets/images/ggl.png';?>" alt="">
-                                    <span>Continue with Google</span> </button></a>
+                                    <span>Continue with Google</span> </button></a>   
 
                                     <span class="social_loader d-flex justify-content-center mt-1"  style="margin-left: 0px;"></span>
 
@@ -102,9 +102,9 @@ $lock_text = TAOH_LOGIC_LOCK_TEXT;
                              <?php //if(isset($_GET['social_test'])) {  ?>
                             <div id="social_section1">
                                 <?php if(TAOH_USE_SOCIAL_LOGIN) { ?>
-
+                                    
                                     <a class="social_click1"><button type="button" class="btn ggl-btn w-100"><img src="<?php echo TAOH_SITE_URL_ROOT . '/assets/images/ggl.png';?>" alt="">
-                                    <span>Continue with Google</span> </button></a>
+                                    <span>Continue with Google</span> </button></a>   
 
                                     <span class="social_loader d-flex justify-content-center mt-1"  style="margin-left: 0px;"></span>
 
@@ -112,14 +112,14 @@ $lock_text = TAOH_LOGIC_LOCK_TEXT;
                                 <p class="text-center text-dark" style="font-size: 16px; font-weight: 400;">Or</p>
                             </div>
                             <?php //} ?>
-
+                           
                                 <div class="errorMessage"></div>
                                 <div class="form-group">
                                     <label for="" class="text-label-md mb-1">Enter your email to continue <span class="text-danger">*</span></label>
                                     <input type="text" class="form-control" id="email"  name="we_email" placeholder="Enter your email">
                                 </div>
                                 <div class="form-group mb-0" >
-
+                                    
                                     <!--<input type="hidden" id="weCode" name="we_code" value="<?php echo ( $code + strlen( TAOH_SITE_TITLE ) ); ?>">
                                     <label for="" class="text-label-md">Type
                                          <img src="<?php //echo TAOH_CDN_PREFIX."/captcha/img/".$code; ?>" height=20><br />
@@ -137,13 +137,13 @@ $lock_text = TAOH_LOGIC_LOCK_TEXT;
                                         gap: 7px;
                                         height: 45px;
                                         user-select: none;">
-                                     <br><input onclick="checkHumanCheckbox();" type="checkbox" id="human" name="human" value="human">
+                                     <br><input onclick="checkHumanCheckbox();" type="checkbox" id="human" name="human" value="human"> 
                                      <label class="mb-0" for="human" id="verify_label" style="font-size: 16px;">Verify you're human</label>
                                      </div>
                                 </div>
                                 <div class="mt-3 d-flex align-items-center" style="gap: 12px;">
                                     <img id="loadInitial" width="40" src="<?php echo TAOH_LOADER_GIF; ?>">
-
+                                    
                                     <button id="step1_button" disabled="true" style="display:none;width:90px;" onclick="emailSubmit()" onsubmit="emailSubmit()"  type="button" class="btn con-btn">
                                         <span id="loadingText"><strong>Next</strong></span></button>
                                 </div>
@@ -153,7 +153,7 @@ $lock_text = TAOH_LOGIC_LOCK_TEXT;
                             <div id="sendEmail" style="display:none" >
                                 <h2 class="h2 mb-3 fw-normal">Alternate Log in</h2>
                                 <h6 class="h6 mb-3 fw-normal">1. Send the email to login@tao.ai</h6>
-
+                                
                                 <p>From: <span id="fromEmail"><?php echo @$_COOKIE[ TAOH_ROOT_PATH_HASH.'_tao_api_email' ]; ?></span><br>
                                 Subject: <a href="mailto:login@tao.ai?subject=<?php echo $get_send_email_code['output'] ?? ''; ?>"><b><?php echo $get_send_email_code['output'] ?? ''; ?></b></a><br /></p><br>
                                 <h6 class="h6 mb-3 fw-normal">2. After 2-3 min click the verify button below</h6>
@@ -177,8 +177,8 @@ $lock_text = TAOH_LOGIC_LOCK_TEXT;
                                 <div class="col-4 px-0 pr-2">
                                 <button onclick="passcodeSubmit()" id="pin_submit" onsubmit="passcodeSubmit()" class="fs-14 w-100 btn btn-lg btn-primary"> Submit
                                     <!-- <span id="loadingText">Submit</span>-->
-                                </button>
-                                </div>
+                                </button> 
+                                </div> 
                                 </div>
                             </div>
 
@@ -197,7 +197,7 @@ $lock_text = TAOH_LOGIC_LOCK_TEXT;
                                                 We have sent an email to <strong><span id="emailSentTo" ></span></strong>, Please use the <strong>Direct link</strong> present in the email to login into the site
                                             </h3>
                                         </div>
-
+                                        
                                         <!--<div id="errorMessageEmail"></div>
                                         <div class="form-floating my-3">
                                         <input type="text" class="form-control" id="accessCode" placeholder="Enter the Verification code you received in your email" name="code" value="">
@@ -210,13 +210,13 @@ $lock_text = TAOH_LOGIC_LOCK_TEXT;
 
                                 <!-- <div class="mt-4 pt-lg-5 mb-lg-5 pb-lg-5">
                                     <p class="text-xs-normal">The code may take up to 10 minutes to arrive. If you don't see it, <span style="font-weight: 700;">check your Spam or Promotions folder.</span></p>
-                                    <p class="text-label-md mt-3" style="color: #000000;">Didn't Receive the email? <a href="#" onclick="sendEmailScreen()" class="text-underline" style="color: #007BFF; font-weight: 700;">Click here</a>
+                                    <p class="text-label-md mt-3" style="color: #000000;">Didn't Receive the email? <a href="#" onclick="sendEmailScreen()" class="text-underline" style="color: #007BFF; font-weight: 700;">Click here</a> 
                                     or <a href="#" onclick="changeEmail();" class="text-underline" style="color: #007BFF; font-weight: 700;">Change Email</a></p>
                                 </div> -->
                             </div>
-
+                       
                     </div>
-                     <!--<p class="mt-5 pt-4 text-center text-lg-right text-label-md" style="color: #444444;">Having trouble? Reach us <a href=""
+                     <!--<p class="mt-5 pt-4 text-center text-lg-right text-label-md" style="color: #444444;">Having trouble? Reach us <a href="" 
                      class="text-underline">here.</a></p>-->
                 </div>
             </div>
@@ -226,7 +226,7 @@ $lock_text = TAOH_LOGIC_LOCK_TEXT;
 <script src="https://cdn.jsdelivr.net/gh/mgalante/jquery.redirect@master/jquery.redirect.js"></script>
 
 <script type="text/javascript">
-
+   
   $ = jQuery;
     let loadingText = $("#loadingText");
     let loadingTextEmail = $("#loadingTextEmail");
@@ -244,16 +244,16 @@ $lock_text = TAOH_LOGIC_LOCK_TEXT;
 	  let lock_pin = '<?php echo TAOH_LOGIC_LOCK_CODE; ?>';
     let enableLock ='<?php echo $lock_code_required ? 1 : 0 ?>';
     let show_only_lock = <?php echo (isset($_COOKIE[TAOH_ROOT_PATH_HASH."_enable_lock_screen"])  ? $_COOKIE[TAOH_ROOT_PATH_HASH."_enable_lock_screen"] : 0); ?>;
-
+    
 
     emailSentTo.html("<?php echo @$_COOKIE[ TAOH_ROOT_PATH_HASH.'_tao_api_email' ]; ?>");
-
+    
     var limi_rand = (Math.floor(Math.random() * (7-3)) + 3 ) * 1000;
     //alert(limi_rand);
     setTimeout(function() {
-        $('#step1_button').show();
-        $('#loadInitial').hide();
-
+        $('#step1_button').show();  
+        $('#loadInitial').hide();  
+              
       }, limi_rand);
 
     <?php if(!@$_COOKIE[TAOH_ROOT_PATH_HASH.'_tao_api_email']) { ?>
@@ -386,14 +386,14 @@ $lock_text = TAOH_LOGIC_LOCK_TEXT;
 
             $('#step1_button').animate({
             width: '200px'
-            }, 2000, function() {
+            }, 2000, function() {        
                 $('#step1_button').attr({'disabled': false});
-
+                
                 $('#step1_button').html('<span id="loadingText"><strong>Submit</strong></span>');
                 $('#verify_label').css('color', '#007BFF');
-
+            
             });
-
+            
         }else{
             $('#human').val(0);
             $('#step1_button').attr({'disabled': true});
@@ -488,7 +488,7 @@ $lock_text = TAOH_LOGIC_LOCK_TEXT;
       }
   }
 
-
+   
     $(document).keypress(function (e) {
        var key = e.which;
        if(key == 13)  // the enter key code
@@ -535,7 +535,7 @@ $lock_text = TAOH_LOGIC_LOCK_TEXT;
               });
           }
       }
-
+   
      function submitCode() {
         // Cache jQuery selectors to avoid repeated DOM lookups
         let accessCode = $("#accessCode");
@@ -611,7 +611,7 @@ $lock_text = TAOH_LOGIC_LOCK_TEXT;
         let $loadingText = $("#loadingText"); // Assuming loadingText selector is defined somewhere
         let $social_section = $("#social_section1");
 
-
+        
         // Validate email and captcha
         if ((!email && emailError === "") || !validateEmail(email)) {
             if (emailError === "") {
@@ -632,7 +632,7 @@ $lock_text = TAOH_LOGIC_LOCK_TEXT;
 
         // Prepare data for AJAX request
     //     $slug = isset($app_data->slug) && !empty($app_data->slug) && preg_match('/^[a-zA-Z0-9\-]+$/', $app_data->slug)
-    // ? $app_data->slug
+    // ? $app_data->slug 
     // : 'default-slug';
     // $slug = isset($app_data->slug) && is_string($app_data->slug) ? trim($app_data->slug) : '';
 
@@ -654,7 +654,7 @@ $lock_text = TAOH_LOGIC_LOCK_TEXT;
         if (email && captcha) {
             // Show loading text
             $loadingText.show();
-            $('#loadInitial').show();
+            $('#loadInitial').show();  
             // Make AJAX request
             jQuery.post("<?php echo taoh_site_ajax_url(); ?>", data, function(response) {
                 console.log('response', response);
@@ -689,13 +689,13 @@ $lock_text = TAOH_LOGIC_LOCK_TEXT;
         }
     }
 
-
+    
     function sendEmailScreen() {
       fromEmail.html(localStorage.getItem('email'));
       isCodeSent.hide();
       social_section.hide();
       sendEmail.show();
-
+      
     }
 
     function changeEmail(){
@@ -736,7 +736,7 @@ $lock_text = TAOH_LOGIC_LOCK_TEXT;
     }
     // Listen for messages from popup
     window.addEventListener('message', function(event) {
-
+       
         // Verify origin for security
        /*  if (event.origin !== '<?php //echo TAOH_DASH_PREFIX; ?>') {
             return;
@@ -749,12 +749,12 @@ $lock_text = TAOH_LOGIC_LOCK_TEXT;
             const data = {
                 'taoh_action': 'social_login_success',
                 'output': event.data.token,
-                'success': 1
+                'success': 1               
             };
-            jQuery.post("<?php echo taoh_site_ajax_url(); ?>", data, function(response) {
+            jQuery.post("<?php echo taoh_site_ajax_url(); ?>", data, function(response) {               
                 if (response.status == 1) {
                     window.location.replace('<?php echo TAOH_SETTINGS_URL; ?>');
-                }
+                } 
             }).fail(function() {
                 alert('login failed');
                 window.location.reload();
@@ -763,7 +763,7 @@ $lock_text = TAOH_LOGIC_LOCK_TEXT;
                 window.location.reload();
             }, 500);
         }  */
-
+        
         if (event.data.type === 'OAUTH_SUCCESS') {
             // Login successful
             $(".social_loader").html('');
@@ -792,7 +792,7 @@ $lock_text = TAOH_LOGIC_LOCK_TEXT;
                 window.location.reload();
             });
             // Removed the competing setTimeout reload
-        }
+        }       
         else if (event.data.type === 'OAUTH_ERROR') {
             // Login failed
             $(".social_loader").html('');

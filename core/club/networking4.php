@@ -19,22 +19,22 @@ function check_live_now_token($input_array) {
     $title = ucwords($input_array['output']['title']);
     $description = ucwords($input_array['output']['description']);
     $channels = $input_array['output']['channels'];
-
+    
     $sess_user_info = taoh_session_get(TAOH_ROOT_PATH_HASH)['USER_INFO'];
     $full_loc_expl = explode(', ', $sess_user_info->full_location);
     $country = array_pop($full_loc_expl);
 
-    $geo_enable = 0;
-    $dateHour = gmdate("YmdH");
-
+    $geo_enable = 0; 
+    $dateHour = gmdate("YmdH"); 
+    
     if($geo_enable) {
         $keyslug = hash( 'crc32',$title.$country.$dateHour );
     } else {
-        $keyslug = hash( 'crc32', $title.$dateHour);
+        $keyslug = hash( 'crc32', $title.$dateHour);	
     }
-
+    
     return $keyslug;
-
+	
 }
 
 $url = TAOH_LIVE_NOW_URL . '?y=' . gmdate("YmdH");
@@ -68,7 +68,7 @@ if(isset($user_info_obj->title)){
        // echo "=========".$value;die();
          list ( $id, $role ) = explode( ':>', $value );
     }
-
+   
 }
 
 if(isset($user_info_obj->skill)){
@@ -79,7 +79,7 @@ if(isset($user_info_obj->skill)){
          $skillarray[] = $skilll;
     }
     $skill = implode(',', $skillarray);
-
+   
 }
 //echo '<pre>'; print_r($skillarray); echo '</pre>';die();
 
@@ -100,7 +100,7 @@ $ntw_view = 1;
 $timezone = $user_info_obj->local_timezone;
 
 if ($parse_url_1 == 'room' || $parse_url_1 == 'forum' || $parse_url_1 == 'live') {
-    $contslug = taoh_parse_url(2);
+    $contslug = taoh_parse_url(2);    
 
     if (empty($contslug)) {
 //        taoh_redirect(TAOH_SITE_URL_ROOT);
@@ -130,7 +130,7 @@ else if ($parse_url_1 == 'dm') {
 } else {
     $contslug = ''; // :rk temp fix
     $geo_enable = 1;
-
+    
     $date = new DateTime('now', new DateTimeZone($timezone));
     $abbreviation = $date->format('T');
 
@@ -270,14 +270,14 @@ if (!isset($room_info_arr['success']) || !$room_info_arr['success'] || !$room_in
     }
 }
 
-//echo "<pre>"; print_r($room_info_arr);
+//echo "<pre>"; print_r($room_info_arr); 
 
 $room_app = $room_info_arr['output']['app'] ?? '';
 $sub_app = $room_info_arr['output']['sub_app'] ?? '';
 $club_info = $room_info_arr['output']['club'] ?? '';
 
 
-if (isset($room_app) && $room_app === 'event' && isset($club_info['streaming_link']) && !empty($club_info['streaming_link'])) {
+if (isset($room_app) && $room_app === 'event' && isset($club_info['streaming_link']) && !empty($club_info['streaming_link'])) { 
     $ntw_view = 5;
 }
 
@@ -341,7 +341,7 @@ if (isset($room_app) && $room_app === 'event') {
     $event_arr = $response_det['output'];
     $create_channel_flag = 0;
 
-    //$event_arr['conttoken']['live_link'] = "https://www.youtube.com/embed/TO97VtyPcdE";
+    //$event_arr['conttoken']['live_link'] = "https://www.youtube.com/embed/TO97VtyPcdE";   
 
     if(isset($event_arr['conttoken']['event_organizer_ptokens']) && !empty($event_arr['conttoken']['event_organizer_ptokens'])) {
         $event_organizer_ptokens_arr = explode(",", $event_arr['conttoken']['event_organizer_ptokens']);
@@ -350,7 +350,7 @@ if (isset($room_app) && $room_app === 'event') {
 
     $owner_org_ptoken[] = $event_arr['conttoken']['ptoken'];
     //$owner_org_ptoken[] = $ptoken;
-
+    
 
     if (in_array($ptoken, $owner_org_ptoken)) {
         $can_delete_all_msg = 1;
@@ -416,7 +416,7 @@ if (isset($room_app) && $room_app === 'event') {
         if (empty($current_ticket_types)) {
             taoh_redirect(TAOH_SITE_URL_ROOT );
             exit();
-        }
+        } 
 
         $current_ticket_type = array_values($current_ticket_types)[0];
     }
@@ -428,7 +428,7 @@ if (isset($room_app) && $room_app === 'event') {
     }
 }
 
-//echo "<pre>"; print_r($room_info_arr);
+//echo "<pre>"; print_r($room_info_arr); 
 
 //if(isset())
 $room_title = $room_info_arr['output']['club']['title'];
@@ -564,7 +564,7 @@ $rules = DOJO_NETWORKING_MESSAGE;
     }
 } */
 if(defined('TAOH_SPEEDNETWORKING_ENABLE') && TAOH_SPEEDNETWORKING_ENABLE == 1) {
-    if (isset($room_app) && $room_app === 'event' && isset($club_info['streaming_link']) && !empty($club_info['streaming_link']))
+    if (isset($room_app) && $room_app === 'event' && isset($club_info['streaming_link']) && !empty($club_info['streaming_link'])) 
         $speednetwork_enable = 0;
     else if(isset($sub_app) && $sub_app !='' && ($sub_app == 'session' || $sub_app == 'exhibitor'))
         $speednetwork_enable = 0;
@@ -907,7 +907,7 @@ $isEventNetworking = !empty($eventtoken);
         .reaction-popup {
             position: absolute;
             bottom: 100%;
-            /* left: 50%;
+            /* left: 50%; 
             transform: translateX(-50%);*/
             background: white;
             border-radius: 25px;
@@ -988,8 +988,8 @@ $isEventNetworking = !empty($eventtoken);
         .extra-skill-toggle {
             background: #7b98e780;
             border: none !important;
-        }
-
+        }           
+        
     </style>
 
     <div class="bg-white">
@@ -1007,7 +1007,7 @@ $isEventNetworking = !empty($eventtoken);
                     ?>
                     <div class="hero-content align-items-center justify-content-between">
                         <div class="col-lg-12">
-                            <div class="row align-items-center">
+                            <div class="row align-items-center">                                
                                 <ul class="col-md-10 nav nav-tabs justify-content-left border-0 mt-3 mb-3 <?=($room_app == "live" ? 'd-none' : '')?>" role="tablist">
                                     <?php
                                     $link_count = count($club_info['breadcrumbs']);
@@ -1024,19 +1024,19 @@ $isEventNetworking = !empty($eventtoken);
                                     foreach ($club_info['breadcrumbs'] as $value) {
 
                                         $link = TAOH_SITE_URL_ROOT . $value['link'];
-
+                                        
                                         if($count == count($club_info['breadcrumbs'])){
                                             define('TAOH_NETWORK_REFERRAL_URL', $link);
                                         }
-
+                                        
                                         if($value['link'] == '#')
                                             $link = 'javascript:void(0);';
                                         echo '<li class="nav-item"  '.$count.'>
                                                     <a href="' . $link . '">' . $value['title'] . '</a>';
-
+                                                 
                                         if($count <= $link_count)
                                             echo icon('chevron-right', '#000000', 19);
-
+                                        
                                         echo '</li>';
 
                                         $count++;
@@ -1049,18 +1049,18 @@ $isEventNetworking = !empty($eventtoken);
                                             DM</li>';
                                     }
                                     else{
-
+                                       
                                          echo '<li class="nav-item"></span>
                                             Networking</li>';
                                     }
-
-
+                                    
+                                    
                                     if (!empty($msg_from_owner) || !empty($club_info['msg_from_owner'])) {
                                         echo '<li class="nav-item ml-2"><span>| Note from organizer</span>';
                                         echo '<i class="fa fa-info-circle ml-2 cursor-pointer" data-toggle="collapse" data-target="#org_msg" title="View more info" aria-expanded="false" aria-controls="org_msg" style="color: #15a4f7; font-size: 20px;"></i>';
                                         echo '</li>';
                                     }
-
+                                    
                                     if (isset($_GET['from'])) {
                                         echo '<li class="nav-item"><span><?= icon('chevron-right', '#000000', 19) ?></span>
                                             <a href="' . TAOH_SITE_URL_ROOT . '/club/room/' . $contslug . '">Networking</a></li>';
@@ -1074,16 +1074,16 @@ $isEventNetworking = !empty($eventtoken);
                                     echo '<button class="btn btn-sm theme-btn w-100" id="video_room_btn" data-toggle="modal" data-target="#video_room_join_confirmation"><i class="fa fa-video-camera mr-1" aria-hidden="true"></i> Enter Video Room</button>';
                                     echo '</div>';
                                 }
-
+                                
                                 ?>
                                 <!--<div class="col-md-2">
                                     <button class="btn btn-primary btn-sm theme-btn w-100" data-toggle="modal" data-target="#reportBugModal">
                                         Report an issue</button>
-
+                                    
                                 </div>-->
                             </div>
                         </div>
-
+                        
                         <div class="row">
                             <div class="col-lg-8" id="breadcrumbs_accordion">
                                 <div id="demo" class="collapse" data-parent="#breadcrumbs_accordion">
@@ -1182,7 +1182,7 @@ $isEventNetworking = !empty($eventtoken);
             <!-- end side-menu nav -->
         </div>
         <!-- end left sidebar-menu -->
-
+        
 
          <!-- Emoji Picker -->
         <div id="emoji-picker" class="emoji-picker">
@@ -1502,11 +1502,11 @@ $isEventNetworking = !empty($eventtoken);
                     <div>
                         <div class="chat-room-list" data-simplebar>
 
-
+                           
                             <button class="btn row ml-3 my-3 wp-en">
                                 <i class="fas fa-bars fs-24"></i>
                             </button>
-
+                            
 
                             <!-- Start Participant -->
                             <div class="w-hide">
@@ -1524,10 +1524,10 @@ $isEventNetworking = !empty($eventtoken);
                                             <div class="dropdown-menu dropdown-menu-end">
                                                 <a class="dropdown-item d-flex justify-content-between align-items-center chatlist-sidebar-show" href="#">More info <i class="bx bx-info-circle text-muted"></i></a>
                                             </div>
-                                        </div>
+                                        </div>   
                                     </div>
                                 </div>
-                                <div class="left-section  status_div">
+                                <div class="left-section  status_div">                            
                                     <p style="position: relative" class="d-flex update-status px-3">
                                         <span id="loadEmoji"><img onclick="openStatusModal();" src="<?php echo TAOH_SITE_URL_ROOT . '/assets/images/emojis/default.svg';?>" alt="Emoji" id="loadEmojiImg" class="update-image" style="left: 26px;"></span>
                                         <input class="form-control pl-5 light-dark-card" type="text" maxlength="140" value="" name="my_status" id="my_status" placeholder="Say something">
@@ -1544,9 +1544,9 @@ $isEventNetworking = !empty($eventtoken);
                                                 My Channels
                                                 <button class="btn shadow-none border-0 py-0" type="button" data-bs-toggle="collapse" data-bs-target="#myChannelCollapse" aria-expanded="false" aria-controls="myChannelCollapse">
                                                     <i class="fa-solid fa-caret-down"></i>
-                                                </button>
+                                                </button> 
                                             </h4>
-                                        </div>
+                                        </div>                                        
                                     </div>
                                 </div>
 
@@ -1580,11 +1580,11 @@ $isEventNetworking = !empty($eventtoken);
                                     </ul>
                                 </div>
                             </div>
-
+                            
                             <!-- Speed Networking channel list -->
                              <div data-intro="Find Channels and start a discussion in the channel. You can create a new channel if interested." data-step="5" class="d-none1 w-hide">
                                 <div class="left-section chat-message-list mb-3">
-                                    <div class="collapse show" id="speedChannelCollapse">
+                                    <div class="collapse show" id="speedChannelCollapse">			
                                         <ul class="speedChannelList list-unstyled chat-list chat-user-list" id="speedChannelList"></ul>
                                     </div>
                                 </div>
@@ -1605,7 +1605,7 @@ $isEventNetworking = !empty($eventtoken);
                                         </div>
                                         <div class="flex-shrink-0">
                                             <div>
-
+                                                
                                                 <!-- Button trigger modal -->
                                                 <button data-bs-toggle="tooltip" data-bs-trigger="hover" data-bs-placement="top" title="Refresh" type="button" class="btn btn-success btn-sm" id="channel_refresh">
                                                     <i class="fa fa-refresh align-middle"></i>
@@ -1613,7 +1613,7 @@ $isEventNetworking = !empty($eventtoken);
 
                                                 <!-- Button trigger modal -->
                                                 <?php if($create_channel_flag == 1){ ?>
-                                                    <button data-bs-toggle="tooltip" data-bs-trigger="hover" data-bs-placement="top" title="Create group" type="button"
+                                                    <button data-bs-toggle="tooltip" data-bs-trigger="hover" data-bs-placement="top" title="Create group" type="button" 
                                                     class="create_channel btn btn-success btn-sm">
                                                         <i class="bx bx-plus align-middle"></i>
                                                     </button>
@@ -1642,7 +1642,7 @@ $isEventNetworking = !empty($eventtoken);
                                             <ul class="sponsorChannelList list-unstyled chat-list chat-user-list" id="sponsorChannelList">
 
                                             </ul>
-
+                                            
                                             <ul class="channelList list-unstyled chat-list chat-user-list w-hide" id="channelList">
 
                                             </ul>
@@ -1663,9 +1663,9 @@ $isEventNetworking = !empty($eventtoken);
                                                             </div>
                                                         </div>-->
 
-                                                        <div class="flex-grow-1 overflow-hidden channel_btn">
+                                                        <div class="flex-grow-1 overflow-hidden channel_btn">                                    
                                                             <h6 class="text-truncate mb-0 channel_name text-capitalize">Browse More Channels</h6>
-                                                        </div>
+                                                        </div>                                                           
                                                     </div>
                                                 </a>
                                             </li>
@@ -1707,7 +1707,7 @@ $isEventNetworking = !empty($eventtoken);
                                 </div>
                             </div>
                             <!-- End chat-message-list -->
-
+                            
 
                             <?php if(ORGANIZER_CHANNEL_ENABLE && !empty($event_owner_ptoken)) { ?>
                                 <div class="d-flex align-items-center px-4 mt-4 mb-2 d-none" id="organizer-block">
@@ -1762,7 +1762,7 @@ $isEventNetworking = !empty($eventtoken);
                                     </ul>
                                 </div>
                             <?php } ?>
-
+                           
 
                         </div>
 
@@ -1784,7 +1784,7 @@ $isEventNetworking = !empty($eventtoken);
                 <!-- start chat conversation section -->
                 <div class="w-100 overflow-hidden position-relative bo-lf-rt h-100">
                     <input type="hidden" id="channel_of_type" name="channel_of_type" value="">
-
+                    
                     <!-- participants list margin: auto; -->
                     <div id="participants" class="position-relative" style="display: none; max-width: 1200px;">
                         <div class="px-4 py-3 pb-xl-0">
@@ -1859,7 +1859,7 @@ $isEventNetworking = !empty($eventtoken);
                                     </div>
                                 </div>
                             </div>
-
+                            
                             <div class="d-flex justify-content-between align-items-center mb-2">
 
                                 <h4 id="browse_channel_heading" class="ch-main-title">All Channels</h4>
@@ -1873,7 +1873,7 @@ $isEventNetworking = !empty($eventtoken);
                                     <!-- <button class="btn btn-secondary" id="browse_channels_filter_btn">Filter</button>-->
                                 </div>
                             </div>
-
+                            
 
                             <!-- channel listing with filter start -->
                             <div>
@@ -1963,10 +1963,10 @@ $isEventNetworking = !empty($eventtoken);
                                                     <i class="bx bx-chevron-left align-middle text-white"></i>
                                                 </a>
                                             </div>
-
+                                            
                                             <div class="flex-grow-1 overflow-hidden">
                                                 <div class="d-flex align-items-center">
-
+                                                   
                                                     <div class="flex-shrink-0 chat-user-img me-3">
                                                         <div class="avatar-xs">
                                                             <span class="avatar-title rounded-circle bg-primary text-white">
@@ -1974,7 +1974,7 @@ $isEventNetworking = !empty($eventtoken);
                                                             </span>
                                                         </div>
                                                     </div>
-
+                                                           
                                                     <div class="flex-grow-1 overflow-hidden">
                                                         <h6 class="d-flex align-items-center mb-0 fs-18" style="gap: 6px;">
                                                             # <a href="#" class="text-capitalize sn_channel_title text-reset text-truncate"></a>
@@ -2003,11 +2003,11 @@ $isEventNetworking = !empty($eventtoken);
                                                     </div>
                                                 </div>
                                             </li>
-
+                                          
                                         </ul>
                                     </div>
                                 </div>
-                            </div>
+                            </div>                                        
 
                             <!-- new template speed networking start  -->
 
@@ -2200,7 +2200,7 @@ $isEventNetworking = !empty($eventtoken);
                             <div class="successMatchDiv container pt-4 px-lg-4 d-none">
                                 <div class="speed-nw-card p-3 p-lg-5 d-flex flex-column align-items-center">
                                     <h6 class="sm-text fs-24 text-center">Hurray! your invite was accepted</h6>
-
+                                    
 
                                     <div class="center-card">
                                         <svg width="129" height="120" viewBox="0 0 129 120" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -2318,7 +2318,7 @@ $isEventNetworking = !empty($eventtoken);
                             <div class="notAvailableDiv container pt-4 px-lg-4 d-none">
                                 <div class="speed-nw-card p-3 p-lg-5 d-flex flex-column align-items-center">
                                     <h6 class="sm-text fs-24 text-center"><span class="user_title"></span> seems to be busy, connect with someone else!</h6>
-
+                                    
                                     <p class="sm-text text-center mb-5 d-none"><span class="user_title"></span> has accepted your Networking Request !</p>
 
                                     <button type="button" class="btn speed-v1-b-btn browse_participants_btn mt-5">Browse Participants</button>
@@ -2418,7 +2418,7 @@ $isEventNetworking = !empty($eventtoken);
                                 </div>
                             </div>
                             <!-- accept  end -->
-
+                                
                             <!--  reject start -->
                             <div class="rejectDiv container pt-4 px-lg-4 d-none">
                                 <div class="speed-nw-card p-3 p-lg-5 d-flex flex-column align-items-center">
@@ -2538,7 +2538,7 @@ $isEventNetworking = !empty($eventtoken);
                                 <div class="col-auto">
                                     <ul class="list-inline user-chat-nav text-end mb-0">
                                         <!-- video button -->
-                                        <!-- <li class="list-inline-item">
+                                        <!-- <li class="list-inline-item">                                                
                                             <div class="links-list-item" data-bs-container=".chat-input-links" data-bs-toggle="popover" data-bs-trigger="focus" data-bs-html="true" data-bs-placement="top"
                                                 data-bs-content="<div class='loader-line'><div class='line'></div><div class='line'></div><div class='line'></div><div class='line'></div><div class='line'></div></div>">
                                                 <button type="button" class="btn nav-btn chat-video" data-bs-toggle="modal" data-bs-target="#v-channel-room">
@@ -2594,12 +2594,12 @@ $isEventNetworking = !empty($eventtoken);
 
                                         <li class="list-inline-item d-none d-lg-inline-block me-2 ms-0" >
                                             <button type="button" class="btn nav-btn channelData-show" style="display:none">
-
+                                                
                                                 <i class="bx bxs-info-circle"></i>
                                             </button>
                                         </li>
                                         <!-- user-profile-show data-bs-toggle="modal" data-bs-target=".membersData" -->
-
+                                         
                                         <!--<li class="list-inline-item">
                                             <div class="dropdown">
                                                 <button class="btn nav-btn" type="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -2636,7 +2636,7 @@ $isEventNetworking = !empty($eventtoken);
                                     <span class="cursor-pointer" id="arrowContainer_dm">
                                         <svg class="d-flex" id="downArrow_dm" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                                         <polyline points="6 9 12 15 18 9" />
-                                        </svg>
+                                        </svg>                                        
                                         <svg class="d-none" id="upArrow_dm" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="18 15 12 9 6 15" /></svg>
                                     </span>
                                 </h6>
@@ -2652,8 +2652,8 @@ $isEventNetworking = !empty($eventtoken);
 
 
                     <div class="d-flex flex-column flex-md-row">
-                        <?php
-                        if (isset($room_app) && $room_app === 'event' && isset($club_info['streaming_link']) && !empty($club_info['streaming_link'])) {
+                        <?php 
+                        if (isset($room_app) && $room_app === 'event' && isset($club_info['streaming_link']) && !empty($club_info['streaming_link'])) { 
                         ?>
                         <!-- watch party -->
                         <div class="watch-party watchPartySection flex-grow-1 video-section" style="display:none; border-right: 1px solid #d3d3d3;">
@@ -2665,17 +2665,17 @@ $isEventNetworking = !empty($eventtoken);
                                 </div>
 
                                <div class="card-body video-container d-flex align-items-center">
-                                    <iframe
+                                    <iframe 
                                         width="100%" height="315"
-                                        src="<?=$club_info['streaming_link'];?>"
-                                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                                        src="<?=$club_info['streaming_link'];?>" 
+                                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
                                         allowfullscreen>
                                     </iframe>
                                 </div>
                             </div>
                         </div>
-                        <?php
-                        }
+                        <?php 
+                        } 
                         ?>
                         <!-- conversation group -->
                         <div id="channel-chat" class="position-relative flex-grow-1 watchPartySection" data-channel_id="" data-channel_type="" style="display: none;">
@@ -2747,8 +2747,8 @@ $isEventNetworking = !empty($eventtoken);
                                                             <a class="dropdown-item d-flex justify-content-between align-items-center d-xl-none channel-sidebar-show fs-14" href="#">View Members<i class="bx bx-group text-muted fs-18"></i></a>
                                                         </div>
                                                     </div>
-
-
+                                                    
+                                                    
                                                 </li>
 
                                                 <li class="list-inline-item d-none  me-2 ms-0">
@@ -2767,7 +2767,7 @@ $isEventNetworking = !empty($eventtoken);
                                                             <!-- <a class="dropdown-item d-flex justify-content-between align-items-center d-lg-none" href="#" data-bs-toggle="modal" data-bs-target=".audiocallModal">Audio <i class="bx bxs-phone-call text-muted"></i></a>
                                                             <a class="dropdown-item d-flex justify-content-between align-items-center d-lg-none" href="#" data-bs-toggle="modal" data-bs-target=".videocallModal">Video <i class="bx bx-video text-muted"></i></a> -->
                                                         </div>
-                                                    </div>
+                                                    </div> 
                                                 </li>
 
                                             <!--<li class="list-inline-item d-none d-lg-inline-block me-2 ms-0" >
@@ -2806,11 +2806,11 @@ $isEventNetworking = !empty($eventtoken);
                                         <span class="cursor-pointer" id="arrowContainer">
                                             <svg class="d-flex" id="downArrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                                             <polyline points="6 9 12 15 18 9" />
-                                            </svg>
+                                            </svg>                                        
                                             <svg class="d-none" id="upArrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="18 15 12 9 6 15" /></svg>
                                         </span>
                                     </h6>
-                                </div>
+                                </div>                    
 
                                 <ul class="list-unstyled chat-conversation-list" id="channel-conversation-list-default">
                                     <li class="chat-list ">
@@ -2838,10 +2838,10 @@ $isEventNetworking = !empty($eventtoken);
                                         </div>
                                     </li>
                                 </ul>
-
-
+                                
+                                
                                 <ul class="list-unstyled chat-conversation-list aw aw-logo" id="channel-conversation-list">
-
+                                
                                 </ul>
                                 <ul class="list-unstyled channel-video-room-link mt-3 d-none" id="">
                                     <li class="chat-list ">
@@ -2949,17 +2949,17 @@ $isEventNetworking = !empty($eventtoken);
                                                                 </button>  -->
                                                     <button type="button" class="btn nav-btn chat-video" data-bs-toggle="modal" data-bs-target="#v-channel-room">
                                                         <i class="bx bx-video fs-35 text-muted align-middle"></i></button>
-
-
+                                            
+                                                
                                                     <!--<div class="dropdown">
-
+                                                        
                                                             <button type="button" class="btn btn-link text-decoration-none btn-sm waves-effect" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
                                                             >
                                                                 <i class="bx bx-video fs-40 text-muted align-middle"></i>
                                                             </button>
-
+                                                            
                                                             <div class="dropdown-menu dropdown-menu-end">
-
+                                                            
                                                                 <a id="user-chat-video-bottom"  data-type="1" class="chat-video dropdown-item d-flex align-items-center justify-content-between"
                                                                 href="#">Share Your Meet.TAO.ai link</a>
                                                                 <div class="dropdown-divider"></div>
@@ -3145,7 +3145,7 @@ $isEventNetworking = !empty($eventtoken);
                             <ul class="list-unstyled chat-reply-conversation-list aw aw-logo" id="chat-reply-conversation-list">
 
                             </ul>
-                        </div>
+                        </div>                    
 
                         <!-- start chat reply input section -->
                         <div id="chat-reply-input-container" class="chat-input-bottom" style="z-index: 999;">
@@ -3196,7 +3196,7 @@ $isEventNetworking = !empty($eventtoken);
                                     <i class="bx bx-x d-none d-lg-inline"></i>
                                     <i class="bx bx-left-arrow-alt d-inline d-lg-none"></i>
                                 </button>
-                            </div>
+                            </div>                            
                         </div>
                     </div>
 
@@ -3210,13 +3210,13 @@ $isEventNetworking = !empty($eventtoken);
                         <ul class="list-unstyled chat-like-conversation-list aw aw-logo" id="chat-like-conversation-list">
 
                         </ul>
-                    </div>
+                    </div>                    
                 </div>
                 <!-- end chat like sidebar -->
 
                 <!-- start User profile detail sidebar -->
                 <div class="user-profile-sidebar" id="user-profile-sidebar">
-
+                    
                 </div>
                 <!-- end User profile detail sidebar -->
 
@@ -3231,14 +3231,14 @@ $isEventNetworking = !empty($eventtoken);
                                 </div>
                             </div>
                         </div>
-
+                    
                         <div class="card my-3 mx-2" id="activities_block1">
                             <div class="card-header bg-white" style="cursor: unset;">
                                 <p class="fs-12 fw-400 text-black mb-0">Here is what happening !</p>
                                 <h5 class="fs-19 fw-400 text-black mb-0">Recent Activity</h5>
                             </div>
                             <div class="card-body">
-                                <!-- video rooms card -->
+                                <!-- video rooms card -->                             
                                 <div class="card">
                                     <div class="card-body py-2 px-2">
                                         <ul class="p-0 mb-0" id="activities-list12"></ul>
@@ -3252,10 +3252,10 @@ $isEventNetworking = !empty($eventtoken);
 
                         </div>
 
-
+                    
                 </div>
 
-
+                
                 <!-- End channel members detail sidebar -->
 
                  <!-- START participants sidebar -->
@@ -3275,7 +3275,7 @@ $isEventNetworking = !empty($eventtoken);
                         </div>
                     </div>
                     <div class="px-3 py-4">
-
+                    
                     <!-- <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#v-overlay">video overlay</button> -->
 
                      <?php if (function_exists('jobs_networking_widget')) { jobs_networking_widget();  } ?>
@@ -3289,7 +3289,7 @@ $isEventNetworking = !empty($eventtoken);
                             <p class="sm-text mb-0">Click for Instructions</p>
                         </div>
                     </button>
-
+                    
                     <div class="border-con p-3 mb-3 d-none d-xl-block">
                         <div class="d-flex align-items-center mb-2 pb-2" style="border-bottom: 1px solid #d3d3d3; gap: 6px;">
                             <div class="circle-highlight">
@@ -3297,7 +3297,7 @@ $isEventNetworking = !empty($eventtoken);
                                 <div class="center-circle"></div>
                             </div>
                             <h6 class="mb-0 guide-heading">Don't Know Where to Start</h6>
-                        </div>
+                        </div>                       
 
                         <div class="d-flex align-items-center flex-wrap" style="gap: 12px;">
                             <button id="tourbutton" type="button" class="btn bor-btn d-none d-xl-block">Start Application Tour</button>
@@ -3308,21 +3308,21 @@ $isEventNetworking = !empty($eventtoken);
                     <div class="participants_profile_info"></div>
 
                     <div class="card mb-3 light-dark-card">
-
+                        
                         <div class="card border-0" id="dojo_suggestion_block">
                             <div class="card-header bg-white" style="cursor: unset;">
                                 <p class="fs-12 fw-400 text-black mb-0">Hey Here is what</p>
                                 <h5 class="fs-19 fw-400 text-black mb-0">Dojo Says !</h5>
-                            </div>
+                            </div>                           
                             <div class="card-body" id="dojo_participant_div">
 
 
-                                <p class="fs-12 fw-400 text-black mb-1">Suggested Based on
+                                <p class="fs-12 fw-400 text-black mb-1">Suggested Based on 
                                     <span id="suggestion_on"><span>
                                 </p>
                                 <!-- Based on Roles -->
                                 <div>
-
+                                    
                                     <div class="card" id="suggestion-users">
                                         <div class="taoh-loader taoh-spinner d-block show" id="pc_loader" style="width:50px;height:50px;display:block;"></div>
                                     </div>
@@ -3345,7 +3345,7 @@ $isEventNetworking = !empty($eventtoken);
                                     </div>
                                 </div> -->
                             </div>
-                        </div>
+                        </div>                      
 
                         <div class="card border-0 mb-3 d-none" id="activities_block">
                             <div class="card-header bg-white py-3" style="cursor: unset;">
@@ -3354,7 +3354,7 @@ $isEventNetworking = !empty($eventtoken);
                                 </div>
                             <div class="card-body">
                                 <!-- video rooms card -->
-
+                                
 
                                 <div class="card">
                                     <div class="card-body py-2 px-2">
@@ -3362,7 +3362,7 @@ $isEventNetworking = !empty($eventtoken);
                                             <div class="taoh-loader taoh-spinner d-block show" id="pc_loader_activities" style="width:50px;height:50px;display:block;"></div>
                                         </ul>
                                     </div>
-                                </div>
+                                </div> 
                             </div>
                         </div>
 
@@ -3374,11 +3374,11 @@ $isEventNetworking = !empty($eventtoken);
                             <div class="card-body">
                                  <!-- video rooms card -->
                              <div class="video-room-activity-main d-flex align-items-start" style="gap: 12px;">
-
+                                
                                 <div  class="taoh-loader taoh-spinner d-block show" id="pc_loader_room_activities1"
                                                     style="width:50px;height:50px;display:block;"
                                                     ></div>
-                            </div>
+                            </div> 
                                 <div class="card">
                                     <div class="card-body py-2 px-2">
                                         <ul class="p-0 mb-0" id="activities-list1"></ul>
@@ -3395,17 +3395,17 @@ $isEventNetworking = !empty($eventtoken);
                                 <h3 class="fs-17">How Networking App Works?</h3> <!-- Job Fair video -->
                                 <div class="divider"><span></span></div>
                                 <?php if (function_exists('taoh_video_widget')) {
-                                    //taoh_video_widget('https://youtu.be/L87udpeMKa0');
+                                    //taoh_video_widget('https://youtu.be/L87udpeMKa0'); 
                                      } ?>
                             </div>
                         </div>
                     </div>
 
                     <!-- SPONSOR SECTION STARTS -->
-
+                                            
                     <?php
                         if (isset($room_app) && $room_app === 'event') {
-                            echo taoh_sponsor_slider_widget($club_token);
+                            echo taoh_sponsor_slider_widget($club_token); 
                         }
                     ?>
                     <?php
@@ -3571,7 +3571,7 @@ $isEventNetworking = !empty($eventtoken);
                     <?php if (function_exists('taoh_invite_friends_widget')) { taoh_invite_friends_widget($club_info['title'],'networking',TAOH_NETWORK_REFERRAL_URL);  } ?>
                     <?php if (function_exists('taoh_get_recent_jobs')) { taoh_get_recent_jobs('new');  } ?>
 
-                    </div>
+                    </div>                                 
                 </div>
                  <!-- END participants sidebar -->
 
@@ -3854,7 +3854,7 @@ $isEventNetworking = !empty($eventtoken);
             <div class="modal-dialog bg-white">
                 <div class="modal-content" style="border: 1px solid #ccc; border-radius: 8px;">
                     <!--<div class="modal-header flex-column pb-0 pt-2" style="border: none; position: relative;">
-
+                        
                         <div class="d-flex justify-content-end w-100">
                         <button type="button" class="btn rounded-circle" data-bs-dismiss="modal" aria-label="Close" style="background: none; border: 1px solid #d3d3d3;">
                             <svg width="10" height="10" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -3870,15 +3870,15 @@ $isEventNetworking = !empty($eventtoken);
                         </div>
 
                     <div class="modal-body">
-
-
+                       
+                        
                         <p class="fs-14 fw-400 text-black mb-0">Create or share a video room and invite others to join</p>
                         <hr class="my-2" style="border: none; border-top: 2px solid #d3d3d3;">
                         <form id="createVideoForm" method="post" action="<?= taoh_site_ajax_url(); ?>">
                             <div class="row">
                                 <div class="form-group col-lg-8">
                                     <label for="video_name" class="fs-14 fw-400">Name of the Video Room <span class="text-danger">*</span></label>
-                                    <input type="text"
+                                    <input type="text" 
                                     value="<?php echo $user_info_obj->chat_name ?? ''; ?> Room"
                                     id="video_name" name="video_name"  class="form-control alphanumericInput">
                                 </div>
@@ -3895,7 +3895,7 @@ $isEventNetworking = !empty($eventtoken);
                                 </div>
                                 <div class="row">
                                     <div class="form-group col-lg-12 row">
-
+                                        
                                         <label for="" class="fs-14 fw-400 mb-1">Choice of the Room <span class="text-danger">*</span></label>
 
                                         <div class="col-lg-6 d-inline-flex align-items-center" style="gap: 4px;">
@@ -3920,7 +3920,7 @@ $isEventNetworking = !empty($eventtoken);
                                  <button type="submit" class="btn btn-primary m-0"><i class="fa fa-play-circle-o mr-2" aria-hidden="true"></i> Create & Share Room</button>
                              </div>
                         </form>
-
+                        
                         <p class="fs-10 fw-400 ml-auto mt-2 mb-0" style="color: #787272; width: fit-content;">By creating a room, you agree to our Terms & Conditions</p>
                     </div>
                 </div>
@@ -4119,8 +4119,8 @@ $isEventNetworking = !empty($eventtoken);
                                     } else {
                                         echo ' → ' .ucwords($ch['name']).'<br>';
                                     }
-                                }
-                            }
+                                }                                    
+                            }                                
                         ?>
 
                     </div>
@@ -4308,7 +4308,7 @@ if (isset($data['profile_stage']) && $data['profile_stage'] < 2) {
 $chatwithChannel = "";
 if (isset($_GET['chatwithChannel']) && !empty($_GET['chatwithChannel'])) {
     $chatwithChannel = $_GET['chatwithChannel'];
-    //$keyword = !empty($eventtoken) ? $eventtoken : 'club';
+    //$keyword = !empty($eventtoken) ? $eventtoken : 'club';    
     //echo $keytoken." ~ ".$keyword." ~ ".$chatwithChannel;
     //die;
 }
@@ -4326,8 +4326,8 @@ if (isset($_GET['chatwithChannel']) && !empty($_GET['chatwithChannel'])) {
     <script src="<?php echo TAOH_CHAT_PREFIX; ?>/libs/chat4/tributejs/tribute.min.js"></script>
 
     <script type="text/javascript">
-        let isLoggedIn = "<?= taoh_user_is_logged_in(); ?>";
-
+        let isLoggedIn = "<?= taoh_user_is_logged_in(); ?>";       
+        
 
         let taohChannelDefault = '<?= defined('TAOH_CHANNEL_DEFAULT') ? TAOH_CHANNEL_DEFAULT : 1; ?>';
         let taohChannelExhibitor = '<?= defined('TAOH_CHANNEL_EXHIBITOR') ? TAOH_CHANNEL_EXHIBITOR : 2; ?>';
@@ -4429,7 +4429,7 @@ if (isset($_GET['chatwithChannel']) && !empty($_GET['chatwithChannel'])) {
         $(document).ready(function () {
             if (layout == 1) {
                 loadchatWindow('participants');
-            }
+            }          
 
             taoh_network_update_online();
             setInterval(taoh_network_update_online, userLiveStatusInterval);
@@ -4660,8 +4660,8 @@ if (isset($_GET['chatwithChannel']) && !empty($_GET['chatwithChannel'])) {
                     },
                     success: function(response) {
                         if(response?.type) {
-                            let channelType = response?.type;
-                            showChannelInfoModal(chatWithChannel, channelType);
+                            let channelType = response?.type;   
+                            showChannelInfoModal(chatWithChannel, channelType);        
                         }
                     },
                     error: function() {
@@ -4800,8 +4800,8 @@ if (isset($_GET['chatwithChannel']) && !empty($_GET['chatwithChannel'])) {
                                                         <img class="round-profile-24" src="${userAvatarSrc}" alt="">
                                                         <div>
                                                             <p class="fs-12 fw-400 mb-0" style="line-height: 1.149;">
-                                                            <span class="fw-500 text-capitalize">${userChatName}</span> mention
-                                                            <span class="fw-500 text-underline">
+                                                            <span class="fw-500 text-capitalize">${userChatName}</span> mention 
+                                                            <span class="fw-500 text-underline">                    
                                                                 @${activity.mention_name}</a>
                                                             </span></p>
                                                             <div class="d-flex align-items-center" style="gap: 6px;">
@@ -4810,7 +4810,7 @@ if (isset($_GET['chatwithChannel']) && !empty($_GET['chatwithChannel'])) {
                                                                 data-chatwith="${activity.ptoken}"
                                                                 data-chatname="${userChatName}">Chat</a>
                                                             </div>
-
+                                                        
                                                         </div>
                                                     </li>
                                                 `;
@@ -4853,7 +4853,7 @@ if (isset($_GET['chatwithChannel']) && !empty($_GET['chatwithChannel'])) {
                 $('#downArrow, #upArrow').toggleClass('d-none d-flex');
                 $('.pin_message_div'+channelId).toggleClass('d-none d-flex');
             });
-
+            
             $(document).on('click', '.channel_toggle', function () {
                 const toggleText = $(this).attr('toggle_text');
                 if (toggleText == 'open') {
@@ -4878,7 +4878,7 @@ if (isset($_GET['chatwithChannel']) && !empty($_GET['chatwithChannel'])) {
                 $('#delete_message_id').val("");
                 $('#delete_message_key').val("");
                 $('#delete_confirmation_msg').text("Are you sure to delete the channel?");
-
+                
                 $('#delete_channel_id').val(channelId);
                 $('#delete_channel_type').val(channelType);
 
@@ -4906,7 +4906,7 @@ if (isset($_GET['chatwithChannel']) && !empty($_GET['chatwithChannel'])) {
                         console.log("taoh_ntw_delete_channel", res);
                         if (res.status = "success") {
                             $('#deleteModal').modal('hide');
-                            $(`#channel-${channelId}`).remove();
+                            $(`#channel-${channelId}`).remove();   
                             if($(`#channel-chat[data-channel_id='${channelId}']`).length) {
                                 $('#channelData-sidebar').removeClass('d-xl-block');
                                 $('#participants_refresh').trigger('click');
@@ -4925,7 +4925,7 @@ if (isset($_GET['chatwithChannel']) && !empty($_GET['chatwithChannel'])) {
                 let action = 0;
                 if(status == 0) {
                     action = 1;
-                }
+                }                
 
                 const channelItem = currentElem.closest('.channel-item');
                 const channelId = channelItem.getSyncedData('channelid');
@@ -4951,7 +4951,7 @@ if (isset($_GET['chatwithChannel']) && !empty($_GET['chatwithChannel'])) {
                     success: function (res) {
                         console.log("taoh_ntw_delete_channel", res);
                         if (res.success) {
-                            //$(`.chat-list[data-frm_message_id='${messageId}']`).remove();
+                            //$(`.chat-list[data-frm_message_id='${messageId}']`).remove();          
                         }
                     },
                     error: function (xhr, status, error) {
@@ -5067,12 +5067,12 @@ if (isset($_GET['chatwithChannel']) && !empty($_GET['chatwithChannel'])) {
 
                         const channelElem = $(`#channel-${channelId}`);
                         let hasUpdates = Number(channelLastStamp) > Number(channelExisting?.last_update_stamp ?? 0);
-
+                        
                         if (channelElem.length && currentChannelId != channelId && hasUpdates) {
                             if(lastSendMsgTimestamp[channelId] != channelLastStamp) {
-                                console.log(lastSendMsgTimestamp[channelId]+" CH", channelLastStamp);
+                                console.log(lastSendMsgTimestamp[channelId]+" CH", channelLastStamp);   
                                 channelElem.addClass('have_updates');
-                            }
+                            }                            
                         }
 
                         if(currentChannelId && currentChannelId == channelId) loadChannelMessages(currentChannelId, 0);
@@ -5232,7 +5232,7 @@ if (isset($_GET['chatwithChannel']) && !empty($_GET['chatwithChannel'])) {
                         let hasUpdates = Number(channelLastStamp) > Number(channelExisting?.last_update_stamp ?? 0);
                         if (channelElem.length && currentChannelId != channelId && hasUpdates) {
                             if(lastSendMsgTimestamp[channelId] != channelLastStamp) {
-                                console.log(lastSendMsgTimestamp[channelId], channelLastStamp);
+                                console.log(lastSendMsgTimestamp[channelId], channelLastStamp);                                
                                 channelElem.addClass('have_updates');
                             }
                         }
@@ -5314,12 +5314,12 @@ if (isset($_GET['chatwithChannel']) && !empty($_GET['chatwithChannel'])) {
 
             setInterval(() => {
                 syncRoomStamp({ roomslug, keyword: ntw_keyword, my_pToken }).catch(console.error);
-            }, 10000);
-
+            }, 10000);               
+            
             setTimeout(function () {
-                taoh_load_suggestion_users();
-            }, 2000);
-
+                taoh_load_suggestion_users();                            
+            }, 2000);      
+            
             $('#toggleMoreOption').click(function () {
                 $('#extraRoomFields').slideToggle();
                 $('#extraRoomFields').toggleClass('visible');
@@ -5329,7 +5329,7 @@ if (isset($_GET['chatwithChannel']) && !empty($_GET['chatwithChannel'])) {
                 } else{
                     $(this).html('<i class="bx bx-plus"></i> Show More Options');
                 }
-            });
+            });            
 
             // Initialize observers for both lists
             observeList('#channelList', '.channel-collapse-icon');
@@ -5533,8 +5533,8 @@ if (isset($_GET['chatwithChannel']) && !empty($_GET['chatwithChannel'])) {
         const tribute = new Tribute({
             noMatchTemplate: () => null,
             values: async (text, cb) => {
-                try {
-
+                try {                    
+                    
 
                     if (chatWindow !== 'channel-chat') return cb([]);
 
@@ -5614,7 +5614,7 @@ if (isset($_GET['chatwithChannel']) && !empty($_GET['chatwithChannel'])) {
         }
 
         var _emojiElem = messageId = messageKey = channelId = null;
-
+        
         const emojiData = {
             smileys: ['😀', '😃', '😄', '😁', '😆', '😅', '🤣', '😂', '🙂', '🙃', '😉', '😊', '😇', '🥰', '😍', '🤩', '😘', '😗', '😚', '😙', '😋', '😛', '😜', '🤪', '😝', '🤑', '🤗', '🤭', '🤫', '🤔', '🤐', '🤨', '😐', '😑', '😶', '😏', '😒', '🙄', '😬', '🤥', '😔', '😪', '🤤', '😴', '😷', '🤒', '🤕', '🤢', '🤮', '🤧', '🥵', '🥶', '🥴', '😵', '🤯', '🤠', '🥳', '😎', '🤓', '🧐'],
             people: ['👶', '🧒', '👦', '👧', '🧑', '👱', '👨', '👩', '🧔', '👴', '👵', '🙋', '🙎', '🙅', '🙆', '💁', '🙇', '🤦', '🤷', '👮', '🕵️', '💂', '👷', '🤴', '👸', '👳', '👲', '🧕', '🤵', '👰', '🤰', '🤱', '👼', '🎅', '🤶', '🦸', '🦹', '🧙', '🧚', '🧛', '🧜', '🧝', '🧞', '🧟', '💆', '💇', '🚶', '🏃', '💃', '🕺'],
@@ -5635,7 +5635,7 @@ if (isset($_GET['chatwithChannel']) && !empty($_GET['chatwithChannel'])) {
             travel: '✈️',
             objects: '💡',
             symbols: '❤️'
-        };
+        };            
 
         loadEmojiCategories();
         loadEmojis();
@@ -5663,8 +5663,8 @@ if (isset($_GET['chatwithChannel']) && !empty($_GET['chatwithChannel'])) {
                 getUserInfo(chatwith, 'full').catch((e) => {console.log(e)}),
             ]);
             await updateProfileInfo(userInfo, userLiveStatus);
-           // console.log("userInfo", userInfo);
-           // console.log("userLiveStatus", userLiveStatus);
+           // console.log("userInfo", userInfo); 
+           // console.log("userLiveStatus", userLiveStatus); 
             loadRightSidebar('profile');
             $('.user-profile-desc .openchatacc').show();
         });
@@ -5701,8 +5701,8 @@ if (isset($_GET['chatwithChannel']) && !empty($_GET['chatwithChannel'])) {
                     data: data,
                     dataType: 'json',
 
-                    success: async function (res) {
-                       // console.log("taoh_ntw_init_speed_networking", res);
+                    success: async function (res) {  
+                       // console.log("taoh_ntw_init_speed_networking", res);                                              
                         resolve({
                             status: 200,
                             success: true
@@ -5718,10 +5718,10 @@ if (isset($_GET['chatwithChannel']) && !empty($_GET['chatwithChannel'])) {
             });
 
             if (response.status === 200) {
-
+                            
             }
         }
-
+        
         function loadEmojiCategories() {
             const $catRow = $('#emojiCategories').empty();
             for (const category in emojiData) {
@@ -5891,7 +5891,7 @@ if (isset($_GET['chatwithChannel']) && !empty($_GET['chatwithChannel'])) {
         $(document).on('click', '#nextIndex', function () {
             var nextindex = $(this).attr('nextindex');
             taoh_load_suggestion_users(nextindex);
-        });
+        });        
 
 
         async function speedNetworkingAddUser(ptokens, restricted_ptokens) {
@@ -5920,20 +5920,20 @@ if (isset($_GET['chatwithChannel']) && !empty($_GET['chatwithChannel'])) {
                     $('.zeroday-speed').addClass('d-none');
                     $('#contentCarousel').removeClass('d-none');
 
-                    if(!$(`.speed_networking_carousel #carousel_item_${ptoken}`).length) {
+                    if(!$(`.speed_networking_carousel #carousel_item_${ptoken}`).length) {                        
 
                         if(!$('.rejectDiv:visible').length && !$('.successMatchDiv:visible').length) {
-                            $('.speed_networking_div').removeClass('d-none');
+                            $('.speed_networking_div').removeClass('d-none');                            
                         }
                         $('#speed_networking-participant').html("");
 
                         var userInfo = await getUserInfo(ptoken, 'full');
 
-                        //console.log("userInfo userInfo userInfo", userInfo);
+                        //console.log("userInfo userInfo userInfo", userInfo);                       
 
                         var companyValue = Object.values(userInfo?.company ?? {})[0]?.value || "";
                         //console.log("userInfo userInfo userInfo", userInfo);
-
+                        
                         if (userInfo.avatar_image != '' && userInfo.avatar_image != undefined) {
                             var avatar_image = userInfo.avatar_image;
                         } else if (userInfo.avatar != undefined && userInfo.avatar != 'default') {
@@ -5980,7 +5980,7 @@ if (isset($_GET['chatwithChannel']) && !empty($_GET['chatwithChannel'])) {
                                 tagsHtml += `<a href="#" class="interest extra-interest-toggle c-4">Show more</a>\n`;
                             }
                         }
-
+                    
                         $('.speed_networking_carousel').append(`<div id="carousel_item_${ptoken}" class="carousel-item">
                         <div class="d-flex" style="gap: 13px;">
                             <div>
@@ -6037,9 +6037,9 @@ if (isset($_GET['chatwithChannel']) && !empty($_GET['chatwithChannel'])) {
                     $('.successMatchDiv').addClass('d-none');
                     $('.notAvailableDiv').addClass('d-none');
                     updateSpeedNetworkingCarousel();
-                }
+                }                
             }
-
+            
         }
 
         $(document).on('keyup', '#browseChannelQuery', function () {
@@ -6083,11 +6083,11 @@ if (isset($_GET['chatwithChannel']) && !empty($_GET['chatwithChannel'])) {
 
         $(document).on('click', '.user-chat-nav', function () {
             $('.user-profile-sidebar').removeClass('d-xl-block');
-        });
+        }); 
 
         $(document).on('click', '.goto-message', function () {
             let frmMessageId = $(this).attr('data-frm_message_id');
-            $('#msg_'+frmMessageId)[0].scrollIntoView({ behavior: 'smooth' });
+            $('#msg_'+frmMessageId)[0].scrollIntoView({ behavior: 'smooth' });       
         });
 
         // My Mood Status
@@ -6130,7 +6130,7 @@ if (isset($_GET['chatwithChannel']) && !empty($_GET['chatwithChannel'])) {
         function formatTag(tag) {
             return tag
                 .split('_')                      // split by underscore
-                .map(word =>
+                .map(word => 
                     word.charAt(0).toUpperCase() + word.slice(1).toLowerCase()
                 )                                // capitalize each word
                 .join(' ');                      // join with space
@@ -6808,10 +6808,10 @@ if (isset($_GET['chatwithChannel']) && !empty($_GET['chatwithChannel'])) {
             //     delete msg.reply_count;
             // }
 
-            const existing = existingMap.get(msg.message_id);
+            const existing = existingMap.get(msg.message_id);            
 
             if (!existing) {
-                // Message not in cache → push it
+                // Message not in cache → push it                
                 updatedResponse.messages.push(msg);
             } else {
                 // Compare updated_timestamp (or fallback to timestamp if missing)
@@ -6849,7 +6849,7 @@ if (isset($_GET['chatwithChannel']) && !empty($_GET['chatwithChannel'])) {
         window.replyToMessageId = parentId;
         $('.channel-reply-message-block .conversation-name').text($(this).attr('data-chat_name'));
         $('.channel-reply-message-block .conversation-text').html($(this).attr('data-msg'));
-
+        
         loadReplies(parentId);
     });
 
@@ -6879,7 +6879,7 @@ if (isset($_GET['chatwithChannel']) && !empty($_GET['chatwithChannel'])) {
         }
 
         window.replyToMessageId = parentId;
-
+        
         $('.participants-sidebar').removeClass('d-xl-block');
         loadRightSidebar('reply');
 
@@ -6974,7 +6974,7 @@ if (isset($_GET['chatwithChannel']) && !empty($_GET['chatwithChannel'])) {
             dataType: "json",
             success: function (res) {
                 if (res.success) {
-                    $(`.chat-list[data-frm_message_id='${messageId}']`).remove();
+                    $(`.chat-list[data-frm_message_id='${messageId}']`).remove();          
                 }
             },
             error: function (xhr, status, error) {
@@ -7177,22 +7177,22 @@ if (isset($_GET['chatwithChannel']) && !empty($_GET['chatwithChannel'])) {
             //         </a>
             //     </li>`;
 
-            console.log("channelStarred", channelName+ " ~ " +channelStarred);
+            console.log("channelStarred", channelName+ " ~ " +channelStarred);            
 
             if(channelStarred == 1) {
                 mychannel_html += `
-                <li id="channel-${channelId}" class="channel-item ${isActive ? 'active' : ''} ${hasUpdates ? 'have_updates' : ''} ${isTempChannel ? 'temp' : ''}"
-                    data-channel_passcode=""
-                    data-speed_networking="0"
-                    data-channel_ticket_slug=""
-                    data-name="channel"
-                    data-channel_id="${channelId}"
-                    data-channel_type="${channelType}"
+                <li id="channel-${channelId}" class="channel-item ${isActive ? 'active' : ''} ${hasUpdates ? 'have_updates' : ''} ${isTempChannel ? 'temp' : ''}" 
+                    data-channel_passcode="" 
+                    data-speed_networking="0" 
+                    data-channel_ticket_slug="" 
+                    data-name="channel" 
+                    data-channel_id="${channelId}" 
+                    data-channel_type="${channelType}" 
                     data-channel_name="${channelName}"
-                    data-channelid="${channelId}"
-                    data-channeltype="${channelType}"
+                    data-channelid="${channelId}" 
+                    data-channeltype="${channelType}" 
                     data-channelname="${channelName}">
-
+                    
                     <a class="d-flex align-items-center justify-content-between" href="javascript:void(0);">
                         <div class="channel_btn flex-grow-1 d-flex align-items-center overflow-hidden" title="${channelName}">
                             <div class="flex-grow-1 overflow-hidden channel_btn">
@@ -7217,18 +7217,18 @@ if (isset($_GET['chatwithChannel']) && !empty($_GET['chatwithChannel'])) {
             } else {
 
                 html += `
-                <li id="channel-${channelId}" class="channel-item ${isActive ? 'active' : ''} ${hasUpdates ? 'have_updates' : ''} ${isTempChannel ? 'temp' : ''}"
-                    data-channel_passcode=""
-                    data-speed_networking="0"
-                    data-channel_ticket_slug=""
-                    data-name="channel"
-                    data-channel_id="${channelId}"
-                    data-channel_type="${channelType}"
+                <li id="channel-${channelId}" class="channel-item ${isActive ? 'active' : ''} ${hasUpdates ? 'have_updates' : ''} ${isTempChannel ? 'temp' : ''}" 
+                    data-channel_passcode="" 
+                    data-speed_networking="0" 
+                    data-channel_ticket_slug="" 
+                    data-name="channel" 
+                    data-channel_id="${channelId}" 
+                    data-channel_type="${channelType}" 
                     data-channel_name="${channelName}"
-                    data-channelid="${channelId}"
-                    data-channeltype="${channelType}"
+                    data-channelid="${channelId}" 
+                    data-channeltype="${channelType}" 
                     data-channelname="${channelName}">
-
+                    
                     <a class="d-flex align-items-center justify-content-between" href="javascript:void(0);">
                         <div class="channel_btn flex-grow-1 d-flex align-items-center overflow-hidden" title="${channelName}">
                             <div class="flex-grow-1 overflow-hidden channel_btn">
@@ -7249,7 +7249,7 @@ if (isset($_GET['chatwithChannel']) && !empty($_GET['chatwithChannel'])) {
                         </div>
                     </a>
                 </li>`;
-            }
+            }            
         }
 
         if(watch_party != ''){
@@ -7738,7 +7738,7 @@ if (isset($_GET['chatwithChannel']) && !empty($_GET['chatwithChannel'])) {
             $.ajax({
                 url: _taoh_site_ajax_url,
                 type: 'post',
-                data: {
+                data: { 
                     'roomslug': roomslug,
                     'keyword': ntw_keyword,
                     'taoh_action': taohAction,
@@ -7749,14 +7749,14 @@ if (isset($_GET['chatwithChannel']) && !empty($_GET['chatwithChannel'])) {
                 },
                 dataType: 'json',
                 success: function (data) {
-                    lastSendMsgTimestamp[channel_id] = data.message.timestamp;
+                    lastSendMsgTimestamp[channel_id] = data.message.timestamp;    
                     console.log("lastSendMsgTimestamp lastSendMsgTimestamp", lastSendMsgTimestamp);
-
-                    lastSendMsgChannel = channel_id;
+                    
+                    lastSendMsgChannel = channel_id;                
                     $('#chat-send-btn i').removeClass('bx-spin').removeClass('bx-loader-alt').addClass('bxs-send');
                     $("#chat-send-btn").prop("disabled", false);
                     $("#chat_input").prop("disabled", false);
-                    saveChannelToDB(currentChannelId, [data.message], {}, 0);
+                    saveChannelToDB(currentChannelId, [data.message], {}, 0); 
                     render_messages(data.message, "", 1);
                     $('#chat_input').focus();
                     resolve({
@@ -7787,7 +7787,7 @@ if (isset($_GET['chatwithChannel']) && !empty($_GET['chatwithChannel'])) {
             $.ajax({
                 url: _taoh_site_ajax_url,
                 type: 'post',
-                data: {
+                data: { 
                     'roomslug': roomslug,
                     'taoh_action': taohAction,
                     'keyword': ntw_keyword,
@@ -7805,7 +7805,7 @@ if (isset($_GET['chatwithChannel']) && !empty($_GET['chatwithChannel'])) {
                     let parentId = data.message.parent_message_id;
                     $(`.conversation-reply-count[data-id="${parentId}"]`).removeClass('d-none').attr('data-count', data.reply_count).text(`${data.reply_count} ${data.reply_count > 1 ? "replies" : "reply"}`);
 
-                    saveChannelToDB(currentChannelId, [data.message], {}, 0);
+                    saveChannelToDB(currentChannelId, [data.message], {}, 0); 
 
                     $('#chat_reply_input').focus();
 
@@ -7842,7 +7842,7 @@ if (isset($_GET['chatwithChannel']) && !empty($_GET['chatwithChannel'])) {
     // Load Channel Messages with Cache
     // =======================================
     async function loadChannelMessages(channel_id, firstCall = 0) {
-
+        
         const cachedData = await loadChannelFromDB(channel_id);
         $('.pin-message-v2').hide();
 
@@ -7858,7 +7858,7 @@ if (isset($_GET['chatwithChannel']) && !empty($_GET['chatwithChannel'])) {
 
         var channel_type = $("#channel-chat").attr("data-channel_type");
 
-        //console.log("getChannelTimestamp ===========", lastTimestamp);
+        //console.log("getChannelTimestamp ===========", lastTimestamp);        
 
         return new Promise((resolve, reject) => {
             $.ajax({
@@ -7875,10 +7875,10 @@ if (isset($_GET['chatwithChannel']) && !empty($_GET['chatwithChannel'])) {
                     'key': my_pToken
                 },
                 dataType: 'json',
-                success: async function (res) {
-                    //console.log("GET messages ==", res);
+                success: async function (res) {      
+                    //console.log("GET messages ==", res);                                        
                     try {
-                        if(Array.isArray(res) && res.length > 0) {
+                        if(Array.isArray(res) && res.length > 0) {                                                        
                             await saveChannelToDB(channel_id, res, "", 1);
                             render_messages(res, "", 1);
                         }
@@ -7904,12 +7904,12 @@ if (isset($_GET['chatwithChannel']) && !empty($_GET['chatwithChannel'])) {
         });
     }
 
-    async function loadSpeedNetworkingData(channel_id) {
+    async function loadSpeedNetworkingData(channel_id) {        
 
         var lastTimestamp = await getChannelTimestamp(channel_id);
         var channel_type = $("#channel-chat").attr("data-channel_type");
 
-        console.log("getChannelTimestamp ===========", lastTimestamp);
+        console.log("getChannelTimestamp ===========", lastTimestamp);        
 
         const response = await new Promise((resolve, reject) => {
             $.ajax({
@@ -7926,9 +7926,9 @@ if (isset($_GET['chatwithChannel']) && !empty($_GET['chatwithChannel'])) {
                     'key': my_pToken
                 },
                 dataType: 'json',
-                success: async function (res) {
-                    console.log("GET speed channel data ==", res);
-                    try {
+                success: async function (res) {      
+                    console.log("GET speed channel data ==", res);                                        
+                    try {                        
                         resolve({
                             status: 200,
                             success: true,
@@ -7964,10 +7964,10 @@ if (isset($_GET['chatwithChannel']) && !empty($_GET['chatwithChannel'])) {
                 last_fetch_stamp: last_fetch_timestamp,
                 //last_update_stamp: lastTimestamp,
                 last_update_stamp: Date.now(),
-            });
+            });            
 
             var res = response.result;
-
+            
             const snchannelKey = `room_${ntw_keyword}_${roomslug}_${my_pToken}_${taohChannelSpeedNtw}_channels`;
             let snchannelData = await IntaoDB.getItem(objStores.ntw_store.name, snchannelKey);
             let snupdatedResponse = snchannelData?.values || [];
@@ -7976,7 +7976,7 @@ if (isset($_GET['chatwithChannel']) && !empty($_GET['chatwithChannel'])) {
                 if (Array.isArray(res.all_ptoken) && res.all_ptoken.length > 0) {
                     res.all_ptoken.forEach((ptoken) => {
                         snupdatedResponse[0].members.push(ptoken);
-                        console.log("memeber updated", ptoken);
+                        console.log("memeber updated", ptoken);                        
                     });
                 }
             }
@@ -7990,7 +7990,7 @@ if (isset($_GET['chatwithChannel']) && !empty($_GET['chatwithChannel'])) {
                 res.restricted_ptoken.forEach((ptoken) => {
                     for (const restricted_ptoken of res.restricted_ptoken) {
                         //$(`.speed_networking_div #carousel_item_${restricted_ptoken}`).addClass('d-none').removeClass('active');
-                    }
+                    }                    
                     restrictedPtokenUpdate(ptoken);
                     updateSpeedNetworkingCarousel();
                 });
@@ -8023,16 +8023,16 @@ if (isset($_GET['chatwithChannel']) && !empty($_GET['chatwithChannel'])) {
                         $('.countDownDiv').addClass('d-none');
                         const channelElem = $(`#channel-${channelId}`);
                         $('.speed_networking_div').addClass('d-none');
-                        $('.zeroday-speed').addClass('d-none');
+                        $('.zeroday-speed').addClass('d-none');                        
                         if (!channelElem.length) {
                             var accept_ptoken_userinfo = await getUserInfo(accept_ptoken, 'public');
                             $('.successMatchDiv').removeClass('d-none');
                             $('.successMatchDiv .openchatacc').attr('data-chatwith', accept_ptoken);
-                            $('.successMatchDiv .user_title').text(accept_ptoken_userinfo.chat_name);
+                            $('.successMatchDiv .user_title').text(accept_ptoken_userinfo.chat_name); 
                         } else {
                             channelElem.trigger('click');
                         }
-                    }
+                    }                    
                 }
             }
 
@@ -8148,8 +8148,8 @@ if (isset($_GET['chatwithChannel']) && !empty($_GET['chatwithChannel'])) {
             channelName = channelName.charAt(0).toUpperCase() + channelName.slice(1);
         } else {
             var channelName = "";
-        }
-
+        }  
+        
         for (const msg of all_messages) {
             var msg_text = msg.text;
             let decoded = decodeURIComponent(msg_text);
@@ -8159,7 +8159,7 @@ if (isset($_GET['chatwithChannel']) && !empty($_GET['chatwithChannel'])) {
             if(aTag != "") {
                 let videoName = $(msg_text).find("a.join-v-link").text().trim();
                 let videoLink = $(msg_text).find("a.join-v-link").attr('link').trim();
-
+                
                 const exists = videos_act.some(v => v.video_link === videoLink);
                 if (!exists && videoName && videoLink && msg.ptoken != my_pToken) {
                     videos_act.push({
@@ -8171,8 +8171,8 @@ if (isset($_GET['chatwithChannel']) && !empty($_GET['chatwithChannel'])) {
                     });
                 }
                 var msgHTML = "Join "+aTag+" - Video Room";
-            }
-        }
+            }       
+        } 
         videos_act = videos_act.filter(v => v.video_name && v.video_link);
         if (videos_act.length > 0) {
             $('.recent_activity').removeClass('d-none');
@@ -8226,10 +8226,10 @@ if (isset($_GET['chatwithChannel']) && !empty($_GET['chatwithChannel'])) {
             channelName = channelName.charAt(0).toUpperCase() + channelName.slice(1);
         } else {
             var channelName = "";
-        }
+        }        
 
-        var pinnedFound = false;
-
+        var pinnedFound = false;        
+        
         for (const msg of messages) {
 
             if(msg.parent_message_id) {
@@ -8269,7 +8269,7 @@ if (isset($_GET['chatwithChannel']) && !empty($_GET['chatwithChannel'])) {
 
                 //let replyCount = messages.filter(m => m.parent_message_id == msg.message_id).length;
                 //let replyCount = 0;
-                //replyCount = messages.filter(m => m.parent_message_id == msg.message_id).length;
+                //replyCount = messages.filter(m => m.parent_message_id == msg.message_id).length;     
 
                 let $parent = $('.pin-message-v2');
                 if ($parent.find('.pin_message_div'+currentChannelId).length === 0 && currentChannelId) {
@@ -8292,7 +8292,7 @@ if (isset($_GET['chatwithChannel']) && !empty($_GET['chatwithChannel'])) {
                 if(aTag != "") {
                     let videoName = $(msg_text).find("a.join-v-link").text().trim();
                     let videoLink = $(msg_text).find("a.join-v-link").attr('link').trim();
-
+                    
                     const exists = videos_act.some(v => v.video_link === videoLink);
                     if (!exists && videoName && videoLink && msg.ptoken != my_pToken) {
                         videos_act.push({
@@ -8315,7 +8315,7 @@ if (isset($_GET['chatwithChannel']) && !empty($_GET['chatwithChannel'])) {
                         var msgHTML = msg;
                     }
                     msg_text = convertLinks(msg_text);
-                }
+                }                
 
                 if(msg.pinned == 1) {
                     //console.log("=== msg msg <<< ===>>", msg.pinned);
@@ -8358,16 +8358,16 @@ if (isset($_GET['chatwithChannel']) && !empty($_GET['chatwithChannel'])) {
                 }
 
 
-                if ($(`.chat-list[data-frm_message_key="${msg.message_key}"]`).length === 0) {
-
+                if ($(`.chat-list[data-frm_message_key="${msg.message_key}"]`).length === 0) {        
+                    
                     if (msg.deleted) {
                         var reply_Count = allMessages.filter(m =>
                             Number(m.parent_message_id) === Number(msg.parent_message_id) && m.deleted === false
                         ).length;
-                        //console.log("reply_Count", reply_Count);
+                        //console.log("reply_Count", reply_Count);                        
                         if(reply_Count) {
                             if ($(`#channel-conversation-list .chat-list[data-frm_message_id="${msg.parent_message_id}"]`).length) {
-                                //console.log("reply count found");
+                                //console.log("reply count found");                        
                                 var countText = "";
                                 if(reply_Count > 1) {
                                     countText = reply_Count+" replies";
@@ -8375,13 +8375,13 @@ if (isset($_GET['chatwithChannel']) && !empty($_GET['chatwithChannel'])) {
                                     countText = reply_Count+" reply";
                                 }
                                 $(`#channel-conversation-list .conversation-reply-count[data-id="${msg.parent_message_id}"]`).removeClass('d-none').attr('data-count', reply_Count).text(countText);
-                            }
+                            }                                    
                         }
                         if (msg.deleted && $(`.chat-list[data-frm_message_id="${msg.message_id}"]`).length) {
                             $(`.chat-list[data-frm_message_id="${msg.message_id}"]`).remove();
                         }
                         updateRecentActivity(currentChannelId);
-
+                    
                     } else {
 
                         let currentLabel = getDateLabel(msg.timestamp);
@@ -8402,14 +8402,14 @@ if (isset($_GET['chatwithChannel']) && !empty($_GET['chatwithChannel'])) {
                             lastDateLabel = currentLabel;
                         }
 
-                        if(msg.parent_message_id && layout == "main") {
+                        if(msg.parent_message_id && layout == "main") {                        
                             if(messages.length == 1) {
                                 var reply_Count = allMessages.filter(m =>
                                     Number(m.parent_message_id) === Number(msg.parent_message_id) && m.deleted === false
-                                ).length;
+                                ).length;                            
                                 if(reply_Count) {
                                     if ($(`#${loadLayout} .chat-list[data-frm_message_id="${msg.parent_message_id}"]`).length) {
-                                        //console.log("reply count found");
+                                        //console.log("reply count found");                        
                                         var countText = "";
                                         if(reply_Count > 1) {
                                             countText = reply_Count+" replies";
@@ -8417,20 +8417,20 @@ if (isset($_GET['chatwithChannel']) && !empty($_GET['chatwithChannel'])) {
                                             countText = reply_Count+" reply";
                                         }
                                         $(`#${loadLayout} .conversation-reply-count[data-id="${msg.parent_message_id}"]`).removeClass('d-none').attr('data-count', reply_Count).text(countText);
-                                    }
-                                }
-                                loadLayout = "chat-reply-conversation-list";
-
+                                    }                                    
+                                }    
+                                loadLayout = "chat-reply-conversation-list"; 
+                                                     
                             }  else {
                                 //continue;
                             }
                         }
-
+                        
                         var replyCount = messages.filter(m =>
                             Number(m.parent_message_id) === Number(msg.message_id) && m.deleted === false
                         ).length;
 
-                        let escapedMsg = escapeHtml(msg.text);
+                        let escapedMsg = escapeHtml(msg.text);                
 
                         //console.log(msg.text, "TEST: "+replyCount);
 
@@ -8524,7 +8524,7 @@ if (isset($_GET['chatwithChannel']) && !empty($_GET['chatwithChannel'])) {
                     }
 
                     if(msg.parent_message_id && msg.reply_count) {
-                        if ($(`#channel-conversation-list .chat-list[data-frm_message_id="${msg.parent_message_id}"]`).length) {
+                        if ($(`#channel-conversation-list .chat-list[data-frm_message_id="${msg.parent_message_id}"]`).length) {                
                             var countText = "";
                             var replyCount = msg.reply_count;
                             if(replyCount > 1) {
@@ -8537,7 +8537,7 @@ if (isset($_GET['chatwithChannel']) && !empty($_GET['chatwithChannel'])) {
                     }
 
                 } else {
-
+                    
                     //console.log("EXISTING", msg.message_id);
 
                     if (msg.deleted && $(`.chat-list[data-frm_message_key="${msg.message_key}"]`).length) {
@@ -8554,11 +8554,11 @@ if (isset($_GET['chatwithChannel']) && !empty($_GET['chatwithChannel'])) {
                     }
                     if (msg.deleted && $(`#${loadLayout} .chat-list[data-frm_message_key="${msg.message_key}"]`).length) {
                         $(`#${loadLayout} .chat-list[data-frm_message_key="${msg.message_key}"]`).remove();
-                    }
-                    //console.log("reply count found before 1234", msg);
+                    } 
+                    //console.log("reply count found before 1234", msg); 
                     if(msg.parent_message_id && msg.reply_count) {
-                        if ($(`#${loadLayout} .chat-list[data-frm_message_id="${msg.parent_message_id}"]`).length) {
-                            //console.log("reply count found");
+                        if ($(`#${loadLayout} .chat-list[data-frm_message_id="${msg.parent_message_id}"]`).length) {         
+                            //console.log("reply count found");                        
                             var countText = "";
                             var replyCount = msg.reply_count;
                             //console.log("reply count found before 1234", replyCount);
@@ -8569,7 +8569,7 @@ if (isset($_GET['chatwithChannel']) && !empty($_GET['chatwithChannel'])) {
                             }
                             $(`#${loadLayout} .conversation-reply-count[data-id="${msg.parent_message_id}"]`).removeClass('d-none').attr('data-count', replyCount).text(countText);
                         }
-                    }
+                    }                                   
                     if (msg.reactions) {
                         try {
                             let reactions = JSON.parse(msg.reactions);
@@ -8580,13 +8580,13 @@ if (isset($_GET['chatwithChannel']) && !empty($_GET['chatwithChannel'])) {
                         } catch (e) {
                             //console.log("Invalid reactions JSON");
                         }
-                    }
+                    } 
                 }
             }
         }
 
         //console.log("pinnedFound", pinnedFound);
-
+        
 
         if(pinnedFound) {
             $('.pin-message-v2').show();
@@ -8602,8 +8602,8 @@ if (isset($_GET['chatwithChannel']) && !empty($_GET['chatwithChannel'])) {
             $('.recent_activity').addClass('d-none');
         }
 
-        //console.log("videos_act videos_act videos_act", videos_act);
-
+        //console.log("videos_act videos_act videos_act", videos_act);        
+        
         if(layout == "reply") {
             simpleBarScrollToBottom('#chat-reply-conversation');
         } else {
@@ -8675,17 +8675,17 @@ if (isset($_GET['chatwithChannel']) && !empty($_GET['chatwithChannel'])) {
                     if (video_count < 3) {
                         usernameArray.push(userChatName);
                     }
-                    activities_video_html += `
+                    activities_video_html += `                                                                                    
                         <li class="d-flex align-items-center" style="gap: 6px;">
                         <img class="round-profile-24" src="${userAvatarSrc}" alt="">
                         <div>
                             <span class="mr-1">
                             <span class="fw-500 text-capitalize">${userChatName} </span>
                             created a video room  <b>${activity.video_name}</b> on ${activity.channel_name}
-                        </span>
+                        </span> 
                             <a href="${activity.video_link}" target="_blank" class="text-underline">Check Video Room</a>
                             </div>
-                        </li>
+                        </li>                        
                     `;
                 }
 
@@ -8696,9 +8696,9 @@ if (isset($_GET['chatwithChannel']) && !empty($_GET['chatwithChannel'])) {
 
             top_data += `
                 <p class="fw-500 text-capitalize text-black lh-16 mb-2 sentence" >
-                </p>
-                <button
-                type="button"
+                </p> 
+                <button 
+                type="button" 
                 class="toggle-btn btn bor-btn toggle-vdo-lists">
                     <span class="toggleText">More Details</span>
                     <svg class="drp-dwn-svg" width="14" height="14" viewBox="0 0 10 10" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -8769,28 +8769,28 @@ if (isset($_GET['chatwithChannel']) && !empty($_GET['chatwithChannel'])) {
                     }
                     activities_video_html += `
 
-
+                                                                                    
                                                                     <li class="d-flex align-items-center" style="gap: 6px;">
                                                                     <img class="round-profile-24" src="${userAvatarSrc}" alt="">
                                                                     <div>
                                                                         <span class="mr-1">
                                                                         <span class="fw-500 text-capitalize">${userChatName} </span>
-                                                                        created a video room  <b>${activity.video_name}</b> on
+                                                                        created a video room  <b>${activity.video_name}</b> on 
                                                                         <a href="javascript:void(0);"
                                                                         click_channel_id="${activity.channel_id}"
                                                                         class="click_channel a-link">
                                                                         ${activity.channel_name}</a>
-                                                                    </span>
+                                                                    </span> 
                                                                         <a href="${activity.video_link}" target="_blank" class="text-underline">Check Video Room</a>
                                                                         </div>
                                                                     </li>
-
+                                                                    
                                                                 `;
                 }
 
             }
             activities_video_html += `</ul>
-
+                                                
                                                 </div>`;
 
 
@@ -8798,9 +8798,9 @@ if (isset($_GET['chatwithChannel']) && !empty($_GET['chatwithChannel'])) {
 
             top_data += `
                                                         <p class="fw-500 text-capitalize text-black lh-16 mb-2 sentence" >
-                                                        </p>
-                                                        <button
-                                                        type="button"
+                                                        </p> 
+                                                        <button 
+                                                        type="button" 
                                                         class="toggle-btn btn bor-btn toggle-vdo-lists">
                                                             <span class="toggleText">More Details</span>
                                                             <svg class="drp-dwn-svg" width="14" height="14" viewBox="0 0 10 10" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -8839,7 +8839,7 @@ if (isset($_GET['chatwithChannel']) && !empty($_GET['chatwithChannel'])) {
         if (!el) return;
 
         console.log("el");
-
+        
 
         let simplebarInstance = SimpleBar.instances.get(el);
         if (!simplebarInstance) {
@@ -8945,7 +8945,7 @@ if (isset($_GET['chatwithChannel']) && !empty($_GET['chatwithChannel'])) {
                 };
             }
 
-            console.log("track_data", track_data);
+            console.log("track_data", track_data);        
 
             if(room_choice == 1) {
                 var ext_link_org =  $("input[name=ext_link]").val();
@@ -8955,15 +8955,15 @@ if (isset($_GET['chatwithChannel']) && !empty($_GET['chatwithChannel'])) {
                 track_data.video_link = ext_link;
                 var videoChatLinkData = `<div class="ctext-wrap mb-0">
                         <div class="">
-                            <p class="mb-0 ctext-content fs-12 fw-400">
-                                Join
+                            <p class="mb-0 ctext-content fs-12 fw-400">                               
+                                Join 
                                 <a href="${ext_link}" video_name="${video_name}" link="${ext_link}" channel_of_type="${channel_of_type}"
                                 target="_blank" class="d-inline-flex align-items-center join-v-link" style="gap: 4px;">
                                 ${video_name}
                                 </a>
                                 - Video Room
                             </p>
-                            <p class="mb-0 ctext-content fs-12 fw-400 text-black">${video_desc}</p>
+                            <p class="mb-0 ctext-content fs-12 fw-400 text-black">${video_desc}</p>                            
                         </div>
                     </div>`;
                 $('#chat_input').val(videoChatLinkData);
@@ -8996,18 +8996,18 @@ if (isset($_GET['chatwithChannel']) && !empty($_GET['chatwithChannel'])) {
                             taoh_track_activities(track_data);
                             var videoChatLinkData = `<div class="ctext-wrap mb-0">
                                     <div class="">
-                                        <p class="mb-0 ctext-content fs-12 fw-400">
-                                            Join
+                                        <p class="mb-0 ctext-content fs-12 fw-400">                        
+                                            Join 
                                             <a href="${link}" video_name="${video_name}" link="${link}" channel_of_type="${channel_of_type}"
                                             target="_blank" class="d-inline-flex align-items-center join-v-link" style="gap: 4px;">
                                             ${video_name}
                                             </a>
                                             - Video Room
                                         </p>
-                                        <p class="mb-0 ctext-content fs-12 fw-400 text-black">${video_desc}</p>
+                                        <p class="mb-0 ctext-content fs-12 fw-400 text-black">${video_desc}</p>                
                                     </div>
                                 </div>`;
-                            $('#chat_input').val(videoChatLinkData);
+                            $('#chat_input').val(videoChatLinkData);                            
                             $('#chat-send-btn').trigger('click');
                             document.getElementById("createVideoForm").reset();
                             submit_btn.prop('disabled', false);
@@ -9044,7 +9044,7 @@ if (isset($_GET['chatwithChannel']) && !empty($_GET['chatwithChannel'])) {
             dataType: 'json',
             data: data,
             success: function (response, textStatus, jqXHR) {
-                console.log("sendToActivityChannel", response);
+                console.log("sendToActivityChannel", response);                
             }
         });
     }
@@ -9310,7 +9310,7 @@ if (isset($_GET['chatwithChannel']) && !empty($_GET['chatwithChannel'])) {
                     } else {
                         msgEl.attr("data-status", 0).html(`Pin <i class="bx bx-pin text-muted ms-2"></i>`);
                     }
-                    saveChannelToDB(currentChannelId, [res.message], {}, 0);
+                    saveChannelToDB(currentChannelId, [res.message], {}, 0);    
                     var msg = res.message;
                     var chatInfo = await getUserInfo(msg.ptoken, 'public');
                     if (chatInfo.avatar_image != '' && chatInfo.avatar_image != undefined) {
@@ -9356,7 +9356,7 @@ if (isset($_GET['chatwithChannel']) && !empty($_GET['chatwithChannel'])) {
                     }
 
                     if(msg.pinned == 1) {
-                        pinnedFound = true;
+                        pinnedFound = true;                       
                         if ($(`.pin_message_div${currentChannelId} .pin_message_msg_div [data-frm_message_id="${msg.message_id}"]`).length === 0 && currentChannelId) {
                             $(`.pin_message_div${currentChannelId} .pin_message_dot_div`).append(`<div class="message-item-dot ${activeClass}" data-channel_id="${currentChannelId}" data-frm_message_id="${msg.message_id}"></div>`);
                             $(`.pin_message_div${currentChannelId} .pin_message_msg_div`).append(`<div class="pin_msg flex-grow-1 ${(activeClass == "active") ? 'd-flex' : 'd-none'}" data-channel_id="${currentChannelId}" data-frm_message_id="${msg.message_id}">
@@ -9410,7 +9410,7 @@ if (isset($_GET['chatwithChannel']) && !empty($_GET['chatwithChannel'])) {
 
                         $(`.pin_message_div${currentChannelId} .pin_message_dot_div .message-item-dot`).removeClass('active');
                         $(`.pin_message_div${currentChannelId} .pin_message_dot_div .message-item-dot`).first().addClass('active');
-                    }
+                    }                
                 }
             }
         });
@@ -9559,7 +9559,7 @@ if (isset($_GET['chatwithChannel']) && !empty($_GET['chatwithChannel'])) {
         const $btn = $(this);
         const $current = $(this).closest('.carousel-item');
 
-        $btn.prop('disabled', true).text('Loading...');
+        $btn.prop('disabled', true).text('Loading...');        
 
         var chatwith = $(this).data('chatwith');
 
@@ -9579,7 +9579,7 @@ if (isset($_GET['chatwithChannel']) && !empty($_GET['chatwithChannel'])) {
                 dataType: 'json',
                 success: async function (res) {
                     $btn.closest('.carousel-item').remove();
-                    restrictedPtokenUpdate(chatwith);
+                    restrictedPtokenUpdate(chatwith);                  
                     updateSpeedNetworkingCarousel();
                 },
                 error: function (xhr, status, error) {
@@ -9598,7 +9598,7 @@ if (isset($_GET['chatwithChannel']) && !empty($_GET['chatwithChannel'])) {
             let record = existing.values[0];
             if (!record.restricted_ptokens) {
                 record.restricted_ptokens = [];
-            }
+            }                        
             if (!record.restricted_ptokens.includes(chatwith)) {
                 record.restricted_ptokens.push(chatwith);
             }
@@ -9606,9 +9606,9 @@ if (isset($_GET['chatwithChannel']) && !empty($_GET['chatwithChannel'])) {
         }
 
         await IntaoDB.setItem(store, {
-            taoh_ntw: chkey,
-            values: existing.values,
-            timestamp: Date.now()
+            taoh_ntw: chkey, 
+            values: existing.values, 
+            timestamp: Date.now() 
         });
     }
 
@@ -9767,7 +9767,7 @@ if (isset($_GET['chatwithChannel']) && !empty($_GET['chatwithChannel'])) {
         chatwith_liveStatus = Boolean(userLiveStatus.output) ? 1 : 0;
 
         console.log("chatwith_liveStatus chatwith_liveStatus", chatwith_liveStatus);
-
+        
 
         // if (chatwith_liveStatus == 0) {
         //     //var d_data = await getUserInfo(user_ptoken, 'public');
@@ -10256,7 +10256,7 @@ if (isset($_GET['chatwithChannel']) && !empty($_GET['chatwithChannel'])) {
         $('#browse_channels_wrapper').addClass('d-none');
 
         $(this).removeClass('have_updates');
-
+        
         $('.speedChannelList li').each(function() {
             $(this).removeClass('active');
         });
@@ -10279,8 +10279,8 @@ if (isset($_GET['chatwithChannel']) && !empty($_GET['chatwithChannel'])) {
         $('.sn_channel_title').text(channelInfo.data.name);
         $('.sn_channel_description').text(channelInfo.data.description || channelInfo.data.name);
 
-        console.log("test test test 123455", channelInfo.members);
-        console.log("test test test 123455", channelInfo.restricted_ptokens);
+        console.log("test test test 123455", channelInfo.members); 
+        console.log("test test test 123455", channelInfo.restricted_ptokens);        
 
         speedNetworkingAddUser(channelInfo.members, channelInfo.restricted_ptokens);
 
@@ -10314,20 +10314,20 @@ if (isset($_GET['chatwithChannel']) && !empty($_GET['chatwithChannel'])) {
                         loader(false, loaderAreaSp);
                     },
                     success: function (res) {
-                        console.log("sn user add res", res);
+                        console.log("sn user add res", res);                    
                         loader(false, loaderAreaSp);
                         let resultArr = res;
-                        if(res.success) {
+                        if(res.success) {                                                    
                             const response_data = {
-                                status: 200
+                                status: 200                                
                             };
                             resolve(response_data);
                         } else {
                             const response_data = {
                                 status: 201
                             };
-                            resolve(response_data);
-                        }
+                            resolve(response_data);                            
+                        }                        
                     },
                     error: function (xhr, status, error) {
                         console.log('Error:', xhr.status);
@@ -10340,7 +10340,7 @@ if (isset($_GET['chatwithChannel']) && !empty($_GET['chatwithChannel'])) {
 
         $('.successMatchDiv').addClass('d-none');
         $('.notAvailableDiv').addClass('d-none');
-        $('.rejectDiv').addClass('d-none');
+        $('.rejectDiv').addClass('d-none');        
 
         $('.speed_networking_hints').show();
 
@@ -10349,7 +10349,7 @@ if (isset($_GET['chatwithChannel']) && !empty($_GET['chatwithChannel'])) {
             $(this).find('.not_interested_btn').prop('disabled', false).text('Not interested');
         });
 
-        updateSpeedNetworkingCarousel();
+        updateSpeedNetworkingCarousel();   
 
     });
 
@@ -10385,7 +10385,7 @@ if (isset($_GET['chatwithChannel']) && !empty($_GET['chatwithChannel'])) {
         const [channelInfo] = await getIntaoDataById(store, ntwRoomChannels, channelId);
 
         console.log("channelInfo ===", channelInfo);
-
+        
 
         if (eventToken && channelInfo?.channel_ticket_type && rsvpSlug && channelInfo?.channel_ticket_type !== rsvpSlug) {
             taoh_set_warning_message('You can not access this channel.');
@@ -10577,7 +10577,7 @@ if (isset($_GET['chatwithChannel']) && !empty($_GET['chatwithChannel'])) {
                                 }
                             ]);
                         }
-
+                        
                     }
                 },
                 error: function(xhr, status, error) {
@@ -10702,7 +10702,7 @@ if (isset($_GET['chatwithChannel']) && !empty($_GET['chatwithChannel'])) {
                 'ptoken': my_pToken
             };
             taoh_track_activities(track_data);
-
+            
         }
     });
 
@@ -10743,7 +10743,7 @@ if (isset($_GET['chatwithChannel']) && !empty($_GET['chatwithChannel'])) {
             });
     });
 
-    $("#chat-send-btn").on("click", async function() {
+    $("#chat-send-btn").on("click", async function() {        
 
         let message = $("#chat_input").val().trim();
         let channelId = $("#channel-chat").attr("data-channel_id");
@@ -10754,7 +10754,7 @@ if (isset($_GET['chatwithChannel']) && !empty($_GET['chatwithChannel'])) {
         let chatwith = "";
 
         if(channelType == 4) {
-            chatwith = $("#channel-chat").attr("data-chatwith");
+            chatwith = $("#channel-chat").attr("data-chatwith");           
             const [userLiveStatus_cell] = await Promise.all([
                 getUserLiveStatus(chatwith).catch((e) => {
                     console.log(e)
@@ -10787,14 +10787,14 @@ if (isset($_GET['chatwithChannel']) && !empty($_GET['chatwithChannel'])) {
                         },
                         class: 'dojo-v1-btn float-right mt-3 mb-3 mr-2'
                     }
-                ]);
+                ]);               
             }
-        }
-
+        }        
+ 
         $('#chat-send-btn i').removeClass('bxs-send').addClass('bx-spin').addClass('bx-loader-alt');
         $("#chat-send-btn").prop("disabled", true);
         $("#chat_input").prop("disabled", true);
-        $("#chat_input").val("");
+        $("#chat_input").val("");        
         send_message(channelId, channelType, message);
     });
 
@@ -10803,7 +10803,7 @@ if (isset($_GET['chatwithChannel']) && !empty($_GET['chatwithChannel'])) {
         let channelId = $("#channel-chat").attr("data-channel_id");
         let channelType = $("#channel-chat").attr("data-channel_type");
         if (!text || !channelId) return;
-        $("#chat_reply_input").val("");
+        $("#chat_reply_input").val("");        
         send_reply_message(channelId, channelType, text);
     });
 
@@ -11003,7 +11003,7 @@ if (isset($_GET['chatwithChannel']) && !empty($_GET['chatwithChannel'])) {
 
         $('.countDownDiv').addClass('d-none');
         $('.successMatchDiv').addClass('d-none');
-        $('.notAvailableDiv').addClass('d-none');
+        $('.notAvailableDiv').addClass('d-none');        
         $('.rejectDiv').addClass('d-none');
 
         if($('.speed_networking_carousel .carousel-item').length == 0) {

@@ -36,7 +36,7 @@
         <div class="row">
             <div class="col-lg-9">
                 <div class="notification-content-wrap" id="notify-area">
-
+                    
                 </div><!-- end notification-content-wrap -->
                 <div class="pager pt-30px mb-50px">
                     <div id="pagination"></div>
@@ -155,7 +155,7 @@ function show_pagination(holder) {
 }
 
 function taoh_notify_init(){
-
+    
     notificationsList.html('');
     notificationsList.html(`
         <p class="no-result"><img id="loaderEmail" width="20" src="<?php echo TAOH_LOADER_GIF; ?>"/> </p>`
@@ -171,7 +171,7 @@ function taoh_notify_init(){
         "offset" :  currentPage-1,
         "perpage" :  itemsPerPage,
         "limit" : itemsPerPage,
-
+        		 
 	};
     jQuery.post("<?php echo taoh_site_ajax_url(); ?>", data, function(response) {
          data = response;//JSON.parse(response);
@@ -179,12 +179,12 @@ function taoh_notify_init(){
             console.log('-----------',data);
       	    render_notify_list_template(data,notificationsList);
 		}else{
-            notificationsList.html('<p class="text-danger">No Result Found</p>');
+            notificationsList.html('<p class="text-danger">No Result Found</p>'); 
          }
     });
 }
 
-function render_notify_list_template(data,slot){
+function render_notify_list_template(data,slot){ 
     slot.empty();
     if(!data.status) {
         slot.append('<p class="text-danger">No Result Found</p>');

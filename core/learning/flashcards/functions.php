@@ -20,6 +20,6 @@ function taoh_get_blog_categories2( $type = 'all' ) {
   if(isset($response) && is_array($response)) {
     return $response;
   }
-  return array();
+  return array(); 
 }
 ?>

@@ -22,7 +22,7 @@ switch ($slug) {
             include_once(TAOH_PLUGIN_PATH . '/core/club/networking4.php');
         } elseif (NETWORKING_VERSION == 5) {
             include_once(TAOH_PLUGIN_PATH . '/core/club/networking5.php');
-        }
+        } 
         elseif (NETWORKING_VERSION == 'mini') {
             include_once(TAOH_PLUGIN_PATH . '/core/club/networking5_kal.php');
         } elseif (NETWORKING_VERSION == 'passive') {

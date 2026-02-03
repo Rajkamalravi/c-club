@@ -80,7 +80,7 @@ if (empty($speaker_id)) {
 
                     <div class="" id="speaker_tao_room_links" style="display: none;"></div>
                 </div>
-
+                
                 <div class="mt-2" id="speaker_location_blk" style="display: none;"></div>
             </div>
         </div>
@@ -94,7 +94,7 @@ if (empty($speaker_id)) {
             </div>
 
             <div class="exh-d-right">
-
+            
             <div class="modal fade raffleAnswerModal" id="raffleAnswerModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
                     <div class="modal-dialog bg-white" role="document">
                         <div class="modal-content">
@@ -109,7 +109,7 @@ if (empty($speaker_id)) {
                             </div>
                         </div>
                         <div class="modal-body">
-
+                            
                         </div>
                         </div>
                     </div>
@@ -128,7 +128,7 @@ if (empty($speaker_id)) {
     const my_username = '<?= $puser_name ?? ''; ?>';
     let TAOH_CURR_APP_URL = '<?= TAOH_CURR_APP_URL; ?>';
 
-
+    
     let user_timezone;
 
     if (isLoggedIn) {
@@ -207,7 +207,7 @@ if (empty($speaker_id)) {
                         locality = event_output.conttoken.locality;
 
                         let event_title = conttoken_data?.title;
-
+                        
 
                         let speakerBreadcrumbHTML = `<li><a href="${_taoh_site_url_root}/events">Events</a></li>
                             <li><a href="${_taoh_site_url_root}/events/chat/id/events/${eventtoken}">${event_title}</a></li>
@@ -230,7 +230,7 @@ if (empty($speaker_id)) {
                             $(".review_count").hide();
                         }
 
-
+                        
                     // speaker_timeslot_blk
                     let event_timestamp_start_data = {
                         utc_datetime: event_speaker_info.spk_datefrom.replace(/[T:-]/g,'')+'00',
@@ -247,21 +247,21 @@ if (empty($speaker_id)) {
                     };
                     let startdate = format_event_timestamp(event_timestamp_start_data, user_timezone, 'date', 'dd MMM yyyy',0); // EEEE, dd MMM yyyy
                     let starttime = format_event_timestamp(event_timestamp_start_data, user_timezone, 'date', 'hh:mm A',1);
-
+                    
                     let enddate = format_event_timestamp(event_timestamp_end_data, user_timezone, 'date', 'dd MMM yyyy',0);
                     let endtime = format_event_timestamp(event_timestamp_end_data, user_timezone, 'date', 'hh:mm A',1);
 
                     if(startdate == enddate){
-                        $("#speaker_timeslot_blk").html(`<p>${startdate}
+                        $("#speaker_timeslot_blk").html(`<p>${startdate}                  
                                     ${starttime} - ${endtime}
                                     </p>`);
                     }else{
                         $("#speaker_timeslot_blk").html(`<p class="px-4 mx-1">${startdate} ${starttime} - ${enddate} ${endtime}</p>`);
                     }
-
+                    
                 });
 
-
+                
                 const speakerBannersArray = [event_speaker_info.spk_image].filter(url => url.trim() !== "" && isValidURL(url)).map(url => ({
                     src: url,
                     type: getMediaType(url)
@@ -273,8 +273,8 @@ if (empty($speaker_id)) {
                 const mainDisplay = document.createElement("div");
                 mainDisplay.id = "speaker_banner_image";
                 galleryContainer.before(mainDisplay);
-
-
+                
+                
                 function formatVideoSrc(videoSrc) {
                     if (videoSrc.includes("youtube.com")) {
                         return `https://www.youtube.com/embed/${videoSrc.split("v=")[1]?.split("&")[0]}`;
@@ -311,7 +311,7 @@ if (empty($speaker_id)) {
                     mainDisplay.innerHTML = mediaHtml;
                 }
 
-
+                
                 if (speakerBannersArray[0]) {
                     displayMedia(speakerBannersArray[0]);
                 } else {
@@ -324,12 +324,12 @@ if (empty($speaker_id)) {
                             </div>`;
                     $('#speaker_banner_image').html(mediaHtml);
                 }
-
+                
                 if(event_speaker_info.spk_logo_image && isValidURL(event_speaker_info.spk_logo_image)){
                     $('#speaker_logo').attr('src', event_speaker_info.spk_logo_image);
                 }
 
-
+                
                 if (event_speaker_info.spk_hero_button_text && isValidURL(event_speaker_info.spk_hero_button_url)) {
                     $('#speaker_banner_image').append(`<a href="${event_speaker_info.spk_hero_button_url}" target="_blank" class="btn hero-button">${event_speaker_info.spk_hero_button_text}</a>`);
                 }
@@ -349,7 +349,7 @@ if (empty($speaker_id)) {
                 }
 
                 $("#speaker_hall").html(event_speaker_info.spk_hall);
-
+                
 
                 let speakderLocationUrl = event_speaker_info.spk_room_location || '';
                 if (speakderLocationUrl.trim()) {
@@ -382,7 +382,7 @@ if (empty($speaker_id)) {
 
                 if ((enable_tao_networking == '1' || enable_tao_networking == 'on')) {
                     const speaker_tao_room_links = $('#speaker_tao_room_links');
-
+                  
                     speaker_tao_room_links.html(
                             `<a href="${TAOH_CURR_APP_URL}/chat/id/events/${eventtoken}" class="btn join" id="tao_video_room">
                             <span class="px-2">Join Tao Networking Now!</span></a>`);
@@ -390,7 +390,7 @@ if (empty($speaker_id)) {
                     $('#speaker_room_btn_blk').show();
                 }
 
-
+                
                 const safeMessage = document.createElement('pre');
                 safeMessage.textContent = event_speaker_info.spk_desc || '';
                 let safeMessageHtml = safeMessage.innerHTML.replace(/\n/g, '<br>')

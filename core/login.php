@@ -6,11 +6,11 @@ if(isset($_COOKIE[TAOH_ROOT_PATH_HASH.'_'.'locked']) && $_COOKIE[TAOH_ROOT_PATH_
 else{
   if ( taoh_user_is_logged_in() ){
     $url = TAOH_SITE_URL_ROOT.'?uslo=1';
-      taoh_redirect($url);
+      taoh_redirect($url); 
       taoh_exit();
   }
 }
-taoh_get_header();
+taoh_get_header(); 
 $current_app = taoh_parse_url(1) ? taoh_parse_url(1) : TAOH_WERTUAL_SLUG;
 //echo "====================".$current_app;
 //die('------------');
@@ -84,7 +84,7 @@ $lock_text = TAOH_LOGIC_LOCK_TEXT;
                         <div id="sendEmail" style="display:none" >
                           <h2 class="h2 mb-3 fw-normal">Alternate Log in</h2>
                           <h6 class="h6 mb-3 fw-normal">1. Send the email to login@tao.ai</h6>
-
+                            
                             <p>From: <span id="fromEmail"><?php echo @$_COOKIE[ TAOH_ROOT_PATH_HASH.'_tao_api_email' ]; ?></span><br>
                               Subject: <a href="mailto:login@tao.ai?subject=<?php echo $get_send_email_code['output']; ?>"><b><?php echo $get_send_email_code['output']; ?></b></a><br /></p><br>
                               <h6 class="h6 mb-3 fw-normal">2. After 2-3 min click the verify button below</h6>
@@ -108,11 +108,11 @@ $lock_text = TAOH_LOGIC_LOCK_TEXT;
                               <div class="col-4 px-0 pr-2">
                               <button onclick="passcodeSubmit()" id="pin_submit" onsubmit="passcodeSubmit()" class="fs-14 w-100 btn btn-lg btn-primary"> Submit
                                 <!-- <span id="loadingText">Submit</span>-->
-                              </button>
-                              </div>
+                              </button> 
+                              </div> 
                             </div>
                         </div>
-
+                        
                         <div id="isCodeNotSent" style="display:none" >
                              <div class="errorMessage"></div>
     									       <div class="form-floating mb-3">
@@ -151,7 +151,7 @@ $lock_text = TAOH_LOGIC_LOCK_TEXT;
 <script src="https://cdn.jsdelivr.net/gh/mgalante/jquery.redirect@master/jquery.redirect.js"></script>
 
 <script type="text/javascript">
-
+   
   $ = jQuery;
     let loadingText = $("#loadingText");
     let loadingTextEmail = $("#loadingTextEmail");
@@ -168,7 +168,7 @@ $lock_text = TAOH_LOGIC_LOCK_TEXT;
 	  let lock_pin = '<?php echo TAOH_LOGIC_LOCK_CODE; ?>';
     let enableLock ='<?php echo TAOH_LOGIC_LOCK_CODE ? 1 : 0 ?>';
     let show_only_lock = <?php echo (isset($_COOKIE[TAOH_ROOT_PATH_HASH."_enable_lock_screen"])  ? $_COOKIE[TAOH_ROOT_PATH_HASH."_enable_lock_screen"] : 0); ?>;
-
+    
 
     emailSentTo.html("<?php echo @$_COOKIE[ TAOH_ROOT_PATH_HASH.'_tao_api_email' ]; ?>");
     <?php if(!@$_COOKIE[TAOH_ROOT_PATH_HASH.'_tao_api_email']) { ?>
@@ -226,7 +226,7 @@ $lock_text = TAOH_LOGIC_LOCK_TEXT;
             }
         }
     }
-
+   
     $(document).keypress(function (e) {
        var key = e.which;
        if(key == 13)  // the enter key code
@@ -273,7 +273,7 @@ $lock_text = TAOH_LOGIC_LOCK_TEXT;
               });
           }
       }
-
+   
      function submitCode() {
         // Cache jQuery selectors to avoid repeated DOM lookups
         let accessCode = $("#accessCode");
@@ -407,12 +407,12 @@ $lock_text = TAOH_LOGIC_LOCK_TEXT;
         }
     }
 
-
+    
     function sendEmailScreen() {
       fromEmail.html(localStorage.getItem('email'));
       isCodeSent.hide();
       sendEmail.show();
-
+      
     }
 
 

@@ -8,7 +8,7 @@ if (!$user_is_logged_in) {
 $taoh_home_url = (defined('TAOH_PAGE_URL') && TAOH_PAGE_URL) ? TAOH_PAGE_URL : TAOH_SITE_URL_ROOT;
 $directory_flags_to_show = defined('TAOH_DIRECTORY_FLAGS_TO_SHOW') ? TAOH_DIRECTORY_FLAGS_TO_SHOW : [];
 
-taoh_get_header();
+taoh_get_header(); 
 
 $data = taoh_session_get(TAOH_ROOT_PATH_HASH)['USER_INFO'];
 if(empty($ptoken) || $ptoken == 'stlo'){

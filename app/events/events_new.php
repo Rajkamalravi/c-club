@@ -459,7 +459,7 @@ if (taoh_user_is_logged_in()) {
                         <!--
                     <div class="col-lg-7 mb-2 mb-lg-0 px-0">
                             <h2 class="section-title fs-24 mb-1"><?php //echo $app_data->name_slug; ?></h2>
-
+                            
                             <p class="section-desc"><?php //echo $app_data->short; ?></p>
                         </div>-->
 
@@ -473,8 +473,8 @@ if (taoh_user_is_logged_in()) {
                                     echo '</div>';
                                 }
                             } else {
-                                echo '<a
-                                 href="javascript:void(0);"
+                                echo '<a 
+                                 href="javascript:void(0);" 
                                  class="btn theme-btn login-button " aria-pressed="true" data-toggle="modal" data-target="#config-modal"
                                 ><i class="la la-sign-in mr-1"></i> Login / Signup</a>';
                             }
@@ -484,7 +484,7 @@ if (taoh_user_is_logged_in()) {
                     </div><!-- end hero-content -->
                 </div><!-- end container -->
             </section>
-
+    
 
             <?php
            // if (taoh_user_is_logged_in()) {
@@ -513,7 +513,7 @@ if (taoh_user_is_logged_in()) {
                         </div>
 
                         <div class="row d-flex justify-content-between">
-
+                            
                             <div class="row col-lg-12 no_result_div ">
                                 <div class="no_result">
                                     <img style="width:20%" src="<?php echo TAOH_SITE_URL_ROOT.'/assets/images/no_jobs_found.png';?>" alt="No Results Illustration">
@@ -566,9 +566,9 @@ if (taoh_user_is_logged_in()) {
             pageImage: <?= json_encode(defined('TAO_PAGE_IMAGE') ? TAO_PAGE_IMAGE : ''); ?>,
             pageDesc: <?= json_encode(defined('TAO_PAGE_DESCRIPTION') ? urlencode(substr(TAO_PAGE_DESCRIPTION, 0, 240)) : ''); ?>,
             pageTitle: <?= json_encode(defined('TAO_PAGE_TITLE') ? TAO_PAGE_TITLE : ''); ?>
-        };
+            };
     </script>
-    <script src="<?php echo TAOH_SITE_URL_ROOT; ?>/assets/js/events-new.js?v=<?php echo TAOH_CSS_JS_VERSION; ?>"></script>
+    <script src="<?php echo TAOH_SITE_URL_ROOT; ?>/assets/events/js/events-new.js?v=<?php echo TAOH_CSS_JS_VERSION; ?>"></script>
 
 <?php
 

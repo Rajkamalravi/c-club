@@ -19,7 +19,7 @@ function get_follow($conttoken, $type) {
       $taoh_call_type = "get";
       $req = taoh_apicall_get($taoh_call, $taoh_vals);
 
-
+      
     return json_decode($req);
 }
 
@@ -35,7 +35,7 @@ function do_follow()
         'type' => 'follow',
         'conttoken' => $_POST['conttoken'],
         'conttype' => $_POST['conttype'],
-        'token' => taoh_get_dummy_token(),
+        'token' => taoh_get_dummy_token(),        
     );
     $taoh_call_type = "get";
     $req = taoh_apicall_get($taoh_call, $taoh_vals);
@@ -53,7 +53,7 @@ function un_follow() {
         'type' => 'follow',
         'conttoken' => $_POST['conttoken'],
         'conttype' => $_POST['conttype'],
-        'token' => taoh_get_dummy_token(),
+        'token' => taoh_get_dummy_token(),        
     );
 
     $taoh_call_type = "get";

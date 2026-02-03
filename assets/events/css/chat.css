@@ -107,8 +107,88 @@
     min-width: 0;
 }
 
+/* Normalize button heights in the right-side event buttons area */
+.events-btns-outer-block .btn {
+    font-size: 16px;
+    padding: 6px 12px;
+    border-radius: 6px;
+    min-height: 38px;
+    box-sizing: border-box;
+}
+.events-btns-outer-block .edit-rsvp .btn,
+.events-btns-outer-block #share_event_slot .btn {
+    padding: 6px 12px;
+}
+.events-btns-outer-block .edit-rsvp .btn i,
+.events-btns-outer-block #share_event_slot .btn i {
+    font-size: 20px;
+}
+
 .sticky-top-fixed {
-    top: -75px;
+    top: 0;
+}
+
+.sticky-top-fixed .nav-tabs {
+    visibility: visible !important;
+}
+
+/* When stuck: switch to position:fixed and collapse content */
+.sticky-top-fixed.is-sticky {
+    position: fixed !important;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1030 !important;
+    padding-top: 0.5rem !important;
+    padding-bottom: 0.5rem !important;
+}
+
+.sticky-top-fixed.is-sticky .event-det-block1 .flex-grow-1,
+.sticky-top-fixed.is-sticky .event-det-block1 #event_top_banner {
+    display: none !important;
+}
+
+.sticky-top-fixed.is-sticky .event-det-block1 {
+    padding: 0 !important;
+    margin: 0 !important;
+}
+
+.sticky-top-fixed.is-sticky .nav.nav-tabs {
+    margin-bottom: 0.25rem !important;
+}
+
+.sticky-top-fixed.is-sticky #event_info_container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-top: 0 !important;
+    padding-bottom: 0 !important;
+}
+
+.sticky-top-fixed.is-sticky #event_info_container > .nav.nav-tabs {
+    flex: 1;
+    margin: 0 !important;
+}
+
+.sticky-top-fixed.is-sticky .ticket-card-div {
+    flex-direction: row !important;
+    align-items: center;
+}
+
+/* Sticky tabs row 2 (Agenda / Attendees / Conversations) */
+.hall_tabs > ul.nav-tabs.is-tabs-sticky {
+    position: fixed !important;
+    left: 0;
+    right: 0;
+    z-index: 1029;
+    background: #fff;
+    padding: 0 15px;
+    border-bottom: none !important;
+}
+
+/* Remove border from tabs */
+.hall_tabs > ul.nav-tabs {
+    border-bottom: none !important;
 }
 
 .modal.sponsorship-option#upgradeModal .modal-dialog .modal-body {
@@ -117,6 +197,16 @@
 
 .new-exh-list .n-info-badge {
     color: #2557A7;
+}
+
+.confirmModalClose {
+    border: 0;
+    background: none;
+    font-size: 25px;
+    line-height: 25px;
+    height: 25px;
+    padding: 0;
+    width: 25px;
 }
 
 @media (max-width: 1399.98px) {

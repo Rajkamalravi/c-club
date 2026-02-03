@@ -1,4 +1,4 @@
-<?php
+<?php 
 $taoh_user_is_logged_in = taoh_user_is_logged_in() ?? false;
 $user_info_obj = taoh_user_all_info();
 $valid_user = isset($user_info_obj->profile_complete) ? (bool) $user_info_obj->profile_complete : false;
@@ -60,9 +60,9 @@ $current_ticket_type = array_values($current_ticket_types)[0];
 // echo "Current Ticket Type : <pre>"; print_r($current_ticket_type); echo "</pre>";
 
 // echo 'eventtoken : '.$eventtoken."===#".urldecode($eventhall).'#==='.$hall_id.'==='.crc32($eventhall);
-taoh_get_header();
+taoh_get_header(); 
 ?>
-<link rel="stylesheet" href="<?php echo TAOH_SITE_URL_ROOT; ?>/assets/css/events-hall-listing.css?v=<?php echo TAOH_CSS_JS_VERSION; ?>">
+<link rel="stylesheet" href="<?php echo TAOH_SITE_URL_ROOT; ?>/assets/events/css/events-hall-listing.css?v=<?php echo TAOH_CSS_JS_VERSION; ?>">
 
     <div class="detail-hall light-dark d-noe">
         <!-- new template start-->
@@ -72,7 +72,7 @@ taoh_get_header();
                         <li class="nav-item">
                             <a href="<?php echo TAOH_SITE_URL_ROOT; ?>">Home</a>
                             <svg xmlns="http://www.w3.org/2000/svg" height="19px" viewBox="0 0 24 24" width="19px" fill="#000000"><path d="M0 0h24v24H0V0z" fill="none"></path><path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6-6-6z"></path></svg>
-                        </li>
+                        </li>                            
                     </ul>
 
                     <div class="d-flex align-items-start flex-column flex-lg-row py-3" style="gap: 9px;">
@@ -90,7 +90,7 @@ taoh_get_header();
                         <!-- <button type="button" class="e-d-v2-btn btn btn-success lh-1 py-2">
                             LIVE NOW! Click to Join
                         </button> -->
-
+                        
                     </div>
 
                 </div>
@@ -99,19 +99,19 @@ taoh_get_header();
             <!-- carousel start -->
             <div class="container exhibitor-carousel-con pt-4" id="exhibitor_banner_container">
                 <div id="hall_banner_image" class="carousel slide exhibitor-carousel" data-ride="carousel">
-
+                    
                 </div>
             </div>
             <!-- carousel end -->
 
             <div class="container">
                 <div class="exh-d-v2-left flex-grow-1 py-5 px-md-3">
-
+                  
                     <div class="flex-grow-1 d-flex align-items-center" style="gap: 12px;">
                         <!-- logo  -->
                         <img class="c-v2-img d-none" src="<?php echo TAOH_SITE_URL_ROOT;?>/assets/images/exh-v2-3.png" alt="speaker logo">
 
-                        <div class="flex-grow-1 d-flex align-items-start flex-column flex-lg-row py-3" style="gap: 9px;">
+                        <div class="flex-grow-1 d-flex align-items-start flex-column flex-lg-row py-3" style="gap: 9px;"> 
                             <div class="flex-grow-1">
                                 <h6 class="c-v2-name" id="hall_title"></h6>
                             </div>
@@ -130,10 +130,10 @@ taoh_get_header();
                     <br>
 
                     <div class="hall-list-container mx-auto tab-pane " id="hall_details_list" style="max-height: unset;">
-
+                        
                     </div>
 
-
+                   
                 </div>
             </div>
 
@@ -157,8 +157,8 @@ taoh_get_header();
             rsvpSponsorTitle: <?= json_encode($current_ticket_type['title'] ?? ''); ?>,
             cdnPrefix: <?= json_encode(TAOH_CDN_PREFIX); ?>,
             appSlug: <?= json_encode(TAOH_CURR_APP_SLUG); ?>
-        };
+                    };
     </script>
-    <script src="<?php echo TAOH_SITE_URL_ROOT; ?>/assets/js/events-hall-listing.js?v=<?php echo TAOH_CSS_JS_VERSION; ?>"></script>
+    <script src="<?php echo TAOH_SITE_URL_ROOT; ?>/assets/events/js/events-hall-listing.js?v=<?php echo TAOH_CSS_JS_VERSION; ?>"></script>
 
 <?php taoh_get_footer(); ?>

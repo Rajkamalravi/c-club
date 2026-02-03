@@ -65,7 +65,7 @@ if (isset($_GET['chatwith']) && !empty($_GET['chatwith'])) {
     $chatwith = $_GET['chatwith'];
     $chatwith_usr_json = taoh_get_user_info($chatwith, 'public');
     $chatwith_usr_arr = json_decode($chatwith_usr_json, true);
-
+   
     if (!isset($chatwith_usr_arr['success']) || !$chatwith_usr_arr['success']) {
     //        $url = parse_url($_SERVER["REQUEST_URI"], PHP_URL_PATH);
     //        taoh_redirect($url);
@@ -187,7 +187,7 @@ if (isset($room_app) && $room_app === 'event') {
     if(isset($sponsor_array) && count($sponsor_array) > 0){
         foreach($sponsor_array as $kkk=>$val){
             if(isset($val['ptoken']) && $val['ptoken'] !=''){
-
+                
                 array_push($who_can_create_video_room,$val['ptoken']);
             }
         }
@@ -234,7 +234,7 @@ include_once TAOH_CORE_PATH . '/' . $appname . '/includes/ads_data.php';
 ?>
 
     <style>
-
+    
         .scroll-button {
             width: 30px;
             height: 30px;
@@ -400,7 +400,7 @@ include_once TAOH_CORE_PATH . '/' . $appname . '/includes/ads_data.php';
             border-radius: 0.1875rem;
             box-shadow: 0 1px 3px 0 rgb(195 187 187);
         }
-
+                    
         @media (max-width: 425px) {
             #frm_comments_list::-webkit-scrollbar {
                 display: none;
@@ -428,7 +428,7 @@ include_once TAOH_CORE_PATH . '/' . $appname . '/includes/ads_data.php';
             width: 100%;
             padding: 10px;
             -webkit-font-smoothing: antialiased;
-            font-family: "PT Sans", "Helvetica Neue", "Helvetica", "Roboto", "Arial", sans-serif;
+            font-family: "Ubuntu", sans-serif;
             font-size: 1rem;
             color: #555f77;
             background-color: #fff !important;
@@ -885,7 +885,7 @@ include_once TAOH_CORE_PATH . '/' . $appname . '/includes/ads_data.php';
         }
         .file-upload-icon {
             cursor: pointer;
-            color: #6c757d;
+            color: #6c757d; 
             display: none;
         }
 
@@ -1152,8 +1152,8 @@ include_once TAOH_CORE_PATH . '/' . $appname . '/includes/ads_data.php';
                 <span class="stroke-shape stroke-shape-5"></span>
                 <span class="stroke-shape stroke-shape-6"></span>
                 <div class="container">
-                    <?php
-                    //include 'includes/club_header.php';
+                    <?php 
+                    //include 'includes/club_header.php'; 
                     ?>
                     <div class="hero-content align-items-center justify-content-between">
                         <div class="col-lg-12">
@@ -1178,11 +1178,11 @@ include_once TAOH_CORE_PATH . '/' . $appname . '/includes/ads_data.php';
                                             echo '<li class="nav-item">
                                                 <a href="' . $link . '">' . $value['title'] . '</a>
                                             <svg xmlns="http://www.w3.org/2000/svg" height="19px" viewBox="0 0 24 24" width="19px" fill="#000000"><path d="M0 0h24v24H0V0z" fill="none"/><path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6-6-6z"/></svg></li>';
-
-
+                                            
+                                    
                                         }
 
-
+                                    
                                     echo '<li class="nav-item"><a href="' . TAOH_SITE_URL_ROOT . $last_crumb['link'] . '">' . $last_crumb['title'] . '</a>';
                                     if (strlen($descc) > 0) echo '<i class="fa fa-info-circle ml-2 cursor-pointer" data-toggle="collapse" data-target="#demo" title="View more info" aria-expanded="false" aria-controls="org_msg" style="color: #15a4f7; font-size: 20px;"></i>';
                                     echo '</li>';
@@ -1346,9 +1346,9 @@ include_once TAOH_CORE_PATH . '/' . $appname . '/includes/ads_data.php';
                                                                         <input type="text" class="form-control mb-0" style="padding-left: 30px; height: 39px;">
                                                                         <span class="la la-search search-icon"></span>
                                                                     </div>
-
+                                                                   
                                                                     <button type="button" class="btn theme-btn py-1">Search <i class="la la-search ml-1"></i></button>
-
+                                                                    
                                                                 </div>
                                                             </form>-->
                                                             <!-- /new script -->
@@ -1508,17 +1508,17 @@ include_once TAOH_CORE_PATH . '/' . $appname . '/includes/ads_data.php';
                                                                 </span>
                                                                 <!---<div class="btn-group" style="float: right; font-size: xx-large;">
 
-                                                                    <i style="font-size:26px;color: #2479d8;" class="la la-video ntw_video  dropdown-toggle"
+                                                                    <i style="font-size:26px;color: #2479d8;" class="la la-video ntw_video  dropdown-toggle" 
                                                                     data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                                                     <span class="sr-only">Toggle Dropdown</span></i>
-
+                                                                    
                                                                     <div class="dropdown-menu dropdown-menu-right">
                                                                         <button class="dropdown-item" type="button " onclick="taoh_add_video_chat(1);" >
                                                                             Tao Meet
                                                                         </button>
                                                                         <button class="dropdown-item" type="button" onclick="taoh_add_video_chat(2);" >
                                                                             Google Meet</button>
-
+                                                                        
                                                                     </div>
                                                                 </div>-->
                                                             </div>
@@ -1610,23 +1610,23 @@ include_once TAOH_CORE_PATH . '/' . $appname . '/includes/ads_data.php';
                                                                 <?php if($ntw_view != 2) echo '<span class="gobackwindow"><i class="las la-chevron-circle-left"></i> Go Back</span>'; ?>
                                                             </div>
                                                             <div class="col">
-
+                                                            
                                                                 <span style="float: right; font-size: xx-large;">
                                                                     <i class="la la-video ntw_video" onclick="taoh_add_video_chat();" style="color: #2479d8;"></i>
                                                                 </span>
                                                                 <!--<div class="btn-group" style="float: right; font-size: xx-large;">
 
-                                                                    <i style="font-size:26px;color: #2479d8;" class="la la-video ntw_video  dropdown-toggle"
+                                                                    <i style="font-size:26px;color: #2479d8;" class="la la-video ntw_video  dropdown-toggle" 
                                                                     data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                                                     <span class="sr-only">Toggle Dropdown</span></i>
-
+                                                                    
                                                                     <div class="dropdown-menu dropdown-menu-right">
                                                                         <button class="dropdown-item" type="button " onclick="taoh_add_video_chat(1);" >
                                                                             Tao Meet
                                                                         </button>
                                                                         <button class="dropdown-item" type="button" onclick="taoh_add_video_chat(2);" >
                                                                             Google Meet</button>
-
+                                                                        
                                                                     </div>
                                                                 </div>-->
                                                             </div>
@@ -1666,7 +1666,7 @@ include_once TAOH_CORE_PATH . '/' . $appname . '/includes/ads_data.php';
                                                                 <div id='loaderArea-thisnetwork-tab' class="text-center"></div>
                                                                 <div id="networkArea-thisnetwork-tab"></div>
                                                                 <!-- new network_entries card start-->
-
+                                                                
                                                                 <!-- <div class="relative-card card card-item d-flex flex-column flex-xl-row py-5 py-xl-2 px-3 mb-4" style="gap: 12px;">
                                                                     <div class="d-flex flex-column flex-md-row align-items-md-center" style="gap: 12px; flex: 1; max-width: 480px;">
                                                                         <div class="left-box d-flex flex-md-column align-items-center pt-md-3 pb-2" style="gap: 6px;">
@@ -1677,7 +1677,7 @@ include_once TAOH_CORE_PATH . '/' . $appname . '/includes/ads_data.php';
                                                                                 <p class="pro-badge px-2 py-1">
                                                                                     Professional
                                                                                 </p>
-
+                                                                               
                                                                                 <div class="icons">
                                                                                     <a href="#">
                                                                                         <svg width="15" height="15" viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -1729,11 +1729,11 @@ include_once TAOH_CORE_PATH . '/' . $appname . '/includes/ads_data.php';
                                                                                     </div>
                                                                                     <span>Skills</span>
                                                                                 </div>
-
+                                                                                
                                                                                 <a href="#" class="btn skill-b">Budgeting</a>
                                                                                 <a href="#" class="btn skill-b">Maintenance</a>
                                                                                 <a href="#" class="btn skill-b">Book Keeping</a>
-
+                                                                              
                                                                             </div>
                                                                             <div class="n-participants-text d-flex align-items-center" style="gap: 6px;">
                                                                                 <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -1752,9 +1752,9 @@ include_once TAOH_CORE_PATH . '/' . $appname . '/includes/ads_data.php';
                                                                     <div class="right-box d-flex align-items-center" style="min-width: 125px;">
                                                                         <a href="#" class="btn main-chat-btn btn-success">Chat Now</a>
                                                                     </div>
-
+                                                                   
                                                                     <img class="lazy sponsor-badge mb-3" src="<?php echo TAOH_SITE_URL_ROOT;?>/assets/images/silver.svg" alt="avatar" style="margin-top: -10px;">
-
+                                                                    
                                                                     <p class="hiring">
                                                                         Hiring
                                                                     </p>
@@ -1769,7 +1769,7 @@ include_once TAOH_CORE_PATH . '/' . $appname . '/includes/ads_data.php';
                                                                                 <p class="pro-badge px-2 py-1">
                                                                                     Professional
                                                                                 </p>
-
+                                                                               
                                                                                 <div class="icons">
                                                                                     <a href="#">
                                                                                         <svg width="15" height="15" viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -1821,11 +1821,11 @@ include_once TAOH_CORE_PATH . '/' . $appname . '/includes/ads_data.php';
                                                                                     </div>
                                                                                     <span>Skills</span>
                                                                                 </div>
-
+                                                                                
                                                                                 <a href="#" class="btn skill-b">Budgeting</a>
                                                                                 <a href="#" class="btn skill-b">Maintenance</a>
                                                                                 <a href="#" class="btn skill-b">Book Keeping</a>
-
+                                                                              
                                                                             </div>
                                                                             <div class="n-participants-text d-flex align-items-center" style="gap: 6px;">
                                                                                 <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -1844,9 +1844,9 @@ include_once TAOH_CORE_PATH . '/' . $appname . '/includes/ads_data.php';
                                                                     <div class="right-box d-flex align-items-center" style="min-width: 125px;">
                                                                         <a href="#" class="btn main-chat-btn btn-success">Chat Now</a>
                                                                     </div>
-
+                                                                   
                                                                     <img class="lazy sponsor-badge mb-3" src="<?php echo TAOH_SITE_URL_ROOT;?>/assets/images/gold.svg" alt="avatar" style="margin-top: -10px;">
-
+                                                                    
                                                                     <p class="hiring">
                                                                         Hiring
                                                                     </p>
@@ -1861,7 +1861,7 @@ include_once TAOH_CORE_PATH . '/' . $appname . '/includes/ads_data.php';
                                                                                 <p class="pro-badge px-2 py-1">
                                                                                     Professional
                                                                                 </p>
-
+                                                                               
                                                                                 <div class="icons">
                                                                                     <a href="#">
                                                                                         <svg width="15" height="15" viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -1913,11 +1913,11 @@ include_once TAOH_CORE_PATH . '/' . $appname . '/includes/ads_data.php';
                                                                                     </div>
                                                                                     <span>Skills</span>
                                                                                 </div>
-
+                                                                                
                                                                                 <a href="#" class="btn skill-b">Budgeting</a>
                                                                                 <a href="#" class="btn skill-b">Maintenance</a>
                                                                                 <a href="#" class="btn skill-b">Book Keeping</a>
-
+                                                                              
                                                                             </div>
                                                                             <div class="n-participants-text d-flex align-items-center" style="gap: 6px;">
                                                                                 <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -1936,9 +1936,9 @@ include_once TAOH_CORE_PATH . '/' . $appname . '/includes/ads_data.php';
                                                                     <div class="right-box d-flex align-items-center" style="min-width: 125px;">
                                                                         <a href="#" class="btn main-chat-btn btn-success">Chat Now</a>
                                                                     </div>
-
+                                                                   
                                                                     <img class="lazy sponsor-badge mb-3" src="<?php echo TAOH_SITE_URL_ROOT;?>/assets/images/bronze.svg" alt="avatar" style="margin-top: -10px;">
-
+                                                                    
                                                                     <p class="hiring">
                                                                         Hiring
                                                                     </p>
@@ -1994,7 +1994,7 @@ include_once TAOH_CORE_PATH . '/' . $appname . '/includes/ads_data.php';
                                                 </div>
                                             </div>
 
-
+                                            
                                             <div class="tab-pane fade" id="customrooms" role="tabpanel" aria-labelledby="rooms-tab">
                                                 <div class="container">
                                                     <div class=" mt-2 mb-50px">
@@ -2002,8 +2002,8 @@ include_once TAOH_CORE_PATH . '/' . $appname . '/includes/ads_data.php';
                                                             <?php if(isset($who_can_create_video_room) && in_array($ptoken,$who_can_create_video_room)) { ?>
                                                             <div class="d-flex flex-column flex-sm-row mr-2 mr-md-5" style="flex: 1;">
                                                                 <input name='custom_room_name' required class="form-control form--control" type="text" id="custom_room_name" placeholder="Name Your Room">
-
-                                                                <button type="button " onclick="create_new_room();" id="create_new_room"
+                                                                            
+                                                                <button type="button " onclick="create_new_room();" id="create_new_room"                                                                 
                                                                 class="btn btn-primary btn-sm create_new_room mb-2 py-2" style="width:200px;white-space: nowrap;font-size: 14px;border: 1px solid #c3c3c3;">Create a Video Room</button>
                                                             </div>
                                                             <?php } ?>
@@ -2017,7 +2017,7 @@ include_once TAOH_CORE_PATH . '/' . $appname . '/includes/ads_data.php';
                                                             <div class="tab-pane fade show active" id="thisnetwork" role="tabpanel" aria-labelledby="thisnetwork-tab">
                                                                 <div id="loaderArea-thisnetwork-tab" class="text-center"></div>
                                                                 <div id="custom_room_list">
-
+                                                                
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -2048,7 +2048,7 @@ include_once TAOH_CORE_PATH . '/' . $appname . '/includes/ads_data.php';
                                         </div>
 
                                         <?php if (function_exists('jobs_networking_widget')) { jobs_networking_widget();  } ?>
-
+                                  
                                         <button type="button" class="btn unmanaged-event-btn" data-toggle="modal" data-target="#agreeModal">
                                             <div class="circle-highlight">
                                                 <div class="main-circle"></div>
@@ -2070,18 +2070,18 @@ include_once TAOH_CORE_PATH . '/' . $appname . '/includes/ads_data.php';
                                             </div>
                                         </div>
 
-
+                                        
                                             <!-- SPONSOR SECTION STARTS -->
-
+                                            
                                             <?php
                                             if (isset($room_app) && $room_app === 'event') {
-                                               echo taoh_sponsor_slider_widget($club_token);
-
-
+                                               echo taoh_sponsor_slider_widget($club_token); 
+                                                
+                                               
                                             }
 
                                             ?>
-
+                                            
                                             <?php
                                             if (0 && isset($club_info['sponsors']) && count($club_info['sponsors']) > 0) {
                                                 ?>
@@ -2499,7 +2499,7 @@ include_once TAOH_CORE_PATH . '/' . $appname . '/includes/ads_data.php';
                 </div>
             </div>
         </div>
-
+        
         <!-- new script -->
         <div class="modal fade" id="start-discussion" tabindex="-1" role="dialog" aria-labelledby="discussionModalTitle" aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered" role="document">
@@ -2598,7 +2598,7 @@ include_once TAOH_CORE_PATH . '/' . $appname . '/includes/ads_data.php';
         <div class="modal fade" id="add-auto-discussion-topics" tabindex="-1" role="dialog" aria-labelledby="adddiscussionModalTitle" aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered" role="document">
                 <div class="modal-content">
-
+                    
                         <div class="modal-header">
                             <h5 class="modal-title" id="discussionModalTitle">Add Topics</h5>
                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -2611,9 +2611,9 @@ include_once TAOH_CORE_PATH . '/' . $appname . '/includes/ads_data.php';
                         <div class="modal-footer">
                             <button type="button" class="btn btn btn-danger m-2" data-dismiss="modal">No</button>
                             <button type="button" class="btn theme-btn-primary" id="add_auto_discussions">Yes</button>
-
+                    
                         </div>
-
+                    
                 </div>
             </div>
         </div>
@@ -2672,8 +2672,8 @@ include_once TAOH_CORE_PATH . '/' . $appname . '/includes/ads_data.php';
             </div>
         </div>
 
-        <?php
-
+        <?php 
+        
         include_once(TAOH_SITE_DOC_ROOT.'/app/events/sponsor_details_modal.php');?>
     </div>
 
@@ -2695,7 +2695,7 @@ include_once TAOH_CORE_PATH . '/' . $appname . '/includes/ads_data.php';
         let activeChatList = $('#activeChatList');
         let activeRoomList = $('#activeRoomList');
         let entriesList = $('#entriesList');
-
+        
 
         var current_tab = 'thisnetwork-tab';
         var loaderArea = $('#loaderArea-' + current_tab);
@@ -2736,11 +2736,11 @@ include_once TAOH_CORE_PATH . '/' . $appname . '/includes/ads_data.php';
 
         let chat_window = 0;
         let ntw_room_key = '<?php echo $keytoken ?? ''; ?>';
-        let eventtoken = '<?php echo $club_token ?? ''; ?>';
+        let eventtoken = '<?php echo $club_token ?? ''; ?>'; 
         let chatwith = '<?php echo $chatwith ?? ''; ?>';
         let chatwith_liveStatus = 0;
         let chatname = "<?php echo $_GET['with'] ?? ''; ?>";
-
+        
         let ntwChatFirstCall = 1;
         let ntwChatLastTime = 0;
         let ntw_newMessagesCnt = 0;
@@ -2966,7 +2966,7 @@ include_once TAOH_CORE_PATH . '/' . $appname . '/includes/ads_data.php';
 
             /**********************====================== Forum Scripts ===========================**********************/
             var auto_discussions_added  = localStorage.getItem('auto_discussions_added_for_'+frm_room_key);
-            //my_pToken =
+            //my_pToken = 
              console.log(event_owner_ptoken+'-----------'+my_pToken)
            // if(auto_discussions_added != 1 && event_owner_ptoken == my_pToken){
             if(auto_discussions_added != 1 && event_owner_ptoken != my_pToken){
@@ -2974,14 +2974,14 @@ include_once TAOH_CORE_PATH . '/' . $appname . '/includes/ads_data.php';
             }
 
             autoDiscussionAdd();
-
+            
             $('#add_auto_discussions').on('click', function () {
                 autoDiscussionAdd();
             });
 
             function autoDiscussionAdd(){
                 var message1 = `Need Help? Post Here! 🚀
-                                →  Looking for advice, guidance, or connections? Drop your question or request here,
+                                →  Looking for advice, guidance, or connections? Drop your question or request here, 
                                 and let the community help you out!`;
 
 
@@ -2990,12 +2990,12 @@ include_once TAOH_CORE_PATH . '/' . $appname . '/includes/ads_data.php';
                                    and make meaningful connections!`;
 
                 var message3 = `Introduce Yourself & Get Noticed! 🌟
-                            → "Tell us a bit about yourself—your interests, skills, or what brought you here—so like-minded people can
+                            → "Tell us a bit about yourself—your interests, skills, or what brought you here—so like-minded people can 
                             connect with you!`;
             var message4 = `Success Stories & Wins! 🎉
                  → Got a win, big or small? Share your achievements or milestones to inspire others!`;
             var message5 = `Collaboration Corner! 🤝
-             → Looking for partners, team members, or collaborators?
+             → Looking for partners, team members, or collaborators? 
             Post your idea and find others who share your vision!`;
             var message6 = `Quick Icebreaker! 👋
                      → What's one thing you're passionate about? Drop it here to find people with similar interests!`;
@@ -3010,7 +3010,7 @@ include_once TAOH_CORE_PATH . '/' . $appname . '/includes/ads_data.php';
                 sendFRMChat(message7, event_owner_ptoken, 0, frm_room_key, 'user', 1);
 
                 localStorage.setItem('auto_discussions_added_for_'+frm_room_key, '1');
-
+                
 
                 // $('#networkingTab [data-target="#conversation"]').tab('show');
                 $('#add-auto-discussion-topics').modal('hide');
@@ -4327,7 +4327,7 @@ include_once TAOH_CORE_PATH . '/' . $appname . '/includes/ads_data.php';
                 };
 
                 let confirmMsg;
-
+                
                 if(type == 1){
                     if (chatname != '') {
                          confirmMsg = 'Please confirm that you want to start a video chat with ' + chatname + ' ?';
@@ -4335,11 +4335,11 @@ include_once TAOH_CORE_PATH . '/' . $appname . '/includes/ads_data.php';
                         confirmMsg = 'Please confirm that you want to start a video chat?';
                     }
                 }else{
-
+                  
                     confirmMsg = 'Please open the Google Meet in a new tab, copy and paste the link in the chat box.';
-
+                    
                 }
-
+                
                 if(type == 2){
                     /*let video_chat_link = 'Want to chat? <div class="chat-meeting"><i class="la la-video"></i><div><p>' + chatname + '\'s meeting</p><a href="https://meet.google.com/new" target="_blank" class="chat-meeting-link"> Join Google meeting</a></div></div>';
                     commentInput.val(video_chat_link);
@@ -4361,7 +4361,7 @@ include_once TAOH_CORE_PATH . '/' . $appname . '/includes/ads_data.php';
                                 }
                             }
                         }
-
+                        
                     });
                 }else{
                     $.confirm({
@@ -4563,7 +4563,7 @@ include_once TAOH_CORE_PATH . '/' . $appname . '/includes/ads_data.php';
 
         function taoh_ntw_post_metrics(metrics) {
             if (ntw_room_key.trim() !== '' && my_pToken.trim() !== '') {
-                save_metrics('networking',metrics,ntw_room_key);
+                save_metrics('networking',metrics,ntw_room_key);                
             }
         }
 
@@ -4978,7 +4978,7 @@ include_once TAOH_CORE_PATH . '/' . $appname . '/includes/ads_data.php';
                     </div>
                 </div>
 
-
+                
                 <div class="post-icons mt-2">
                     <div class="icon">
                         <!--<i class="fa fa-heart-o"></i> <span>1k</span>-->
@@ -6055,7 +6055,7 @@ include_once TAOH_CORE_PATH . '/' . $appname . '/includes/ads_data.php';
         /* poll question script */
 
         /* new script */
-
+       
         // Function to toggle visibility of the poll options card
         const togglePollOptions = () => {
             const pollOptions = document.getElementById("poll-options");
@@ -6281,31 +6281,31 @@ include_once TAOH_CORE_PATH . '/' . $appname . '/includes/ads_data.php';
                         <div class="network_entries room_${i} entry_3 card card-item" style="margin-bottom:10px;">
                             <div class="card-body" style="font-size:13px;">
                                 <div class="row">
-
+                                    
                                     <div class="col-md-10 col-lg-12">
                                         <div class="entries-title align-items-center">
-
+                                            
                                                 <div>
                                                     <h5><a class="text-primary text-capitalize" target="_blank" >
                                                     ${v.value.title}</a></h5>
-                                                    <span>${v.count} Clicked to join the room</span>
-
-
-                                                </div>
+                                                    <span>${v.count} Clicked to join the room</span> 
+                                                    
+                                                   
+                                                </div>                                                                                                              
                                                 <div>
                                                     <div class="btn-group" role="group">
                                                     ${v.value.ptoken == my_pToken ? `
-                                                    <button type="button" id="delete_KEYSLUG_${i}"
+                                                    <button type="button" id="delete_KEYSLUG_${i}" 
                                                     onclick="delete_custom_room('${v.value.title}')" class="btn-error btn-sm mr-2"  style="white-space: nowrap;font-size: small;border: 1px solid #c3c3c3;">
                                                     Delete</button>` : ''}
 
-                                                    <button type="button" id="KEYSLUG_${i}"
+                                                    <button type="button" id="KEYSLUG_${i}" 
                                                     onclick="join_room_video_chat('${v.value.title}')" class="btn btn-sm openVideoChat mr-2"  style="white-space: nowrap;font-size: small;border: 1px solid #c3c3c3;">
                                 Join <i class="la la-angle-double-right"></i></button>
-
+                                                    
                                                     </div>
                                                 </div>
-
+                                            
                                         </div>
                                     </div>
                                 </div>
@@ -6352,10 +6352,10 @@ else if(date_last_agree_model != current_date){
         //alert(profile_badges);
     }, 3000);
 <?php } ?>
-
+      
 function getEventData(eventtoken){
          const eventBaseInfoKey = `event_detail_${eventtoken}`;
-
+       
             IntaoDB.getItem(objStores.event_store.name, eventBaseInfoKey).then((data) => {
         //    console.log('-----------',data)
             if (data?.values) {
@@ -6365,7 +6365,7 @@ function getEventData(eventtoken){
             }
         });
 }
-
+ 
 function processEventBaseInfo(requestData, response) {
                 let event_output = response.output;
                 let conttoken_data = event_output.conttoken;
@@ -6374,12 +6374,12 @@ function processEventBaseInfo(requestData, response) {
                 getEventSponsor(event_output.eventtoken);
                 /* Event Sponsor */
 
-
+                
                 /* Event Sponsor popup*/
                 let eventSponsorWidgetType = conttoken_data.event_sponsor_widget_type || {};
                 let eventSponsorWidgetTypeStatusList = Object.values(eventSponsorWidgetType).map(widget => widget.status);
                 constructSponsorInfoPopup(event_output.eventtoken,eventSponsorWidgetType);
-
+                
                 if (eventSponsorWidgetTypeStatusList.includes(1)) {
                     //$('.event_sponsor_right_header').show();
                      $('#sponsor_card').show();
@@ -6389,7 +6389,7 @@ function processEventBaseInfo(requestData, response) {
                     $('.event_sponsor_right_header').hide();
                     $('.get-started').hide();
                 }
-
+                    
                 /* Event Sponsor popup*/
              }
 

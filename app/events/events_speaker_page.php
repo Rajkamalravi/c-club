@@ -1,4 +1,4 @@
-<?php
+<?php 
 $taoh_user_is_logged_in = taoh_user_is_logged_in() ?? false;
 $user_info_obj = taoh_user_all_info();
 $valid_user = isset($user_info_obj->profile_complete) ? (bool) $user_info_obj->profile_complete : false;
@@ -80,7 +80,7 @@ taoh_get_header(); ?>
                         <li class="nav-item">
                             <a href="<?php echo TAOH_SITE_URL_ROOT; ?>">Home</a>
                             <svg xmlns="http://www.w3.org/2000/svg" height="19px" viewBox="0 0 24 24" width="19px" fill="#000000"><path d="M0 0h24v24H0V0z" fill="none"></path><path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6-6-6z"></path></svg>
-                        </li>
+                        </li>                           
                     </ul>
 
                     <div class="d-flex align-items-start flex-column flex-lg-row py-3" style="gap: 9px;">
@@ -98,7 +98,7 @@ taoh_get_header(); ?>
                         <!-- <button type="button" class="e-d-v2-btn btn btn-success lh-1 py-2">
                             LIVE NOW! Click to Join
                         </button> -->
-
+                        
                     </div>
 
                 </div>
@@ -163,7 +163,7 @@ taoh_get_header(); ?>
                             <!-- default svg -->
                             <img class="c-v2-img-svg session_logo" src="<?php echo TAOH_SITE_URL_ROOT;?>/assets/images/spk_icon_svg.svg" alt="speaker icon svg">
 
-                            <div>
+                            <div> 
                                 <h6 class="c-v2-name mb-1 font-weight-bold" id="session_title"></h6>
                                 <p class="c-v2-tag mb-2" id="session_time"></p>
                             </div>
@@ -180,7 +180,7 @@ taoh_get_header(); ?>
 
                     <!-- Session Speakers start -->
                     <div>
-                        <div class="d-flex align-items-center mt-4" style="gap: 12px;">
+                        <div class="d-flex align-items-center mt-4" style="gap: 12px;"> 
                             <!-- default svg -->
                             <div class="c-v2-img-svg-con">
                                 <svg width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -321,11 +321,11 @@ $(document).ready(function () {
             } else if (isLoggedIn && is_user_rsvp_done && (event_live_state == 'live')) {
                 if (chat_room_status) {
                     liveLink = ` <div class="d-flex align-items-center" style="gap: 6px;">
-                                <a target="_blank" href="${event_live_link}" class="mr-lg-5 btn btn-success w-100 metrics_action" data-metrics="event_join"><i class="fa fa-rss" aria-hidden="true"></i> ${chatroom_text}</a>
+                                <a target="_blank" href="${event_live_link}" class="mr-lg-5 btn btn-success w-100 metrics_action" data-metrics="event_join" style="white-space: nowrap;"><i class="fa fa-rss" aria-hidden="true"></i> ${chatroom_text}</a>
                                 </div>`;
                 } else {
                     liveLink = ` <div class="d-flex align-items-center" style="gap: 6px;">
-                                <a href="javascript:void(0)" class="mr-lg-5 btn btn-success w-100 metrics_action" data-metrics="event_join"><i class="fa fa-rss" aria-hidden="true"></i> ${chatroom_text}</a>
+                                <a href="javascript:void(0)" class="mr-lg-5 btn btn-success w-100 metrics_action" data-metrics="event_join" style="white-space: nowrap;"><i class="fa fa-rss" aria-hidden="true"></i> ${chatroom_text}</a>
                                 </div>`;
                 }
             }
@@ -339,7 +339,7 @@ $(document).ready(function () {
             let localized_event_start_data = get_localized_event_data(event_timestamp_start_data, user_timezone);
             let localized_event_ends_data = get_localized_event_data(event_timestamp_end_data, user_timezone);
 
-
+            
             $('#event_start_datetime').text(formatEventDateTime(localized_event_start_data, localized_event_ends_data));
 
 
@@ -471,31 +471,31 @@ $(document).ready(function () {
                     if (sessionDetails.enable_tao_networking == 0 && sessionDetails.spk_external_video_room_link != '') {
                         content += ` <a class="btn ${disableJoinBtn == 'disabled' ? 'bor-btn' : 'std-btn'} joinus-btn join_video_link ${disableJoinBtn}"
                             href="${sessionDetails.spk_external_video_room_link}" target="_blank">
-                            ${disableJoinBtn == 'disabled' ? 'Not Live' :
+                            ${disableJoinBtn == 'disabled' ? 'Not Live' : 
                             `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 80" style="width:36px">
                                     <!-- Center circle -->
                                     <circle cx="60" cy="40" r="14" fill="#000" />
                                     <path d="M78 28 C84 35, 84 45, 78 52"  fill="none"  stroke="#000" stroke-width="6" stroke-linecap="round" />
-                                    <path d="M88 14 C102 30, 102 50, 88 66"  fill="none"  stroke="#000" stroke-width="6" stroke-linecap="round" />
-                                    <path d="M42 28 C36 35, 36 45, 42 52" fill="none"  stroke="#000" stroke-width="6" stroke-linecap="round" />
-                                     <path d="M32 14 C18 30, 18 50, 32 66" fill="none"  stroke="#000" stroke-width="6" stroke-linecap="round" />
-
-                                </svg> <span class="color:#000000">Live</span>`}
-
+                                    <path d="M88 14 C102 30, 102 50, 88 66"  fill="none"  stroke="#000" stroke-width="6" stroke-linecap="round" />      
+                                    <path d="M42 28 C36 35, 36 45, 42 52" fill="none"  stroke="#000" stroke-width="6" stroke-linecap="round" />      
+                                     <path d="M32 14 C18 30, 18 50, 32 66" fill="none"  stroke="#000" stroke-width="6" stroke-linecap="round" />      
+                                    
+                                </svg> <span style="color: #000000">Live</span>`}
+                                
                                 </a>`; // Video Link-Presentation link
                     } else {
                         content += ` <a class="btn ${disableJoinBtn == 'disabled' ? 'bor-btn' : 'std-btn'} joinus-btn join_networking ${disableJoinBtn}"
-                    href="<?php echo TAOH_SITE_URL_ROOT . '/' . TAOH_CURR_APP_SLUG; ?>/club/${taoh_desc_decode(event_output.conttoken.title)}-${eventtoken}?session_id=${sessionDetails.ID}&session_name=${encodeURIComponent(sessionDetails.spk_title)}"
+                    href="<?php echo TAOH_SITE_URL_ROOT . '/' . TAOH_CURR_APP_SLUG; ?>/club/${taoh_desc_decode(event_output.conttoken.title)}-${eventtoken}?session_id=${sessionDetails.ID}&session_name=${encodeURIComponent(sessionDetails.spk_title)}" 
                     target="_blank">
                             ${disableJoinBtn == 'disabled' ? 'Not Live' : `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 80" style="width:36px">
                                     <!-- Center circle -->
                                     <circle cx="60" cy="40" r="14" fill="#000" />
                                     <path d="M78 28 C84 35, 84 45, 78 52"  fill="none"  stroke="#000" stroke-width="6" stroke-linecap="round" />
-                                    <path d="M88 14 C102 30, 102 50, 88 66"  fill="none"  stroke="#000" stroke-width="6" stroke-linecap="round" />
-                                    <path d="M42 28 C36 35, 36 45, 42 52" fill="none"  stroke="#000" stroke-width="6" stroke-linecap="round" />
-                                     <path d="M32 14 C18 30, 18 50, 32 66" fill="none"  stroke="#000" stroke-width="6" stroke-linecap="round" />
-
-                                </svg> <span class="color:#000000">Live</span>`}
+                                    <path d="M88 14 C102 30, 102 50, 88 66"  fill="none"  stroke="#000" stroke-width="6" stroke-linecap="round" />      
+                                    <path d="M42 28 C36 35, 36 45, 42 52" fill="none"  stroke="#000" stroke-width="6" stroke-linecap="round" />      
+                                     <path d="M32 14 C18 30, 18 50, 32 66" fill="none"  stroke="#000" stroke-width="6" stroke-linecap="round" />      
+                                    
+                                </svg> <span style="color: #000000">Live</span>`}
                     </a>`;
                     }
                     if ($.trim(sessionDetails.spk_room_location) != '') {

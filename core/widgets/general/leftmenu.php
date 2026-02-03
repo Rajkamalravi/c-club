@@ -36,7 +36,7 @@
       ?>
         <div class="row">
             <div class="col-4">
-              <div class="borders mr-2 mt-2">
+              <div class="borders mr-2 mt-2">  
                 <div class="inline-box">
                     <a href="<?php echo  $taoh_home_url."/learning/flashcard/networking/"; ?>"><svg xmlns="http://www.w3.org/2000/svg" width="45pt" height="30pt" viewBox="0 0 406.273 511.79">
                       <g id="Group_56" data-name="Group 56" transform="translate(-16213.347 -13784.855)">
@@ -61,7 +61,7 @@
               <div class="mod-title mr-4">Jobs</div>
             </div>
             <div class="col-4">
-              <div class="borders mr-2 mt-2">
+              <div class="borders mr-2 mt-2">  
                 <div class="inline-box">
                   <a href="<?php echo $taoh_home_url."/learning/flashcard/career-development/"; ?>"><svg xmlns="http://www.w3.org/2000/svg" width="45pt" height="30pt" viewBox="0 0 406.273 511.79">
                     <g id="Group_59" data-name="Group 59" transform="translate(-16379.347 -14880.605)">
@@ -85,7 +85,7 @@
               <div class="mod-title mr-4">Work</div>
             </div>
             <div class="col-4">
-              <div class="borders mr-2 mt-2">
+              <div class="borders mr-2 mt-2">  
                 <div class="inline-box">
                   <a href="<?php echo $taoh_home_url."/learning/flashcard/mindfulness/"; ?>"><svg xmlns="http://www.w3.org/2000/svg" width="45pt" height="30pt" viewBox="0 0 406.273 511.789">
                     <g id="Group_63" data-name="Group 63" transform="translate(-16085.354 -16644.105)">
@@ -114,7 +114,7 @@
               </div>
               <div class="mod-title mr-4">Wellness</div>
             </div>
-        </div>
+        </div>    
       <!--<a class="dropdown-item" href="<?php //echo $taoh_home_url."/learning/flashcard/networking/"; ?>"> Jobs </a>
       <a class="dropdown-item" href="<?php //echo $taoh_home_url."/learning/flashcard/career-development/"; ?>"> Work </a>
       <a class="dropdown-item" href="<?php //echo $taoh_home_url."/learning/flashcard/mindfulness/"; ?>"> Wellness </a>-->

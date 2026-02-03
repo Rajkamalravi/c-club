@@ -3,21 +3,21 @@ function taoh_wellness_widget_get($reads_type){
     $url = 'core.content.get';
     $taoh_vals = array(
       "mod" => 'users',
-      "type"=> "landing",
+      "type"=> "landing", 
       "ops"=> $reads_type,
       'key' => defined('TAOH_EVENTS_GET_LOCAL') && TAOH_EVENTS_GET_LOCAL ? TAOH_API_SECRET : TAOH_API_DUMMY_SECRET,
       'token'=>taoh_get_dummy_token(1),
       'local'=>TAOH_READS_GET_LOCAL,
       'cache_time'=>600,
       //'cfcc1d'=> 1, //cfcache newly added
-
+     
     );
     // $cache_name = $url.'_users_landing_' . hash('sha256', $url . serialize($taoh_vals));
     // $taoh_vals[ 'cfcache' ] = $cache_name;
     // $taoh_vals[ 'cache_name' ] = $cache_name;
     // $taoh_vals[ 'cache' ] = array ( "name" => $cache_name );
     ksort($taoh_vals);
-
+    
   //https://preapi.tao.ai/core.content.get?mod=users&type=landing&ops=wellness&token=ZBPEKKTn&cache%5Bname%5D=DVrIy1cu_core_content_get_wellness_reads
   //https://preapi.tao.ai/core.content.get?mod=users&type=landing&ops=jobs&token=ZBPEKKTn&cache%5Bname%5D=DVrIy1cu_core_content_get_jobs_reads
   //https://preapi.tao.ai/core.content.get?mod=users&type=landing&ops=wellness&token=ZBPEKKTn&cache%5Bname%5D=DVrIy1cu_core_content_get_wellness_reads
@@ -27,7 +27,7 @@ function taoh_wellness_widget_get($reads_type){
     return $res['output'];
   }
 
-
+    
   /*function taoh_metrics_call_for_reads($data){
     $click_view = 'view';
     $log_nolog_token = ( taoh_user_is_logged_in()) ? $user_ptoken : TAOH_API_TOKEN_DUMMY;
@@ -72,20 +72,20 @@ function taoh_wellness_widget_get($reads_type){
         taoh_right_ad3($val_arr);
         break;
       }
-
+      
     //added by kalpana
     //taoh_metrics_call_for_reads($val_arr);
     return 1;
   }
 
   function taoh_all_central_widget3($center3){
-  $first_get = array_slice($center3, 0, 3, true);
+  $first_get = array_slice($center3, 0, 3, true); 
 ?>
 <h4 class="ml-3 session_title mt-3"><span>RANDOM READS</span></h4>
   <div class="row p-3 mb-3 border-bottom">
-  <?php foreach ($first_get as $first ){
+  <?php foreach ($first_get as $first ){ 
           if ( ! isset( $first['image'] ) || ! $first['image'] || stristr( $first['image'], 'images.unsplash.com' ) ) $first['image'] = TAOH_CDN_PREFIX."/images/igcache/".urlencode( taoh_title_desc_decode($first['title']) )."/900_600/blog.jpg";
-          ?>
+          ?> 
       <div class="col-md-4">
           <div class="card card-item">
             <div class="cover-image-container" style="height: 100%; max-height: 196px;">
@@ -95,7 +95,7 @@ function taoh_wellness_widget_get($reads_type){
                 <img class="main-image card-img-top" src="<?php echo $first['image']; ?>" data-src="<?php echo $first['image']; ?>" alt="Card image">
               </a>
             </div>
-
+            
             <div class="mt-2">
               <h3 class="h3-title">
                 <a style="overflow-wrap: anywhere;" href="<?php echo taoh_blog_link(slugify2(taoh_title_desc_decode($first['title']))."-".$first['conttoken']); ?>">
@@ -110,10 +110,10 @@ function taoh_wellness_widget_get($reads_type){
       </div>
       <?php } ?>
     </div>
-<?php
+<?php 
   return 1;
 }
-function taoh_all_central_widget2($center2){
+function taoh_all_central_widget2($center2){ 
   //$widget2 = taoh_wellness_widget_get($reads_type);
   //$center2 = $widget2['center2'];
   $first_get = array_slice($center2, 0, 2, true);
@@ -145,7 +145,7 @@ function taoh_all_central_widget2($center2){
     <?php } ?>
   </div>
 <div class="row border-bottom">
-  <?php foreach ($second_get as $second ){
+  <?php foreach ($second_get as $second ){ 
     if ( ! isset( $second['image'] ) || ! $second['image'] || stristr( $second['image'], 'images.unsplash.com' ) ) $second['image'] = TAOH_CDN_PREFIX."/images/igcache/".urlencode( taoh_title_desc_decode($second['title']) )."/900_600/blog.jpg";
     ?>
   <div class="col-sm-6">
@@ -162,10 +162,10 @@ function taoh_all_central_widget2($center2){
   </div>
   <?php } ?>
 </div>
-<?php
+<?php 
   return 1;
-}
-function taoh_all_central_widget1($center1){
+} 
+function taoh_all_central_widget1($center1){ 
     $first_get = array_slice($center1, 0, 1, true);
     $second_get = array_slice($center1, 1, 4, true); ?>
     <h4 class="ml-3 session_title"><span>WHAT'S NEW</span></h4>
@@ -196,7 +196,7 @@ function taoh_all_central_widget1($center1){
       <?php } ?>
       <div class="col-lg-6">
         <div class="p-3">
-          <?php foreach ($second_get as $second ){
+          <?php foreach ($second_get as $second ){ 
             if ( ! isset( $second['image']) || ! $second['image'] || stristr( $second['image'], 'images.unsplash.com' ) ) $second['image'] = TAOH_CDN_PREFIX."/images/igcache/".urlencode( taoh_title_desc_decode($second['title']) )."/900_600/blog.jpg";
           ?>
           <div class="d-flex mb-3">
@@ -213,11 +213,11 @@ function taoh_all_central_widget1($center1){
         </div>
       </div>
     </div>
-  <?php
+  <?php 
     return 1;
 }
 
-function taoh_right_ad1($taoh_right_ad1){
+function taoh_right_ad1($taoh_right_ad1){ 
     $url = TAOH_SITE_URL_ROOT.$taoh_right_ad1['link']; ?>
         <div class="card-body">
             <h3 class="fs-17 pb-3">
@@ -242,11 +242,11 @@ function taoh_right_ad1($taoh_right_ad1){
                 </div><!-- end media -->
             </div>
         </div>
-  <?php
-  return 1;
-}
+  <?php 
+  return 1;  
+} 
 
-function taoh_right_ad2($taoh_right_ad2){
+function taoh_right_ad2($taoh_right_ad2){ 
     //$widget5 = taoh_wellness_widget_get($reads_type);
     //$taoh_right_ad2 = $widget5['taoh_right_ad2'];
     $url = TAOH_SITE_URL_ROOT.$taoh_right_ad2['link']; ?>
@@ -273,11 +273,11 @@ function taoh_right_ad2($taoh_right_ad2){
                 </div><!-- end media -->
             </div>
         </div>
-  <?php
-  return 1;
-}
+  <?php 
+  return 1;  
+} 
 
-function taoh_right_ad3($taoh_right_ad3){
+function taoh_right_ad3($taoh_right_ad3){ 
     //$widget6 = taoh_wellness_widget_get($reads_type);
     //$taoh_right_ad3 = $widget6['taoh_right_ad3'];
     $url = TAOH_SITE_URL_ROOT.$taoh_right_ad3['link']; ?>
@@ -304,10 +304,10 @@ function taoh_right_ad3($taoh_right_ad3){
                 </div><!-- end media -->
             </div>
         </div>
-  <?php
-    return 1;
-  }
-
+  <?php 
+    return 1; 
+  } 
+  
   function taoh_all_right_widget2($right2) {
   //$related = taoh_wellness_widget_get($reads_type);
   //$right2 = $related['right2'];//print_r($right2); ?>
@@ -337,17 +337,17 @@ function taoh_right_ad3($taoh_right_ad3){
         <?php } ?>
         </div><!-- end sidebar-questions -->
     </div>
-<?php
+<?php 
   return 1;
-}
+} 
 
-function taoh_all_right_widget1($related1) {
-  $right1 = $related1[0];
-  ?>
+function taoh_all_right_widget1($related1) { 
+  $right1 = $related1[0]; 
+  ?> 
     <div class="card-body">
     <h4 class="session_title"><span>RELATED</span></h4>
     <div class="mt-3 mb-3">
-        <?php
+        <?php 
         if ( ! isset( $right1['image'] ) || ! $right1['image'] || stristr( $right1['image'], 'images.unsplash.com' ) ) $right1['image'] = TAOH_CDN_PREFIX."/images/igcache/".urlencode( taoh_title_desc_decode($right1['title']) )."/900_600/blog.jpg";
         ?>
         <div class="mb-3">
@@ -369,17 +369,17 @@ function taoh_all_right_widget1($related1) {
         </div>
     </div>
     </div>
-<?php
+<?php 
   return 1;
-}
+} 
 
-function taoh_all_right_widget3($related3) {
-  $right3 = $related3[0];
-  ?>
+function taoh_all_right_widget3($related3) { 
+  $right3 = $related3[0]; 
+  ?> 
     <div class="card-body">
     <h4 class="session_title"><span>RELATED</span></h4>
     <div class="mt-3 mb-3">
-        <?php
+        <?php 
         if ( ! isset( $right3['image'] ) || ! $right3['image'] || stristr( $right3['image'], 'images.unsplash.com' ) ) $right3['image'] = TAOH_CDN_PREFIX."/images/igcache/".urlencode( taoh_title_desc_decode($right3['title']) )."/900_600/blog.jpg";
         ?>
         <div class="mb-3">
@@ -401,6 +401,6 @@ function taoh_all_right_widget3($related3) {
         </div>
     </div>
     </div>
-<?php
+<?php 
   return 1;
 } ?>

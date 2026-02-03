@@ -87,7 +87,7 @@ function sendFRMChat(message, my_pToken, parent_id, ntw_room_key, channel_id, us
         user_type  = 'organizer';
     if(selectedChat == 'organizer')
         event_token_send = eventtoken;
-
+    
     let data = {
         'taoh_action': 'taoh_channel_send_message',
         'message': converted_message,
@@ -131,19 +131,19 @@ function sendFRMChat(message, my_pToken, parent_id, ntw_room_key, channel_id, us
     isReplyRequest ? renderFRMReplyMessages(chatresponse) : renderFRMMessages(chatresponse);
 
     let chat_temp_messages_key = `frm_temp_${ntw_room_key}_${data.channel_id}${Boolean(parseInt(data.parent_id, 10)) ? '_' + data.parent_id : ''}`;
-    // let ptokenTo = data.other_ptoken;
+    // let ptokenTo = data.other_ptoken;    
 
-    IntaoDB.getItem(objStores.ntw_store.name, dojo_data_key).then((intao_data) => {
+    IntaoDB.getItem(objStores.ntw_store.name, dojo_data_key).then((intao_data) => {         
         let updatedResponse = {};
         if (intao_data?.values) {
             updatedResponse = intao_data.values;
-        }
+        }        
         updatedResponse.frm_last_msg_sent_time = data.sent_time;
         return IntaoDB.setItem(objStores.ntw_store.name, {
             taoh_ntw: dojo_data_key,
             values: updatedResponse,
             timestamp: Date.now()
-        });
+        });        
     });
 
 
@@ -346,9 +346,9 @@ function fetchFRMChatData(requestData) {
                 $('.load_more_dots').addClass('d-none');
                 $('#frmChatConversationLoader').awloader('hide');
                 channelConversationList.awloader('hide');
-
+                
                 $('.pin-message-v2').addClass('d-none');
-
+                
                 return;
             }
 
@@ -433,7 +433,7 @@ function isWithinLast15Days(microseconds) {
     const now = new Date();
     const timestampDate = new Date(microseconds / 1000);
     const diffMs = now.getTime() - timestampDate.getTime();
-    const diffDays = diffMs / (1000 * 60 * 60 * 24);
+    const diffDays = diffMs / (1000 * 60 * 60 * 24);  
     if(diffDays <= 15 && diffDays >= 0) {
         result = true;
     }
@@ -465,7 +465,7 @@ async function compiledFRMMsgHtml(cd) {
         const messageLikeCount = parseInt(cd?.like_count ?? 0, 10) || 0;
 
         const my_like = cd?.mylike;
-
+        
         const messageNewReplyCount = parseInt(cd?.new_reply_count ?? 0, 10) || 0;
 
         const replyText = `${messageReplyCount} ${messageReplyCount === 1 ? 'reply' : 'replies'}`;
@@ -486,12 +486,12 @@ async function compiledFRMMsgHtml(cd) {
                 } else {
                     avatar_image = _taoh_ops_prefix + '/avatar/PNG/128/avatar_def.png';
                 }
-            }
-
+            }      
+            
             let decoded = decodeURIComponent(safeMessageHtml);
             decoded = decoded.replace(/\+/g, '');
             const match = decoded.match(/<a [^>]*>.*?<\/a>/i);
-            const aTag = match ? match[0] : "";
+            const aTag = match ? match[0] : "";           
             if(aTag != "") {
                 var msgHTML = "Join "+aTag+" - Video Room";
             } else {
@@ -518,16 +518,16 @@ async function compiledFRMMsgHtml(cd) {
             if(pin_msg_count > 0) {
                 activeClass = "active";
             }
-
+            
             if ($(`.pin_message_div${cd.channel_id} .pin_message_msg_div [data-frm_message_id="${cd.message_id}"]`).length === 0) {
-
+                
                 $(`.pin_message_div${cd.channel_id} .pin_message_dot_div`).append(`<div class="message-item-dot ${activeClass}" data-channel_id="${cd.channel_id}" data-frm_message_id="${cd.message_id}"></div>`);
 
                 $(`.pin_message_div${cd.channel_id} .pin_message_msg_div`).append(`<div class="pin_msg flex-grow-1 ${(activeClass == "active") ? 'd-flex' : 'd-none'}" data-channel_id="${cd.channel_id}" data-frm_message_id="${cd.message_id}">
                     <div class="flex-grow-1">
                         <div class="d-flex align-items-center" style="gap: 12px;">
                             <img style="width: 28px; height: 28px; border-radius: 100%;" src="${avatar_image}" alt="">
-                            <div class="p-message">
+                            <div class="p-message">                                
                                 ${msgHTML}
                             </div>
                         </div>
@@ -544,22 +544,22 @@ async function compiledFRMMsgHtml(cd) {
                     </div>
                 </div>`);
             }
-        }
-
+        }        
+        
         try {
-            if (decodeURIComponent(safeMessageHtml).includes(_job_search_string) && isWithinLast15Days(cd.time)) {
+            if (decodeURIComponent(safeMessageHtml).includes(_job_search_string) && isWithinLast15Days(cd.time)) {                      
                 jobUrlData[ntw_room_key] = true;
-                console.log("Job url found", jobUrlData);
+                console.log("Job url found", jobUrlData); 
             }
         } catch (e) {
             console.warn("Malformed URI, skipping decode:", e);
-        }
+        }     
 
         compiledMMMsgHtml = `<li class="chat-list ${cd.ptokenTo === cd.ptokenFrom ? 'right' : 'left'} ${'msg_' + (cd.time)} ${cd.isTempMsg ? 'temp_msg new' : ''}" data-frm_message_id="${cd.message_id}" data-frm_message_key="${cd.time}" id="${'msg_' + (cd.time)}">
                     <div class="conversation-list">
                         <div class="chat-avatar openProfileModal" data-chatwith="${cd.ptokenTo}" data-profile_token="${cd.ptokenTo}">
                             <img src="${cd.avatar}" alt="profile">
-                        </div>
+                        </div>                        
 
                         <div class="reaction-popup">
                             <div class="quick-reactions">
@@ -571,7 +571,7 @@ async function compiledFRMMsgHtml(cd) {
                                 <span class="quick-reaction" data-emoji="😡">😡</span>
                                 <span class="quick-reaction" data-emoji="➕">➕</span>
                             </div>
-                        </div>
+                        </div>                        
 
                         <div class="user-chat-content">
                             <div class="ctext-wrap">
@@ -579,7 +579,7 @@ async function compiledFRMMsgHtml(cd) {
                                     <h6 class="mb-1 ctext-name"><span class="openProfileModal" data-chatwith="${cd.ptokenTo}" data-profile_token="${cd.ptokenTo}">${cd.name} ${cd.userType == 'organizer' ? ` (${cd.userType})` : ''}</span></h6>
                                     <p class="mb-0 ctext-content">${safeMessageHtml}</p>
                                 </div>
-                                <div class="align-self-start message-box-drop d-flex">
+                                <div class="align-self-start message-box-drop d-flex">                                    
                                     <div class="dropdown">
                                         <a class="conversation-reply channel-reply" href="#" role="button"><i class="bx bx-share mt-1 fs-20" data-bs-toggle="tooltip" data-bs-placement="top" title="Reply to thread"></i></a>
                                     </div>
@@ -590,20 +590,20 @@ async function compiledFRMMsgHtml(cd) {
                                             <a data-frm_message_id="${cd.message_id}" data-msg-owner="${cd.ptokenTo}" class="dropdown-item d-flex align-items-center justify-content-between pin-message" href="#" id="pin-message-0" data-action=${(cd.pin == 1) ? '0' : '1'} >${(cd.pin == 1) ? 'Unpin <i class="bx bx-unlink text-muted ms-2"></i>' : 'Pin <i class="bx bx-pin text-muted ms-2"></i>'} </a>
                                             ${(cd.ptokenTo === cd.ptokenFrom || _can_delete_all_msg == 1) ? '<a class="dropdown-item d-flex align-items-center justify-content-between frm-delete-item" href="#">Delete <i class="bx bx-trash text-muted ms-2"></i></a>' : ''}
                                         </div>
-                                    </div>
+                                    </div>                                    
                                 </div>
                             </div>
                             <div class="conversation-name">
                                 <span class="text-success check-message-icon"><i class="bx ${parseInt(cd.message_id, 10) ? '' : 'bx-sync bx-spin'}"></i></span> <!--bx-check-double-->
-                                <small class="text-muted time">${cd.formatted_time}</small>
-
+                                <small class="text-muted time">${cd.formatted_time}</small>  
+                                
                                 <span class="emoji_btn" data-frm_message_id="${cd.message_id}" data-frm_message_key="${cd.time}">
                                     <i class="far fa-smile text-muted emoji_placeholder ${(cd.reactions === undefined) ? '' : 'd-none'}"></i>
                                     <div class="message-reactions">${formatReactions(cd.reactions)}</div>
-                                </span>
-
+                                </span> 
+                                                                                                
                                 <a class="like-button ${(my_like == 1) ? 'd-none' : ''} ${(_like_enable == 1) ? '' : 'd-none'}" style="cursor: pointer;" data-frm_message_id="${cd.message_id}" data-frm_message_key="${cd.time}">
-                                    <i class="bx bx-heart mt-1 fs-20" data-bs-toggle="tooltip" data-bs-placement="top" title="Like"></i>
+                                    <i class="bx bx-heart mt-1 fs-20" data-bs-toggle="tooltip" data-bs-placement="top" title="Like"></i>                                        
                                 </a>
                                 <a class="liked-button ${(my_like == 1) ? '' : 'd-none'} ${(_like_enable == 1) ? '' : 'd-none'}" data-frm_message_id="${cd.message_id}" data-frm_message_key="${cd.time}">
                                     <i class="bx bxs-heart mt-1 fs-20 text-primary" data-bs-toggle="tooltip" data-bs-placement="top" title="Liked"></i>
@@ -623,7 +623,7 @@ async function compiledFRMMsgHtml(cd) {
 
 function formatReactions(reactions) {
     if (!reactions || !Array.isArray(reactions)) return '';
-
+    
     const counts = {};
     reactions.forEach(r => {
         if (r !== undefined && r !== null && r !== '') {
@@ -920,7 +920,7 @@ function doAfterFRMMsgRender(response) {
     const targetElement = $(`.channelList li#channel-${channelId} .unread-count`);
     if (targetElement?.length && targetElement.attr('data-count')) {
         clearUnreadCount(ntw_room_key, channelId, (response.callFromEvent === "init" ? 1 : 0));
-    }
+    }    
 
     const $dot = $(`.pin_message_div${channelId} .pin_message_dot_div .message-item-dot`);
     if ($dot.length && !$dot.hasClass('active')) {
@@ -936,7 +936,7 @@ function doAfterFRMMsgRender(response) {
 
     const pinCount = $(`.pin_message_div${channelId} .pin_msg`).length;
     console.log("pinCount ======", pinCount);
-
+    
     if(pinCount == 0) {
         $('.pin-message-v2').hide();
     } else{
@@ -1562,7 +1562,7 @@ function deleteComment(elem, channel_id, frmMessageId, frmMessageKey = '', paren
                                     elem.remove();
 
                                     console.log("test", deletedEntryKey);
-
+                                    
 
                                     const msgElem = $('#msg_' + deletedEntryKey);
                                     if (msgElem.length) msgElem.remove();
@@ -1616,9 +1616,9 @@ async function likeMessage(elem, channel_id, frmMessageId, frmMessageKey, isLike
             dataType: 'json',
             success: function (res) {
                 console.log(res);
-                if (res.status == "success") {
+                if (res.status == "success") {                
                     likedElem.removeClass('d-none');
-                    elem.addClass('d-none');
+                    elem.addClass('d-none');               
 
                     const chat_messages_key = `frm_${ntw_room_key}_${channel_id}`;
 
@@ -1627,18 +1627,18 @@ async function likeMessage(elem, channel_id, frmMessageId, frmMessageKey, isLike
                         if (!intao_data?.values || !intao_data.values.chat[frmMessageKey]) {
                             console.log("not updated");
                             return;
-                        }
+                        }		
 
                         //let likeCount = parseInt(likeTextElem.attr("data-like_count")) + 1;
-
-                        const updatedResponse = { ...intao_data.values };
+                        
+                        const updatedResponse = { ...intao_data.values };	
 
                         let likeCount = updatedResponse.chat[frmMessageKey].like_count + 1;
                         likeTextElem.attr("data-like_count", likeCount);
 
                         updatedResponse.chat[frmMessageKey].like_count = likeCount;
                         updatedResponse.chat[frmMessageKey].mylike = 1;
-
+                        
                         let likeTextSuffix = (likeCount > 1) ? " likes" : " like";
 
                         likeTextElem.text(likeCount+likeTextSuffix);
@@ -1656,7 +1656,7 @@ async function likeMessage(elem, channel_id, frmMessageId, frmMessageKey, isLike
                         };
                         resolve(response_data);
                     });
-
+                    
                 } else {
                     elem.attr('disabled', false);
                     loaderElem.hide();
@@ -1669,7 +1669,7 @@ async function likeMessage(elem, channel_id, frmMessageId, frmMessageKey, isLike
                 console.log('Error :', xhr.status);
             }
         });
-    });
+    });    
 }
 
 async function pinMessagePost(msgOwner, elem, channel_id, frmMessageId, frmMessageKey, pin, pinFrom = "channel", chatWith, unpinOld = 0) {
@@ -1678,7 +1678,7 @@ async function pinMessagePost(msgOwner, elem, channel_id, frmMessageId, frmMessa
 
     if(elem == undefined) {
         elem = $(`.pin_msg[data-frm_message_id="${frmMessageId}"]`);
-    }
+    }    
 
     var userInfo = await getUserInfo(msgOwner, 'public');
 
@@ -1717,7 +1717,7 @@ async function pinMessagePost(msgOwner, elem, channel_id, frmMessageId, frmMessa
                 console.log(res);
                 if (res && res.status == "success") {
                     //likedElem.removeClass('d-none');
-                    //elem.addClass('d-none');
+                    //elem.addClass('d-none');    
                     var chat_messages_key;
 
                     var $parent;
@@ -1729,7 +1729,7 @@ async function pinMessagePost(msgOwner, elem, channel_id, frmMessageId, frmMessa
                         chat_messages_key = `frm_${ntw_room_key}_${channel_id}`;
                         if(pin == 1) {
                             sendFRMChat(my_name+" pinned a message", my_pToken, 0, ntw_room_key, channel_id, 'system');
-                        }
+                        }                        
                     } else {
                         $parent = $('.pin-message-v2-dm');
                         msg_div = "pin_message_div-dm";
@@ -1748,16 +1748,16 @@ async function pinMessagePost(msgOwner, elem, channel_id, frmMessageId, frmMessa
                                 console.log("not updated ==>>", chat_messages_key);
                                 return;
                             }
-                        }
-
-                        const updatedResponse = { ...intao_data.values };
+                        }		
+                        
+                        const updatedResponse = { ...intao_data.values };	
                         updatedResponse.chat[frmMessageKey].pin = pin;
                         updatedResponse.chat[frmMessageKey].pinned_by = my_pToken;
 
                         let message = updatedResponse.chat[frmMessageKey].message;
                         message = decodeURIComponent(message.replace(/\+/g, ' '));
-
-                        if(pin == 1) {
+                        
+                        if(pin == 1) {                            
 
                             if (userInfo.avatar_image != '' && userInfo.avatar_image != undefined) {
                                 var avatar_image = userInfo.avatar_image;
@@ -1768,12 +1768,12 @@ async function pinMessagePost(msgOwner, elem, channel_id, frmMessageId, frmMessa
                             }
 
                             console.log("^^^^^^^^^^=======^^^^^^^^^", message);
-
+                            
 
                             let decoded = decodeURIComponent(message);
                             decoded = decoded.replace(/\+/g, '');
                             const match = decoded.match(/<a [^>]*>.*?<\/a>/i);
-                            const aTag = match ? match[0] : "";
+                            const aTag = match ? match[0] : "";           
                             if(aTag != "") {
                                 var msgHTML = "Join "+aTag+" - Video Room";
                             } else {
@@ -1785,8 +1785,8 @@ async function pinMessagePost(msgOwner, elem, channel_id, frmMessageId, frmMessa
                                 } else {
                                     var msgHTML = msg;
                                 }
-                            }
-
+                            }                              
+                            
 
                             if ($parent.find('.'+msg_div+channel_id).length === 0) {
                                 $parent.append(`<div class="pb-2 d-flex align-items-center comm_pin_message_div ${msg_div}${channel_id}" style="gap: 12px;">
@@ -1800,16 +1800,16 @@ async function pinMessagePost(msgOwner, elem, channel_id, frmMessageId, frmMessa
                             if(pin_msg_count > 0) {
                                 activeClass = "active";
                             }
-
+                            
                             if ($(`.${msg_div}${channel_id} .pin_message_msg_div [data-frm_message_id="${frmMessageId}"]`).length === 0) {
-
+                                
                                 $(`.${msg_div}${channel_id} .pin_message_dot_div`).append(`<div class="message-item-dot ${activeClass}" data-channel_id="${channel_id}" data-frm_message_id="${frmMessageId}"></div>`);
 
                                 $(`.${msg_div}${channel_id} .pin_message_msg_div`).append(`<div class="pin_msg flex-grow-1 ${(activeClass == "active") ? 'd-flex' : 'd-none'}" data-channel_id="${channel_id}" data-frm_message_id="${frmMessageId}">
                                     <div class="flex-grow-1">
                                         <div class="d-flex align-items-center" style="gap: 12px;">
                                             <img style="width: 28px; height: 28px; border-radius: 100%;" src="${avatar_image}" alt="">
-                                            <div class="p-message">
+                                            <div class="p-message">                                
                                                 ${msgHTML}
                                             </div>
                                         </div>
@@ -1827,13 +1827,13 @@ async function pinMessagePost(msgOwner, elem, channel_id, frmMessageId, frmMessa
 
                                 elem.attr('data-action', 0);
                                 elem.html('Unpin <i class="bx bx-unlink text-muted ms-2"></i>');
-                            }
+                            }                            
                         } else {
                             $('.pin_msg[data-frm_message_id="' + frmMessageId + '"]').remove();
-                            $('.message-item-dot[data-frm_message_id="' + frmMessageId + '"]').remove();
+                            $('.message-item-dot[data-frm_message_id="' + frmMessageId + '"]').remove();                            
                             elem.attr('data-action', 1);
                             elem.html('Pin <i class="bx bx-pin text-muted ms-2"></i>');
-                        }
+                        }                        
 
                         IntaoDB.setItem(objStores.ntw_store.name, {
                             taoh_ntw: chat_messages_key,
@@ -1847,7 +1847,7 @@ async function pinMessagePost(msgOwner, elem, channel_id, frmMessageId, frmMessa
                         };
                         resolve(response_data);
                     });
-
+                    
                 } else {
                     elem.attr('disabled', false);
                     console.log('Error :');
@@ -1859,7 +1859,7 @@ async function pinMessagePost(msgOwner, elem, channel_id, frmMessageId, frmMessa
                 console.log('Error :', xhr.status);
             }
         });
-    });
+    });    
 }
 
 lastJobPostedDate();
@@ -1879,8 +1879,8 @@ async function lastJobPostedDate() {
             dataType: 'json',
             success: function (res) {
                 console.log(res);
-                if (res.success) {
-                    _taoh_last_job_post_date = res.output?.last_post_date;
+                if (res.success) {         
+                    _taoh_last_job_post_date = res.output?.last_post_date;               
                 } else {
                     console.log('Error :');
                 }
@@ -1889,8 +1889,8 @@ async function lastJobPostedDate() {
                 console.log('Error :', xhr.status);
             }
         });
-    });
-
+    });   
+   
 }
 
 async function emojiPost(data_type, chatfrom, chatwith, elem, channel_id, frmMessageId, frmMessageKey, emoji) {
@@ -1908,7 +1908,7 @@ async function emojiPost(data_type, chatfrom, chatwith, elem, channel_id, frmMes
         'key': ntw_room_key,
         'sent_time': sent_time,
         'emoji': emoji,
-        'emoji_from': data_type,
+        'emoji_from': data_type,        
     };
 
     let loaderElem = elem.find('.conversation-loader-icon');
@@ -1922,7 +1922,7 @@ async function emojiPost(data_type, chatfrom, chatwith, elem, channel_id, frmMes
             dataType: 'json',
             success: function (res) {
                 console.log(res);
-                if (res.status == "success") {
+                if (res.status == "success") {                
 
                     var chat_messages_key;
                     if(data_type == "dm") {
@@ -1930,15 +1930,15 @@ async function emojiPost(data_type, chatfrom, chatwith, elem, channel_id, frmMes
                     } else {
                         chat_messages_key = `frm_${ntw_room_key}_${channel_id}`;
                     }
-
+                    
 
                     IntaoDB.getItem(objStores.ntw_store.name, chat_messages_key).then((intao_data) => {
 
                         if (!intao_data?.values || !intao_data.values.chat[frmMessageKey]) {
                             console.log("not updated ==>>><<<", chat_messages_key);
                             return;
-                        }
-
+                        }		
+                        
                         const updatedResponse = { ...intao_data.values };
 
                         updatedResponse.chat[frmMessageKey].reactions = updatedResponse.chat[frmMessageKey].reactions || {};
@@ -1956,7 +1956,7 @@ async function emojiPost(data_type, chatfrom, chatwith, elem, channel_id, frmMes
                         };
                         resolve(response_data);
                     });
-
+                    
                 } else {
                     elem.attr('disabled', false);
                     loaderElem.hide();
@@ -1969,7 +1969,7 @@ async function emojiPost(data_type, chatfrom, chatwith, elem, channel_id, frmMes
                 console.log('Error :', xhr.status);
             }
         });
-    });
+    });    
 }
 
 function checkCommentFormTime() {

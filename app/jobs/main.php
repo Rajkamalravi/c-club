@@ -21,11 +21,11 @@ $action = taoh_parse_url(1);
 $goto = taoh_parse_url(2);
 if(taoh_parse_url(2) && taoh_parse_url(3)){
 $goto = taoh_parse_url(2).'/'.taoh_parse_url(3);
-
+	
 }
 if(taoh_parse_url(4)){
 	$id = '/'.taoh_parse_url(4);
-
+		
 }
 if($goto == 'stlo'){
 	$goto = '';
@@ -98,20 +98,20 @@ switch ($action) {
 			taoh_redirect($url); exit();
 		break;
 	case 'scouts-signup-employer':
-
+		
 		if(taoh_user_is_logged_in()){
-
+		
 			$url = TAOH_SITE_URL_ROOT."/fwd/ss/".TAOH_SITE_ROOT_HASH."/log/1/u/loc/".$current_app."/scouts-signup-employer";
 		}else{
-
+			
 			$url = TAOH_SITE_URL_ROOT."/fwd/ss/".TAOH_SITE_ROOT_HASH."/log/0/u/loc/".$current_app."/scouts-signup-employer";
 		}
-		//echo $url ;die();
+		//echo $url ;die();	
 		taoh_redirect($url); exit();
 		break;
 	case 'scouts-signup-professional':
 
-
+	
 		if(taoh_user_is_logged_in())
 			$url = TAOH_SITE_URL_ROOT."/fwd/ss/".TAOH_SITE_ROOT_HASH."/log/1/u/loc/".$current_app."/scouts-signup-professional";
 		else

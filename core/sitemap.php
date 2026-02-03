@@ -18,7 +18,7 @@ function taoh_sitemap_call(){
 
   $currentDate = date("Ymd");
   $filename = "sitemap_".$currentDate.".sitemap";
-
+  
   $lasttimestamp_default = 0;
   $currentDate = date("Ymd");
   $filename_check = "sitemap_index.xml";
@@ -34,13 +34,13 @@ function taoh_sitemap_call(){
     );
     $myfile = fopen($filename, "a") or die("Unable to open file!");
 
-
+  
   //echo taoh_apicall_get_debug( $taoh_call, $taoh_vals ); die();
-  $res = taoh_apicall_get($taoh_call, $taoh_vals);
+  $res = taoh_apicall_get($taoh_call, $taoh_vals); 
   $data = json_decode($res);
 //echo '<pre>';print_r($data);die();
   if($data){
-
+    
     //writing index file
     unlink("sitemap_index.xml");
     $myfile = fopen("sitemap_index.xml", "a") or die("Unable to open file!");
@@ -88,7 +88,7 @@ function taoh_sitemap_call(){
     $sitefile = fopen("sitemap.xml", "a") or die("Unable to open file!");
     $xml = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n";
     $xml .= "<urlset xmlns=\"http://www.sitemaps.org/schemas/sitemap/0.9\">\n";
-
+   
     $xml .= "<url>\n";
     $xml .= "<loc>".TAOH_SITE_URL_ROOT."/</loc>\n";
     $xml .= "<lastmod>".date('Y-m-d')."</lastmod>\n";
@@ -166,7 +166,7 @@ function taoh_sitemap_call(){
     $xml .= "<priority>0.6</priority>\n";
     $xml .= "</url>\n";
 
-
+  
     $xml .= "</urlset>";
     fwrite($sitefile, $xml);
     fclose($sitefile);

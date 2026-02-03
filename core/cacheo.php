@@ -8,6 +8,6 @@ if ( $code == $code2 ){
     //echo "Cache removed for $string <br>";
     if ( $cmd == 'remove' ){
         taoh_cache_remove_local($string);
-
+       
     }
 }

@@ -1,5 +1,5 @@
 <?php
-include_once $_SERVER['DOCUMENT_ROOT'].'/raj/assets/icons/icons.php';
+include_once TAOH_SITE_PATH_ROOT.'/assets/icons/icons.php';
 taoh_get_header();
 
 $pagename = 'profile';
@@ -251,7 +251,7 @@ $data_keywords = (array)($data['output']['user']['keywords'] ?? []);
                                 <div class="col-lg-8">
                                     <span class="text-black mr-3"><?php echo $data['output']['user']['chat_name'];?></span>
                                     <span class="prof-link text-capitalize"><?php echo $data['output']['user']['type'] ?? 'professional'; ?></span>
-
+                            
                                     <div class="mt-1"><?php echo $data['output']['user']['full_location'];?></div>
                                 </div>
                                 <div class="col-lg-4">

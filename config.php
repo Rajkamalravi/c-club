@@ -44,6 +44,9 @@ defined('TAOH_SUPER_ORGANIZER_TOKEN') || define('TAOH_SUPER_ORGANIZER_TOKEN', 'y
 defined('TAOH_CREATE_GOOGLE_MEET_URL') || define('TAOH_CREATE_GOOGLE_MEET_URL', TAOH_MOSAIC_PREFIX . '/google_meet/api/create-meet.php');
 defined('TAOH_CREATE_GOOGLE_MEET_API_KEY') || define('TAOH_CREATE_GOOGLE_MEET_API_KEY', 'sk_live_abc123xyz456def789ghi012jkl345mno678');
 
+// Base path for SVG sprite
+define('ICON_SPRITE_PATH', TAOH_SITE_URL_ROOT . '/assets/icons/sprite.svg');
+
 function requestFile( $filePath ) {
 
   // This function should contain the logic to generate or download the file
@@ -53,9 +56,9 @@ function requestFile( $filePath ) {
 
 
   $val_json = file_get_contents($api_config_generation);
-
+  
   //echo  $api_config_generation;
-
+  
   if ( ! $val_json ) return 0;
 
 
@@ -77,10 +80,10 @@ function requestFile( $filePath ) {
 
   $config_array_data = $config_data['output'];
   $config_array = json_decode($config_array_data, true);
-
-
+  
+ 
   //echo'<pre>';print_r($config_array_data);die();
-
+  
 
   $output = "defined('TAOH_SITE_URL_ROOT') || define('TAOH_SITE_URL_ROOT', '" . TAOH_SITE_URL_ROOT . "');\n";
   if ( is_array( $config_array ) || is_object( $config_array ) ){
@@ -89,8 +92,8 @@ function requestFile( $filePath ) {
           $value = $value === false ? 0 : $value;
           $output .= "defined('" . strtoupper($key) . "') || define('" . strtoupper($key) . "', " . (is_string($value) ? "'$value'" : $value) . ");\n";
       }
-
-      file_put_contents($filePath, "<?php\n\n" . $output . "\n\n?>");
+  
+      file_put_contents($filePath, "<?php\n\n" . $output . "\n\n?>");    
   }
   return 1;
 }
@@ -100,20 +103,20 @@ if ( defined( 'TAOH_MULTISITE' ) && TAOH_MULTISITE===true ){
   $filePath = TAOH_PLUGIN_PATH . '/cache/configs/env_' . TAOH_SITE_ROOT_HASH . '.cache';
   if(isset($_GET['clear']) && $_GET['clear'] == 'config'){
 
-    if (file_exists($filePath))
+    if (file_exists($filePath)) 
         unlink($filePath);
 
     $purge_url = ' https://api.tao.ai/scripts/cfpurge.php?platform='.$_SERVER['HTTP_HOST'].'&y='.rand(10,100);
     //echo $purge_url;
     file_get_contents($purge_url);
     //die();
-
+    
   }
-
-
+  
+  
   if ( file_exists($filePath) && TAOH_MULTISITE ) {
     $fileAgeHours = (time() - filemtime($filePath)) / 3600;
-
+  
       // Check if the file is 12 hours old or fresher
       if ($fileAgeHours <= 12) {
           require_once $filePath;
@@ -124,7 +127,7 @@ if ( defined( 'TAOH_MULTISITE' ) && TAOH_MULTISITE===true ){
   } else {
       requestFile($filePath);
   }
-
+  
 }
 
 if (file_exists('env_post.php')) require_once 'env_post.php';
@@ -141,10 +144,10 @@ if (0){
     if ( defined('TAOH_SITE_ENVIRONMENT') && TAOH_SITE_ENVIRONMENT === 'production' && ! file_get_contents('https://tao.ai/health/', false, stream_context_create(['ssl' => ['verify_peer' => false, 'verify_peer_name' => false]]))) {
         header('Location: ' . TAOH_SITE_URL_ROOT . '/busy.php');
         exit();
-    }
+    }    
 }
 defined('TAOH_INDEXEDDB_VERSION') || define('TAOH_INDEXEDDB_VERSION', 54);
-defined('TAOH_CSS_JS_VERSION') || define('TAOH_CSS_JS_VERSION', '6.5.8');
+defined('TAOH_CSS_JS_VERSION') || define('TAOH_CSS_JS_VERSION', '6.6.7');
 defined('TAOH_PERFORMANCE_TEST') || define('TAOH_PERFORMANCE_TEST', TRUE);
 defined('TAOH_CORE_PATH') || define('TAOH_CORE_PATH', dirname(__FILE__) . '/core');
 defined('TAOH_APP_PATH') || define('TAOH_APP_PATH', dirname(__FILE__) . '/app');
@@ -467,6 +470,7 @@ defined('TAOH_CACHE_CHAT_PROC_URL') || define('TAOH_CACHE_CHAT_PROC_URL', TAOH_C
 defined('TAOH_CACHE_CHAT_URL') || define('TAOH_CACHE_CHAT_URL', TAOH_CACHE_CHAT_PREFIX . '/taohnetwork.php');
 defined('TAOH_LIVE_NOW_URL') || define('TAOH_LIVE_NOW_URL', TAOH_CDN_PREFIX . '/assets/livenow.php');
 defined('TAOH_CONNECT_URL') || define('TAOH_CONNECT_URL', TAOH_CACHE_CONNECT_PREFIX . '/taohconnect.php');
+defined('TAOH_FIREBASE_SCRIPT_URL') || define('TAOH_FIREBASE_SCRIPT_URL', 'https://mosaic.tao.ai/tao-groupchat/api/');
 
 defined('TAOH_CACHE_STORE') || define('TAOH_CACHE_STORE', TAOH_CACHE_PREFIX . '/taoh_store.php');
 defined('TAOH_CACHEOPS_PREFIX') || define('TAOH_CACHEOPS_PREFIX', TAOH_CACHE_PREFIX . '/cacheops.php');
@@ -705,7 +709,7 @@ defined('TAOH_DEV_SITE') || define('TAOH_DEV_SITE', 0);
 defined('TAOH_LINK_CANONICAL_URL_ENABLE') || define('TAOH_LINK_CANONICAL_URL_ENABLE', 0);
 
 
-defined('TAOH_SPEEDNETWORKING_ENABLE') || define('TAOH_SPEEDNETWORKING_ENABLE', 1);
+defined('TAOH_SPEEDNETWORKING_ENABLE') || define('TAOH_SPEEDNETWORKING_ENABLE', 1); 
 define('DOJO_NETWORKING_MESSAGE1',[
         [
         'id' => 'no_message_in_15_min',
@@ -784,21 +788,21 @@ defined('TAOH_DOJO_SUGGESTION_ENABLE') || define('TAOH_DOJO_SUGGESTION_ENABLE', 
 defined('TAOH_DOJO_SUGGESTION_TIMELIMIT') || define('TAOH_DOJO_SUGGESTION_TIMELIMIT', 30000);
 defined('TAOH_DOJO_TRACKER_ENABLE') || define('TAOH_DOJO_TRACKER_ENABLE', 0);
  defined('NETWORKING_DOJO_SUGGESTION') || define('NETWORKING_DOJO_SUGGESTION', false);
-
+ 
 
 defined('TAOH_CHAT_NET_URL') || define('TAOH_CHAT_NET_URL', TAOH_CACHE_CHAT_PREFIX . '/taoh_net.php');
 
 defined('NETWORKING_2_0') || define('NETWORKING_2_0', true);
 defined('NETWORKING_3_0') || define('NETWORKING_3_0', false);
-defined('HIDE_REORT_AN_ISSUE') || define('HIDE_REORT_AN_ISSUE' , 1);
+defined('HIDE_REORT_AN_ISSUE') || define('HIDE_REORT_AN_ISSUE' , 1); 
 
 
 define( 'TAOH_CACHE_CHAT_PREFIX_MOD', TAOH_CACHE_CHAT_PREFIX);
 
 
 defined('TAO_TABLES_NAME') || define('TAO_TABLES_NAME' , 'tables.im');
-defined('TAO_TABLES_URL') || define('TAO_TABLES_URL' , 'https://tables.im');
-defined('TAO_TABLES_KEYWORD') || define('TAO_TABLES_KEYWORD' , TAOH_SITE_NAME_SLUG);
+defined('TAO_TABLES_URL') || define('TAO_TABLES_URL' , 'https://tables.im'); 
+defined('TAO_TABLES_KEYWORD') || define('TAO_TABLES_KEYWORD' , TAOH_SITE_NAME_SLUG); 
 defined('TAOH_TABLE_REDIS_URL') || define('TAOH_TABLE_REDIS_URL' , TAOH_CACHE_CHAT_PREFIX_MOD . '/mos_red_apps.php');
 defined('TAOH_TABLE_VERSION') || define('TAOH_TABLE_VERSION' , 'tao');
 defined('TAOH_COMMENTS_VERSION') || define('TAOH_COMMENTS_VERSION' , 'prod');
@@ -812,5 +816,13 @@ defined('TAOH_COMMENTS_CSS') || define('TAOH_COMMENTS_CSS' , 'https://labs.tao.a
 
 
 defined('TAOH_RSVP_ROOMSLUG_SPLIT_COUNT') || define('TAOH_RSVP_ROOMSLUG_SPLIT_COUNT' , '10000');
+defined('TAOH_ENABLE_CONVERSATION') || define('TAOH_ENABLE_CONVERSATION' , 0);
+defined('TAOH_MOAT_LOGIN_URL') || define('TAOH_MOAT_LOGIN_URL' , 'https://login.tao.ai/login.php');
+
+define('TAOH_SSO_BASE_URL', 'https://werify.ai/login');
+define('TAOH_SSO_SITE_EMAIL', 'info@tao.ai');
+define('TAOH_SSO_APP_EMOJI', '');
+define('TAOH_SSO_POST_LOGIN_PATH', '/sso-login');
+define('TAOH_SSO_CALLBACK_PATH', '/login.php');
 
 ?>

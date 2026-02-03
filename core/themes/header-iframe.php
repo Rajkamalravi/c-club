@@ -1,5 +1,5 @@
-<?php
-//include_once('head.php');
+<?php 
+//include_once('head.php'); 
 
 $current_app = TAOH_SITE_CURRENT_APP_SLUG;
 $taoh_home_url = ( defined( 'TAOH_PAGE_URL' ) && TAOH_PAGE_URL ) ? TAOH_PAGE_URL:TAOH_SITE_URL_ROOT;
@@ -9,7 +9,7 @@ $taoh_home_url = ( defined( 'TAOH_PAGE_URL' ) && TAOH_PAGE_URL ) ? TAOH_PAGE_URL
 $about_url = $taoh_home_url."/about";
 if ( $current_app != TAOH_PLUGIN_PATH_NAME ) $about_url = $taoh_home_url."/".$current_app."/about";
 
-include_once('head.php');
+include_once('head.php'); 
 
 
 //echo $current_app;
@@ -78,7 +78,7 @@ $ptoken = $data->ptoken;
   55% {
     transform: scale3d(1, 1, 1);
   }
-
+  
   60% {
     transform: scale3d(1.3, 1.3, 1.3);
   }

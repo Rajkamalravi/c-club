@@ -32,7 +32,7 @@ function add_comments()
     }
 
     $_POST['comment'] = taoh_title_desc_encode($_POST['comment']);
-
+    
     $remove = array($_POST['conttype'] . "_comments_" . $_POST['conttoken']);
     $taoh_vals = array(
         'token' => taoh_get_dummy_token(),
@@ -46,7 +46,7 @@ function add_comments()
         'redis_action'=>'comments_post',
         'redis_store'=>'taoh_intaodb_asks',
         'cache' => array( 'remove' => $remove ),
-
+       
     );
     $url = 'core.content.post';
     //echo taoh_apicall_post_debug($url,  $taoh_vals);die();

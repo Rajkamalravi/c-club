@@ -1,16 +1,16 @@
-<?php
+<?php 
 if ( function_exists( 'taoh_user_all_info' ) ){
   $user_data = taoh_user_all_info();
   if ( !empty( $user_data->chat_name ) && !empty( $user_data->fname ) && !empty( $user_data->lname ) && !empty( $user_data->ptoken ) && !empty( $user_data->type ) ) {
     $url = TAOH_SITE_URL_ROOT.'?already=true';
-    taoh_redirect($url);
+    taoh_redirect($url); 
     taoh_exit();
-  }
+  }    
 }
 
-taoh_get_header();
+taoh_get_header(); 
 ?>
-<style>
+<style>  
 
 body {
   background-color: #f1f1f1;
@@ -41,7 +41,7 @@ body {
   width: 15px;
   margin: 0 2px;
   background-color: #bbbbbb;
-  border: none;
+  border: none;  
   border-radius: 50%;
   display: inline-block;
   opacity: 0.5;
@@ -73,7 +73,7 @@ body {
 #nextBtn {
   display: none;
 }
-
+ 
 </style>
 <link rel="stylesheet" href="https://bug7a.github.io/iconselect.js/sample/css/lib/control/iconselect.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -186,7 +186,7 @@ body {
       </div>
     </div>
   </div>
-
+  
   <div class="tab">
     <div class="d-flex justify-content-between">
       <div></div>
@@ -245,17 +245,17 @@ function showTab(n) {
   //... and fix the Previous/Next buttons:
   if (n == (x.length - 1)) {
     // document.getElementById("nextBtn").innerHTML = "Submit";
-    document.getElementById("submitBtn").style.display = "inline";
-    document.getElementById("nextBtn").style.display = "none";
+    document.getElementById("submitBtn").style.display = "inline";    
+    document.getElementById("nextBtn").style.display = "none";    
   } else {
     if (n == 0) {
-      document.getElementById("submitBtn").style.display = "none";
+      document.getElementById("submitBtn").style.display = "none";  
       document.getElementById("prevBtn").style.display = "none";
       document.getElementById("nextBtn").style.display = "none";
     }else{
       document.getElementById("prevBtn").style.display = "inline";
       document.getElementById("nextBtn").style.display = "inline";
-      document.getElementById("submitBtn").style.display = "none";
+      document.getElementById("submitBtn").style.display = "none";  
     }
   }
   //... and run a function that will display the correct step indicator:

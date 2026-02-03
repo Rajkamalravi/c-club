@@ -1,5 +1,5 @@
 <?php
-include_once $_SERVER['DOCUMENT_ROOT'].'/raj/assets/icons/icons.php';
+include_once TAOH_SITE_PATH_ROOT.'/assets/icons/icons.php';
 taoh_get_header();
 
 $pagename = 'announcements';
@@ -25,7 +25,7 @@ $is_admin = false;
 if(TAOH_ADMIN_TOKENS !='' && TAOH_ADMIN_TOKENS != null){
     $admin_token_get = explode( ',',TAOH_ADMIN_TOKENS);
   //  print_r($admin_token_get);
-
+  
     $is_admin = (in_array($token,$admin_token_get))?true:false;
     if(!$is_admin){
         $is_admin = (in_array($ptoken,$admin_token_get))?true:false;
@@ -33,8 +33,8 @@ if(TAOH_ADMIN_TOKENS !='' && TAOH_ADMIN_TOKENS != null){
 
 }
 //echo "=======".$is_admin;die();
-if(taoh_user_is_logged_in() && isset(taoh_session_get(TAOH_ROOT_PATH_HASH)['USER_INFO']->is_super_admin) &&
-taoh_session_get(TAOH_ROOT_PATH_HASH)['USER_INFO']->is_super_admin == 1  ) {
+if(taoh_user_is_logged_in() && isset(taoh_session_get(TAOH_ROOT_PATH_HASH)['USER_INFO']->is_super_admin) && 
+taoh_session_get(TAOH_ROOT_PATH_HASH)['USER_INFO']->is_super_admin == 1  ) { 
     $is_admin = true;
 }
 
@@ -55,11 +55,11 @@ taoh_session_get(TAOH_ROOT_PATH_HASH)['USER_INFO']->is_super_admin == 1  ) {
         color: #555555;
         border-radius: 5px;
         cursor: pointer;
-
+        
     }
 
     .custom-file-upload:hover {
-
+    
     }
 
     .custom-file-upload input[type="file"] {
@@ -75,7 +75,7 @@ taoh_session_get(TAOH_ROOT_PATH_HASH)['USER_INFO']->is_super_admin == 1  ) {
     }
 
     .preview-item {
-        position: relative;
+        position: relative; 
     }
 
     .preview-item img {
@@ -116,7 +116,7 @@ taoh_session_get(TAOH_ROOT_PATH_HASH)['USER_INFO']->is_super_admin == 1  ) {
         margin-bottom: 4px;
         border-radius: 50%;
     }
-
+ 
     .error{
         color:red;
     }
@@ -249,7 +249,7 @@ taoh_session_get(TAOH_ROOT_PATH_HASH)['USER_INFO']->is_super_admin == 1  ) {
                 <div id="listArea" class="mb-3"></div>
                 <div id="pagination"></div>
             </div>
-            <!-- right side -->
+            <!-- right side -->                
             <div class="col-lg-3 d-flex flex-column flex-sm-row flex-lg-column" style="gap: 8px;">
                 <div>
                     <?php if (function_exists('taoh_invite_friends_widget')) { taoh_invite_friends_widget('','club');  } ?>
@@ -298,9 +298,9 @@ taoh_session_get(TAOH_ROOT_PATH_HASH)['USER_INFO']->is_super_admin == 1  ) {
                             <input type="file" id="fileUpload" multiple accept=".pdf, .doc, .docx">
                             <?= icon('paperclip', '#555555', 28) ?>
                             <span class="ml-3" style="font-size: 16px; font-weight: 400;">Add File</span>
-                        </label>
+                        </label> 
                         <!-- <a href="#" onclick="pin_post()" class="mr-3">
-                            <label class="custom-file-upload">
+                            <label class="custom-file-upload">                              
                                 <svg width="17" height="23" viewBox="0 0 17 23" fill="none" xmlns="http://www.w3.org/2000/svg">
                                 <path d="M1.42467 1.4375C1.42467 0.642383 2.05751 0 2.84082 0H14.17C14.9533 0 15.5861 0.642383 15.5861 1.4375C15.5861 2.23262 14.9533 2.875 14.17 2.875H12.8645L13.369 9.53242C14.9931 10.4264 16.2765 11.9223 16.8872 13.7865L16.9314 13.9213C17.0775 14.3615 17.0022 14.8422 16.7367 15.215C16.4712 15.5879 16.0419 15.8125 15.5861 15.8125H1.42467C0.968853 15.8125 0.54401 15.5924 0.274058 15.215C0.00410543 14.8377 -0.0667017 14.357 0.079338 13.9213L0.123592 13.7865C0.734304 11.9223 2.01768 10.4264 3.64182 9.53242L4.14632 2.875H2.84082C2.05751 2.875 1.42467 2.23262 1.42467 1.4375ZM7.08925 17.25H9.92153V21.5625C9.92153 22.3576 9.28869 23 8.50539 23C7.72208 23 7.08925 22.3576 7.08925 21.5625V17.25Z" fill="#555555"/>
                                 </svg>
@@ -325,7 +325,7 @@ taoh_session_get(TAOH_ROOT_PATH_HASH)['USER_INFO']->is_super_admin == 1  ) {
         <button type="button" style="padding:0" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
-
+		
       </div>
       <div class="modal-body">
         Are you sure, Do you want to delete?
@@ -424,7 +424,7 @@ taoh_session_get(TAOH_ROOT_PATH_HASH)['USER_INFO']->is_super_admin == 1  ) {
 		slot.empty();
 		if(data.output === false || data.success  === false) {
 
-
+           
             var no_result = `
              <div class="text-center mb-5">
                 <img class="no-announcement-img" src="<?php echo TAOH_SITE_URL_ROOT.'/assets/images/announce.png'; ?>" alt="">
@@ -436,10 +436,10 @@ taoh_session_get(TAOH_ROOT_PATH_HASH)['USER_INFO']->is_super_admin == 1  ) {
                 <button type="button" class="btn no-announcement-btn px-4 px-lg-5"  data-toggle="modal" data-target="#postModal">
                 Make an announcement</button>
                  <?php } ?>
-
+               
              </div>
             `;
-
+           
 
 			slot.append(no_result);
 			$('#pagination').hide();
@@ -475,7 +475,7 @@ taoh_session_get(TAOH_ROOT_PATH_HASH)['USER_INFO']->is_super_admin == 1  ) {
                                 </div>`;
             } */
             var img = feedavatardisplay(v.avatar,v.avatar_image,'<?php echo TAOH_OPS_PREFIX;?>');
-
+            
             if(Array.isArray(v.meta.images)){
                 $.each(v.meta.images, function(index, value) {
                     show_files += `<div class="px-3 py-2">
@@ -515,7 +515,7 @@ taoh_session_get(TAOH_ROOT_PATH_HASH)['USER_INFO']->is_super_admin == 1  ) {
             slot.append(`<div class="${(i == 0)?'':'mt-5'}">
                             <div class="px-3 pb-3 pt-2" style="border: 1px solid #D3D3D3; border-radius: 3px;">
                                 ${edit_btn}
-                                <div class="row px-3 py-3" style="border-bottom: 1px solid #D3D3D3;">
+                                <div class="row px-3 py-3" style="border-bottom: 1px solid #D3D3D3;"> 
                                     <div class="col-12 d-flex align-items-center">
                                         <div class="d-flex align-items-center">
                                             <span data-profile_token="${v.ptoken}" class="openProfileModal"><img src="${img}" alt="profile" style="width: 55px; height: 55px; border-radius: 50%; border: 2px solid #ddd;" /></span>
@@ -533,7 +533,7 @@ taoh_session_get(TAOH_ROOT_PATH_HASH)['USER_INFO']->is_super_admin == 1  ) {
                                 <section class="gallery_sec py-0">
                                     <div class="container">
                                         <div class="row">
-                                            ${show_files}
+                                            ${show_files}     
                                         </div>
                                     </div>
                                 </section>
@@ -541,7 +541,7 @@ taoh_session_get(TAOH_ROOT_PATH_HASH)['USER_INFO']->is_super_admin == 1  ) {
 
                                 <div class="py-3 px-3 min-max-desc" style="font-size: 16px; line-height: 32px;
                                  font-weight: 400; color: #555555;  max-height: 300px; overflow-y: auto; scrollbar-width: thin;">
-                                    ${taoh_desc_decode(v.description)}
+                                    ${taoh_desc_decode(v.description)}    
                                 </div>
                                 <div class="">
                                     ${liked_check}
@@ -561,7 +561,7 @@ taoh_session_get(TAOH_ROOT_PATH_HASH)['USER_INFO']->is_super_admin == 1  ) {
         }else{
             $('#pagination').hide();
         }
-
+        	
 	}
     function feedavatardisplay(avatar,img,path){
         var avatar_img = '';
@@ -576,7 +576,7 @@ taoh_session_get(TAOH_ROOT_PATH_HASH)['USER_INFO']->is_super_admin == 1  ) {
 
         return avatar_img;
     }
-
+    
     $(document).on("click", ".save_post", function(event) {
         var save_cont = $(this).attr('data-id');
         var textareaValue = document.getElementById("comment_value_"+save_cont).value;
@@ -644,7 +644,7 @@ taoh_session_get(TAOH_ROOT_PATH_HASH)['USER_INFO']->is_super_admin == 1  ) {
                 }
                 if(scroll_btm){
                     const commentsSection = document.getElementById('comments'+com_conttoken);
-                    commentsSection.scrollTop = commentsSection.scrollHeight;
+                    commentsSection.scrollTop = commentsSection.scrollHeight;               
                 }
             },
             error: function(xhr, status, error) {
@@ -769,7 +769,7 @@ taoh_session_get(TAOH_ROOT_PATH_HASH)['USER_INFO']->is_super_admin == 1  ) {
             }
         })
         .fail(function() {
-
+            
         });
     }
 
@@ -829,7 +829,7 @@ taoh_session_get(TAOH_ROOT_PATH_HASH)['USER_INFO']->is_super_admin == 1  ) {
                                 const img = $('<img>').attr('src', url);
                                 previewItem.append(img);
                                 previewItem.append(removeIcon);
-
+                                
                             } else if (extension == 'pdf') {
                                 const pdfPreview = $('<img>').attr('src', '<?php echo TAOH_SITE_URL_ROOT . '/assets/images/pdf.png'; ?>');
                                 previewItem.append(pdfPreview);
@@ -851,7 +851,7 @@ taoh_session_get(TAOH_ROOT_PATH_HASH)['USER_INFO']->is_super_admin == 1  ) {
                         }
                     };
                     reader.readAsDataURL(myBlob);
-                });
+                });      
             }
 
             if(!from_edit){
@@ -936,7 +936,7 @@ taoh_session_get(TAOH_ROOT_PATH_HASH)['USER_INFO']->is_super_admin == 1  ) {
         $.each(files, function(index, file) {
             const formData = new FormData(); // Create a new FormData for each file
             const isHttpFile = file.type.startsWith('http');
-
+            
             if (!isHttpFile) {
                 // Upload file via AJAX
                 formData.append('fileToUpload', file);
@@ -979,7 +979,7 @@ taoh_session_get(TAOH_ROOT_PATH_HASH)['USER_INFO']->is_super_admin == 1  ) {
 
     function handleUrlFile(file) {
         const extension = file.type.split('.').pop().toLowerCase();
-
+        
         if (['jpg', 'png'].includes(extension)) {
             image_array.push(file.type);
         } else if (['pdf', 'doc', 'docx'].includes(extension)) {

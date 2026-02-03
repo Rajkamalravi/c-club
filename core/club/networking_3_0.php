@@ -2,8 +2,8 @@
 
 taoh_get_header();
 
-ini_set('display_errors', 1);
-ini_set('display_startup_errors', 1);
+ini_set('display_errors', 1); 
+ini_set('display_startup_errors', 1); 
 ini_set('memory_limit', '-1');
 error_reporting(E_ALL);
 
@@ -16,7 +16,7 @@ $ntw_view = 1;
 $timezone = $user_info_obj->local_timezone;
 
 if ($parse_url_1 == 'room' || $parse_url_1 == 'forum' || $parse_url_1 == 'live') {
-    $contslug = taoh_parse_url(2);
+    $contslug = taoh_parse_url(2);    
 
     if (empty($contslug)) {
 //        taoh_redirect(TAOH_SITE_URL_ROOT);
@@ -46,7 +46,7 @@ else if ($parse_url_1 == 'dm') {
 } else {
     $contslug = ''; // :rk temp fix
     $geo_enable = 1;
-
+    
     $date = new DateTime('now', new DateTimeZone($timezone));
     $abbreviation = $date->format('T');
 
@@ -66,7 +66,7 @@ else if ($parse_url_1 == 'dm') {
     }
 }
 
-//echo $keytoken;
+//echo $keytoken; 
 
 ?>
 
@@ -157,12 +157,12 @@ else if ($parse_url_1 == 'dm') {
 <div class="modal fade" id="createChannelModal" tabindex="-1" aria-labelledby="createChannelLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
-
+      
       <div class="modal-header">
         <h5 class="modal-title" id="createChannelLabel">Create New Channel</h5>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
-
+      
       <div class="modal-body">
         <form id="createChannelForm">
           <input type="hidden" class="form-control" id="channelType">
@@ -176,12 +176,12 @@ else if ($parse_url_1 == 'dm') {
           </div>
         </form>
       </div>
-
+      
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
         <button type="button" id="saveChannelBtn" class="btn btn-primary">Create</button>
       </div>
-
+      
     </div>
   </div>
 </div>
@@ -387,7 +387,7 @@ $("#saveChannelBtn").on("click", function() {
         ptoken: my_pToken
     });
 
-    const channelId = Math.floor(100 + Math.random() * 900).toString() + Date.now().toString();
+    const channelId = Math.floor(100 + Math.random() * 900).toString() + Date.now().toString(); 
 
     $.ajax({
         url: _taoh_site_ajax_url,
@@ -404,12 +404,12 @@ $("#saveChannelBtn").on("click", function() {
             if (res) {
                 console.log("Channel created:", res);
                 fetchChannels(); // reload channel list
-
+                
                 const modalEl = document.getElementById('createChannelModal');
                 const modalInstance = bootstrap.Modal.getInstance(modalEl) || new bootstrap.Modal(modalEl);
                 modalInstance.hide();
 
-
+                
                 $("#createChannelForm")[0].reset();     // reset form
             } else {
                 alert("Error creating channel: " + (res.error || "Unknown error"));
@@ -428,7 +428,7 @@ async function fetchTimestamps1() {
         $.ajax({
             url: _taoh_site_ajax_url,
             type: 'post',
-            data: {
+            data: { 
                 'roomslug': roomslug,
                 'taoh_action': 'taoh_ntw_get_timestamps',
                 'key': my_pToken,
@@ -478,7 +478,7 @@ async function fetchTimestamps() {
         $.ajax({
             url: _taoh_site_ajax_url,
             type: 'post',
-            data: {
+            data: { 
                 'roomslug': roomslug,
                 'taoh_action': 'taoh_ntw_get_timestamps',
                 'key': my_pToken,
@@ -496,7 +496,7 @@ async function fetchTimestamps() {
                         updatesFound = true;
                         highlightChannel(channel);
 
-                        console.log("old timestamp found", oldTimestamp+" ~ "+newTimestamp);
+                        console.log("old timestamp found", oldTimestamp+" ~ "+newTimestamp);                        
 
                         // Fetch fresh messages for this channel
                         try {
@@ -564,7 +564,7 @@ function fetchChannels() {
         $.ajax({
             url: _taoh_site_ajax_url,
             type: 'post',
-            data: {
+            data: { 
                 'roomslug': roomslug,
                 'taoh_action': 'taoh_ntw_get_channels',
                 'key': my_pToken,
@@ -597,7 +597,7 @@ function join_channel(channel_id) {
         $.ajax({
             url: _taoh_site_ajax_url,
             type: 'post',
-            data: {
+            data: { 
                 'roomslug': roomslug,
                 'taoh_action': 'taoh_ntw_join_channel',
                 'channel_id': channel_id,
@@ -636,7 +636,7 @@ function send_message(channel_id, message_text) {
         $.ajax({
             url: _taoh_site_ajax_url,
             type: 'post',
-            data: {
+            data: { 
                 'roomslug': roomslug,
                 'taoh_action': taohAction, // backend action for sending messages
                 'channel_id': channel_id,
@@ -746,7 +746,7 @@ function highlightChannel(channel) {
 // Load Channel Messages with Cache
 // =======================================
 async function loadChannelMessages(channel_id, firstCall = 0) {
-
+    
     const cachedData = await loadChannelFromDB(channel_id);
     if (firstCall === 1 && cachedData) {
         renderMessages(cachedData.messages, cachedData.metadata);
@@ -772,12 +772,12 @@ async function loadChannelMessages(channel_id, firstCall = 0) {
                 'key': my_pToken
             },
             dataType: 'json',
-            success: async function (res) {
-                console.log("GET messages", res);
+            success: async function (res) {      
+                console.log("GET messages", res);                                        
                 try {
                     if(Array.isArray(res) && res.length > 0) {
-                        await saveChannelToDB(channel_id, res, "");
-                        if (!cachedData) {
+                        await saveChannelToDB(channel_id, res, "");                        
+                        if (!cachedData) {                           
                             renderMessages(res, "", 0);
                         }
                     }
@@ -808,10 +808,10 @@ async function renderMessages(messages, metadata, append = 1) {
 
     if(append == 0) {
         $("#messages").html("");
-    }
+    }    
 
-    console.log("renderMessages messages", messages);
-
+    console.log("renderMessages messages", messages);  
+    
     if (!Array.isArray(messages)) {
         messages = [messages];
     }
@@ -819,10 +819,10 @@ async function renderMessages(messages, metadata, append = 1) {
     for (const msg of messages) {
 
         let date = new Date(msg.timestamp * 1000);
-        let timeString = date.toLocaleTimeString('en-US', {
-            hour: 'numeric',
-            minute: '2-digit',
-            hour12: true
+        let timeString = date.toLocaleTimeString('en-US', { 
+            hour: 'numeric', 
+            minute: '2-digit', 
+            hour12: true 
         });
 
         var chatInfo = await getUserInfo(msg.ptoken, 'public');
@@ -867,7 +867,7 @@ async function renderMessages(messages, metadata, append = 1) {
                     </div>`);
                 }
 
-
+                
             }
         } else {
             if (msg.deleted && $(`#messages .message[data-id="${msg.message_id}"]`).length) {
@@ -992,14 +992,14 @@ $("#refreshBtn").on("click", forceRefreshAllChannels);
 // Init
 // =======================================
 $(document).ready(function() {
-    fetchChannels();
+    fetchChannels();    
     fetchTimestamps();
 
     // setInterval(() => {
     //     let channelId = $("#activeChannelName").attr("data-channel_id");
     //     if(channelId) {
     //         loadChannelMessages(channelId);
-    //     }
+    //     }        
     // }, 10000);
 
 });

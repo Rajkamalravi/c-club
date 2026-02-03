@@ -10,7 +10,7 @@ $today = date("Y-m-d");
   height: 34px;
 }
 
-.switch input {
+.switch input { 
   opacity: 0;
   width: 0;
   height: 0;
@@ -105,7 +105,7 @@ input:checked + .slider:before {
 							<label class="fs-14 text-black fw-medium">Live Cast Link</label>
 							<input type="text" class="form-control form--control fs-14" id="live_cast_link" name="live_cast_link" placeholder="Live Cast Link">
 						</div><!-- end form-group -->
-                        <div class="form-group">
+                        <div class="form-group">	
                             <label class="fs-14 text-black fw-medium">Chat room</label>
 
                             <input class="ml-2" name="chat_room_status" id="v_options_internal" type="radio" value="1" checked="checked">
@@ -116,7 +116,7 @@ input:checked + .slider:before {
 
                             <input class="ml-2" name="chat_room_status" id="v_options_disable" type="radio" value="0">
                             <label for="Disable">Disable</label>
-                            <input name="external_link" type="text" id="external_link" class="form-control" value="" ""="" style="display: none;">
+                            <input name="external_link" type="text" id="external_link" class="form-control" value="" ""="" style="display: none;">		
 						</div>
                         <div class="form-group external_div" style="display:none;">
 							<label class="fs-14 text-black fw-medium">External Meeting Link</label>
@@ -130,7 +130,7 @@ input:checked + .slider:before {
                                 <span class="slider round"></span>
                             </label>
 						</div><!-- end form-group -->
-
+                        
                         <div class="form-group">
 							<label class="fs-14 text-black fw-medium">Description <span style="color:red"> * </span></label>
 							<textarea class="form-control summernote" id="description" name="description" rows="5" cols="80"></textarea>
@@ -433,7 +433,7 @@ input:checked + .slider:before {
             $('.private_room').show();
         } else {
             $('.private_room').hide();
-        }
+        }     
     }
     $("#start_datetime_lock").on("change", function(){
         $("#end_datetime_lock").attr("min", $(this).val());
@@ -498,7 +498,7 @@ input:checked + .slider:before {
         var html_editor_val = $('#html_description').summernote('code');
         var msg_from_owner = $('#msg_from_owner').summernote('code');
 
-        var data = {
+        var data = {			
             'taoh_action': 'toah_network_form_post',
             'taoh_form_data': serialize,
             'short_image': data_url_short,
@@ -536,7 +536,7 @@ input:checked + .slider:before {
                 return false;
             }else{
                 returndata = true;
-
+            
             }
         }
         if($('input[name="room_make_country_specific"]').is(':checked')) {
@@ -593,7 +593,7 @@ input:checked + .slider:before {
 
     $("#room_title,#room_keyword").keypress(function(event) {
         var character = String.fromCharCode(event.keyCode);
-        return isValid(character);
+        return isValid(character);     
     });
 
     function isValid(str) {

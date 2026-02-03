@@ -1,4 +1,4 @@
-<?php
+<?php 
 
 if ( ! defined ( 'TAO_PAGE_TITLE' ) ) { define ( 'TAO_PAGE_TITLE', "Comprehensive Open Jobs List at ".TAOH_SITE_NAME_SLUG.": Explore and Apply to a Wide Range of Job Opportunities" ); }
 if ( ! defined ( 'TAO_PAGE_DESCRIPTION' ) ) { define ( 'TAO_PAGE_DESCRIPTION', "Browse our comprehensive jobs list featuring a diverse range of job opportunities across industries. Find the perfect job that matches your skills and interests, chat with recruiters and easily apply through our user-friendly platform at ".TAOH_SITE_NAME_SLUG.". Start your job search today and take the next step in your career." ); }
@@ -27,13 +27,13 @@ $btm_random = array_values($btm_random);
         line-height: 1.5;
     }
     .get-started-btn {
-        color: #fff;
-        font-size: clamp(14px, 2vw + 1rem, 16px);
-        font-weight: 400;
+        color: #fff; 
+        font-size: clamp(14px, 2vw + 1rem, 16px); 
+        font-weight: 400; 
         display: flex;
         align-items: center;
-        gap: 6px;
-        background: #333333;
+        gap: 6px; 
+        background: #333333; 
         width: fit-content;
         border-radius: 12px;
         padding: 8px 14px;
@@ -53,19 +53,19 @@ span.h5 {
 <div class="mobile-app">
     <header class="bg-white border-bottom border-bottom-gray sticky-top">
         <section class="hero-area pt-20px pb-20px bg-white shadow-sm overflow-hidden">
-            <div class="container">
+            <div class="container">			
                 <div class="hero-content d-flex flex-wrap align-items-center justify-content-between jobs-mobile-header">
-
+                    
                     <div class="col-lg-12 text-center mb-3">
-
+                                            
                             <ul class="nav nav-tabs justify-content-center" id="myTab" role="tablist" style="border-bottom: 0;">
-                            <?php
+                            <?php 
                                 $page_sel = "scout";
                                 include_once('job_tabs.php'); ?>
                             </ul>
-
+                        
                     </div>
-                </div><!-- end hero-content -->
+                </div><!-- end hero-content -->	
             </div><!-- end container -->
         </section>
     </header>
@@ -73,8 +73,8 @@ span.h5 {
     <?php if( !taoh_user_is_logged_in() ) { ?>
     <section class="pb-4" style="background: #E0E0E029;">
         <div class="container row mx-auto d-flex align-items-center">
-
-
+            
+        
             <div class="col-lg-6 py-2">
                 <h1 class="pb-3 section-title" style="color: #000000; font-weight: 600;">Get the Best Talent Through Expert Professionals</h1>
 
@@ -92,7 +92,7 @@ span.h5 {
                 <img src="<?php echo TAOH_SITE_URL_ROOT.'/assets/images/job_search.png';?>" alt="" style="max-height: 328px; width: 570px; object-fit: cover;">
             </div>
 
-
+        
         </div>
     </section>
 
@@ -150,8 +150,8 @@ span.h5 {
 
     <section class="py-5 px-3" style="background: #fff;">
         <div class="container row mx-auto d-flex align-items-center py-4 pb-5 px-lg-4" style="background: #D8E0F9; border-radius: 6px;">
-
-
+            
+        
             <div class="col-lg-6 py-3">
                 <span class="px-3 py-2" style="background: #333333; color: #fff; border-radius: 12px; font-size:  clamp(14px, 2vw + 1rem, 16px);">For employers</span>
 
@@ -175,13 +175,13 @@ span.h5 {
                 <img src="<?php echo TAOH_SITE_URL_ROOT.'/assets/images/scout_landing_employer.png';?>" alt="" style="max-height: 328px; width: 442.06px; object-fit: cover;">
             </div>
 
-
+        
         </div>
     </section>
     <section class="py-5 px-3"  style="background: #fff;">
         <div class="container row mx-auto d-flex px-0" style="gap: 2rem;">
-
-
+            
+        
             <div class="col-lg p-4 p-lg-5" style="background: #F7EE9E; border-radius: 8px;">
                 <span class="px-3 py-2" style="background: #333333; color: #fff; border-radius: 12px; font-size:  clamp(14px, 2vw + 1rem, 16px);">For Professionals</span>
                 <h4 class="mt-4 col-lg-11 px-0 scout-title" style="color: #000000; font-weight: 400; line-height: 1.2;">Landing your dream role at your ideal company, hassle-free, is now a reality!</h4>
@@ -215,7 +215,7 @@ span.h5 {
                 </div>
             </div>
 
-
+        
         </div>
     </section>
 
@@ -267,7 +267,7 @@ span.h5 {
                         <div class="col-lg-6 d-flex justify-content-start align-items-center py-3">
                             <img src="<?php echo TAOH_SITE_URL_ROOT.'/assets/images/semp_maxresdefault.jpg';?>" alt="" style="max-height: 312px; width: 385px; object-fit: contain;">
                         </div>
-
+                    
                         <div class="col-lg-6 py-2">
                             <span class="btn px-4 py-1" style="color: #000000;background: #CEEBF5; border-radius: 20px; font-size: clamp(1rem, 2vw + 0.25rem, 1.25rem);">Step 1</span>
                             <h1 class="my-4  scout-title" style="color: #2557A7; font-weight: 400;">SIGNUP & POST A SCOUT JOB</h1>
@@ -293,7 +293,7 @@ span.h5 {
                         <div class="col-lg-6 d-flex justify-content-start align-items-center py-3">
                             <img src="<?php echo TAOH_SITE_URL_ROOT.'/assets/images/semp_3.jpg';?>" alt="" style="max-height: 312px; width: 385px; object-fit: contain;">
                         </div>
-
+                    
                         <div class="col-lg-6 py-2">
                             <span class="btn px-4 py-1" style="color: #000000;background: #CEEBF5; border-radius: 20px; clamp(1rem, 2vw + 0.25rem, 1.25rem);">Step 3</span>
                             <h1 class="my-4 scout-title" style="color: #2557A7; font-weight: 400;">FIND YOUR HIRE !</h1>
@@ -301,7 +301,7 @@ span.h5 {
                         </div>
 
                     </div>
-
+                    
                 </div>
                 <!-- professional tab -->
                 <div class="tab-pane fade" id="professionals" role="tabpanel" aria-labelledby="professionals-tab">
@@ -310,7 +310,7 @@ span.h5 {
                         <div class="col-lg-6 d-flex justify-content-start align-items-center py-3">
                             <img src="<?php echo TAOH_SITE_URL_ROOT.'/assets/images/semp_maxresdefault.jpg';?>" alt="" style="max-height: 312px; width: 385px; object-fit: contain;">
                         </div>
-
+                    
                         <div class="col-lg-6 py-2">
                             <span class="btn px-4 py-1" style="color: #000000;background: #CEEBF5; border-radius: 20px; font-size: clamp(1rem, 2vw + 0.25rem, 1.25rem);">Step 1</span>
                             <h1 class="my-4 scout-title" style="color: #2557A7; font-weight: 400;">SIGNUP & FIND A SCOUT JOB</h1>
@@ -336,7 +336,7 @@ span.h5 {
                         <div class="col-lg-6 d-flex justify-content-start align-items-center py-3">
                             <img src="<?php echo TAOH_SITE_URL_ROOT.'/assets/images/semp_3.jpg';?>" alt="" style="max-height: 312px; width: 385px; object-fit: contain;">
                         </div>
-
+                    
                         <div class="col-lg-6 py-2">
                             <span class="btn px-4 py-1" style="color: #000000;background: #CEEBF5; border-radius: 20px; font-size: clamp(1rem, 2vw + 0.25rem, 1.25rem);">Step 3</span>
                             <h1 class="my-4 scout-title" style="color: #2557A7; font-weight: 400;">APPLY AND GET HIRED</h1>
@@ -352,7 +352,7 @@ span.h5 {
                         <div class="col-lg-6 d-flex justify-content-start align-items-center py-3">
                             <img src="<?php echo TAOH_SITE_URL_ROOT.'/assets/images/semp_maxresdefault.jpg';?>" alt="" style="max-height: 312px; width: 385px; object-fit: contain;">
                         </div>
-
+                    
                         <div class="col-lg-6 py-2">
                             <span class="btn px-4 py-1" style="color: #000000;background: #CEEBF5; border-radius: 20px; font-size: clamp(1rem, 2vw + 0.25rem, 1.25rem);">Step 1</span>
                             <h1 class="my-4 scout-title" style="color: #2557A7; font-weight: 400;">SIGNUP & FIND A SCOUT JOB</h1>
@@ -378,7 +378,7 @@ span.h5 {
                         <div class="col-lg-6 d-flex justify-content-start align-items-center py-3">
                             <img src="<?php echo TAOH_SITE_URL_ROOT.'/assets/images/semp_3.jpg';?>" alt="" style="max-height: 312px; width: 385px; object-fit: contain;">
                         </div>
-
+                    
                         <div class="col-lg-6 py-2">
                             <span class="btn px-4 py-1" style="color: #000000;background: #CEEBF5; border-radius: 20px; font-size: clamp(1rem, 2vw + 0.25rem, 1.25rem);">Step 3</span>
                             <h1 class="my-4 scout-title" style="color: #2557A7; font-weight: 400;">EARN REWARDS !</h1>

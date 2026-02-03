@@ -1,4 +1,4 @@
-<?php taoh_get_header();
+<?php taoh_get_header();  
 
  //"perpage"=>10 is not working
  $query = array("mod"=>"core", "conttype"=>"blog", "type"=>"blog", "ops"=>"list");
@@ -7,7 +7,7 @@
  if(@$_GET['q']) { $query['q'] = $_GET['q']; }
  if(@$_GET['cat']) { $query['category'] = $_GET['cat']; }
  if(@$_GET['page']) { $query['page'] = $_GET['page']; }
-
+ 
  $params = http_build_query($query);
 
 function pagination() {
@@ -17,15 +17,15 @@ function pagination() {
 }
 //$locn = TAOH_API_PREFIX."/core.content.get?".$params;
 //echo $locn;taoh_exit();
-//$req = file_get_contents($locn);
+//$req = file_get_contents($locn); 
 
 // Start Featured Blog
 
 $url = 'core.content.get';
 $taoh_vals = array(
   "mod" => 'core',
-  "conttype"=> "blog",
-  "type"=> "blog",
+  "conttype"=> "blog", 
+  "type"=> "blog", 
   "ops"=> "list",
   "token"=> taoh_get_dummy_token(1),
   "q"=> '',
@@ -37,7 +37,7 @@ $taoh_vals = array(
 
 if ( $taoh_vals[ 'q' ] == '' ){
   //$taoh_vals[ 'cache' ] = array ( "name" => TAOH_API_TOKEN.'_'.taoh_p2us($url).'_blog_list');
-
+  
 }
 //$taoh_vals[ 'cfcache' ] = hash('sha256', $url . serialize($taoh_vals));
 $req = taoh_apicall_get($url, $taoh_vals);
@@ -51,8 +51,8 @@ $url = 'core.content.get';
 $taoh_vals = array();
 $taoh_vals = array(
   "mod" => 'core',
-  "conttype"=>"blog",
-  "type"=>"blog",
+  "conttype"=>"blog", 
+  "type"=>"blog", 
   "ops"=>"list",
   "token"=>taoh_get_dummy_token(1),
   "q"=> ( isset( $_GET[ 'q' ] ) ) ? $_GET[ 'q' ]:'',
@@ -107,7 +107,7 @@ if (isset($_GET['type']) && $_GET['type'] != ''){
 .gray-bg {
     background-color: #f5f5f5;
 }
-/* Blog
+/* Blog 
 ---------------------*/
 
 
@@ -236,7 +236,7 @@ img {
   padding: 28px;
   text-align:left;
 }
-@media only screen and (max-device-width: 480px) {
+@media only screen and (max-device-width: 480px) { 
   .alt-title{
     padding: 10px;
     font-size: 10px;
@@ -302,7 +302,7 @@ img {
           </div>
         </div>
           <div class="row mt-5">
-                <?php
+                <?php 
                 foreach( array_splice( $headlist, 0, 2 ) as $rand_blog){
                   if ( ! isset( $rand_blog['blurb']['image'][0] ) || ! $rand_blog['blurb']['image'][0] || stristr( $rand_blog['blurb']['image'][0], 'images.unsplash.com' ) ) $rand_blog['blurb']['image'][0] = TAOH_CDN_PREFIX."/images/igcache/".urlencode( taoh_title_desc_decode($rand_blog['title']) )."/900_600/blog.jpg";
                 ?>
@@ -313,11 +313,11 @@ img {
                 <a href="<?php echo taoh_blog_link($rand_blog['conttoken']); ?>" class="circle">
                     <img src="<?php echo $rand_blog['blurb']['image'][0]; ?>" data-src="<?php echo $rand_blog['blurb']['image'][0]; ?>" alt="<?php echo $rand_blog['title']; ?>">
                 </a>
-                </div>
+                </div> 
                 <?php } ?>
             </div>
             <div class="row mt-1">
-            <?php
+            <?php 
                 foreach(array_splice( $headlist, 0, 3 ) as $rand_blog1){
                   if ( ! isset( $rand_blog1['blurb']['image'][0] ) || ! $rand_blog1['blurb']['image'][0] || stristr( $rand_blog1['blurb']['image'][0], 'images.unsplash.com' ) ) $rand_blog1['blurb']['image'][0] = TAOH_CDN_PREFIX."/images/igcache/".urlencode( taoh_title_desc_decode($rand_blog1['title']) )."/900_600/blog.jpg";
                 ?>
@@ -328,9 +328,9 @@ img {
                     <a href="<?php echo taoh_blog_link($rand_blog1['conttoken']); ?>" class="circle">
                       <img  src="<?php echo $rand_blog1['blurb']['image'][0]; ?>" data-src="<?php echo $rand_blog1['blurb']['image'][0]; ?>" alt="<?php echo $rand_blog1['title']; ?>">
                     </a>
-                </div>
-                <?php } ?>
-            </div>
+                </div> 
+                <?php } ?>  
+            </div>          
 			</div><!-- end hero-content -->
     </div><!-- end container -->
 </section><!-- end hero-area -->
@@ -355,7 +355,7 @@ img {
                                 <p>No results found!</p>
                             <?php	} else { ?>
                             <div class="card mt-3">
-                                <?php
+                                <?php 
                                     foreach ($list as $blog ){
                                       if ( ! isset( $blog['blurb']['image'][0] ) || ! $blog['blurb']['image'][0] || stristr( $blog['blurb']['image'][0], 'images.unsplash.com' ) ) $blog['blurb']['image'][0] = TAOH_CDN_PREFIX."/images/igcache/".urlencode( taoh_title_desc_decode($blog['title']) )."/900_600/blog.jpg";
                                 ?>
@@ -388,15 +388,15 @@ img {
                                 <div class="ml-5 mr-5">
                                     <hr class="hr hr-blurry" />
                                 </div>
-                                <?php } ?>
-                            </div>
-                            <?php } ?>
+                                <?php } ?> 
+                            </div> 
+                            <?php } ?>   
                         <div class="col-12 mt-4" id="pagination"></div>
                 </div>
 
                 <div class="col-lg-3 m-15px-tb blog-aside mt-3">
                     <!-- Trending Post -->
-
+                        
                     <!-- End Trending Post -->
 <?php
 /*
@@ -463,7 +463,7 @@ img {
         }
     });
   }
-
+ 
 var text = <?php echo $getjstitle ?>;console.log(text);
 var counter = 0;
 var elem = document.getElementById("changeText");

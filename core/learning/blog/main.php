@@ -42,16 +42,12 @@ switch ($action) {
         include_once('blog_post.php');
 		break;
     case 'job':
-        include_once('reads_jobs.php');
-        break;
     case 'jobs':
-        include_once('reads_jobs.php');
-        break;
+    case 'job-search':
     case 'work':
-        include_once('reads_work.php');
-        break;
     case 'wellness':
-        include_once('reads_wellness.php');
+        header("Location: " . TAOH_SITE_URL_ROOT . "/learning/");
+        taoh_exit();
         break;
     case 'search':
         include_once('search.php');

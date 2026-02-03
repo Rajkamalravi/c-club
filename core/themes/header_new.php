@@ -1,4 +1,4 @@
-<?php include_once('head.php');
+<?php include_once('head.php'); 
 
 $app_temp = @taoh_parse_url(0) ? taoh_parse_url(0):TAOH_PLUGIN_PATH_NAME;
 $current_app = TAOH_SITE_CURRENT_APP_SLUG;
@@ -69,7 +69,7 @@ if ( $current_app != TAOH_PLUGIN_PATH_NAME ) $about_url = TAOH_SITE_URL_ROOT."/"
                 </li>
               </ul>
             </nav><!-- end main-menu -->
-
+            
             <?php  if ( !taoh_user_is_logged_in() ) { ?>
               <div class="nav-right-button">
                   <a href="<?php echo TAOH_LOGIN_URL; ?>" class="btn theme-btn theme-btn-outline mr-2"><i class="la la-sign-in mr-1"></i> Login / Sign Up</a>
@@ -103,8 +103,8 @@ if ( $current_app != TAOH_PLUGIN_PATH_NAME ) $about_url = TAOH_SITE_URL_ROOT."/"
                                 <h6 class="dropdown-header"><?php echo taoh_user_full_name(); ?></h6>
                                 <div class="dropdown-divider border-top-gray mb-0"></div>
                                 <div class="dropdown-item-list">
-                                <?php
-                                //echo "<a class=\"dropdown-item\" href=\"". TAOH_NOTIFICATION_URL."\"><i class=\"la la-gear mr-2\"></i>Notifications</a>";
+                                <?php 
+                                //echo "<a class=\"dropdown-item\" href=\"". TAOH_NOTIFICATION_URL."\"><i class=\"la la-gear mr-2\"></i>Notifications</a>"; 
                                 ?>
                                   <a class="dropdown-item" href="<?php echo TAOH_REFERRAL_URL; ?>"><i class="la la-gear mr-2"></i>Referral</a>
                                     <a class="dropdown-item" href="<?php echo TAOH_SETTINGS_URL; ?>"><i class="la la-gear mr-2"></i>Settings</a>
@@ -117,7 +117,7 @@ if ( $current_app != TAOH_PLUGIN_PATH_NAME ) $about_url = TAOH_SITE_URL_ROOT."/"
                 </div>
               <?php } ?>
         </div><!-- end menu-wrapper -->
-      </div><!-- end col-lg-6 -->
+      </div><!-- end col-lg-6 -->			
     </div>
   </div>
   <div class="off-canvas-menu custom-scrollbar-styled">
@@ -152,7 +152,7 @@ if ( $current_app != TAOH_PLUGIN_PATH_NAME ) $about_url = TAOH_SITE_URL_ROOT."/"
                 <?php  if ( !taoh_user_is_logged_in() ) { ?>
                   <li><a href="<?php echo TAOH_LOGIN_URL; ?>">Login / Signup</a></li>
                 <?php } else { ?>
-
+                  
                   <li><a href="<?php echo TAOH_REFERRAL_URL; ?>">Referral</a></li>
                   <li><a href="<?php echo TAOH_SETTINGS_URL; ?>">Settings</a></li>
                   <li><a onclick="localStorage.removeItem('isCodeSent')"  href="<?php echo TAOH_LOGOUT_URL; ?>">Log out</a></li>

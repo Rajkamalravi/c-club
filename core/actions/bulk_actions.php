@@ -7,30 +7,30 @@ if ( isset( $_POST ) ){
     $uploadfile = $uploaddir . basename($_FILES['userfile']['name']);
 
    // echo"==========".$uploadfile;
-
+    
     if (move_uploaded_file($_FILES['userfile']['tmp_name'], $uploadfile)) {
         //$filename = $uploaddir.'leadership.php';
         if (file_exists($uploadfile)) {
-
+            
             $extension = pathinfo($uploadfile, PATHINFO_EXTENSION);
             //echo"==========".$extension;
             $type = $_POST['type'];
             $global = $_POST['global'];
 
-
+            
             if($extension == 'php'){
 
                 header('Content-type: application/json');
-
+               
                 $json = file_get_contents($uploadfile);
-
+                
                 //print_r( $json);
                 $json_de = json_decode($json);
 
                 //print_r( $json_de);
-
+               
                 foreach($json_de as $key => $value){
-
+                    
                     foreach($value as $k=>$v){
                         if($k == 'title') $title = $v;
                         if($k == 'category') $category = $v;
@@ -79,8 +79,8 @@ if ( isset( $_POST ) ){
                         "source_url" => $source_url,
                         "via_name" => $via_name,
                         "via_url" => $via_url,
-                        "media_type" => $pod,
-
+                        "media_type" => $pod, 
+                        
                     );
                     //echo '<pre>'; print_r($post_array); exit();
                     $postdata = http_build_query( $post_array );
@@ -101,16 +101,16 @@ if ( isset( $_POST ) ){
                    //$url = TAOH_API_PREFIX."/scripts/addblurb.php";
                    //echo"=========".$url;
                    echo "\r\n".file_get_contents( $url, false, $context );
-
-
+                    
+                    
                 }
-
+                
             }
             else{
                 $row = 1;
                 $marray = $array = array();
                 $handle = fopen($uploadfile, 'r');
-
+                
                 if ($handle !== FALSE) {
                     while (($data = fgetcsv($handle, 0, ',')) !== FALSE) {
                         //Print_r($data);
@@ -128,20 +128,20 @@ if ( isset( $_POST ) ){
                             //print_r($array);
                             //print_r($data);
                             foreach ($array as $key) {
-
+                                
                                 $marray[$row - 1][$key] = $data[$c];
                                 $c++;
                             }
-
+                        
                         }
-                        $row++;
+                        $row++;  
                     }
-
+                    
                 }
-
+               
 
                 foreach($marray as $key => $value){
-
+                    
                     //print_r($value);
                     foreach($value as $k=>$v){
                         //echo "<br>=========".$v;
@@ -160,7 +160,7 @@ if ( isset( $_POST ) ){
                         if($k == 'source_url') $source_url = isset($v) ? $v : '';
                         if($k == 'via_name') $via_name = isset($v) ? $v : '';
                         if($k == 'via_url') $via_url = isset($v) ? $v : '';
-
+                        
                     }
                     $post_array = array(
                         "title" => $title,
@@ -179,8 +179,8 @@ if ( isset( $_POST ) ){
                         "source_url" => $source_url,
                         "via_name" => $via_name,
                         "via_url" => $via_url,
-                        //"media_type" => $pod,
-
+                        //"media_type" => $pod, 
+                        
                     );
                     header('Content-type: application/json');
                     //echo '<pre>'; print_r($post_array); exit();
@@ -204,11 +204,11 @@ if ( isset( $_POST ) ){
                    //$url = TAOH_API_PREFIX."/scripts/addblurb.php";
                    //echo"=========".$context;
                    echo "\r\n".file_get_contents( $url, false, $context );
-
+            
                 }
 
             }
-
+            
         }
     } else {
         echo "Possible file upload attack!\n";

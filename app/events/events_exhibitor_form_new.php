@@ -1,4 +1,4 @@
-<link rel="stylesheet" href="<?php echo TAOH_SITE_URL_ROOT; ?>/assets/css/events-exhibitor-form.css?v=<?php echo TAOH_CSS_JS_VERSION; ?>">
+<link rel="stylesheet" href="<?php echo TAOH_SITE_URL_ROOT; ?>/assets/events/css/events-exhibitor-form.css?v=<?php echo TAOH_CSS_JS_VERSION; ?>">
 
 <div class="modal exhibitor-slot fade" id="exhibitorSlotModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="padding-left: 12px;">
     <div class="modal-dialog bg-white" role="document">
@@ -40,7 +40,7 @@
                     </div>
 
                     <div class="row p-4">
-                        <div class="col-sm-2">
+                        <div class="col-sm-12 mb-2">
                             <p>
                                 <a class="exhibitor-form" data-toggle="collapse" href="#exhibitorInfoCollapse" role="button" aria-expanded="true" aria-controls="exhibitorInfoCollapse">
                                     Exhibitor Info <span class="text-danger">*</span> <i class="fa fa-info-circle ml-2 cursor-pointer" style="color: #15a4f7; font-size: 16px;" title="View details" onclick="OpenExhibitorFormTooltip();"></i>
@@ -113,8 +113,8 @@
                         </div>
                     </div>
 
-                    <div class="row p-4" id="raffle_slot">
-                        <div class="col-sm-2">
+                    <div class="row p-4" id="raffle_slot" style="display: none;">
+                        <div class="col-sm-12 mb-2">
                             <p>
                                 <a class="exhibitor-form" data-toggle="collapse" href="#exhibitorRaffleCollapse" role="button" aria-expanded="false" aria-controls="exhibitorRaffleCollapse">
                                     Exhibitor Raffle <i class="fa fa-info-circle ml-2 cursor-pointer" style="color: #15a4f7; font-size: 16px;" title="View details" onclick="OpenExhibitorFormTooltip();"></i>
@@ -224,7 +224,7 @@
                     </div>
 
                     <div class="row p-4">
-                        <div class="col-sm-2">
+                        <div class="col-sm-12 mb-2">
                             <p>
                                 <a class="exhibitor-form" data-toggle="collapse" href="#exhibitorStateCollapse" role="button" aria-expanded="false" aria-controls="exhibitorStateCollapse">
                                     Exhibitor State <span class="text-danger">*</span> <i class="fa fa-info-circle ml-2 cursor-pointer" style="color: #15a4f7; font-size: 16px;" title="View details" onclick="OpenExhibitorFormTooltip();"></i>
@@ -310,4 +310,4 @@
 	</div>
 </div>
 
-<script src="<?php echo TAOH_SITE_URL_ROOT; ?>/assets/js/events-exhibitor-form.js?v=<?php echo TAOH_CSS_JS_VERSION; ?>"></script>
+<script src="<?php echo TAOH_SITE_URL_ROOT; ?>/assets/events/js/events-exhibitor-form.js?v=<?php echo TAOH_CSS_JS_VERSION; ?>"></script>

@@ -365,7 +365,7 @@ function updateInvitesMessages(oldData, newData) {
 
 async function storeRepliesCount(newMessages, my_ptoken) {
 
-    console.log("storeRepliesCount", newMessages);
+    console.log("storeRepliesCount", newMessages);    
 
     const grouped = {};
     let replyCountModifiedKeys = [];
@@ -387,7 +387,7 @@ async function storeRepliesCount(newMessages, my_ptoken) {
         const msgList = grouped[metaId];
         let meta = metas[i]?.values?.chat;
 
-        console.log("msg List", msgList);
+        console.log("msg List", msgList);        
 
         if (meta) {
             const parentIdToKeyMap = {}; // Build-on-demand cache
@@ -437,7 +437,7 @@ async function storeRepliesCount(newMessages, my_ptoken) {
 
             console.log("updates", updates);
             console.log("domUpdates", domUpdates);
-
+            
 
             // Batch DOM update after processing all messages in msgList
             for (const update of domUpdates) {
@@ -454,7 +454,7 @@ async function storeRepliesCount(newMessages, my_ptoken) {
                     if(messageLikeCount > 0) {
                         conversationLikeCountElem.text(messageLikeCount + ' ' + (messageLikeCount === 1 ? 'like' : 'likes'));
                         conversationLikeCountElem.removeClass('d-none');
-                    }
+                    }                    
                     if (my_ptoken !== update.ptoken && messageNewReplyCount > 0) conversationReplyCountElem.addClass('has-new-replies');
                 }
             }
@@ -673,7 +673,7 @@ async function clearCacheProcess(cacheData) {
             allowCacheFilesToRemove = false;
         }
 
-        if (item.action === 'like_message') {
+        if (item.action === 'like_message') {     
 
             if (Object.keys(item.value).length > 0) {
                 const value = item.value;
@@ -684,14 +684,14 @@ async function clearCacheProcess(cacheData) {
                 let frm_message_key = value.message_key;
                 if(channelType == 1) {
                     getLikeData(room_hash, channelId, frm_message_id, frm_message_key);
-                }
+                }                
             }
 
             alreadyProcessed = true;
             allowCacheFilesToRemove = false;
         }
 
-        if (item.action === 'pin_message') {
+        if (item.action === 'pin_message') {     
 
             if (Object.keys(item.value).length > 0) {
                 const value = item.value;
@@ -705,7 +705,7 @@ async function clearCacheProcess(cacheData) {
                 let chat_with = value.chat_with;
                 if(channelType == 1) {
                     getPinData(room_hash, channelId, frm_message_id, frm_message_key, pin_from, chat_with, chat_from);
-                }
+                }                
             }
 
             alreadyProcessed = true;
@@ -868,7 +868,7 @@ async function speedNetworkingProcess(cacheData) {
         if (key <= lastCleanSpeedNetworkingProcessTime) continue;
 
         let alreadyProcessed = false;
-        let allowCacheFilesToRemove = true;
+        let allowCacheFilesToRemove = true;        
 
         // if (item.action === 'speed_networking_add_user') {
         //     if (Object.keys(item.value).length > 0) {

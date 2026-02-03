@@ -734,10 +734,10 @@ function logfile_write($taoh_call, $taoh_vals, $taoh_type, $prefix, $cache_file_
                 mkdir($fold, 0777, true);
             }
             $get_file_name = TAOH_PLUGIN_PATH . '/cache/general/' . $file_mod.'/'.$cache_file_name . '.cache';
-        }
+        }        
         else
         $get_file_name = TAOH_PLUGIN_PATH . '/cache/general/' . $cache_file_name . '.cache';
-
+    
         if(isset($taoh_vals['cache_required']) && $taoh_vals['cache_required'] == 0){
            //no data come from local cache too
         }
@@ -754,7 +754,7 @@ function logfile_write($taoh_call, $taoh_vals, $taoh_type, $prefix, $cache_file_
                 }
             }
         }
-
+        
         $response_timestamp = time();
         //echo $url;die();
     } else {
@@ -797,7 +797,7 @@ function logfile_write($taoh_call, $taoh_vals, $taoh_type, $prefix, $cache_file_
         $write_cache = 0;
     }
 
-
+    
     if (taoh_isjson($result)) {
         $return = json_decode($result, true);
     } else {
@@ -806,7 +806,7 @@ function logfile_write($taoh_call, $taoh_vals, $taoh_type, $prefix, $cache_file_
     //if ($taoh_type == 'GET' && $cache_enable) {
     if ($taoh_type == 'GET' && $write_cache) {
 
-
+        
         if (taoh_isjson($result)) {
             $return = json_decode($result, true);
         } else {
@@ -854,7 +854,7 @@ function taoh_api_url($taoh_call, $taoh_vals, $taoh_type = 'GET', $prefix = TAOH
     // Add cache parameters for GET requests
     if ($taoh_type === 'GET' && $write_cache && $file_mod && !in_array($file_mod, ['rooms', 'tao_tao'], true)) {
         $taoh_vals['cache'] = array("name" => $cache_file_name, "cf_name" => $cache_file_name,  "ttl" => $cache_time);
-
+        
     }
 
     // Prepare API request parameters
@@ -955,7 +955,7 @@ function taoh_delete_local_cache($mods,$remove_array)
     $dir = TAOH_PLUGIN_PATH . '/cache/general/';
     foreach ($remove_array as $pattern) {
 
-
+       
         if($mods == ''){
             if (strpos($pattern, 'event') !== false) $mods = 'events';
             if (strpos($pattern, 'job') !== false) $mods = 'jobs';
@@ -968,7 +968,7 @@ function taoh_delete_local_cache($mods,$remove_array)
         }
         $dir = $dir.$mods.'/'; //kalpana added
 
-
+        
         $hasWildcard = str_contains($pattern, '*');
         $hasExtension = pathinfo($pattern, PATHINFO_EXTENSION) !== '';
 
@@ -980,7 +980,7 @@ function taoh_delete_local_cache($mods,$remove_array)
             }
             $searchPattern .= '.cache';
             if (is_file($searchPattern)) {
-
+                
                 unlink($searchPattern);
             }
         }
@@ -1067,7 +1067,7 @@ if (!function_exists('taoh_api_request')) {
         $is_api_log_enable = defined('TAOH_API_LOG_ENABLE') && !empty(TAOH_API_LOG_ENABLE);
 
         if (empty($prefix)) $prefix = TAOH_API_PREFIX;
-
+        
         $file_mod = $taoh_vals['mod'] ?? '';
         $write_cache = !isset($taoh_vals['cache_required']) || $taoh_vals['cache_required'] != 0;
         $cache_time = $taoh_vals['ttl'] ?? 7200;
@@ -1113,7 +1113,7 @@ if (!function_exists('taoh_api_request')) {
 
         if (isset($taoh_vals['debug_api']) && $taoh_vals['debug_api'] == 1) {
             $postdata = http_build_query($taoh_vals);
-            $url_api = TAOH_API_PREFIX . '/' . $taoh_call;
+            $url_api = $prefix . '/' . $taoh_call;
             $url_print = str_replace('&amp;', '&', $url_api . '?' . html_entity_decode($postdata));
 
             echo $url_print;
@@ -1210,7 +1210,7 @@ if (!function_exists('taoh_post')) {
         if(isset($taoh_vals['debug']) && $taoh_vals['debug'] == 1) {
             echo $url . "?" . $postdata;
              die;
-        }
+        } 
 
         // Default headers
         $default_headers = [
@@ -1385,7 +1385,7 @@ function taoh_get_dummy_token($force = false)
     if ($force) {
 
         return TAOH_API_TOKEN_DUMMY;
-
+        
     }
     else{
         if (taoh_user_is_logged_in()) {
@@ -1393,7 +1393,7 @@ function taoh_get_dummy_token($force = false)
         }
     }
      return TAOH_API_TOKEN_DUMMY;
-
+    
 }
 
 function taoh_get_user_info($ptoken, $ops = 'public',$fresh=0)
@@ -1416,18 +1416,18 @@ function taoh_get_user_info($ptoken, $ops = 'public',$fresh=0)
             'cache_time' => 7200,
             'ptoken' => $ptoken,
             //'debug'=>1
-
+            
         );
        // $taoh_vals[ 'cfcache' ] = $cache_name;
         ksort($taoh_vals);
-
+        
         //echo "====ss sss===";
         if($ptoken == 'z3mbltb5mrf1'){
            // $taoh_vals[ 'debug' ] = 1;
            //echo "========".taoh_apicall_get_debug($taoh_call, $taoh_vals);die();
         }
         // echo taoh_apicall_get_debug($taoh_call, $taoh_vals);die();
-
+        
         $return = taoh_apicall_get($taoh_call, $taoh_vals, '', 1);
         return $return;
         //print_r($return);die();
@@ -1476,10 +1476,10 @@ function taoh_update_user_as_anonymous($token)
         $userAnonymousData['avatar'] = $image;
         $userAnonymousData['type'] = 'professional';
         $userAnonymousData['chat_name'] = $chat_name;
-
+        
         /*$userAnonymousData['fname'] = $username[0];
         $userAnonymousData['lname'] = $username[1];
-
+        
 
         $userAnonymousData['chat_name'] = $pathinfo['filename'] . '-' . $user_data->ptoken;*/
 
@@ -1512,6 +1512,16 @@ function taoh_user_all_info($must = 0)
 
     $sessionData = taoh_session_get(TAOH_ROOT_PATH_HASH) ?? [];
 
+    // Check if force refresh flag is set (e.g., after SSO login)
+    $forceRefresh = isset($sessionData['FORCE_USER_REFRESH']) && $sessionData['FORCE_USER_REFRESH'] == 1;
+    if ($forceRefresh) {
+
+        $must = 1;
+        // Clear the flag after using it
+        unset($sessionData['FORCE_USER_REFRESH']);
+        $_SESSION[TAOH_ROOT_PATH_HASH] = $sessionData;
+    }
+
     if (empty($sessionData['USER_INFO']) || $must == 1) {
         $taoh_vals = [
             'mod' => 'tao_tao',
@@ -1519,6 +1529,11 @@ function taoh_user_all_info($must = 0)
             'cache_name' => 'profile_short_' . taoh_get_api_token(),
             'time' => time(),
         ];
+
+        // If must=1, bypass cache to get fresh data (e.g., after SSO login)
+        if ($must == 1) {
+            $taoh_vals['cache_required'] = 0;
+        }
 
         $user_data = json_decode(taoh_apicall_get("users.tao.get", $taoh_vals));
         taoh_session_save(TAOH_ROOT_PATH_HASH, ['USER_INFO' => $user_data]);
@@ -1721,7 +1736,7 @@ function taoh_get_api_secret($force = 0)
 }
 
 function taoh_set_error_message($message, $time = 5000,$delay=0)
-{
+{ 
     $time_delay_to_show = 0;
     if($delay==1){
         $time_delay_to_show = 5000;}
@@ -1731,11 +1746,11 @@ function taoh_set_error_message($message, $time = 5000,$delay=0)
             $('#toast').show();
             $("#toast").addClass("toast_active");
             $("#toast_error").html('');
-
+           
 
            $("#toast_error").html(`<div>
                     <div class="dojo toast-header toasterror_class shadow-none pl-3">
-
+                    
                         <h5 class="heading" id="">
                             <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
                                 <circle cx="16" cy="16" r="16" fill="#D13D13"/>
@@ -1765,10 +1780,10 @@ function taoh_set_error_message($message, $time = 5000,$delay=0)
 
 
                         <button type="button" class='btn toast_dismiss toast-v2-dismiss shadow-none' aria-hidden='true'  data-dismiss='toast' aria-label='Close'>&times;</button>
-
+                    
                     </div>
                     <div class="toast-body px-3 pt-3 pb-2">
-                        <p class="sm-text mb-2"><?php echo $message;?></p>
+                        <p class="sm-text mb-2"><?php echo $message;?></p>                        
                     </div>
                 </div>`);
                 /*
@@ -1792,18 +1807,18 @@ function taoh_set_error_message($message, $time = 5000,$delay=0)
 }
 
 function taoh_set_success_message($message, $time = 5000)
-{
+{ 
     ?>
     <script type="text/javascript">
         $('#toast').show();
         $("#toast").addClass("toast_active");
         $("#toast_error").html('');
-
+       
      $("#toast_error").html(`<div>
 
 
                     <div class="dojo toast-header success_class shadow-none pl-3">
-
+                    
                         <h5 class="heading" id="">
                             <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
                                 <path d="M16 32C20.2435 32 24.3131 30.3143 27.3137 27.3137C30.3143 24.3131 32 20.2435 32 16C32 11.7565 30.3143 7.68687 27.3137 4.68629C24.3131 1.68571 20.2435 0 16 0C11.7565 0 7.68687 1.68571 4.68629 4.68629C1.68571 7.68687 0 11.7565 0 16C0 20.2435 1.68571 24.3131 4.68629 27.3137C7.68687 30.3143 11.7565 32 16 32ZM23.0625 13.0625L15.0625 21.0625C14.475 21.65 13.525 21.65 12.9438 21.0625L8.94375 17.0625C8.35625 16.475 8.35625 15.525 8.94375 14.9438C9.53125 14.3625 10.4812 14.3563 11.0625 14.9438L14 17.8813L20.9375 10.9375C21.525 10.35 22.475 10.35 23.0562 10.9375C23.6375 11.525 23.6437 12.475 23.0562 13.0562L23.0625 13.0625Z" fill="#0F9D58"/>
@@ -1832,11 +1847,11 @@ function taoh_set_success_message($message, $time = 5000)
 
 
                         <button type="button" class='btn toast_dismiss toast-v2-dismiss shadow-none' aria-hidden='true'  data-dismiss='toast' aria-label='Close'>&times;</button>
-
+                    
                     </div>
                     <div class="toast-body px-3 pt-3 pb-2">
                         <p class="sm-text mb-2"><?php echo $message;?></p>
-
+                        
                     </div>
                 </div>`);
 
@@ -1960,7 +1975,7 @@ function taoh_get_header_new()
 }
 
 function taoh_get_footer()
-{
+{   
     global $footer_tracking_link;
     include_once('core/themes/footer.php');
 }
@@ -2037,10 +2052,10 @@ function taoh_app_info($app = TAOH_WERTUAL_SLUG)
     else if($app == 'hires') $app_data  = TAOH_HIRES_APP_DETAILS;
     else $app_data  = TAOH_HIRES_APP_DETAILS;
 
-
+   
     if (taoh_session_get('app_info_' . $app) == '' || taoh_session_get('app_info_' . $app) == null) {
         //taoh_session_save('app_info_' . $app, json_decode(taoh_url_get_content(TAOH_CDN_PREFIX . "/app/" . $app . "/config")));
-
+       
         $data  = (object)$app_data;
         taoh_session_save('app_info_' . $app,$data);
     }
@@ -3060,10 +3075,10 @@ function update_refer_for_profile_complete(){
         );
         //echo taoh_apicall_post_debug( $taoh_call, $taoh_vals );die();
         $result = json_decode(taoh_apicall_post($taoh_call, $taoh_vals));
-
+        
     }
-
-
+    
+    
 }
 function delete_refer_token()
 {
@@ -3135,9 +3150,9 @@ function site_config(){
         'TAOH_READS_ENABLE' => (defined('TAOH_READS_ENABLE')) ? TAOH_READS_ENABLE : true,
         'TAOH_READS_POST_LOCAL' => (defined('TAOH_READS_POST_LOCAL')) ? TAOH_READS_POST_LOCAL : false,
         'TAOH_READS_GET_LOCAL' => (defined('TAOH_READS_GET_LOCAL')) ? TAOH_READS_GET_LOCAL : false,
-        'TAOH_MESSAGE_ENABLE' => (defined('TAOH_MESSAGE_ENABLE')) ? TAOH_MESSAGE_ENABLE : false,
+        'TAOH_MESSAGE_ENABLE' => (defined('TAOH_MESSAGE_ENABLE')) ? TAOH_MESSAGE_ENABLE : true,
         'TAOH_SCOUT_ENABLE' => (defined('TAOH_SCOUT_ENABLE')) ? TAOH_SCOUT_ENABLE : false,
-        'TAOH_LEARNING_ENABLE' => (defined('TAOH_LEARNING_ENABLE')) ? TAOH_LEARNING_ENABLE : false,
+        'TAOH_LEARNING_ENABLE' => (defined('TAOH_LEARNING_ENABLE')) ? TAOH_LEARNING_ENABLE : false,        
         'TAOH_PAID_JOB_ENABLE' => (defined('TAOH_PAID_JOB_ENABLE')) ? TAOH_PAID_JOB_ENABLE : false,
         'TAOH_ENABLE_SEPARATE_EMPLOYER' => (defined('TAOH_ENABLE_SEPARATE_EMPLOYER')) ? TAOH_ENABLE_SEPARATE_EMPLOYER : false,
         'TAOH_ENABLE_OBVIOUSBABA' => (defined('TAOH_ENABLE_OBVIOUSBABA')) ? TAOH_ENABLE_OBVIOUSBABA : false,
@@ -3179,11 +3194,11 @@ function site_config(){
             'TAOH_SITE_REFERRAL_ID' => (isset($_COOKIE[TAOH_ROOT_PATH_HASH . '_' . 'referral_id'])) ? $_COOKIE[TAOH_ROOT_PATH_HASH . '_' . 'referral_id'] : '',
         ),
 
-        'SUPERADMIN_FNAME' => (defined('SUPERADMIN_FNAME')) ? SUPERADMIN_FNAME : 'Super',
-        'SUPERADMIN_LNAME' => (defined('SUPERADMIN_LNAME')) ? SUPERADMIN_LNAME : 'Admin',
-        'SUPERADMIN_AVATAR' => (defined('SUPERADMIN_AVATAR')) ? SUPERADMIN_AVATAR : 'avatar_def',
-        'SUPERADMIN_AVATAR_IMG' => (defined('SUPERADMIN_AVATAR_IMG')) ? SUPERADMIN_AVATAR_IMG : '',
-        'TAOH_FOOTER_MENU_ARRAY' => (defined('TAOH_FOOTER_MENU_ARRAY')) ? TAOH_FOOTER_MENU_ARRAY : '',
+        'SUPERADMIN_FNAME' => (defined('SUPERADMIN_FNAME')) ? SUPERADMIN_FNAME : 'Super',        
+        'SUPERADMIN_LNAME' => (defined('SUPERADMIN_LNAME')) ? SUPERADMIN_LNAME : 'Admin',        
+        'SUPERADMIN_AVATAR' => (defined('SUPERADMIN_AVATAR')) ? SUPERADMIN_AVATAR : 'avatar_def',        
+        'SUPERADMIN_AVATAR_IMG' => (defined('SUPERADMIN_AVATAR_IMG')) ? SUPERADMIN_AVATAR_IMG : '',   
+        'TAOH_FOOTER_MENU_ARRAY' => (defined('TAOH_FOOTER_MENU_ARRAY')) ? TAOH_FOOTER_MENU_ARRAY : '',   
         'TAOH_DONATE' => array(
             'TAOH_COMPANY_REG'  => (defined('TAOH_COMPANY_REG')) ? TAOH_COMPANY_REG : '',
             'TAOH_ORG_TYPE'  => (defined('TAOH_ORG_TYPE')) ? TAOH_ORG_TYPE : '',
@@ -3206,7 +3221,7 @@ if (!function_exists('taoh_subsecret_arr')) {
         if (defined('TAO_DASH_VERSION') && TAO_DASH_VERSION) $taoh_dash = true;
         $return = false;
         if (!$taoh_dash) {
-
+            
             $return = site_config();
             $taoh_subsecret_arr['key'] = TAOH_SITE_ROOT_HASH;
             $taoh_subsecret_arr['value'] = $return;
@@ -3712,7 +3727,7 @@ function taoh_get_profile_image()
         return '<img width="40" height="40" src="' . TAOH_OPS_PREFIX . '/avatar/PNG/128/avatar_def.png" alt="">';
     }
     $logged_user = taoh_session_get(TAOH_ROOT_PATH_HASH)['USER_INFO'] ?? null;
-
+    
     if (isset($logged_user->avatar_image) && $logged_user->avatar_image != '' && @getimagesize($logged_user->avatar_image)) {
         return '<img width="40" height="40" style="border-radius: 20px;" src="' . $logged_user->avatar_image . '" alt="Profile Image">';
     } else if (isset($logged_user->avatar) && $logged_user->avatar != '') {
@@ -3838,11 +3853,11 @@ function taoh_fullyear_convert_time($timestamp,$convert = false) {
         $first_two_digits = substr($year, 0, 2);
         $timestamp = $first_two_digits . $timestamp;
     }
-
+    
 
     $date = DateTime::createFromFormat('YmdHis', $timestamp , new DateTimeZone('America/New_york'));
     return $date->format('Y-m-d H:i:s'); // Output: 2024-11-25 09:20:00
-
+    
 }
 
 function taoh_fullyear_convert($timestamp,$convert = false) {
@@ -3859,7 +3874,7 @@ function taoh_fullyear_convert($timestamp,$convert = false) {
     }
 
     $date = DateTime::createFromFormat('YmdHis', $timestamp , new DateTimeZone('America/New_york'));
-
+    
     // Extract date and time components from the string
     /* $year = substr($timestamp, 0, 4);
     $month = substr($timestamp, 4, 2);
@@ -3870,18 +3885,18 @@ function taoh_fullyear_convert($timestamp,$convert = false) {
     $timezone = taoh_user_timezone();
     // Create a DateTime object
     $date = DateTime::createFromFormat('YmdHis', $year . $month . $day . $hour . $minute . $second , new DateTimeZone($timezone));
-
+    
     if (!$date) {
         throw new Exception("Invalid timestamp format.");
     } */
-
+    
     // Get the current date and time
-
+    
     $now = new DateTime('now', new DateTimeZone('America/New_york'));
-
+    
     // Calculate the interval
     $interval = $now->diff($date);
-
+    
     // Determine the appropriate time unit to return
     if ($interval->y > 0) {
         return $interval->y . 'y ago';
@@ -3901,7 +3916,7 @@ function taoh_fullyear_convert($timestamp,$convert = false) {
 if (!function_exists('event_time_display_local')) {
     function event_time_display_local($input_date, $locality = 0, $event_timezone_abbr = '', $input = 'date', $format = 'D, M d, Y h:i A')
     {
-
+        
         //echo "====222222222===".$event_timezone_abbr;die();
         $user_timezone = new DateTimeZone($event_timezone_abbr);
             //echo '<pre>';print_r($user_timezone);die();

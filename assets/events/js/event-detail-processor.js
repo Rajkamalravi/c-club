@@ -865,18 +865,48 @@
         $.post(_taoh_site_ajax_url, data, function(response) {});
     });
 
-    // Scroll handler
-    $(window).on('scroll', function() {
-        var $sticky = $('.sticky-top-fixed');
-        if ($sticky.length) {
-            var top_sticky_pos = $sticky.offset().top;
-            if (top_sticky_pos > 126) {
-                $sticky.addClass('is-sticky');
-            } else {
-                $sticky.removeClass('is-sticky');
-            }
-        }
+    // Sticky header: use position:fixed when scrolled past sentinel
+    (function() {
+        var $stickyEl = $('.sticky-top-fixed');
+        var sentinel = document.getElementById('stickySentinel');
+        if (!$stickyEl.length || !sentinel) return;
 
+        var normalHeight = $stickyEl.outerHeight(true);
+
+        var placeholder = document.createElement('div');
+        placeholder.id = 'stickyPlaceholder';
+        placeholder.style.cssText = 'height:0;margin:0;padding:0;';
+        $stickyEl[0].parentNode.insertBefore(placeholder, $stickyEl[0].nextSibling);
+
+        var isStuck = false;
+        var sentinelOffset = sentinel.getBoundingClientRect().top + window.scrollY;
+
+        $(window).on('scroll.stickyHeader', function() {
+            var scrollTop = window.scrollY;
+            var $hallTabsNav = $('.hall_tabs > ul.nav-tabs');
+
+            if (scrollTop >= sentinelOffset && !isStuck) {
+                isStuck = true;
+                placeholder.style.height = normalHeight + 'px';
+                $stickyEl.addClass('is-sticky');
+                var collapsedHeight = $stickyEl.outerHeight();
+                if ($hallTabsNav.length) {
+                    $hallTabsNav.addClass('is-tabs-sticky');
+                    $hallTabsNav.css('top', collapsedHeight + 'px');
+                }
+            } else if (scrollTop < sentinelOffset && isStuck) {
+                isStuck = false;
+                placeholder.style.height = '0';
+                $stickyEl.removeClass('is-sticky');
+                if ($hallTabsNav.length) {
+                    $hallTabsNav.removeClass('is-tabs-sticky');
+                    $hallTabsNav.css('top', '');
+                }
+            }
+        });
+    })();
+
+    $(window).on('scroll', function() {
         if ($(this).scrollTop() > 100) {
             $('#back-to-top').fadeIn();
         } else {

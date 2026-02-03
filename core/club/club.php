@@ -1,5 +1,5 @@
 <?php
-include_once $_SERVER['DOCUMENT_ROOT'].'/raj/assets/icons/icons.php';
+include_once TAOH_SITE_PATH_ROOT.'/assets/icons/icons.php';
 taoh_get_header();
 $showall = 0;
 defined('TAOH_CURR_APP_SLUG') || define('TAOH_CURR_APP_SLUG', '');
@@ -34,7 +34,7 @@ $admin_tokens = explode(',', TAOH_ADMIN_TOKENS);
 $is_admin = (in_array($token, $admin_tokens))?true:false;
 
 
-/* Get RSVP list */
+/* Get RSVP list */                     
 //https://ppapi.tao.ai/events.user.rsvp?mod=core&token=C3kONdHX&ops=events
 $rsvped_data = array();
 if(taoh_user_is_logged_in()){
@@ -72,7 +72,7 @@ if ( taoh_user_is_logged_in() && isset( $_SESSION[ TAOH_ROOT_PATH_HASH ][ 'USER_
     $club_jobs_header = "Get Top Talent, <strong><a href=\"".TAOH_SITE_URL_ROOT.'/jobs/post'."\" style='color: #2479D8; font-weight: bold;'>Post</a></strong> a Job Today";
     $club_learning_header = "Grow faster through learning and development reads";
     $club_asks_header = "Engage on Asks and grow your expertise";
-
+    
 }
 ?>
     <style>
@@ -219,9 +219,9 @@ if ( ! taoh_user_is_logged_in() || $showall ){
                     <!--<div class="col-lg-6">
                         <div class="hero-content">
                             <h2 class="section-title pb-4 text-white" style="font-weight: 400;">Expand Your Professional <br>  Horizons</h2>
-                            <h4 class="pb-4 text-white" style="font-weight: 300; font-size: 24px; line-height: 34px;">Welcome to Networking app, where every connection
+                            <h4 class="pb-4 text-white" style="font-weight: 300; font-size: 24px; line-height: 34px;">Welcome to Networking app, where every connection 
                             is a step toward your next professional breakthrough.</h4>
-
+                            
                             <div class="hero-btn-box py-4">
                                 <?php if (! taoh_user_is_logged_in()){ ?>
                                     <div class="nav-right-button">
@@ -267,9 +267,9 @@ if ( ! taoh_user_is_logged_in() || $showall ){
                         </div>
                     </div>
                     <div class="col-lg-3 yo-video">
-
+                    
                         <iframe id="video" class="y-video" src="<?php echo TAOH_BANNER_VIDEO;?>" frameborder="0" allowfullscreen loading="lazy"></iframe>
-                    </div>
+                    </div>           
                 </div>
             </div>
         </div>
@@ -294,13 +294,13 @@ if ( ! taoh_user_is_logged_in() || $showall ){
             <div class="row justify-content-center mx-0">
                 <div class="col-md-12 px-0">
 
-                <?php if(TAOH_ANNOUNCEMENT_ENABLE) { ?>
+                <?php if(TAOH_ANNOUNCEMENT_ENABLE) { ?>     
 				     <section class="club-section" style="width:100%; padding: 30px 15px;">
                         <div class="container">
                             <div class="text-center loaderArea" id="announcementlistloaderArea"></div>
                             <div id="announcements_blk" style="display:none;" class="row">
-
-
+                                 
+                                    
                                 <div class="col-lg-12">
                                     <h2 class="section-title pb-4 pt-4 text-center"><?php echo $club_announcements_header; ?></h2>
                                     <div class="row p-2 d-flex align-items-center flex-wrap-reverse">
@@ -309,30 +309,30 @@ if ( ! taoh_user_is_logged_in() || $showall ){
                                             <a href="#" class="orange-text" style="font-size: 1.5rem">Explore more</a>
                                         </div>
                                     </div>
-
-
+                                    
+                                    
                                     <!--<div id="announementlistArea" class="mb-3"></div>-->
-
+                                   
                                     <div class="row mt-4 upcoming-announcements p-0 " style="margin: auto;" id="announcements_list">
                                             <div class="club-announcement col-12 d-flex px-0" style="gap:12px;">
                                                 <div class="d-none d-lg-flex align-items-center">
                                                     <button class="btn scroll-button" id="scroll-left"><i class="la la-angle-left"></i></button>
                                                 </div>
                                                 <div class="d-flex scroll-container" id="announementlistArea" style="gap: 1rem; overflow-x: auto; scroll-behavior: smooth; width: 100%;">
-
-                                                </div>
-                                                <div class="d-none d-lg-flex align-items-center">
+                                                    
+                                                </div> 
+                                                <div class="d-none d-lg-flex align-items-center">                            
                                                     <button class="btn scroll-button" id="scroll-right"><i class="la la-angle-right"></i></button>
                                                 </div>
                                             </div>
                                     </div>
 
-
+                                    
                                     <p class="text-right text-underline mt-2 pr-2"><a href="<?php echo TAOH_SITE_URL_ROOT.'/club/announcements';?>">View all <i class="la la-arrow-right ml-1"></i></a></p>
                                 </div>
                             </div>
                         </div>
-					</section>
+					</section> 
                 <?php } if(TAOH_EVENTS_ENABLE) { ?>
 				    <section class="club-section" style="width:100%; padding: 30px 15px;">
                         <div class="container">
@@ -347,7 +347,7 @@ if ( ! taoh_user_is_logged_in() || $showall ){
                                     </div>
                                     <div id="event_loaderArea"></div>
                                     <div class="d-flex flex-wrap justify-content-center mt-4 upcoming-events dasdasd p-0" style="margin: auto; gap: 12px;" id="events_list">
-
+                                            
                                     </div>
                                     <p class="text-right text-underline mt-2 pr-2"><a href="<?php echo TAOH_SITE_URL_ROOT.'/events';?>">View all Events <i class="la la-arrow-right ml-1"></i></a></p>
                                 </div>
@@ -363,7 +363,7 @@ if ( ! taoh_user_is_logged_in() || $showall ){
                                     <h4 class="p-2">Recent Jobs</h4>
                                     <div id="job_loaderArea"></div>
                                     <div class="d-flex flex-wrap justify-content-center mt-4 p-0" style="margin: auto; gap: 12px;" id="jobs_list">
-
+                                        
                                     </div>
                                     <p class="text-right text-underline mt-2 pr-2"><a href="<?php echo TAOH_SITE_URL_ROOT.'/jobs';?>">View all Jobs <i class="la la-arrow-right ml-1"></i></a></p>
                                 </div>
@@ -379,10 +379,10 @@ if ( ! taoh_user_is_logged_in() || $showall ){
                                     <h4 class="p-2">Curated Articles</h4>
                                     <div id="read_loaderArea"></div>
                                     <div class="d-flex flex-wrap justify-content-center mt-4 reads-list-content-text" style="margin: auto; gap: 12px;" id="reads_list">
-
+                                        
                                     </div>
                                     <p class="text-right text-underline mt-2 pr-2"><a href="<?php echo TAOH_SITE_URL_ROOT.'/reads';?>">View all Reads <i class="la la-arrow-right ml-1"></i></a></p>
-
+                                
                                 </div>
                             </div>
                         </div>
@@ -396,10 +396,10 @@ if ( ! taoh_user_is_logged_in() || $showall ){
                                     <h4 class="p-2">Recent Asks</h4>
                                     <div id="ask_loaderArea"></div>
                                     <div class="d-flex flex-wrap justify-content-center mt-4" style="margin: auto; gap: 12px;" id="asks_list">
-
+                                        
                                     </div>
                                     <p class="text-right text-underline mt-2 pr-2"><a href="<?php echo TAOH_SITE_URL_ROOT.'/asks';?>">View all Asks <i class="la la-arrow-right ml-1"></i></a></p>
-
+                                
                                 </div>
                             </div>
                         </div>
@@ -508,7 +508,7 @@ if ( ! taoh_user_is_logged_in() || $showall ){
             </div><!-- end container -->
         </section>
 
-        <?php
+        <?php            
         }
         ?>
 
@@ -524,7 +524,7 @@ if ( ! taoh_user_is_logged_in() || $showall ){
         </p>
         <!--  -->
         <div class="container mt-3" style="position: relative; overflow: hidden; height: 100px;">
-            <?php
+            <?php 
                 $numbers = range(10, 60); // Creates an array with numbers from 1 to 99
                 shuffle($numbers);       // Shuffles the array randomly
                 for($i=0; $i<10; $i++){
@@ -534,10 +534,10 @@ if ( ! taoh_user_is_logged_in() || $showall ){
                     echo '<div class="itemLeft item'.$i.'"><img src="https://cdn.tao.ai/images/company/logo'.$numbers[$i].'.png" alt="" style="width: 100px; height: 100px; object-fit: contain;"></div>';
                 }
                 ?>
-
+            
         </div>
         <div class="container mt-3" style="position: relative; overflow: hidden; height: 100px;">
-            <?php
+            <?php 
                 $numbers = range(10, 60); // Creates an array with numbers from 1 to 99
                 shuffle($numbers);       // Shuffles the array randomly
                 for($i=0; $i<10; $i++){
@@ -547,7 +547,7 @@ if ( ! taoh_user_is_logged_in() || $showall ){
                     echo '<div class="itemRight item'.$i.'"><img src="https://cdn.tao.ai/images/company/logo'.$numbers[$i].'.png" alt="" style="width: 100px; height: 100px; object-fit: contain;"></div>';
                 }
                 ?>
-
+            
         </div>
         <!--  -->
     </div>
@@ -657,7 +657,7 @@ if ( ! taoh_user_is_logged_in() || $showall ){
             text.replace("<h4", "span");text.replace("</h4", "</span");
             text.replace("<h5", "span");text.replace("</h5", "</span");
             text.replace("<h6", "span");text.replace("</h6", "</span");
-
+           
             text.replace(/(<([^>]+)>)/ig,"");
             //text = $(text).text();
            // alert(text);
@@ -722,7 +722,7 @@ if ( ! taoh_user_is_logged_in() || $showall ){
                     </svg>
                 </a>`;
             }
-            //<img src="<?php echo TAOH_SITE_URL_ROOT;?>/assets/images/bookmark.svg" alt="bookark" style="width: 18px">
+            //<img src="<?php echo TAOH_SITE_URL_ROOT;?>/assets/images/bookmark.svg" alt="bookark" style="width: 18px"> 
             //<i style="cursor:pointer;" data-cont="${(conttoken)}" title="Save Job" class="las la-bookmark job_save"></i>
             return liked_checks;
         }
@@ -748,7 +748,7 @@ if ( ! taoh_user_is_logged_in() || $showall ){
                     </svg>
                 </a>`;
             }
-            //<img src="<?php echo TAOH_SITE_URL_ROOT;?>/assets/images/bookmark.svg" alt="bookark" style="width: 18px">
+            //<img src="<?php echo TAOH_SITE_URL_ROOT;?>/assets/images/bookmark.svg" alt="bookark" style="width: 18px"> 
             //<i style="cursor:pointer;" data-cont="${(conttoken)}" title="Save Job" class="las la-bookmark job_save"></i>
             return liked_checks;
         }
@@ -761,7 +761,7 @@ if ( ! taoh_user_is_logged_in() || $showall ){
                 var get_liked = 1;
             }else{
                 var get_liked = 0;
-            }
+            } 
             let is_local = localStorage.getItem('events_'+eventtoken+'_'+contstoken+'_liked');
             if ((get_liked) || (is_local)) {
                 var liked_checks = `<a class="fs-25 mr-2 ml-2 already-saved" style="vertical-align: text-bottom;">
@@ -780,7 +780,7 @@ if ( ! taoh_user_is_logged_in() || $showall ){
                     </svg>
                 </a>`;
             }
-            //<img src="<?php echo TAOH_SITE_URL_ROOT;?>/assets/images/bookmark.svg" alt="bookark" style="width: 18px">
+            //<img src="<?php echo TAOH_SITE_URL_ROOT;?>/assets/images/bookmark.svg" alt="bookark" style="width: 18px"> 
             //<i style="cursor:pointer;" data-cont="${(conttoken)}" title="Save Event" class="las la-bookmark event_save"></i>
             return liked_checks;
         }
@@ -872,7 +872,7 @@ if ( ! taoh_user_is_logged_in() || $showall ){
                 const cursor = event.target.result;
                 if (cursor) {
                     const index_key = cursor.primaryKey;
-                    if(index_key.includes('event'))
+                    if(index_key.includes('event')) 
                     {
                     objectStore.delete(index_key);
                     }
@@ -884,7 +884,7 @@ if ( ! taoh_user_is_logged_in() || $showall ){
             });
         }
 
-
+        
         function delete_asks_into(){
             getIntaoDb(dbName).then((db) => {
                 let dataStoreName = ASKStore;
@@ -895,7 +895,7 @@ if ( ! taoh_user_is_logged_in() || $showall ){
                 const cursor = event.target.result;
                 if (cursor) {
                     const index_key = cursor.primaryKey;
-                    if(index_key.includes('ask'))
+                    if(index_key.includes('ask')) 
                     {
                     objectStore.delete(index_key);
                     }
@@ -906,7 +906,7 @@ if ( ! taoh_user_is_logged_in() || $showall ){
                 console.log('Error in deleting data store');
             });
         }
-
+        
         function delete_jobs_into(){
 		    getIntaoDb(dbName).then((db) => {
                 let dataStoreName = JOBStore;
@@ -917,7 +917,7 @@ if ( ! taoh_user_is_logged_in() || $showall ){
                 const cursor = event.target.result;
                 if (cursor) {
                     const index_key = cursor.primaryKey;
-                    if(index_key.includes('job'))
+                    if(index_key.includes('job')) 
                     {
                     objectStore.delete(index_key);
                     }
@@ -950,10 +950,10 @@ if ( ! taoh_user_is_logged_in() || $showall ){
                             events_get_slug = false;
                             events_already_rendered = false;
                             taoh_events_init();
-                        }
+                        }				
                     }
                 });
-
+  
             }).catch((error) => {
                 console.log('Geteventlistdata Error:', error);
             });
@@ -1095,13 +1095,13 @@ if ( ! taoh_user_is_logged_in() || $showall ){
                                 ? (isValidUser ? `<?php echo TAOH_SITE_URL_ROOT . "/events/chat/id/events/"; ?>${v.eventtoken}` : '<?php echo TAOH_SITE_URL_ROOT . "/settings"; ?>')
                                 : '';
                             setButton(liveText, 'btn-success', `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 80" style="width: 36px"><circle cx="40" cy="40" r="28" fill="#fff"></circle>
-
+                                                                    
                                                                     <polygon points="34,28 34,52 54,40" fill="#28A745"></polygon>
-
+                                                                    
                                                                     <path d="M78 26 C84 35, 84 46, 78 54" fill="none" stroke="#fff" stroke-width="5" stroke-linecap="round"></path>
-
+                                                                    
                                                                     <path d="M88 10 C104 28, 104 54, 88 70" fill="none" stroke="#fff" stroke-width="5" stroke-linecap="round"></path>
-                                                            </svg>`, liveUrl);
+                                                            </svg> `, liveUrl);
                         } else {
                             const regText = is_rsvp_done ? 'Registered!' : 'Register Now!';
                             const regClass = is_rsvp_done ? 'btn-warning' : 'btn-primary';
@@ -1151,7 +1151,7 @@ if ( ! taoh_user_is_logged_in() || $showall ){
                                 <img class="club-event-image lazy" src="${v.event_image != '' ? v.event_image : no_image}" data-src="${v.event_image}" alt="${taoh_title_desc_decode(v.title)}"></a>
                            </div>
                             <div class="card-body p-3">
-
+                                
                                 <span class="badge-detail-block w-100 d-inline-block flex-wrap-reverse justify-content-between">
                                     <ul class="d-flex flex-wrap" style="float: left;">
                                         <li class="mt-1 d-flex align-items-center" style="color: #ffffff; background: #2557A7; border-radius: 8px;">
@@ -1174,7 +1174,7 @@ if ( ! taoh_user_is_logged_in() || $showall ){
                                     </svg>
                                     <span>From ${minCost == '0' ? '$0 (free)' : '$' + minCost}</span>
                                 </div>
-
+                                
                                 <div class="type_display event-type mb-2">
                                     ${(event_type == 'in-person') ? `<svg width="19" height="19" viewBox="0 0 19 19" fill="none" xmlns="http://www.w3.org/2000/svg">
                                         <path d="M14.8079 3.56198C15.2836 3.56198 15.7399 3.37434 16.0762 3.04034C16.4126 2.70634 16.6016 2.25334 16.6016 1.78099C16.6016 1.30864 16.4126 0.85564 16.0762 0.52164C15.7399 0.187639 15.2836 0 14.8079 0C14.3322 0 13.876 0.187639 13.5396 0.52164C13.2033 0.85564 13.0143 1.30864 13.0143 1.78099C13.0143 2.25334 13.2033 2.70634 13.5396 3.04034C13.876 3.37434 14.3322 3.56198 14.8079 3.56198ZM11.6579 7.43934C11.6952 7.4245 11.7289 7.40966 11.7662 7.39482L11.1347 9.75091C10.9255 10.5338 11.131 11.3686 11.684 11.966L14.3259 14.8267L15.148 18.0956C15.3087 18.7301 15.9589 19.1197 16.5978 18.9601C17.2368 18.8006 17.6292 18.155 17.4685 17.5205L16.6091 14.1032C16.5381 13.8138 16.3923 13.5504 16.1905 13.3314L14.3408 11.3278L15.062 8.89752L15.4208 9.75091C15.5852 10.1442 15.8879 10.467 16.2727 10.66L17.2705 11.1534C17.8609 11.4466 18.5783 11.2091 18.8735 10.6229C19.1687 10.0366 18.9296 9.32422 18.3392 9.0311L17.5358 8.63409L16.964 7.26866C16.3213 5.74369 14.8192 4.7493 13.1526 4.7493C12.3006 4.7493 11.4598 4.9274 10.6826 5.26876L10.3836 5.39862C9.15423 5.94034 8.21257 6.97183 7.79032 8.23707L7.69316 8.52649C7.48391 9.14983 7.82395 9.82141 8.44799 10.0292C9.07202 10.237 9.75211 9.89933 9.96137 9.2797L10.0585 8.99028C10.2715 8.35581 10.7424 7.84377 11.3552 7.57291L11.6541 7.44305L11.6579 7.43934ZM10.5368 12.4521L9.60264 14.7674L7.38301 16.9713C6.91592 17.4351 6.91592 18.1884 7.38301 18.6522C7.85011 19.1159 8.60867 19.1159 9.07576 18.6522L11.3813 16.3628C11.5532 16.1922 11.6878 15.9881 11.7774 15.7655L12.3193 14.4223L10.7984 12.7749C10.705 12.6747 10.619 12.5671 10.5368 12.4558V12.4521ZM8.23126 10.1702C7.94353 10.0069 7.58106 10.1034 7.41291 10.3891L6.21715 12.4447L4.18435 11.2796C3.61263 10.9531 2.88023 11.146 2.55139 11.7137L0.159872 15.8285C-0.168962 16.3962 0.025349 17.1235 0.597072 17.45L2.66723 18.6373C3.23896 18.9638 3.97136 18.7709 4.30019 18.2032L6.69171 14.0884C6.74777 13.9919 6.78887 13.8954 6.81503 13.7915L8.45172 10.9828C8.61614 10.6971 8.51899 10.3372 8.23126 10.1702Z" fill="#2557A7"/>
@@ -1185,7 +1185,7 @@ if ( ! taoh_user_is_logged_in() || $showall ){
                                     </svg>`}
 
                                     <span>${event_type}</span>
-                                </div>
+                                </div>	
                                 <div class="mt-3">
                                     ${rsvp_link}
                                 </div>
@@ -1197,7 +1197,7 @@ if ( ! taoh_user_is_logged_in() || $showall ){
                 count++;
                 if (count >= 4) return false; // break after 4 items
             });
-
+          
         }
 
         function show_events_pagination(holder) {
@@ -1261,10 +1261,10 @@ if ( ! taoh_user_is_logged_in() || $showall ){
                             jobs_get_slug = false;
                             jobs_already_rendered = false;
                             taoh_jobs_init();
-                        }
+                        }				
                     }
                 });
-
+                
             }).catch((error) => {
                 console.log('Getjoblistdata Error:', error);
             });
@@ -1309,7 +1309,7 @@ if ( ! taoh_user_is_logged_in() || $showall ){
             })
         }
 
-
+        
 	function getCurrencySymbol(index) {
         if (index >= 0 && index < currencies.length) {
             return currencies[index].symbol;
@@ -1330,12 +1330,12 @@ if ( ! taoh_user_is_logged_in() || $showall ){
                 slot.append("<p>No data found!</p>");
                 return false;
             }
-
-            var result = format_object(data);
+            
+            var result = format_object(data); 
 
             $.each(result.output.list, function(i, v){
                 console.log("jobs_list",  result.output.list);
-
+                
                 var additive = '';
                 if(v.canonical_url && v.canonical_url !='' && v.canonical_url != undefined){
                     additive = v.canonical_url;
@@ -1364,10 +1364,10 @@ if ( ! taoh_user_is_logged_in() || $showall ){
                     if(isLoggedIn){
                         if(v.ptoken != user_ptoken){
                             if(v.enable_scout_job == 'on'){
-
+                               
                                 apply_email_link = `<a job-url="${job_url}" data-conttoken="${v.conttoken}" data-metrics="request_through_scout_link" class="btn theme-btn mb-3 click_metrics"
                                         style="background-color:#FF7311">Apply through Scout</a>`;
-
+                                  
                             }else{
                                 if(v.apply_link){
                                         apply_email_link = `<a onclick="event.stopPropagation();" href="${v.apply_link}" target="_blank" class="btn theme-btn w-50 mb-3">Apply Now </a>`;
@@ -1377,16 +1377,16 @@ if ( ! taoh_user_is_logged_in() || $showall ){
                                         apply_email_link = `<a onclick="event.stopPropagation();" href="${'mailto:'+v.email}" class="btn theme-btn w-50 mb-3">Apply Now </a>`;
                                     }
                             }
-                        }
+                        }                        
 
                         apply_email_link = `<a class="btn theme-btn mb-3 create_referral" data-title="${taoh_title_desc_decode(v.title)}" href="${_taoh_site_url_root}/jobs/d/${job_url}">${btnCaption} </a>`;
-
+                    
                         if(v.enable_scout_job == 'on'){
                             show_scout_logo = `<a style="margin-left: 5px">
-                            <img
+                            <img 
                             data-toggle="tooltip" data-placement="top"
-                        title="Please note: Scout is a specialized program that gets 6x faster result, where industry leading peers help find the best peer talent for the jobs. "
-
+                        title="Please note: Scout is a specialized program that gets 6x faster result, where industry leading peers help find the best peer talent for the jobs. " 
+                        
                             src="<?php echo TAOH_SITE_URL_ROOT.'/assets/images/scout_icon.png'; ?>" width="28" height="28" alt="Scout Icon"></a>`;
                         }
                     }else{
@@ -1407,7 +1407,7 @@ if ( ! taoh_user_is_logged_in() || $showall ){
                             payinfo =  cc + ' ' + v.payinfo + ' per project';
                         }else{
                             payinfo = cc + ' ' + v.payinfo + ' per week';
-                        }
+                        }	
                     }*/
 
                     var payinfo = '';
@@ -1426,15 +1426,15 @@ if ( ! taoh_user_is_logged_in() || $showall ){
                             payinfo = payinfo + ' per Daily';
                         }else if(v.paymentTerm == 'weekly'){
                             payinfo = payinfo + ' per week';
-                        }
+                        }	
                     }
                     slot.append(
                     `<div style="flex: 1; flex-basis: 290px; max-width: 320px;"
-                    class="dash_metrics"
-                    data-metrics="view"
+                    class="dash_metrics" 
+                    data-metrics="view" 
                     conttoken="${v.conttoken}" data-type="jobs"
 
-                    data-conttoken="${v.conttoken}"
+                    data-conttoken="${v.conttoken}"  
                     data-canonical = "${additive}"
                     job-url="${job_url}" >
                         <div class="job-listing-block-row">
@@ -1442,7 +1442,7 @@ if ( ! taoh_user_is_logged_in() || $showall ){
                                 <a href="${_taoh_site_url_root}/jobs/d/${job_url}"><h3 class="fs-17 mt-2 b-2" style="height:65px;font-weight: 500;overflow:hidden;">${taoh_title_desc_decode(v.title)} ${show_scout_logo}  </h3></a>
                                 <p style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis">${v.full_location ? newgenerateLocationHTML(v.full_location): ''}</p>
                                 <p>${payinfo ? payinfo : '&nbsp'} </p>
-
+                                
                                 <div class="mt-3">
                                     ${apply_email_link}
                                 </div>
@@ -1487,7 +1487,7 @@ if ( ! taoh_user_is_logged_in() || $showall ){
                 var reads_list_hash = reads_totalItems+reads__search+reads_itemsPerPage+reads_currentPage;
                 read_list_name = 'reads_club_'+crc32(reads_list_hash+hires_slug);
                 console.log(read_list_name);
-                checkclubTTL(read_list_name, reads_store_name).then(() => {
+                checkclubTTL(read_list_name, reads_store_name).then(() => {     
                     const datareadsrequest = db.transaction(reads_store_name).objectStore(reads_store_name).get(read_list_name); // get main data
                     datareadsrequest.onsuccess = ()=> {
                         console.log(datareadsrequest);
@@ -1572,7 +1572,7 @@ if ( ! taoh_user_is_logged_in() || $showall ){
                 if(v.blurb =='' ||  v.blurb == null ||  v.blurb == undefined){
                     return;
                 }
-
+               
 
                 arr_cont.push(v.conttoken.toString());
                 var prefix = '<?php echo TAOH_CDN_PREFIX ?>';
@@ -1616,12 +1616,12 @@ if ( ! taoh_user_is_logged_in() || $showall ){
                 //alert({cleanFontstyle(decodedStr)});
                 slot.append(`
                   <div style="cursor: pointer; flex: 1; flex-basis: 290px; max-width: 320px; min-height: 460px;"
-                    class="dash_metrics"
-                    data-metrics="view"
+                    class="dash_metrics" 
+                    data-metrics="view" 
                     conttoken="${v.conttoken}" data-type="reads"
 
                     >
-
+                   
                         <div class="reads-listing-block-row p-0 d-flex flex-column justify-content-between">
                             <div>
                                 <div class="td-post-image">
@@ -1638,7 +1638,7 @@ if ( ! taoh_user_is_logged_in() || $showall ){
                                         ${cleanFontstyle(decodedStr)}
                                     </a>
                                 </div>
-
+                                
                                 </div>
                             </div>
                             <a class="p-3" href="${_taoh_site_url_root}/learning/blog/${convertToSlug(v.title)}-${v.conttoken}" style="font-weight: 700;">Read More...</a>
@@ -1648,7 +1648,7 @@ if ( ! taoh_user_is_logged_in() || $showall ){
                 );
 
             });
-
+            
         }
 
         /* /Reads */
@@ -1658,7 +1658,7 @@ if ( ! taoh_user_is_logged_in() || $showall ){
             loader(true, ask_loaderArea);
             // Open or create a database
             getIntaoDb(dbName).then((db) => {
-
+                
                 var ask_list_hash = asks_totalItems+asks_search+asks_itemsPerPage+asks_currentPage;
                 ask_list_name = 'asks_club_'+crc32(ask_list_hash+hires_slug);
                 console.log(ask_list_name);
@@ -1677,17 +1677,17 @@ if ( ! taoh_user_is_logged_in() || $showall ){
                             asks_get_slug = false;
                             asks_already_rendered = false;
                             taoh_asks_init();
-                        }
+                        }				
                     }
                 });
-
+                
             }).catch((error) => {
             console.log('Getasklistdata Error:', error);
             });
         }
 
         function taoh_asks_init() {
-
+            
             geohash = '';//geohashInput.val();
             var data = {
                 'taoh_action': 'asks_get',
@@ -1751,12 +1751,12 @@ if ( ! taoh_user_is_logged_in() || $showall ){
 
 				v.title = ucfirst(v.title);
 
-
+				
 				var liked_check = get_liked_check_ask(v.conttoken,'asks');
 
 				var answer_link = '';
-
-
+				
+				
 				if(isLoggedIn){
 					answer_link = `<a href="${_taoh_site_url_root}/asks/d/${ask_url}" class="btn theme-btn w-50 mb-3 post_answer" >Answer</a>`;
 				}else{
@@ -1774,16 +1774,16 @@ if ( ! taoh_user_is_logged_in() || $showall ){
 				var img = newavatardisplay(send_avatar,v.avatar_image,'<?php echo TAOH_OPS_PREFIX;?>');
 				slot.append(
 				`<div style="flex: 1; flex-basis: 290px; max-width: 320px;"
-                class="dash_metrics"
-                data-metrics="view"
+                class="dash_metrics" 
+                data-metrics="view" 
                 conttoken="${v.conttoken}" data-type="asks"
-				data-conttoken="${v.conttoken}"
+				data-conttoken="${v.conttoken}"  
 				data-canonical = "${additive}"
 				ask-url="${ask_url}" >
 					<div class="ask-listing-block-row">
-						<div>
+						<div>                           
                             <b onclick="event.stopPropagation();" class="asking-company-name">
-								Posted by, ${display_name}
+								Posted by, ${display_name} 
 								${img}
 							</b>
 							<span class="bookmark-icon-right">${liked_check}</span></div>
@@ -1849,7 +1849,7 @@ if ( ! taoh_user_is_logged_in() || $showall ){
                                     const removePromises = Object.keys(obj_data).map(key => {
                                         return IntaoDB.removeItem(key, index_name);
                                     });
-
+                                    
                                     // Wait for all removeItem calls to complete
                                     Promise.all(removePromises)
                                         .then(() => {
@@ -1886,7 +1886,7 @@ if ( ! taoh_user_is_logged_in() || $showall ){
     function taoh_feed_init () {
 
         let loaderArea = $('#announcementlistloaderArea');
-
+        
         loader(true, loaderArea);
         let listArea = $('#announementlistArea');
 		var data = {
@@ -1905,7 +1905,7 @@ if ( ! taoh_user_is_logged_in() || $showall ){
 			console.log( "Network issue!" );
 		})
   	}
-
+    
     function render_feed_template(data, slot) {
 		slot.empty();
         let token = '<?php echo taoh_get_dummy_token(); ?>';
@@ -1948,7 +1948,7 @@ if ( ! taoh_user_is_logged_in() || $showall ){
                                 </div>`;
             } */
             var img = feedavatardisplay(v.avatar,v.avatar_image,'<?php echo TAOH_OPS_PREFIX;?>');
-
+            
             if(Array.isArray(v.meta.images)){
                 $.each(v.meta.images, function(index, value) {
                     show_files += `<div class="py-2">
@@ -1985,11 +1985,11 @@ if ( ! taoh_user_is_logged_in() || $showall ){
                                     </div></a>`;
             }
             slot.append(`<div class="club-announcement-card" style="border: 1px solid #d3d3d3; border-radius: 6px; background: #fff;">
-
-
+                                
+                                    
                                         <div class="px-3 pb-3 pt-2" style="">
                                             ${edit_btn}
-                                            <div class="row px-3 py-3" style="border-bottom: 1px solid #D3D3D3;">
+                                            <div class="row px-3 py-3" style="border-bottom: 1px solid #D3D3D3;"> 
                                                 <div class="announcement-heading-container col-12 d-flex align-items-center">
                                                     <div class="d-flex align-items-center">
                                                         <span data-profile_token="${v.ptoken}" class="openProfileModal">
@@ -2012,15 +2012,15 @@ if ( ! taoh_user_is_logged_in() || $showall ){
                                                 <section class="gallery_sec py-0">
                                                     <div class="container">
                                                         <div class="d-flex" style="gap: 12px; overflow-x: auto; scrollbar-width: thin;">
-                                                            ${show_files}
+                                                            ${show_files}     
                                                         </div>
                                                     </div>
                                                 </section>
-                                                <div class="py-3 px-3" style="font-size: 16px; line-height: 32px;
+                                                <div class="py-3 px-3" style="font-size: 16px; line-height: 32px; 
                                                 font-weight: 400; color: #555555;">
 
 
-                                                ${taoh_desc_decode(v.description)}
+                                                ${taoh_desc_decode(v.description)}   
                                                 </div>
                                             </div>
                                             <div class="">
@@ -2032,8 +2032,8 @@ if ( ! taoh_user_is_logged_in() || $showall ){
                                             </div>
                                         </div>
                                     </div>
-
-
+                                   
+                              
                             </div>`
                     );
 
@@ -2051,7 +2051,7 @@ if ( ! taoh_user_is_logged_in() || $showall ){
                         scrollContainer.scrollLeft += cardWidth + gap;
                     });
             });
-
+        
 	}
 
     function feedavatardisplay(avatar,img,path){
@@ -2156,7 +2156,7 @@ if ( ! taoh_user_is_logged_in() || $showall ){
                 }
                 if(scroll_btm){
                     const commentsSection = document.getElementById('comments'+com_conttoken);
-                    commentsSection.scrollTop = commentsSection.scrollHeight;
+                    commentsSection.scrollTop = commentsSection.scrollHeight;               
                 }
             },
             error: function(xhr, status, error) {

@@ -23,7 +23,7 @@ if (@$_GET['q']){
               'code'=>$code,
               'type'=>'catlist',
               'qty'=>5,
-
+            
             );
             $taoh_call_type = "get";
             $categories = json_decode( taoh_apicall_get( $taoh_call, $taoh_vals ) );

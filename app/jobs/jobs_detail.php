@@ -28,7 +28,7 @@ $taoh_vals = array(
    // 'cache' => array ( "name" => $cache_name,  "ttl" => 7200),
     'conttoken' => $conttoken,
 	//'cfcc1d'=> 1, //cfcache newly added
-
+    
 );
 //$taoh_vals[ 'cfcache' ] = $cache_name;
 ksort($taoh_vals);
@@ -56,10 +56,13 @@ define( 'TAO_APP_NAME', $current_app );
 // TAO_PAGE_ROBOT
 //echo '<pre>';print_r($response);die();
 define ( 'TAO_PAGE_ROBOT', 'index, follow' );
+define ( 'TAO_PAGE_AUTHOR', isset($response['meta']['company'][0]['title']) ? $response['meta']['company'][0]['title'] : '' );
+define ( 'TAO_PAGE_KEYWORDS', $get_title . ', ' . ($response['meta']['full_location'] ?? '') . ', jobs, careers' );
+define ( 'TAO_PAGE_TYPE', 'article' );
 
 $additive = '';
 /* if(isset($response['meta']['canonical_url']) && $response['meta']['canonical_url'] !=''){
-	$additive = '<link rel="canonical" href="'.$response['meta']['canonical_url'].'"/>
+	$additive = '<link rel="canonical" href="'.$response['meta']['canonical_url'].'"/> 
 	<meta name="original-source" content="'.$response['meta']['canonical_url'].'"/>';
 	define ( 'TAO_PAGE_CANONICAL', $additive );
 }else{
@@ -72,8 +75,8 @@ $additive = '';
 $site_info = $response['user_site_info'] ?? [];
 if(isset($site_info['source']) && $site_info['source'] !='' && TAOH_SITE_URL_ROOT != $site_info['source']){
         $canonical_url = $site_info['source'].'/jobs/d/'.slugify2($get_title).'-'.$conttoken;
-        $additive = '<link rel="canonical" href="'.$canonical_url.'"/>
-        <meta name="original-source" content="'.$canonical_url.'"/>';
+        $additive = '<link rel="canonical" href="'.$canonical_url.'"/> 
+        <meta name="original-source" content="'.$canonical_url.'"/>';   
     }
     define ( 'TAO_PAGE_CANONICAL', $additive );
 
@@ -97,7 +100,7 @@ $taoh_vals = array(
     'slug' => TAO_APP_NAME,
 );
 //echo taoh_apicall_get_debug($taoh_call, $taoh_vals);exit();
-$get_liked = json_decode( taoh_apicall_get($taoh_call, $taoh_vals), true );
+$get_liked = json_decode( taoh_apicall_get($taoh_call, $taoh_vals), true );	
 $liked_arr = '';
 if(isset($get_liked['conttoken_liked'])){
 	$liked_arr = json_encode($get_liked['conttoken_liked']);
@@ -108,19 +111,57 @@ $taoh_home_url = (defined('TAOH_PAGE_URL') && TAOH_PAGE_URL)
         ? TAOH_PAGE_URL
         : (defined('TAOH_SITE_URL_ROOT') ? TAOH_SITE_URL_ROOT : '');
 
+// JSON-LD JobPosting structured data for SEO/AEO
+$job_meta = $response['meta'] ?? [];
+$jsonld_job = array(
+    '@context' => 'https://schema.org',
+    '@type' => 'JobPosting',
+    'title' => $get_title,
+    'description' => strip_tags($meta_desc),
+    'datePosted' => isset($response['created']) ? date('Y-m-d', strtotime($response['created'])) : '',
+    'jobLocation' => array(
+        '@type' => 'Place',
+        'address' => $job_meta['full_location'] ?? '',
+    ),
+    'hiringOrganization' => array(
+        '@type' => 'Organization',
+        'name' => isset($job_meta['company'][0]['title']) ? $job_meta['company'][0]['title'] : '',
+    ),
+);
+if (!empty($job_meta['placeType'])) {
+    $jsonld_job['jobLocationType'] = $job_meta['placeType'];
+}
+if (!empty($job_meta['roletype'])) {
+    $jsonld_job['employmentType'] = strtoupper($job_meta['roletype']);
+}
+if (!empty($job_meta['payinfo']) && !empty($job_meta['paymentTerm'])) {
+    $jsonld_job['baseSalary'] = array(
+        '@type' => 'MonetaryAmount',
+        'value' => $job_meta['payinfo'],
+        'unitText' => strtoupper($job_meta['paymentTerm']),
+    );
+}
+if (!empty($response['expiry'])) {
+    $jsonld_job['validThrough'] = date('Y-m-d', strtotime($response['expiry']));
+}
+if (!empty($apply_link)) {
+    $jsonld_job['url'] = $apply_link;
+}
+$additive .= '<script type="application/ld+json">' . json_encode($jsonld_job, JSON_UNESCAPED_SLASHES | JSON_PRETTY_PRINT) . '</script>';
+
 taoh_get_header( $additive );
 ?>
 <style>
 	.error{
 		color: red;
-	}
+	} 
 </style>
 <section class="jobs-area pt-5x pb-40px">
 	<div class="container">
 		<div class="row">
 			<div class="col-lg-9">
 				<section class="jobs-area pt-10px pb-40px">
-					<?php
+					<?php 
 					$from = 'detail';
 					require_once('common_job_details.php'); ?>
 				</section>
@@ -143,10 +184,10 @@ taoh_get_header( $additive );
 
 			<div class="col-lg-3 mt-3">
 				<div class="sidebar">
-
+				
 					<?php if (function_exists('jobs_networking_widget')) { jobs_networking_widget();  } ?>
 					<?php if (function_exists('taoh_invite_friends_widget')) { taoh_invite_friends_widget($get_title,'jobs');  } ?>
-
+				
 				</div><!-- end sidebar -->
 			</div><!-- end col-lg-3 -->
         </div><!-- end row -->
@@ -186,7 +227,7 @@ taoh_get_header( $additive );
 						</button>
 					</div>
 				</div>
-
+				
 			</div>
 			<!-- Modal body -->
 			<div class="modal-body">
@@ -215,11 +256,11 @@ taoh_get_header( $additive );
 										<div class="row">
 											<div class="col-lg-6  form-group">
 												<label for="fname" class="sub-lable">First Name <span style="color:red;">*</span></label>
-
-												<?php
-
-													if (is_object($taoh_user_vars) && isset($taoh_user_vars->profile_complete)
-													&& $taoh_user_vars->profile_complete == 0
+												
+												<?php 
+													
+													if (is_object($taoh_user_vars) && isset($taoh_user_vars->profile_complete) 
+													&& $taoh_user_vars->profile_complete == 0 
 													&& isset($taoh_user_vars->fname) && $taoh_user_vars->fname == TAOH_SITE_NAME_SLUG) {
 													echo field_fname();
 												} else {
@@ -229,9 +270,9 @@ taoh_get_header( $additive );
 											</div>
 											<div class="col-lg-6  form-group">
 												<label for="lname" class="sub-lable">Last Name <span style="color:red;">*</span></label>
-
-												<?php
-													if(isset($taoh_user_vars->profile_complete)
+												
+												<?php 
+													if(isset($taoh_user_vars->profile_complete) 
 													&& $taoh_user_vars->profile_complete == 0 && isset($taoh_user_vars->fname) && $taoh_user_vars->fname == TAOH_SITE_NAME_SLUG)
 													echo field_lname();
 													else
@@ -253,7 +294,7 @@ taoh_get_header( $additive );
 												<label class="sub-lable">Place of Residence <span style="color:red;">*</span></label>
 												<?php echo field_job_location($taoh_user_vars->coordinates,$taoh_user_vars->full_location, $taoh_user_vars->geohash); ?>
 											</div>
-
+										
 											<div class="col-lg-6 form-group">
 												<label for="company" class="sub-lable">Current Company</label>
 												<?php echo field_company( ( isset( $taoh_user_vars->company ) && $taoh_user_vars->company ) ? $taoh_user_vars->company: '' ); ?>
@@ -270,7 +311,7 @@ taoh_get_header( $additive );
 													<path d="M16.1875 22.1463H11.8125C11.0852 22.1463 10.5 21.5291 10.5 20.7619V11.071H5.70391C4.73047 11.071 4.24375 9.83079 4.93281 9.10398L13.2508 0.324472C13.6609 -0.108157 14.3336 -0.108157 14.7438 0.324472L23.0672 9.10398C23.7562 9.83079 23.2695 11.071 22.2961 11.071H17.5V20.7619C17.5 21.5291 16.9148 22.1463 16.1875 22.1463ZM28 21.6849V28.1455C28 28.9127 27.4148 29.5299 26.6875 29.5299H1.3125C0.585156 29.5299 0 28.9127 0 28.1455V21.6849C0 20.9177 0.585156 20.3004 1.3125 20.3004H8.75V20.7619C8.75 22.5443 10.1227 23.9922 11.8125 23.9922H16.1875C17.8773 23.9922 19.25 22.5443 19.25 20.7619V20.3004H26.6875C27.4148 20.3004 28 20.9177 28 21.6849ZM21.2188 26.761C21.2188 26.1265 20.7266 25.6074 20.125 25.6074C19.5234 25.6074 19.0312 26.1265 19.0312 26.761C19.0312 27.3956 19.5234 27.9147 20.125 27.9147C20.7266 27.9147 21.2188 27.3956 21.2188 26.761ZM24.7188 26.761C24.7188 26.1265 24.2266 25.6074 23.625 25.6074C23.0234 25.6074 22.5312 26.1265 22.5312 26.761C22.5312 27.3956 23.0234 27.9147 23.625 27.9147C24.2266 27.9147 24.7188 27.3956 24.7188 26.761Z" fill="#7A7979"/>
 												</svg>
 												<input type="file" class="form-control py-2"  id="fileToUpload" name="fileToUpload">
-
+												   
 											</div>
 											<div id="responseMessage" style="display: none;"></div>
 											<p id="error1" style="display:none; color:#FF0000;">
@@ -374,10 +415,10 @@ let liked_arr = '<?php echo $liked_arr; ?>';
 	$(document).ready(function(){
 		<?php if(taoh_user_is_logged_in()) { ?>
 			save_metrics('jobs','<?php echo $click_view ?>',conttoken);
-
+			
 		<?php } ?>
-
-
+		
+		
 		var detail_like = get_liked_check(conttoken);
 		$('.like_render').html(detail_like);
 		$('[data-toggle="tooltip"]').tooltip();

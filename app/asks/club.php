@@ -31,13 +31,13 @@ if ( isset( $_GET[ 'key' ] ) && $_GET[ 'key' ] ){
        // 'cache' => array ( "name" => $cache_name,  "ttl" => 7200),
         'conttoken' => $conttoken,
         //'cfcc5h'=> 1, //cfcache newly added
-
+        
     );
     //$taoh_vals[ 'cfcache' ] = $cache_name;
     ksort($taoh_vals);
     $response_json = taoh_apicall_get( $taoh_call, $taoh_vals );
     $ask_arr = json_decode( $response_json, true );
-
+    
     if ( ( ! isset( $ask_arr[ 'success' ] ) || ( isset( $ask_arr[ 'success' ] ) && ! $ask_arr[ 'success' ] ) ) ){
         taoh_redirect( TAOH_SITE_URL_ROOT.'/'.TAOH_SITE_CURRENT_APP_SLUG.'/d/'.$contslug );taoh_exit();
     }
@@ -58,7 +58,7 @@ if ( isset( $room_status_arr[ 'output' ] ) && $room_status_arr[ 'output' ] ){
 
     $owner = taoh_networking_getcell( $keyslug, $ask_arr[ 'ptoken' ] );
     $owner_arr = json_decode( $owner, true );
-    if ( isset( $owner_arr[ 'output' ] ) && $owner_arr[ 'output' ] ){
+    if ( isset( $owner_arr[ 'output' ] ) && $owner_arr[ 'output' ] ){    
         $return[ 'cell_info' ] = $owner_arr[ 'output' ];
     } else {
         $owner_json = taoh_get_user_info( $ask_arr[ 'ptoken' ], 'public' );
@@ -80,7 +80,7 @@ if ( isset( $room_status_arr[ 'output' ] ) && $room_status_arr[ 'output' ] ){
                 'profile_type' => $owner_arr['profile_type'],
                 'site' => $owner_arr['site'],
             ),
-
+    
         );
         $coordinates =  $owner_arr_cell[ 'cell_info' ]['user' ]['coordinates'];
         if($coordinates !=''){
@@ -111,7 +111,7 @@ if ( isset( $room_status_arr[ 'output' ] ) && $room_status_arr[ 'output' ] ){
                                     array(
                                         'slug' => 'employer',
                                         'title' => 'Employer',
-                                    ),
+                                    ),    
                                     array(
                                         'slug' => 'professional',
                                         'title' => 'Professional',
@@ -249,7 +249,7 @@ $temp_arr = $return;
 unset( $return );
 $return[ 'club_info' ] = $temp_arr;
 unset( $temp_arr );
-if ( isset( $value_arr[ 'output' ] ) && $value_arr[ 'output' ] ){
+if ( isset( $value_arr[ 'output' ] ) && $value_arr[ 'output' ] ){    
     $return[ 'cell_info' ] = $value_arr[ 'output' ];
 } else {
     $return[ 'cell_info' ] = array(

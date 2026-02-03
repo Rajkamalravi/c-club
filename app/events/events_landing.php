@@ -1,11 +1,11 @@
-<?php
+<?php 
 
 if ( ! defined ( 'TAO_PAGE_TITLE' ) ) { define ( 'TAO_PAGE_TITLE', "Events - Grow your career at ".TAOH_SITE_NAME_SLUG ); }
 if ( ! defined ( 'TAO_PAGE_DESCRIPTION' ) ) { define ( 'TAO_PAGE_DESCRIPTION', "Discover a variety of career development events at ".TAOH_SITE_NAME_SLUG.". Boost your professional skills and expand your industry knowledge today." ); }
 if ( ! defined ( 'TAO_PAGE_KEYWORDS' ) ) { define ( 'TAO_PAGE_KEYWORDS', 	TAOH_SITE_NAME_SLUG." Career development events, ".TAOH_SITE_NAME_SLUG." Professional skill-building workshops, ".TAOH_SITE_NAME_SLUG." Networking conferences for professionals, ".TAOH_SITE_NAME_SLUG." Career advancement seminars, ".TAOH_SITE_NAME_SLUG." Professional development programs, ".TAOH_SITE_NAME_SLUG." Industry-specific training events, ".TAOH_SITE_NAME_SLUG." Personal branding workshops,".TAOH_SITE_NAME_SLUG." Leadership development conferences, ".TAOH_SITE_NAME_SLUG." Resume writing workshops,".TAOH_SITE_NAME_SLUG." Interview preparation seminars, ".TAOH_SITE_NAME_SLUG." Job search strategies, ".TAOH_SITE_NAME_SLUG." Mentorship programs, ".TAOH_SITE_NAME_SLUG." Job fair events,".TAOH_SITE_NAME_SLUG." Career exploration conferences, ".TAOH_SITE_NAME_SLUG." Personal and professional growth events, ".TAOH_SITE_NAME_SLUG." Professional networking opportunities" ); }
 taoh_get_header();
 
-// Share model
+// Share model 
 $share_link = $_SERVER['REQUEST_SCHEME']."://".$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'];
 $fb_share = "http://www.facebook.com/sharer.php?
 s=100
@@ -31,9 +31,9 @@ $taoh_user_vars = taoh_user_all_info();
     background-color: lightgrey;
     height: 1px;
     margin: 10px;
-}
+}    
 .fixed-bottom{
-		width: 100%;
+		width: 100%;      
         background: white;
         padding: 10px 10px;
         color: black;
@@ -42,7 +42,7 @@ $taoh_user_vars = taoh_user_all_info();
 	.icon-element-sm{
 		font-size : 17px;
 	}
-	.copy-link{
+	.copy-link{		
 		background-color: maroon;
     	padding: 5px;
     	border-radius: 20px;
@@ -169,7 +169,7 @@ $taoh_user_vars = taoh_user_all_info();
             $('#ShareModel').modal('show');
         });
 
-        // copy btn
+        // copy btn 
         $('.copys-btn').click(function(){
             var copyText = document.getElementById("copys-input");
             copyText.style.display = 'block';
@@ -336,7 +336,7 @@ $taoh_user_vars = taoh_user_all_info();
 		}
 		for (let [key, result] of Object.entries(data.output.list)) {
 
-			if (typeof result.company != "undefined") {
+			if (typeof result.company != "undefined") { 
 				for (const [id, name] of Object.entries(result.company)) {
 					var text = name.split(":>");
 					result.company = {"id": id, "slug": text[0], name: text[1]};
@@ -420,15 +420,15 @@ $taoh_user_vars = taoh_user_all_info();
                         </h5>
                         <p>
                             <span style="position: absolute; bottom: 0;"> attendee </span>
-                            <span  style="position: absolute; bottom: -10px; right: 10%;">
-                                <?php
+                            <span  style="position: absolute; bottom: -10px; right: 10%;"> 
+                                <?php 
                                     echo "<button type=\"button\" class=\"btn btn-link\" id=\"share_btn\" data-toggle=\"modal\" data-target=\"#ShareModel\"><i class=\"fa fa-share-square\" style=\"font-size:26px\"></i></button>";
                                  ?>
-
+	
                             </span>
                         </p>
                     </div>
-                </div>
+                </div> 
                 <div class="divider"></div>
                 `);
 		});

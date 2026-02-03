@@ -1,4 +1,4 @@
-<?php
+<?php 
 //taoh_get_header();
 taoh_get_header_iframe();
 //$api = 'https://preapi.tao.ai/users.user.get?mod=taoai&token=hT93oaWC&ops=info&ptoken=oyeuyy9vnx1u';
@@ -18,7 +18,7 @@ $taoh_vals = array(
     //'cache' => array ( "name" => $cache_name,  "ttl" => 7200),
     'ptoken' => $ptoken,
     //'cfcc5h' => 1 //cfcache newly added
-
+    
 );
 //$taoh_vals[ 'cfcache' ] = $cache_name;
 ksort($taoh_vals);
@@ -108,7 +108,7 @@ body{
         <div id="profile-content" style="display:none" class="media media-card p-0 mb-1">
                 <div class="media-body">
                     <div class="media-card p-2 mb-0">
-
+                        
                         <div class="d-flex justify-content-between">
                         <div class="profile">
                             <img width="48" height="48" src="<?php echo TAOH_OPS_PREFIX.'/avatar/PNG/128/'.$data['output']['user']['avatar'].'.png';?>" alt="">
@@ -117,12 +117,12 @@ body{
                                 <span class="text-black mr-3"><?php echo $data['output']['user']['chat_name'];?></span>
                                 <span class="prof-link"><?php echo $data['output']['user']['type'];?></span>
                             </div>
-
+                            
                         </div>
                         <div>
                             <div class="mt-1"><?php echo $data['output']['user']['full_location'];?></div>
                          </div>
-                    </div>
+                    </div>    
                 </div>
             </div>
             <?php if(!empty($about_me)){ ?>

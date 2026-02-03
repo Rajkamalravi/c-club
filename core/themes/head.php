@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en"> 
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
@@ -84,8 +84,6 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@300;400;500;700&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@300;400;700;900&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Baloo+Bhaijaan+2:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link type="text/css" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css" rel="stylesheet">
     <link type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/line-awesome/1.3.0/line-awesome/css/line-awesome.min.css" rel="stylesheet">
     <link type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/line-awesome/1.3.0/font-awesome-line-awesome/css/all.min.css" rel="stylesheet">
@@ -125,7 +123,7 @@
     }
 
     ?>
-
+    
     <script>
         var _taoh_site_url_root = '<?php echo TAOH_SITE_URL_ROOT; ?>';
         var _taoh_site_root_hash = '<?php echo TAOH_SITE_ROOT_HASH ?? ''; ?>';
@@ -147,13 +145,13 @@
         var _taoh_site_name = '<?php echo TAOH_SERVER_NAME; ?>';
         var _taoh_plugin_name = '<?php echo $lastParam; ?>';
 
-
+        
         /* user info */
         var _is_logged_in = <?= json_encode(taoh_user_is_logged_in() ?? false); ?>;
-
+        
         var _is_profile_complete = <?= json_encode((isset(taoh_session_get(TAOH_ROOT_PATH_HASH)['USER_INFO']->profile_complete) && taoh_session_get(TAOH_ROOT_PATH_HASH)['USER_INFO']->profile_complete != 0) ?? false); ?>;
         if (_is_logged_in && _is_profile_complete) {
-
+            
             var _taoh_get_skill = '<?php if(isset($h_session_user_info['skill'])) echo json_encode($h_session_user_info['skill']); ?>';
             var _taoh_get_company = '<?php if(isset($h_session_user_info['company'])) echo json_encode($h_session_user_info['company']); ?>';
             var _taoh_get_title = '<?php if(isset($h_session_user_info['title'])) echo json_encode($h_session_user_info['title']); ?>';
@@ -163,7 +161,7 @@
            // alert(_taoh_get_company)
 
         } else {
-
+            
             var _taoh_get_skill = '<?php echo TAOH_DEFAULT_SKILL; ?>';
             var _taoh_get_company = '<?php echo TAOH_DEFAULT_COMPANY; ?>';
             var _taoh_get_title = '<?php echo TAOH_DEFAULT_TITLE; ?>';
@@ -173,7 +171,7 @@
 
 
         // User state
-        var d_user_logged = _is_logged_in;     // 0 = not logged in, 1 = logged in
+        var d_user_logged = _is_logged_in;     // 0 = not logged in, 1 = logged in                       
         var d_user_profile_completed = _is_profile_complete;         // 0 = incomplete, 1 = complete
         var d_user_profile_type = 'professional';
         if (_is_logged_in && _is_profile_complete) {
@@ -208,7 +206,7 @@
         var VIDEO_POSTED_RECENTLY = 0;
         var CURRENT_CHANNEL_ID = '';
 
-
+        
         //alert(CURRENT_PAGE)
             function OpenRegsiterDropdown(e) {
                 e.preventDefault();
@@ -216,7 +214,7 @@
                 const $btn = $('#choose_ticket');
                 const $menu = $('#ticket_list');
                 $menu.toggleClass('show');
-
+               
             }
     </script>
 
@@ -246,12 +244,12 @@
     <link type="text/css" rel="stylesheet" href="<?php echo TAOH_CDN_PREFIX; ?>/assets/wertual/summernote/summernote-bs4.css">
     <script type="text/javascript" src="<?php echo TAOH_CDN_PREFIX; ?>/assets/wertual/summernote/summernote-bs4.js" referrerpolicy="origin"></script>
     <script type="text/javascript" src="<?php echo TAOH_CDN_JS_PREFIX; ?>/text_editor.js"></script>
-
+    
     <link type="text/css" rel="stylesheet" href="<?php echo TAOH_CDN_CSS_PREFIX; ?>/emojionearea.min.css">
     <script type="text/javascript" src="<?php echo TAOH_CDN_JS_PREFIX; ?>/emojionearea.min.js"></script>
 
 <script type="text/javascript" src="<?php echo TAOH_SITE_URL_ROOT; ?>/assets/js/head-vars.js?v=<?php echo TAOH_CSS_JS_VERSION; ?>"></script>
-
+    
     <script type="text/javascript">
         <?php if(isset($_GET['intao_delete'])){ ?>
                 intao_delete('<?php echo $_GET['intao_delete']; ?>');
@@ -340,9 +338,9 @@
 
 
 <!-- END Toast message -->
- <!--
+ <!-- 
 toast-top-right : top- 10%;
-toast-middle-right: bottom- 17%;
+toast-middle-right: bottom- 17%; 
 toast-bottom-right: bottom-0%;
 toast-middle: center;
  -->

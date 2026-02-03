@@ -1,7 +1,7 @@
 <?php
 //this file not in use - we can delete it
 //if ( isset( $_POST[ 'ptoken' ] ) ){
-
+	
     $taoh_call = 'core.content.post';
     $taoh_call_type = 'POST';
     $taoh_vals = array(
@@ -16,13 +16,13 @@
    // $result = taoh_apicall_post($taoh_call, $taoh_vals);
     $return = json_decode($result, true);
     if (isset($return['success']) && $return['success']) {
-        taoh_set_success_message("Thank you so much for your time to give us feedback. Your involvement is not just valued,
+        taoh_set_success_message("Thank you so much for your time to give us feedback. Your involvement is not just valued, 
 
         It's vital in shaping a future where every worker can thrive in their career journey.");
         taoh_redirect(TAOH_SITE_URL_ROOT);
         taoh_exit();
     }
 
-
+    
 //}
 ?>

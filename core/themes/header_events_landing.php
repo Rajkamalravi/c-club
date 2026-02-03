@@ -1,4 +1,4 @@
-<?php
+<?php  
 // error_reporting(E_ALL);
 // echo 'Header File debug';
 $current_app = TAOH_SITE_CURRENT_APP_SLUG;
@@ -30,13 +30,13 @@ if($conttokenvar != ''){
     if($conttoken){
       $cont = '/conttoken/'.$conttoken;
     }
-
+    
 }
 
 
 $data_api = '';
 if(taoh_user_is_logged_in()){
-  $owner_json = taoh_get_user_info((taoh_session_get(TAOH_ROOT_PATH_HASH)['USER_INFO']->ptoken) ?? $user_ptoken);
+  $owner_json = taoh_get_user_info((taoh_session_get(TAOH_ROOT_PATH_HASH)['USER_INFO']->ptoken) ?? $user_ptoken); 
   // Check if its json and if it is, then json_decode
   if ( is_string( $owner_json ) && is_array( json_decode( $owner_json, true ) ) ) {
     $owner_arrar = json_decode( $owner_json, true );
@@ -54,7 +54,7 @@ if(taoh_user_is_logged_in()){
 $about_url = $taoh_home_url."/about";
 if ( $current_app != TAOH_PLUGIN_PATH_NAME ) $about_url = $taoh_home_url."/".$current_app."/about";
 
-include_once('head.php');
+include_once('head.php');   
 
 $current_app = TAOH_SITE_CURRENT_APP_SLUG;
 
@@ -83,24 +83,24 @@ if($out['success']){
 ?>
 <!-- Navbar -->
 <?php
-  if(taoh_user_is_logged_in() && isset(taoh_session_get(TAOH_ROOT_PATH_HASH)['USER_INFO']->is_super_admin) &&
+  if(taoh_user_is_logged_in() && isset(taoh_session_get(TAOH_ROOT_PATH_HASH)['USER_INFO']->is_super_admin) && 
         taoh_session_get(TAOH_ROOT_PATH_HASH)['USER_INFO']->is_super_admin == 1  ) {
           $super_array = array(
             "token" =>taoh_get_api_token(),
             //'secret'=> TAOH_API_SECRET,
             'email'=>taoh_session_get(TAOH_ROOT_PATH_HASH)['USER_INFO']->email,
-            'domain'=>TAOH_SITE_URL_ROOT
+            'domain'=>TAOH_SITE_URL_ROOT 
           );
-          $super_token = base64_encode(json_encode($super_array));
+          $super_token = base64_encode(json_encode($super_array)); 
 
-
+         
         if(taoh_session_get(TAOH_ROOT_PATH_HASH)['USER_INFO']->site_status == 'init'){ ?>
 <div class="mainerror" style="background-color:#df2100;height:60px;padding:5px;text-align:center;color:#fff;" >
-
+ 
 <img width="50" src="<?php echo TAOH_SITE_URL_ROOT.'/assets/images/admin_setting.png'; ?>"/>
 <span>Let's Get Things in Place! Complete your Setup and Optimize the experience of your Community</span>
   <a target="bank" href="<?php echo TAOH_DASH_PREFIX.'/tao/superadmin/super_admin_form.php'.
-            '?data='.$super_token;?>">&nbsp;&nbsp;
+            '?data='.$super_token;?>">&nbsp;&nbsp; 
             <button class="btn" style="background-color:#fff;font-weight:bold;" id="finish_site" >Finish Setup</button>
   </a>
 </div>
@@ -122,10 +122,10 @@ if($out['success']){
           ?>
         </div>
       </div>
-
+     
     </div>
   </nav>
-
+  
     <div class="body-overlay"></div>
 </header>
 <main class="page-body theme-bg">
@@ -137,13 +137,13 @@ if($out['success']){
       </div>
       <div class="modal-body">
         <div class="main-box">
-          <div class="learn-title"><h3>Jobs</h3></div>
+          <div class="learn-title"><h3>Jobs</h3></div>  
           <div class="row">
           <?php
             if ( TAOH_READS_ENABLE ) {
           ?>
             <div class="col-6">
-              <div class="borders mr-2 mt-2">
+              <div class="borders mr-2 mt-2">  
                 <div class="inline-box">
                   <a href="<?php echo  $taoh_home_url."/learning/job"; ?>"><svg xmlns="http://www.w3.org/2000/svg" version="1.0" width="45pt" height="30pt" viewBox="0 0 512.000000 561.000000" preserveAspectRatio="xMidYMid meet">
 
@@ -161,7 +161,7 @@ if($out['success']){
             </div>
             <?php } ?>
             <div class="col-6">
-              <div class="borders mr-2 mt-2">
+              <div class="borders mr-2 mt-2">  
                 <div class="inline-box">
                     <a href="<?php echo  $taoh_home_url."/learning/flashcard/networking/"; ?>"><svg xmlns="http://www.w3.org/2000/svg" width="45pt" height="30pt" viewBox="0 0 406.273 511.79">
                       <g id="Group_56" data-name="Group 56" transform="translate(-16213.347 -13784.855)">
@@ -192,7 +192,7 @@ if($out['success']){
             if ( TAOH_READS_ENABLE ) {
           ?>
             <div class="col-6">
-              <div class="borders mr-2 mt-2">
+              <div class="borders mr-2 mt-2">  
                 <div class="inline-box">
                   <a href="<?php echo  $taoh_home_url."/learning/work"; ?>"><svg xmlns="http://www.w3.org/2000/svg" version="1.0" width="45pt" height="30pt" viewBox="0 0 517.000000 561.000000" preserveAspectRatio="xMidYMid meet">
 
@@ -210,7 +210,7 @@ if($out['success']){
             </div>
             <?php } ?>
             <div class="col-6">
-              <div class="borders mr-2 mt-2">
+              <div class="borders mr-2 mt-2">  
                 <div class="inline-box">
                   <a href="<?php echo $taoh_home_url."/learning/flashcard/career-development/"; ?>"><svg xmlns="http://www.w3.org/2000/svg" width="45pt" height="30pt" viewBox="0 0 406.273 511.79">
                     <g id="Group_59" data-name="Group 59" transform="translate(-16379.347 -14880.605)">
@@ -240,7 +240,7 @@ if($out['success']){
             if ( TAOH_READS_ENABLE ) {
           ?>
             <div class="col-6">
-              <div class="borders mr-2 mt-2">
+              <div class="borders mr-2 mt-2">  
                 <div class="inline-box">
                   <a href="<?php echo $taoh_home_url."/learning/wellness"; ?>"><svg xmlns="http://www.w3.org/2000/svg" version="1.0" width="45pt" height="30pt" viewBox="0 0 512.000000 533.000000" preserveAspectRatio="xMidYMid meet">
 
@@ -253,12 +253,12 @@ if($out['success']){
                   </g>
                   </svg></a>
                 </div>
-              </div>
+              </div> 
               <div class="mod-title">Reads</div>
             </div>
             <?php } ?>
             <div class="col-6">
-              <div class="borders mr-2 mt-2">
+              <div class="borders mr-2 mt-2">  
                 <div class="inline-box">
                   <a href="<?php echo $taoh_home_url."/learning/flashcard/mindfulness/"; ?>"><svg xmlns="http://www.w3.org/2000/svg" width="45pt" height="30pt" viewBox="0 0 406.273 511.789">
                     <g id="Group_63" data-name="Group 63" transform="translate(-16085.354 -16644.105)">
@@ -291,7 +291,7 @@ if($out['success']){
           <div class="learn-title"><h3>Coach</h3></div>
           <div class="row">
             <div class="col-6">
-              <div class="borders mr-2 mt-2">
+              <div class="borders mr-2 mt-2">  
                 <div class="inline-box">
                   <a href="<?php echo $taoh_home_url."/learning/askobviousbaba"; ?>"><svg version="1.0" xmlns="http://www.w3.org/2000/svg"
                   width="45pt" height="30pt" viewBox="0 0 300.000000 300.000000"
@@ -414,11 +414,11 @@ if($out['success']){
                     </g>
                   </svg></a>
                 </div>
-              </div>
+              </div> 
               <div class="mod-title">Mindfullness Coach</div>
             </div>
             <div class="col-6">
-              <div class="borders mr-2 mt-2">
+              <div class="borders mr-2 mt-2">  
                 <div class="inline-box">
                   <a href="<?php echo $taoh_home_url."/learning/jusask"; ?>"><svg version="1.0" xmlns="http://www.w3.org/2000/svg"
                   width="45pt" height="30pt" viewBox="0 0 256.000000 256.000000"
@@ -485,7 +485,7 @@ if($out['success']){
               <a href="<?php echo TAOH_DASH_URL."?app=reads&from=dash&to=reads/post"; ?>" target="_blank" class="btn btn-outline-primary" style="border-radius: 15px;">Post Blog</a>
             </div>
             <?php }?>
-          </div>
+          </div>    
         </div>
       </div>
       <div class="modal-footer">

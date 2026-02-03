@@ -29,7 +29,17 @@
     }
     unset(taoh_session_get(TAOH_ROOT_PATH_HASH)['USER_INFO']);
     unset($_SESSION[TAOH_ROOT_PATH_HASH]['USER_INFO']);
-    //echo "======aaaaaaaa========".TAOH_ROOT_PATH_HASH.'_'.'taoh_api_token';die('-------------');
+
+    // Clear SSO shared cookies on .unmeta.net domain
+    $sso_cookie_domain = defined('COOKIE_DOMAIN') ? COOKIE_DOMAIN : '.unmeta.net';
+    $sso_clear_opts = ['expires' => time() - 3600, 'path' => '/', 'domain' => $sso_cookie_domain, 'secure' => true, 'httponly' => true, 'samesite' => 'Lax'];
+    setcookie('tao_email', '', $sso_clear_opts);
+    setcookie('tao_user_key', '', $sso_clear_opts);
+    setcookie('tao_logged_in', '', $sso_clear_opts);
+    setcookie('tao_profile_info', '', $sso_clear_opts);
+    setcookie('email', '', $sso_clear_opts);
+    setcookie('user_key', '', $sso_clear_opts);
+    setcookie('login_vars', '', $sso_clear_opts);
 
     taoh_set_success_message('You have successfully logged out!');
 
@@ -55,6 +65,9 @@
     setcookie(TAOH_ROOT_PATH_HASH . '_' . 'referral_data', '', strtotime('-2 days'), '/');
     setcookie(TAOH_ROOT_PATH_HASH . '_' . 'from_referral', '', strtotime('-2 days'), '/');
 
-    taoh_redirect(TAOH_SITE_URL_ROOT);
+    // Redirect browser to werify.ai to clear its cookies, then it redirects back here
+    $sso_base_url = defined('TAOH_SSO_BASE_URL') ? TAOH_SSO_BASE_URL : 'https://login.tao.ai';
+    $return_url = TAOH_SITE_URL_ROOT;
+    taoh_redirect($sso_base_url . '/logout.php?confirm=yes&redirect=' . urlencode($return_url));
     taoh_exit();
 ?>

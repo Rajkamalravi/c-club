@@ -9,7 +9,7 @@ if($_SERVER[ 'SERVER_NAME' ] == 'localhost'){
     $subdomain = '/dash';
 }
 ?>
-<script>
+<script> 
     localStorage.removeItem('isCodeSent');
     localStorage.removeItem('email');
 </script>
@@ -32,7 +32,7 @@ switch( $cmd ){
                 taoh_redirect( $back_url ); taoh_exit();
             }
             else{
-
+                
                 //setcookie( TAOH_ROOT_PATH_HASH.'_taoh_api_token', $_COOKIE[TAOH_ROOT_PATH_HASH.'_temp_api_token'], strtotime( '+1 days' ),'/');
                // $email = $_COOKIE[TAOH_ROOT_PATH_HASH.'_tao_api_email'];
                 call_login_referral_action();
@@ -43,7 +43,7 @@ switch( $cmd ){
     case 'code':
         if(isset($key) && $key != ''){
             $access_code = taoh_parse_url(2);
-
+            
             $app_data = taoh_app_info();
             //$forward_url = TAOH_SITE_URL_ROOT."/login_fwd/home";
             $forward_url = TAOH_SITE_URL_ROOT.'/login';
@@ -61,7 +61,7 @@ switch( $cmd ){
             $return = json_decode( taoh_apicall_get( $taoh_call, $taoh_vals ), true );
 
             //echo "============".$forward_url;
-
+           
             //echo'<pre>';print_r($return);die();
 
             if($return['success'] &&  isset( $return['output'] ) ) {
@@ -69,7 +69,7 @@ switch( $cmd ){
                 if(TAOH_SIMPLE_LOGIN && $return['is_new_user']){
                     setcookie( TAOH_ROOT_PATH_HASH.'_anonymous', 1, strtotime( '+1 days' ),'/');
                 }
-
+                
                 setcookie( TAOH_ROOT_PATH_HASH."_temp_api_token", $return['output'], strtotime( '+1 days' ), '/'  );
 
                 if(
@@ -101,7 +101,7 @@ switch( $cmd ){
                         localStorage.removeItem('email');
                         localStorage.removeItem('isCodeSent');
                         </script>
-                        <?php
+                        <?php 
                         $_SESSION['referral_redirect'] = 'referral_redirect';
                         call_login_referral_action($return['output'],1);
                        // taoh_redirect( TAOH_SITE_URL_ROOT ); taoh_exit();
@@ -109,7 +109,7 @@ switch( $cmd ){
 
                   }
 
-
+                  
                     ?>
                   <script>
                     localStorage.removeItem('email');

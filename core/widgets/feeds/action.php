@@ -21,11 +21,11 @@ if($_POST['action'] == 'save') {
 //add comments
 function add_comments() {
   $error = 0;
-  $success = '';
+  $success = ''; 
   if ( taoh_user_is_logged_in() ){
 
     if( isset($_POST['parentid']) && $_POST['parentid'] != '' ){
-      $_POST['parentid'] = $_POST['parentid'];
+      $_POST['parentid'] = $_POST['parentid'];      
     } else {
       $_POST['parentid'] = 0;
     }
@@ -43,7 +43,7 @@ function add_comments() {
         'conttype' => $_POST['conttype'],
         'cache' => array('remove' => array($_POST['conttype'] . "_comments_" . $_POST['conttoken'])),
     );
-    $url = 'core.content.post';
+    $url = 'core.content.post';  
     //echo taoh_apicall_post_debug($url,  $taoh_vals);die();
     $result = taoh_apicall_post($url,  $taoh_vals);
     echo $result;die;

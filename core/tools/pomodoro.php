@@ -1,10 +1,10 @@
-<?php
-taoh_get_header();
+<?php  
+taoh_get_header(); 
 ?>
 <section class="error-area pb-40px pt-40px position-relative color">
         <div id="container">
             <h1 class="main-text" style="color: #fff;">Pomodoro!</h1>
-            <img src="<?php echo TAOH_OPS_PREFIX."/images/obviousbaba.png"; ?>" class="err-img">
+            <img src="<?php echo TAOH_OPS_PREFIX."/images/obviousbaba.png"; ?>" class="err-img">        
             <div id="timer">
             <div id="time">
                 <span id="minutes">25</span>
@@ -30,9 +30,9 @@ taoh_get_header();
   background : #343A3F;
 }
 
-#timer{
-  color:#f00;
-  font-size:50px;
+#timer{ 
+  color:#f00; 
+  font-size:50px; 
   margin:10px auto;
   border : 5px solid red;
   border-radius:50%;
@@ -61,13 +61,13 @@ taoh_get_header();
   bottom:0;
 }
 
-#buttons button {
-  background:#4da6ff;
-  border:none;
-  color:#fff;
-  cursor:pointer;
-  padding:5px;
-  width:90px;
+#buttons button { 
+  background:#4da6ff; 
+  border:none; 
+  color:#fff; 
+  cursor:pointer; 
+  padding:5px; 
+  width:90px; 
   margin:10px auto;
   font-size:14px;
   height : 50px;
@@ -123,7 +123,7 @@ var pomodoro = {
       this.seconds = secs;
       this.started = started;
       this.fillerIncrement = 200/(this.minutes*60);
-      this.fillerHeight = 0;
+      this.fillerHeight = 0;  
     },
     startWork: function() {
       this.resetVariables(25, 0, true);

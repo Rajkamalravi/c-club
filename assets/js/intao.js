@@ -218,7 +218,7 @@ class IntaoDB {
                 else {
                     //console.log('--------data.values.output--------',data.values.output)
                     if ((data.values.success == true || data.values.success == "true") &&
-                     (data.values.output != null && data.values.output != undefined &&
+                     (data.values.output != null && data.values.output != undefined && 
                         data.values.output != "" && data.values.output != false)) {
 
                         return store.put(data);

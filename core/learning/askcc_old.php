@@ -1,9 +1,9 @@
-<?php
+<?php  
 if ( ! taoh_user_is_logged_in() ) {
     taoh_redirect( '../' );
 }
 
-taoh_get_header();
+taoh_get_header();  
 ?>
 <style>
 #chat1 .form-outline .form-control~.form-notch div {
@@ -80,7 +80,7 @@ color: #39c0ed;
 
 #chat1 .form-outline .form-control~.form-label {
 color: #bfbfbf;
-}
+}    
 </style>
 <section  style="background: #eee" class="blog-area pt-40px pb-80px">
     <div class="container">
@@ -115,7 +115,7 @@ color: #bfbfbf;
                                                 </div><!-- end search-btn-box -->
                                             </div>
 
-
+                                            
                                             <input type="hidden" name="messages" class="messages" value="">
                                     </div>
                                 </div>
@@ -139,12 +139,12 @@ color: #bfbfbf;
         });
 
         $(document).ajaxStop(function () {
-            $(".load").hide();
+            $(".load").hide();       
         });
 
         $(document).ajaxError(function () {
-            $(".load").hide();
-        });
+            $(".load").hide();       
+        }); 
     });
 
     $(".btn").click(function(){
@@ -198,10 +198,10 @@ color: #bfbfbf;
                             </div>
                             <?php echo taoh_get_profile_image(); ?>
                         </div>
-				`);
+				`); 
                 }
 			})
-          $('.ask').val('');
+          $('.ask').val('');  
 		}
 
 	}

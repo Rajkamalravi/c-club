@@ -1,4 +1,4 @@
-<?php
+<?php 
 
 //Asks
 if((!TAOH_LEARNING_ENABLE)){
@@ -8,7 +8,18 @@ if((!TAOH_LEARNING_ENABLE)){
 if ( ! defined ( 'TAO_PAGE_TITLE' ) ) { define ( 'TAO_PAGE_TITLE', "Career Resources at ".TAOH_SITE_NAME_SLUG.": Explore Invaluable Resources and Insights for Professional Development" ); }
 if ( ! defined ( 'TAO_PAGE_DESCRIPTION' ) ) { define ( 'TAO_PAGE_DESCRIPTION', "Discover a wealth of career blogs offering invaluable resources, tips, and insights for your professional development at ".TAOH_SITE_NAME_SLUG.". Stay updated with the latest industry trends, enhance your skills, and gain inspiration from our diverse collection of career-focused articles. Elevate your career journey with our comprehensive learning platform." ); }
 if ( ! defined ( 'TAO_PAGE_KEYWORDS' ) ) { define ( 'TAO_PAGE_KEYWORDS', "Career blogs at ".TAOH_SITE_NAME_SLUG.", Professional development resources at ".TAOH_SITE_NAME_SLUG.", Career insights at ".TAOH_SITE_NAME_SLUG.", Industry trends at ".TAOH_SITE_NAME_SLUG.", Skill enhancement tips at ".TAOH_SITE_NAME_SLUG.", Career inspiration at ".TAOH_SITE_NAME_SLUG.", Career growth articles at ".TAOH_SITE_NAME_SLUG.", Personal branding strategies at ".TAOH_SITE_NAME_SLUG.", Leadership development insights at ".TAOH_SITE_NAME_SLUG.", Job search strategies at ".TAOH_SITE_NAME_SLUG.", Resume writing tips at ".TAOH_SITE_NAME_SLUG.", Interview preparation advice at ".TAOH_SITE_NAME_SLUG.", Networking guidance at ".TAOH_SITE_NAME_SLUG.", Professional growth articles, Career exploration resources at ".TAOH_SITE_NAME_SLUG.", Industry-specific insights at ".TAOH_SITE_NAME_SLUG.", Workplace success tips at ".TAOH_SITE_NAME_SLUG.", Work-life balance strategies at ".TAOH_SITE_NAME_SLUG.", Career transition advice at ".TAOH_SITE_NAME_SLUG.", Continuous learning resources at ".TAOH_SITE_NAME_SLUG ); }
-taoh_get_header();
+if ( ! defined ( 'TAO_PAGE_ROBOT' ) ) { define ( 'TAO_PAGE_ROBOT', 'index, follow' ); }
+
+// JSON-LD CollectionPage structured data for SEO/AEO
+$jsonld_blog_landing = array(
+    '@context' => 'https://schema.org',
+    '@type' => 'CollectionPage',
+    'name' => TAO_PAGE_TITLE,
+    'description' => TAO_PAGE_DESCRIPTION,
+    'url' => TAOH_SITE_URL_ROOT . '/learning/',
+);
+$additive_reads = '<script type="application/ld+json">' . json_encode($jsonld_blog_landing, JSON_UNESCAPED_SLASHES | JSON_PRETTY_PRINT) . '</script>';
+taoh_get_header($additive_reads);
 include 'reads_css.php';
 $reads_type = 'work';
 
@@ -39,12 +50,12 @@ $log_nolog_token = $ptoken;
   }
   }
   .sqs-block-content .sqs-html-content p,  .sqs-block-content .sqs-html-content h1,
-  .sqs-block-content .sqs-html-content h2,  .sqs-block-content .sqs-html-content h3,  .sqs-block-content .sqs-html-content h4,
+  .sqs-block-content .sqs-html-content h2,  .sqs-block-content .sqs-html-content h3,  .sqs-block-content .sqs-html-content h4, 
   .sqs-block-content .sqs-html-content h5,  .sqs-block-content .sqs-html-content h6 {
-    display: -webkit-box;
-    -webkit-box-orient: vertical;
-    overflow: hidden;
-    -webkit-line-clamp: 1;
+    display: -webkit-box;        
+    -webkit-box-orient: vertical; 
+    overflow: hidden;           
+    -webkit-line-clamp: 1;   
   }
 </style>
 <section class="blog-listing gray-dark">
@@ -75,23 +86,23 @@ $log_nolog_token = $ptoken;
                     </a>
                 </div>
             <?php } ?>
-            </div>
+            </div>        
         </div><!-- end hero-content -->
-        <div class="row bg-white">
-            <div class="col-lg-8 m-15px-tb">
+        <div class="row bg-white"> 
+            <div class="col-lg-8 m-15px-tb"> 
                 <div class="mt-3 sticky-top light-dark">
                     <?php taoh_reads_search_widget(); ?>
-                </div>
+                </div>  
                 <div class="">
-                    <?php taoh_all_reads_widget( $get_widget[ 'center1' ], 'center1' ); ?>
-                    <?php taoh_all_reads_widget( $get_widget[ 'center2' ], 'center2' ); ?>
+                    <?php taoh_all_reads_widget( $get_widget[ 'center1' ], 'center1' ); ?> 
+                    <?php taoh_all_reads_widget( $get_widget[ 'center2' ], 'center2' ); ?> 
                     <?php taoh_all_reads_widget( $get_widget[ 'center3' ], 'center3' ); ?>
-                    <div class="blured">
-
+                    <div class="blured"> 
+                        
                         <div>
                             <h4 class="session_title ml-3"><span>LATEST ARTICLES</span></h4>
                             <div id='loaderArea'></div>
-                            <div id="eventArea">Loading ...</div>
+                            <div id="eventArea">Loading ...</div> 
                         </div>
                         <div class="mb-4" id="pagination"></div>
                     </div>
@@ -115,7 +126,7 @@ $log_nolog_token = $ptoken;
                 </div>
                 <!-- <div class="border-bottom">
                     <?php //taoh_all_reads_widget( $get_widget[ 'right2' ], 'right2' ); ?>
-                </div> -->
+                </div> -->           
                 <section id="sticky">
                     <div class="border-bottom">
                         <?php taoh_all_reads_widget( $get_widget[ 'right_ad3' ], 'right_ad3' ); ?>
@@ -149,7 +160,7 @@ $log_nolog_token = $ptoken;
     <?php }else{ ?>
         taoh_blogs_init();
     <?php } ?>
-  });
+  }); 
 
   function getreadslistdata(queryString=''){
     loader(true, loaderArea);
@@ -158,7 +169,7 @@ $log_nolog_token = $ptoken;
             var currpage = currentPage-1;
             var reads_list_hash = queryString+currpage+itemsPerPage;
             reads_list_name = 'reads_'+crc32(reads_list_hash);
-            console.log(reads_list_name);
+            console.log(reads_list_name);     
             const datareadsrequest = db.transaction(store_name).objectStore(store_name).get(reads_list_name); // get main data
             datareadsrequest.onsuccess = ()=> {
                 console.log(datareadsrequest);
@@ -225,7 +236,7 @@ $log_nolog_token = $ptoken;
         'offset': currentPage,
         'limit': itemsPerPage,
 		'filters': queryString,
-
+        
     };console.log(data);
     jQuery.post("<?php echo taoh_site_ajax_url(); ?>", data, function(response) {
         console.log(response);
@@ -296,13 +307,13 @@ function render_blog_template(data, slot) {
                         </div>`;
       }
       console.log('descp ---------- ',v.blurb.description);
-      let Str = decode(v.blurb.description);
+      let Str = decode(v.blurb.description); 
       let decodedStr = decodeURIComponent(Str).replace(/\+/g, ' ');
       console.log('decode descp ---------- ',decodedStr);
 
       slot.append(`
         <div class="td_module_12 mt-3 row align-items-start dash_metrics"
-        data-metrics="view" data-type="reads" conttoken="${v.conttoken}"
+        data-metrics="view" data-type="reads" conttoken="${v.conttoken}" 
         >
 
                         <div class="col-lg-6 mb-2 mb-lg-0">
@@ -341,7 +352,7 @@ function render_blog_template(data, slot) {
         $('#pagination').hide();
   }
   //taoh_metrix_ajax('reads',arr_cont);	 kalpana check
-}
+}                                                                      
 function indx_reads_list(readslistdata){
     var reads_taoh_data = { taoh_data:reads_list_name,values : readslistdata };
     let reads_setting_time = new Date();
@@ -377,7 +388,7 @@ setInterval(function(){
     }
   }
   //Trending Bar End
-
+  
 $('.claimedRight').each(function (f) {
 
     var newstr = $(this).text().substring(0,250)+'....';

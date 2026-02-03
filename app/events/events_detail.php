@@ -1,5 +1,5 @@
 <?php
-include_once $_SERVER['DOCUMENT_ROOT'].'/raj/assets/icons/icons.php';
+include_once TAOH_SITE_PATH_ROOT.'/assets/icons/icons.php';
 $taoh_user_is_logged_in = taoh_user_is_logged_in() ?? false;
 $user_info_obj = $taoh_user_is_logged_in ? taoh_user_all_info() : null;
 $valid_user = $taoh_user_is_logged_in && in_array($user_info_obj?->profile_complete ?? null, [1, '1'], true);
@@ -38,7 +38,7 @@ $ref_param =  taoh_parse_url(3);
 $ref_slug = taoh_parse_url(4);
 
 if($ref_param != '' && $ref_param != 'stlo'){
-    if(!empty($_GET['fbclid']) && !taoh_user_is_logged_in()){
+    if(isset($_GET['fbclid']) && $_GET['fbclid'] != '' && !taoh_user_is_logged_in() ){
         setcookie(TAOH_ROOT_PATH_HASH.'_'.'referral_back_url',getCurrentUrl(), strtotime( '+2 days' ), '/');
         header("Location: " . TAOH_SITE_URL_ROOT . "/login");
         taoh_exit();
@@ -73,7 +73,7 @@ $taoh_vals = [
 $result = taoh_apicall_get('events.event.get', $taoh_vals);
 $response = taoh_get_array($result, true);
 if (!$response['success']) {
-
+    
     taoh_redirect(TAOH_EVENTS_URL);
     exit();
 }
@@ -142,7 +142,7 @@ if (in_array($get_event_meta_info_arr['success'], [true, 'true']) && !empty($get
 
 
 // TAO_PAGE_AUTHOR
-define( 'TAO_PAGE_AUTHOR', 'Event Organizer' );
+define( 'TAO_PAGE_AUTHOR', !empty($events_data['source']) ? $events_data['source'] : 'Event Organizer' );
 // TAO_PAGE_DESCRIPTION
 define( 'TAO_PAGE_DESCRIPTION', $event_short) ;
 
@@ -157,10 +157,10 @@ if ( ! defined ( 'TAO_PAGE_KEYWORDS' ) ) { define ( 'TAO_PAGE_KEYWORDS', TAOH_SI
 $additive = '';
 if(!empty($site_info['source']) && TAOH_SITE_URL_ROOT != $site_info['source']){
     $canonical_url = $site_info['source'].'/'.$app_data->slug.'/d/'.slugify2($event_title)."-".$eventtoken;
-    $additive = '<link rel="canonical" href="'.$canonical_url.'"/>
+    $additive = '<link rel="canonical" href="'.$canonical_url.'"/> 
 	<meta name="original-source" content="'.$canonical_url.'"/>';
-
-
+	
+   
 }
 
 
@@ -172,14 +172,14 @@ $trackingtoken = '';
 
 if($taoh_user_is_logged_in && $ptoken != ''){
     $trackingtoken = hash('sha256',(string)$ptoken);
-
+    
     $share_link =  addPathSegment($share_link,'stlo',$trackingtoken);
 }
 
 $social_token = '';
 if(!empty($ref_param) && $ref_param != 'stlo'){
-    $hashptoken = hash('sha256', (string)$ptoken);
-    if($ptoken !== '' && $hashptoken === (string)$ref_param){
+    $hashptoken =  hash('sha256',(string)$ptoken); 
+    if ( $ptoken !== '' && $hashptoken === (string)$ref_param) {
         $social_token = $ref_param;
     }
 }
@@ -247,12 +247,61 @@ $taoh_vals = [
 $get_liked = taoh_get_array(taoh_apicall_get('system.users.metrics', $taoh_vals));
 $userliked_already = ($get_liked['success'] ?? false) === true ? ($get_liked['output']['userliked'] ?? '0') : '';
 define('TAO_CURRENT_APP_INNER_PAGE', 'events_details');
-taoh_get_header();
+
+// JSON-LD Event structured data for SEO/AEO
+$jsonld_event = array(
+    '@context' => 'https://schema.org',
+    '@type' => 'Event',
+    'name' => $event_title,
+    'description' => $event_description_clean,
+    'image' => $event_image,
+    'url' => $original_link,
+);
+if (!empty($event_arr['utc_start_at'])) {
+    $jsonld_event['startDate'] = date('Y-m-d\TH:i:sP', strtotime($event_arr['utc_start_at']));
+}
+if (!empty($event_arr['utc_end_at'])) {
+    $jsonld_event['endDate'] = date('Y-m-d\TH:i:sP', strtotime($event_arr['utc_end_at']));
+}
+$event_type_val = strtolower($events_data['event_type'] ?? 'virtual');
+if ($event_type_val === 'virtual') {
+    $jsonld_event['eventAttendanceMode'] = 'https://schema.org/OnlineEventAttendanceMode';
+    $jsonld_event['location'] = array(
+        '@type' => 'VirtualLocation',
+        'url' => $original_link,
+    );
+} elseif ($event_type_val === 'in-person') {
+    $jsonld_event['eventAttendanceMode'] = 'https://schema.org/OfflineEventAttendanceMode';
+    if (!empty($events_data['venue'])) {
+        $jsonld_event['location'] = array(
+            '@type' => 'Place',
+            'name' => $events_data['venue'],
+        );
+    }
+} elseif ($event_type_val === 'hybrid') {
+    $jsonld_event['eventAttendanceMode'] = 'https://schema.org/MixedEventAttendanceMode';
+    $locations = array();
+    $locations[] = array('@type' => 'VirtualLocation', 'url' => $original_link);
+    if (!empty($events_data['venue'])) {
+        $locations[] = array('@type' => 'Place', 'name' => $events_data['venue']);
+    }
+    $jsonld_event['location'] = $locations;
+}
+if (!empty($events_data['source'])) {
+    $jsonld_event['organizer'] = array(
+        '@type' => 'Organization',
+        'name' => $events_data['source'],
+        'url' => $events_data['source'],
+    );
+}
+$additive .= '<script type="application/ld+json">' . json_encode($jsonld_event, JSON_UNESCAPED_SLASHES | JSON_PRETTY_PRINT) . '</script>';
+
+taoh_get_header($additive);
 
 require_once TAOH_APP_PATH . '/events/event_health_check.php';
 ?>
-<link rel="stylesheet" href="<?php echo TAOH_SITE_URL_ROOT; ?>/assets/css/events-detail.css?v=<?php echo TAOH_CSS_JS_VERSION; ?>">
-
+<link rel="stylesheet" href="<?php echo TAOH_SITE_URL_ROOT; ?>/assets/events/css/events-detail.css?v=<?php echo TAOH_CSS_JS_VERSION; ?>">
+    
     <input type="hidden" id="share_link" value="<?= $share_link ?>">
     <div class="new-event-detail event-new-flow py-3 py-lg-5 aw aw-logo aw-loader">
 
@@ -260,7 +309,7 @@ require_once TAOH_APP_PATH . '/events/event_health_check.php';
     <!-- new design start -->
 
     <div class="max-w container">
-
+        
            <div id="event_gallery_carousel" class="carousel slide" data-ride="carousel" data-bs-ride="carousel" >
                 <div id="event_banner_container" class="carousel-inner p-0">
 
@@ -281,7 +330,7 @@ require_once TAOH_APP_PATH . '/events/event_health_check.php';
 
                 <div class="action-btns d-flex align-items-center mb-2" style="gap: 8px;">
                     <button class="light-dark-card btn  save-btn events_like" id="event_like_btn">
-
+                        
                     </button>
                     <button class="light-dark-card btn share-btn" data-toggle="modal" data-target="#shareModal">
                         <?= icon('share', '#6C727C', 22) ?>
@@ -290,6 +339,8 @@ require_once TAOH_APP_PATH . '/events/event_health_check.php';
 
              </div>
     </div>
+    
+    <div id="stickySentinel" style="height:1px;margin:0;padding:0;"></div>
     <div class="sticky-top sticky-top-fixed py-3 light-dark px-lg-3 border-bottom" style="z-index: 10;">
         <div class="max-w container" id="event_info_container">
 
@@ -303,10 +354,10 @@ require_once TAOH_APP_PATH . '/events/event_health_check.php';
                     <?= icon('chevron-right', '', 19) ?>
                 </li>
                 <li class="nav-item event_title">
-
-                </li>
+                    
+                </li>                                
             </ul>
-
+            
             <div class="d-flex align-items-start flex-column flex-lg-row" style="gap: 9px;">
                 <div class="flex-grow-1">
                     <h5 class="e-v2-title mb-1 event_title"></h5>
@@ -320,17 +371,17 @@ require_once TAOH_APP_PATH . '/events/event_health_check.php';
                         <p class="e-v2-info" id="event_venue_info"></p>
                     </div>
                 </div>
-
-
-                <div class="flex-shrink-lg-0 ticket-card-div d-flex flex-row flex-wrap flex-lg-column" style="gap: 9px;">
+                
+                
+                <div class="flex-shrink-lg-0 ticket-card-div d-flex flex-row flex-wrap flex-lg-column" style="gap: 9px;">   
 
                 </div>
-
-
+                
+            
             </div>
         </div>
     </div>
-
+    
     <!-- new design end  -->
 
         <div class="max-w container pb-2">
@@ -341,15 +392,15 @@ require_once TAOH_APP_PATH . '/events/event_health_check.php';
 
                         </div>
                     </div>
-
+                    
                     <div class="row flex-lg-nowrap justify-content-between align-items-center px-3" style="flex: 1; gap: 6px;">
                         <h3 class="event-title" id="event_title1"></h3>
                         <div class="d-flex align-items-center mb-2" id="event_header_icons" style="gap: 8px;">
-
-
+                            
+                            
                         </div>
                     </div>
-
+                    
                 </div>
 
 
@@ -365,10 +416,10 @@ require_once TAOH_APP_PATH . '/events/event_health_check.php';
                         <input type="hidden" name="event_country_name" id="event_country_name" value="" >
                         <input type="hidden" name="superorganizer_token" id="superorganizer_token" value="<?= TAOH_SUPER_ORGANIZER_TOKEN; ?>" >
                         <input id="sponsor_type" name="sponsor_type" data-sponsorid="" type="hidden" value=""/>
-                        <input id="rsvp_perpage" name="rsvp_perpage" type="hidden" value="1"/>
-
-
-                        <input type="hidden" name="event_start_at" id="event_start_at" value="">
+                        <input id="rsvp_perpage" name="rsvp_perpage" type="hidden" value="1"/>   
+                        
+                        
+                        <input type="hidden" name="event_start_at" id="event_start_at" value=""> 
                         <input type="hidden" name="event_end_at" id="event_end_at" value="">
                         <input type="hidden" name="event_timezone" id="event_timezone" value="">
                         <input type="hidden" name="event_locality" id="event_locality" value="">
@@ -405,7 +456,7 @@ require_once TAOH_APP_PATH . '/events/event_health_check.php';
                                                         <?= icon('star-solid', '#2557A7', 16) ?>
                                                         <span style="color: #2557A7;">Become a Sponsor</span>
                                                     </a>
-
+                                                    
                                                 </li>
                                             </ul>
                                             <div class="ticket-card-div">
@@ -426,13 +477,13 @@ require_once TAOH_APP_PATH . '/events/event_health_check.php';
                 <div class="col-xl-12">
 
                     <div class="events-hall container pt-3 pb-5 px-0" style="display:block;">
-                        <?php
+                        <?php 
                         $version = TAOH_CSS_JS_VERSION;
                         require_once('events_lobby_hall.php'); ?>
                     </div>
 
                 </div>
-
+                
             </div>
             <div class="row" style="display:none;">
                 <div class="col-lg-4">
@@ -490,7 +541,7 @@ require_once TAOH_APP_PATH . '/events/event_health_check.php';
                 <button class="btn bor-btn" data-dismiss="modal" aria-label="Close">Not Now</button>
             </div>
         </div>
-
+        
         </div>
     </div>
 </div>
@@ -527,7 +578,7 @@ require_once TAOH_APP_PATH . '/events/event_health_check.php';
                 <button class="btn bor-btn" data-dismiss="modal" aria-label="Close">Not Now</button>
             </div>
         </div>
-
+        
         </div>
     </div>
 </div>
@@ -567,7 +618,7 @@ require_once TAOH_APP_PATH . '/events/event_health_check.php';
 
             <p class="sh-text">Share the post on social media, then click the link on the shared post and return here to claim your benefit.</p>
         </div>
-
+        
         </div>
     </div>
 </div>
@@ -607,7 +658,7 @@ if ($show_rsvp_ticket) {
 
     </div>
 
-    <script src="<?= TAOH_SITE_URL_ROOT; ?>/assets/js/event.js?v=<?= TAOH_CSS_JS_VERSION; ?>"></script>
+    <script src="<?= TAOH_SITE_URL_ROOT; ?>/assets/events/js/event.js?v=<?= TAOH_CSS_JS_VERSION; ?>"></script>
     <script type="text/javascript">
         window.eventDetailConfig = {
             // User state
@@ -652,7 +703,7 @@ if ($show_rsvp_ticket) {
             // Dojo suggestions
             dojoSuggestionEnable: <?= json_encode(TAOH_DOJO_SUGGESTION_ENABLE); ?>,
             dojoSuggestionTimeLimit: <?= json_encode((int)(TAOH_DOJO_SUGGESTION_TIMELIMIT ?? 300000)); ?>
-        };
+                };
 
         // Legacy aliases for external scripts (event.js)
         const isLoggedIn = window.eventDetailConfig.isLoggedIn;

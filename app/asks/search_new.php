@@ -1,7 +1,7 @@
 <section style="padding: 0 0 30px;">
 	<div  class="container">
 
-
+		
 		<div class="search-filter-section" style="max-width: 900px; margin: 0 auto">
 			<form id="searchFilter" onsubmit="searchFilter();return false" class="search-form p-0 rounded-0 bg-transparent shadow-none position-relative z-index-1">
 				<div class="form-row justify-content-center">

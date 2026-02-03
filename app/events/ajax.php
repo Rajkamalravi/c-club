@@ -206,7 +206,7 @@ function get_my_rsvp()
         'limit' => $limit,
         'offset' => $offset,
         //'cfcc15m'=> 1 //cfcache newly added
-
+        
     );
     if ($offset && $limit) {
         $taoh_vals['cache'] = array("name" => taoh_p2us($taoh_call) . TAOH_API_SECRET . '_rsvpactive', 'ttl' => 3600);
@@ -1354,7 +1354,7 @@ function get_event_tables(){
     // &ops=list&key=&key_timestamp=0&owner_id=596b0db1b957b4bb6427e178f7d4ba58&data={%22content%22:%22upcoming%22,%22status%22:%22ended%22,%22location%22:%22%22,%22limit%22:15,%22offset%22:0,%22start%22:0,%22owner_id%22:%22596b0db1b957b4bb6427e178f7d4ba58%22}
         $taoh_vals = array(
         'ops' => 'list',
-        'app' => TAOH_TABLE_VERSION.'_'.$eventtoken.'_tables',
+        'app' => TAOH_TABLE_VERSION.'_'.$eventtoken.'_tables',                
         'code' => TAOH_OPS_CODE,
         'key' => '',
         'data' => '{"limit":15,"offset":0}',
@@ -1441,4 +1441,63 @@ function remove_event_organizer_banner()
     } else {
         echo json_encode(['status' => false, 'message' => 'Failed to remove organizer banner.']);
     }
+}
+
+function get_event_conversation_room()
+{
+    $eventtoken = $_POST['eventtoken'] ?? '';
+    if (empty($eventtoken)) {
+        echo json_encode(['success' => false, 'error' => 'missing_eventtoken']);
+        die();
+    }
+    require_once(TAOH_APP_PATH . '/events/NtwAdapterEventsFirebase.php');
+    $user_info_obj = taoh_user_all_info();
+    $eventsNtwAdapter = new NtwAdapterEventsFirebase();
+    $generate_room_slug_response = $eventsNtwAdapter->generateRoomSlug([
+        'country_code' => $user_info_obj->country_code,
+        'country_name' => $user_info_obj->country_name,
+        'local_timezone' => $user_info_obj->local_timezone,
+        'eventtoken' => $eventtoken,
+        'country_locked' => $_POST['country_locked'] ?? 0,
+        'site_url' => TAOH_SITE_URL_ROOT,
+    ]);
+    if (isset($generate_room_slug_response['success']) && in_array($generate_room_slug_response['success'], [true, 'true'])) {
+        $roomslug = $generate_room_slug_response['roomslug'] ?? '';
+        $room_info_response = $eventsNtwAdapter->constructAndCreateRoomInfo($user_info_obj, [
+            'roomslug' => $roomslug,
+            'eventtoken' => $eventtoken
+        ]);
+
+
+        echo json_encode([
+                'success' => true,
+                'roomslug' => $roomslug,
+                'eventtoken' => $eventtoken,
+                'room_info' => $room_info_response
+            ]);
+        die();
+
+        /*if (isset($room_info_response['success']) && in_array($room_info_response['success'], [true, 'true']) && !empty($room_info_response['output'])) {
+            echo json_encode([
+                'success' => true,
+                'roomslug' => $roomslug,
+                'eventtoken' => $eventtoken,
+                'room_info' => $room_info_response['room_data'] ?? $room_info_response['output']
+            ]);
+        } else {
+            echo json_encode([
+                'success' => true,
+                'roomslug' => $roomslug,
+                'eventtoken' => $eventtoken,
+                'room_info' => null,
+                'room_info_error' => $room_info_response['error'] ?? 'construct_room_info_failed'
+            ]);
+        }*/
+    } else {
+        echo json_encode([
+            'success' => false,
+            'error' => $generate_room_slug_response['error'] ?? 'generate_room_slug_failed'
+        ]);
+    }
+    die();
 }

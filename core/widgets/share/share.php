@@ -69,7 +69,7 @@ $share_title_js = $page_title;
 (function(d, s, id) {
     var js, fjs = d.getElementsByTagName(s)[0];
     if (d.getElementById(id)) return;
-    js = d.createElement(s);
+    js = d.createElement(s); 
     js.id = id;
     js.src = "https://connect.facebook.net/en_US/sdk.js";
     fjs.parentNode.insertBefore(js, fjs);
@@ -81,7 +81,7 @@ function sharOnFacebook(url){
         method: 'share',
         href: url,
         quote:description, // Add description for timeline posts
-
+        
     };
     // Open Facebook share dialog
     FB.ui(shareData, function(response) {
@@ -92,22 +92,22 @@ function sharOnFacebook(url){
             alert("Congrats! Discount unlocked 🎉");
         }
 	});
-
+    
 }
 
 $(document).ready(function(){
 	//alert('------2222222-55--')
-	// copy btn
+	// copy btn 
 	//$('.copys-btns').click(function(){
 	$(document).on('click','.copys-btns', function(event) {
 		//alert('----llllllllllllll----ddd-')
 		if($('#social_from').val() == '1'){
-			share_url = $('#share_link').val();
-			//console.log(share_url)
-			$('#copys-input').val(share_url);
+			share_url = $('#share_link').val();	
+			//console.log(share_url)	
+			$('#copys-input').val(share_url);	
 		}
 		var copyText = document.getElementById("copys-input");
-
+		
 		copyText.style.display = 'block';
 		copyText.select();
 		copyText.setSelectionRange(0, 99999)
@@ -122,9 +122,9 @@ $(document).ready(function(){
     $(document).on('click','.share_counts', function(event) {
 		//console.log(event)
         var dataId = $(this).attr("data-click");
-		save_metrics('<?php echo $conttype;?>','share','<?php echo $conttoken; ?>');
+		save_metrics('<?php echo $conttype;?>','share','<?php echo $conttoken; ?>');	
 		//console.log('<?php echo $share_link; ?>')
-
+		
 		if(currentShareLink != ''){
 			share_url = currentShareLink;
 		}else{
@@ -132,7 +132,7 @@ $(document).ready(function(){
 		}
 		if($('#social_from').val() == '1'){
 			share_url = $('#share_link').val();
-
+			
 		}
 		console.log(share_url)
 		if(dataId == 'facebook'){
@@ -152,14 +152,14 @@ $(document).ready(function(){
 			if($('#social_from').val() == '1'){
 				share_title = $('#social_title').val();
 				share_desc = $('#social_desc').val();
-				body = "Check out this event: " +share_title + " - " + share_desc+ " " +share_url;
+				body = "Check out this event: " +share_title + " - " + share_desc+ " " +share_url;	
 			}
 
 			let mailtoLink = `mailto:?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
 
 			window.open(mailtoLink, "_blank"); // Open email client in new tab
 		}
-
+		
 	});
 	function taoh_events_enable_share_discount(share_url, platform){
 		//alert('=========='+currentShareLink)
@@ -168,7 +168,7 @@ $(document).ready(function(){
 		}else{
 			var shareUrl  = share_url; //window.location.href; // event page url
 		}
-
+		
 		//var shareText = encodeURIComponent("Checkout this awesome event!");
 		// Use actual event content instead of generic text
 		var shareText = encodeURIComponent(<?php echo json_encode($share_text_js, JSON_UNESCAPED_UNICODE); ?>);
