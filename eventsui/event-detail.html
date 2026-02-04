@@ -1,0 +1,858 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Global AI Summit 2026 — Event Detail</title>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+<style>
+:root {
+  --primary: #2d86eb;
+  --primary-light: #e8f2fd;
+  --primary-dark: #1a6fd4;
+  --accent: #FFC017;
+  --dark: #1a1a2e;
+  --gray-50: #fafbfc;
+  --gray-100: #f7f8fa;
+  --gray-200: #ebedf0;
+  --gray-300: #d1d5db;
+  --gray-400: #9ca3af;
+  --gray-500: #6b7280;
+  --gray-700: #374151;
+  --gray-900: #111827;
+  --green: #10b981;
+  --red: #ef4444;
+  --orange: #f59e0b;
+  --purple: #8b5cf6;
+  --radius: 12px;
+  --radius-sm: 8px;
+  --shadow: 0 2px 12px rgba(0,0,0,0.08);
+  --shadow-lg: 0 8px 30px rgba(0,0,0,0.12);
+  --transition: .2s ease;
+  --nav-h: 52px;
+}
+* { margin:0; padding:0; box-sizing:border-box; }
+body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background: var(--gray-100); color: var(--gray-700); line-height:1.6; }
+a { color: var(--primary); text-decoration: none; }
+a:hover { text-decoration: underline; }
+
+/* ==================== BACK NAV (highest z) ==================== */
+.back-nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1050;
+  background: rgba(255,255,255,0.97);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border-bottom: 1px solid var(--gray-200);
+  padding: 0 24px;
+  height: var(--nav-h);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.back-link {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--gray-700);
+  cursor: pointer;
+  text-decoration: none;
+}
+.back-link:hover { color: var(--primary); text-decoration: none; }
+.nav-actions { display: flex; gap: 8px; }
+.nav-btn {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  border: 1.5px solid var(--gray-200);
+  background: #fff;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+  color: var(--gray-500);
+  transition: var(--transition);
+}
+.nav-btn:hover { border-color: var(--primary); color: var(--primary); }
+.nav-btn.saved { color: var(--red); border-color: var(--red); }
+
+/* ==================== HERO BANNER ==================== */
+.event-hero {
+  margin-top: var(--nav-h);
+  position: relative;
+  height: 340px;
+  background: linear-gradient(135deg, var(--dark) 0%, #16213e 50%, #0f3460 100%);
+  overflow: hidden;
+}
+.event-hero img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0.35;
+}
+.hero-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(26,26,46,0.95) 0%, rgba(26,26,46,0.4) 50%, transparent 100%);
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: 36px 32px;
+}
+.hero-overlay .status-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 5px 14px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 700;
+  margin-bottom: 12px;
+  width: fit-content;
+}
+.status-upcoming { background: rgba(16,185,129,0.2); color: var(--green); border: 1px solid rgba(16,185,129,0.3); }
+.status-live { background: rgba(239,68,68,0.2); color: var(--red); border: 1px solid rgba(239,68,68,0.3); animation: pulse 1.5s infinite; }
+@keyframes pulse { 0%,100%{opacity:1} 50%{opacity:.6} }
+.hero-overlay h1 { font-size: 28px; font-weight: 800; color: #fff; margin-bottom: 10px; line-height: 1.3; }
+.hero-meta { display: flex; flex-wrap: wrap; gap: 18px; color: rgba(255,255,255,0.7); font-size: 14px; }
+.hero-meta i { color: var(--accent); margin-right: 6px; }
+
+/* ==================== LAYOUT ==================== */
+.detail-layout {
+  max-width: 1100px;
+  margin: 24px auto 0;
+  padding: 0 16px 60px;
+  display: grid;
+  grid-template-columns: 1fr 360px;
+  gap: 24px;
+  position: relative;
+  z-index: 1;
+}
+.detail-main { min-width: 0; }
+.detail-sidebar { min-width: 0; position: relative; }
+
+/* ==================== CARDS / SECTIONS ==================== */
+.section-card {
+  background: #fff;
+  border-radius: var(--radius);
+  border: 1.5px solid var(--gray-200);
+  padding: 24px;
+  margin-bottom: 20px;
+}
+.section-card h2 {
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--gray-900);
+  margin-bottom: 16px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.section-card h2 i { color: var(--primary); font-size: 16px; }
+
+/* ==================== SIDEBAR — MINI STICKY CTA ==================== */
+.sidebar-sticky-cta {
+  position: fixed;
+  top: calc(var(--nav-h) + 16px);
+  right: calc((100vw - 1100px) / 2 + 16px);
+  width: 360px;
+  z-index: 100;
+  background: #fff;
+  border-radius: var(--radius);
+  border: 1.5px solid var(--gray-200);
+  padding: 14px 18px;
+  box-shadow: var(--shadow-lg);
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-8px);
+  pointer-events: none;
+  transition: opacity .2s ease, transform .2s ease, visibility .2s ease;
+}
+.sidebar-sticky-cta.visible {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+  pointer-events: auto;
+}
+@media (max-width: 1132px) {
+  .sidebar-sticky-cta { right: 16px; width: 340px; }
+}
+.sticky-cta-info { flex: 1; min-width: 0; }
+.sticky-cta-info .sticky-cta-price { font-size: 20px; font-weight: 800; color: var(--gray-900); }
+.sticky-cta-info .sticky-cta-ticket { font-size: 12px; color: var(--gray-500); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.sticky-cta-btn {
+  padding: 10px 20px;
+  background: var(--primary);
+  color: #fff;
+  border: none;
+  border-radius: var(--radius-sm);
+  font-size: 13px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: var(--transition);
+  white-space: nowrap;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.sticky-cta-btn:hover { background: var(--primary-dark); }
+
+/* ==================== TICKET CARD (full — scrolls normally) ==================== */
+.ticket-card {
+  background: #fff;
+  border-radius: var(--radius);
+  border: 1.5px solid var(--gray-200);
+  padding: 24px;
+  margin-bottom: 20px;
+}
+.ticket-card .price-row {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+  margin-bottom: 4px;
+}
+.ticket-card .price-main { font-size: 28px; font-weight: 800; color: var(--gray-900); }
+.ticket-card .price-note { font-size: 13px; color: var(--gray-500); }
+.ticket-card .price-free { font-size: 28px; font-weight: 800; color: var(--green); }
+.ticket-card .seats-left { font-size: 13px; color: var(--orange); font-weight: 600; margin-bottom: 16px; display: flex; align-items: center; gap: 5px; }
+.ticket-card .seats-left i { font-size: 11px; }
+
+.ticket-types { margin-bottom: 16px; }
+.ticket-type {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px;
+  border: 1.5px solid var(--gray-200);
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  margin-bottom: 8px;
+  transition: var(--transition);
+}
+.ticket-type:hover { border-color: var(--primary); }
+.ticket-type.selected { border-color: var(--primary); background: var(--primary-light); }
+.ticket-radio {
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  border: 2px solid var(--gray-300);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  transition: var(--transition);
+}
+.ticket-type.selected .ticket-radio { border-color: var(--primary); }
+.ticket-type.selected .ticket-radio::after { content: ''; width: 10px; height: 10px; border-radius: 50%; background: var(--primary); }
+.ticket-info { flex: 1; min-width: 0; }
+.ticket-info .ticket-name { font-size: 14px; font-weight: 600; color: var(--gray-900); }
+.ticket-info .ticket-desc { font-size: 12px; color: var(--gray-500); }
+.ticket-price { font-size: 15px; font-weight: 700; color: var(--gray-900); white-space: nowrap; }
+
+.btn-register {
+  width: 100%;
+  padding: 14px;
+  background: var(--primary);
+  color: #fff;
+  border: none;
+  border-radius: var(--radius);
+  font-size: 16px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: var(--transition);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  margin-bottom: 12px;
+}
+.btn-register:hover { background: var(--primary-dark); transform: translateY(-1px); box-shadow: var(--shadow); }
+
+.ticket-meta {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding-top: 12px;
+  border-top: 1px solid var(--gray-200);
+}
+.ticket-meta-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 13px;
+  color: var(--gray-500);
+}
+.ticket-meta-item i { width: 16px; color: var(--gray-400); font-size: 12px; text-align: center; }
+
+/* ==================== SIDEBAR NORMAL CARDS ==================== */
+.sidebar-card {
+  background: #fff;
+  border-radius: var(--radius);
+  border: 1.5px solid var(--gray-200);
+  padding: 20px;
+  margin-bottom: 20px;
+}
+.sidebar-card h3 { font-size: 14px; font-weight: 700; color: var(--gray-900); margin-bottom: 12px; }
+
+/* ==================== INFO GRID ==================== */
+.info-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 12px;
+  margin-bottom: 20px;
+}
+.info-item {
+  padding: 16px;
+  border-radius: var(--radius-sm);
+  background: var(--gray-50);
+  border: 1px solid var(--gray-200);
+}
+.info-item .info-label { font-size: 11px; font-weight: 700; color: var(--gray-400); text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 4px; }
+.info-item .info-value { font-size: 15px; font-weight: 600; color: var(--gray-900); display: flex; align-items: center; gap: 6px; }
+.info-item .info-value i { color: var(--primary); font-size: 14px; }
+
+/* ==================== DESCRIPTION ==================== */
+.event-description { font-size: 15px; color: var(--gray-700); line-height: 1.75; }
+.event-description p { margin-bottom: 14px; }
+.event-description h3 { font-size: 16px; font-weight: 700; color: var(--gray-900); margin: 20px 0 8px; }
+.event-description ul { padding-left: 20px; margin-bottom: 14px; }
+.event-description li { margin-bottom: 6px; }
+.read-more-toggle {
+  color: var(--primary); font-weight: 600; font-size: 14px; cursor: pointer;
+  display: inline-flex; align-items: center; gap: 4px; border: none; background: none; padding: 0;
+}
+
+/* ==================== AGENDA TIMELINE ==================== */
+.agenda-day-header {
+  font-size: 14px; font-weight: 700; color: var(--gray-900);
+  padding: 10px 0; display: flex; align-items: center; gap: 10px;
+}
+.agenda-day-header .day-badge { background: var(--primary); color: #fff; padding: 3px 10px; border-radius: 6px; font-size: 12px; }
+.timeline { position: relative; padding-left: 28px; margin-bottom: 20px; }
+.timeline::before { content: ''; position: absolute; left: 10px; top: 0; bottom: 0; width: 2px; background: var(--gray-200); }
+.timeline-item { position: relative; margin-bottom: 16px; }
+.timeline-dot { position: absolute; left: -22px; top: 16px; width: 12px; height: 12px; border-radius: 50%; background: var(--primary); border: 3px solid var(--primary-light); z-index: 1; }
+.timeline-time { font-size: 12px; font-weight: 600; color: var(--gray-500); margin-bottom: 4px; }
+.session-card {
+  background: #fff; border: 1.5px solid var(--gray-200); border-radius: var(--radius-sm);
+  padding: 14px; transition: var(--transition);
+}
+.session-card:hover { border-color: var(--primary); box-shadow: var(--shadow); }
+.session-card .hall-tag { display: inline-block; padding: 2px 10px; border-radius: 5px; font-size: 11px; font-weight: 600; margin-bottom: 6px; }
+.hall-blue { background: #dbeafe; color: #1d4ed8; }
+.hall-green { background: #d1fae5; color: #047857; }
+.hall-purple { background: #ede9fe; color: #6d28d9; }
+.session-card h4 { font-size: 14px; font-weight: 600; color: var(--gray-900); margin-bottom: 6px; }
+.session-speaker { display: flex; align-items: center; gap: 8px; font-size: 13px; color: var(--gray-500); }
+.session-speaker .sp-avatar {
+  width: 28px; height: 28px; border-radius: 50%; background: var(--gray-200);
+  display: flex; align-items: center; justify-content: center; font-size: 11px; font-weight: 700; color: var(--gray-500);
+}
+
+/* ==================== SPEAKERS ==================== */
+.speakers-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 14px; }
+.speaker-card {
+  display: flex; gap: 14px; padding: 16px;
+  border: 1.5px solid var(--gray-200); border-radius: var(--radius-sm); transition: var(--transition);
+}
+.speaker-card:hover { border-color: var(--primary); box-shadow: var(--shadow); }
+.speaker-avatar {
+  width: 56px; height: 56px; border-radius: 50%;
+  background: linear-gradient(135deg, var(--primary-light), #d1fae5);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 20px; font-weight: 800; color: var(--primary); flex-shrink: 0;
+}
+.speaker-info h4 { font-size: 14px; font-weight: 700; color: var(--gray-900); margin-bottom: 2px; }
+.speaker-info .speaker-role { font-size: 12px; color: var(--gray-500); margin-bottom: 6px; }
+.speaker-social { display: flex; gap: 8px; }
+.speaker-social a {
+  width: 26px; height: 26px; border-radius: 50%; background: var(--gray-100);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 11px; color: var(--gray-400); transition: var(--transition);
+}
+.speaker-social a:hover { background: var(--primary-light); color: var(--primary); text-decoration: none; }
+
+/* ==================== ORGANIZER ==================== */
+.organizer-row { display: flex; align-items: center; gap: 14px; }
+.org-avatar {
+  width: 48px; height: 48px; border-radius: var(--radius-sm); background: var(--primary-light);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 18px; font-weight: 800; color: var(--primary); flex-shrink: 0;
+}
+.org-info h4 { font-size: 15px; font-weight: 700; color: var(--gray-900); }
+.org-info p { font-size: 13px; color: var(--gray-500); }
+
+/* ==================== TAGS ==================== */
+.tags-list { display: flex; flex-wrap: wrap; gap: 8px; }
+.detail-tag {
+  padding: 6px 14px; border-radius: 20px; font-size: 13px; font-weight: 500;
+  background: var(--gray-100); color: var(--gray-500); border: 1px solid var(--gray-200);
+}
+
+/* ==================== SHARE ==================== */
+.share-buttons { display: flex; gap: 8px; }
+.share-btn {
+  flex: 1; padding: 10px; border-radius: var(--radius-sm);
+  border: 1.5px solid var(--gray-200); background: #fff; cursor: pointer;
+  font-size: 16px; color: var(--gray-500); transition: var(--transition);
+  display: flex; align-items: center; justify-content: center;
+}
+.share-btn:hover { border-color: var(--primary); color: var(--primary); }
+
+/* ==================== ATTENDEES ==================== */
+.attendees-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 12px; }
+.attendees-header h3 { margin-bottom: 0; }
+.attendees-header span { font-size: 12px; color: var(--primary); font-weight: 600; cursor: pointer; }
+.attendee-faces { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 10px; }
+.attendee-face {
+  width: 40px; height: 40px; border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 14px; font-weight: 700;
+}
+.more-text { font-size: 13px; color: var(--gray-500); }
+
+/* ==================== VENUE ==================== */
+.venue-card { overflow: hidden; padding: 0; }
+.venue-map {
+  height: 140px; background: var(--gray-200);
+  display: flex; align-items: center; justify-content: center;
+  color: var(--gray-400); font-size: 32px;
+}
+.venue-info { padding: 16px; }
+.venue-info h4 { font-size: 14px; font-weight: 700; color: var(--gray-900); margin-bottom: 4px; }
+.venue-info p { font-size: 13px; color: var(--gray-500); }
+.venue-info a { font-size: 13px; font-weight: 600; display: inline-flex; align-items: center; gap: 4px; margin-top: 6px; }
+
+/* ==================== MOBILE STICKY CTA ==================== */
+.mobile-cta {
+  display: none;
+  position: fixed;
+  bottom: 0; left: 0; right: 0;
+  z-index: 1040;
+  background: #fff;
+  border-top: 1px solid var(--gray-200);
+  padding: 12px 16px;
+  align-items: center;
+  justify-content: space-between;
+  box-shadow: 0 -4px 20px rgba(0,0,0,0.08);
+}
+.mobile-cta .cta-price { font-size: 18px; font-weight: 800; color: var(--gray-900); }
+.mobile-cta .cta-price .from { font-size: 11px; font-weight: 400; color: var(--gray-400); }
+.mobile-cta .cta-btn {
+  padding: 12px 28px; background: var(--primary); color: #fff; border: none;
+  border-radius: var(--radius-sm); font-size: 15px; font-weight: 700; cursor: pointer;
+}
+
+/* ==================== RESPONSIVE ==================== */
+@media (max-width: 900px) {
+  .detail-layout { grid-template-columns: 1fr; margin-top: 16px; }
+  .detail-sidebar { order: -1; }
+  .sidebar-sticky-cta { display: none !important; }
+  .speakers-grid { grid-template-columns: 1fr; }
+  .info-grid { grid-template-columns: 1fr 1fr; }
+  .mobile-cta { display: flex; }
+  body { padding-bottom: 70px; }
+}
+@media (max-width: 480px) {
+  .event-hero { height: 240px; }
+  .hero-overlay { padding: 20px 16px; }
+  .hero-overlay h1 { font-size: 20px; }
+  .hero-meta { gap: 10px; font-size: 12px; }
+  .section-card { padding: 18px; }
+  .info-grid { grid-template-columns: 1fr; }
+  .back-nav { padding: 0 12px; }
+}
+</style>
+</head>
+<body>
+
+<!-- ============ TOP NAV ============ -->
+<nav class="back-nav">
+  <a class="back-link" href="events-listing.html"><i class="fa-solid fa-arrow-left"></i> All Events</a>
+  <div class="nav-actions">
+    <button class="nav-btn" title="Save" onclick="this.classList.toggle('saved')"><i class="fa-regular fa-bookmark"></i></button>
+    <button class="nav-btn" title="Share" onclick="document.querySelector('.share-card').scrollIntoView({behavior:'smooth'})"><i class="fa-solid fa-share-nodes"></i></button>
+  </div>
+</nav>
+
+<!-- ============ HERO BANNER ============ -->
+<div class="event-hero">
+  <img src="https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=1200&h=500&fit=crop" alt="Global AI Summit 2026">
+  <div class="hero-overlay">
+    <div class="status-badge status-upcoming"><i class="fa-solid fa-circle" style="font-size:6px"></i> Upcoming</div>
+    <h1>Global AI Summit 2026 — The Future of Intelligent Systems</h1>
+    <div class="hero-meta">
+      <span><i class="fa-regular fa-calendar"></i> Feb 15 - 17, 2026</span>
+      <span><i class="fa-solid fa-location-dot"></i> Moscone Center, San Francisco</span>
+      <span><i class="fa-solid fa-user-group"></i> 1,240 attending</span>
+    </div>
+  </div>
+</div>
+
+<!-- ============ LAYOUT ============ -->
+<div class="detail-layout">
+
+  <!-- ===== MAIN CONTENT ===== -->
+  <div class="detail-main">
+
+    <!-- Info Grid -->
+    <div class="section-card">
+      <div class="info-grid">
+        <div class="info-item">
+          <div class="info-label">Date & Time</div>
+          <div class="info-value"><i class="fa-regular fa-calendar"></i> Feb 15 - 17, 2026</div>
+          <div style="font-size:12px;color:var(--gray-500);margin-top:2px;padding-left:22px">9:00 AM — 6:00 PM PST</div>
+        </div>
+        <div class="info-item">
+          <div class="info-label">Format</div>
+          <div class="info-value"><i class="fa-solid fa-location-dot"></i> In-Person</div>
+        </div>
+        <div class="info-item">
+          <div class="info-label">Speakers</div>
+          <div class="info-value"><i class="fa-solid fa-microphone-lines"></i> 32 Speakers</div>
+        </div>
+        <div class="info-item">
+          <div class="info-label">Attendees</div>
+          <div class="info-value"><i class="fa-solid fa-user-group"></i> 1,240 / 2,000</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- About -->
+    <div class="section-card">
+      <h2><i class="fa-solid fa-align-left"></i> About This Event</h2>
+      <div class="event-description" id="eventDesc">
+        <p>Join 2,000+ AI practitioners, researchers, and business leaders at the premier artificial intelligence conference of 2026. Explore the latest breakthroughs in machine learning, natural language processing, computer vision, and responsible AI.</p>
+        <div id="descMore" style="display:none">
+          <h3>What You'll Learn</h3>
+          <ul>
+            <li>State-of-the-art techniques in large language models and foundation models</li>
+            <li>Real-world case studies of AI deployment at scale across industries</li>
+            <li>Hands-on workshops with leading AI frameworks and tools</li>
+            <li>Strategies for responsible AI development and governance</li>
+            <li>Networking opportunities with top AI researchers and engineers</li>
+          </ul>
+          <h3>Who Should Attend</h3>
+          <p>This event is ideal for AI/ML engineers, data scientists, product managers, CTOs, researchers, and anyone interested in the future of intelligent systems. Whether you're building AI-powered products or exploring how AI can transform your organization, this summit has something for you.</p>
+          <h3>Why Attend?</h3>
+          <p>Get exclusive access to pre-release demos, participate in hands-on labs, and connect with peers from companies like Google, Meta, OpenAI, Microsoft, and startups building the next generation of AI applications.</p>
+        </div>
+      </div>
+      <button class="read-more-toggle" onclick="toggleReadMore()"><span id="readMoreLabel">Read more</span> <i class="fa-solid fa-chevron-down" id="readMoreIcon" style="font-size:11px"></i></button>
+    </div>
+
+    <!-- Agenda -->
+    <div class="section-card">
+      <h2><i class="fa-regular fa-calendar-check"></i> Agenda</h2>
+      <div class="agenda-day-header"><span class="day-badge">Day 1</span> February 15, 2026</div>
+      <div class="timeline">
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <div class="timeline-time">9:00 AM — 9:30 AM</div>
+          <div class="session-card">
+            <span class="hall-tag hall-blue">Main Hall</span>
+            <h4>Opening Keynote: The AI Revolution — Where Are We Now?</h4>
+            <div class="session-speaker"><div class="sp-avatar" style="background:#dbeafe;color:#1d4ed8">DS</div><span>Dr. Sarah Chen, Chief AI Officer at TechNova</span></div>
+          </div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <div class="timeline-time">10:00 AM — 11:30 AM</div>
+          <div class="session-card">
+            <span class="hall-tag hall-green">Workshop Hall A</span>
+            <h4>Hands-On: Building Production-Ready LLM Applications</h4>
+            <div class="session-speaker"><div class="sp-avatar" style="background:#d1fae5;color:#047857">AK</div><span>Arjun Kumar, ML Lead at ScaleAI</span></div>
+          </div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <div class="timeline-time">11:30 AM — 12:30 PM</div>
+          <div class="session-card">
+            <span class="hall-tag hall-purple">Track B</span>
+            <h4>Panel: Responsible AI — Ethics, Bias, and Governance</h4>
+            <div class="session-speaker"><div class="sp-avatar" style="background:#ede9fe;color:#6d28d9">MR</div><span>Moderated by Prof. Maya Rao</span></div>
+          </div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <div class="timeline-time">2:00 PM — 3:30 PM</div>
+          <div class="session-card">
+            <span class="hall-tag hall-blue">Main Hall</span>
+            <h4>AI in Healthcare: Transforming Diagnostics and Drug Discovery</h4>
+            <div class="session-speaker"><div class="sp-avatar" style="background:#fce7f3;color:#be185d">LP</div><span>Dr. Lisa Park, Head of AI at MedGenome</span></div>
+          </div>
+        </div>
+      </div>
+      <div class="agenda-day-header"><span class="day-badge">Day 2</span> February 16, 2026</div>
+      <div class="timeline">
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <div class="timeline-time">9:00 AM — 10:30 AM</div>
+          <div class="session-card">
+            <span class="hall-tag hall-green">Workshop Hall A</span>
+            <h4>MLOps at Scale: CI/CD for Machine Learning Pipelines</h4>
+            <div class="session-speaker"><div class="sp-avatar" style="background:#dbeafe;color:#1d4ed8">VT</div><span>Vikram Thakur, Sr. Engineer at Databricks</span></div>
+          </div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <div class="timeline-time">11:00 AM — 12:00 PM</div>
+          <div class="session-card">
+            <span class="hall-tag hall-blue">Main Hall</span>
+            <h4>Fireside Chat: The Future of Multimodal AI</h4>
+            <div class="session-speaker"><div class="sp-avatar" style="background:#fef3c7;color:#d97706">RG</div><span>Rachel Garcia, VP Research at DeepMind</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Speakers -->
+    <div class="section-card">
+      <h2><i class="fa-solid fa-microphone-lines"></i> Featured Speakers</h2>
+      <div class="speakers-grid">
+        <div class="speaker-card">
+          <div class="speaker-avatar">SC</div>
+          <div class="speaker-info"><h4>Dr. Sarah Chen</h4><div class="speaker-role">Chief AI Officer, TechNova</div><div class="speaker-social"><a href="#"><i class="fa-brands fa-linkedin-in"></i></a><a href="#"><i class="fa-brands fa-x-twitter"></i></a></div></div>
+        </div>
+        <div class="speaker-card">
+          <div class="speaker-avatar" style="background:linear-gradient(135deg,#d1fae5,#dbeafe);color:#047857">AK</div>
+          <div class="speaker-info"><h4>Arjun Kumar</h4><div class="speaker-role">ML Lead, ScaleAI</div><div class="speaker-social"><a href="#"><i class="fa-brands fa-linkedin-in"></i></a><a href="#"><i class="fa-brands fa-github"></i></a></div></div>
+        </div>
+        <div class="speaker-card">
+          <div class="speaker-avatar" style="background:linear-gradient(135deg,#ede9fe,#fce7f3);color:#6d28d9">MR</div>
+          <div class="speaker-info"><h4>Prof. Maya Rao</h4><div class="speaker-role">AI Ethics, Stanford University</div><div class="speaker-social"><a href="#"><i class="fa-brands fa-linkedin-in"></i></a><a href="#"><i class="fa-brands fa-x-twitter"></i></a></div></div>
+        </div>
+        <div class="speaker-card">
+          <div class="speaker-avatar" style="background:linear-gradient(135deg,#fef3c7,#fce7f3);color:#d97706">RG</div>
+          <div class="speaker-info"><h4>Rachel Garcia</h4><div class="speaker-role">VP Research, DeepMind</div><div class="speaker-social"><a href="#"><i class="fa-brands fa-linkedin-in"></i></a><a href="#"><i class="fa-brands fa-x-twitter"></i></a></div></div>
+        </div>
+        <div class="speaker-card">
+          <div class="speaker-avatar" style="background:linear-gradient(135deg,#fee2e2,#fef3c7);color:#dc2626">LP</div>
+          <div class="speaker-info"><h4>Dr. Lisa Park</h4><div class="speaker-role">Head of AI, MedGenome</div><div class="speaker-social"><a href="#"><i class="fa-brands fa-linkedin-in"></i></a></div></div>
+        </div>
+        <div class="speaker-card">
+          <div class="speaker-avatar" style="background:linear-gradient(135deg,#dbeafe,#d1fae5);color:#1d4ed8">VT</div>
+          <div class="speaker-info"><h4>Vikram Thakur</h4><div class="speaker-role">Sr. Engineer, Databricks</div><div class="speaker-social"><a href="#"><i class="fa-brands fa-linkedin-in"></i></a><a href="#"><i class="fa-brands fa-github"></i></a></div></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Tags -->
+    <div class="section-card">
+      <h2><i class="fa-solid fa-tags"></i> Tags</h2>
+      <div class="tags-list">
+        <span class="detail-tag">Artificial Intelligence</span>
+        <span class="detail-tag">Machine Learning</span>
+        <span class="detail-tag">Deep Learning</span>
+        <span class="detail-tag">NLP</span>
+        <span class="detail-tag">Computer Vision</span>
+        <span class="detail-tag">LLMs</span>
+        <span class="detail-tag">MLOps</span>
+        <span class="detail-tag">Responsible AI</span>
+      </div>
+    </div>
+
+    <!-- Organizer -->
+    <div class="section-card">
+      <h2><i class="fa-regular fa-building"></i> Organizer</h2>
+      <div class="organizer-row">
+        <div class="org-avatar">TN</div>
+        <div class="org-info"><h4>TechNova Events</h4><p>Premier technology conference organizer with 50+ events worldwide</p></div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- ===== SIDEBAR ===== -->
+  <div class="detail-sidebar">
+
+    <!-- Mini sticky CTA — appears when full ticket card scrolls away -->
+    <div class="sidebar-sticky-cta" id="stickyCtaBar">
+      <div class="sticky-cta-info">
+        <div class="sticky-cta-price" id="stickyPrice">$299</div>
+        <div class="sticky-cta-ticket" id="stickyTicketName">General Admission</div>
+      </div>
+      <button class="sticky-cta-btn" onclick="document.getElementById('ticketCard').scrollIntoView({behavior:'smooth',block:'center'})">
+        <i class="fa-solid fa-ticket"></i> Register
+      </button>
+    </div>
+
+    <!-- Full Ticket Card -->
+    <div class="ticket-card" id="ticketCard">
+      <div class="price-row">
+        <span class="price-main">$299</span>
+        <span class="price-note">starting price</span>
+      </div>
+      <div class="seats-left"><i class="fa-solid fa-fire"></i> 760 seats remaining — filling fast!</div>
+
+      <div class="ticket-types" id="ticketTypes">
+        <div class="ticket-type selected" data-name="General Admission" data-price="$299" onclick="selectTicket(this)">
+          <div class="ticket-radio"></div>
+          <div class="ticket-info"><div class="ticket-name">General Admission</div><div class="ticket-desc">All sessions + lunch</div></div>
+          <div class="ticket-price">$299</div>
+        </div>
+        <div class="ticket-type" data-name="VIP Pass" data-price="$599" onclick="selectTicket(this)">
+          <div class="ticket-radio"></div>
+          <div class="ticket-info"><div class="ticket-name">VIP Pass</div><div class="ticket-desc">Front row + speaker dinner + swag kit</div></div>
+          <div class="ticket-price">$599</div>
+        </div>
+        <div class="ticket-type" data-name="Workshop Only" data-price="$149" onclick="selectTicket(this)">
+          <div class="ticket-radio"></div>
+          <div class="ticket-info"><div class="ticket-name">Workshop Only</div><div class="ticket-desc">Hands-on workshops access</div></div>
+          <div class="ticket-price">$149</div>
+        </div>
+      </div>
+
+      <button class="btn-register"><i class="fa-solid fa-ticket"></i> Register Now</button>
+
+      <div class="ticket-meta">
+        <div class="ticket-meta-item"><i class="fa-solid fa-shield-halved"></i> Secure checkout</div>
+        <div class="ticket-meta-item"><i class="fa-solid fa-rotate-left"></i> Full refund until Feb 1</div>
+        <div class="ticket-meta-item"><i class="fa-solid fa-bolt"></i> Instant confirmation via email</div>
+      </div>
+    </div>
+
+    <!-- Share -->
+    <div class="sidebar-card share-card">
+      <h3>Share This Event</h3>
+      <div class="share-buttons">
+        <button class="share-btn" title="Copy link" onclick="copyLink()"><i class="fa-solid fa-link"></i></button>
+        <button class="share-btn" title="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></button>
+        <button class="share-btn" title="Twitter"><i class="fa-brands fa-x-twitter"></i></button>
+        <button class="share-btn" title="WhatsApp"><i class="fa-brands fa-whatsapp"></i></button>
+        <button class="share-btn" title="Email"><i class="fa-solid fa-envelope"></i></button>
+      </div>
+    </div>
+
+    <!-- Attendees -->
+    <div class="sidebar-card">
+      <div class="attendees-header">
+        <h3>Attendees</h3>
+        <span>View all</span>
+      </div>
+      <div class="attendee-faces">
+        <div class="attendee-face" style="background:#dbeafe;color:#1d4ed8">AK</div>
+        <div class="attendee-face" style="background:#d1fae5;color:#047857">RS</div>
+        <div class="attendee-face" style="background:#fce7f3;color:#be185d">SM</div>
+        <div class="attendee-face" style="background:#fef3c7;color:#d97706">JP</div>
+        <div class="attendee-face" style="background:#ede9fe;color:#6d28d9">NL</div>
+        <div class="attendee-face" style="background:#fee2e2;color:#dc2626">MT</div>
+        <div class="attendee-face" style="background:#d1fae5;color:#047857">KR</div>
+        <div class="attendee-face" style="background:#dbeafe;color:#1d4ed8">PV</div>
+      </div>
+      <div class="more-text">+1,232 others are attending</div>
+    </div>
+
+    <!-- Venue -->
+    <div class="sidebar-card venue-card">
+      <div class="venue-map"><i class="fa-solid fa-map-location-dot"></i></div>
+      <div class="venue-info">
+        <h4>Moscone Center</h4>
+        <p>747 Howard St, San Francisco, CA 94103</p>
+        <a href="#"><i class="fa-solid fa-diamond-turn-right"></i> Get Directions</a>
+      </div>
+    </div>
+
+  </div>
+
+</div>
+
+<!-- ============ MOBILE STICKY CTA ============ -->
+<div class="mobile-cta">
+  <div class="cta-price"><span class="from">From </span>$299</div>
+  <button class="cta-btn" onclick="document.getElementById('ticketCard').scrollIntoView({behavior:'smooth',block:'center'})">Register Now</button>
+</div>
+
+<script>
+(function() {
+  'use strict';
+
+  // ---- Ticket selection (supports any number of types) ----
+  window.selectTicket = function(el) {
+    document.querySelectorAll('.ticket-type').forEach(function(t) { t.classList.remove('selected'); });
+    el.classList.add('selected');
+    // Update sticky CTA with selected ticket info
+    var name = el.getAttribute('data-name') || 'Ticket';
+    var price = el.getAttribute('data-price') || '';
+    document.getElementById('stickyPrice').textContent = price;
+    document.getElementById('stickyTicketName').textContent = name;
+  };
+
+  // ---- Sticky CTA: show when ticket card scrolls out of viewport ----
+  var ticketCard = document.getElementById('ticketCard');
+  var stickyCta = document.getElementById('stickyCtaBar');
+
+  if (ticketCard && stickyCta) {
+    var navH = parseInt(getComputedStyle(document.documentElement).getPropertyValue('--nav-h')) || 52;
+    var lastScrollY = 0;
+    var ticking = false;
+
+    function updateStickyCta() {
+      var rect = ticketCard.getBoundingClientRect();
+      // Show sticky when the bottom of ticket card goes above the nav
+      var shouldShow = rect.bottom < navH + 10;
+      if (shouldShow && !stickyCta.classList.contains('visible')) {
+        stickyCta.classList.add('visible');
+      } else if (!shouldShow && stickyCta.classList.contains('visible')) {
+        stickyCta.classList.remove('visible');
+      }
+      ticking = false;
+    }
+
+    window.addEventListener('scroll', function() {
+      if (!ticking) {
+        window.requestAnimationFrame(updateStickyCta);
+        ticking = true;
+      }
+    }, { passive: true });
+
+    // Initial check
+    updateStickyCta();
+  }
+
+  // ---- Read more toggle ----
+  window.toggleReadMore = function() {
+    var more = document.getElementById('descMore');
+    var label = document.getElementById('readMoreLabel');
+    var icon = document.getElementById('readMoreIcon');
+    if (more.style.display === 'none') {
+      more.style.display = 'block';
+      label.textContent = 'Show less';
+      icon.style.transform = 'rotate(180deg)';
+    } else {
+      more.style.display = 'none';
+      label.textContent = 'Read more';
+      icon.style.transform = '';
+    }
+  };
+
+  // ---- Copy link ----
+  window.copyLink = function() {
+    navigator.clipboard.writeText(window.location.href).then(function() {
+      var btn = document.querySelector('.share-btn[title="Copy link"]');
+      btn.innerHTML = '<i class="fa-solid fa-check"></i>';
+      btn.style.color = 'var(--green)';
+      btn.style.borderColor = 'var(--green)';
+      setTimeout(function() {
+        btn.innerHTML = '<i class="fa-solid fa-link"></i>';
+        btn.style.color = '';
+        btn.style.borderColor = '';
+      }, 2000);
+    });
+  };
+})();
+</script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

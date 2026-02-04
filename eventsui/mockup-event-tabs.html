@@ -1,0 +1,668 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Event Detail Tabs — Design Mockup</title>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+<style>
+  :root {
+    --primary: #2d86eb;
+    --primary-light: #e8f2fd;
+    --accent: #FFC017;
+    --dark: #1a1a2e;
+    --gray-100: #f7f8fa;
+    --gray-200: #ebedf0;
+    --gray-300: #d1d5db;
+    --gray-500: #6b7280;
+    --gray-700: #374151;
+    --green: #10b981;
+    --red: #ef4444;
+    --orange: #f59e0b;
+    --radius: 12px;
+    --shadow: 0 2px 12px rgba(0,0,0,0.08);
+    --shadow-lg: 0 8px 30px rgba(0,0,0,0.12);
+  }
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background: var(--gray-100); color: var(--gray-700); }
+
+  /* --- Device Frame Toggle --- */
+  .device-toggle { position:fixed; top:16px; right:16px; z-index:1000; display:flex; gap:8px; background:#fff; padding:6px; border-radius:10px; box-shadow:var(--shadow-lg); }
+  .device-toggle button { border:none; padding:8px 16px; border-radius:8px; cursor:pointer; font-size:14px; font-weight:600; background:transparent; color:var(--gray-500); transition:.2s; }
+  .device-toggle button.active { background:var(--primary); color:#fff; }
+
+  /* --- Frame --- */
+  .frame { max-width:1100px; margin:60px auto 40px; background:#fff; border-radius:16px; box-shadow:var(--shadow-lg); transition: max-width .4s ease; position:relative; }
+  body.mobile .frame { max-width:390px; }
+
+  /* --- Event Header (full) --- */
+  .event-header-wrap { position:sticky; top:0; z-index:150; }
+  .event-header { background: linear-gradient(135deg, var(--dark) 0%, #16213e 100%); color:#fff; padding:32px 28px 20px; }
+  .event-header-mini { display:none; background: linear-gradient(135deg, var(--dark) 0%, #16213e 100%); color:#fff; padding:10px 28px; box-shadow: 0 4px 20px rgba(0,0,0,0.3); align-items:center; justify-content:space-between; gap:12px; }
+  .event-header-mini h2 { font-size:15px; font-weight:700; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; flex:1; }
+  .event-header-mini .mini-actions { display:flex; gap:8px; flex-shrink:0; }
+  .event-header-wrap.collapsed .event-header { display:none; }
+  .event-header-wrap.collapsed .event-header-mini { display:flex; }
+  body.mobile .event-header-mini h2 { font-size:13px; }
+  body.mobile .event-header-mini .mini-actions .btn { padding:5px 10px; font-size:11px; }
+  .event-header h1 { font-size:22px; font-weight:700; margin-bottom:6px; line-height:1.3; }
+  .event-header .meta { display:flex; flex-wrap:wrap; gap:16px; font-size:13px; color:rgba(255,255,255,.7); margin-top:10px; }
+  .event-header .meta i { margin-right:5px; color:var(--accent); }
+  .event-header .actions { display:flex; gap:10px; margin-top:18px; }
+  .btn { padding:10px 22px; border-radius:8px; border:none; font-weight:600; font-size:14px; cursor:pointer; transition:.2s; display:inline-flex; align-items:center; gap:6px; }
+  .btn-primary { background:var(--primary); color:#fff; }
+  .btn-primary:hover { background:#1a6fd4; }
+  .btn-accent { background:var(--accent); color:var(--dark); }
+  .btn-outline { background:transparent; border:1.5px solid rgba(255,255,255,.3); color:#fff; }
+  .btn-sm { padding:6px 14px; font-size:12px; border-radius:6px; }
+
+  /* --- Tabs --- */
+  .tabs-bar { display:flex; gap:0; border-bottom:2px solid var(--gray-200); background:#fff; position:sticky; top:0; z-index:100; overflow-x:auto; scrollbar-width:none; }
+  .tabs-bar::-webkit-scrollbar { display:none; }
+  .tab-btn { flex-shrink:0; padding:14px 20px; font-size:14px; font-weight:600; color:var(--gray-500); border:none; background:none; cursor:pointer; position:relative; transition:.2s; white-space:nowrap; display:flex; align-items:center; gap:6px; }
+  .tab-btn:hover { color:var(--gray-700); }
+  .tab-btn.active { color:var(--primary); }
+  .tab-btn.active::after { content:''; position:absolute; bottom:-2px; left:0; right:0; height:3px; background:var(--primary); border-radius:3px 3px 0 0; animation: slideIn .25s ease; }
+  @keyframes slideIn { from{transform:scaleX(0)} to{transform:scaleX(1)} }
+  .tab-badge { background:var(--gray-200); color:var(--gray-500); font-size:11px; padding:2px 7px; border-radius:10px; font-weight:700; }
+  .tab-btn.active .tab-badge { background:var(--primary-light); color:var(--primary); }
+
+  /* --- Tab Content --- */
+  .tab-content { display:none; padding:24px; min-height:500px; animation: fadeIn .3s ease; }
+  .tab-content.active { display:block; }
+  @keyframes fadeIn { from{opacity:0;transform:translateY(6px)} to{opacity:1;transform:translateY(0)} }
+
+  /* --- Agenda --- */
+  .agenda-filters { display:flex; gap:10px; margin-bottom:20px; flex-wrap:wrap; align-items:center; }
+  .filter-chip { padding:6px 16px; border-radius:20px; border:1.5px solid var(--gray-300); background:#fff; font-size:13px; cursor:pointer; font-weight:500; transition:.2s; }
+  .filter-chip.active { background:var(--primary); color:#fff; border-color:var(--primary); }
+  .now-indicator { display:inline-flex; align-items:center; gap:5px; background:#fee2e2; color:var(--red); padding:4px 12px; border-radius:20px; font-size:12px; font-weight:600; margin-left:auto; }
+  .now-indicator .dot { width:8px; height:8px; background:var(--red); border-radius:50%; animation:pulse 1.5s infinite; }
+  @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:.3} }
+
+  .timeline { position:relative; padding-left:28px; }
+  .timeline::before { content:''; position:absolute; left:10px; top:0; bottom:0; width:2px; background:var(--gray-200); }
+  .timeline-item { position:relative; margin-bottom:20px; }
+  .timeline-dot { position:absolute; left:-22px; top:18px; width:12px; height:12px; border-radius:50%; background:var(--primary); border:3px solid var(--primary-light); z-index:1; }
+  .timeline-item.live .timeline-dot { background:var(--red); border-color:#fee2e2; animation:pulse 1.5s infinite; }
+  .timeline-time { font-size:12px; font-weight:600; color:var(--gray-500); margin-bottom:6px; display:flex; align-items:center; gap:8px; }
+  .timeline-time .live-badge { background:var(--red); color:#fff; font-size:10px; padding:2px 8px; border-radius:4px; text-transform:uppercase; letter-spacing:.5px; }
+  .session-card { background:#fff; border:1.5px solid var(--gray-200); border-radius:var(--radius); padding:16px; transition:.2s; }
+  .session-card:hover { border-color:var(--primary); box-shadow:var(--shadow); }
+  .session-card .hall-tag { display:inline-block; padding:3px 10px; border-radius:6px; font-size:11px; font-weight:600; margin-bottom:8px; }
+  .hall-blue { background:#dbeafe; color:#1d4ed8; border-left:3px solid #1d4ed8; }
+  .hall-green { background:#d1fae5; color:#047857; border-left:3px solid #047857; }
+  .hall-purple { background:#ede9fe; color:#6d28d9; border-left:3px solid #6d28d9; }
+  .session-card h3 { font-size:15px; font-weight:600; margin-bottom:8px; color:var(--dark); }
+  .session-speaker { display:flex; align-items:center; gap:10px; margin-top:10px; }
+  .session-speaker img { width:32px; height:32px; border-radius:50%; object-fit:cover; }
+  .session-speaker .name { font-size:13px; font-weight:600; color:var(--gray-700); }
+  .session-speaker .role { font-size:11px; color:var(--gray-500); }
+  .session-actions { display:flex; gap:8px; margin-top:12px; }
+  .btn-calendar { background:var(--gray-100); color:var(--gray-700); border:1px solid var(--gray-300); }
+
+  /* --- Description --- */
+  .desc-summary { display:grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap:14px; margin-bottom:24px; }
+  .desc-card { background:var(--gray-100); border-radius:var(--radius); padding:16px; text-align:center; }
+  .desc-card i { font-size:22px; color:var(--primary); margin-bottom:8px; }
+  .desc-card .label { font-size:11px; color:var(--gray-500); text-transform:uppercase; letter-spacing:.5px; font-weight:600; }
+  .desc-card .value { font-size:14px; font-weight:700; color:var(--dark); margin-top:4px; }
+
+  /* Date+Time combined card */
+  .desc-card-datetime { background:var(--primary); border-radius:var(--radius); padding:0; text-align:center; color:#fff; overflow:hidden; grid-column: span 2; }
+  .dt-top { display:flex; align-items:stretch; }
+  .dt-day { background:rgba(255,255,255,.15); padding:14px 18px; display:flex; flex-direction:column; align-items:center; justify-content:center; min-width:80px; }
+  .dt-day .day-num { font-size:28px; font-weight:800; line-height:1; }
+  .dt-day .day-label { font-size:10px; text-transform:uppercase; letter-spacing:1px; opacity:.8; margin-top:2px; }
+  .dt-divider { display:flex; align-items:center; padding:0 10px; font-size:16px; opacity:.5; }
+  .dt-details { padding:12px 18px 12px 0; display:flex; flex-direction:column; justify-content:center; text-align:left; flex:1; }
+  .dt-details .dt-daterange { font-size:14px; font-weight:700; }
+  .dt-details .dt-time { font-size:12px; opacity:.8; margin-top:3px; }
+  body.mobile .desc-card-datetime { grid-column: span 2; }
+  body.mobile .dt-day { min-width:60px; padding:10px 12px; }
+  body.mobile .dt-day .day-num { font-size:22px; }
+  .desc-body { font-size:15px; line-height:1.8; color:var(--gray-700); }
+  .desc-body h3 { font-size:17px; margin:20px 0 8px; color:var(--dark); }
+  .desc-body p { margin-bottom:12px; }
+  .sticky-cta { display:none; }
+  body.mobile .sticky-cta { display:flex; position:fixed; bottom:0; left:0; right:0; background:#fff; padding:12px 20px; box-shadow:0 -4px 20px rgba(0,0,0,0.1); z-index:200; gap:10px; justify-content:center; }
+
+  /* --- Discussions --- */
+  .discussion-empty { text-align:center; padding:60px 20px; }
+  .discussion-empty img, .discussion-empty svg { width:180px; margin-bottom:20px; opacity:.7; }
+  .discussion-empty h3 { font-size:18px; color:var(--dark); margin-bottom:8px; }
+  .discussion-empty p { color:var(--gray-500); font-size:14px; max-width:360px; margin:0 auto 16px; }
+  .countdown-badge { display:inline-flex; align-items:center; gap:8px; background:var(--primary-light); color:var(--primary); padding:8px 18px; border-radius:8px; font-weight:600; font-size:14px; }
+  .thread-list { display:flex; flex-direction:column; gap:12px; }
+  .thread-card { border:1.5px solid var(--gray-200); border-radius:var(--radius); padding:16px; transition:.2s; cursor:pointer; }
+  .thread-card:hover { border-color:var(--primary); background:var(--gray-100); }
+  .thread-card .thread-head { display:flex; align-items:center; gap:10px; margin-bottom:8px; }
+  .thread-card .thread-head img { width:28px; height:28px; border-radius:50%; }
+  .thread-card .thread-title { font-weight:600; font-size:15px; color:var(--dark); }
+  .thread-card .thread-meta { display:flex; gap:16px; font-size:12px; color:var(--gray-500); }
+  .thread-card .pinned { color:var(--orange); font-weight:600; font-size:11px; }
+
+  /* --- Comments --- */
+  .comments-preview { border:1.5px solid var(--gray-200); border-radius:var(--radius); overflow:hidden; }
+  .comment-item { padding:16px; border-bottom:1px solid var(--gray-200); }
+  .comment-item:last-child { border-bottom:none; }
+  .comment-head { display:flex; align-items:center; gap:10px; margin-bottom:8px; }
+  .comment-head img { width:32px; height:32px; border-radius:50%; }
+  .comment-head .cname { font-weight:600; font-size:14px; }
+  .comment-head .ctime { font-size:11px; color:var(--gray-500); }
+  .comment-body { font-size:14px; line-height:1.6; color:var(--gray-700); margin-left:42px; }
+  .comment-reactions { display:flex; gap:12px; margin-left:42px; margin-top:8px; }
+  .reaction-btn { background:var(--gray-100); border:1px solid var(--gray-200); border-radius:20px; padding:3px 10px; font-size:12px; cursor:pointer; display:flex; align-items:center; gap:4px; transition:.2s; }
+  .reaction-btn:hover { background:var(--primary-light); border-color:var(--primary); }
+  .comment-sort { display:flex; gap:8px; margin-bottom:16px; align-items:center; }
+  .comment-sort span { font-size:13px; color:var(--gray-500); font-weight:600; }
+  .login-prompt { background:var(--primary-light); border-radius:var(--radius); padding:20px; text-align:center; margin-top:16px; }
+  .login-prompt p { font-size:14px; color:var(--gray-700); margin-bottom:12px; }
+
+  /* --- Attendees --- */
+  .attendee-toolbar { display:flex; gap:10px; margin-bottom:20px; flex-wrap:wrap; align-items:center; }
+  .search-box { flex:1; min-width:200px; padding:10px 16px 10px 40px; border:1.5px solid var(--gray-300); border-radius:8px; font-size:14px; background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='%236b7280' viewBox='0 0 24 24' width='16'%3E%3Cpath d='M15.5 14h-.79l-.28-.27A6.47 6.47 0 0016 9.5 6.5 6.5 0 109.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z'/%3E%3C/svg%3E") 12px center no-repeat; transition:.2s; }
+  .search-box:focus { outline:none; border-color:var(--primary); box-shadow:0 0 0 3px rgba(45,134,235,.15); }
+  .view-toggle { display:flex; border:1.5px solid var(--gray-300); border-radius:8px; overflow:hidden; }
+  .view-toggle button { border:none; background:#fff; padding:8px 12px; cursor:pointer; color:var(--gray-500); transition:.2s; }
+  .view-toggle button.active { background:var(--primary); color:#fff; }
+
+  .attendee-grid { display:grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap:16px; }
+  body.mobile .attendee-grid { grid-template-columns: 1fr; }
+  .attendee-card { border:1.5px solid var(--gray-200); border-radius:var(--radius); padding:18px; transition:.2s; }
+  .attendee-card:hover { border-color:var(--primary); box-shadow:var(--shadow); }
+  .attendee-top { display:flex; align-items:center; gap:12px; margin-bottom:12px; }
+  .attendee-top img { width:48px; height:48px; border-radius:50%; object-fit:cover; }
+  .attendee-top .aname { font-weight:600; font-size:15px; color:var(--dark); }
+  .attendee-top .arole { font-size:12px; color:var(--gray-500); }
+  .attendee-info { display:flex; flex-wrap:wrap; gap:8px; margin-bottom:12px; }
+  .info-tag { display:inline-flex; align-items:center; gap:4px; font-size:12px; color:var(--gray-500); background:var(--gray-100); padding:4px 10px; border-radius:6px; }
+  .info-tag i { font-size:10px; }
+  .attendee-skills { display:flex; flex-wrap:wrap; gap:4px; margin-bottom:12px; }
+  .skill-tag { background:var(--primary-light); color:var(--primary); font-size:11px; padding:3px 8px; border-radius:4px; font-weight:500; }
+  .attendee-actions { display:flex; gap:8px; }
+
+  .attendee-compact { display:grid; grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); gap:12px; }
+  body.mobile .attendee-compact { grid-template-columns: repeat(2, 1fr); }
+  .compact-card { text-align:center; padding:16px 10px; border:1.5px solid var(--gray-200); border-radius:var(--radius); transition:.2s; cursor:pointer; }
+  .compact-card:hover { border-color:var(--primary); box-shadow:var(--shadow); }
+  .compact-card img { width:52px; height:52px; border-radius:50%; margin-bottom:8px; }
+  .compact-card .cname { font-size:13px; font-weight:600; color:var(--dark); }
+  .compact-card .crole { font-size:11px; color:var(--gray-500); }
+
+  /* --- Speakers --- */
+  .speaker-grid { display:grid; grid-template-columns: repeat(auto-fill, minmax(320px,1fr)); gap:20px; }
+  body.mobile .speaker-grid { grid-template-columns:1fr; }
+  .speaker-card { border:1.5px solid var(--gray-200); border-radius:var(--radius); overflow:hidden; display:flex; transition:.2s; }
+  .speaker-card:hover { border-color:var(--primary); box-shadow:var(--shadow); }
+  .speaker-photo { width:120px; min-height:160px; background:var(--gray-200); flex-shrink:0; position:relative; overflow:hidden; }
+  .speaker-photo img { width:100%; height:100%; object-fit:cover; }
+  body.mobile .speaker-photo { width:90px; min-height:130px; }
+  .speaker-info { padding:16px; flex:1; display:flex; flex-direction:column; }
+  .speaker-info .sname { font-size:16px; font-weight:700; color:var(--dark); margin-bottom:2px; }
+  .speaker-info .stitle { font-size:12px; color:var(--gray-500); margin-bottom:10px; }
+  .speaker-bio { font-size:13px; color:var(--gray-700); line-height:1.6; flex:1; }
+  .speaker-session { background:var(--gray-100); border-radius:8px; padding:10px; margin-top:10px; font-size:12px; }
+  .speaker-session .sess-title { font-weight:600; color:var(--dark); margin-bottom:4px; }
+  .speaker-session .sess-time { color:var(--gray-500); display:flex; align-items:center; gap:4px; }
+  .speaker-social { display:flex; gap:8px; margin-top:10px; }
+  .speaker-social a { width:28px; height:28px; border-radius:50%; background:var(--gray-100); display:flex; align-items:center; justify-content:center; color:var(--gray-500); font-size:12px; text-decoration:none; transition:.2s; }
+  .speaker-social a:hover { background:var(--primary); color:#fff; }
+
+  /* --- Utility --- */
+  .avatar-placeholder { width:100%; height:100%; background: linear-gradient(135deg, var(--primary), #6366f1); display:flex; align-items:center; justify-content:center; color:#fff; font-weight:700; font-size:18px; }
+  .section-head { font-size:13px; font-weight:700; color:var(--gray-500); text-transform:uppercase; letter-spacing:.5px; margin-bottom:14px; }
+
+  /* --- Responsive tweaks --- */
+  body.mobile .event-header h1 { font-size:18px; }
+  body.mobile .event-header .actions { flex-direction:column; }
+  body.mobile .tab-btn { padding:12px 14px; font-size:13px; }
+  body.mobile .tab-content { padding:16px; }
+  body.mobile .desc-summary { grid-template-columns: repeat(2, 1fr); }
+  body.mobile .speaker-card { flex-direction:column; }
+  body.mobile .speaker-photo { width:100%; min-height:160px; }
+</style>
+</head>
+<body>
+
+<!-- Device Toggle -->
+<div class="device-toggle">
+  <button class="active" onclick="setDevice('desktop',this)"><i class="fas fa-desktop"></i> Desktop</button>
+  <button onclick="setDevice('mobile',this)"><i class="fas fa-mobile-alt"></i> Mobile</button>
+</div>
+
+<div class="frame">
+  <!-- Event Header -->
+  <div class="event-header-wrap" id="headerWrap">
+    <div class="event-header">
+      <h1>AI Connect — Job and Career Networking for AI Specialists</h1>
+      <div class="meta">
+        <span><i class="fas fa-calendar"></i> Apr 7 – 8, 2025 · 1:00 PM – 5:00 PM</span>
+        <span><i class="fas fa-video"></i> Virtual Event</span>
+        <span><i class="fas fa-users"></i> 24 Attendees</span>
+      </div>
+      <div class="actions">
+        <button class="btn btn-primary"><i class="fas fa-ticket-alt"></i> Buy Tickets</button>
+        <button class="btn btn-accent"><i class="fas fa-handshake"></i> Become a Sponsor</button>
+        <button class="btn btn-outline"><i class="fas fa-share-alt"></i> Share</button>
+      </div>
+    </div>
+    <div class="event-header-mini">
+      <h2>AI Connect — Job and Career Networking for AI Specialists</h2>
+      <div class="mini-actions">
+        <button class="btn btn-primary btn-sm"><i class="fas fa-ticket-alt"></i> Buy Tickets</button>
+        <button class="btn btn-outline btn-sm"><i class="fas fa-share-alt"></i></button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Tabs -->
+  <div class="tabs-bar" id="tabsBar">
+    <button class="tab-btn active" data-tab="agenda" onclick="switchTab('agenda',this)"><i class="fas fa-stream"></i> Agenda <span class="tab-badge">4</span></button>
+    <button class="tab-btn" data-tab="description" onclick="switchTab('description',this)"><i class="fas fa-info-circle"></i> Description</button>
+    <button class="tab-btn" data-tab="discussions" onclick="switchTab('discussions',this)"><i class="fas fa-comments"></i> Discussions <span class="tab-badge">3</span></button>
+    <button class="tab-btn" data-tab="comments" onclick="switchTab('comments',this)"><i class="fas fa-comment-dots"></i> Comments <span class="tab-badge">8</span></button>
+    <button class="tab-btn" data-tab="attendees" onclick="switchTab('attendees',this)"><i class="fas fa-user-friends"></i> Attendees <span class="tab-badge">24</span></button>
+    <button class="tab-btn" data-tab="speakers" onclick="switchTab('speakers',this)"><i class="fas fa-microphone-alt"></i> Speakers <span class="tab-badge">5</span></button>
+  </div>
+
+  <!-- ====== AGENDA TAB ====== -->
+  <div class="tab-content active" id="tab-agenda">
+    <div class="agenda-filters">
+      <button class="filter-chip active">All Halls</button>
+      <button class="filter-chip">Work Culture Hall</button>
+      <button class="filter-chip">AI Innovation Hall</button>
+      <button class="filter-chip">Career Hall</button>
+      <div class="now-indicator"><span class="dot"></span> Live Now</div>
+    </div>
+
+    <div class="timeline">
+      <!-- Session 1 - Live -->
+      <div class="timeline-item live">
+        <div class="timeline-dot"></div>
+        <div class="timeline-time">1:00 PM – 2:00 PM <span class="live-badge"><i class="fas fa-circle" style="font-size:6px"></i> LIVE</span></div>
+        <div class="session-card">
+          <span class="hall-tag hall-blue">Work Culture Hall</span>
+          <h3>Hiring Challenges in the Era of AI</h3>
+          <p style="font-size:13px;color:var(--gray-500);margin-bottom:8px;">Panel discussion exploring how AI is transforming recruitment and talent acquisition across industries.</p>
+          <div class="session-speaker">
+            <div style="width:32px;height:32px;border-radius:50%;overflow:hidden"><div class="avatar-placeholder">SM</div></div>
+            <div><div class="name">Sarah Mitchell</div><div class="role">VP of Talent, TechCorp</div></div>
+          </div>
+          <div class="session-actions">
+            <button class="btn btn-primary btn-sm"><i class="fas fa-sign-in-alt"></i> Join Now</button>
+            <button class="btn btn-calendar btn-sm"><i class="fas fa-calendar-plus"></i> Add to Calendar</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Session 2 -->
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <div class="timeline-time">2:15 PM – 3:00 PM</div>
+        <div class="session-card">
+          <span class="hall-tag hall-green">AI Innovation Hall</span>
+          <h3>Building Your AI Career Portfolio</h3>
+          <p style="font-size:13px;color:var(--gray-500);margin-bottom:8px;">Workshop on showcasing AI projects effectively to stand out in competitive job markets.</p>
+          <div class="session-speaker">
+            <div style="width:32px;height:32px;border-radius:50%;overflow:hidden"><div class="avatar-placeholder">JL</div></div>
+            <div><div class="name">James Lee</div><div class="role">AI Lead, DataWorks</div></div>
+          </div>
+          <div class="session-actions">
+            <button class="btn btn-outline btn-sm" style="color:var(--gray-700);border-color:var(--gray-300)"><i class="fas fa-bell"></i> Remind Me</button>
+            <button class="btn btn-calendar btn-sm"><i class="fas fa-calendar-plus"></i> Add to Calendar</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Session 3 -->
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <div class="timeline-time">3:15 PM – 4:00 PM</div>
+        <div class="session-card">
+          <span class="hall-tag hall-purple">Career Hall</span>
+          <h3>Networking Strategies for AI Professionals</h3>
+          <div class="session-speaker">
+            <div style="width:32px;height:32px;border-radius:50%;overflow:hidden"><div class="avatar-placeholder">AP</div></div>
+            <div><div class="name">Amara Patel</div><div class="role">Career Coach, FuturePath</div></div>
+          </div>
+          <div class="session-actions">
+            <button class="btn btn-outline btn-sm" style="color:var(--gray-700);border-color:var(--gray-300)"><i class="fas fa-bell"></i> Remind Me</button>
+            <button class="btn btn-calendar btn-sm"><i class="fas fa-calendar-plus"></i> Add to Calendar</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Session 4 -->
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <div class="timeline-time">4:15 PM – 5:00 PM</div>
+        <div class="session-card">
+          <span class="hall-tag hall-blue">Work Culture Hall</span>
+          <h3>Open Networking &amp; Closing Remarks</h3>
+          <div class="session-actions">
+            <button class="btn btn-outline btn-sm" style="color:var(--gray-700);border-color:var(--gray-300)"><i class="fas fa-bell"></i> Remind Me</button>
+            <button class="btn btn-calendar btn-sm"><i class="fas fa-calendar-plus"></i> Add to Calendar</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ====== DESCRIPTION TAB ====== -->
+  <div class="tab-content" id="tab-description">
+    <div class="desc-summary">
+      <div class="desc-card-datetime">
+            <div class="dt-top">
+              <div class="dt-day">
+                <div class="day-num">7</div>
+                <div class="day-label">Mon</div>
+              </div>
+              <div class="dt-divider"><i class="fas fa-arrow-right"></i></div>
+              <div class="dt-day">
+                <div class="day-num">8</div>
+                <div class="day-label">Tue</div>
+              </div>
+              <div class="dt-details">
+                <div class="dt-daterange">April 7 – 8, 2025</div>
+                <div class="dt-time"><i class="fas fa-clock" style="margin-right:4px;"></i> 1:00 PM – 5:00 PM (each day)</div>
+              </div>
+            </div>
+          </div>
+      <div class="desc-card"><i class="fas fa-video"></i><div class="label">Format</div><div class="value">Virtual</div></div>
+      <div class="desc-card"><i class="fas fa-ticket-alt"></i><div class="label">Price</div><div class="value">Free</div></div>
+      <div class="desc-card"><i class="fas fa-users"></i><div class="label">Attendees</div><div class="value">24</div></div>
+      <div class="desc-card"><i class="fas fa-microphone-alt"></i><div class="label">Speakers</div><div class="value">5</div></div>
+    </div>
+    <div class="desc-body">
+      <h3>About This Event</h3>
+      <p>Join us for an exclusive networking event designed specifically for AI specialists looking to advance their careers. Whether you're a machine learning engineer, data scientist, or AI researcher, this event connects you with industry leaders and fellow professionals.</p>
+      <h3>What You'll Learn</h3>
+      <p>Discover the latest hiring trends in AI, learn how to build a standout portfolio, and connect with recruiters from top tech companies. Our expert speakers will share insights on navigating the rapidly evolving AI job market.</p>
+      <h3>Who Should Attend</h3>
+      <p>AI engineers, data scientists, ML researchers, hiring managers, and anyone passionate about building a career in artificial intelligence.</p>
+    </div>
+  </div>
+
+  <!-- ====== DISCUSSIONS TAB ====== -->
+  <div class="tab-content" id="tab-discussions">
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:20px;">
+      <div class="section-head" style="margin:0;">Discussion Threads</div>
+      <button class="btn btn-primary btn-sm"><i class="fas fa-plus"></i> New Thread</button>
+    </div>
+    <div class="thread-list">
+      <div class="thread-card">
+        <span class="pinned"><i class="fas fa-thumbtack"></i> Pinned by organizer</span>
+        <div class="thread-head">
+          <img src="https://i.pravatar.cc/28?img=12" alt="">
+          <div>
+            <div class="thread-title">Welcome! Introduce yourself here</div>
+            <div class="thread-meta"><span><i class="fas fa-comment"></i> 12 replies</span><span><i class="fas fa-arrow-up"></i> 8 upvotes</span><span>2 days ago</span></div>
+          </div>
+        </div>
+      </div>
+      <div class="thread-card">
+        <div class="thread-head">
+          <img src="https://i.pravatar.cc/28?img=5" alt="">
+          <div>
+            <div class="thread-title">Looking for study group partners for MLOps</div>
+            <div class="thread-meta"><span><i class="fas fa-comment"></i> 5 replies</span><span><i class="fas fa-arrow-up"></i> 3 upvotes</span><span>1 day ago</span></div>
+          </div>
+        </div>
+      </div>
+      <div class="thread-card">
+        <div class="thread-head">
+          <img src="https://i.pravatar.cc/28?img=8" alt="">
+          <div>
+            <div class="thread-title">Any recommendations for AI career bootcamps?</div>
+            <div class="thread-meta"><span><i class="fas fa-comment"></i> 7 replies</span><span><i class="fas fa-arrow-up"></i> 5 upvotes</span><span>5 hours ago</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ====== COMMENTS TAB ====== -->
+  <div class="tab-content" id="tab-comments">
+    <div class="comment-sort">
+      <span>Sort by:</span>
+      <button class="filter-chip active">Newest</button>
+      <button class="filter-chip">Most Liked</button>
+      <button class="filter-chip">Organizer</button>
+    </div>
+    <div class="comments-preview">
+      <div class="comment-item">
+        <div class="comment-head">
+          <img src="https://i.pravatar.cc/32?img=3" alt="">
+          <div><span class="cname">David Kim</span><br><span class="ctime">2 hours ago</span></div>
+        </div>
+        <div class="comment-body">Really excited for the hiring challenges panel! This is such a relevant topic right now.</div>
+        <div class="comment-reactions">
+          <button class="reaction-btn">👍 4</button>
+          <button class="reaction-btn">❤️ 2</button>
+          <button class="reaction-btn"><i class="fas fa-reply" style="font-size:10px"></i> Reply</button>
+        </div>
+      </div>
+      <div class="comment-item">
+        <div class="comment-head">
+          <img src="https://i.pravatar.cc/32?img=15" alt="">
+          <div><span class="cname">Nina Fernandez</span><br><span class="ctime">5 hours ago</span></div>
+        </div>
+        <div class="comment-body">Will there be recordings available for those who can't attend live?</div>
+        <div class="comment-reactions">
+          <button class="reaction-btn">👍 7</button>
+          <button class="reaction-btn"><i class="fas fa-reply" style="font-size:10px"></i> Reply</button>
+        </div>
+      </div>
+      <div class="comment-item" style="background:#f0f9ff;">
+        <div class="comment-head">
+          <img src="https://i.pravatar.cc/32?img=20" alt="">
+          <div><span class="cname">Event Organizer</span> <span style="background:var(--accent);color:var(--dark);font-size:10px;padding:2px 6px;border-radius:4px;font-weight:600;">ORGANIZER</span><br><span class="ctime">4 hours ago</span></div>
+        </div>
+        <div class="comment-body">Yes! All sessions will be recorded and shared with registered attendees within 48 hours.</div>
+        <div class="comment-reactions">
+          <button class="reaction-btn">👍 12</button>
+          <button class="reaction-btn">❤️ 3</button>
+          <button class="reaction-btn"><i class="fas fa-reply" style="font-size:10px"></i> Reply</button>
+        </div>
+      </div>
+    </div>
+    <div class="login-prompt">
+      <p><i class="fas fa-lock" style="margin-right:6px;"></i> Log in to join the conversation</p>
+      <button class="btn btn-primary btn-sm"><i class="fas fa-sign-in-alt"></i> Log In to Comment</button>
+    </div>
+  </div>
+
+  <!-- ====== ATTENDEES TAB ====== -->
+  <div class="tab-content" id="tab-attendees">
+    <div class="attendee-toolbar">
+      <input class="search-box" placeholder="Search by name, company, or role..." type="text">
+      <div style="display:flex;gap:6px;flex-wrap:wrap;">
+        <button class="filter-chip active">All</button>
+        <button class="filter-chip">AI/ML</button>
+        <button class="filter-chip">Engineering</button>
+        <button class="filter-chip">Recruiting</button>
+      </div>
+      <div class="view-toggle">
+        <button class="active" onclick="showView('detailed',this)" title="Detailed"><i class="fas fa-th-list"></i></button>
+        <button onclick="showView('compact',this)" title="Compact"><i class="fas fa-th"></i></button>
+      </div>
+    </div>
+
+    <!-- Detailed View -->
+    <div class="attendee-grid" id="view-detailed">
+      <div class="attendee-card">
+        <div class="attendee-top">
+          <img src="https://i.pravatar.cc/48?img=1" alt="">
+          <div><div class="aname">Alex Rivera</div><div class="arole">ML Engineer · TechNova</div></div>
+        </div>
+        <div class="attendee-info">
+          <span class="info-tag"><i class="fas fa-map-marker-alt"></i> San Francisco, CA</span>
+          <span class="info-tag"><i class="fas fa-building"></i> TechNova Inc.</span>
+        </div>
+        <div class="attendee-skills">
+          <span class="skill-tag">PyTorch</span><span class="skill-tag">NLP</span><span class="skill-tag">MLOps</span>
+        </div>
+        <div class="attendee-actions">
+          <button class="btn btn-primary btn-sm"><i class="fas fa-comment"></i> Chat</button>
+          <button class="btn btn-sm" style="background:var(--gray-100);color:var(--gray-700);"><i class="fas fa-user-plus"></i> Follow</button>
+        </div>
+      </div>
+      <div class="attendee-card">
+        <div class="attendee-top">
+          <img src="https://i.pravatar.cc/48?img=9" alt="">
+          <div><div class="aname">Priya Sharma</div><div class="arole">Data Scientist · AnalyticsPro</div></div>
+        </div>
+        <div class="attendee-info">
+          <span class="info-tag"><i class="fas fa-map-marker-alt"></i> Mumbai, India</span>
+          <span class="info-tag"><i class="fas fa-building"></i> AnalyticsPro</span>
+        </div>
+        <div class="attendee-skills">
+          <span class="skill-tag">TensorFlow</span><span class="skill-tag">Computer Vision</span>
+        </div>
+        <div class="attendee-actions">
+          <button class="btn btn-primary btn-sm"><i class="fas fa-comment"></i> Chat</button>
+          <button class="btn btn-sm" style="background:var(--gray-100);color:var(--gray-700);"><i class="fas fa-user-plus"></i> Follow</button>
+        </div>
+      </div>
+      <div class="attendee-card">
+        <div class="attendee-top">
+          <img src="https://i.pravatar.cc/48?img=14" alt="">
+          <div><div class="aname">Marcus Chen</div><div class="arole">AI Recruiter · HireAI</div></div>
+        </div>
+        <div class="attendee-info">
+          <span class="info-tag"><i class="fas fa-map-marker-alt"></i> New York, NY</span>
+          <span class="info-tag"><i class="fas fa-building"></i> HireAI</span>
+        </div>
+        <div class="attendee-skills">
+          <span class="skill-tag">Talent Acquisition</span><span class="skill-tag">AI Hiring</span>
+        </div>
+        <div class="attendee-actions">
+          <button class="btn btn-primary btn-sm"><i class="fas fa-comment"></i> Chat</button>
+          <button class="btn btn-sm" style="background:var(--gray-100);color:var(--gray-700);"><i class="fas fa-user-plus"></i> Follow</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Compact View (hidden by default) -->
+    <div class="attendee-compact" id="view-compact" style="display:none;">
+      <div class="compact-card"><img src="https://i.pravatar.cc/52?img=1"><div class="cname">Alex Rivera</div><div class="crole">ML Engineer</div></div>
+      <div class="compact-card"><img src="https://i.pravatar.cc/52?img=9"><div class="cname">Priya Sharma</div><div class="crole">Data Scientist</div></div>
+      <div class="compact-card"><img src="https://i.pravatar.cc/52?img=14"><div class="cname">Marcus Chen</div><div class="crole">AI Recruiter</div></div>
+      <div class="compact-card"><img src="https://i.pravatar.cc/52?img=22"><div class="cname">Yuki Tanaka</div><div class="crole">Research Scientist</div></div>
+      <div class="compact-card"><img src="https://i.pravatar.cc/52?img=30"><div class="cname">Emma Wilson</div><div class="crole">AI Product Manager</div></div>
+      <div class="compact-card"><img src="https://i.pravatar.cc/52?img=33"><div class="cname">Omar Hassan</div><div class="crole">Deep Learning Eng.</div></div>
+    </div>
+  </div>
+
+  <!-- ====== SPEAKERS TAB ====== -->
+  <div class="tab-content" id="tab-speakers">
+    <div class="agenda-filters" style="margin-bottom:20px;">
+      <input class="search-box" placeholder="Search speakers..." type="text" style="max-width:300px;">
+      <button class="filter-chip active">All</button>
+      <button class="filter-chip">Work Culture Hall</button>
+      <button class="filter-chip">AI Innovation Hall</button>
+    </div>
+
+    <div class="speaker-grid">
+      <div class="speaker-card">
+        <div class="speaker-photo"><div class="avatar-placeholder" style="font-size:28px;">SM</div></div>
+        <div class="speaker-info">
+          <div class="sname">Sarah Mitchell</div>
+          <div class="stitle">VP of Talent Acquisition · TechCorp</div>
+          <div class="speaker-bio">Leading talent strategy for a Fortune 500 tech company with expertise in AI-driven recruitment processes and building diverse engineering teams across global offices.</div>
+          <div class="speaker-session">
+            <div class="sess-title">Hiring Challenges in the Era of AI</div>
+            <div class="sess-time"><i class="fas fa-clock"></i> 1:00 PM – 2:00 PM · Work Culture Hall</div>
+          </div>
+          <div class="speaker-social">
+            <a href="#"><i class="fab fa-linkedin-in"></i></a>
+            <a href="#"><i class="fab fa-twitter"></i></a>
+          </div>
+        </div>
+      </div>
+
+      <div class="speaker-card">
+        <div class="speaker-photo"><div class="avatar-placeholder" style="font-size:28px;">JL</div></div>
+        <div class="speaker-info">
+          <div class="sname">James Lee</div>
+          <div class="stitle">AI Lead · DataWorks</div>
+          <div class="speaker-bio">Published researcher in applied ML with 10+ years in industry, passionate about mentoring the next generation of AI engineers and building open-source tools.</div>
+          <div class="speaker-session">
+            <div class="sess-title">Building Your AI Career Portfolio</div>
+            <div class="sess-time"><i class="fas fa-clock"></i> 2:15 PM – 3:00 PM · AI Innovation Hall</div>
+          </div>
+          <div class="speaker-social">
+            <a href="#"><i class="fab fa-linkedin-in"></i></a>
+            <a href="#"><i class="fab fa-github"></i></a>
+          </div>
+        </div>
+      </div>
+
+      <div class="speaker-card">
+        <div class="speaker-photo"><div class="avatar-placeholder" style="font-size:28px;">AP</div></div>
+        <div class="speaker-info">
+          <div class="sname">Amara Patel</div>
+          <div class="stitle">Career Coach · FuturePath</div>
+          <div class="speaker-bio">Helping tech professionals navigate career transitions for 8 years, specializing in AI and data science roles with a focus on personal branding and networking.</div>
+          <div class="speaker-session">
+            <div class="sess-title">Networking Strategies for AI Professionals</div>
+            <div class="sess-time"><i class="fas fa-clock"></i> 3:15 PM – 4:00 PM · Career Hall</div>
+          </div>
+          <div class="speaker-social">
+            <a href="#"><i class="fab fa-linkedin-in"></i></a>
+            <a href="#"><i class="fab fa-twitter"></i></a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Mobile Sticky CTA -->
+<div class="sticky-cta">
+  <button class="btn btn-primary" style="flex:1;justify-content:center;"><i class="fas fa-ticket-alt"></i> Buy Tickets</button>
+  <button class="btn btn-accent" style="flex:1;justify-content:center;"><i class="fas fa-handshake"></i> Sponsor</button>
+</div>
+
+<script>
+function switchTab(tabId, btn) {
+  document.querySelectorAll('.tab-content').forEach(t => t.classList.remove('active'));
+  document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+  document.getElementById('tab-' + tabId).classList.add('active');
+  btn.classList.add('active');
+}
+
+function setDevice(device, btn) {
+  document.querySelectorAll('.device-toggle button').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  if (device === 'mobile') { document.body.classList.add('mobile'); }
+  else { document.body.classList.remove('mobile'); }
+}
+
+// Sticky header collapse on scroll — no flicker, uses display swap
+const headerWrap = document.getElementById('headerWrap');
+const frame = document.querySelector('.frame');
+let isCollapsed = false;
+window.addEventListener('scroll', function() {
+  const rect = frame.getBoundingClientRect();
+  const shouldCollapse = rect.top < -100;
+  if (shouldCollapse !== isCollapsed) {
+    isCollapsed = shouldCollapse;
+    if (shouldCollapse) {
+      headerWrap.classList.add('collapsed');
+    } else {
+      headerWrap.classList.remove('collapsed');
+    }
+  }
+}, { passive: true });
+
+function showView(view, btn) {
+  document.querySelectorAll('.view-toggle button').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  document.getElementById('view-detailed').style.display = view === 'detailed' ? 'grid' : 'none';
+  document.getElementById('view-compact').style.display = view === 'compact' ? 'grid' : 'none';
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,1560 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Events — Discover & Explore</title>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+<style>
+:root {
+  --primary: #2d86eb;
+  --primary-light: #e8f2fd;
+  --primary-dark: #1a6fd4;
+  --accent: #FFC017;
+  --dark: #1a1a2e;
+  --gray-50: #fafbfc;
+  --gray-100: #f7f8fa;
+  --gray-200: #ebedf0;
+  --gray-300: #d1d5db;
+  --gray-400: #9ca3af;
+  --gray-500: #6b7280;
+  --gray-700: #374151;
+  --gray-900: #111827;
+  --green: #10b981;
+  --red: #ef4444;
+  --orange: #f59e0b;
+  --purple: #8b5cf6;
+  --radius: 12px;
+  --radius-sm: 8px;
+  --shadow: 0 2px 12px rgba(0,0,0,0.08);
+  --shadow-lg: 0 8px 30px rgba(0,0,0,0.12);
+  --transition: .2s ease;
+}
+
+* { margin:0; padding:0; box-sizing:border-box; }
+body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background: var(--gray-100); color: var(--gray-700); line-height: 1.5; }
+
+/* ==================== HERO ==================== */
+.hero {
+  background: linear-gradient(135deg, var(--dark) 0%, #16213e 50%, #0f3460 100%);
+  color: #fff;
+  padding: 48px 24px 36px;
+  position: relative;
+  overflow: hidden;
+}
+.hero::before {
+  content: '';
+  position: absolute;
+  top: -60%;
+  right: -20%;
+  width: 500px;
+  height: 500px;
+  background: radial-gradient(circle, rgba(45,134,235,0.15) 0%, transparent 70%);
+  border-radius: 50%;
+}
+.hero-inner { max-width: 1200px; margin: 0 auto; position: relative; z-index: 1; }
+.hero h1 { font-size: 28px; font-weight: 800; margin-bottom: 6px; letter-spacing: -0.5px; }
+.hero p { color: rgba(255,255,255,0.65); font-size: 15px; margin-bottom: 24px; }
+
+/* ==================== SEARCH BAR ==================== */
+.search-wrap {
+  display: flex;
+  gap: 10px;
+  max-width: 680px;
+}
+.search-box {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  background: rgba(255,255,255,0.1);
+  backdrop-filter: blur(10px);
+  border: 1.5px solid rgba(255,255,255,0.15);
+  border-radius: var(--radius);
+  padding: 0 16px;
+  transition: var(--transition);
+}
+.search-box:focus-within {
+  border-color: var(--primary);
+  background: rgba(255,255,255,0.15);
+}
+.search-box i { color: rgba(255,255,255,0.5); font-size: 15px; }
+.search-box input {
+  flex: 1;
+  background: none;
+  border: none;
+  outline: none;
+  color: #fff;
+  padding: 13px 12px;
+  font-size: 15px;
+}
+.search-box input::placeholder { color: rgba(255,255,255,0.4); }
+.search-btn {
+  padding: 0 24px;
+  background: var(--primary);
+  color: #fff;
+  border: none;
+  border-radius: var(--radius);
+  font-weight: 600;
+  font-size: 14px;
+  cursor: pointer;
+  transition: var(--transition);
+  white-space: nowrap;
+}
+.search-btn:hover { background: var(--primary-dark); }
+
+/* ==================== MAIN LAYOUT ==================== */
+.main { max-width: 1200px; margin: 0 auto; padding: 24px 16px 60px; }
+
+/* ==================== TOOLBAR ==================== */
+.toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-bottom: 20px;
+}
+.toolbar-left {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+.result-count { font-size: 14px; color: var(--gray-500); font-weight: 500; }
+.result-count span { color: var(--gray-900); font-weight: 700; }
+.toolbar-right { display: flex; align-items: center; gap: 10px; }
+
+/* View Toggle */
+.view-toggle { display: flex; border: 1.5px solid var(--gray-200); border-radius: var(--radius-sm); overflow: hidden; }
+.view-toggle button {
+  padding: 8px 12px;
+  border: none;
+  background: #fff;
+  color: var(--gray-400);
+  cursor: pointer;
+  font-size: 14px;
+  transition: var(--transition);
+}
+.view-toggle button.active { background: var(--primary); color: #fff; }
+
+/* Sort Dropdown */
+.sort-wrap { position: relative; }
+.sort-btn {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 14px;
+  border: 1.5px solid var(--gray-200);
+  border-radius: var(--radius-sm);
+  background: #fff;
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+  color: var(--gray-700);
+  transition: var(--transition);
+}
+.sort-btn:hover { border-color: var(--gray-300); }
+.sort-dropdown {
+  position: absolute;
+  top: calc(100% + 6px);
+  right: 0;
+  background: #fff;
+  border-radius: var(--radius-sm);
+  box-shadow: var(--shadow-lg);
+  min-width: 180px;
+  z-index: 200;
+  display: none;
+  overflow: hidden;
+}
+.sort-dropdown.open { display: block; }
+.sort-dropdown button {
+  display: block;
+  width: 100%;
+  padding: 10px 16px;
+  border: none;
+  background: none;
+  text-align: left;
+  font-size: 13px;
+  cursor: pointer;
+  color: var(--gray-700);
+  transition: var(--transition);
+}
+.sort-dropdown button:hover { background: var(--gray-100); }
+.sort-dropdown button.active { color: var(--primary); font-weight: 600; }
+
+/* ==================== FILTER BAR ==================== */
+.filters-section {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 24px;
+  flex-wrap: wrap;
+  align-items: center;
+}
+.filter-chip {
+  padding: 7px 16px;
+  border-radius: 20px;
+  border: 1.5px solid var(--gray-300);
+  background: #fff;
+  font-size: 13px;
+  cursor: pointer;
+  font-weight: 500;
+  transition: var(--transition);
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  white-space: nowrap;
+  user-select: none;
+}
+.filter-chip:hover { border-color: var(--primary); color: var(--primary); }
+.filter-chip.active { background: var(--primary); color: #fff; border-color: var(--primary); }
+.filter-chip .count { font-size: 11px; opacity: 0.7; }
+
+/* Filter Drawer (mobile) */
+.filter-toggle-btn {
+  display: none;
+  padding: 9px 16px;
+  border-radius: var(--radius-sm);
+  border: 1.5px solid var(--gray-300);
+  background: #fff;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  color: var(--gray-700);
+  gap: 6px;
+  align-items: center;
+}
+.filter-toggle-btn i { font-size: 13px; }
+.filter-badge-count {
+  background: var(--primary);
+  color: #fff;
+  font-size: 10px;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+}
+
+/* ==================== CATEGORY TABS ==================== */
+.category-tabs {
+  display: flex;
+  gap: 0;
+  border-bottom: 2px solid var(--gray-200);
+  background: #fff;
+  border-radius: var(--radius) var(--radius) 0 0;
+  overflow-x: auto;
+  scrollbar-width: none;
+  margin-bottom: 24px;
+}
+.category-tabs::-webkit-scrollbar { display: none; }
+.cat-tab {
+  flex-shrink: 0;
+  padding: 13px 20px;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--gray-500);
+  border: none;
+  background: none;
+  cursor: pointer;
+  position: relative;
+  transition: var(--transition);
+  white-space: nowrap;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.cat-tab:hover { color: var(--gray-700); }
+.cat-tab.active { color: var(--primary); }
+.cat-tab.active::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: var(--primary);
+  border-radius: 3px 3px 0 0;
+  animation: slideIn .25s ease;
+}
+@keyframes slideIn { from{transform:scaleX(0)} to{transform:scaleX(1)} }
+.cat-badge {
+  background: var(--gray-200);
+  color: var(--gray-500);
+  font-size: 11px;
+  padding: 2px 7px;
+  border-radius: 10px;
+  font-weight: 700;
+}
+.cat-tab.active .cat-badge { background: var(--primary-light); color: var(--primary); }
+
+/* ==================== EVENT GRID ==================== */
+.events-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+.events-grid.list-view {
+  grid-template-columns: 1fr;
+}
+
+/* ==================== EVENT CARD ==================== */
+.event-card {
+  background: #fff;
+  border-radius: var(--radius);
+  border: 1.5px solid var(--gray-200);
+  overflow: hidden;
+  transition: all .25s ease;
+  cursor: pointer;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+}
+.event-card:hover {
+  border-color: var(--primary);
+  box-shadow: var(--shadow-lg);
+  transform: translateY(-2px);
+}
+.events-grid.list-view .event-card {
+  flex-direction: row;
+}
+.events-grid.list-view .card-img {
+  width: 260px;
+  min-height: 180px;
+  flex-shrink: 0;
+  border-radius: var(--radius) 0 0 var(--radius);
+}
+.events-grid.list-view .card-body { flex: 1; }
+
+/* Card Image */
+.card-img {
+  position: relative;
+  height: 170px;
+  background: var(--gray-200);
+  overflow: hidden;
+}
+.card-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform .3s ease;
+}
+.event-card:hover .card-img img { transform: scale(1.04); }
+.card-img .date-badge {
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  background: #fff;
+  border-radius: var(--radius-sm);
+  padding: 6px 10px;
+  text-align: center;
+  box-shadow: var(--shadow);
+  line-height: 1;
+}
+.date-badge .month { font-size: 10px; font-weight: 700; color: var(--red); text-transform: uppercase; letter-spacing: 0.5px; display: block; }
+.date-badge .day { font-size: 20px; font-weight: 800; color: var(--gray-900); display: block; margin-top: 2px; }
+
+.card-img .status-tag {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  padding: 4px 10px;
+  border-radius: 6px;
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.3px;
+}
+.status-live { background: var(--red); color: #fff; animation: pulse 1.5s infinite; }
+@keyframes pulse { 0%,100%{opacity:1} 50%{opacity:.6} }
+.status-upcoming { background: var(--green); color: #fff; }
+.status-ended { background: var(--gray-400); color: #fff; }
+.status-free { background: var(--accent); color: var(--dark); }
+
+.card-img .save-btn {
+  position: absolute;
+  bottom: 12px;
+  right: 12px;
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.9);
+  backdrop-filter: blur(6px);
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+  color: var(--gray-500);
+  transition: var(--transition);
+}
+.save-btn:hover { color: var(--red); background: #fff; }
+.save-btn.saved { color: var(--red); }
+.save-btn.saved i { font-weight: 900; }
+
+/* Card Body */
+.card-body { padding: 16px; flex: 1; display: flex; flex-direction: column; }
+.card-body .event-type {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--primary);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-bottom: 8px;
+}
+.card-body h3 {
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--gray-900);
+  margin-bottom: 10px;
+  line-height: 1.35;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+.card-meta {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-bottom: 12px;
+  flex: 1;
+}
+.card-meta-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 13px;
+  color: var(--gray-500);
+}
+.card-meta-item i { width: 14px; text-align: center; color: var(--gray-400); font-size: 12px; }
+.card-meta-item .highlight { color: var(--green); font-weight: 600; }
+
+/* Tags */
+.card-tags {
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+  margin-bottom: 14px;
+}
+.card-tag {
+  padding: 3px 10px;
+  border-radius: 6px;
+  font-size: 11px;
+  font-weight: 500;
+  background: var(--gray-100);
+  color: var(--gray-500);
+}
+
+/* Card Footer */
+.card-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: 12px;
+  border-top: 1px solid var(--gray-200);
+}
+.card-price { font-size: 15px; font-weight: 700; color: var(--gray-900); }
+.card-price .free-label { color: var(--green); }
+.card-price .from { font-size: 11px; font-weight: 400; color: var(--gray-400); }
+.card-attendees {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.attendee-stack {
+  display: flex;
+}
+.attendee-stack .avatar {
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  border: 2px solid #fff;
+  margin-left: -8px;
+  background: var(--gray-200);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 10px;
+  font-weight: 600;
+  color: var(--gray-500);
+  overflow: hidden;
+}
+.attendee-stack .avatar:first-child { margin-left: 0; }
+.attendee-stack .avatar img { width: 100%; height: 100%; object-fit: cover; }
+.attendee-count { font-size: 12px; color: var(--gray-500); font-weight: 500; }
+
+/* ==================== EMPTY STATE ==================== */
+.empty-state {
+  text-align: center;
+  padding: 60px 20px;
+  display: none;
+}
+.empty-state.visible { display: block; }
+.empty-state i { font-size: 48px; color: var(--gray-300); margin-bottom: 16px; }
+.empty-state h3 { font-size: 18px; color: var(--gray-700); margin-bottom: 8px; }
+.empty-state p { color: var(--gray-500); font-size: 14px; margin-bottom: 20px; }
+.empty-state .btn { display: inline-flex; }
+
+/* ==================== PAGINATION ==================== */
+.pagination {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  margin-top: 32px;
+}
+.page-btn {
+  width: 38px;
+  height: 38px;
+  border: 1.5px solid var(--gray-200);
+  border-radius: var(--radius-sm);
+  background: #fff;
+  color: var(--gray-700);
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: var(--transition);
+}
+.page-btn:hover { border-color: var(--primary); color: var(--primary); }
+.page-btn.active { background: var(--primary); color: #fff; border-color: var(--primary); }
+.page-btn.disabled { opacity: 0.4; pointer-events: none; }
+
+/* ==================== MOBILE FILTER DRAWER ==================== */
+.filter-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.4);
+  z-index: 900;
+  display: none;
+  opacity: 0;
+  transition: opacity .25s ease;
+}
+.filter-overlay.open { display: block; opacity: 1; }
+.filter-drawer {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: #fff;
+  border-radius: 16px 16px 0 0;
+  padding: 24px;
+  z-index: 1000;
+  transform: translateY(100%);
+  transition: transform .3s ease;
+  max-height: 80vh;
+  overflow-y: auto;
+}
+.filter-drawer.open { transform: translateY(0); }
+.drawer-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+.drawer-header h3 { font-size: 18px; font-weight: 700; color: var(--gray-900); }
+.drawer-close {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  border: none;
+  background: var(--gray-100);
+  cursor: pointer;
+  font-size: 16px;
+  color: var(--gray-500);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.drawer-group { margin-bottom: 20px; }
+.drawer-group label { display: block; font-size: 12px; font-weight: 700; color: var(--gray-500); text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 10px; }
+.drawer-chips { display: flex; flex-wrap: wrap; gap: 8px; }
+.drawer-apply {
+  width: 100%;
+  padding: 14px;
+  background: var(--primary);
+  color: #fff;
+  border: none;
+  border-radius: var(--radius);
+  font-size: 15px;
+  font-weight: 700;
+  cursor: pointer;
+  margin-top: 10px;
+}
+
+/* ==================== CUSTOM DATE PICKER ==================== */
+.custom-date-wrap { position: relative; display: inline-flex; }
+.custom-date-popover {
+  position: absolute;
+  top: calc(100% + 10px);
+  left: 0;
+  background: #fff;
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-lg);
+  border: 1.5px solid var(--gray-200);
+  width: 300px;
+  z-index: 300;
+  display: none;
+  animation: fadeIn .2s ease;
+}
+.custom-date-popover.open { display: block; }
+.popover-arrow {
+  position: absolute;
+  top: -7px;
+  left: 24px;
+  width: 12px;
+  height: 12px;
+  background: #fff;
+  border-left: 1.5px solid var(--gray-200);
+  border-top: 1.5px solid var(--gray-200);
+  transform: rotate(45deg);
+}
+.popover-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 16px;
+  border-bottom: 1px solid var(--gray-200);
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--gray-900);
+}
+.popover-close {
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  border: none;
+  background: var(--gray-100);
+  cursor: pointer;
+  font-size: 12px;
+  color: var(--gray-500);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.popover-body { padding: 16px; }
+.date-field { margin-bottom: 12px; }
+.date-field label { display: block; font-size: 12px; font-weight: 600; color: var(--gray-500); margin-bottom: 4px; text-transform: uppercase; letter-spacing: 0.3px; }
+.date-field input[type="date"] {
+  width: 100%;
+  padding: 9px 12px;
+  border: 1.5px solid var(--gray-200);
+  border-radius: var(--radius-sm);
+  font-size: 13px;
+  color: var(--gray-700);
+  background: var(--gray-50);
+  outline: none;
+  transition: var(--transition);
+  font-family: inherit;
+}
+.date-field input[type="date"]:focus { border-color: var(--primary); background: #fff; }
+.date-presets { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 4px; }
+.date-preset {
+  padding: 5px 12px;
+  border-radius: 16px;
+  border: 1px solid var(--gray-200);
+  background: var(--gray-50);
+  font-size: 12px;
+  cursor: pointer;
+  color: var(--gray-500);
+  font-weight: 500;
+  transition: var(--transition);
+}
+.date-preset:hover { border-color: var(--primary); color: var(--primary); }
+.date-preset.active { background: var(--primary-light); color: var(--primary); border-color: var(--primary); }
+.popover-footer {
+  display: flex;
+  justify-content: space-between;
+  padding: 12px 16px;
+  border-top: 1px solid var(--gray-200);
+  gap: 10px;
+}
+.popover-clear {
+  padding: 8px 16px;
+  border: 1.5px solid var(--gray-200);
+  border-radius: var(--radius-sm);
+  background: #fff;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  color: var(--gray-500);
+}
+.popover-apply {
+  padding: 8px 24px;
+  border: none;
+  border-radius: var(--radius-sm);
+  background: var(--primary);
+  color: #fff;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: var(--transition);
+}
+.popover-apply:hover { background: var(--primary-dark); }
+.custom-date-active-label {
+  font-size: 11px;
+  color: var(--primary);
+  font-weight: 600;
+  margin-left: 4px;
+}
+
+/* ==================== RESPONSIVE ==================== */
+@media (max-width: 1024px) {
+  .events-grid { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 768px) {
+  .hero { padding: 32px 16px 28px; }
+  .hero h1 { font-size: 22px; }
+  .search-wrap { flex-direction: column; }
+  .search-btn { padding: 12px; text-align: center; justify-content: center; }
+  .events-grid { grid-template-columns: 1fr; }
+  .events-grid.list-view .event-card { flex-direction: column; }
+  .events-grid.list-view .card-img { width: 100%; min-height: 170px; border-radius: var(--radius) var(--radius) 0 0; }
+  .filters-section .filter-chip { display: none; }
+  .filter-toggle-btn { display: inline-flex; }
+  .category-tabs { border-radius: 0; }
+  .toolbar { gap: 8px; }
+}
+@media (max-width: 480px) {
+  .hero h1 { font-size: 19px; }
+  .card-img { height: 150px; }
+  .main { padding: 16px 12px 60px; }
+  .pagination { gap: 2px; }
+  .page-btn { width: 34px; height: 34px; font-size: 13px; }
+}
+</style>
+</head>
+<body>
+
+<!-- ============ HERO ============ -->
+<section class="hero">
+  <div class="hero-inner">
+    <h1>Discover Events</h1>
+    <p>Find conferences, meetups, workshops and networking events near you</p>
+    <div class="search-wrap">
+      <div class="search-box">
+        <i class="fa-solid fa-magnifying-glass"></i>
+        <input type="text" id="searchInput" placeholder="Search events by name, topic, or location..." autocomplete="off">
+      </div>
+      <button class="search-btn" onclick="applySearch()"><i class="fa-solid fa-magnifying-glass"></i> Search</button>
+    </div>
+  </div>
+</section>
+
+<!-- ============ MAIN ============ -->
+<div class="main">
+
+  <!-- Category Tabs -->
+  <div class="category-tabs" id="categoryTabs">
+    <button class="cat-tab active" data-cat="all">All Events <span class="cat-badge" id="countAll">24</span></button>
+    <button class="cat-tab" data-cat="conference"><i class="fa-solid fa-microphone-lines" style="font-size:12px"></i> Conferences <span class="cat-badge">8</span></button>
+    <button class="cat-tab" data-cat="workshop"><i class="fa-solid fa-laptop-code" style="font-size:12px"></i> Workshops <span class="cat-badge">6</span></button>
+    <button class="cat-tab" data-cat="meetup"><i class="fa-solid fa-people-group" style="font-size:12px"></i> Meetups <span class="cat-badge">5</span></button>
+    <button class="cat-tab" data-cat="webinar"><i class="fa-solid fa-video" style="font-size:12px"></i> Webinars <span class="cat-badge">3</span></button>
+    <button class="cat-tab" data-cat="hackathon"><i class="fa-solid fa-code" style="font-size:12px"></i> Hackathons <span class="cat-badge">2</span></button>
+  </div>
+
+  <!-- Filters -->
+  <div class="filters-section" id="filtersSection">
+    <button class="filter-toggle-btn" onclick="openFilterDrawer()">
+      <i class="fa-solid fa-sliders"></i> Filters
+      <span class="filter-badge-count" id="filterBadge">0</span>
+    </button>
+    <button class="filter-chip active" data-filter="time" data-val="all">All Dates</button>
+    <button class="filter-chip" data-filter="time" data-val="today">Today</button>
+    <button class="filter-chip" data-filter="time" data-val="week">This Week</button>
+    <button class="filter-chip" data-filter="time" data-val="month">This Month</button>
+    <div class="custom-date-wrap">
+      <button class="filter-chip" data-filter="time" data-val="custom" id="customDateChip"><i class="fa-regular fa-calendar-range" style="font-size:11px"></i> Custom Range</button>
+      <div class="custom-date-popover" id="customDatePopover">
+        <div class="popover-arrow"></div>
+        <div class="popover-header">
+          <span>Select Date Range</span>
+          <button class="popover-close" onclick="closeCustomDate()"><i class="fa-solid fa-xmark"></i></button>
+        </div>
+        <div class="popover-body">
+          <div class="date-field">
+            <label>From</label>
+            <input type="date" id="dateFrom">
+          </div>
+          <div class="date-field">
+            <label>To</label>
+            <input type="date" id="dateTo">
+          </div>
+          <div class="date-presets">
+            <button class="date-preset" data-days="7">Next 7 days</button>
+            <button class="date-preset" data-days="14">Next 14 days</button>
+            <button class="date-preset" data-days="30">Next 30 days</button>
+            <button class="date-preset" data-days="90">Next 90 days</button>
+          </div>
+        </div>
+        <div class="popover-footer">
+          <button class="popover-clear" onclick="clearCustomDate()">Clear</button>
+          <button class="popover-apply" onclick="applyCustomDate()">Apply</button>
+        </div>
+      </div>
+    </div>
+    <button class="filter-chip" data-filter="format" data-val="all" style="margin-left:8px;border-left:2px solid var(--gray-200);padding-left:18px">All Formats</button>
+    <button class="filter-chip" data-filter="format" data-val="in-person"><i class="fa-solid fa-location-dot" style="font-size:11px"></i> In-Person</button>
+    <button class="filter-chip" data-filter="format" data-val="virtual"><i class="fa-solid fa-globe" style="font-size:11px"></i> Virtual</button>
+    <button class="filter-chip" data-filter="format" data-val="hybrid"><i class="fa-solid fa-arrows-split-up-and-left" style="font-size:11px"></i> Hybrid</button>
+    <button class="filter-chip" data-filter="price" data-val="free"><i class="fa-solid fa-tag" style="font-size:11px"></i> Free</button>
+  </div>
+
+  <!-- Toolbar -->
+  <div class="toolbar">
+    <div class="toolbar-left">
+      <span class="result-count">Showing <span id="resultCount">24</span> events</span>
+    </div>
+    <div class="toolbar-right">
+      <div class="sort-wrap">
+        <button class="sort-btn" onclick="toggleSort()">
+          <i class="fa-solid fa-arrow-down-wide-short"></i> <span id="sortLabel">Date (Soonest)</span> <i class="fa-solid fa-chevron-down" style="font-size:10px"></i>
+        </button>
+        <div class="sort-dropdown" id="sortDropdown">
+          <button class="active" data-sort="date-asc">Date (Soonest)</button>
+          <button data-sort="date-desc">Date (Latest)</button>
+          <button data-sort="popular">Most Popular</button>
+          <button data-sort="name-asc">Name (A-Z)</button>
+        </div>
+      </div>
+      <div class="view-toggle">
+        <button class="active" data-view="grid" title="Grid view"><i class="fa-solid fa-grip"></i></button>
+        <button data-view="list" title="List view"><i class="fa-solid fa-list"></i></button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Events Grid -->
+  <div class="events-grid" id="eventsGrid">
+
+    <!-- Card 1 -->
+    <div class="event-card" data-cat="conference" data-format="in-person" data-price="paid" data-date="2026-02-15" data-name="Global AI Summit 2026" data-attendees="1240">
+      <div class="card-img">
+        <img src="https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=600&h=340&fit=crop" alt="AI Summit" loading="lazy">
+        <div class="date-badge"><span class="month">Feb</span><span class="day">15</span></div>
+        <span class="status-tag status-upcoming">Upcoming</span>
+        <button class="save-btn" onclick="event.stopPropagation();toggleSave(this)" title="Save event"><i class="fa-regular fa-bookmark"></i></button>
+      </div>
+      <div class="card-body">
+        <span class="event-type"><i class="fa-solid fa-microphone-lines"></i> Conference</span>
+        <h3>Global AI Summit 2026 — The Future of Intelligent Systems</h3>
+        <div class="card-meta">
+          <div class="card-meta-item"><i class="fa-regular fa-calendar"></i> Feb 15 - 17, 2026 &middot; 9:00 AM</div>
+          <div class="card-meta-item"><i class="fa-solid fa-location-dot"></i> Moscone Center, San Francisco</div>
+          <div class="card-meta-item"><i class="fa-solid fa-user-group"></i> <span class="highlight">1,240 attending</span></div>
+        </div>
+        <div class="card-tags">
+          <span class="card-tag">AI</span>
+          <span class="card-tag">Machine Learning</span>
+          <span class="card-tag">Deep Tech</span>
+        </div>
+        <div class="card-footer">
+          <div class="card-price"><span class="from">From </span>$299</div>
+          <div class="card-attendees">
+            <div class="attendee-stack">
+              <div class="avatar" style="background:#dbeafe;color:#1d4ed8">A</div>
+              <div class="avatar" style="background:#d1fae5;color:#047857">R</div>
+              <div class="avatar" style="background:#fce7f3;color:#be185d">S</div>
+            </div>
+            <span class="attendee-count">+1.2k</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Card 2 -->
+    <div class="event-card" data-cat="workshop" data-format="virtual" data-price="free" data-date="2026-02-05" data-name="React Advanced Patterns Workshop" data-attendees="320">
+      <div class="card-img">
+        <img src="https://images.unsplash.com/photo-1517694712202-14dd9538aa97?w=600&h=340&fit=crop" alt="React Workshop" loading="lazy">
+        <div class="date-badge"><span class="month">Feb</span><span class="day">05</span></div>
+        <span class="status-tag status-free">Free</span>
+        <button class="save-btn" onclick="event.stopPropagation();toggleSave(this)" title="Save event"><i class="fa-regular fa-bookmark"></i></button>
+      </div>
+      <div class="card-body">
+        <span class="event-type"><i class="fa-solid fa-laptop-code"></i> Workshop</span>
+        <h3>React Advanced Patterns Workshop</h3>
+        <div class="card-meta">
+          <div class="card-meta-item"><i class="fa-regular fa-calendar"></i> Feb 5, 2026 &middot; 2:00 PM EST</div>
+          <div class="card-meta-item"><i class="fa-solid fa-globe"></i> Online (Zoom)</div>
+          <div class="card-meta-item"><i class="fa-solid fa-user-group"></i> <span class="highlight">320 registered</span></div>
+        </div>
+        <div class="card-tags">
+          <span class="card-tag">React</span>
+          <span class="card-tag">Frontend</span>
+        </div>
+        <div class="card-footer">
+          <div class="card-price"><span class="free-label">Free</span></div>
+          <div class="card-attendees">
+            <div class="attendee-stack">
+              <div class="avatar" style="background:#ede9fe;color:#6d28d9">M</div>
+              <div class="avatar" style="background:#fef3c7;color:#d97706">K</div>
+            </div>
+            <span class="attendee-count">+318</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Card 3 -->
+    <div class="event-card" data-cat="meetup" data-format="in-person" data-price="free" data-date="2026-01-30" data-name="Startup Founders Networking Meetup" data-attendees="85">
+      <div class="card-img">
+        <img src="https://images.unsplash.com/photo-1515187029135-18ee286d815b?w=600&h=340&fit=crop" alt="Networking" loading="lazy">
+        <div class="date-badge"><span class="month">Jan</span><span class="day">30</span></div>
+        <span class="status-tag status-upcoming">Upcoming</span>
+        <button class="save-btn" onclick="event.stopPropagation();toggleSave(this)" title="Save event"><i class="fa-regular fa-bookmark"></i></button>
+      </div>
+      <div class="card-body">
+        <span class="event-type"><i class="fa-solid fa-people-group"></i> Meetup</span>
+        <h3>Startup Founders Networking Meetup</h3>
+        <div class="card-meta">
+          <div class="card-meta-item"><i class="fa-regular fa-calendar"></i> Jan 30, 2026 &middot; 6:30 PM</div>
+          <div class="card-meta-item"><i class="fa-solid fa-location-dot"></i> WeWork, Bangalore</div>
+          <div class="card-meta-item"><i class="fa-solid fa-user-group"></i> <span class="highlight">85 going</span></div>
+        </div>
+        <div class="card-tags">
+          <span class="card-tag">Startups</span>
+          <span class="card-tag">Networking</span>
+        </div>
+        <div class="card-footer">
+          <div class="card-price"><span class="free-label">Free</span></div>
+          <div class="card-attendees">
+            <div class="attendee-stack">
+              <div class="avatar" style="background:#fee2e2;color:#dc2626">P</div>
+              <div class="avatar" style="background:#d1fae5;color:#047857">N</div>
+              <div class="avatar" style="background:#dbeafe;color:#1d4ed8">T</div>
+            </div>
+            <span class="attendee-count">+82</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Card 4 -->
+    <div class="event-card" data-cat="webinar" data-format="virtual" data-price="free" data-date="2026-02-10" data-name="Product Management Masterclass" data-attendees="560">
+      <div class="card-img">
+        <img src="https://images.unsplash.com/photo-1591115765373-5f9cf1da241c?w=600&h=340&fit=crop" alt="Webinar" loading="lazy">
+        <div class="date-badge"><span class="month">Feb</span><span class="day">10</span></div>
+        <span class="status-tag status-free">Free</span>
+        <button class="save-btn" onclick="event.stopPropagation();toggleSave(this)" title="Save event"><i class="fa-regular fa-bookmark"></i></button>
+      </div>
+      <div class="card-body">
+        <span class="event-type"><i class="fa-solid fa-video"></i> Webinar</span>
+        <h3>Product Management Masterclass — From Zero to PM Lead</h3>
+        <div class="card-meta">
+          <div class="card-meta-item"><i class="fa-regular fa-calendar"></i> Feb 10, 2026 &middot; 11:00 AM IST</div>
+          <div class="card-meta-item"><i class="fa-solid fa-globe"></i> Online (Google Meet)</div>
+          <div class="card-meta-item"><i class="fa-solid fa-user-group"></i> <span class="highlight">560 registered</span></div>
+        </div>
+        <div class="card-tags">
+          <span class="card-tag">Product</span>
+          <span class="card-tag">Leadership</span>
+        </div>
+        <div class="card-footer">
+          <div class="card-price"><span class="free-label">Free</span></div>
+          <div class="card-attendees">
+            <div class="attendee-stack">
+              <div class="avatar" style="background:#fef3c7;color:#d97706">J</div>
+              <div class="avatar" style="background:#ede9fe;color:#6d28d9">L</div>
+            </div>
+            <span class="attendee-count">+558</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Card 5 -->
+    <div class="event-card" data-cat="hackathon" data-format="hybrid" data-price="paid" data-date="2026-03-01" data-name="HackIndia 2026 — 48hr Hackathon" data-attendees="2100">
+      <div class="card-img">
+        <img src="https://images.unsplash.com/photo-1504384308090-c894fdcc538d?w=600&h=340&fit=crop" alt="Hackathon" loading="lazy">
+        <div class="date-badge"><span class="month">Mar</span><span class="day">01</span></div>
+        <span class="status-tag status-upcoming">Upcoming</span>
+        <button class="save-btn" onclick="event.stopPropagation();toggleSave(this)" title="Save event"><i class="fa-regular fa-bookmark"></i></button>
+      </div>
+      <div class="card-body">
+        <span class="event-type"><i class="fa-solid fa-code"></i> Hackathon</span>
+        <h3>HackIndia 2026 — 48hr National Hackathon</h3>
+        <div class="card-meta">
+          <div class="card-meta-item"><i class="fa-regular fa-calendar"></i> Mar 1 - 2, 2026 &middot; 10:00 AM</div>
+          <div class="card-meta-item"><i class="fa-solid fa-location-dot"></i> IIT Delhi + Online</div>
+          <div class="card-meta-item"><i class="fa-solid fa-user-group"></i> <span class="highlight">2,100 participants</span></div>
+        </div>
+        <div class="card-tags">
+          <span class="card-tag">Hackathon</span>
+          <span class="card-tag">Open Source</span>
+          <span class="card-tag">Web3</span>
+        </div>
+        <div class="card-footer">
+          <div class="card-price"><span class="from">From </span>$15</div>
+          <div class="card-attendees">
+            <div class="attendee-stack">
+              <div class="avatar" style="background:#dbeafe;color:#1d4ed8">V</div>
+              <div class="avatar" style="background:#d1fae5;color:#047857">D</div>
+              <div class="avatar" style="background:#fee2e2;color:#dc2626">R</div>
+            </div>
+            <span class="attendee-count">+2.1k</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Card 6 -->
+    <div class="event-card" data-cat="conference" data-format="in-person" data-price="paid" data-date="2026-02-22" data-name="DevOps World 2026" data-attendees="890">
+      <div class="card-img">
+        <img src="https://images.unsplash.com/photo-1505373877841-8d25f7d46678?w=600&h=340&fit=crop" alt="DevOps" loading="lazy">
+        <div class="date-badge"><span class="month">Feb</span><span class="day">22</span></div>
+        <span class="status-tag status-upcoming">Upcoming</span>
+        <button class="save-btn saved" onclick="event.stopPropagation();toggleSave(this)" title="Save event"><i class="fa-solid fa-bookmark"></i></button>
+      </div>
+      <div class="card-body">
+        <span class="event-type"><i class="fa-solid fa-microphone-lines"></i> Conference</span>
+        <h3>DevOps World 2026 — CI/CD, Cloud & Beyond</h3>
+        <div class="card-meta">
+          <div class="card-meta-item"><i class="fa-regular fa-calendar"></i> Feb 22 - 23, 2026 &middot; 9:00 AM</div>
+          <div class="card-meta-item"><i class="fa-solid fa-location-dot"></i> Hyderabad Int'l Convention Centre</div>
+          <div class="card-meta-item"><i class="fa-solid fa-user-group"></i> <span class="highlight">890 attending</span></div>
+        </div>
+        <div class="card-tags">
+          <span class="card-tag">DevOps</span>
+          <span class="card-tag">Cloud</span>
+          <span class="card-tag">Kubernetes</span>
+        </div>
+        <div class="card-footer">
+          <div class="card-price"><span class="from">From </span>$149</div>
+          <div class="card-attendees">
+            <div class="attendee-stack">
+              <div class="avatar" style="background:#fce7f3;color:#be185d">S</div>
+              <div class="avatar" style="background:#fef3c7;color:#d97706">A</div>
+              <div class="avatar" style="background:#dbeafe;color:#1d4ed8">K</div>
+            </div>
+            <span class="attendee-count">+887</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Card 7 -->
+    <div class="event-card" data-cat="workshop" data-format="in-person" data-price="paid" data-date="2026-02-12" data-name="UX Design Sprint Workshop" data-attendees="45">
+      <div class="card-img">
+        <img src="https://images.unsplash.com/photo-1531403009284-440f080d1e12?w=600&h=340&fit=crop" alt="UX Workshop" loading="lazy">
+        <div class="date-badge"><span class="month">Feb</span><span class="day">12</span></div>
+        <span class="status-tag status-upcoming">Upcoming</span>
+        <button class="save-btn" onclick="event.stopPropagation();toggleSave(this)" title="Save event"><i class="fa-regular fa-bookmark"></i></button>
+      </div>
+      <div class="card-body">
+        <span class="event-type"><i class="fa-solid fa-laptop-code"></i> Workshop</span>
+        <h3>UX Design Sprint — 5-Day Intensive Workshop</h3>
+        <div class="card-meta">
+          <div class="card-meta-item"><i class="fa-regular fa-calendar"></i> Feb 12 - 16, 2026 &middot; 10:00 AM</div>
+          <div class="card-meta-item"><i class="fa-solid fa-location-dot"></i> 91Springboard, Mumbai</div>
+          <div class="card-meta-item"><i class="fa-solid fa-user-group"></i> <span class="highlight">45 seats</span></div>
+        </div>
+        <div class="card-tags">
+          <span class="card-tag">UX</span>
+          <span class="card-tag">Design</span>
+        </div>
+        <div class="card-footer">
+          <div class="card-price"><span class="from">From </span>$79</div>
+          <div class="card-attendees">
+            <div class="attendee-stack">
+              <div class="avatar" style="background:#d1fae5;color:#047857">Z</div>
+              <div class="avatar" style="background:#ede9fe;color:#6d28d9">P</div>
+            </div>
+            <span class="attendee-count">+43</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Card 8 -->
+    <div class="event-card" data-cat="meetup" data-format="in-person" data-price="free" data-date="2026-02-08" data-name="Women in Tech Meetup" data-attendees="120">
+      <div class="card-img">
+        <img src="https://images.unsplash.com/photo-1475721027785-f74eccf877e2?w=600&h=340&fit=crop" alt="Women in Tech" loading="lazy">
+        <div class="date-badge"><span class="month">Feb</span><span class="day">08</span></div>
+        <span class="status-tag status-free">Free</span>
+        <button class="save-btn" onclick="event.stopPropagation();toggleSave(this)" title="Save event"><i class="fa-regular fa-bookmark"></i></button>
+      </div>
+      <div class="card-body">
+        <span class="event-type"><i class="fa-solid fa-people-group"></i> Meetup</span>
+        <h3>Women in Tech — Leadership & Innovation Meetup</h3>
+        <div class="card-meta">
+          <div class="card-meta-item"><i class="fa-regular fa-calendar"></i> Feb 8, 2026 &middot; 5:00 PM</div>
+          <div class="card-meta-item"><i class="fa-solid fa-location-dot"></i> Google Office, Gurugram</div>
+          <div class="card-meta-item"><i class="fa-solid fa-user-group"></i> <span class="highlight">120 going</span></div>
+        </div>
+        <div class="card-tags">
+          <span class="card-tag">Women in Tech</span>
+          <span class="card-tag">Leadership</span>
+        </div>
+        <div class="card-footer">
+          <div class="card-price"><span class="free-label">Free</span></div>
+          <div class="card-attendees">
+            <div class="attendee-stack">
+              <div class="avatar" style="background:#fce7f3;color:#be185d">R</div>
+              <div class="avatar" style="background:#dbeafe;color:#1d4ed8">N</div>
+              <div class="avatar" style="background:#fef3c7;color:#d97706">G</div>
+            </div>
+            <span class="attendee-count">+117</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Card 9 -->
+    <div class="event-card" data-cat="conference" data-format="virtual" data-price="paid" data-date="2026-03-10" data-name="Cloud Native Con Asia 2026" data-attendees="3500">
+      <div class="card-img">
+        <img src="https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=600&h=340&fit=crop" alt="Cloud Native" loading="lazy">
+        <div class="date-badge"><span class="month">Mar</span><span class="day">10</span></div>
+        <span class="status-tag status-upcoming">Upcoming</span>
+        <button class="save-btn" onclick="event.stopPropagation();toggleSave(this)" title="Save event"><i class="fa-regular fa-bookmark"></i></button>
+      </div>
+      <div class="card-body">
+        <span class="event-type"><i class="fa-solid fa-microphone-lines"></i> Conference</span>
+        <h3>Cloud Native Con Asia 2026</h3>
+        <div class="card-meta">
+          <div class="card-meta-item"><i class="fa-regular fa-calendar"></i> Mar 10 - 12, 2026 &middot; 9:00 AM SGT</div>
+          <div class="card-meta-item"><i class="fa-solid fa-globe"></i> Virtual (Global)</div>
+          <div class="card-meta-item"><i class="fa-solid fa-user-group"></i> <span class="highlight">3,500 registered</span></div>
+        </div>
+        <div class="card-tags">
+          <span class="card-tag">Cloud</span>
+          <span class="card-tag">CNCF</span>
+          <span class="card-tag">Microservices</span>
+        </div>
+        <div class="card-footer">
+          <div class="card-price"><span class="from">From </span>$99</div>
+          <div class="card-attendees">
+            <div class="attendee-stack">
+              <div class="avatar" style="background:#dbeafe;color:#1d4ed8">C</div>
+              <div class="avatar" style="background:#d1fae5;color:#047857">X</div>
+              <div class="avatar" style="background:#fee2e2;color:#dc2626">B</div>
+            </div>
+            <span class="attendee-count">+3.5k</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Empty State -->
+  <div class="empty-state" id="emptyState">
+    <i class="fa-regular fa-calendar-xmark"></i>
+    <h3>No events found</h3>
+    <p>Try adjusting your search or filters to find what you're looking for</p>
+    <button class="btn btn-primary" onclick="clearAllFilters()"><i class="fa-solid fa-rotate-left"></i> Clear Filters</button>
+  </div>
+
+  <!-- Pagination -->
+  <div class="pagination" id="pagination">
+    <button class="page-btn disabled"><i class="fa-solid fa-chevron-left"></i></button>
+    <button class="page-btn active">1</button>
+    <button class="page-btn">2</button>
+    <button class="page-btn">3</button>
+    <button class="page-btn"><i class="fa-solid fa-chevron-right"></i></button>
+  </div>
+
+</div>
+
+<!-- ============ MOBILE FILTER DRAWER ============ -->
+<div class="filter-overlay" id="filterOverlay" onclick="closeFilterDrawer()"></div>
+<div class="filter-drawer" id="filterDrawer">
+  <div class="drawer-header">
+    <h3>Filters</h3>
+    <button class="drawer-close" onclick="closeFilterDrawer()"><i class="fa-solid fa-xmark"></i></button>
+  </div>
+  <div class="drawer-group">
+    <label>Date Range</label>
+    <div class="drawer-chips">
+      <button class="filter-chip active" data-filter="time" data-val="all">All Dates</button>
+      <button class="filter-chip" data-filter="time" data-val="today">Today</button>
+      <button class="filter-chip" data-filter="time" data-val="week">This Week</button>
+      <button class="filter-chip" data-filter="time" data-val="month">This Month</button>
+      <button class="filter-chip" data-filter="time" data-val="custom">Custom Range</button>
+    </div>
+    <div class="drawer-custom-date" id="drawerCustomDate" style="display:none;margin-top:12px">
+      <div class="date-field"><label>From</label><input type="date" id="drawerDateFrom"></div>
+      <div class="date-field"><label>To</label><input type="date" id="drawerDateTo"></div>
+      <div class="date-presets">
+        <button class="date-preset" data-days="7">Next 7 days</button>
+        <button class="date-preset" data-days="14">Next 14 days</button>
+        <button class="date-preset" data-days="30">Next 30 days</button>
+        <button class="date-preset" data-days="90">Next 90 days</button>
+      </div>
+    </div>
+  </div>
+  <div class="drawer-group">
+    <label>Format</label>
+    <div class="drawer-chips">
+      <button class="filter-chip active" data-filter="format" data-val="all">All</button>
+      <button class="filter-chip" data-filter="format" data-val="in-person">In-Person</button>
+      <button class="filter-chip" data-filter="format" data-val="virtual">Virtual</button>
+      <button class="filter-chip" data-filter="format" data-val="hybrid">Hybrid</button>
+    </div>
+  </div>
+  <div class="drawer-group">
+    <label>Price</label>
+    <div class="drawer-chips">
+      <button class="filter-chip active" data-filter="price" data-val="all">All</button>
+      <button class="filter-chip" data-filter="price" data-val="free">Free Only</button>
+      <button class="filter-chip" data-filter="price" data-val="paid">Paid Only</button>
+    </div>
+  </div>
+  <button class="drawer-apply" onclick="closeFilterDrawer()">Apply Filters</button>
+</div>
+
+<script>
+(function() {
+  'use strict';
+
+  // State
+  const state = {
+    search: '',
+    category: 'all',
+    time: 'all',
+    format: 'all',
+    price: 'all',
+    sort: 'date-asc',
+    view: 'grid',
+    customFrom: null,
+    customTo: null
+  };
+
+  const grid = document.getElementById('eventsGrid');
+  const cards = Array.from(grid.querySelectorAll('.event-card'));
+  const emptyState = document.getElementById('emptyState');
+  const resultCount = document.getElementById('resultCount');
+  const pagination = document.getElementById('pagination');
+
+  // Category Tabs
+  document.getElementById('categoryTabs').addEventListener('click', function(e) {
+    const tab = e.target.closest('.cat-tab');
+    if (!tab) return;
+    this.querySelectorAll('.cat-tab').forEach(t => t.classList.remove('active'));
+    tab.classList.add('active');
+    state.category = tab.dataset.cat;
+    filterEvents();
+  });
+
+  // Filter Chips (desktop + drawer)
+  document.addEventListener('click', function(e) {
+    const chip = e.target.closest('.filter-chip');
+    if (!chip) return;
+    const filterType = chip.dataset.filter;
+    const val = chip.dataset.val;
+    if (!filterType) return;
+
+    // Custom date chip opens popover instead of filtering directly
+    if (filterType === 'time' && val === 'custom') {
+      // Toggle popover on desktop
+      var popover = document.getElementById('customDatePopover');
+      var drawerDate = document.getElementById('drawerCustomDate');
+      if (popover) popover.classList.toggle('open');
+      if (drawerDate) drawerDate.style.display = drawerDate.style.display === 'none' ? 'block' : 'none';
+      // Activate chips
+      document.querySelectorAll('.filter-chip[data-filter="time"]').forEach(c => c.classList.remove('active'));
+      document.querySelectorAll('.filter-chip[data-filter="time"][data-val="custom"]').forEach(c => c.classList.add('active'));
+      state.time = 'custom';
+      updateFilterBadge();
+      return;
+    }
+
+    // If picking a non-custom time filter, close custom popover & clear custom state
+    if (filterType === 'time' && val !== 'custom') {
+      closeCustomDate();
+      state.customFrom = null;
+      state.customTo = null;
+      var drawerDate = document.getElementById('drawerCustomDate');
+      if (drawerDate) drawerDate.style.display = 'none';
+      updateCustomChipLabel();
+    }
+
+    // Deactivate siblings of same filter type
+    document.querySelectorAll('.filter-chip[data-filter="' + filterType + '"]').forEach(c => c.classList.remove('active'));
+    // Activate all matching chips (desktop + drawer sync)
+    document.querySelectorAll('.filter-chip[data-filter="' + filterType + '"][data-val="' + val + '"]').forEach(c => c.classList.add('active'));
+
+    state[filterType] = val;
+    updateFilterBadge();
+    filterEvents();
+  });
+
+  // Sort
+  document.getElementById('sortDropdown').addEventListener('click', function(e) {
+    const btn = e.target.closest('button');
+    if (!btn) return;
+    this.querySelectorAll('button').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    state.sort = btn.dataset.sort;
+    document.getElementById('sortLabel').textContent = btn.textContent;
+    toggleSort();
+    filterEvents();
+  });
+
+  // View Toggle
+  document.querySelector('.view-toggle').addEventListener('click', function(e) {
+    const btn = e.target.closest('button');
+    if (!btn) return;
+    this.querySelectorAll('button').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    state.view = btn.dataset.view;
+    grid.classList.toggle('list-view', state.view === 'list');
+  });
+
+  // Search
+  document.getElementById('searchInput').addEventListener('input', debounce(function() {
+    state.search = this.value.trim().toLowerCase();
+    filterEvents();
+  }, 250));
+
+  document.getElementById('searchInput').addEventListener('keydown', function(e) {
+    if (e.key === 'Enter') { e.preventDefault(); applySearch(); }
+  });
+
+  window.applySearch = function() {
+    state.search = document.getElementById('searchInput').value.trim().toLowerCase();
+    filterEvents();
+  };
+
+  // Core Filter Logic
+  function filterEvents() {
+    let visible = 0;
+
+    cards.forEach(card => {
+      let show = true;
+
+      // Category
+      if (state.category !== 'all' && card.dataset.cat !== state.category) show = false;
+
+      // Format
+      if (state.format !== 'all' && card.dataset.format !== state.format) show = false;
+
+      // Price
+      if (state.price === 'free' && card.dataset.price !== 'free') show = false;
+      if (state.price === 'paid' && card.dataset.price !== 'paid') show = false;
+
+      // Time
+      if (state.time !== 'all') {
+        const eventDate = new Date(card.dataset.date);
+        const today = new Date();
+        today.setHours(0,0,0,0);
+        if (state.time === 'custom') {
+          if (state.customFrom && eventDate < state.customFrom) show = false;
+          if (state.customTo) { const end = new Date(state.customTo); end.setHours(23,59,59); if (eventDate > end) show = false; }
+        } else if (state.time === 'today') {
+          const tmrw = new Date(today); tmrw.setDate(tmrw.getDate() + 1);
+          if (eventDate < today || eventDate >= tmrw) show = false;
+        } else if (state.time === 'week') {
+          const weekEnd = new Date(today); weekEnd.setDate(weekEnd.getDate() + 7);
+          if (eventDate < today || eventDate > weekEnd) show = false;
+        } else if (state.time === 'month') {
+          const monthEnd = new Date(today); monthEnd.setDate(monthEnd.getDate() + 30);
+          if (eventDate < today || eventDate > monthEnd) show = false;
+        }
+      }
+
+      // Search
+      if (state.search) {
+        const name = card.dataset.name.toLowerCase();
+        const tags = card.querySelector('.card-tags') ? card.querySelector('.card-tags').textContent.toLowerCase() : '';
+        const meta = card.querySelector('.card-meta') ? card.querySelector('.card-meta').textContent.toLowerCase() : '';
+        if (!name.includes(state.search) && !tags.includes(state.search) && !meta.includes(state.search)) show = false;
+      }
+
+      card.style.display = show ? '' : 'none';
+      if (show) visible++;
+    });
+
+    // Sort visible cards
+    sortCards();
+
+    resultCount.textContent = visible;
+    emptyState.classList.toggle('visible', visible === 0);
+    pagination.style.display = visible === 0 ? 'none' : 'flex';
+  }
+
+  function sortCards() {
+    const sorted = cards.filter(c => c.style.display !== 'none').sort((a, b) => {
+      switch (state.sort) {
+        case 'date-asc': return new Date(a.dataset.date) - new Date(b.dataset.date);
+        case 'date-desc': return new Date(b.dataset.date) - new Date(a.dataset.date);
+        case 'popular': return parseInt(b.dataset.attendees) - parseInt(a.dataset.attendees);
+        case 'name-asc': return a.dataset.name.localeCompare(b.dataset.name);
+        default: return 0;
+      }
+    });
+    sorted.forEach(card => grid.appendChild(card));
+  }
+
+  // Save/Bookmark Toggle
+  window.toggleSave = function(btn) {
+    btn.classList.toggle('saved');
+    const icon = btn.querySelector('i');
+    if (btn.classList.contains('saved')) {
+      icon.className = 'fa-solid fa-bookmark';
+    } else {
+      icon.className = 'fa-regular fa-bookmark';
+    }
+  };
+
+  // Sort Dropdown
+  window.toggleSort = function() {
+    document.getElementById('sortDropdown').classList.toggle('open');
+  };
+  document.addEventListener('click', function(e) {
+    if (!e.target.closest('.sort-wrap')) {
+      document.getElementById('sortDropdown').classList.remove('open');
+    }
+  });
+
+  // Mobile Filter Drawer
+  window.openFilterDrawer = function() {
+    document.getElementById('filterOverlay').classList.add('open');
+    document.getElementById('filterDrawer').classList.add('open');
+    document.body.style.overflow = 'hidden';
+  };
+  window.closeFilterDrawer = function() {
+    document.getElementById('filterOverlay').classList.remove('open');
+    document.getElementById('filterDrawer').classList.remove('open');
+    document.body.style.overflow = '';
+  };
+
+  // Clear All Filters
+  window.clearAllFilters = function() {
+    state.search = '';
+    state.category = 'all';
+    state.time = 'all';
+    state.format = 'all';
+    state.price = 'all';
+    document.getElementById('searchInput').value = '';
+    document.querySelectorAll('.cat-tab').forEach(t => t.classList.remove('active'));
+    document.querySelector('.cat-tab[data-cat="all"]').classList.add('active');
+    document.querySelectorAll('.filter-chip').forEach(c => {
+      c.classList.toggle('active', c.dataset.val === 'all');
+    });
+    updateFilterBadge();
+    filterEvents();
+  };
+
+  function updateFilterBadge() {
+    let count = 0;
+    if (state.time !== 'all') count++;
+    if (state.format !== 'all') count++;
+    if (state.price !== 'all') count++;
+    const badge = document.getElementById('filterBadge');
+    badge.textContent = count;
+    badge.style.display = count > 0 ? 'flex' : 'none';
+  }
+
+  function debounce(fn, delay) {
+    let timer;
+    return function() {
+      const ctx = this, args = arguments;
+      clearTimeout(timer);
+      timer = setTimeout(() => fn.apply(ctx, args), delay);
+    };
+  }
+
+  // Custom Date Range
+  window.closeCustomDate = function() {
+    var p = document.getElementById('customDatePopover');
+    if (p) p.classList.remove('open');
+  };
+
+  window.applyCustomDate = function() {
+    var from = document.getElementById('dateFrom').value || document.getElementById('drawerDateFrom').value;
+    var to = document.getElementById('dateTo').value || document.getElementById('drawerDateTo').value;
+    state.customFrom = from ? new Date(from) : null;
+    state.customTo = to ? new Date(to) : null;
+    state.time = 'custom';
+    // Sync inputs
+    if (from) { document.getElementById('dateFrom').value = from; document.getElementById('drawerDateFrom').value = from; }
+    if (to) { document.getElementById('dateTo').value = to; document.getElementById('drawerDateTo').value = to; }
+    updateCustomChipLabel();
+    closeCustomDate();
+    updateFilterBadge();
+    filterEvents();
+  };
+
+  window.clearCustomDate = function() {
+    state.customFrom = null;
+    state.customTo = null;
+    document.getElementById('dateFrom').value = '';
+    document.getElementById('dateTo').value = '';
+    document.getElementById('drawerDateFrom').value = '';
+    document.getElementById('drawerDateTo').value = '';
+    document.querySelectorAll('.date-preset').forEach(p => p.classList.remove('active'));
+    updateCustomChipLabel();
+    // Switch back to All Dates
+    state.time = 'all';
+    document.querySelectorAll('.filter-chip[data-filter="time"]').forEach(c => c.classList.remove('active'));
+    document.querySelectorAll('.filter-chip[data-filter="time"][data-val="all"]').forEach(c => c.classList.add('active'));
+    closeCustomDate();
+    var dd = document.getElementById('drawerCustomDate');
+    if (dd) dd.style.display = 'none';
+    updateFilterBadge();
+    filterEvents();
+  };
+
+  function updateCustomChipLabel() {
+    var chip = document.getElementById('customDateChip');
+    if (!chip) return;
+    if (state.customFrom || state.customTo) {
+      var fmt = function(d) { return d ? d.toLocaleDateString('en-US', {month:'short',day:'numeric'}) : '...'; };
+      chip.innerHTML = '<i class="fa-regular fa-calendar-range" style="font-size:11px"></i> ' + fmt(state.customFrom) + ' — ' + fmt(state.customTo);
+    } else {
+      chip.innerHTML = '<i class="fa-regular fa-calendar-range" style="font-size:11px"></i> Custom Range';
+    }
+  }
+
+  // Date preset buttons
+  document.addEventListener('click', function(e) {
+    var preset = e.target.closest('.date-preset');
+    if (!preset) return;
+    var days = parseInt(preset.dataset.days);
+    var today = new Date();
+    var end = new Date();
+    end.setDate(end.getDate() + days);
+    var fmtISO = function(d) { return d.toISOString().split('T')[0]; };
+    document.getElementById('dateFrom').value = fmtISO(today);
+    document.getElementById('dateTo').value = fmtISO(end);
+    document.getElementById('drawerDateFrom').value = fmtISO(today);
+    document.getElementById('drawerDateTo').value = fmtISO(end);
+    document.querySelectorAll('.date-preset').forEach(p => p.classList.remove('active'));
+    preset.classList.add('active');
+    // Also activate matching preset in other container
+    document.querySelectorAll('.date-preset[data-days="' + days + '"]').forEach(p => p.classList.add('active'));
+  });
+
+  // Close popover on outside click
+  document.addEventListener('click', function(e) {
+    if (!e.target.closest('.custom-date-wrap') && !e.target.closest('.filter-chip[data-val="custom"]')) {
+      closeCustomDate();
+    }
+  });
+
+  // Card click -> detail page
+  grid.addEventListener('click', function(e) {
+    if (e.target.closest('.save-btn')) return;
+    var card = e.target.closest('.event-card');
+    if (!card) return;
+    var slug = card.dataset.name.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/-+$/,'');
+    window.location.href = 'event-detail.html?event=' + slug;
+  });
+
+  // Init
+  filterEvents();
+})();
+</script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
