@@ -511,6 +511,9 @@ switch ($app_url) {
         if (in_array(taoh_parse_url(0), taoh_available_apps())) {
             include(TAOH_PLUGIN_PATH . '/app/' . taoh_parse_url(0) . '/main.php');
             break;
+        } elseif(taoh_parse_url(0) == 'taohui') {
+            include(TAOH_PLUGIN_PATH . '/taohui/' . taoh_parse_url(1));
+            break;
         }
     default:
         //print_r ($_SERVER);taoh_exit();
