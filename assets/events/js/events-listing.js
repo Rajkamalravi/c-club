@@ -623,8 +623,7 @@ function render_events_template(data, slot, event_type_get) {
         /* Update Canonical URL */
         let event_detail_url = event_url;
         if (window._evl_cfg.canonicalUrlEnable) {
-            var canonical_link = additive + '/' + window._evl_cfg.appSlug + '/d/' + convertToSlug(taoh_title_desc_decode(v.title)) + '-' + v.eventtoken + '?con=' + v.conttoken;
-            event_detail_url = canonical_link;
+            event_detail_url = additive + '/' + window._evl_cfg.appSlug + '/d/' + convertToSlug(taoh_title_desc_decode(v.title)) + '-' + v.eventtoken + '?con=' + v.conttoken;
         }
         /* Update Canonical URL - end */
         let rsvp_link;
