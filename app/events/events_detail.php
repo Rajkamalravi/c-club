@@ -204,13 +204,16 @@ $GLOBALS['success_discount_amt'] = $success_discount_amt;
 $GLOBALS['success_sponsor_title'] = $success_sponsor_title;
 $GLOBALS['success_redirect'] = $success_redirect;
 
-$taoh_vals = [
-    'ops' => 'status', 'mod' => 'events',
-    'token' => taoh_get_dummy_token(), 'eventtoken' => $eventtoken,
-    'cache_required' => 0, 'time' => time(),
-];
-$response = taoh_get_array(taoh_apicall_get('events.rsvp.get', $taoh_vals));
-$is_user_rsvp_done = is_array($response) ? ($response['success'] ?? false) : false;
+$is_user_rsvp_done = false;
+if ($taoh_user_is_logged_in) {
+    $taoh_vals = [
+        'ops' => 'status', 'mod' => 'events',
+        'token' => taoh_get_dummy_token(), 'eventtoken' => $eventtoken,
+        'cache_required' => 0, 'time' => time(),
+    ];
+    $response = taoh_get_array(taoh_apicall_get('events.rsvp.get', $taoh_vals));
+    $is_user_rsvp_done = is_array($response) ? ($response['success'] ?? false) : false;
+}
 
 if($is_user_rsvp_done){
     $share_chat_url = '';

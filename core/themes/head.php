@@ -175,7 +175,7 @@
         var d_user_profile_completed = _is_profile_complete;         // 0 = incomplete, 1 = complete
         var d_user_profile_type = 'professional';
         if (_is_logged_in && _is_profile_complete) {
-        d_user_profile_type = '<?php echo taoh_session_get(TAOH_ROOT_PATH_HASH)['USER_INFO']->type;?>'; // 'professional' or other types
+            d_user_profile_type = "<?php echo (taoh_session_get(TAOH_ROOT_PATH_HASH)['USER_INFO'] ?? null)?->type ?? ''; ?>"; // 'professional' or other types
         }
         // Event state
         var d_is_sponsorship_available = 0;       // 0 = no, 1 = yes
