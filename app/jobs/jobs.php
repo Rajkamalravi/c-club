@@ -304,6 +304,7 @@ $currencies = json_encode(taoh_get_currency_symbol('',true));
 		max-height: 300px;
 		margin-top: 14px;
 		opacity: 1;
+        overflow: visible;
 	}
 	/* Hide duplicate search field inside panel (already in row 1) */
 	.jobs-search-panel .form-row > .col.col-md-3 {

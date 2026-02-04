@@ -155,6 +155,7 @@
 	max-height: 300px;
 	margin-top: 14px;
 	opacity: 1;
+	overflow: visible;
 }
 /* Hide duplicate search field inside panel (already in row 1) */
 .events-search-panel .form-row > .col.col-md-4 {
