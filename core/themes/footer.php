@@ -30,7 +30,6 @@ if ($curr_page == 'events' && ($opt == 'chat' || $opt == 'd')) {
     require_once(TAOH_APP_PATH . '/events/events_exhibitors.php');
     require_once(TAOH_APP_PATH . '/events/events_speakers.php');
     require_once(TAOH_APP_PATH . '/events/events_agenda.php');
-    require_once(TAOH_APP_PATH . '/events/events_rooms.php');
     require_once(TAOH_APP_PATH . '/events/events_tables.php');
 }
 

@@ -5,3 +5,4 @@
     var _taoh_curr_app_slug = "<?php echo TAOH_CURR_APP_SLUG; ?>";
 </script>
 <script src="<?php echo TAOH_SITE_URL_ROOT; ?>/assets/events/js/events-footer.js?v=<?php echo time(); ?>"></script>
+<script src="<?php echo TAOH_SITE_URL_ROOT; ?>/assets/events/js/events-rooms.js?v=<?php echo TAOH_CSS_JS_VERSION; ?>"></script>
